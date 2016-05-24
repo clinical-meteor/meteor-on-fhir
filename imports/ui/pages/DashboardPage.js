@@ -12,7 +12,7 @@ import { Footer } from '../components/Footer';
 
 import DashboardContainer from '../components/DashboardContainer';
 
-import Panel from '../layouts/Panel';
+import PhoneColumn from '../layouts/PhoneColumn';
 import LandscapePanel from '../layouts/LandscapePanel';
 import ThirdPanel from '../layouts/ThirdPanel';
 import FourthPanel from '../layouts/FourthPanel';
@@ -78,12 +78,12 @@ export class DashboardPage extends React.Component {
       }
     }
 
-    if (Session.get('appWidth') > 768) {
-      data.style.left = "3.2rem"
-    } else {
-      data.style.left = "0px";
-      data.style.width = "100%";
-    }
+    // if (Session.get('appWidth') > 768) {
+    //   data.style.left = "3.2rem"
+    // } else {
+    //   data.style.left = "0px";
+    //   data.style.width = "100%";
+    // }
 
     return data;
   };
@@ -91,15 +91,15 @@ export class DashboardPage extends React.Component {
     return(
       <div id="dashboardPage" style={this.props.style}>
         <DashboardContainer>
-          <Panel style={{width: '350px', position: "absolute"}}>
+          <PhoneColumn style={{width: '350px', position: "absolute"}}>
             <AboutAppCard  />
             <Spacer />
             <TodoListCard />
-          </Panel>
+          </PhoneColumn>
           <LandscapePanel>
             <GlassCard>
               <ReactHighcharts title="Welcome back, Srinivas & Prasuna" config = {this.data.config}></ReactHighcharts>
-            </GlassCard>            
+            </GlassCard>
             <Spacer />
             <TabbedCard />
           </LandscapePanel>

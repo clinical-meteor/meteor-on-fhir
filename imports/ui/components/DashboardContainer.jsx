@@ -29,17 +29,18 @@ DashboardContainer = React.createClass({
       style: {
         position: "absolute",
         width: "400px",
+        marginLeft: "112px",
         marginTop: "112px",
         marginBottom: "6.4rem"
       }
     }
 
-    if (Session.get('appWidth') > 768) {
-      data.style.left = "3.2rem"
-    } else {
-      data.style.left = "0px";
-      data.style.width = "100%";
-    }
+    // if (Session.get('appWidth') > 768) {
+    //   data.style.left = "3.2rem"
+    // } else {
+    //   data.style.left = "0px";
+    //   data.style.width = "100%";
+    // }
 
 
     return data;

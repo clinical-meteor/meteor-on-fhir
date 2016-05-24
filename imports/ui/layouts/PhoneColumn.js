@@ -2,7 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 // import style from './style';
 
-const Panel = ({ children, className, scrollY }) => {
+const PhoneColumn = ({ children, className, scrollY }) => {
   if (typeof style === "undefined") {
     style = {};
   }
@@ -11,21 +11,21 @@ const Panel = ({ children, className, scrollY }) => {
   }, className);
 
   return (
-    <div data-react-toolbox='panel' className={_className} style={{height: "inherit", width: "100%"}}>
+    <div data-react-toolbox='panel' className={_className} style={{height: "inherit", width: "100%", left: "0px"}}>
       {children}
     </div>
   );
 };
 
-Panel.propTypes = {
+PhoneColumn.propTypes = {
   children: React.PropTypes.any,
   className: React.PropTypes.string,
   scrollY: React.PropTypes.bool
 };
 
-Panel.defaultProps = {
+PhoneColumn.defaultProps = {
   className: '',
   scrollY: false
 };
 
-export default Panel;
+export default PhoneColumn;

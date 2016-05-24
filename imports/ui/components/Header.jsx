@@ -65,7 +65,7 @@ export class Header extends React.Component {
     if (Meteor.user()) {
       data.hasUser = true;
     } else {
-      data.hasUser = false;      
+      data.hasUser = false;
     }
 
     return data;
@@ -92,7 +92,7 @@ export class Header extends React.Component {
     return(
       <header className={style.appbar} flat style={this.data.style}>
         <IconButton icon='menu' floating accent onClick={ this.toggleDrawerActive }/>
-        <h1 className={style.title} style={{paddingLeft: "20px"}}>Glass Derby</h1>
+        <h1 className={style.title} style={{paddingLeft: "20px"}}>Phoenix Demo</h1>
         <div className="eastHeaderElements" style={this.data.eastStyle} >
           { this.renderNavigation(this.data.hasUser) }
         </div>
