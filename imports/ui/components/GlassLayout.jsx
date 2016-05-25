@@ -16,7 +16,14 @@ import { Header } from './Header';
 import { Footer } from './Footer';
 import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
 
+import { IndexLinkContainer, LinkContainer } from 'react-router-bootstrap';
+import { Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
+import { List, ListItem, ListSubHeader, ListDivider, ListCheckbox } from 'react-toolbox/lib/list';
+
+import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session';
+
+import User from '../../api/User';
 
 Session.setDefault('backgroundImagePath', 'url(\"images\/ForestInMist.jpg\")');
 Session.setDefault('backgroundColor', "#eeeeee");
@@ -33,59 +40,105 @@ export class GlassLayout extends React.Component {
     super(props);
   };
   getMeteorData() {
-    return {
-      drawerActive: Session.get("drawerActive"),
-      drawerPinned: Session.get("drawerPinned"),
-      sidebarPinned: Session.get("sidebarPinned")
-    };
-  };
 
-  render(){
-    let appStyle = {
-      "width": "100%",
-      "height": "100%",
-      "position": "absolute",
-      "backgroundSize": "cover",
-      "WebkitBackgroundSize": "cover"
-      // "MozBackgroundSize": "cover",
-      // "OBackgroundSize": "cover",
+    var currentUser = new User(Meteor.user());
+    console.log("currentUser", currentUser);
+    console.log("currentUser.fullName()", currentUser.fullName());
+
+    let data = {
+      state: {
+        drawerActive: Session.get("drawerActive"),
+        drawerPinned: Session.get("drawerPinned"),
+        sidebarPinned: Session.get("sidebarPinned")
+      },
+      style: {
+        "width": "100%",
+        "height": "100%",
+        "position": "absolute",
+        "backgroundSize": "cover",
+        "WebkitBackgroundSize": "cover",
+        "MozBackgroundSize": "cover",
+        "OBackgroundSize": "cover"
+      },
+      card: {
+        title: currentUser.fullName()
+      }
     }
 
     if (Session.get('backgroundColor')) {
-      appStyle.background = Session.get('backgroundColor');
+      data.style.background = Session.get('backgroundColor');
     }
 
     if (Session.get('backgroundImagePath')) {
-      appStyle.WebkitBackgroundSize = "cover";
-      appStyle.MozBackgroundSize = "cover";
-      appStyle.OBackgroundSize = "cover";
-      appStyle.backgroundSize = "cover";
-      appStyle.backgroundImagePath = Session.get('backgroundImagePath');
+      data.style.WebkitBackgroundSize = "cover";
+      data.style.MozBackgroundSize = "cover";
+      data.style.OBackgroundSize = "cover";
+      data.style.backgroundSize = "cover";
+      data.style.backgroundImagePath = Session.get('backgroundImagePath');
     }
 
+    return data;
+  };
+  toggleDrawerActive(){
+    Session.toggle("drawerPinned")
+  };
+  toggleSidebar() {
+    Session.toggle("sidebarPinned");
+  };
+  render(){
 
     return (
       <Layout>
-        <NavDrawer active={this.data.drawerActive}
-          pinned={this.data.drawerPinned} permanentAt='xxxl'
+        <NavDrawer active={this.data.state.drawerActive}
+          pinned={this.data.state.drawerPinned} permanentAt='xxxl'
           onOverlayClick={ this.toggleDrawerActive }
           >
 
            <CardTitle
              avatar="https://placeimg.com/80/80/animals"
-             title="Avatar style title"
+             title={this.data.card.title}
              subtitle="Subtitle here"
            />
-          <p>
-              Navigation, account switcher, etc. go here.
-          </p>
+           <List style={{left: "20px", position: "absolute"}}>
+             <IndexLinkContainer to="/myprofile" >
+               <NavItem href="/myprofile" >
+                <ListItem eventKey={ 5 } caption='My Profile' href="/myprofile" />
+               </NavItem>
+             </IndexLinkContainer>
+
+             <IndexLinkContainer to="/dashboard">
+               <NavItem href="/dashboard" >
+                <ListItem eventKey={ 5 } caption='Dashboard' href="/dashboard" />
+               </NavItem>
+             </IndexLinkContainer>
+
+             <IndexLinkContainer to="/">
+               <NavItem href="/" >
+                <ListItem eventKey={ 5 } caption='Index' href="/" />
+               </NavItem>
+             </IndexLinkContainer>
+
+             <IndexLinkContainer to="/documents">
+               <NavItem href="/documents" >
+                <ListItem eventKey={ 5 } caption='Documents' href="/documents" />
+               </NavItem>
+             </IndexLinkContainer>
+
+             <IndexLinkContainer to="/theming">
+               <NavItem href="/theming" >
+                <ListItem eventKey={ 5 } caption='Theming' href="/theming" />
+               </NavItem>
+             </IndexLinkContainer>
+
+           </List>
+
         </NavDrawer>
-        <Panel pinned={this.data.drawerPinned} >
+        <Panel pinned={this.data.state.drawerPinned} >
           <div style={{ flex: 1, overflowY: 'auto', width: '100%' }}>
             {this.props.children}
           </div>
         </Panel>
-        <Sidebar pinned={ this.data.sidebarPinned } width={ 5 }>
+        <Sidebar pinned={ this.data.state.sidebarPinned } width={ 5 }>
           <div><IconButton icon='close' onClick={ this.toggleSidebar }/></div>
           <div style={{ flex: 1 }}>
             <p>Supplemental content goes here.</p>

@@ -12,8 +12,9 @@ const getUserData = () => ({
   password: getInputValue(component.refs.password),
   profile: {
     name: {
-      first: getInputValue(component.refs.firstName),
-      last: getInputValue(component.refs.lastName),
+      given: getInputValue(component.refs.firstName),
+      family: getInputValue(component.refs.lastName),
+      text: getInputValue(component.refs.firstName) + " " + getInputValue(component.refs.lastName)
     },
   },
 });

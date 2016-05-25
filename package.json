@@ -75,7 +75,7 @@
       {
         "theme-building": true
       },
-      "client/toolbox-theme.scss"
+      "client/main.scss"
     ],
     "outputJsFilePath": {
       ".*node_modules/.*": "{dirname}/{basename}"

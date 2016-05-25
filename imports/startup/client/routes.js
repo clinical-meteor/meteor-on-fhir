@@ -14,6 +14,9 @@ import { Signup } from '../../ui/pages/signup';
 import { Test } from '../../ui/pages/test';
 import { AboutPage } from '../../ui/pages/AboutPage';
 import { DashboardPage } from '../../ui/pages/DashboardPage';
+import { ThemePage } from '../../ui/pages/ThemePage';
+import { MyProfilePage } from '../../ui/pages/MyProfilePage';
+
 
 const requireAuth = (nextState, replace) => {
   if (!Meteor.loggingIn() && !Meteor.userId()) {
@@ -37,6 +40,8 @@ Meteor.startup(() => {
         <Route name="test" path="/test" component={ Test } />
         <Route name="about" path="/about" component={ AboutPage } />
         <Route name="dashboard" path="/dashboard" component={ DashboardPage } />
+        <Route name="theming" path="/theming" component={ ThemePage } />
+        <Route name="myprofile" path="/myprofile" component={ MyProfilePage } />
         <Route path="*" component={ NotFound } />
 
       </Route>

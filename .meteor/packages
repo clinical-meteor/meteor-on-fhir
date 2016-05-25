@@ -24,8 +24,8 @@ accounts-base
 
 check
 audit-argument-checks
-static-html
 reactive-dict
+#static-html
 #browser-policy
 
 
@@ -55,3 +55,4 @@ clinical:extended-api
 clinical:auto-resizing
 clinical:theming
 #clinical:keybindings
+clinical:user-model
