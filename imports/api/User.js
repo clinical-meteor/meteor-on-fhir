@@ -4,13 +4,8 @@
 export default class User {
   constructor(document) {
     if (document) {
-      this.document = document;
-    } else {
-      this.document = {};
+      Object.assign(this, document);
     }
-  }
-  getState(){
-    return this.document;
   }
 
   /**
@@ -46,18 +41,18 @@ export default class User {
    */
   fullName() {
       // if we're using an HL7 FHIR HumanName resource
-    if (this.document.profile && this.document.profile.name && this.document.profile.name.text){
+    if (this.profile && this.profile.name && this.profile.name.text){
       // the following assumes a Person, RelatedPerson, or Practitioner resource
       // which only has a single name specified
-      return this.document.profile.name.text;
-    } else if (this.document.profile && this.document.profile.name){
+      return this.profile.name.text;
+    } else if (this.profile && this.profile.name){
       // the following assumes a Patient resource
       // where multiple names and aliases may be specified
-      return this.document.profile.name[0].text;
+      return this.profile.name[0].text;
 
       // if we're using traditional Meteor naming convention
-    } else if (this.document.profile && this.document.profile.fullName){
-      return this.document.profile.fullName;
+    } else if (this.profile && this.profile.fullName){
+      return this.profile.fullName;
     } else {
       return "---";
     }
@@ -77,12 +72,12 @@ export default class User {
    * ```
    */
   givenName() {
-    if(this.document.profile && this.document.profile.name){
+    if(this.profile && this.profile.name){
       // if we're using an HL7 FHIR HumanName resource
-      return this.document.profile.name[0].given;
-    } else if (this.document.profile && this.document.profile.fullName){
+      return this.profile.name[0].given;
+    } else if (this.profile && this.profile.fullName){
       // if we're using traditional Meteor naming convention
-      var names = this.document.profile.fullName.split(" ");
+      var names = this.profile.fullName.split(" ");
       return names[0];
     } else {
       return "";
@@ -103,12 +98,12 @@ export default class User {
    * ```
    */
   familyName() {
-    if (this.document.profile && this.document.profile.name) {
+    if (this.profile && this.profile.name) {
       // if we're using an HL7 FHIR HumanName resource
-      return this.document.profile.name[0].family;
-    } else if (this.document.profile && this.document.profile.fullName){
+      return this.profile.name[0].family;
+    } else if (this.profile && this.profile.fullName){
       // if we're using traditional Meteor naming convention
-      var names = this.document.profile.fullName.split(" ");
+      var names = this.profile.fullName.split(" ");
       return names[names.length - 1];
     } else {
       return "---";

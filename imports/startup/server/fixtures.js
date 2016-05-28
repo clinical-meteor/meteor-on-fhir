@@ -6,7 +6,9 @@ const users = [{
   email: 'admin@admin.com',
   password: 'password',
   profile: {
-    name: { first: 'Carl', last: 'Winslow' },
+    name: [{ given: 'Abigail', family: 'Watson' , text: 'Abigail Watson'}],
+    avatar: "https://media.licdn.com/mpr/mpr/shrink_100_100/AAEAAQAAAAAAAAKeAAAAJDJkM2RmNTMzLWI4OGUtNDZmOC1iNTliLWYwOTc1ZWM0YmIyZg.jpg",
+    birthdate: "1978/01/25"
   },
   roles: ['admin'],
 }];

@@ -4,10 +4,11 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 
 import { Row, Col } from 'react-bootstrap';
 import DocumentsList from '../containers/documents-list.js';
-import { AddDocument } from '../components/add-document.js';
+import { AddDocument } from '../components/AddDocument.js';
 
 import { PageContainer } from '../components/PageContainer';
-
+import { GlassCard } from '../components/GlassCard';
+import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
 
 export class Documents extends React.Component {
   getMeteorData() {
@@ -37,13 +38,16 @@ export class Documents extends React.Component {
     return (
       <div id="documentsPage">
         <PageContainer>
-          <Row>
-            <Col xs={ 12 }>
-              <h4 className="page-header">Documents</h4>
+          <GlassCard>
+            <CardTitle
+              title="Documents"
+              subtitle="These can be anything you want...."
+            />
+            <CardText>
               <AddDocument />
               <DocumentsList />
-            </Col>
-          </Row>
+            </CardText>
+          </GlassCard>
         </PageContainer>
       </div>
     );

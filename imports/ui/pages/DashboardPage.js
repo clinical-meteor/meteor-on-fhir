@@ -17,6 +17,8 @@ import LandscapePanel from '../layouts/LandscapePanel';
 import ThirdPanel from '../layouts/ThirdPanel';
 import FourthPanel from '../layouts/FourthPanel';
 
+
+import PractitionerMiniListCard from '../components/PractitionerMiniListCard';
 import UserListCard from '../components/UserListCard';
 import {GenericFormCard} from '../components/GenericFormCard';
 import TabbedCard from '../components/TabbedCard';
@@ -108,7 +110,7 @@ export class DashboardPage extends React.Component {
           <FourthPanel>
             <GenericFormCard />
             <Spacer />
-            <UserListCard />
+            <PractitionerMiniListCard />
           </FourthPanel>
         </DashboardContainer>
       </div>

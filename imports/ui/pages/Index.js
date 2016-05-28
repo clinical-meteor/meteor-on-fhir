@@ -43,14 +43,19 @@ export class Index extends React.Component {
         <PageContainer>
           <GlassCard>
             <CardTitle
-              title="Base"
-              subtitle="A starting point for Meteor applications."
+              title="Data Management"
+              subtitle="Import/export data."
             />
-            <CardText>
-              <p><a className="btn btn-success" href="https://themeteorchef.com/base" role="button">Read the Documentation</a></p>
-              <p style={ { fontSize: '16px', color: '#aaa' } }>Currently at v4.1.0</p>
-            </CardText>
           </GlassCard>
+          <Spacer />
+
+          <GlassCard>
+            <CardTitle
+              title="User Management"
+              subtitle="Admin controls for user accounts."
+            />
+          </GlassCard>
+
         </PageContainer>
       </div>
     );
@@ -63,3 +68,45 @@ Index.propTypes = {
   hasUser: React.PropTypes.object,
 };
 ReactMixin(Index.prototype, ReactMeteorData);
+
+
+
+// <GlassCard>
+//   <CardTitle
+//     title="Imaging"
+//     subtitle="Radiology, pathology, and anatomical images."
+//   />
+// </GlassCard>
+// <Spacer />
+//
+// <GlassCard>
+//   <CardTitle
+//     title="Medications"
+//     subtitle="Medication inventory and tracking."
+//   />
+// </GlassCard>
+// <Spacer />
+//
+// <GlassCard>
+//   <CardTitle
+//     title="Laboratory"
+//     subtitle="Observations and reports from laboratories."
+//   />
+// </GlassCard>
+// <Spacer />
+//
+// <GlassCard>
+//   <CardTitle
+//     title="Biometrics"
+//     subtitle="Biometrics tracking and device management."
+//   />
+// </GlassCard>
+// <Spacer />
+//
+// <GlassCard>
+//   <CardTitle
+//     title="Genomics"
+//     subtitle="Genetic profiles and analysis."
+//     disabled
+//   />
+// </GlassCard>

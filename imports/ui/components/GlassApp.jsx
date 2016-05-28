@@ -2,6 +2,7 @@ import React from 'react';
 import ReactMixin from 'react-mixin';
 import ReactDOM from 'react-dom';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
+
 import { createContainer } from 'meteor/react-meteor-data';
 import { Session } from 'meteor/session';
 
@@ -10,7 +11,6 @@ Session.setDefault('backgroundColor', "#eeeeee");
 Session.setDefault('darkroomEnabled', true);
 Session.setDefault('glassBlurEnabled', false);
 Session.setDefault('backgroundBlurEnabled', false);
-
 
 
 export class GlassApp extends React.Component {
@@ -41,7 +41,10 @@ export class GlassApp extends React.Component {
         style: {
           position: "fixed",
           width: "100%",
-          height: "100%"
+          height: "100%",
+          source: "",
+          url: "",
+          style: {}
         }
       }
     }
@@ -50,9 +53,9 @@ export class GlassApp extends React.Component {
     //   data.app.style.background = Session.get('backgroundColor');
     // }
 
-    if (Session.get('backgroundImagePath')) {
-      data.video.url = Session.get('backgroundImagePath');
+    if (!Session.get('backgroundImagePath') && !Session.get('backgroundColor')) {
       data.video.source = Meteor.absoluteUrl() + "Burning.mp4";
+      //data.video.url = Session.get('backgroundImagePath');
       data.video.style = {
         position: "fixed",
         top: "50%",
@@ -73,20 +76,35 @@ export class GlassApp extends React.Component {
         // backgroundSize: "cover"
       }
     }
+
     data.app.style = {
       width: "100%",
       height: "100%",
       position: "absolute",
       zIndex: 1,
       background: "inherit",
-      "left": "0px"
+      "left": "0px",
+      cursor: "pointer"
+    }
+    if (Session.get('backgroundColor')) {
+      data.app.style.background = Session.get('backgroundColor');
+    }
+    if (Session.get('backgroundImagePath')) {
+      data.app.style = {
+        backgroundImage: "url(" + Session.get('backgroundImagePath') + ")",
+        WebkitBackgroundSize: "cover",
+        MozBackgroundSize: "cover",
+        OBackgroundSize: "cover",
+        backgroundSize: "cover"
+      }
     }
     data.app.style.width = "100%";
     data.app.style.height = "100%";
     data.app.style.position = "absolute";
 
 
-    //console.log("data", data);
+    console.log("backgroundColor", Session.get('backgroundColor'));
+    console.log("backgroundImagePath", Session.get('backgroundImagePath'));
 
     return data;
   };

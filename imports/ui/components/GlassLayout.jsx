@@ -61,8 +61,16 @@ export class GlassLayout extends React.Component {
         "OBackgroundSize": "cover"
       },
       card: {
-        title: currentUser.fullName()
+        title: "Please log in",
+        subtitle: "no data",
+        avatar: "https://placeimg.com/80/80/animals"
       }
+    }
+
+    if (Meteor.user()) {
+      data.card.title = currentUser.fullName();
+      data.card.subtitle = Meteor.user().profile.birthdate;
+      data.card.avatar = Meteor.user().profile.avatar;
     }
 
     if (Session.get('backgroundColor')) {
@@ -95,39 +103,29 @@ export class GlassLayout extends React.Component {
           >
 
            <CardTitle
-             avatar="https://placeimg.com/80/80/animals"
+             avatar={this.data.card.avatar}
              title={this.data.card.title}
-             subtitle="Subtitle here"
+             subtitle={this.data.card.subtitle}
            />
-           <List style={{left: "20px", position: "absolute"}}>
+           <List style={{paddingLeft: "20px", position: "absolute"}}>
              <IndexLinkContainer to="/myprofile" >
-               <NavItem href="/myprofile" >
                 <ListItem eventKey={ 5 } caption='My Profile' href="/myprofile" />
-               </NavItem>
              </IndexLinkContainer>
 
              <IndexLinkContainer to="/dashboard">
-               <NavItem href="/dashboard" >
                 <ListItem eventKey={ 5 } caption='Dashboard' href="/dashboard" />
-               </NavItem>
              </IndexLinkContainer>
 
              <IndexLinkContainer to="/">
-               <NavItem href="/" >
                 <ListItem eventKey={ 5 } caption='Index' href="/" />
-               </NavItem>
              </IndexLinkContainer>
 
              <IndexLinkContainer to="/documents">
-               <NavItem href="/documents" >
                 <ListItem eventKey={ 5 } caption='Documents' href="/documents" />
-               </NavItem>
              </IndexLinkContainer>
 
              <IndexLinkContainer to="/theming">
-               <NavItem href="/theming" >
                 <ListItem eventKey={ 5 } caption='Theming' href="/theming" />
-               </NavItem>
              </IndexLinkContainer>
 
            </List>

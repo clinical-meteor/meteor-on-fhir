@@ -42,8 +42,8 @@ xolvio:backdoor
 lmieulet:meteor-coverage
 practicalmeteor:chai
 #practicalmeteor:mocha
-#practicalmeteor:mocha-console-runner
-dispatch:mocha-phantomjs
+practicalmeteor:mocha-console-runner
+#dispatch:mocha-phantomjs
 
 nathantreid:css-modules
 react-meteor-data
@@ -56,3 +56,4 @@ clinical:auto-resizing
 clinical:theming
 #clinical:keybindings
 clinical:user-model
+clinical:accounts-housemd
