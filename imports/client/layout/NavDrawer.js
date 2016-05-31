@@ -18,7 +18,7 @@ const NavDrawer = (props) => {
   return (
     <div data-react-toolbox='nav-drawer' className={rootClasses} onClick={props.onOverlayClick}>
       <div data-react-toolbox='nav-drawer-scrim' className={style.scrim}>
-        <aside data-react-toolbox='nav-drawer-content' className={drawerClasses} style={{width: "28rem", justifyContent: "flex-start"}} >
+        <aside data-react-toolbox='nav-drawer-content' className={drawerClasses} style={{width: "28rem", maxWidth: "28rem", justifyContent: "flex-start"}} >
           {props.children}
         </aside>
       </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactMixin from 'react-mixin';
 import { ReactMeteorData, createContainer } from 'meteor/react-meteor-data';
+import ReactDOM from 'react-dom';
 
 import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
 import { PageContainer } from '../components/PageContainer';

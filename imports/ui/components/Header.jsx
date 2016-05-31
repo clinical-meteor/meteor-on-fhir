@@ -24,7 +24,8 @@ export class Header extends React.Component {
         // height: "6.4rem",
         alignItems: "center",
         padding: "0 2.4rem",
-        opacity: Session.get('globalOpacity')
+        opacity: Session.get('globalOpacity'),
+        zIndex: 100
       },
       westStyle: {
         display: "flex",
@@ -91,7 +92,7 @@ export class Header extends React.Component {
   render () {
     return(
       <header className={style.appbar} flat style={this.data.style}>
-        <IconButton icon='menu' floating accent onClick={ this.toggleDrawerActive }/>
+        <IconButton icon='menu' floating accent onClick={ this.toggleDrawerActive } style={{zIndex:10000}}/>
         <h1 className={style.title} style={{paddingLeft: "20px"}}>Phoenix Demo</h1>
         <div className="eastHeaderElements" style={this.data.eastStyle} >
           { this.renderNavigation(this.data.hasUser) }
