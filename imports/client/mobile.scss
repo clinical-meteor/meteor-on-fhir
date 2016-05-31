@@ -1,0 +1,9 @@
+@media only screen and (max-width: 767px) {
+  #av_section_1 > div.container > main > div > div > span.av_font_icon.avia_animate_when_visible.av-icon-style-.avia-icon-pos-center.avia_start_animation.avia_start_delayed_animation {
+  display: none !important;
+  opacity: 0 !important;
+  }
+  video::-webkit-media-controls {
+    display:none !important;
+  }
+}

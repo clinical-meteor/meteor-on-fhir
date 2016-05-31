@@ -53,11 +53,9 @@ export class GlassApp extends React.Component {
       ReactDOM.findDOMNode(this.refs.MyVideo).play();
     }
 
-    // if (Session.get('backgroundColor')) {
-    //   data.app.style.background = Session.get('backgroundColor');
-    // }
-
-    if (!Session.get('backgroundImagePath') && !Session.get('backgroundColor')) {
+    // play a video if no background image or color has been set
+    // and we're on a tablet or larger device (no phone)
+    if (!Session.get('backgroundImagePath') && !Session.get('backgroundColor') && (Session.get('appWidth') > 768)) {
       data.video.source = Meteor.absoluteUrl() + "Burning.mp4";
       //data.video.url = Session.get('backgroundImagePath');
       data.video.style = {
@@ -107,8 +105,8 @@ export class GlassApp extends React.Component {
     data.app.style.position = "absolute";
 
 
-    console.log("backgroundColor", Session.get('backgroundColor'));
-    console.log("backgroundImagePath", Session.get('backgroundImagePath'));
+    //console.log("backgroundColor", Session.get('backgroundColor'));
+    //console.log("backgroundImagePath", Session.get('backgroundImagePath'));
 
     return data;
   };
@@ -119,7 +117,6 @@ export class GlassApp extends React.Component {
         <video
           ref="MyVideo"
           style={this.data.video.style}
-          poster="nice-default.jpg"
           autoplay
           loop
         >

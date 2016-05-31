@@ -5,11 +5,11 @@ import { Meteor } from 'meteor/meteor';
 import { App } from '../../ui/layouts/app';
 import { Documents } from '../../ui/pages/documents';
 import { Index } from '../../ui/pages/Index';
-import { Login } from '../../ui/pages/login';
+import { Login } from '../../ui/pages/Login';
 import { NotFound } from '../../ui/pages/not-found';
 import { RecoverPassword } from '../../ui/pages/recover-password';
 import { ResetPassword } from '../../ui/pages/reset-password';
-import { Signup } from '../../ui/pages/signup';
+import { Signup } from '../../ui/pages/Signup';
 
 import { Test } from '../../ui/pages/test';
 import { AboutPage } from '../../ui/pages/AboutPage';

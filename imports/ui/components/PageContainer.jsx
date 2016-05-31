@@ -20,7 +20,6 @@ export class PageContainer extends React.Component {
   getMeteorData() {
     let data = {
       style: {
-        width: "768px",
         marginTop: "6.4rem",
         marginBottom: "6.4rem",
         paddingTop: "6.4rem"
@@ -33,19 +32,14 @@ export class PageContainer extends React.Component {
       data.style.position = "relative";
       data.style.marginLeft = "auto";
       data.style.marginRight = "auto";
+      data.style.width = "768px";
       // data.style.left = "0px";
       // data.style.width = "100%";
     } else {
       data.style.position = "absolute";
       data.style.margin = "0px";
-      // data.style.left = ((Session.get('appWidth') - 768) * 0.5) + "px";
-    }
-
-    //phone layout
-    if (Session.get('appWidth') < 768) {
       data.style.width = "100%";
-      data.style.paddingLeft = "20px";
-      data.style.paddingRight = "20px";
+      // data.style.left = ((Session.get('appWidth') - 768) * 0.5) + "px";
     }
 
     return data;
