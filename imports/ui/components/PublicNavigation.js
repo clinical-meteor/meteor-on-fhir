@@ -29,9 +29,6 @@ export class PublicNavigation extends React.Component {
   render () {
     return(
       <Nav id="publicNavigation" pullRight>
-        <LinkContainer to="about">
-          <NavItem id="aboutLink" eventKey={ 1 } href="/about" style={this.data.listItem} >About</NavItem>
-        </LinkContainer>
         <LinkContainer to="signup">
           <NavItem id="signupLink" eventKey={ 2 } href="/signup" style={this.data.listItem} >Sign Up</NavItem>
         </LinkContainer>

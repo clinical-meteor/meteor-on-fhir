@@ -128,6 +128,10 @@ export class GlassLayout extends React.Component {
                 <ListItem eventKey={ 5 } caption='Theming' href="/theming" />
              </IndexLinkContainer>
 
+             <IndexLinkContainer to="/about">
+                <ListItem eventKey={ 6 } caption='About' href="/about" />
+             </IndexLinkContainer>
+
            </List>
 
         </NavDrawer>

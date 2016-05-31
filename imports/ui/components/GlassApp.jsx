@@ -49,6 +49,10 @@ export class GlassApp extends React.Component {
       }
     }
 
+    if (Session.get('lastVideoRun')) {
+      ReactDOM.findDOMNode(this.refs.MyVideo).play();
+    }
+
     // if (Session.get('backgroundColor')) {
     //   data.app.style.background = Session.get('backgroundColor');
     // }

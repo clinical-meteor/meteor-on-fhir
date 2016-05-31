@@ -160,7 +160,7 @@ export class ThemePage extends React.Component {
   onVideoClick(event){
     Session.set('backgroundImagePath', false);
     Session.set('backgroundColor', false);
-    ReactDOM.findDOMNode(this.refs.MyVideo).play();
+    Session.set('lastVideoRun', new Date());
   };
   clickOnDarkroomButton(){
     Session.toggle('darkroomEnabled');

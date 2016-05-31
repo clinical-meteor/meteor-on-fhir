@@ -41,6 +41,13 @@ export class PageContainer extends React.Component {
       // data.style.left = ((Session.get('appWidth') - 768) * 0.5) + "px";
     }
 
+    //phone layout
+    if (Session.get('appWidth') < 768) {
+      data.style.width = "100%";
+      data.style.paddingLeft = "20px";
+      data.style.paddingRight = "20px";
+    }
+
     return data;
   };
 

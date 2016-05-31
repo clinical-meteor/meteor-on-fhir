@@ -56,6 +56,12 @@ export class Footer extends React.Component {
       data.style.webkitFilter = "blur(3px)";
     }
 
+    //phone layout
+    if (Session.get('appWidth') < 768) {
+      data.westStyle.visibility = "hidden";
+      data.eastStyle.visibility = "hidden";
+    }
+
     return data;
   };
   clickOnDarkroomButton(){
@@ -67,7 +73,7 @@ export class Footer extends React.Component {
 
   render () {
     return(
-       <footer className={style.appbar} style={this.data.style}>
+       <footer id="appFooter" className={style.appbar} style={this.data.style}>
         <div className="westFooterElements" style={this.data.westStyle} >
           <Button ref="blurButton" className={style.button} icon="blur_on" floating accent onClick={this.clickOnBlurButton} style={{marginLeft: "40px"}} />
           <Button ref="darkroomButton" className={style.button} icon="exposure" floating accent onClick={this.clickOnDarkroomButton} style={{marginLeft: "20px"}} />
