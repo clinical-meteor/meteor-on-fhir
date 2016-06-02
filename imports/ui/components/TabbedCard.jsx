@@ -82,7 +82,7 @@ TabbedCard = React.createClass({
 
     return(
      <Card style={this.data.style}>
-       <Tabs index={this.data.state.index} onChange={this.handleTabChange}>
+       <Tabs default index={this.data.state.index} onChange={this.handleTabChange}>
         <Tab label='Data Input' style={{padded: "20px"}}>
           <Input type='text' label='Name' name='name' value={this.data.state.name} />
           <Input type='text' label='Description' name='description' value={this.data.state.description} />

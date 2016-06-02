@@ -91,7 +91,7 @@ export class DashboardPage extends React.Component {
   };
   render(){
     return(
-      <div id="dashboardPage" style={this.props.style}>
+      <div id="dashboardPage" style={this.data.style}>
         <DashboardContainer>
           <PhoneColumn style={{width: '350px', position: "absolute"}}>
             <AboutAppCard  />
@@ -100,7 +100,7 @@ export class DashboardPage extends React.Component {
           </PhoneColumn>
           <LandscapePanel>
             <GlassCard>
-              <ReactHighcharts title="Welcome back, Srinivas & Prasuna" config = {this.data.config}></ReactHighcharts>
+              <ReactHighcharts title="Welcome back" config = {this.data.config}></ReactHighcharts>
             </GlassCard>
             <Spacer />
             <TabbedCard />

@@ -25,7 +25,7 @@ export class GlassApp extends React.Component {
   // };
   componentDidMount() {
     //console.log("GlassApp initialized...");
-    ReactDOM.findDOMNode(this.refs.MyVideo).play();
+    ReactDOM.findDOMNode(this.refs.BackgroundVideo).play();
     //handleLogin({ component: this });
   };
   getMeteorData() {
@@ -34,62 +34,38 @@ export class GlassApp extends React.Component {
         style: {
           width: "100%",
           height: "100%",
-          position: "absolute"
+          position: "absolute",
+          background: "inherit"
         }
       },
       video: {
         style: {
           position: "fixed",
-          width: "100%",
-          height: "100%",
-          source: "",
-          url: "",
-          style: {}
+          top: "50%",
+          left: "50%",
+          minWidth: "100%",
+          minHeight: "100%",
+          width: "auto",
+          height: "auto",
+          zIndex: "0",
+          WebkitTransform: "translateX(-50%) translateY(-50%)",
+          transform: "translateX(-50%) translateY(-50%)"
         }
       }
     }
 
     if (Session.get('lastVideoRun')) {
-      ReactDOM.findDOMNode(this.refs.MyVideo).play();
-    }
-
-    // play a video if no background image or color has been set
-    // and we're on a tablet or larger device (no phone)
-    if (!Session.get('backgroundImagePath') && !Session.get('backgroundColor') && (Session.get('appWidth') > 768)) {
-      data.video.source = Meteor.absoluteUrl() + "Burning.mp4";
-      //data.video.url = Session.get('backgroundImagePath');
-      data.video.style = {
-        position: "fixed",
-        top: "50%",
-        left: "50%",
-        minWidth: "100%",
-        minHeight: "100%",
-        width: "auto",
-        height: "auto",
-        zIndex: "0",
-        WebkitTransform: "translateX(-50%) translateY(-50%)",
-        transform: "translateX(-50%) translateY(-50%)",
-        backgroundSize: "cover"
-        //background: "url(polina.jpg) no-repeat",
-        // backgroundImage: Session.get('backgroundImagePath'),
-        // WebkitBackgroundSize: "cover",
-        // MozBackgroundSize: "cover",
-        // OBackgroundSize: "cover",
-        // backgroundSize: "cover"
-      }
+      ReactDOM.findDOMNode(this.refs.BackgroundVideo).play();
     }
 
     data.app.style = {
-      width: "100%",
-      height: "100%",
-      position: "absolute",
       zIndex: 1,
-      background: "inherit",
-      "left": "0px",
       cursor: "pointer"
     }
     if (Session.get('backgroundColor')) {
       data.app.style.background = Session.get('backgroundColor');
+    } else {
+      data.app.style.background = "inherit";
     }
     if (Session.get('backgroundImagePath')) {
       data.app.style = {
@@ -99,14 +75,18 @@ export class GlassApp extends React.Component {
         OBackgroundSize: "cover",
         backgroundSize: "cover"
       }
+    } else {
+      backgroundImage: none;
     }
     data.app.style.width = "100%";
     data.app.style.height = "100%";
     data.app.style.position = "absolute";
 
-
-    //console.log("backgroundColor", Session.get('backgroundColor'));
-    //console.log("backgroundImagePath", Session.get('backgroundImagePath'));
+    // play a video if no background image or color has been set
+    // and we're on a tablet or larger device (no phone)
+    if (!Session.get('backgroundImagePath') && !Session.get('backgroundColor') && (Session.get('appWidth') > 768)) {
+      data.video.source = Meteor.absoluteUrl() + "Burning.mp4";      
+    }
 
     return data;
   };
@@ -115,12 +95,13 @@ export class GlassApp extends React.Component {
     return (
       <div>
         <video
-          ref="MyVideo"
+          ref="BackgroundVideo"
           style={this.data.video.style}
+          poster=""
           autoplay
           loop
         >
-        <source src={this.data.video.source} type="video/mp4"></source>
+        <source src="Burning.mp4" type="video/mp4"></source>
         </video>
 
         <div data-react-toolbox='app' style={this.data.app.style}>

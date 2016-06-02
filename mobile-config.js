@@ -58,6 +58,7 @@ App.accessRule('http://localhost:3000', { type: 'navigation' } );
 App.accessRule('http://checklist.symptomatic.io', { type: 'navigation' } );
 App.accessRule('http://checklist-manifesto.meteorapp.com', { type: 'navigation' } );
 
+App.setPreference("BackupWebStorage", "local");
 // // Pass preferences for a particular PhoneGap/Cordova plugin
 // App.configurePlugin('com.phonegap.plugins.facebookconnect', {
 //   APP_ID: '1234567890',
