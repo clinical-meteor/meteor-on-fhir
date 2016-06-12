@@ -109,15 +109,19 @@ export class GlassLayout extends React.Component {
            />
            <List style={{paddingLeft: "20px", position: "absolute"}}>
              <IndexLinkContainer to="/myprofile" >
-                <ListItem eventKey={ 5 } caption='My Profile' href="/myprofile" />
+                <ListItem eventKey={ 1 } caption='My Profile' href="/myprofile" />
              </IndexLinkContainer>
 
              <IndexLinkContainer to="/dashboard">
-                <ListItem eventKey={ 5 } caption='Dashboard' href="/dashboard" />
+                <ListItem eventKey={ 2 } caption='Dashboard' href="/dashboard" />
+             </IndexLinkContainer>
+
+             <IndexLinkContainer to="/weblog">
+                <ListItem eventKey={ 3 } caption='Weblog' href="/weblog" />
              </IndexLinkContainer>
 
              <IndexLinkContainer to="/">
-                <ListItem eventKey={ 5 } caption='Index' href="/" />
+                <ListItem eventKey={ 4 } caption='Index' href="/" />
              </IndexLinkContainer>
 
              <IndexLinkContainer to="/documents">
@@ -125,11 +129,11 @@ export class GlassLayout extends React.Component {
              </IndexLinkContainer>
 
              <IndexLinkContainer to="/theming">
-                <ListItem eventKey={ 5 } caption='Theming' href="/theming" />
+                <ListItem eventKey={ 6 } caption='Theming' href="/theming" />
              </IndexLinkContainer>
 
              <IndexLinkContainer to="/about">
-                <ListItem eventKey={ 6 } caption='About' href="/about" />
+                <ListItem eventKey={ 7 } caption='About' href="/about" />
              </IndexLinkContainer>
 
            </List>

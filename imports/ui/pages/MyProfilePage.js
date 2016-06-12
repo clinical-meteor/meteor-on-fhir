@@ -64,15 +64,22 @@ export class MyProfilePage extends React.Component {
 
     if (Meteor.user()) {
       data.user = {
-        given: Meteor.user().profile.name[0].given,
-        family: Meteor.user().profile.name[0].family,
-        fullName: Meteor.user().profile.name[0].given + " " + Meteor.user().profile.name[0].family,
         email: Meteor.user().emails[0].address,
         avatar: Meteor.user().profile.avatar,
         zip: "",
         longitude: "",
         latitude: "",
         profileImage: Meteor.user().profile.avatar
+      }
+
+      if (Meteor.user() && Meteor.user().profile && Meteor.user().profile.name) {
+        data.user.given = Meteor.user().profile.name.given;
+        data.user.family = Meteor.user().profile.name.family;
+        data.user.fullName = Meteor.user().profile.name.given + " " + Meteor.user().profile.name.family;
+      } else {
+        data.user.given = "";
+        data.user.family = "";
+        data.user.fullName = "";
       }
     }
 
