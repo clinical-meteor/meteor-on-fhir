@@ -29,6 +29,7 @@ import LayoutControlsCard from '../components/LayoutControlsCard';
 import { AboutAppCard } from '../components/AboutAppCard';
 const ReactHighcharts = require('react-highcharts');
 
+import PatientMiniList from '../components/PatientMiniList';
 
 
 const config = {
@@ -96,7 +97,7 @@ export class DashboardPage extends React.Component {
           <PhoneColumn style={{width: '350px', position: "absolute"}}>
             <AboutAppCard  />
             <Spacer />
-            <TodoListCard />
+            <PatientMiniList />
           </PhoneColumn>
           <LandscapePanel>
             <GlassCard>

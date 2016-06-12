@@ -57,3 +57,8 @@ clinical:theming
 #clinical:keybindings
 clinical:user-model
 clinical:accounts-housemd
+
+clinical:accounts-famous-dead-people
+
+clinical:hl7-resource-patient
+clinical:hl7-resource-practitioner

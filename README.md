@@ -11,7 +11,7 @@ meteor npm install && meteor
 
 ```sh
 ## Initialize with FHIR test data
-INITIALIZE=true Practitioners=true meteor
+INITIALIZE=true Patients=true Practitioners=true meteor
 ```
 
 

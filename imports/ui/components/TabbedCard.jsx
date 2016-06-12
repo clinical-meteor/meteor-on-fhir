@@ -5,6 +5,7 @@ import Input from 'react-toolbox/lib/input';
 import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
 import {Tab, Tabs} from 'react-toolbox/lib/tabs';
 import UserTable from './UserTable';
+import PatientTable from './PatientTable';
 // import './style';
 
 
@@ -97,9 +98,9 @@ TabbedCard = React.createClass({
         <Tab label='Users' onActive={this.handleActive}>
           <UserTable />
         </Tab>
-        <Tab label='Disabled' disabled><small>Disabled content</small></Tab>
-        <Tab label='Foo'><small>Fourth content hidden</small></Tab>
-        <Tab label='Faz'><small>Fifth content</small></Tab>
+        <Tab label='Patients'>
+          <PatientTable />
+        </Tab>
       </Tabs>
 
      </Card>

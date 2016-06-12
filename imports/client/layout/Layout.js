@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import style from './style';
 
 const Layout = ({ className, children }) => (
-  <div data-react-toolbox='layout' className={classnames(style.root, className)}>
+  <div data-react-toolbox='layout' className={classnames(style.root, className)} style={{position: "absolute", overflowY: "scroll"}}>
     {children}
   </div>
 );
