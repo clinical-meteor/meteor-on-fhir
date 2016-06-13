@@ -85,7 +85,7 @@ export class GlassApp extends React.Component {
     // play a video if no background image or color has been set
     // and we're on a tablet or larger device (no phone)
     if (!Session.get('backgroundImagePath') && !Session.get('backgroundColor') && (Session.get('appWidth') > 768)) {
-      data.video.source = Meteor.absoluteUrl() + "Burning.mp4";      
+      data.video.source = Meteor.absoluteUrl() + "Burning.mp4";
     }
 
     return data;
@@ -101,7 +101,7 @@ export class GlassApp extends React.Component {
           autoplay
           loop
         >
-        <source src="Burning.mp4" type="video/mp4"></source>
+        <source src="VideoBackgrounds/11763620.mp4" type="video/mp4"></source>
         </video>
 
         <div data-react-toolbox='app' style={this.data.app.style}>

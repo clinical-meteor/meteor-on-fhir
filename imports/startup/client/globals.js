@@ -1,5 +1,4 @@
 
-import { Posts } from "../../api/posts/posts";
 
 import User from "../../api/User";
 

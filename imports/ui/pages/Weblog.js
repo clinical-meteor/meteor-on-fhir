@@ -6,6 +6,7 @@ import { Row, Col } from 'react-bootstrap';
 import DocumentsList from '../containers/documents-list.js';
 
 import { AddPost } from '../workflows/posts/AddPost.js';
+import PostsDeck from '../workflows/posts/PostsDeck.js';
 import PostsList from '../containers/posts-list.js';
 
 import Spacer from '../components/Spacer';
@@ -41,7 +42,7 @@ export class Weblog extends React.Component {
         <PageContainer>
           <AddPost />
           <Spacer />
-          <PostsList />
+          <PostsDeck />
         </PageContainer>
       </div>
     );
