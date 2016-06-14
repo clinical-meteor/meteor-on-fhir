@@ -10,11 +10,13 @@ import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox
 const handleInsertPost = (event) => {
   const target = event.target;
   const title = target.value.trim();
+  const createdAt = new Date();
 
   if (title !== '' && event.keyCode === 13) {
     console.log('title', title);
     insertPost.call({
       title,
+      createdAt
     }, (error) => {
       if (error) {
         Bert.alert(error.reason, 'danger');

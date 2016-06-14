@@ -8,12 +8,17 @@ export const Posts = new Mongo.Collection('Posts');
 Posts.schema = new SimpleSchema({
   title: {
     type: String,
-    label: 'The title of the document.',
+    label: 'The title of the post.',
+  },
+  createdAt: {
+    optional: true,
+    type: Date,
+    label: 'Date and time the post was created.',
   },
 });
 
 Posts.attachSchema(Posts.schema);
 
 Factory.define('post', Posts, {
-  title: () => faker.hacker.phrase(),
+  title: () => faker.hacker.phrase()
 });

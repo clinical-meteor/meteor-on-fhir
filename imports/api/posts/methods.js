@@ -6,6 +6,7 @@ export const insertPost = new ValidatedMethod({
   name: 'posts.insert',
   validate: new SimpleSchema({
     title: { type: String },
+    createdAt: { type: Date },
   }).validator(),
   run(document) {
     Posts.insert(document);

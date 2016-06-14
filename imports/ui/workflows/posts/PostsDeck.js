@@ -1,5 +1,7 @@
-
 import React from 'react';
+import ReactMixin from 'react-mixin';
+import { ReactMeteorData } from 'meteor/react-meteor-data';
+
 import AppBar from 'react-toolbox/lib/app_bar';
 import Button from 'react-toolbox/lib/button';
 import { GlassCard } from '../../components/GlassCard';
@@ -10,10 +12,10 @@ import {IconMenu, MenuItem, MenuDivider } from 'react-toolbox/lib/menu';
 
 import Spacer from '../../components/Spacer';
 
-import './Post';
+import { removePost } from '../../../api/posts/methods.js';
 
-PostsDeck = React.createClass({
-  mixins: [ReactMeteorData],
+
+export default class PostsDeck extends React.Component {
   getMeteorData() {
 
     // this should all be handled by props
@@ -48,54 +50,95 @@ PostsDeck = React.createClass({
     }
 
     if (Posts.find().count() > 0) {
-      data.posts = Posts.find().fetch();
+      data.posts = Posts.find({},{sort: {createdAt: -1}}).fetch();
     }
     console.log("data.posts", data.posts);
 
 
     return data;
-  },
+  };
   render () {
-
-    let postCards = [];
-    let title = "";
-
-    for (var i=0; i < this.data.posts.length; i++) {
-      if (this.data && this.data.posts && this.data.posts[i]) {
-        title = this.data.posts[i].title;
-      }
-      console.log("title", title);
-
-
-      postCards.push(
-        <div className="postCard" key={i}>
-          <GlassCard>
-            <CardTitle
-              avatar="https://media.licdn.com/mpr/mpr/shrink_100_100/AAEAAQAAAAAAAAKeAAAAJDJkM2RmNTMzLWI4OGUtNDZmOC1iNTliLWYwOTc1ZWM0YmIyZg.jpg"
-              title="Abigail Watson"
-              subtitle="YYYY-MM-DD"
-            />
-
-            <CardText>
-              {title}
-            </CardText>
-            <CardActions>
-              <Button className="editButton" label="Edit" style={{color: "lightgray"}} />
-              <Button className="deleteButton" label="Delete" style={{color: "lightgray"}} />
-            </CardActions>
-          </GlassCard>
-          <Spacer />
-        </div>
-      );
-    }
-
+    let self = this;
 
     return(
-      <div>
-        {postCards}
+      <div className="postDeck">
+        {this.data.posts.map(function(item, i){
+          let createdAt = "";
+          if (item.createdAt) {
+            createdAt = moment(item.createdAt).format("YYYY, MMMM Do (dddd) hh:mm a");
+          }
+          return (
+            <div className="postCard" key={i}>
+              <GlassCard>
+                <CardTitle
+                  avatar="https://media.licdn.com/mpr/mpr/shrink_100_100/AAEAAQAAAAAAAAKeAAAAJDJkM2RmNTMzLWI4OGUtNDZmOC1iNTliLWYwOTc1ZWM0YmIyZg.jpg"
+                  title="Abigail Watson"
+                  subtitle={createdAt}
+                />
+
+                <CardText>
+                  { item.title}
+                </CardText>
+                <CardActions>
+                  <Button className="editButton" label="Edit" style={{color: "lightgray"}} />
+                  <Button className="deleteButton" onMouseUp={self.handleDeleteButton.bind(self, i, item)} label="Delete" style={{color: "lightgray"}} />
+                </CardActions>
+              </GlassCard>
+              <Spacer />
+            </div>
+
+          );
+        })}
+
       </div>
     );
-  }
-});
+  };
 
-export default PostsDeck;
+  handleDeleteButton(index, post){
+    console.log("handleDeleteButton");
+
+    removePost.call({
+      _id: post._id
+    }, (error) => {
+      if (error) {
+        Bert.alert(error.reason, 'danger');
+      } else {
+        Bert.alert('Post removed!', 'success');
+      }
+    });
+  };
+};
+
+
+PostsDeck.propTypes = {
+
+};
+PostsDeck.defaultProps = {
+
+};
+ReactMixin(PostsDeck.prototype, ReactMeteorData);
+
+// export default PostsDeck;
+//
+//
+//
+// const handleDeleteButton = (event, index, post) => {
+//
+//   var postId = post._id;
+//
+//   alert('postId', postId);
+//
+//   if (postId !== '' && event.keyCode === 13) {
+//     console.log('postId', postId);
+//     removePost.call({
+//       postId,
+//     }, (error) => {
+//       if (error) {
+//         Bert.alert(error.reason, 'danger');
+//       } else {
+//         target.value = '';
+//         Bert.alert('Post removed!', 'success');
+//       }
+//     });
+//   }
+// };

@@ -36,6 +36,8 @@ themeteorchef:bert
 mdg:validated-method
 dburles:factory
 
+momentjs:moment
+
 xolvio:cleaner
 xolvio:backdoor
 

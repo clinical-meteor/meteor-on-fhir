@@ -78,6 +78,7 @@ mobile-experience@1.0.4
 mobile-status-bar@1.0.12
 modules@0.6.2-beta.1
 modules-runtime@0.6.4-beta.1
+momentjs:moment@2.13.1
 mongo@1.1.8-beta.1
 mongo-id@1.0.5-beta.1
 nathantreid:css-modules@1.2.0
