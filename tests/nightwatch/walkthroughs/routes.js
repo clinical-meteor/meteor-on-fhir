@@ -9,7 +9,6 @@ module.exports = {
       .url("http://localhost:3000").pause(1000)
         .verify.elementPresent("body")
         .verify.elementPresent("#publicNavigation")
-        .verify.elementPresent("#aboutLink")
         .verify.elementPresent("#signupLink")
         .verify.elementPresent("#loginLink");
   },

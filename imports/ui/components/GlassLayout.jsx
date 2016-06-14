@@ -8,9 +8,9 @@ import AppBar from 'react-toolbox/lib/app_bar';
 import Checkbox from 'react-toolbox/lib/checkbox';
 import IconButton from 'react-toolbox/lib/button';
 
-import Layout from '../../client/layout/Layout';
-import NavDrawer from '../../client/layout/NavDrawer';
-import Sidebar from '../../client/layout/Sidebar';
+import Layout from '../layouts/Layout';
+import NavDrawer from '../layouts/NavDrawer';
+import Sidebar from '../layouts/Sidebar';
 import Panel from '../layouts/Panel';
 import { Header } from './Header';
 import { Footer } from './Footer';

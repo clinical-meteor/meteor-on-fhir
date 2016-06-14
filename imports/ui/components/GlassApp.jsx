@@ -76,7 +76,7 @@ export class GlassApp extends React.Component {
         backgroundSize: "cover"
       }
     } else {
-      backgroundImage: none;
+      backgroundImage: "none";
     }
     data.app.style.width = "100%";
     data.app.style.height = "100%";
