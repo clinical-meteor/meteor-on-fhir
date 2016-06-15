@@ -1,4 +1,6 @@
 import '/imports/startup/server';
+import '/imports/api/users/methods';
+
 import { Accounts } from 'meteor/accounts-base'
 
 Meteor.startup(function (){

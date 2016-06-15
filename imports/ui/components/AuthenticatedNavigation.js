@@ -40,6 +40,10 @@ export class AuthenticatedNavigation extends React.Component {
   handleLogout() {
     Meteor.logout(() => browserHistory.push('/login'));
   };
+  handleProfile() {
+    browserHistory.push('/myprofile');
+    //Router.go('/myprofile');
+  };
   userName() {
     return this.data.user;
   };
@@ -47,8 +51,9 @@ export class AuthenticatedNavigation extends React.Component {
     return(
       <div>
         <Nav pullRight>
-          <NavDropdown eventKey={ 4 } title={ this.data.user } id="basic-nav-dropdown" style={this.data.listItem} >
-            <MenuItem eventKey={ 4.1 } onClick={ this.handleLogout }>Logout</MenuItem>
+          <NavDropdown eventKey={ 4 } title={ this.data.user } id="authenticatedNavDropdown" style={this.data.listItem} >
+            <MenuItem id="profileMenuItem" eventKey={ 4.1 } onClick={ this.handleProfile }>Profile</MenuItem>
+            <MenuItem id="logoutMenuItem" eventKey={ 4.1 } onClick={ this.handleLogout }>Logout</MenuItem>
           </NavDropdown>
         </Nav>
         <Nav pullRight>

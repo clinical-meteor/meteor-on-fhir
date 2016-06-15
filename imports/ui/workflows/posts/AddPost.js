@@ -5,7 +5,7 @@ import { insertPost } from '../../../api/posts/methods.js';
 
 import { GlassCard } from '../../components/GlassCard';
 import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
-
+import Input from 'react-toolbox/lib/input';
 
 const handleInsertPost = (event) => {
   const target = event.target;
@@ -41,6 +41,8 @@ export const AddPost = () => (
           onKeyUp={ handleInsertPost }
           placeholder="Type some text and press enter to create a post..."
         />
+
+        <Input type='text' multiline label='Add Post' name='addPost' ref="addPost" />
       </FormGroup>
     </CardText>
   </GlassCard>
