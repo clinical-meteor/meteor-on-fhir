@@ -69,8 +69,10 @@ export class GlassLayout extends React.Component {
 
     if (Meteor.user()) {
       data.card.title = currentUser.fullName();
-      data.card.subtitle = Meteor.user().profile.birthdate;
-      data.card.avatar = Meteor.user().profile.avatar;
+      if (Meteor.user().profile) {
+        data.card.subtitle = Meteor.user().profile.birthdate;
+        data.card.avatar = Meteor.user().profile.avatar;        
+      }
     }
 
     if (Session.get('backgroundColor')) {

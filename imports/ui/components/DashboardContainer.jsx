@@ -10,7 +10,8 @@ DashboardContainer = React.createClass({
       style: {
         position: "absolute",
         width: "400px",
-        marginLeft: "112px",
+        marginLeft: "auto",
+        marginRight: "auto",
         marginTop: "112px",
         marginBottom: "6.4rem"
       }

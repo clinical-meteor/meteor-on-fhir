@@ -6,7 +6,11 @@ import './globals.js';
 
 import { Meteor } from 'meteor/meteor';
 
-Bert.defaults.style = 'growl-bottom-right';
+if (Meteor.settings.environment === "production") {
+  Bert.defaults.style = 'fixed-top';
+} else {
+  Bert.defaults.style = 'fixed-bottom';
+}
 
 
 // subscriptions

@@ -4,8 +4,15 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 
 import { browserHistory } from 'react-router';
 import { IndexLinkContainer, LinkContainer } from 'react-router-bootstrap';
-import { Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
+import { Nav, NavItem, NavDropdown, Navbar } from 'react-bootstrap';
 import { Meteor } from 'meteor/meteor';
+import { Session } from 'meteor/session';
+
+import { List, ListItem, ListSubHeader, ListDivider, ListCheckbox } from 'react-toolbox/lib/list';
+import {Menu, IconMenu, MenuItem, MenuDivider } from 'react-toolbox/lib/menu';
+
+
+Session.get('notificationMenuOpen', true)
 
 export class AuthenticatedNavigation extends React.Component {
   getMeteorData() {
@@ -23,6 +30,9 @@ export class AuthenticatedNavigation extends React.Component {
       listItem: {
         display: "inline-block",
         position: "relative"
+      },
+      state: {
+        notificationMenuOpen: Session.get('notificationMenuOpen')
       }
     }
 
@@ -37,13 +47,6 @@ export class AuthenticatedNavigation extends React.Component {
 
     return data;
   };
-  handleLogout() {
-    Meteor.logout(() => browserHistory.push('/login'));
-  };
-  handleProfile() {
-    browserHistory.push('/myprofile');
-    //Router.go('/myprofile');
-  };
   userName() {
     return this.data.user;
   };
@@ -51,26 +54,58 @@ export class AuthenticatedNavigation extends React.Component {
     return(
       <div>
         <Nav pullRight>
-          <NavDropdown eventKey={ 4 } title={ this.data.user } id="authenticatedNavDropdown" style={this.data.listItem} >
-            <MenuItem id="profileMenuItem" eventKey={ 4.1 } onClick={ this.handleProfile }>Profile</MenuItem>
-            <MenuItem id="logoutMenuItem" eventKey={ 4.1 } onClick={ this.handleLogout }>Logout</MenuItem>
-          </NavDropdown>
+
+          <NavItem id="authenticatedNavDropdown" eventKey={ 4 } id="authenticatedUsername" onClick={this.toggleNotificationMenu} >
+            { this.data.user }
+          </NavItem>
         </Nav>
-        <Nav pullRight>
-          <IndexLinkContainer to="/dashboard">
-            <NavItem eventKey={ 1 } href="/dashboard" style={this.data.listItem} >Dashboard</NavItem>
-          </IndexLinkContainer>
-          <IndexLinkContainer to="/">
-            <NavItem eventKey={ 2 } href="/" style={this.data.listItem} >Index</NavItem>
-          </IndexLinkContainer>
-          <LinkContainer to="/documents">
-            <NavItem eventKey={ 3 } href="/documents" style={this.data.listItem} >Documents</NavItem>
-          </LinkContainer>
+        <Nav id="authenticatedUserMenu" pullRight>
+          <IconMenu active={ this.data.state.notificationMenuOpen } eventKey={ 4 } title={ this.data.user } icon='whatshot' position='top-right' menuRipple>
+            <List selectable ripple outline className="notificationMenu">
+                <ListItem
+                  avatar='https://dl.dropboxusercontent.com/u/2247264/assets/m.jpg'
+                  caption='Dr. Manhattan'
+                  legend="Jonathan 'Jon' Osterman"
+                  rightIcon='done block'
+                />
+                <ListItem
+                  avatar='https://dl.dropboxusercontent.com/u/2247264/assets/o.jpg'
+                  caption='Ozymandias'
+                  legend='Adrian Veidt'
+                  rightIcon='done block'
+                />
+                <ListItem
+                  avatar='https://dl.dropboxusercontent.com/u/2247264/assets/r.jpg'
+                  caption='Rorschach'
+                  legend='Walter Joseph Kovacs'
+                  rightIcon='done block'
+                />
+                <ListDivider />
+                <ListItem className="profileMenuItem" leftIcon='face' eventKey={ 4.1 } onClick={ this.handleProfile } caption='Profile' />
+                <ListItem id="logoutMenuItem" className="logoutMenuItem" leftIcon='power_settings_new' eventKey={ 4.2 } onClick={ this.handleLogout } caption='Logout' />
+              </List>
+            </IconMenu>
+
         </Nav>
       </div>
 
     );
-  }
+  };
+  handleLogout() {
+    Meteor.logout(() => browserHistory.push('/login'));
+  };
+  handleProfile() {
+    browserHistory.push('/myprofile');
+  };
+  toggleNotificationMenu(){
+    if (Session.get('notificationMenuOpen')) {
+      Session.set('notificationMenuOpen', false);
+    } else {
+      Session.set('notificationMenuOpen', true);
+    }
+    $('#authenticatedUserMenu .material-icons')[0].click()
+  };
+
 }
 AuthenticatedNavigation.propTypes = {
 

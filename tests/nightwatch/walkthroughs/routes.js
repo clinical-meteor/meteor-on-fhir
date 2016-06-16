@@ -2,6 +2,7 @@
 // http://nightwatchjs.org/api
 
 module.exports = {
+  tags: ['routes'],
   "Root": function (client) {
     client
       .resizeWindow(1024, 768)

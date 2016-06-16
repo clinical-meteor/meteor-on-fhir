@@ -21,12 +21,12 @@ export class Signup extends React.Component {
       <div id="signupPage">
         <MobilePadding>
           <PageContainer>
-                <h4 className="page-header">Sign Up</h4>
+                <h4 className="page-header" style={{color: "white"}}>Sign Up</h4>
                 <form ref="signup" className="signup" onSubmit={ this.handleSubmit }>
                   <Row>
                     <Col xs={ 6 } sm={ 6 }>
                       <FormGroup>
-                        <ControlLabel>First Name</ControlLabel>
+                        <ControlLabel style={{color: "white"}}>First Name</ControlLabel>
                         <FormControl
                           type="text"
                           ref="firstName"
@@ -37,7 +37,7 @@ export class Signup extends React.Component {
                     </Col>
                     <Col xs={ 6 } sm={ 6 }>
                       <FormGroup>
-                        <ControlLabel>Last Name</ControlLabel>
+                        <ControlLabel style={{color: "white"}}>Last Name</ControlLabel>
                         <FormControl
                           type="text"
                           ref="lastName"
@@ -48,7 +48,7 @@ export class Signup extends React.Component {
                     </Col>
                   </Row>
                   <FormGroup>
-                    <ControlLabel>Email Address</ControlLabel>
+                    <ControlLabel style={{color: "white"}}>Email Address</ControlLabel>
                     <FormControl
                       type="text"
                       ref="emailAddress"
@@ -57,7 +57,7 @@ export class Signup extends React.Component {
                     />
                   </FormGroup>
                   <FormGroup>
-                    <ControlLabel>Password</ControlLabel>
+                    <ControlLabel style={{color: "white"}}>Password</ControlLabel>
                     <FormControl
                       type="password"
                       ref="password"

@@ -3,6 +3,7 @@
 
 
 module.exports = {
+  tags: ['accounts', 'passwords', 'users', 'entry'],
   "User can sign up.": function (client) {
     client
       .resizeWindow(1200, 1024)
@@ -26,7 +27,7 @@ module.exports = {
         .setValue('input[name="emailAddress"]', 'johndoe@test.org')
         .setValue('input[name="password"]', 'johndoe')
 
-        .click("#signupButton").pause(500);
+        .click("#signupButton").pause(1000);
   },
   "User gets logged in after signup.": function (client) {
     client
@@ -34,11 +35,11 @@ module.exports = {
   },
   "User can log out.": function (client) {
     client
-      .verify.elementPresent("#authenticatedNavDropdown")
-      .click("#authenticatedNavDropdown").pause(500)
+      .verify.elementPresent("#authenticatedUsername")
+      .click("#authenticatedUsername").pause(1000)
 
-      .verify.elementPresent("#logoutMenuItem")
-      .click("#logoutMenuItem").pause(500)
+      .verify.elementPresent("#authenticatedUserMenu .notificationMenu .logoutMenuItem")
+      .click("#authenticatedUserMenu .notificationMenu .logoutMenuItem").pause(500)
 
       .verify.elementPresent("#loginPage")
   },
@@ -60,11 +61,11 @@ module.exports = {
   },
   "User can view profile.": function (client) {
     client
-      .verify.elementPresent("#authenticatedNavDropdown")
-      .click("#authenticatedNavDropdown").pause(500)
+      .verify.elementPresent("#authenticatedUsername")
+      .click("#authenticatedUsername").pause(500)
 
-      .verify.elementPresent("#profileMenuItem")
-      .click("#profileMenuItem").pause(500)
+      .verify.elementPresent("#authenticatedUserMenu .profileMenuItem")
+      .click("#authenticatedUserMenu .profileMenuItem").pause(500)
 
       .verify.elementPresent("#myProfilePage")
   },
@@ -87,7 +88,7 @@ module.exports = {
           client.setValue('input[name="avatar"]', myArray[i]).pause(50);
         };
 
-        client.verify.attributeEquals('#avatarImage', 'src', 'https://pbs.twimg.com/profile_images/436598467956187136/yncbkX83_400x400.jpeg')
+        client.pause(3000).verify.attributeEquals('#avatarImage', 'src', 'https://pbs.twimg.com/profile_images/436598467956187136/yncbkX83_400x400.jpeg')
   },
   "User can change password.": function (client) {
     var oldPassArray = 'johndoe'.split('');
@@ -126,11 +127,11 @@ module.exports = {
         .verify.attributeEquals('input[name="newPassword"]', 'value', '')
         .verify.attributeEquals('input[name="confirmPassword"]', 'value', '')
 
-      .verify.elementPresent("#authenticatedNavDropdown")
-      .click("#authenticatedNavDropdown").pause(500)
+      .verify.elementPresent("#authenticatedUsername")
+      .click("#authenticatedUsername").pause(500)
 
-      .verify.elementPresent("#logoutMenuItem")
-      .click("#logoutMenuItem").pause(500)
+      .verify.elementPresent("#authenticatedUserMenu .logoutMenuItem")
+      .click("#authenticatedUserMenu .logoutMenuItem").pause(500)
 
       .verify.elementPresent("#loginPage")
   },
@@ -155,11 +156,16 @@ module.exports = {
     var userIdArray = "johndoe@test.org";
 
     client
-      .verify.elementPresent("#authenticatedNavDropdown")
-      .click("#authenticatedNavDropdown").pause(500)
+      .verify.elementPresent("#authenticatedUsername")
+      .click("#authenticatedUsername").pause(500)
 
-      .verify.elementPresent("#profileMenuItem")
-      .click("#profileMenuItem").pause(500)
+      .verify.elementPresent("#authenticatedUserMenu .profileMenuItem")
+      .click("#authenticatedUserMenu .profileMenuItem").pause(500)
+
+      // the menu doesn't auto-close, so we need to manually close it
+      // so it doesn't obscure other components
+      .verify.elementPresent("#authenticatedUsername")
+      .click("#authenticatedUsername").pause(500)
 
       .verify.elementPresent("label.systemTab")
       .click("label.systemTab").pause(500)
