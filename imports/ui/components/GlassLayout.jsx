@@ -71,7 +71,7 @@ export class GlassLayout extends React.Component {
       data.card.title = currentUser.fullName();
       if (Meteor.user().profile) {
         data.card.subtitle = Meteor.user().profile.birthdate;
-        data.card.avatar = Meteor.user().profile.avatar;        
+        data.card.avatar = Meteor.user().profile.avatar;
       }
     }
 
@@ -130,12 +130,24 @@ export class GlassLayout extends React.Component {
                 <ListItem eventKey={ 5 } caption='Documents' href="/documents" />
              </IndexLinkContainer>
 
+             <IndexLinkContainer to="/users">
+                <ListItem eventKey={ 6 } caption='Users' href="/users" />
+             </IndexLinkContainer>
+
+             <IndexLinkContainer to="/patients">
+                <ListItem eventKey={ 7 } caption='Patients' href="/patients" />
+             </IndexLinkContainer>
+
+             <IndexLinkContainer to="/practitioners">
+                <ListItem eventKey={ 8 } caption='Practitioners' href="/practitioners" />
+             </IndexLinkContainer>
+
              <IndexLinkContainer to="/theming">
-                <ListItem eventKey={ 6 } caption='Theming' href="/theming" />
+                <ListItem eventKey={ 9 } caption='Theming' href="/theming" />
              </IndexLinkContainer>
 
              <IndexLinkContainer to="/about">
-                <ListItem eventKey={ 7 } caption='About' href="/about" />
+                <ListItem eventKey={ 10 } caption='About' href="/about" />
              </IndexLinkContainer>
 
            </List>

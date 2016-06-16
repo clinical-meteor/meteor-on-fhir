@@ -18,6 +18,9 @@ import { DashboardPage } from '../../ui/pages/DashboardPage';
 import { ThemePage } from '../../ui/pages/ThemePage';
 import { MyProfilePage } from '../../ui/pages/MyProfilePage';
 
+import { UsersPage } from '../../ui/pages/UsersPage';
+import { PatientsPage } from '../../ui/pages/PatientsPage';
+import { PractitionersPage } from '../../ui/pages/PractitionersPage';
 
 const requireAuth = (nextState, replace) => {
   if (!Meteor.loggingIn() && !Meteor.userId()) {
@@ -44,6 +47,11 @@ Meteor.startup(() => {
         <Route name="dashboard" path="/dashboard" component={ DashboardPage } />
         <Route name="theming" path="/theming" component={ ThemePage } />
         <Route name="myprofile" path="/myprofile" component={ MyProfilePage } />
+
+        <Route name="practitioners" path="/practitioners" component={ PractitionersPage } />
+        <Route name="patients" path="/patients" component={ PatientsPage } />
+        <Route name="users" path="/users" component={ UsersPage } />
+
         <Route path="*" component={ NotFound } />
 
       </Route>
