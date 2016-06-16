@@ -33,13 +33,36 @@ export const updateUser = new ValidatedMethod({
   },
 });
 
-export const removeUser = new ValidatedMethod({
-  name: 'users.remove',
+export const removeUserById = new ValidatedMethod({
+  name: 'users.removeById',
   validate: new SimpleSchema({
     _id: { type: String },
   }).validator(),
   run({ _id }) {
     console.log("Removing user " + _id);
     Meteor.users.remove({_id: _id});
+  },
+});
+
+
+export const setUserAvatar = new ValidatedMethod({
+  name: 'users.setAvatar',
+  validate: new SimpleSchema({
+    _id: { type: String },
+    avatar: { type: String }
+  }).validator(),
+  run({ _id, avatar }) {
+    Meteor.users.update(_id, { $set: {'profile.avatar': avatar} });
+  },
+});
+
+export const changeUserPassword = new ValidatedMethod({
+  name: 'users.changePassword',
+  validate: new SimpleSchema({
+    _id: { type: String },
+    password: { type: String }
+  }).validator(),
+  run({ _id, avatar }) {
+    Meteor.users.update(_id, { $set: {'profile.avatar': avatar} });
   },
 });

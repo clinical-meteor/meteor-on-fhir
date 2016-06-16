@@ -29,18 +29,6 @@ module.exports = {
         .verify.elementPresent('input[name="password"]')
         .verify.elementPresent('#signupButton');
 
-        // .clearValue('input[name="firstName"]')
-        // .clearValue('input[name="lastName"]')
-        // .clearValue('input[name="emailAddress"]')
-        // .clearValue('input[name="password"]')
-        //
-        // .setValue('input[name="firstName"]', 'Jane')
-        // .setValue('input[name="lastName"]', 'Doe')
-        // .setValue('input[name="emailAddress"]', 'janedoe@test.org')
-        // .setValue('input[name="password"]', 'janedoe')
-        //
-        // .click("#signupButton").pause(500)
-        //   .verify.elementPresent("#indexPage")
   },
   "/login": function (client) {
     client
@@ -69,10 +57,7 @@ module.exports = {
   "/dashboard": function (client) {
     client
       .url("http://localhost:3000/dashboard").pause(1500)
-        .verify.elementPresent("#dashboardPage");
-  },
-  "End": function (client) {
-    client
+      .verify.elementPresent("#dashboardPage")
       .end();
   }
 };

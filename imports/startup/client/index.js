@@ -6,7 +6,7 @@ import './globals.js';
 
 import { Meteor } from 'meteor/meteor';
 
-Bert.defaults.style = 'growl-top-right';
+Bert.defaults.style = 'growl-bottom-right';
 
 
 // subscriptions

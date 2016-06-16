@@ -32,7 +32,8 @@ export class PageContainer extends React.Component {
       data.style.position = "relative";
       data.style.marginLeft = "auto";
       data.style.marginRight = "auto";
-      data.style.width = "768px";
+      data.style.maxWidth = "1024px";
+      data.style.width = "100%";
       // data.style.left = "0px";
       // data.style.width = "100%";
     } else {
