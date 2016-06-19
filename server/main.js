@@ -1,6 +1,8 @@
 import '/imports/startup/server';
 
 import '/imports/api/users/methods';
+import '/imports/api/practitioners/methods';
+import '/imports/api/patients/methods';
 
 import { Accounts } from 'meteor/accounts-base'
 

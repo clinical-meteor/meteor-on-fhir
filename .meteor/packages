@@ -22,6 +22,7 @@ insecure                # Allow all DB writes from clients (for prototyping)
 accounts-password
 accounts-base
 
+grove:less
 check
 audit-argument-checks
 reactive-dict

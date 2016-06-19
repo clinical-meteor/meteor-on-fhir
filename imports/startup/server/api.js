@@ -6,3 +6,6 @@ import '../../api/posts/server/publications.js';
 // methods
 import '../../api/documents/methods.js';
 import '../../api/posts/methods.js';
+
+import '../../api/patients/methods.js';
+import '../../api/practitioners/methods.js';
