@@ -14,9 +14,9 @@ import { GlassCard } from '../components/GlassCard';
 import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
 
 import {Tab, Tabs} from 'react-toolbox/lib/tabs';
+import PatientDetail from '../workflows/patients/PatientDetail';
 import PatientTable from '../workflows/patients/PatientTable';
-
-import DatePicker from 'react-toolbox/lib/date_picker';
+//import DatePicker from 'react-toolbox/lib/date_picker';
 
 
 let defaultState = {
@@ -60,6 +60,11 @@ export class PatientsPage extends React.Component {
       data.style.webkitFilter = "blur(3px)";
     }
 
+    // this could be another mixin
+    if (Session.get('backgroundBlurEnabled')) {
+      data.style.backdropFilter = "blur(5px)";
+    }
+
     return data;
   };
   // this could be a mixin
@@ -77,6 +82,15 @@ export class PatientsPage extends React.Component {
     state[field] = value;
     Session.set('patientCardState', state);
   };
+
+  // this could be a mixin
+  onNewTab(){
+    console.log("onNewTab");
+
+    Session.set('selectedPatient', false);
+    Session.set('patientDetailState', false);
+  };
+
   render() {
     return (
       <div id="documentsPage">
@@ -88,22 +102,14 @@ export class PatientsPage extends React.Component {
             <CardText>
 
             <Tabs default index={this.data.state.index} onChange={this.handleTabChange}>
+             <Tab className="newPatientTab" label='New' style={{padded: "20px"}} onActive={ this.onNewTab } >
+               <PatientDetail />
+             </Tab>
              <Tab label='Patients' onActive={this.handleActive}>
                <PatientTable />
              </Tab>
-             <Tab label='New' style={{padded: "20px"}}>
-               <CardText>
-                  <Input ref="username" type='text' label='username' name='username' value={this.data.state.username} onChange={ this.changeState.bind(this, 'username')} />
-                  <Input ref="email" type='text' label='email' name='email' value={this.data.state.email} onChange={ this.changeState.bind(this, 'email')} />
-                  <Input ref="given" type='text' label='given name' name='given' value={this.data.state.given} onChange={ this.changeState.bind(this, 'given')} />
-                  <Input ref="family" type='text' label='family name' name='family' value={this.data.state.family} onChange={ this.changeState.bind(this, 'family')} />
-                  <Input ref="gender" type='text' label='gender' name='gender' value={this.data.state.family} onChange={ this.changeState.bind(this, 'family')} />
-                  <DatePicker ref="birthdate" label='birthdate' name='birthdate' onChange={this.changeState.bind(this, 'birthdate')} value={this.data.state.birthdate} />
-               </CardText>
-               <CardActions>
-                 <Button label="Save" onClick={this.handleSaveButton} />
-                 <Button label="Clear" onClick={this.handleCancelButton} />
-               </CardActions>
+             <Tab label='Detail' onActive={this.handleActive} style={{padded: "20px"}} >
+               <PatientDetail />
              </Tab>
            </Tabs>
 

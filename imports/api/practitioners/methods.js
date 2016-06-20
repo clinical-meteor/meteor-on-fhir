@@ -38,9 +38,13 @@ export const updatePractitioner = new ValidatedMethod({
     delete practitioner._id;
     delete practitioner._document;
     delete practitioner._super_;
-    practitioner.name.text = update.name.text;
     practitioner.gender = update.gender;
-    practitioner.photo = update.gender.photo;
+    practitioner.photo.push({
+      url: update.gender.photo
+    });
+    practitioner.name.push({
+      text: update.name.text
+    });
 
     console.log("differedPractitioner", practitioner);
 

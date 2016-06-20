@@ -1,6 +1,7 @@
-// import './style';
-
 import React from 'react';
+import ReactMixin from 'react-mixin';
+import { ReactMeteorData } from 'meteor/react-meteor-data';
+
 import AppBar from 'react-toolbox/lib/app_bar';
 import Button from 'react-toolbox/lib/button';
 import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
@@ -12,7 +13,7 @@ import Avatar from 'react-toolbox/lib/avatar';
 import { Table } from 'react-bootstrap';
 
 // const PatientModel = {
-//   _id: {type: String},
+//   _id: {type: String};
 //   active: {type: Boolean},
 //   birthdate: {type: Date},
 //   gender: {type: String},
@@ -29,8 +30,8 @@ import { Table } from 'react-bootstrap';
 
 
 
-PatientTable = React.createClass({
-  mixins: [ReactMeteorData],
+export default class PatientTable extends React.Component {
+
   getMeteorData() {
 
     // this should all be handled by props
@@ -45,7 +46,7 @@ PatientTable = React.createClass({
           _id: person._id,
           active: person.active.toString(),
           gender: person.gender,
-          name: person.name ? person.name[0].text: "",
+          name: person.name ? person.name[0].text : "",
           birthdate: moment(person.birthDate).format("YYYY-MM-DD"),
           photo: person.photo ? person.photo[0].url: ""
         };
@@ -75,43 +76,53 @@ PatientTable = React.createClass({
 
 
     return data;
-  },
+  };
   handleChange(row, key, value) {
     const source = this.state.source;
     source[row][key] = value;
     this.setState({source});
-  },
+  };
 
   handleSelect(selected) {
     this.setState({selected});
-  },
+  };
   getDate(){
     return "YYYY/MM/DD"
-  },
+  };
   noChange(){
     return "";
-  },
+  };
+  rowClick(id){
+    // set the user
+    Session.set("selectedPatient", id);
+
+    // set which tab is selected
+    let state = Session.get('patientCardState');
+    state["index"] = 2;
+    Session.set('patientCardState', state);
+  };
   render () {
     let tableRows = [];
     for (var i = 0; i < this.data.patients.length; i++) {
-      tableRows.push(<tr key={i}>
+      tableRows.push(
+        <tr key={i} className="patientRow" style={{cursor: "pointer"}} onClick={ this.rowClick.bind('this', this.data.patients[i]._id)} >
 
+          <td>
+            <Avatar><img src={this.data.patients[i].photo }/></Avatar>
+          </td>
 
-        <td>
-          <Avatar><img src={this.data.patients[i].photo }/></Avatar>
-        </td>
-
-        <td>{this.data.patients[i].name }</td>
-        <td>{this.data.patients[i].gender}</td>
-        <td>{this.data.patients[i].birthdate }</td>
-        <td>{this.data.patients[i].active}</td>
-        <td><span class="barcode">{this.data.patients[i]._id}</span></td>
-      </tr>)
+          <td>{this.data.patients[i].name }</td>
+          <td>{this.data.patients[i].gender}</td>
+          <td>{this.data.patients[i].birthdate }</td>
+          <td>{this.data.patients[i].active}</td>
+          <td><span class="barcode">{this.data.patients[i]._id}</span></td>
+        </tr>
+      )
     }
 
 
     return(
-      <Table responses >
+      <Table responses hover >
         <thead>
           <tr>
             <th>photo</th>
@@ -140,6 +151,8 @@ PatientTable = React.createClass({
     //   />
     // );
   }
-});
+}
 
-export default PatientTable;
+
+PatientTable.propTypes = {};
+ReactMixin(PatientTable.prototype, ReactMeteorData);

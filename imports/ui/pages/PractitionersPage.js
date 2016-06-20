@@ -95,7 +95,7 @@ export class PractitionersPage extends React.Component {
           <GlassCard>
 
             <Tabs default index={this.data.state.index} onChange={this.handleTabChange}>
-             <Tab className="newPatientTab" label='New' style={{padded: "20px"}} onActive={ this.onNewTab } >
+             <Tab className="newPractitionerTab" label='New' style={{padded: "20px"}} onActive={ this.onNewTab } >
                <PractitionerDetail />
              </Tab>
              <Tab label='Practitioners' onActive={this.handleActive}>

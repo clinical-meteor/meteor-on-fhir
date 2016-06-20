@@ -22,7 +22,7 @@ import OpacitySlider from '../components/OpacitySlider';
 let defaultState = {
   index: 0
 }
-Session.setDefault('tabbedCardState', defaultState);
+Session.setDefault('themePageState', defaultState);
 
 
 export class ThemePage extends React.Component {
@@ -46,8 +46,8 @@ export class ThemePage extends React.Component {
       }
     }
 
-    if (Session.get('tabbedCardState')) {
-      data.state = Session.get('tabbedCardState');
+    if (Session.get('themePageState')) {
+      data.state = Session.get('themePageState');
     }
 
     return data;
@@ -138,9 +138,9 @@ export class ThemePage extends React.Component {
     );
   }
   handleTabChange(index) {
-    var state = Session.get('tabbedCardState');
+    var state = Session.get('themePageState');
     state.index = index;
-    Session.set('tabbedCardState', state);
+    Session.set('themePageState', state);
   };
 
   handleActive() {
