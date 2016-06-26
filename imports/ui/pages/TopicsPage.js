@@ -1,15 +1,17 @@
+import { PageContainer } from '/imports/ui/components/PageContainer';
+
 import { ReactMeteorData } from 'meteor/react-meteor-data'
 import React  from 'react'
 import { Row, Col } from 'react-bootstrap'
 import ReactMixin  from 'react-mixin'
-import { PageContainer } from '../components/PageContainer'
 import Spacer  from '../components/Spacer'
 import DocumentsList  from '../containers/documents-list.js'
 import PostsList  from '../containers/posts-list.js'
-import { AddPost } from '../workflows/posts/AddPost.js'
 import PostsDeck  from '../workflows/posts/PostsDeck.js'
+import { AddPostToTopic } from '../workflows/topics/AddPostToTopic.js'
 
-export class Weblog extends React.Component {
+
+export class TopicsPage extends React.Component {
   getMeteorData() {
     let data = {
       style: {}
@@ -35,9 +37,9 @@ export class Weblog extends React.Component {
   }
   render() {
     return (
-      <div id="weblogPage">
+      <div id="topicsPage">
         <PageContainer>
-          <AddPost />
+          <AddPostToTopic />
           <Spacer />
           <PostsDeck />
         </PageContainer>
@@ -47,7 +49,7 @@ export class Weblog extends React.Component {
 }
 
 
-Weblog.propTypes = {
+TopicsPage.propTypes = {
   hasUser: React.PropTypes.object,
 };
-ReactMixin(Weblog.prototype, ReactMeteorData);
+ReactMixin(TopicsPage.prototype, ReactMeteorData);

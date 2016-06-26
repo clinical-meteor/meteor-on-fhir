@@ -1,6 +1,6 @@
-import React from 'react';
-import classnames from 'classnames';
-import style from './style';
+import classnames  from 'classnames'
+import React  from 'react'
+import style  from './style'
 
 const Sidebar = (props) => {
   const wrapperClasses = classnames(style.sidebar, style[`width-${props.width}`], {

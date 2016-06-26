@@ -1,29 +1,23 @@
-import React from 'react';
-import ReactMixin from 'react-mixin';
-import { ReactMeteorData, createContainer } from 'meteor/react-meteor-data';
-
-import style from './appbar';
-
-import AppBar from 'react-toolbox/lib/app_bar';
-import Checkbox from 'react-toolbox/lib/checkbox';
-import IconButton from 'react-toolbox/lib/button';
-
-import Layout from '../layouts/Layout';
-import NavDrawer from '../layouts/NavDrawer';
-import Sidebar from '../layouts/Sidebar';
-import Panel from '../layouts/Panel';
-import { Header } from './Header';
-import { Footer } from './Footer';
-import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
-
-import { IndexLinkContainer, LinkContainer } from 'react-router-bootstrap';
-import { Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
-import { List, ListItem, ListSubHeader, ListDivider, ListCheckbox } from 'react-toolbox/lib/list';
-
-import { Meteor } from 'meteor/meteor';
-import { Session } from 'meteor/session';
-
-import User from '../../api/User';
+import { Meteor } from 'meteor/meteor'
+import { ReactMeteorData, createContainer } from 'meteor/react-meteor-data'
+import { Session } from 'meteor/session'
+import React  from 'react'
+import { Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap'
+import ReactMixin  from 'react-mixin'
+import { IndexLinkContainer, LinkContainer } from 'react-router-bootstrap'
+import AppBar  from 'react-toolbox/lib/app_bar'
+import IconButton  from 'react-toolbox/lib/button'
+import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card'
+import Checkbox  from 'react-toolbox/lib/checkbox'
+import { List, ListItem, ListSubHeader, ListDivider, ListCheckbox } from 'react-toolbox/lib/list'
+import User  from '../../api/User'
+import Layout  from '../layouts/Layout'
+import NavDrawer  from '../layouts/NavDrawer'
+import Panel  from '../layouts/Panel'
+import Sidebar  from '../layouts/Sidebar'
+import { Footer } from './Footer'
+import { Header } from './Header'
+import style  from './appbar'
 
 Session.setDefault('backgroundImagePath', 'url(\"images\/ForestInMist.jpg\")');
 Session.setDefault('backgroundColor', "#eeeeee");
@@ -120,6 +114,14 @@ export class GlassLayout extends React.Component {
 
              <IndexLinkContainer to="/weblog">
                 <ListItem eventKey={ 3 } caption='Weblog' href="/weblog" />
+             </IndexLinkContainer>
+
+             <IndexLinkContainer to="/topics">
+                <ListItem eventKey={ 3 } caption='Topics' href="/topics" />
+             </IndexLinkContainer>
+
+             <IndexLinkContainer to="/forum">
+                <ListItem eventKey={ 3 } caption='Forum' href="/forum" />
              </IndexLinkContainer>
 
              <IndexLinkContainer to="/">

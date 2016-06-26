@@ -27,21 +27,19 @@ const handleInsertPost = (event) => {
   }
 };
 
-export const AddPost = () => (
+export const AddForum = () => (
   <GlassCard>
     <CardTitle
-      title="Weblog"
-      subtitle="These can be anything you want...."
+      title="New Forum"
     />
     <CardText>
       <FormGroup>
-        <FormControl
+        <Input
+          label='Add Post'
+          name='addPost'
           type="textarea"
           onKeyUp={ handleInsertPost }
-          placeholder="Type some text and press enter to create a post..."
-        />
-
-        <Input type='text' multiline label='Add Post' name='addPost' ref="addPost" />
+          ref="addPost" />
       </FormGroup>
     </CardText>
   </GlassCard>

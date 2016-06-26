@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "chimp": "^0.33.1",
-    "eslint": "^2.8.0",
+    "eslint": "^2.23.0",
     "eslint-config-airbnb": "^7.0.0",
     "eslint-plugin-meteor": "^3.5.2",
     "eslint-plugin-react": "^4.3.0",
@@ -29,13 +29,15 @@
   },
   "eslintConfig": {
     "parserOptions": {
+      "sourceType": "module",
       "ecmaFeatures": {
-        "jsx": true
+        "jsx": true,
+        "modules": true
       }
     },
     "plugins": [
-      "meteor",
-      "react"
+      "react",
+      "meteor"
     ],
     "extends": [],
     "globals": {

@@ -1,22 +1,17 @@
-import React from 'react';
-import ReactMixin from 'react-mixin';
-import { ReactMeteorData } from 'meteor/react-meteor-data';
-
-import Input from 'react-toolbox/lib/input';
-import Button from 'react-toolbox/lib/button';
-
-import { Row, Col } from 'react-bootstrap';
-import DocumentsList from '../containers/documents-list.js';
-import { AddDocument } from '../components/AddDocument.js';
-
-import { PageContainer } from '../components/PageContainer';
-import { GlassCard } from '../components/GlassCard';
-import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
-
-
-import {Tab, Tabs} from 'react-toolbox/lib/tabs';
-import PractitionerTable from '../workflows/practitioners/PractitionerTable';
-import PractitionerDetail from '../workflows/practitioners/PractitionerDetail';
+import { ReactMeteorData } from 'meteor/react-meteor-data'
+import React  from 'react'
+import { Row, Col } from 'react-bootstrap'
+import ReactMixin  from 'react-mixin'
+import Button  from 'react-toolbox/lib/button'
+import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card'
+import Input  from 'react-toolbox/lib/input'
+import { Tab, Tabs } from 'react-toolbox/lib/tabs'
+import { AddDocument } from '../components/AddDocument.js'
+import { GlassCard } from '../components/GlassCard'
+import { PageContainer } from '../components/PageContainer'
+import DocumentsList  from '../containers/documents-list.js'
+import PractitionerDetail  from '../workflows/practitioners/PractitionerDetail'
+import PractitionerTable  from '../workflows/practitioners/PractitionerTable'
 
 let defaultState = {
   index: 1,
@@ -25,7 +20,6 @@ let defaultState = {
   email: "",
   given: "",
   family: "",
-
 }
 Session.setDefault('practitionerCardState', defaultState);
 
