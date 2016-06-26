@@ -1,18 +1,16 @@
 import React from 'react';
 
-Spacer = React.createClass({
-  mixins: [ReactMeteorData],
+const Spacer = React.createClass({
   getMeteorData() {
     return {};
   },
   render () {
     let spacerStyle = {
-      height: "3.2rem"
-    }
+      height: '3.2rem'
+    };
     return(
       <div class="spacer" style={spacerStyle}></div>
     );
   }
 });
-
 export default Spacer;

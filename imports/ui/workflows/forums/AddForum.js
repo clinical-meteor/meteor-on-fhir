@@ -1,10 +1,10 @@
-import { Bert } from 'meteor/themeteorchef:bert'
-import React  from 'react'
-import { FormGroup, FormControl } from 'react-bootstrap'
-import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card'
-import Input  from 'react-toolbox/lib/input'
-import { insertPost } from '../../../api/posts/methods.js'
-import { GlassCard } from '../../components/GlassCard'
+import React from 'react';
+import { Bert } from 'meteor/themeteorchef:bert';
+import { FormGroup } from 'react-bootstrap';
+import { CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
+import Input  from 'react-toolbox/lib/input';
+import { insertPost } from '../../../api/posts/methods.js';
+import { GlassCard } from '../../components/GlassCard';
 
 const handleInsertPost = (event) => {
   const target = event.target;
@@ -12,7 +12,7 @@ const handleInsertPost = (event) => {
   const createdAt = new Date();
 
   if (title !== '' && event.keyCode === 13) {
-    console.log('title', title);
+    // process.env.TEST && console.log('title', title);
     insertPost.call({
       title,
       createdAt
@@ -43,5 +43,4 @@ export const AddForum = () => (
       </FormGroup>
     </CardText>
   </GlassCard>
-
 );

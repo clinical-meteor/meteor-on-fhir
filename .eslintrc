@@ -26,6 +26,7 @@
     "meteor"
   ],
   "globals": {
+    "React": true,
     "Session": true
   }
 }

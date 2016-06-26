@@ -46,7 +46,8 @@
       "expect": false
     },
     "rules": {
-      "import/no-unresolved": 0
+      "import/no-unresolved": 0,
+      "react/jsx-uses-vars": 1
     }
   },
   "dependencies": {
