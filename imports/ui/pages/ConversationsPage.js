@@ -12,7 +12,7 @@ import PostsDeck  from          '/imports/ui/workflows/posts/PostsDeck';
 
 export class ConversationsPage extends React.Component {
   getMeteorData() {
-    //console.log("getMeteorData() this.props", this.props);
+    console.log("getMeteorData() this.props", this.props);
 
     let data = {
       style: {}
@@ -40,14 +40,14 @@ export class ConversationsPage extends React.Component {
   //   console.log("this.props.params.id", this.props.params.id);
   // }
   render() {
-    //console.log("this.props", this.props);
+    console.log("this.props", this.props);
 
     return (
       <div id='ConversationsPage'>
         <PageContainer>
           <AddPostToConversation />
           <Spacer />
-          <PostDeck />
+          <PostsDeck />
         </PageContainer>
       </div>
     );

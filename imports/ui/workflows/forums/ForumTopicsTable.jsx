@@ -79,7 +79,7 @@ export default class ForumTopicsTable extends React.Component {
     // alert(id);
     console.log('/topic/' + id);
 
-    // browserHistory.push('/topic/' + id);
+    browserHistory.push('/topic/' + id);
     // // set the user
     // Session.set('selectedPatient', id);
     //
