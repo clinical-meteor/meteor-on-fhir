@@ -1,18 +1,15 @@
 import React from 'react';
 import { Grid } from 'react-bootstrap';
-import AppNavigation from '../containers/app-navigation';
+import AppNavigation from '/imports/ui/containers/app-navigation';
 
-import { GlassApp } from '../components/GlassApp';
-import { GlassLayout } from '../components/GlassLayout';
-import { Header } from '../components/Header';
-import { Footer } from '../components/Footer';
+import { GlassApp } from '/imports/ui/components/GlassApp';
+import { GlassLayout } from '/imports/ui/layouts/GlassLayout';
+import { Header } from '/imports/ui/components/Header';
+import { Footer } from '/imports/ui/components/Footer';
 
 export class App extends React.Component {
   constructor(props) {
     super(props);
-  };
-  componentDidMount() {
-    //console.log("GlassApp initialized...");
   };
 
   render(){

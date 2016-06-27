@@ -1,36 +1,36 @@
 import React from 'react';
 import { Bert } from 'meteor/themeteorchef:bert';
 import { FormGroup } from 'react-bootstrap';
-import { CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
+import { CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
 import Input  from 'react-toolbox/lib/input';
-import { insertPost } from '../../../api/posts/methods.js';
-import { GlassCard } from '../../components/GlassCard';
+import { insertTopic } from '/imports/api/topics/methods';
+import { GlassCard } from '/imports/ui/components/GlassCard';
 
 const handleInsertPost = (event) => {
   const target = event.target;
-  const title = target.value.trim();
+  const name = target.value.trim();
   const createdAt = new Date();
 
-  if (title !== '' && event.keyCode === 13) {
+  if (name !== '' && event.keyCode === 13) {
     // process.env.TEST && console.log('title', title);
-    insertPost.call({
-      title,
+    insertTopic.call({
+      name,
       createdAt
     }, (error) => {
       if (error) {
         Bert.alert(error.reason, 'danger');
       } else {
         target.value = '';
-        Bert.alert('Post added!', 'success');
+        Bert.alert('Topic added!', 'success');
       }
     });
   }
 };
 
-export const AddForum = () => (
+export const AddForumTopic = () => (
   <GlassCard>
     <CardTitle
-      title="New Forum"
+      title="New Forum Topic"
     />
     <CardText>
       <FormGroup>
@@ -39,7 +39,7 @@ export const AddForum = () => (
           name='addPost'
           type="textarea"
           onKeyUp={ handleInsertPost }
-          ref="addPost" />
+          />
       </FormGroup>
     </CardText>
   </GlassCard>

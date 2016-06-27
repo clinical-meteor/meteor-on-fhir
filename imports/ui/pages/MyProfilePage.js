@@ -1,45 +1,37 @@
+import { CardTitle } from 'react-toolbox/lib/card';
+import { Col, Grid } from 'react-bootstrap';
+import { Tab, Tabs } from 'react-toolbox/lib/tabs';
+import { browserHistory } from 'react-router';
+import Button from 'react-toolbox/lib/button';
+import Input from 'react-toolbox/lib/input';
 import React from 'react';
 import ReactMixin from 'react-mixin';
-import { ReactMeteorData } from 'meteor/react-meteor-data';
 
-import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
-import { PageContainer } from '../components/PageContainer';
-import { GlassCard } from '../components/GlassCard';
-import { GlassApp } from '../components/GlassApp';
-import { Header } from '../components/Header';
-import { Footer } from '../components/Footer';
-
-import Button from 'react-toolbox/lib/button';
-import { Image } from 'react-bootstrap';
-import { Grid } from 'react-bootstrap';
-import { Col } from 'react-bootstrap';
-import { Thumbnail } from 'react-bootstrap';
-import { Tab, Tabs } from 'react-toolbox/lib/tabs';
-import Input from 'react-toolbox/lib/input';
-
-import { getInputValue } from '../../modules/get-input-value';
-import { removeUserById, setUserAvatar, changeUserPassword } from '../../api/users/methods';
-
-import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
-import { browserHistory } from 'react-router';
+import { Meteor } from 'meteor/meteor';
+import { ReactMeteorData } from 'meteor/react-meteor-data';
+import Spacer from '/imports/ui/components/Spacer';
+
+import { GlassCard } from '../components/GlassCard';
+import { PageContainer } from '../components/PageContainer';
+import { removeUserById } from '../../api/users/methods';
 
 let defaultState = {
   index: 0,
   hasConfirmedDelete: false,
   wantsToDelete: false,
   increment: 0,
-  confirm: "",
-  oldPassword: "",
-  newPassword: "",
-  confirmPassword: ""
-}
+  confirm: '',
+  oldPassword: '',
+  newPassword: '',
+  confirmPassword: ''
+};
 Session.setDefault('myProfileState', defaultState);
 
 export class MyProfilePage extends React.Component {
   constructor(props) {
     super(props);
-  };
+  }
 
   getMeteorData() {
 
@@ -53,24 +45,24 @@ export class MyProfilePage extends React.Component {
         index: 0,
         hasConfirmedDelete: false,
         wantsToDelete: false,
-        confirmed: "",
+        confirmed: '',
         increment: 0,
-        oldPassword: "",
-        newPassword: "",
-        confirmPassword: ""
+        oldPassword: '',
+        newPassword: '',
+        confirmPassword: ''
       },
       user: {
-        given: "",
-        familiy: "",
-        email: "",
-        avatar: "",
-        zip: "",
-        longitude: "",
-        latitude: "",
-        profileImage: "thumbnail.png",
-        birthdate: ""
+        given: '',
+        familiy: '',
+        email: '',
+        avatar: '',
+        zip: '',
+        longitude: '',
+        latitude: '',
+        profileImage: 'thumbnail.png',
+        birthdate: ''
       }
-    }
+    };
 
     if (Session.get('myProfileState')) {
       data.state = Session.get('myProfileState');

@@ -1,34 +1,34 @@
-import { Meteor } from 'meteor/meteor'
-import React  from 'react'
-import { render } from 'react-dom'
-import { Router, Route, IndexRoute, browserHistory } from 'react-router'
-import { App } from '../../ui/layouts/app'
-import { AboutPage } from '../../ui/pages/AboutPage'
-import { DashboardPage } from '../../ui/pages/DashboardPage'
-import { Documents } from '../../ui/pages/Documents'
-import { ForumPage } from '../../ui/pages/ForumPage'
-import { Index } from '../../ui/pages/Index'
-import { Login } from '../../ui/pages/Login'
-import { MyProfilePage } from '../../ui/pages/MyProfilePage'
-import { PatientsPage } from '../../ui/pages/PatientsPage'
-import { PractitionersPage } from '../../ui/pages/PractitionersPage'
-import { Signup } from '../../ui/pages/Signup'
-import { ThemePage } from '../../ui/pages/ThemePage'
-import { UsersPage } from '../../ui/pages/UsersPage'
-import { Weblog } from '../../ui/pages/Weblog'
-import { NotFound } from '../../ui/pages/not-found'
-import { RecoverPassword } from '../../ui/pages/recover-password'
-import { ResetPassword } from '../../ui/pages/reset-password'
-import { Test } from '../../ui/pages/test'
+import React  from 'react';
+import { Meteor } from 'meteor/meteor';
+import { render } from 'react-dom';
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import { App } from '../../ui/layouts/app';
+import { AboutPage } from '../../ui/pages/AboutPage';
+import { DashboardPage } from '../../ui/pages/DashboardPage';
+import { Documents } from '../../ui/pages/Documents';
+import { ForumPage } from '../../ui/pages/ForumPage';
+import { Index } from '../../ui/pages/Index';
+import { Login } from '../../ui/pages/Login';
+import { MyProfilePage } from '../../ui/pages/MyProfilePage';
+import { PatientsPage } from '../../ui/pages/PatientsPage';
+import { PractitionersPage } from '../../ui/pages/PractitionersPage';
+import { Signup } from '../../ui/pages/Signup';
+import { ThemePage } from '../../ui/pages/ThemePage';
+import { UsersPage } from '../../ui/pages/UsersPage';
+import { Weblog } from '../../ui/pages/Weblog';
+import { NotFound } from '../../ui/pages/not-found';
+import { RecoverPassword } from '../../ui/pages/recover-password';
+import { ResetPassword } from '../../ui/pages/reset-password';
+import { Test } from '../../ui/pages/test';
 
-import { TopicsPage } from '/imports/ui/pages/TopicsPage'
+import { ConversationsPage } from '/imports/ui/pages/ConversationsPage';
 
 
 const requireAuth = (nextState, replace) => {
   if (!Meteor.loggingIn() && !Meteor.userId()) {
     replace({
       pathname: '/login',
-      state: { nextPathname: nextState.location.pathname },
+      state: { nextPathname: nextState.location.pathname }
     });
   }
 };
@@ -55,7 +55,7 @@ Meteor.startup(() => {
         <Route name="users" path="/users" component={ UsersPage } />
 
         <Route name="forum" path="/forum" component={ ForumPage } onEnter={ requireAuth } />
-        <Route name="topics" path="/topics" component={ TopicsPage } onEnter={ requireAuth } />
+        <Route name="topics" path="/topics" component={ ConversationsPage } onEnter={ requireAuth } />
 
         <Route path="*" component={ NotFound } />
 

@@ -1,16 +1,19 @@
 
 import React  from 'react';
 import ReactMixin  from 'react-mixin';
+import { Navigation } from 'react-router';
 
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import Spacer from              '/imports/ui/components/Spacer';
 import { PageContainer } from   '/imports/ui/components/PageContainer';
-import { AddPostToTopic } from  '/imports/ui/workflows/topics/AddPostToTopic';
+import { AddPostToConversation } from  '/imports/ui/workflows/conversations/AddPostToConversation';
 import PostsDeck  from          '/imports/ui/workflows/posts/PostsDeck';
 
 
-export class TopicsPage extends React.Component {
+export class ConversationsPage extends React.Component {
   getMeteorData() {
+    //console.log("getMeteorData() this.props", this.props);
+
     let data = {
       style: {}
     };
@@ -33,13 +36,18 @@ export class TopicsPage extends React.Component {
 
     return data;
   }
+  // componentDidMount(){
+  //   console.log("this.props.params.id", this.props.params.id);
+  // }
   render() {
+    //console.log("this.props", this.props);
+
     return (
-      <div id='topicsPage'>
+      <div id='ConversationsPage'>
         <PageContainer>
-          <AddPostToTopic />
+          <AddPostToConversation />
           <Spacer />
-          <PostsDeck />
+          <PostDeck />
         </PageContainer>
       </div>
     );
@@ -47,5 +55,5 @@ export class TopicsPage extends React.Component {
 }
 
 
-TopicsPage.propTypes = {};
-ReactMixin(TopicsPage.prototype, ReactMeteorData);
+ConversationsPage.propTypes = {};
+ReactMixin(ConversationsPage.prototype, ReactMeteorData);

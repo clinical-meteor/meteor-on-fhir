@@ -6,17 +6,27 @@ import Input  from 'react-toolbox/lib/input';
 import { insertPost } from '../../../api/posts/methods.js';
 import { GlassCard } from '../../components/GlassCard';
 
+import { Meteor } from 'meteor/meteor';
+
 const handleInsertPost = (event) => {
   const target = event.target;
   const title = target.value.trim();
-  const createdAt = new Date();
 
   if (title !== '' && event.keyCode === 13) {
     //console.log('title', title);
-    insertPost.call({
-      title,
-      createdAt
-    }, (error) => {
+    let newPost = {
+      title: title,
+      createdAt: new Date(),
+      createdBy: {
+        display: Meteor.user().fullName(),
+        reference: Meteor.userId()
+      }
+    };
+    if (Meteor.user().profile && Meteor.user().profile.avatar) {
+
+    }
+
+    insertPost.call(newPost, (error) => {
       if (error) {
         Bert.alert(error.reason, 'danger');
       } else {
@@ -27,7 +37,7 @@ const handleInsertPost = (event) => {
   }
 };
 
-export const AddPostToTopic = () => (
+export const AddPostToConversation = () => (
   <GlassCard>
     <CardTitle
       title="New Topic Comment"
@@ -41,7 +51,7 @@ export const AddPostToTopic = () => (
           type="textarea"
           onKeyUp={ handleInsertPost }
           rows="5"
-          ref="addPost" />
+          />
       </FormGroup>
     </CardText>
   </GlassCard>
