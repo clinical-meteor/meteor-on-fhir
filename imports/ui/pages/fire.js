@@ -4,7 +4,7 @@ import React from 'react';
 import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
 import { PageContainer } from '../components/PageContainer';
 import { GlassCard } from '../components/GlassCard';
-import { GlassApp } from '../components/GlassApp';
+import { GlassApp } from '/imports/ui/components/GlassApp';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 

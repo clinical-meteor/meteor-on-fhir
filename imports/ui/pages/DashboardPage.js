@@ -1,36 +1,23 @@
 import React from 'react';
 import ReactMixin from 'react-mixin';
-import { ReactMeteorData, createContainer } from 'meteor/react-meteor-data';
 
-import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
-import { PageContainer } from '../components/PageContainer';
-import { GlassCard } from '../components/GlassCard';
-import { GlassApp } from '../components/GlassApp';
-import { Header } from '../components/Header';
-import { Footer } from '../components/Footer';
-
-
-import DashboardContainer from '../components/DashboardContainer';
-
-import PhoneColumn from '../layouts/PhoneColumn';
-import LandscapePanel from '../layouts/LandscapePanel';
-import ThirdPanel from '../layouts/ThirdPanel';
-import FourthPanel from '../layouts/FourthPanel';
-
-
-import PractitionerMiniListCard from '../components/PractitionerMiniListCard';
-import UserListCard from '../components/UserListCard';
-import {GenericFormCard} from '../components/GenericFormCard';
-import TabbedCard from '../components/TabbedCard';
-
-import TodoListCard from '../components/TodoListCard';
-import LayoutControlsCard from '../components/LayoutControlsCard';
+import { ReactMeteorData } from 'meteor/react-meteor-data';
 
 import { AboutAppCard } from '../components/AboutAppCard';
+import {GenericFormCard} from '../components/GenericFormCard';
+import { GlassCard } from '../components/GlassCard';
+import DashboardContainer from '../components/DashboardContainer';
+import FourthPanel from '../layouts/FourthPanel';
+import LandscapePanel from '../layouts/LandscapePanel';
+import PatientMiniList from '../components/PatientMiniList';
+import PhoneColumn from '../layouts/PhoneColumn';
+import PractitionerMiniListCard from '../components/PractitionerMiniListCard';
+import TabbedCard from '../components/TabbedCard';
+import ThirdPanel from '../layouts/ThirdPanel';
+
 const ReactHighcharts = require('react-highcharts');
 
-import PatientMiniList from '../components/PatientMiniList';
-
+import Spacer from '/imports/ui/components/Spacer';
 
 const config = {
   chart: {

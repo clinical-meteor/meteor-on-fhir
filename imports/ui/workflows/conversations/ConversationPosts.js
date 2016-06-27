@@ -1,0 +1,142 @@
+import React  from 'react';
+import ReactMixin from 'react-mixin';
+import { ReactMeteorData } from 'meteor/react-meteor-data';
+
+import { CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
+import { GlassCard } from '/imports/ui/components/GlassCard';
+
+import Button from 'react-toolbox/lib/button';
+import { Bert } from 'meteor/themeteorchef:bert';
+import { removePost } from '/imports/api/posts/methods';
+
+import Spacer from '/imports/ui/components/Spacer';
+
+export class ConversationPosts extends React.Component {
+  getMeteorData() {
+    console.log("getMeteorData() this.props", this.props);
+
+
+    // this should all be handled by props
+    // or a mixin!
+    let data = {
+      style: {
+        opacity: Session.get('globalOpacity')
+      },
+      state: {
+        checkbox: false
+      },
+      posts: []
+    };
+
+    if (Session.get('darkroomEnabled')) {
+      data.style.color = 'black';
+      data.style.background = 'white';
+    } else {
+      data.style.color = 'white';
+      data.style.background = 'black';
+    }
+
+    // this could be another mixin
+    if (Session.get('glassBlurEnabled')) {
+      data.style.filter = 'blur(3px)';
+      data.style.webkitFilter = 'blur(3px)';
+    }
+
+    // this could be another mixin
+    if (Session.get('backgroundBlurEnabled')) {
+      data.style.backdropFilter = 'blur(5px)';
+    }
+
+    if (Posts.find({
+      topicId: this.props.topicId
+    }).count() > 0) {
+      data.posts = Posts.find({
+        topicId: this.props.topicId
+      },{sort: {createdAt: -1}}).fetch();
+    }
+    //console.log('data.posts', data.posts);
+
+    return data;
+  }
+
+  render () {
+    let self = this;
+
+    return(
+      <div className="postDeck">
+        {this.data.posts.map(function(item, i){
+          let createdAt = '';
+          if (item.createdAt) {
+            createdAt = moment(item.createdAt).format('YYYY, MMMM Do (dddd) hh:mm a');
+          }
+          return (
+            <div className="postCard" key={i}>
+              <GlassCard>
+                <CardTitle
+                  avatar='https://media.licdn.com/mpr/mpr/shrink_100_100/AAEAAQAAAAAAAAKeAAAAJDJkM2RmNTMzLWI4OGUtNDZmOC1iNTliLWYwOTc1ZWM0YmIyZg.jpg'
+                  title='Abigail Watson'
+                  subtitle={createdAt}
+                />
+
+                <CardText>
+                  { item.title}
+                </CardText>
+                <CardActions>
+                  <Button className='editButton' label='Edit' style={{color: 'lightgray'}} />
+                  <Button className='deleteButton' onMouseUp={self.handleDeleteButton.bind(self, i, item)} label='Delete' style={{color: 'lightgray'}} />
+                </CardActions>
+              </GlassCard>
+              <Spacer />
+            </div>
+
+          );
+        })}
+
+      </div>
+    );
+  }
+
+  handleDeleteButton(index, post){
+    console.log("handleDeleteButton");
+
+    removePost.call({
+      _id: post._id
+    }, (error) => {
+      if (error) {
+        Bert.alert(error.reason, 'danger');
+      } else {
+        Bert.alert('Post removed!', 'success');
+      }
+    });
+  }
+};
+
+
+ConversationPosts.propTypes = {};
+ConversationPosts.defaultProps = {};
+ReactMixin(ConversationPosts.prototype, ReactMeteorData);
+
+// export default ConversationPosts;
+//
+//
+//
+// const handleDeleteButton = (event, index, post) => {
+//
+//   var postId = post._id;
+//
+//   alert('postId', postId);
+//
+//   if (postId !== '' && event.keyCode === 13) {
+//     console.log('postId', postId);
+//     removePost.call({
+//       postId,
+//     }, (error) => {
+//       if (error) {
+//         Bert.alert(error.reason, 'danger');
+//       } else {
+//         target.value = '';
+//         Bert.alert('Post removed!', 'success');
+//       }
+//     });
+//   }
+// };

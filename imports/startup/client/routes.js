@@ -2,11 +2,11 @@ import React  from 'react';
 import { Meteor } from 'meteor/meteor';
 import { render } from 'react-dom';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
-import { App } from '../../ui/layouts/app';
+import { App } from '/imports/ui/layouts/App';
 import { AboutPage } from '../../ui/pages/AboutPage';
 import { DashboardPage } from '../../ui/pages/DashboardPage';
 import { Documents } from '../../ui/pages/Documents';
-import { ForumPage } from '../../ui/pages/ForumPage';
+import { ForumPage } from '/imports/ui/pages/ForumPage';
 import { Index } from '../../ui/pages/Index';
 import { Login } from '../../ui/pages/Login';
 import { MyProfilePage } from '../../ui/pages/MyProfilePage';
@@ -54,8 +54,8 @@ Meteor.startup(() => {
         <Route name="patients" path="/patients" component={ PatientsPage } />
         <Route name="users" path="/users" component={ UsersPage } />
 
-        <Route name="forum" path="forum" component={ ForumPage } onEnter={ requireAuth } />
-        <Route name="topicsById" path="topic/:topicId" component={ ConversationsPage } onEnter={ requireAuth } />
+        <Route name="forum" path="/forum" component={ ForumPage } onEnter={ requireAuth } />
+        <Route name="topicById" path="topic/:topicId" component={ ConversationsPage } onEnter={ requireAuth } />
 
 
         <Route path="*" component={ NotFound } />

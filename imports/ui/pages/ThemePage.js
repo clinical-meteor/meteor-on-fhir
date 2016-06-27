@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom';
 import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
 import { PageContainer } from '../components/PageContainer';
 import { GlassCard } from '../components/GlassCard';
-import { GlassApp } from '../components/GlassApp';
+import { GlassApp } from '/imports/ui/components/GlassApp';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { Tab, Tabs } from 'react-toolbox/lib/tabs';
@@ -21,14 +21,14 @@ import OpacitySlider from '../components/OpacitySlider';
 
 let defaultState = {
   index: 0
-}
+};
 Session.setDefault('themePageState', defaultState);
 
 
 export class ThemePage extends React.Component {
   constructor(props) {
     super(props);
-  };
+  }
   getMeteorData() {
     // this should all be handled by props
     // or a mixin!
@@ -38,13 +38,13 @@ export class ThemePage extends React.Component {
       },
       state: defaultState,
       colors: {
-        colorA: "",
-        colorB: "",
-        colorC: "",
-        colorD: "",
-        colorE: ""
+        colorA: '',
+        colorB: '',
+        colorC: '',
+        colorD: '',
+        colorE: ''
       }
-    }
+    };
 
     if (Session.get('themePageState')) {
       data.state = Session.get('themePageState');

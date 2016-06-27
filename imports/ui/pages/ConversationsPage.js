@@ -1,18 +1,15 @@
-
 import React  from 'react';
-import ReactMixin  from 'react-mixin';
-import { Navigation } from 'react-router';
-
+import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
-import Spacer from              '/imports/ui/components/Spacer';
-import { PageContainer } from   '/imports/ui/components/PageContainer';
-import { AddPostToConversation } from  '/imports/ui/workflows/conversations/AddPostToConversation';
-import PostsDeck  from          '/imports/ui/workflows/posts/PostsDeck';
+
+import Spacer from                      '/imports/ui/components/Spacer';
+import { PageContainer } from           '/imports/ui/components/PageContainer';
+import { AddPostToConversation } from   '/imports/ui/workflows/conversations/AddPostToConversation';
+import { ConversationPosts } from       '/imports/ui/workflows/conversations/ConversationPosts';
 
 
 export class ConversationsPage extends React.Component {
   getMeteorData() {
-    console.log("getMeteorData() this.props", this.props);
 
     let data = {
       style: {}
@@ -36,18 +33,16 @@ export class ConversationsPage extends React.Component {
 
     return data;
   }
-  // componentDidMount(){
-  //   console.log("this.props.params.id", this.props.params.id);
-  // }
+
   render() {
-    console.log("this.props", this.props);
+    //console.log("this.props", this.props);
 
     return (
       <div id='ConversationsPage'>
         <PageContainer>
           <AddPostToConversation />
           <Spacer />
-          <PostsDeck />
+          <ConversationPosts topicId={this.props.routeParams.topicId} />
         </PageContainer>
       </div>
     );

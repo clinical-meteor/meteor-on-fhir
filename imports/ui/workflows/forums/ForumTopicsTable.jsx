@@ -1,16 +1,18 @@
 import React from 'react';
 import ReactMixin from 'react-mixin';
-
 import { ReactMeteorData } from 'meteor/react-meteor-data';
+
 import { Topics } from '/imports/api/topics/topics';
 
 import Avatar from 'react-toolbox/lib/avatar';
 
 import { Table } from 'react-bootstrap';
+
+import { Session } from 'meteor/session';
 import { browserHistory } from 'react-router';
 
 
-export default class ForumTopicsTable extends React.Component {
+export class ForumTopicsTable extends React.Component {
 
   getMeteorData() {
 
@@ -21,7 +23,11 @@ export default class ForumTopicsTable extends React.Component {
         opacity: Session.get('globalOpacity')
       },
       selected: [],
-      topics: Topics.find().map(function(record){
+      topics: []
+    };
+
+    if (Topics.find().count() > 0) {
+      data.topics = Topics.find().map(function(record){
         return {
           _id: record._id,
           name: record.name,
@@ -32,8 +38,8 @@ export default class ForumTopicsTable extends React.Component {
           createdAt: moment(record.createdAt).format('YYYY-MM-DD'),
           photo: record.photo ? record.photo[0].url: ''
         };
-      })
-    };
+      });
+    }
 
     if (Session.get('darkroomEnabled')) {
       data.style.color = 'black';
@@ -59,27 +65,12 @@ export default class ForumTopicsTable extends React.Component {
     return data;
   }
 
-  handleChange(row, key, value) {
-    const source = this.state.source;
-    source[row][key] = value;
-    this.setState({source});
-  }
-
-  handleSelect(selected) {
-    this.setState({selected});
-  }
-  getDate(){
-    return 'YYYY/MM/DD';
-  }
-  noChange(){
-    return '';
-  }
   rowClick(id){
 
-    // alert(id);
     console.log('/topic/' + id);
 
     browserHistory.push('/topic/' + id);
+
     // // set the user
     // Session.set('selectedPatient', id);
     //
@@ -132,4 +123,5 @@ export default class ForumTopicsTable extends React.Component {
 
 
 ForumTopicsTable.propTypes = {};
+ForumTopicsTable.defaultProps = {};
 ReactMixin(ForumTopicsTable.prototype, ReactMeteorData);
