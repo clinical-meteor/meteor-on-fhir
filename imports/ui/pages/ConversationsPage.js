@@ -40,7 +40,7 @@ export class ConversationsPage extends React.Component {
     return (
       <div id='ConversationsPage'>
         <PageContainer>
-          <AddPostToConversation />
+          <AddPostToConversation topicId={this.props.routeParams.topicId} />
           <Spacer />
           <ConversationPosts topicId={this.props.routeParams.topicId} />
         </PageContainer>

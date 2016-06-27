@@ -7,10 +7,13 @@ export const insertPost = new ValidatedMethod({
   validate: new SimpleSchema({
     title: { type: String },
     createdAt: { type: Date },
+    'createdBy.display': { type: String, optional: true },
+    'createdBy.reference': { type: String, optional: true },
+    topicId: { type: String, optional: true }
   }).validator(),
   run(document) {
     Posts.insert(document);
-  },
+  }
 });
 
 export const updatePost = new ValidatedMethod({
