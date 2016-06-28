@@ -83,8 +83,6 @@ export class DashboardPage extends React.Component {
         <DashboardContainer>
           <PhoneColumn style={{width: '350px', position: "absolute"}}>
             <AboutAppCard  />
-            <Spacer />
-            <PatientMiniList />
           </PhoneColumn>
           <LandscapePanel>
             <GlassCard>
@@ -97,8 +95,6 @@ export class DashboardPage extends React.Component {
           </ThirdPanel>
           <FourthPanel>
             <GenericFormCard />
-            <Spacer />
-            <PractitionerMiniListCard />
           </FourthPanel>
         </DashboardContainer>
       </div>

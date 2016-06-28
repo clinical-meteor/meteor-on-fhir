@@ -93,6 +93,8 @@ export class GlassApp extends React.Component {
   }
 
   render(){
+    // let videoSrc = '/VideoBackgrounds/11763620.mp4';
+    let videoSrc = '/VideoBackgrounds/Burning.mp4';
     return (
       <div>
         <video
@@ -102,7 +104,7 @@ export class GlassApp extends React.Component {
           autoplay
           loop
         >
-        <source src='/VideoBackgrounds/11763620.mp4' type='video/mp4'></source>
+        <source src={videoSrc} type='video/mp4'></source>
         </video>
 
         <div data-react-toolbox='app' style={this.data.app.style}>

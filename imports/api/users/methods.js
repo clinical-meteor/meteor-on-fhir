@@ -66,19 +66,18 @@ export const setUserTheme = new ValidatedMethod({
   }).validator(),
   run({ _id, backgroundColor, backgroundImagePath }) {
 
+    Meteor.users.update(_id, { $unset: {
+      'profile.theme.backgroundImagePath': "",
+      'profile.theme.backgroundColor': ""
+    }});
+
     if (backgroundColor) {
       Meteor.users.update(_id, { $set: {
         'profile.theme.backgroundColor': backgroundColor
       }});
-      Meteor.users.update(_id, { $unset: {
-        'profile.theme.backgroundImagePath': ""
-      }});
     }
 
     if (backgroundImagePath) {
-      Meteor.users.update(_id, { $unset: {
-        'profile.theme.backgroundColor': ""
-      }});
       Meteor.users.update(_id, { $set: {
         'profile.theme.backgroundImagePath': backgroundImagePath
       }});

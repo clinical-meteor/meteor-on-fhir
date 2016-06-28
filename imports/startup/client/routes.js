@@ -39,20 +39,20 @@ Meteor.startup(() => {
       <Route path="/" component={ App }>
         <IndexRoute name="index" component={ Index } onEnter={ requireAuth } />
         <Route name="documents" path="/documents" component={ Documents } onEnter={ requireAuth } />
-        <Route name="weblog" path="/weblog" component={ Weblog } onEnter={ requireAuth } />
+        <Route name="weblog" path="/weblog" component={ Weblog } />
         <Route name="login" path="/login" component={ Login } />
         <Route name="recover-password" path="/recover-password" component={ RecoverPassword } />
         <Route name="reset-password" path="/reset-password/:token" component={ ResetPassword } />
         <Route name="signup" path="/signup" component={ Signup } />
         <Route name="test" path="/test" component={ Test } />
         <Route name="about" path="/about" component={ AboutPage } />
-        <Route name="dashboard" path="/dashboard" component={ DashboardPage } />
-        <Route name="theming" path="/theming" component={ ThemePage } />
-        <Route name="myprofile" path="/myprofile" component={ MyProfilePage } />
+        <Route name="dashboard" path="/dashboard" component={ DashboardPage } onEnter={ requireAuth } />
+        <Route name="theming" path="/theming" component={ ThemePage } onEnter={ requireAuth } />
+        <Route name="myprofile" path="/myprofile" component={ MyProfilePage } onEnter={ requireAuth } />
 
         <Route name="practitioners" path="/practitioners" component={ PractitionersPage } />
-        <Route name="patients" path="/patients" component={ PatientsPage } />
-        <Route name="users" path="/users" component={ UsersPage } />
+        <Route name="patients" path="/patients" component={ PatientsPage } onEnter={ requireAuth } />
+        <Route name="users" path="/users" component={ UsersPage } onEnter={ requireAuth } />
 
         <Route name="forum" path="/forum" component={ ForumPage } onEnter={ requireAuth } />
         <Route name="topicById" path="/topic/:topicId" component={ ConversationsPage } onEnter={ requireAuth } />

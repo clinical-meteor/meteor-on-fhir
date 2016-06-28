@@ -10,6 +10,7 @@ allow-deny@1.0.5-beta.1
 audit-argument-checks@1.0.7
 autopublish@1.0.7
 autoupdate@1.2.10-beta.1
+awatson1978:fonts-helveticas@1.0.4
 babel-compiler@6.8.0-beta.1
 babel-runtime@0.1.9-beta.1
 base64@1.0.9-beta.1
@@ -30,6 +31,8 @@ clinical:fonts@1.1.1
 clinical:hl7-resource-datatypes@0.4.2
 clinical:hl7-resource-patient@1.3.0
 clinical:hl7-resource-practitioner@1.3.0
+clinical:keybindings@1.3.2
+clinical:modals@1.0.7
 clinical:theming@0.4.10
 clinical:user-model@1.4.7
 coffeescript@1.0.18-beta.1
@@ -81,6 +84,7 @@ modules-runtime@0.6.4-beta.1
 momentjs:moment@2.13.1
 mongo@1.1.8-beta.1
 mongo-id@1.0.5-beta.1
+mousetrap:mousetrap@1.4.6_1
 nathantreid:css-modules@1.2.0
 nathantreid:css-modules-import-path-helpers@0.1.3
 npm-bcrypt@0.8.5
