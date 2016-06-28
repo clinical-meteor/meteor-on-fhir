@@ -55,7 +55,7 @@ Meteor.startup(() => {
         <Route name="users" path="/users" component={ UsersPage } />
 
         <Route name="forum" path="/forum" component={ ForumPage } onEnter={ requireAuth } />
-        <Route name="topicById" path="topic/:topicId" component={ ConversationsPage } onEnter={ requireAuth } />
+        <Route name="topicById" path="/topic/:topicId" component={ ConversationsPage } onEnter={ requireAuth } />
 
 
         <Route path="*" component={ NotFound } />

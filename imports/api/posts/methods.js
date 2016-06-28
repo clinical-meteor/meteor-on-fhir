@@ -9,6 +9,7 @@ export const insertPost = new ValidatedMethod({
     createdAt: { type: Date },
     'createdBy.display': { type: String, optional: true },
     'createdBy.reference': { type: String, optional: true },
+    'createdBy.avatar': { type: String, optional: true },
     topicId: { type: String, optional: true }
   }).validator(),
   run(document) {

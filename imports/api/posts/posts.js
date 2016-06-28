@@ -18,12 +18,17 @@ Posts.schema = new SimpleSchema({
   'createdBy.display': {
     type: String,
     optional: true,
-    label: 'CreatedBy.display.'
+    label: 'Display name of the user who crated the post.'
   },
   'createdBy.reference': {
     type: String,
     optional: true,
-    label: 'CreatedBy.reference.'
+    label: 'User ID of the user who crated the pos'
+  },
+  'createdBy.avatar': {
+    type: String,
+    optional: true,
+    label: 'Avatar of the user who crated the post.'
   },
   topicId: {
     optional: true,

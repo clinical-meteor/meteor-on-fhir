@@ -110,10 +110,6 @@ export class GlassLayout extends React.Component {
                 <ListItem eventKey={ 3 } caption='Weblog' href='/weblog' />
              </IndexLinkContainer>
 
-             <IndexLinkContainer to='/topics'>
-                <ListItem eventKey={ 3 } caption='Topics' href='/topics' />
-             </IndexLinkContainer>
-
              <IndexLinkContainer to='/forum'>
                 <ListItem eventKey={ 3 } caption='Forum' href='/forum' />
              </IndexLinkContainer>
@@ -147,8 +143,8 @@ export class GlassLayout extends React.Component {
              </IndexLinkContainer>
 
            </List>
-
         </NavDrawer>
+
         <Panel pinned={this.data.state.drawerPinned} >
           <div style={{ flex: 1, overflowY: 'auto', width: '100%' }}>
             {this.props.children}

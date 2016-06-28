@@ -13,7 +13,7 @@ import Spacer from '/imports/ui/components/Spacer';
 
 export class ConversationPosts extends React.Component {
   getMeteorData() {
-    console.log("getMeteorData() this.props", this.props);
+    //console.log("getMeteorData() this.props", this.props);
 
 
     // this should all be handled by props
@@ -66,15 +66,23 @@ export class ConversationPosts extends React.Component {
       <div className="postDeck">
         {this.data.posts.map(function(item, i){
           let createdAt = '';
+          let createdBy = '';
+          let createdByAvatar = '/thumbnail-blank.png'; //https://media.licdn.com/mpr/mpr/shrink_100_100/AAEAAQAAAAAAAAKeAAAAJDJkM2RmNTMzLWI4OGUtNDZmOC1iNTliLWYwOTc1ZWM0YmIyZg.jpg
           if (item.createdAt) {
             createdAt = moment(item.createdAt).format('YYYY, MMMM Do (dddd) hh:mm a');
+          }
+          if (item.createdBy && item.createdBy.display) {
+            createdBy = item.createdBy.display;
+          }
+          if (item.createdBy && item.createdBy.avatar) {
+            createdByAvatar = item.createdBy.avatar;
           }
           return (
             <div className="postCard" key={i}>
               <GlassCard>
                 <CardTitle
-                  avatar='https://media.licdn.com/mpr/mpr/shrink_100_100/AAEAAQAAAAAAAAKeAAAAJDJkM2RmNTMzLWI4OGUtNDZmOC1iNTliLWYwOTc1ZWM0YmIyZg.jpg'
-                  title='Abigail Watson'
+                  avatar={createdByAvatar}
+                  title={createdBy}
                   subtitle={createdAt}
                 />
 
@@ -97,7 +105,7 @@ export class ConversationPosts extends React.Component {
   }
 
   handleDeleteButton(index, post){
-    console.log("handleDeleteButton");
+    //console.log("handleDeleteButton");
 
     removePost.call({
       _id: post._id
@@ -109,7 +117,7 @@ export class ConversationPosts extends React.Component {
       }
     });
   }
-};
+}
 
 
 ConversationPosts.propTypes = {};

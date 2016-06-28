@@ -12,7 +12,7 @@ const handleUpdatePost = (postId, event) => {
   if (title !== '' && event.keyCode === 13) {
     updatePost.call({
       _id: postId,
-      update: { title },
+      update: { title }
     }, (error) => {
       if (error) {
         Bert.alert(error.reason, 'danger');
@@ -30,7 +30,7 @@ const handleRemovePost = (documentId, event) => {
   // eslint-disable-next-line no-alert
   if (confirm('Are you sure? This is permanent.')) {
     removePost.call({
-      _id: documentId,
+      _id: documentId
     }, (error) => {
       if (error) {
         Bert.alert(error.reason, 'danger');

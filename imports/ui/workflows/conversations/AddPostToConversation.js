@@ -4,42 +4,42 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 
 import { Bert } from 'meteor/themeteorchef:bert';
 import { FormGroup } from 'react-bootstrap';
-import { CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
+import { CardTitle, CardText } from 'react-toolbox/lib/card';
 import Input  from 'react-toolbox/lib/input';
 import { insertPost } from '../../../api/posts/methods.js';
 import { GlassCard } from '../../components/GlassCard';
 
 import { Meteor } from 'meteor/meteor';
 
-const handleInsertPost = (event, topicId) => {
-  const target = event.target;
-  const title = target.value.trim();
-
-  if (title !== '' && event.keyCode === 13) {
-    //console.log('title', title);
-    let newPost = {
-      title: title,
-      createdAt: new Date(),
-      createdBy: {
-        display: Meteor.user().fullName(),
-        reference: Meteor.userId()
-      },
-      topicId: topicId
-    };
-    if (Meteor.user().profile && Meteor.user().profile.avatar) {
-
-    }
-
-    insertPost.call(newPost, (error) => {
-      if (error) {
-        Bert.alert(error.reason, 'danger');
-      } else {
-        target.value = '';
-        Bert.alert('Post added!', 'success');
-      }
-    });
-  }
-};
+// const handleInsertPost = (event, topicId) => {
+//   const target = event.target;
+//   const title = target.value.trim();
+//
+//   if (title !== '' && event.keyCode === 13) {
+//     //console.log('title', title);
+//     let newPost = {
+//       title: title,
+//       createdAt: new Date(),
+//       createdBy: {
+//         display: Meteor.user().fullName(),
+//         reference: Meteor.userId()
+//       },
+//       topicId: topicId
+//     };
+//     if (Meteor.user().profile && Meteor.user().profile.avatar) {
+//
+//     }
+//
+//     insertPost.call(newPost, (error) => {
+//       if (error) {
+//         Bert.alert(error.reason, 'danger');
+//       } else {
+//         target.value = '';
+//         Bert.alert('Post added!', 'success');
+//       }
+//     });
+//   }
+// };
 
 export class AddPostToConversation extends React.Component {
   getMeteorData() {
@@ -76,7 +76,8 @@ export class AddPostToConversation extends React.Component {
 
     const title = this.refs.addPostToConversationInput.refs.input.value.trim();
 
-    console.log("handleInsertPost");
+    //console.log("handleInsertPost");
+    //console.log("Meteor.user()", Meteor.user());
 
 
     if (title !== '' && event.keyCode === 13) {
@@ -90,9 +91,12 @@ export class AddPostToConversation extends React.Component {
         },
         topicId: topicId
       };
-      if (Meteor.user().profile && Meteor.user().profile.avatar) {
 
+      if (Meteor.user().profile && Meteor.user().profile.avatar) {
+        newPost.createdBy.avatar = Meteor.user().profile.avatar;
       }
+
+      console.log("newPost", newPost);
 
       insertPost.call(newPost, (error) => {
         if (error) {
