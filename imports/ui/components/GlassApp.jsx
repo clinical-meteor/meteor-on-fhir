@@ -57,31 +57,37 @@ export class GlassApp extends React.Component {
       zIndex: 1,
       cursor: 'pointer'
     };
-    if (Session.get('backgroundColor')) {
-      data.app.style.background = Session.get('backgroundColor');
-    } else {
-      data.app.style.background = 'inherit';
-    }
-    if (Session.get('backgroundImagePath')) {
-      data.app.style = {
-        backgroundImage: 'url(' + Session.get('backgroundImagePath') + ')',
-        WebkitBackgroundSize: 'cover',
-        MozBackgroundSize: 'cover',
-        OBackgroundSize: 'cover',
-        backgroundSize: 'cover'
-      };
-    } else {
-      backgroundImage: 'none';
-    }
-    data.app.style.width = '100%';
-    data.app.style.height = '100%';
-    data.app.style.position = 'absolute';
 
     // play a video if no background image or color has been set
     // and we're on a tablet or larger device (no phone)
-    if (!Session.get('backgroundImagePath') && !Session.get('backgroundColor') && (Session.get('appWidth') > 768)) {
-      data.video.source = Meteor.absoluteUrl() + "Burning.mp4";
+    if (Meteor.user() && Meteor.user().profile && Meteor.user().profile.theme) {
+
+      if (Meteor.user().profile.theme.backgroundColor) {
+        data.app.style.background = Meteor.user().profile.theme.backgroundColor;
+      } else {
+        data.app.style.background = 'inherit';
+      }
+
+      if (Meteor.user().profile.theme.backgroundImagePath) {
+        data.app.style = {
+          backgroundImage: 'url(' + Meteor.user().profile.theme.backgroundImagePath + ')',
+          WebkitBackgroundSize: 'cover',
+          MozBackgroundSize: 'cover',
+          OBackgroundSize: 'cover',
+          backgroundSize: 'cover'
+        };
+      } else {
+        backgroundImage: 'none';
+      }
+
+      if (!Meteor.user().profile.theme.backgroundColor && !Meteor.user().profile.theme.backgroundImagePath && (Session.get('appWidth') > 768)) {
+        data.video.source = Meteor.absoluteUrl() + 'Burning.mp4';
+      }
     }
+
+    data.app.style.width = '100%';
+    data.app.style.height = '100%';
+    data.app.style.position = 'absolute';
 
     return data;
   }
@@ -90,13 +96,13 @@ export class GlassApp extends React.Component {
     return (
       <div>
         <video
-          ref="BackgroundVideo"
+          ref='BackgroundVideo'
           style={this.data.video.style}
-          poster=""
+          poster=''
           autoplay
           loop
         >
-        <source src="/VideoBackgrounds/11763620.mp4" type="video/mp4"></source>
+        <source src='/VideoBackgrounds/11763620.mp4' type='video/mp4'></source>
         </video>
 
         <div data-react-toolbox='app' style={this.data.app.style}>

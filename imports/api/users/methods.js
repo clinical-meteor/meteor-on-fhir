@@ -53,7 +53,38 @@ export const setUserAvatar = new ValidatedMethod({
   }).validator(),
   run({ _id, avatar }) {
     Meteor.users.update(_id, { $set: {'profile.avatar': avatar} });
-  },
+  }
+});
+
+export const setUserTheme = new ValidatedMethod({
+  name: 'users.setTheme',
+  validate: new SimpleSchema({
+    _id: { type: String },
+    backgroundColor: { type: String, optional: true },
+    backgroundImagePath: { type: String, optional: true },
+    video: { type: String, optional: true }
+  }).validator(),
+  run({ _id, backgroundColor, backgroundImagePath }) {
+
+    if (backgroundColor) {
+      Meteor.users.update(_id, { $set: {
+        'profile.theme.backgroundColor': backgroundColor
+      }});
+      Meteor.users.update(_id, { $unset: {
+        'profile.theme.backgroundImagePath': ""
+      }});
+    }
+
+    if (backgroundImagePath) {
+      Meteor.users.update(_id, { $unset: {
+        'profile.theme.backgroundColor': ""
+      }});
+      Meteor.users.update(_id, { $set: {
+        'profile.theme.backgroundImagePath': backgroundImagePath
+      }});
+    }
+
+  }
 });
 
 export const changeUserPassword = new ValidatedMethod({

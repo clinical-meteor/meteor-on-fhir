@@ -11,6 +11,8 @@ import { removePost } from '/imports/api/posts/methods';
 
 import Spacer from '/imports/ui/components/Spacer';
 
+import { Meteor } from 'meteor/meteor';
+
 export class ConversationPosts extends React.Component {
   getMeteorData() {
     //console.log("getMeteorData() this.props", this.props);
@@ -23,7 +25,8 @@ export class ConversationPosts extends React.Component {
         opacity: Session.get('globalOpacity')
       },
       state: {
-        checkbox: false
+        checkbox: false,
+        canManagePost: false
       },
       posts: []
     };
@@ -63,7 +66,7 @@ export class ConversationPosts extends React.Component {
     let self = this;
 
     return(
-      <div className="postDeck">
+      <div className="conversation">
         {this.data.posts.map(function(item, i){
           let createdAt = '';
           let createdBy = '';
@@ -89,10 +92,8 @@ export class ConversationPosts extends React.Component {
                 <CardText>
                   { item.title}
                 </CardText>
-                <CardActions>
-                  <Button className='editButton' label='Edit' style={{color: 'lightgray'}} />
-                  <Button className='deleteButton' onMouseUp={self.handleDeleteButton.bind(self, i, item)} label='Delete' style={{color: 'lightgray'}} />
-                </CardActions>
+                { self.renderCardActions(i, item) }
+
               </GlassCard>
               <Spacer />
             </div>
@@ -102,6 +103,24 @@ export class ConversationPosts extends React.Component {
 
       </div>
     );
+  }
+
+  renderCardActions(i, item){
+    // console.log("self", self);
+    // console.log("canManagePost", canManagePost);
+    // console.log("i", i);
+    // console.log("item", item);
+
+    if (item && item.createdBy && item.createdBy.reference) {
+      if (item.createdBy.reference === Meteor.userId()) {
+        return (
+          <CardActions>
+            <Button className='editButton' label='Edit' style={{color: 'lightgray'}} />
+            <Button className='deleteButton' onMouseUp={this.handleDeleteButton.bind(self, i, item)} label='Delete' style={{color: 'lightgray'}} />
+          </CardActions>
+        );
+      }
+    }
   }
 
   handleDeleteButton(index, post){

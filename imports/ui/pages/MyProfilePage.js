@@ -16,6 +16,7 @@ import { GlassCard } from '../components/GlassCard';
 import { PageContainer } from '../components/PageContainer';
 import { removeUserById } from '../../api/users/methods';
 
+
 let defaultState = {
   index: 0,
   hasConfirmedDelete: false,
