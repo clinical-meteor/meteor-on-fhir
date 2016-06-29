@@ -45,7 +45,7 @@ export class Header extends React.Component {
       }
     };
 
-    if (Session.get('showNavbars')) {
+    if (!Session.get('showNavbars')) {
       data.style.top = '-60px';
     }
 
@@ -98,7 +98,7 @@ export class Header extends React.Component {
     return(
       <header className={style.appbar} flat style={this.data.style}>
         <IconButton icon='menu' floating accent onClick={ this.toggleDrawerActive } style={{zIndex:10000}}/>
-        <h1 className={style.title} style={{paddingLeft: '20px'}}>FHIR Demo</h1>
+        <h1 className={style.title} style={{paddingLeft: '20px'}}>Meteor on FHIR Forum</h1>
         <div className="eastHeaderElements" style={this.data.eastStyle} >
           { this.renderNavigation(this.data.hasUser) }
         </div>

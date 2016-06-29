@@ -5,7 +5,7 @@ import Input from 'react-toolbox/lib/input';
 import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
 import {Tab, Tabs} from 'react-toolbox/lib/tabs';
 import PatientTable from '../workflows/patients/PatientTable';
-import UserTable from '../workflows/users/UserTable';
+import { UserTable } from '../workflows/users/UserTable';
 
 
 const dummyText = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.';

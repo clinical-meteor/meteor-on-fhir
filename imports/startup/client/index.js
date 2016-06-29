@@ -17,6 +17,8 @@ if (Meteor.settings.environment === 'production') {
 Meteor.startup(function (){
   Meteor.subscribe('posts');
   Meteor.subscribe('topics');
+
+  Session.set('showNavbars', true);
 });
 
 

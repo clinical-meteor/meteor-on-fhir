@@ -41,7 +41,7 @@ export class Footer extends React.Component {
       }
     };
 
-    if (Session.get('showNavbars')) {
+    if (!Session.get('showNavbars')) {
       data.style.bottom = '-100px';
     }
 

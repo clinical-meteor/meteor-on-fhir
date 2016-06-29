@@ -1,28 +1,19 @@
-// import './style';
-
+import { Table } from 'react-bootstrap';
 import React from 'react';
-import AppBar from 'react-toolbox/lib/app_bar';
-import Button from 'react-toolbox/lib/button';
-import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
+import ReactMixin from 'react-mixin';
+import { ReactMeteorData } from 'meteor/react-meteor-data';
 
 import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
+import Avatar from 'react-toolbox/lib/avatar';
 
-import { Table } from 'react-bootstrap';
+import IconButton from 'react-toolbox/lib/button';
+import { browserHistory } from 'react-router';
+import { Bert } from 'meteor/themeteorchef:bert';
 
-// const UserModel = {
-//   name: {type: String},
-//   username: {type: String},
-//   _id: {type: String},
-//   address: {type: String}
-// };
+import { removeUserById } from '/imports/api/users/methods';
 
-
-
-
-
-UserTable = React.createClass({
-  mixins: [ReactMeteorData],
+export class UserTable extends React.Component {
   getMeteorData() {
 
     // this should all be handled by props
@@ -31,68 +22,74 @@ UserTable = React.createClass({
       style: {
         opacity: Session.get('globalOpacity')
       },
+      state: {
+        isAdmin: false
+      },
       selected: [],
-      users: Meteor.users.find().fetch(),
-      source: Meteor.users.find().map(function(user){
-        return {
-          _id: user._id,
-          username: user.username,
-          name: user.profile.name.text,
-          address: user.emails ? user.emails[0].address : ""
-        }
-      })
+      users: Meteor.users.find().fetch()
+    };
+
+    if (Meteor.user() && Meteor.user().roles && (Meteor.user().roles[0] === 'admin')) {
+      data.state.isAdmin = true;
     }
 
     if (Session.get('darkroomEnabled')) {
-      data.style.color = "black";
-      data.style.background = "white";
+      data.style.color = 'black';
+      data.style.background = 'white';
     } else {
-      data.style.color = "white";
-      data.style.background = "black";
+      data.style.color = 'white';
+      data.style.background = 'black';
     }
 
     // this could be another mixin
     if (Session.get('glassBlurEnabled')) {
-      data.style.filter = "blur(3px)";
-      data.style.webkitFilter = "blur(3px)";
+      data.style.filter = 'blur(3px)';
+      data.style.webkitFilter = 'blur(3px)';
     }
 
     // this could be another mixin
     if (Session.get('backgroundBlurEnabled')) {
-      data.style.backdropFilter = "blur(5px)";
+      data.style.backdropFilter = 'blur(5px)';
     }
 
     //console.log("data", data);
 
     return data;
-  },
-  handleChange(row, key, value) {
-    const source = this.state.source;
-    source[row][key] = value;
-    this.setState({source});
-  },
+  }
 
-  handleSelect(selected) {
-    this.setState({selected});
-  },
-  getDate(){
-    return "YYYY/MM/DD"
-  },
-  noChange(){
-    return "";
-  },
+
+
+  renderAdminControls(isAdmin, i) {
+    if (isAdmin) {
+      return (
+        <td>
+          <IconButton icon='clear' onClick={ this.removeUser.bind(this, this.data.users[i]._id) } />
+        </td>
+      );
+    }
+  }
+  renderAdminHeaders(isAdmin) {
+    if (isAdmin) {
+      return (
+        <th>Remove</th>
+      );
+    }
+  }
   render () {
 
     let tableRows = [];
     for (var i = 0; i < this.data.users.length; i++) {
-      tableRows.push(<tr key={i}>
-        <td class="barcode">{this.data.users[i]._id}</td>
+      tableRows.push(
+      <tr key={i}>
+        <td>
+          <Avatar><img src={this.data.users[i].profile ? this.data.users[i].profile.avatar : '/thumbnail-blank.png' }/></Avatar>
+        </td>
+        <td onClick={this.routeToWeblog.bind(this, this.data.users[i]._id)} style={{cursor: 'pointer'}}>/weblog/{this.data.users[i]._id}</td>
         <td>{this.data.users[i].username}</td>
         <td>{this.data.users[i].fullName()}</td>
-        <td>{this.data.users[i].emails ? this.data.users[i].emails[0].address : ""}</td>
-        <td><i class="fa fa-star"></i></td>
-        <td><i class="fa fa-remove"></i></td>
-      </tr>)
+        <td>{this.data.users[i].emails ? this.data.users[i].emails[0].address : ''}</td>
+        { this.renderAdminControls(this.data.state.isAdmin, i) }
+      </tr>);
     }
 
 
@@ -100,12 +97,12 @@ UserTable = React.createClass({
       <Table responses >
         <thead>
           <tr>
-            <th>_id</th>
+            <th>Photo</th>
+            <th>weblog/_id</th>
             <th>username</th>
             <th>full name</th>
             <th>email</th>
-            <th>star</th>
-            <th>remove</th>
+            { this.renderAdminHeaders(this.data.state.isAdmin) }
           </tr>
         </thead>
         <tbody>
@@ -115,6 +112,35 @@ UserTable = React.createClass({
 
     );
   }
-});
 
-export default UserTable;
+  handleChange(row, key, value) {
+    const source = this.state.source;
+    source[row][key] = value;
+    this.setState({source});
+  }
+
+  handleSelect(selected) {
+    this.setState({selected});
+  }
+  routeToWeblog(userId){
+    browserHistory.push('/weblog/' + userId);
+  }
+
+  removeUser(userId, event){
+    event.preventDefault();
+    console.log("removeUser", userId);
+
+    removeUserById.call({
+      _id: userId
+    }, (error) => {
+      if (error) {
+        Bert.alert(error.reason, 'danger');
+      } else {
+        Bert.alert('User removed!', 'success');
+      }
+    });
+  }
+}
+
+UserTable.propTypes = {};
+ReactMixin(UserTable.prototype, ReactMeteorData);

@@ -40,7 +40,6 @@ Meteor.startup(() => {
       <Route path="/" component={ App }>
         <IndexRoute name="index" component={ Index } onEnter={ requireAuth } />
         <Route name="documents" path="/documents" component={ Documents } onEnter={ requireAuth } />
-        <Route name="weblog" path="/weblog" component={ Weblog } />
         <Route name="login" path="/login" component={ Login } />
         <Route name="recover-password" path="/recover-password" component={ RecoverPassword } />
         <Route name="reset-password" path="/reset-password/:token" component={ ResetPassword } />
@@ -57,9 +56,12 @@ Meteor.startup(() => {
 
         <Route name="support" path="/support" component={ ForumPage } />
         <Route name="forum" path="/forum" component={ ForumPage } onEnter={ requireAuth } />
+
         <Route name="topicById" path="/topic/:topicId" component={ ConversationsPage } onEnter={ requireAuth } />
         <Route name="newTopic" path="/new/topic" component={ NewTopicPage } onEnter={ requireAuth } />
 
+        <Route name="weblog" path="/weblog" component={ Weblog } />
+        <Route name="weblogByUserId" path="/weblog/:userId" component={ Weblog } />
 
         <Route path="*" component={ NotFound } />
 

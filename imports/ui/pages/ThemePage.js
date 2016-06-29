@@ -101,26 +101,21 @@ export class ThemePage extends React.Component {
 
                     <Image src='/backgrounds/medical/SaltScrub-Pink.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
                     <Image src='/backgrounds/medical/SaltScrub-Horizontal.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
-                    <Image src='/backgrounds/medical/SaltScrub-Vertical.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
 
                     <Image src='/backgrounds/medical/SpaBeds.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
-                    <Image src='/backgrounds/medical/EmergencyRoom.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
                     <Image src='/backgrounds/medical/Candles.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
                     <Image src='/backgrounds/medical/Sauna.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
 
                     <Image src='/backgrounds/medical/PlasmidRed.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
-                    <Image src='/backgrounds/medical/PlasmidGray.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
                     <Image src='/backgrounds/medical/PlasmidBlue.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
 
                     <Image src='/backgrounds/medical/Radiograph-Chest-Portable.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
-                    <Image src='/backgrounds/medical/Cybernetics-Brain.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
-                    <Image src='/backgrounds/medical/Cybernetics-Head.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
-                    <Image src='/backgrounds/medical/DisasterPreparedness.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
+                    <Image src='/backgrounds/medical/EmergencyRoom.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
                     <Image src='/backgrounds/medical/EMT.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
-                    <Image src='/backgrounds/medical/Genetic-Engineering.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
 
-                    <Image src='/backgrounds/medical/MedBay.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
                     <Image src='/backgrounds/medical/StarTrek-Medbay.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
+                    <Image src='/backgrounds/medical/MedBay.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
+                    <Image src='/backgrounds/medical/Genetic-Engineering.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
 
                     <Image responsive style={grayTile} onClick={this.onColorClick} />
                     <Image responsive style={redTile} onClick={this.onColorClick} />

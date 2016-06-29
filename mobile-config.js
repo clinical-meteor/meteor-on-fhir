@@ -1,6 +1,6 @@
 App.info({
   id: 'io.sympatomatic.demo',
-  name: 'FHIR Demo',
+  name: 'Meteor on FHIR Forum',
   description: 'A HIPAA and FDA compliant checklist app built in Meteor that supports HL7 FHIR.',
   author: 'Symptomatic.io',
   email: 'pentasyllabic.studios@gmail.com',

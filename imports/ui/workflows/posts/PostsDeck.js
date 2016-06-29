@@ -1,18 +1,16 @@
+import { CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
+import Button from 'react-toolbox/lib/button';
 import React from 'react';
 import ReactMixin from 'react-mixin';
+
+import { GlassCard } from '/imports/ui/components/GlassCard';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
-import Button from 'react-toolbox/lib/button';
-import { GlassCard } from '/imports/ui/components/GlassCard';
-import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
-import Table from 'react-toolbox/lib/table';
-import { List, ListItem, ListSubHeader, ListDivider, ListCheckbox } from 'react-toolbox/lib/list';
-import {IconMenu, MenuItem, MenuDivider } from 'react-toolbox/lib/menu';
+import { removePost } from '/imports/api/posts/methods.js';
+import { DynamicSpacer } from '/imports/ui/components/DynamicSpacer';
 
-import Spacer from '../../components/Spacer';
-
-import { removePost } from '../../../api/posts/methods.js';
-
+import { Meteor } from 'meteor/meteor';
+import { Bert } from 'meteor/themeteorchef:bert';
 
 export default class PostsDeck extends React.Component {
   getMeteorData() {
@@ -27,74 +25,93 @@ export default class PostsDeck extends React.Component {
         checkbox: false
       },
       posts: []
-    }
+    };
 
     if (Session.get('darkroomEnabled')) {
-      data.style.color = "black";
-      data.style.background = "white";
+      data.style.color = 'black';
+      data.style.background = 'white';
     } else {
-      data.style.color = "white";
-      data.style.background = "black";
+      data.style.color = 'white';
+      data.style.background = 'black';
     }
 
     // this could be another mixin
     if (Session.get('glassBlurEnabled')) {
-      data.style.filter = "blur(3px)";
-      data.style.webkitFilter = "blur(3px)";
+      data.style.filter = 'blur(3px)';
+      data.style.webkitFilter = 'blur(3px)';
     }
 
     // this could be another mixin
     if (Session.get('backgroundBlurEnabled')) {
-      data.style.backdropFilter = "blur(5px)";
+      data.style.backdropFilter = 'blur(5px)';
     }
 
-    if (Posts.find().count() > 0) {
-      data.posts = Posts.find({},{sort: {createdAt: -1}}).fetch();
+    if (this.props.userId) {
+      if (Posts.find({'createdBy.reference': this.props.userId}).count() > 0) {
+        data.posts = Posts.find({'createdBy.reference': this.props.userId},{sort: {createdAt: -1}}).fetch();
+      }
+    } else {
+      if (Posts.find({'createdBy.reference': Meteor.userId()}).count() > 0) {
+        data.posts = Posts.find({'createdBy.reference': Meteor.userId()},{sort: {createdAt: -1}}).fetch();
+      }
     }
-    console.log("data.posts", data.posts);
 
+    console.log('data.posts', data.posts);
 
     return data;
-  };
+  }
+
   render () {
     let self = this;
 
     return(
-      <div className="postDeck">
+      <div className='postDeck'>
         {this.data.posts.map(function(item, i){
-          let createdAt = "";
+          let createdAt = '';
+          let createdBy = '';
+          let createdByAvatar = '/thumbnail-blank.png'; //https://media.licdn.com/mpr/mpr/shrink_100_100/AAEAAQAAAAAAAAKeAAAAJDJkM2RmNTMzLWI4OGUtNDZmOC1iNTliLWYwOTc1ZWM0YmIyZg.jpg
+
           if (item.createdAt) {
-            createdAt = moment(item.createdAt).format("YYYY, MMMM Do (dddd) hh:mm a");
+            createdAt = moment(item.createdAt).format('YYYY, MMMM Do (dddd) hh:mm a');
           }
+          if (item.createdBy && item.createdBy.display) {
+            createdBy = item.createdBy.display;
+          }
+          if (item.createdBy && item.createdBy.avatar) {
+            createdByAvatar = item.createdBy.avatar;
+          }
+
           return (
-            <div className="postCard" key={i}>
+            <div className='postCard' key={i}>
               <GlassCard>
                 <CardTitle
-                  avatar="https://media.licdn.com/mpr/mpr/shrink_100_100/AAEAAQAAAAAAAAKeAAAAJDJkM2RmNTMzLWI4OGUtNDZmOC1iNTliLWYwOTc1ZWM0YmIyZg.jpg"
-                  title="Abigail Watson"
+                  avatar={createdByAvatar}
+                  title={createdBy}
                   subtitle={createdAt}
                 />
 
                 <CardText>
                   { item.title}
                 </CardText>
-                <CardActions>
-                  <Button className="editButton" label="Edit" style={{color: "lightgray"}} />
-                  <Button className="deleteButton" onMouseUp={self.handleDeleteButton.bind(self, i, item)} label="Delete" style={{color: "lightgray"}} />
-                </CardActions>
+                { self.renderCardActions(i, item) }
               </GlassCard>
-              <Spacer />
+              <DynamicSpacer />
             </div>
-
           );
         })}
 
       </div>
     );
-  };
+  }
+
+
+  // <CardActions>
+  //   <Button className='editButton' label='Edit' style={{color: 'lightgray'}} />
+  //   <Button className='deleteButton' onMouseUp={self.handleDeleteButton.bind(self, i, item)} label='Delete' style={{color: 'lightgray'}} />
+  // </CardActions>
 
   handleDeleteButton(index, post){
-    console.log("handleDeleteButton");
+    console.log('handleDeleteButton');
 
     removePost.call({
       _id: post._id
@@ -105,16 +122,31 @@ export default class PostsDeck extends React.Component {
         Bert.alert('Post removed!', 'success');
       }
     });
-  };
-};
+  }
+
+  renderCardActions(i, item){
+    // console.log("self", self);
+    // console.log("canManagePost", canManagePost);
+    // console.log("i", i);
+    // console.log("item", item);
+
+    if (item && item.createdBy && item.createdBy.reference) {
+      if (item.createdBy.reference === Meteor.userId()) {
+        return (
+          <CardActions>
+            <Button className='editButton' label='Edit' style={{color: 'lightgray'}} />
+            <Button className='deleteButton' onMouseUp={this.handleDeleteButton.bind(self, i, item)} label='Delete' style={{color: 'lightgray'}} />
+          </CardActions>
+        );
+      }
+    }
+  }
+
+}
 
 
-PostsDeck.propTypes = {
-
-};
-PostsDeck.defaultProps = {
-
-};
+PostsDeck.propTypes = {};
+PostsDeck.defaultProps = {};
 ReactMixin(PostsDeck.prototype, ReactMeteorData);
 
 // export default PostsDeck;

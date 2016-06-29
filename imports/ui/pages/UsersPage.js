@@ -14,11 +14,11 @@ import { GlassCard } from '../components/GlassCard';
 import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
 
 import {Tab, Tabs} from 'react-toolbox/lib/tabs';
-import UserTable from '../workflows/users/UserTable';
+import { UserTable } from '../workflows/users/UserTable';
 
 
 let defaultState = {
-  index: 1,
+  index: 0,
   id: "",
   username: "",
   email: "",
