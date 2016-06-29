@@ -10,6 +10,7 @@ import { Bert } from 'meteor/themeteorchef:bert';
 import { removePost } from '/imports/api/posts/methods';
 
 import Spacer from '/imports/ui/components/Spacer';
+import { DynamicSpacer } from '/imports/ui/components/DynamicSpacer';
 
 import { Meteor } from 'meteor/meteor';
 
@@ -55,7 +56,7 @@ export class ConversationPosts extends React.Component {
     }).count() > 0) {
       data.posts = Posts.find({
         topicId: this.props.topicId
-      },{sort: {createdAt: -1}}).fetch();
+      },{sort: {createdAt: 1}}).fetch();
     }
     //console.log('data.posts', data.posts);
 
@@ -95,7 +96,7 @@ export class ConversationPosts extends React.Component {
                 { self.renderCardActions(i, item) }
 
               </GlassCard>
-              <Spacer />
+              <DynamicSpacer />
             </div>
 
           );
@@ -142,28 +143,3 @@ export class ConversationPosts extends React.Component {
 ConversationPosts.propTypes = {};
 ConversationPosts.defaultProps = {};
 ReactMixin(ConversationPosts.prototype, ReactMeteorData);
-
-// export default ConversationPosts;
-//
-//
-//
-// const handleDeleteButton = (event, index, post) => {
-//
-//   var postId = post._id;
-//
-//   alert('postId', postId);
-//
-//   if (postId !== '' && event.keyCode === 13) {
-//     console.log('postId', postId);
-//     removePost.call({
-//       postId,
-//     }, (error) => {
-//       if (error) {
-//         Bert.alert(error.reason, 'danger');
-//       } else {
-//         target.value = '';
-//         Bert.alert('Post removed!', 'success');
-//       }
-//     });
-//   }
-// };

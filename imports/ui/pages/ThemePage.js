@@ -114,9 +114,7 @@ export class ThemePage extends React.Component {
 
                     <Image src='/backgrounds/medical/Radiograph-Chest-Portable.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
                     <Image src='/backgrounds/medical/Cybernetics-Brain.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
-                    <Image src='/backgrounds/medical/Cybernetics-Digital.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
                     <Image src='/backgrounds/medical/Cybernetics-Head.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
-                    <Image src='/backgrounds/medical/Cybernetics.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
                     <Image src='/backgrounds/medical/DisasterPreparedness.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
                     <Image src='/backgrounds/medical/EMT.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
                     <Image src='/backgrounds/medical/Genetic-Engineering.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />

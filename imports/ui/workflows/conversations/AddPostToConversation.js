@@ -7,7 +7,7 @@ import { FormGroup } from 'react-bootstrap';
 import { CardTitle, CardText } from 'react-toolbox/lib/card';
 import Input  from 'react-toolbox/lib/input';
 import { insertPost } from '../../../api/posts/methods.js';
-import { GlassCard } from '../../components/GlassCard';
+import { GlassCard } from '/imports/ui/components/GlassCard';
 
 import { Meteor } from 'meteor/meteor';
 
@@ -96,7 +96,7 @@ export class AddPostToConversation extends React.Component {
         newPost.createdBy.avatar = Meteor.user().profile.avatar;
       }
 
-      console.log("newPost", newPost);
+      //console.log("newPost", newPost);
 
       insertPost.call(newPost, (error) => {
         if (error) {
@@ -112,9 +112,6 @@ export class AddPostToConversation extends React.Component {
   render(){
     return (
       <GlassCard>
-        <CardTitle
-          title="New Topic Comment"
-        />
         <CardText>
           <FormGroup>
             <Input

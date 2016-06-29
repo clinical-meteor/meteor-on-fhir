@@ -18,9 +18,7 @@ export class GlassApp extends React.Component {
     super(props);
   }
   componentDidMount() {
-    //console.log('GlassApp initialized...');
     ReactDOM.findDOMNode(this.refs.BackgroundVideo).play();
-    //handleLogin({ component: this });
   }
 
   getMeteorData() {

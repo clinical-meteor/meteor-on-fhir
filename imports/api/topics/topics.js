@@ -40,6 +40,11 @@ Topics.schema = new SimpleSchema({
     optional: true,
     label: 'CreatedBy.reference.'
   },
+  'createdBy.avatar': {
+    type: String,
+    optional: true,
+    label: 'Avatar of the user who crated the post.'
+  },
   'activity': {
     type: Date,
     optional: true,

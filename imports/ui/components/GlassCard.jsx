@@ -15,7 +15,7 @@ const dummyText = 'Lorem Ipsum is simply dummy text of the printing and typesett
 export class GlassCard extends React.Component {
   constructor(props) {
     super(props);
-  };
+  }
 
   getMeteorData() {
 
@@ -23,36 +23,38 @@ export class GlassCard extends React.Component {
       style: {
         opacity: Session.get('globalOpacity')
       }
-    }
+    };
+
+
 
     if (Session.get('darkroomEnabled')) {
-      data.style.color = "black";
-      data.style.background = "white";
+      data.style.color = 'black';
+      data.style.background = 'white';
     } else {
-      data.style.color = "white";
-      data.style.background = "black";
+      data.style.color = 'white';
+      data.style.background = 'black';
     }
 
     // this could be another mixin
     if (Session.get('glassBlurEnabled')) {
-      data.style.filter = "blur(3px)";
-      data.style.webkitFilter = "blur(3px)";
+      data.style.filter = 'blur(3px)';
+      data.style.webkitFilter = 'blur(3px)';
     }
 
     // this could be another mixin
     if (Session.get('backgroundBlurEnabled')) {
-      data.style.backdropFilter = "blur(5px)";
+      data.style.backdropFilter = 'blur(5px)';
     }
 
     return data;
-  };
+  }
 
   render(){
     return (
        <Card style={this.data.style}>
         { this.props.children }
        </Card>
-    )
+    );
   }
 }
 GlassCard.propTypes = {

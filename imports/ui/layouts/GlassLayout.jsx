@@ -1,17 +1,21 @@
-import { Meteor } from 'meteor/meteor';
-import { ReactMeteorData } from 'meteor/react-meteor-data';
-import { Session } from 'meteor/session';
 import React  from 'react';
 import ReactMixin  from 'react-mixin';
-import { IndexLinkContainer } from 'react-router-bootstrap';
+import { ReactMeteorData } from 'meteor/react-meteor-data';
+
+import { Meteor } from 'meteor/meteor';
+import { Session } from 'meteor/session';
 import IconButton  from 'react-toolbox/lib/button';
 import { CardTitle } from 'react-toolbox/lib/card';
-import { List, ListItem } from 'react-toolbox/lib/list';
 import User  from '/imports/api/User';
 import Layout  from '/imports/ui/layouts/Layout';
 import NavDrawer  from '/imports/ui/layouts/NavDrawer';
 import Panel  from '/imports/ui/layouts/Panel';
 import Sidebar  from '/imports/ui/layouts/Sidebar';
+import { IndexLinkContainer } from 'react-router-bootstrap';
+
+import { PublicSidebar }  from '/imports/ui/components/PublicSidebar';
+import { AuthenticatedSidebar }  from '/imports/ui/components/AuthenticatedSidebar';
+import { AdminSidebar }  from '/imports/ui/components/AdminSidebar';
 
 Session.setDefault('backgroundImagePath', 'url(\"images\/ForestInMist.jpg\")');
 Session.setDefault('backgroundColor', '#eeeeee');
@@ -37,7 +41,8 @@ export class GlassLayout extends React.Component {
       state: {
         drawerActive: Session.get('drawerActive'),
         drawerPinned: Session.get('drawerPinned'),
-        sidebarPinned: Session.get('sidebarPinned')
+        sidebarPinned: Session.get('sidebarPinned'),
+        isAdmin: false
       },
       style: {
         'width': '100%',
@@ -50,7 +55,7 @@ export class GlassLayout extends React.Component {
       },
       card: {
         title: 'Please log in',
-        subtitle: 'no data',
+        subtitle: 'Basic User',
         avatar: 'https://placeimg.com/80/80/animals'
       }
     };
@@ -60,6 +65,11 @@ export class GlassLayout extends React.Component {
       if (Meteor.user().profile) {
         data.card.subtitle = Meteor.user().profile.birthdate;
         data.card.avatar = Meteor.user().profile.avatar;
+        data.card.subtitle = 'Basic User';
+      }
+      if (Meteor.user().roles && (Meteor.user().roles[0] === 'admin')) {
+        data.card.subtitle = 'Admin';
+        data.state.isAdmin = true;
       }
     }
 
@@ -83,6 +93,17 @@ export class GlassLayout extends React.Component {
   toggleSidebar() {
     Session.toggle('sidebarPinned');
   }
+  renderSidebar(isAdmin) {
+    if (Meteor.user()) {
+      if (isAdmin) {
+        return <AdminSidebar /> ;
+      } else {
+        return <AuthenticatedSidebar /> ;
+      }
+    } else {
+      return <PublicSidebar /> ;
+    }
+  }
   render(){
 
     return (
@@ -92,57 +113,15 @@ export class GlassLayout extends React.Component {
           onOverlayClick={ this.toggleDrawerActive }
           >
 
-           <CardTitle
-             avatar={this.data.card.avatar}
-             title={this.data.card.title}
-             subtitle={this.data.card.subtitle}
-           />
-           <List style={{paddingLeft: '20px', position: 'absolute'}}>
-             <IndexLinkContainer to='/myprofile' >
-                <ListItem eventKey={ 1 } caption='My Profile' href='/myprofile' />
-             </IndexLinkContainer>
+          <IndexLinkContainer to='/myprofile' >
+             <CardTitle
+               avatar={this.data.card.avatar}
+               title={this.data.card.title}
+               subtitle={this.data.card.subtitle}
+             />
+          </IndexLinkContainer>
 
-             <IndexLinkContainer to='/dashboard'>
-                <ListItem eventKey={ 2 } caption='Dashboard' href='/dashboard' />
-             </IndexLinkContainer>
-
-             <IndexLinkContainer to='/weblog'>
-                <ListItem eventKey={ 3 } caption='Weblog' href='/weblog' />
-             </IndexLinkContainer>
-
-             <IndexLinkContainer to='/forum'>
-                <ListItem eventKey={ 3 } caption='Forum' href='/forum' />
-             </IndexLinkContainer>
-
-             <IndexLinkContainer to='/'>
-                <ListItem eventKey={ 4 } caption='Index' href='/' />
-             </IndexLinkContainer>
-
-             <IndexLinkContainer to='/documents'>
-                <ListItem eventKey={ 5 } caption='Documents' href='/documents' />
-             </IndexLinkContainer>
-
-             <IndexLinkContainer to='/users'>
-                <ListItem eventKey={ 6 } caption='Users' href='/users' />
-             </IndexLinkContainer>
-
-             <IndexLinkContainer to='/patients'>
-                <ListItem eventKey={ 7 } caption='Patients' href='/patients' />
-             </IndexLinkContainer>
-
-             <IndexLinkContainer to='/practitioners'>
-                <ListItem eventKey={ 8 } caption='Practitioners' href='/practitioners' />
-             </IndexLinkContainer>
-
-             <IndexLinkContainer to='/theming'>
-                <ListItem eventKey={ 9 } caption='Theming' href='/theming' />
-             </IndexLinkContainer>
-
-             <IndexLinkContainer to='/about'>
-                <ListItem eventKey={ 10 } caption='About' href='/about' />
-             </IndexLinkContainer>
-
-           </List>
+           { this.renderSidebar(this.data.state.isAdmin) }
         </NavDrawer>
 
         <Panel pinned={this.data.state.drawerPinned} >

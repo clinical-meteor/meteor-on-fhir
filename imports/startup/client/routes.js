@@ -22,6 +22,7 @@ import { ResetPassword } from '../../ui/pages/reset-password';
 import { Test } from '../../ui/pages/test';
 
 import { ConversationsPage } from '/imports/ui/pages/ConversationsPage';
+import { NewTopicPage } from '/imports/ui/pages/NewTopicPage';
 
 
 const requireAuth = (nextState, replace) => {
@@ -54,8 +55,10 @@ Meteor.startup(() => {
         <Route name="patients" path="/patients" component={ PatientsPage } onEnter={ requireAuth } />
         <Route name="users" path="/users" component={ UsersPage } onEnter={ requireAuth } />
 
+        <Route name="support" path="/support" component={ ForumPage } />
         <Route name="forum" path="/forum" component={ ForumPage } onEnter={ requireAuth } />
         <Route name="topicById" path="/topic/:topicId" component={ ConversationsPage } onEnter={ requireAuth } />
+        <Route name="newTopic" path="/new/topic" component={ NewTopicPage } onEnter={ requireAuth } />
 
 
         <Route path="*" component={ NotFound } />

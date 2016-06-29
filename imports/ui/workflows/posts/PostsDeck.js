@@ -3,7 +3,7 @@ import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
 import Button from 'react-toolbox/lib/button';
-import { GlassCard } from '../../components/GlassCard';
+import { GlassCard } from '/imports/ui/components/GlassCard';
 import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
 import Table from 'react-toolbox/lib/table';
 import { List, ListItem, ListSubHeader, ListDivider, ListCheckbox } from 'react-toolbox/lib/list';

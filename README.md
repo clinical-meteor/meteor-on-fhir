@@ -1,5 +1,5 @@
-# Phoenix Demo
-A starting point for Meteor apps.
+# Meteor on FHIR Forum
+We decided to write a Wordpress/Discource clone using Meteor and FHIR resources.  
 
 #### Installation  
 
@@ -42,3 +42,5 @@ COVERAGE_APP_FOLDER=/Users/abigailwatson/Code/GlassUI/fire-demo/ meteor npm run-
 
 Abigail Watson
 Artistic License 2.0
+
+The code is free, but be careful about media assets, some of which are not publicly licensed.  

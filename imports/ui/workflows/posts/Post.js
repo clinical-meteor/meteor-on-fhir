@@ -3,7 +3,7 @@ import { Row, Col, ListGroupItem, FormControl, Button } from 'react-bootstrap';
 import { Bert } from 'meteor/themeteorchef:bert';
 import { updatePost, removePost } from '../../../api/posts/methods.js';
 
-import { GlassCard } from '../../components/GlassCard';
+import { GlassCard } from '/imports/ui/components/GlassCard';
 import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
 
 

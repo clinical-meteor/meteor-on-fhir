@@ -16,16 +16,21 @@ export const insertTopic = new ValidatedMethod({
     // 'replies': { type: Number, optional: true },
     // 'views': { type: Number, optional: true },
     // 'activity': { type: Date, optional: true },
-
-    'createdBy.display': { type: String },
-    'createdBy.refrence': { type: String },
+    'createdBy.display': { type: String, optional: true },
+    'createdBy.reference': { type: String, optional: true },
+    'createdBy.avatar': { type: String, optional: true },
     'photo.$.url': { type: String, optional: true }
   }).validator(),
   run(document) {
     console.log("insertTopic");
+
+    document.replies = 0;
+    document.views = 0;
+    document.activity = new Date();
+
     console.log("document", document);
 
-    Topics.insert(document, {validate: false});
+    return Topics.insert(document);
   }
 });
 
@@ -65,7 +70,7 @@ export const removeTopicById = new ValidatedMethod({
     '_id': { type: String }
   }).validator(),
   run({ _id }) {
-    //console.log("Removing user " + _id);
+    console.log("Removing topic " + _id);
     Topics.remove({_id: _id});
   }
 });

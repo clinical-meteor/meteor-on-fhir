@@ -10,7 +10,7 @@ import DocumentsList from '../../containers/documents-list.js';
 import { AddDocument } from '../../components/AddDocument.js';
 
 import { PageContainer } from '../../components/PageContainer';
-import { GlassCard } from '../../components/GlassCard';
+import { GlassCard } from '/imports/ui/components/GlassCard';
 import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
 
 
