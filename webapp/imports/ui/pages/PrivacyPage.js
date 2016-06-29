@@ -1,21 +1,21 @@
 import React from 'react';
 
-import { AboutAppCard } from '../components/AboutAppCard';
-import { GlassCard } from '../components/GlassCard';
-import { PageContainer } from '../components/PageContainer';
+import { PrivacyPolicyCard } from '/imports/ui/components/PrivacyPolicyCard';
+import { GlassCard } from '/imports/ui/components/GlassCard';
+import { PageContainer } from '/imports/ui/components/PageContainer';
 
 
-export class AboutPage extends React.Component {
+export class PrivacyPage extends React.Component {
   constructor(props) {
     super(props);
   }
 
   render(){
     return(
-      <div id="PrivacyPage">
+      <div id="privacyPage">
         <PageContainer>
           <GlassCard>
-            <h2>Privacy</h2>
+            <PrivacyPolicyCard />            
           </GlassCard>
         </PageContainer>
       </div>

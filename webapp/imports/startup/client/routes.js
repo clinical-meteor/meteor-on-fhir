@@ -3,8 +3,9 @@ import { Meteor } from 'meteor/meteor';
 import { render } from 'react-dom';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import { App } from '/imports/ui/layouts/App';
-import { AboutPage } from '../../ui/pages/AboutPage';
-import { DashboardPage } from '../../ui/pages/DashboardPage';
+import { AboutPage } from '/imports/ui/pages/AboutPage';
+import { PrivacyPage } from '/imports/ui/pages/PrivacyPage';
+import { DashboardPage } from '/imports/ui/pages/DashboardPage';
 import { Documents } from '../../ui/pages/Documents';
 import { ForumPage } from '/imports/ui/pages/ForumPage';
 import { Index } from '../../ui/pages/Index';
@@ -19,7 +20,6 @@ import { Weblog } from '../../ui/pages/Weblog';
 import { NotFound } from '../../ui/pages/not-found';
 import { RecoverPassword } from '../../ui/pages/recover-password';
 import { ResetPassword } from '../../ui/pages/reset-password';
-import { Test } from '../../ui/pages/test';
 
 import { ConversationsPage } from '/imports/ui/pages/ConversationsPage';
 import { NewTopicPage } from '/imports/ui/pages/NewTopicPage';
@@ -39,13 +39,16 @@ Meteor.startup(() => {
     <Router history={ browserHistory }>
       <Route path="/" component={ App }>
         <IndexRoute name="index" component={ Index } onEnter={ requireAuth } />
+
         <Route name="documents" path="/documents" component={ Documents } onEnter={ requireAuth } />
         <Route name="login" path="/login" component={ Login } />
         <Route name="recover-password" path="/recover-password" component={ RecoverPassword } />
         <Route name="reset-password" path="/reset-password/:token" component={ ResetPassword } />
         <Route name="signup" path="/signup" component={ Signup } />
-        <Route name="test" path="/test" component={ Test } />
+
         <Route name="about" path="/about" component={ AboutPage } />
+        <Route name="privacy" path="/privacy" component={ PrivacyPage } />
+
         <Route name="dashboard" path="/dashboard" component={ DashboardPage } onEnter={ requireAuth } />
         <Route name="theming" path="/theming" component={ ThemePage } onEnter={ requireAuth } />
         <Route name="myprofile" path="/myprofile" component={ MyProfilePage } onEnter={ requireAuth } />

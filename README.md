@@ -1,5 +1,5 @@
 # Meteor on FHIR Forum
-We decided to write a Wordpress/Discource clone using Meteor and FHIR resources.  
+We decided to write a Wordpress/Discourse clone using Meteor and FHIR resources.  
 
 #### Installation  
 
