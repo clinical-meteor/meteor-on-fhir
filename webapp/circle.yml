@@ -1,0 +1,76 @@
+## Customize the test machine
+machine:
+
+  # Timezone
+  timezone:
+    America/Los_Angeles # Set the timezone
+
+  # Add some environment variables
+  environment:
+    CIRCLE_ENV: test
+    CXX: g++-4.8
+    DISPLAY: :99.0
+    NPM_PREFIX: /home/ubuntu/nvm/v0.10.33
+
+
+## Customize checkout
+checkout:
+ post:
+   #- git submodule sync
+   #- git submodule update --init --recursive # use submodules
+
+general:
+  build_dir: webapp
+  artifacts:
+    - "./tests/nightwatch/screenshots" # relative to the build directory
+
+## Customize dependencies
+dependencies:
+  cache_directories:
+    - "~/.meteor" # relative to the user's home directory
+    - ~/nvm/v0.10.33/lib/node_modules/starrynight
+    - ~/nvm/v0.10.33/bin/starrynight
+
+  pre:
+    # Install Starrynight unless it is cached
+    - if [ ! -e ~/nvm/v0.10.33/bin/starrynight ]; then npm install -g starrynight; else echo "Starrynight seems to be cached"; fi;
+    # Install  Meteor
+    - mkdir -p ${HOME}/.meteor
+    # If Meteor is already cached, do not need to build it again.
+    - if [ ! -e ${HOME}/.meteor/meteor ]; then curl https://install.meteor.com | /bin/sh; else echo "Meteor seems to be cached"; fi;
+    # Link the meteor executable into /usr/bin
+    - sudo ln -s $HOME/.meteor/meteor /usr/bin/meteor
+    # Check if the helloworld directory already exists, if it doesn't, create the helloworld app
+    # The following doesn't work, because it should be checking ${HOME}/active-entry/helloworld
+    # - if [ ! -e ${HOME}/helloworld ]; then meteor create --release METEOR@1.1.0.3 helloworld; else echo "helloworld app seems to be cached"; fi;
+
+  override:
+    - meteor list
+
+## Customize test commands
+test:
+  pre:
+    - starrynight fetch
+    - cd packages && rm -rf temp
+    - cd packages && ls -la
+    - starrynight autoconfig
+    - cat .meteor/nightwatch.json
+    - meteor:
+          background: true
+    - sleep 60
+  override:
+    - starrynight run-tests --type validation --env travischrome
+
+
+## Customize deployment commands
+#deployment:
+#  production:
+#    branch: master
+#    commands:
+#      - printf "<Meteor username>\n<Meteor password>\n" | meteor deploy circlecivelocity.meteor.com
+
+## Custom notifications
+#notify:
+  #webhooks:
+    # A list of hashes representing hooks. Only the url field is supported.
+    #- url: https://someurl.com/hooks/circle
