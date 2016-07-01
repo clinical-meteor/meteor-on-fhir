@@ -1,7 +1,0 @@
-{
-  "galaxy.meteor.com": {
-    "env": {
-      "MONGO_URL": "mongodb://user:user123@ds011883.mlab.com:11883/derby"
-    }
-  }
-}
