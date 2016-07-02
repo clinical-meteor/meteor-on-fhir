@@ -38,6 +38,14 @@ COVERAGE_APP_FOLDER=/Users/abigailwatson/Code/GlassUI/fire-demo/ meteor npm run-
 # http://localhost:3000/coverage
 ```
 
+#### Mobile Build  
+
+```sh
+meteor run ios
+```    
+
+
+
 #### Licensing
 
 Abigail Watson

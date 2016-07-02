@@ -4,7 +4,7 @@ App.info({
   description: 'A HIPAA and FDA compliant checklist app built in Meteor that supports HL7 FHIR.',
   author: 'Symptomatic.io',
   email: 'pentasyllabic.studios@gmail.com',
-  website: 'http://fire-demo.meteorapp.com',
+  website: 'http://meteor-on-fhir.meteorapp.com',
   version: '0.1.0'
 });
 
