@@ -89,7 +89,7 @@ export class ThemePage extends React.Component {
                 <div style={{position: 'relative'}}>
 
                   <div id='backgroundImageGallary' style={{display: 'inline-block'}}>
-                    <Image src='/backgrounds/medical/BambooIllustration.png' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
+                    <Image src='/backgrounds/medical/BambooIllustration.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
                     <Image src='/backgrounds/medical/Zen.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
                     <Image src='/backgrounds/medical/Zen-Rocks.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
                     <Image src='/backgrounds/medical/LargeZenRocks.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
@@ -164,7 +164,7 @@ export class ThemePage extends React.Component {
   }
 
   onColorClick(event){
-    console.log("onColorClick", event.currentTarget.style['background-color']);
+    //console.log("onColorClick", event.currentTarget.style['background-color']);
 
     Session.set('backgroundImagePath', false);
     Session.set('backgroundColor', event.currentTarget.style['background-color']);
@@ -182,7 +182,7 @@ export class ThemePage extends React.Component {
   }
 
   onImageClick(event){
-    console.log("onImageClick", 'backgrounds/medical/' + event.currentTarget['src'].split('/')[5]);
+    //console.log("onImageClick", 'backgrounds/medical/' + event.currentTarget['src'].split('/')[5]);
 
     Session.set('backgroundColor', false);
     Session.set('backgroundImagePath', 'backgrounds/medical/' + event.currentTarget['src'].split('/')[5]);
@@ -199,8 +199,8 @@ export class ThemePage extends React.Component {
     });
   }
 
-  onVideoClick(event){
-    console.log("onVideoClick");
+  onVideoClick(){
+    //console.log("onVideoClick");
 
     Session.set('backgroundImagePath', false);
     Session.set('backgroundColor', false);

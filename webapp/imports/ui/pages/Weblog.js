@@ -1,15 +1,16 @@
-import React  from 'react'
-import ReactMixin  from 'react-mixin'
-import { ReactMeteorData } from 'meteor/react-meteor-data'
+import React  from 'react';
+import ReactMixin  from 'react-mixin';
+import { ReactMeteorData } from 'meteor/react-meteor-data';
 
-import { PageContainer } from '/imports/ui/components/PageContainer'
-import Spacer  from '/imports/ui/components/Spacer'
-import DynamicSpacer  from '/imports/ui/components/DynamicSpacer'
-import DocumentsList  from '/imports/ui/containers/documents-list.js'
-import PostsList  from '/imports/ui/containers/posts-list.js'
+import { PageContainer } from '/imports/ui/components/PageContainer';
+import { DynamicSpacer }  from '/imports/ui/components/DynamicSpacer';
+import DocumentsList  from '/imports/ui/containers/documents-list';
+import PostsList  from '/imports/ui/containers/posts-list';
 
-import { AddPost } from '/imports/ui/workflows/posts/AddPost.js'
-import PostsDeck  from '/imports/ui/workflows/posts/PostsDeck.js'
+import { AddPost } from '/imports/ui/workflows/posts/AddPost';
+import PostsDeck  from '/imports/ui/workflows/posts/PostsDeck';
+
+import { Meteor } from 'meteor/meteor';
 
 export class Weblog extends React.Component {
   getMeteorData() {
@@ -41,6 +42,14 @@ export class Weblog extends React.Component {
       data.style.webkitFilter = 'blur(3px)';
     }
 
+    if (Session.get('appWidth') > 768) {
+      Session.set('hasPageVerticalPadding', true);
+      Session.set('mainPanelIsCard', true);
+    } else {
+      Session.set('hasPageVerticalPadding', false);
+      Session.set('mainPanelIsCard', false);
+    }
+
     return data;
   }
 
@@ -53,7 +62,7 @@ export class Weblog extends React.Component {
         return (
           <div>
             <AddPost />
-            <Spacer />
+            <DynamicSpacer />
           </div>
         );
       }

@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { AboutAppCard } from '../components/AboutAppCard';
-import { GlassCard } from '../components/GlassCard';
-import { PageContainer } from '../components/PageContainer';
+import { AboutAppCard } from '/imports/ui/components/AboutAppCard';
+import { GlassCard } from '/imports/ui/components/GlassCard';
+import { PhoneContainer } from '/imports/ui/components/PhoneContainer';
 
 
 export class AboutPage extends React.Component {
@@ -13,11 +13,11 @@ export class AboutPage extends React.Component {
   render(){
     return(
       <div id="aboutPage">
-        <PageContainer>
+        <PhoneContainer >
           <GlassCard>
             <AboutAppCard />
           </GlassCard>
-        </PageContainer>
+        </PhoneContainer>
       </div>
     );
   }

@@ -11,7 +11,6 @@ Meteor.startup(function (){
 });
 
 export class PageContainer extends React.Component {
-  //mixins: [ReactMeteorData],
   constructor(props) {
     super(props);
   }
@@ -19,9 +18,6 @@ export class PageContainer extends React.Component {
   getMeteorData() {
     let data = {
       style: {
-        marginTop: '6.4rem',
-        marginBottom: '6.4rem',
-        paddingTop: '6.4rem',
         WebkitTransition: 'ease .2s',
         transition: 'ease .2s'
       }
@@ -32,10 +28,7 @@ export class PageContainer extends React.Component {
       data.style.position = 'relative';
       data.style.maxWidth = '1024px';
       data.style.width = '100%';
-      // data.style.left = '0px';
-      // data.style.width = '100%';
       if (Session.get('appSurfaceOffset')) {
-        // data.style.left = '100px';
         data.style.left = (Session.get('appWidth') - 1024) * 0.1618;
         data.style.marginRight = '100px';
       } else {
@@ -44,11 +37,21 @@ export class PageContainer extends React.Component {
 
     } else {
       data.style.position = 'absolute';
-      data.style.margin = '0px';
       data.style.width = '100%';
-      // data.style.left = ((Session.get('appWidth') - 768) * 0.5) + 'px';
     }
 
+    // we should assume card layout by default, meaning there's bit of padding and negative space
+    if (Session.get('mainPanelIsCard')) {
+      data.style.padding = '20px';
+    }
+
+    if (Session.get('hasPagePadding')) {
+      data.style.marginTop = '50px';
+      data.style.marginBottom = '50px';
+    } else {
+      data.style.marginTop = '0px';
+      data.style.marginBottom = '0px';
+    }
 
 
     return data;
@@ -64,10 +67,8 @@ export class PageContainer extends React.Component {
     );
   }
 }
-PageContainer.propTypes = {
 
-};
-PageContainer.defaultProps = {
 
-};
+PageContainer.propTypes = {};
+PageContainer.defaultProps = {};
 ReactMixin(PageContainer.prototype, ReactMeteorData);

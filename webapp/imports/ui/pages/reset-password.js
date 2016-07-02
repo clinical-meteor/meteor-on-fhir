@@ -1,6 +1,6 @@
 import React from 'react';
 import { Row, Col, Alert, FormGroup, ControlLabel, FormControl, Button } from 'react-bootstrap';
-import { handleResetPassword } from '../../modules/reset-password';
+import { handleResetPassword } from '/imports/modules/handleResetPassword';
 
 import { PageContainer } from '../components/PageContainer';
 

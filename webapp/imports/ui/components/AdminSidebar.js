@@ -47,10 +47,6 @@ export class AdminSidebar extends React.Component {
            <ListItem eventKey={ 4 } caption='Index' href='/' />
         </IndexLinkContainer>
 
-        <IndexLinkContainer to='/documents'>
-           <ListItem eventKey={ 5 } caption='Documents' href='/documents' />
-        </IndexLinkContainer>
-
         <IndexLinkContainer to='/users'>
            <ListItem eventKey={ 6 } caption='Users' href='/users' />
         </IndexLinkContainer>

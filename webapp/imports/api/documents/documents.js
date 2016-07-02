@@ -8,12 +8,12 @@ export const Documents = new Mongo.Collection('Documents');
 Documents.schema = new SimpleSchema({
   title: {
     type: String,
-    label: 'The title of the document.',
-  },
+    label: 'The title of the document.'
+  }
 });
 
 Documents.attachSchema(Documents.schema);
 
 Factory.define('document', Documents, {
-  title: () => faker.hacker.phrase(),
+  title: () => faker.hacker.phrase()
 });

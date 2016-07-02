@@ -19,6 +19,7 @@ Meteor.startup(function (){
   Meteor.subscribe('topics');
 
   Session.set('showNavbars', true);
+  Session.set('hasPagePadding', true);
 });
 
 
@@ -29,3 +30,7 @@ Posts = _Posts;
 // global imports for subscriptions
 import { Topics as _Topics } from '/imports/api/topics/topics';
 Topics = _Topics;
+
+// global imports for subscriptions
+import { Statistics as _Statistics } from '/imports/api/statistics/statistics';
+Statistics = _Statistics;

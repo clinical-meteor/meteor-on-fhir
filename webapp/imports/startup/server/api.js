@@ -3,6 +3,7 @@
 import '/imports/api/documents/server/publications.js';
 import '/imports/api/posts/server/publications.js';
 import '/imports/api/topics/server/publications.js';
+import '/imports/api/statistics/server/publications.js';
 
 // methods
 import '/imports/api/documents/methods.js';

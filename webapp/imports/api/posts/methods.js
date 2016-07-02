@@ -39,7 +39,7 @@ export const removePost = new ValidatedMethod({
     _id: { type: String }
   }).validator(),
   run({ _id }) {
-    console.log("_id", _id);
+    //console.log("_id", _id);
 
     Posts.remove(_id);
     Topics.update({_id: _id}, {

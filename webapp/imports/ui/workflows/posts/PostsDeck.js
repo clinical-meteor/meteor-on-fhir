@@ -56,7 +56,7 @@ export default class PostsDeck extends React.Component {
       }
     }
 
-    console.log('data.posts', data.posts);
+    //console.log('data.posts', data.posts);
 
     return data;
   }
@@ -125,10 +125,6 @@ export default class PostsDeck extends React.Component {
   }
 
   renderCardActions(i, item){
-    // console.log("self", self);
-    // console.log("canManagePost", canManagePost);
-    // console.log("i", i);
-    // console.log("item", item);
 
     if (item && item.createdBy && item.createdBy.reference) {
       if (item.createdBy.reference === Meteor.userId()) {
@@ -148,28 +144,3 @@ export default class PostsDeck extends React.Component {
 PostsDeck.propTypes = {};
 PostsDeck.defaultProps = {};
 ReactMixin(PostsDeck.prototype, ReactMeteorData);
-
-// export default PostsDeck;
-//
-//
-//
-// const handleDeleteButton = (event, index, post) => {
-//
-//   var postId = post._id;
-//
-//   alert('postId', postId);
-//
-//   if (postId !== '' && event.keyCode === 13) {
-//     console.log('postId', postId);
-//     removePost.call({
-//       postId,
-//     }, (error) => {
-//       if (error) {
-//         Bert.alert(error.reason, 'danger');
-//       } else {
-//         target.value = '';
-//         Bert.alert('Post removed!', 'success');
-//       }
-//     });
-//   }
-// };

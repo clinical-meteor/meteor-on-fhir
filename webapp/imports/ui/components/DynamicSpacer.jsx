@@ -8,7 +8,8 @@ export class DynamicSpacer extends React.Component {
   getMeteorData() {
     let data = {
       style: {
-        height: '0rem',
+        // height: '0rem',
+        height: '1px',
         'WebkitTransition': 'ease .2s',
         'transition': 'ease .2s'
       }

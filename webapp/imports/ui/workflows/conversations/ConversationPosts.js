@@ -51,6 +51,15 @@ export class ConversationPosts extends React.Component {
       data.style.backdropFilter = 'blur(5px)';
     }
 
+    // another mixin
+    if (Session.get('appWidth') > 768) {
+      Session.set('hasPageVerticalPadding', true);
+      Session.set('mainPanelIsCard', true);
+    } else {
+      Session.set('hasPageVerticalPadding', false);
+      Session.set('mainPanelIsCard', false);
+    }
+
     if (Posts.find({
       topicId: this.props.topicId
     }).count() > 0) {
