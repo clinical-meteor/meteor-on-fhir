@@ -6,7 +6,7 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 import { Session } from 'meteor/session';
 import { Meteor } from 'meteor/meteor';
 
-Session.setDefault('backgroundImagePath', 'Burning.mp4');
+Session.setDefault('backgroundImagePath', 'Flames.mp4');
 Session.setDefault('backgroundColor', '#eeeeee');
 Session.setDefault('darkroomEnabled', true);
 Session.setDefault('glassBlurEnabled', false);
@@ -79,7 +79,7 @@ export class GlassApp extends React.Component {
       }
 
       if (!Meteor.user().profile.theme.backgroundColor && !Meteor.user().profile.theme.backgroundImagePath && (Session.get('appWidth') > 768)) {
-        data.video.source = Meteor.absoluteUrl() + 'Burning.mp4';
+        data.video.source = Meteor.absoluteUrl() + 'Flames.mp4';
       }
     }
 
@@ -92,7 +92,7 @@ export class GlassApp extends React.Component {
 
   render(){
     // let videoSrc = '/VideoBackgrounds/11763620.mp4';
-    let videoSrc = '/VideoBackgrounds/Burning.mp4';
+    let videoSrc = '/VideoBackgrounds/Flames.mp4';
     return (
       <div>
         <video

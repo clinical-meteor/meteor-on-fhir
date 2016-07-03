@@ -18,6 +18,9 @@ export class PageContainer extends React.Component {
   getMeteorData() {
     let data = {
       style: {
+        // WebkitTransform: 'translate3d(0px,0px,0px)',
+        // overflowY: 'scroll',
+        // WebkitOverflowScrolling: 'touch',
         WebkitTransition: 'ease .2s',
         transition: 'ease .2s'
       }
@@ -53,6 +56,11 @@ export class PageContainer extends React.Component {
       data.style.marginBottom = '0px';
     }
 
+    data.style.overflowY = 'scroll';
+    data.style.WebkitOverflowScrolling = 'touch';
+    data.style.WebkitTransform = 'translateZ(0px)';
+    data.style.WebkitTransform = 'translate3d(0, 0, 0)';
+    data.style.WebkitPerspective = 'translateZ(0px)';
 
     return data;
   }
@@ -60,9 +68,7 @@ export class PageContainer extends React.Component {
   render(){
     return (
       <section style={this.data.style}>
-        <div style={{position: 'static'}}>
           { this.props.children }
-        </div>
       </section>
     );
   }

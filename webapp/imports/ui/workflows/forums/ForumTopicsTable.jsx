@@ -33,7 +33,7 @@ export class ForumTopicsTable extends React.Component {
     }
 
     if (Topics.find().count() > 0) {
-      data.topics = Topics.find().map(function(record){
+      data.topics = Topics.find({},{sort: {activity: -1}}).map(function(record){
         return {
           _id: record._id,
           name: record.name,

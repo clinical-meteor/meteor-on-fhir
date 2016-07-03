@@ -27,7 +27,15 @@ export class ConversationsPage extends React.Component {
       state: {
         topicName: ''
       }
+      // style: {
+      //   overflowY: 'scroll',
+      //   WebkitOverflowScrolling: 'touch',
+      //   WebkitTransform: 'translateZ(0px)',
+      //   WebkitTransform: 'translate3d(0, 0, 0)',
+      //   WebkitPerspective: '1000'
+      // }
     };
+
 
     let topic = Topics.findOne({_id: this.props.routeParams.topicId});
     if (topic) {
@@ -37,9 +45,11 @@ export class ConversationsPage extends React.Component {
     return data;
   }
 
+
+
   render() {
     return (
-      <div id='ConversationsPage'>
+      <div id='ConversationsPage' >
         <PageContainer>
           <GlassCard>
             <CardTitle title={this.data.state.topicName} />

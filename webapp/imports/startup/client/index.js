@@ -6,7 +6,7 @@ import './globals.js';
 
 import { Meteor } from 'meteor/meteor';
 
-if (Meteor.settings.environment === 'production') {
+if (process.env.NODE_ENV === 'production') {
   Bert.defaults.style = 'fixed-top';
 } else {
   Bert.defaults.style = 'fixed-bottom';

@@ -8,7 +8,7 @@ import Spacer from '/imports/ui/components/Spacer';
 import { GlassCard } from '../components/GlassCard';
 import { PageContainer } from '../components/PageContainer';
 
-
+import { browserHistory } from 'react-router';
 
 export class Index extends React.Component {
   constructor(props) {
@@ -41,7 +41,7 @@ export class Index extends React.Component {
     return (
       <div id="indexPage">
         <PageContainer>
-          <GlassCard>
+          <GlassCard onClick={ this.openDataManagementPage } style={{cursor: pointer, width: "50%", display: "inline-block"}}>
             <CardTitle
               title="Data Management"
               subtitle="Import/export data."
@@ -49,7 +49,7 @@ export class Index extends React.Component {
           </GlassCard>
           <Spacer />
 
-          <GlassCard>
+          <GlassCard onClick={ this.openUsersPage } style={{cursor: pointer, width: "50%", display: "inline-block"}}>
             <CardTitle
               title="User Management"
               subtitle="Admin controls for user accounts."
@@ -59,6 +59,13 @@ export class Index extends React.Component {
         </PageContainer>
       </div>
     );
+  }
+
+  openUsersPage(){
+    browserHistory.push('/users');
+  }
+  openDataManagementPage(){
+    console.log("openDataManagementPage");
   }
 }
 

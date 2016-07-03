@@ -23,6 +23,9 @@ export class ConversationPosts extends React.Component {
     // or a mixin!
     let data = {
       style: {
+        overflowY: 'scroll',
+        WebkitTransform: 'translate3d(0px,0px,0px)',
+        WebkitOverflowScrolling: 'touch',
         opacity: Session.get('globalOpacity')
       },
       state: {
@@ -121,11 +124,12 @@ export class ConversationPosts extends React.Component {
     // console.log("i", i);
     // console.log("item", item);
 
+    // <Button className='editButton' label='Edit' style={{color: 'lightgray'}} />
+
     if (item && item.createdBy && item.createdBy.reference) {
       if (item.createdBy.reference === Meteor.userId()) {
         return (
           <CardActions>
-            <Button className='editButton' label='Edit' style={{color: 'lightgray'}} />
             <Button className='deleteButton' onMouseUp={this.handleDeleteButton.bind(self, i, item)} label='Delete' style={{color: 'lightgray'}} />
           </CardActions>
         );
