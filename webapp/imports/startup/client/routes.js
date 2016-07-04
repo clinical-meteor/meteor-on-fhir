@@ -17,9 +17,9 @@ import { Signup } from '../../ui/pages/Signup';
 import { ThemePage } from '../../ui/pages/ThemePage';
 import { UsersPage } from '../../ui/pages/UsersPage';
 import { Weblog } from '../../ui/pages/Weblog';
-import { NotFound } from '../../ui/pages/not-found';
-import { RecoverPassword } from '../../ui/pages/recover-password';
-import { ResetPassword } from '../../ui/pages/reset-password';
+import { NotFound } from '../../ui/pages/NotFound';
+import { RecoverPassword } from '../../ui/pages/RecoverPassword';
+import { ResetPassword } from '../../ui/pages/ResetPassword';
 
 import { ConversationsPage } from '/imports/ui/pages/ConversationsPage';
 import { NewTopicPage } from '/imports/ui/pages/NewTopicPage';

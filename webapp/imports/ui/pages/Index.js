@@ -38,34 +38,108 @@ export class Index extends React.Component {
     return data;
   }
   render() {
+    let style = {
+      inactive: {
+        opacity: .5
+      },
+      indexCard: {
+        cursor: 'pointer'
+      },
+      indexCardPadding: {
+        width: '50%',
+        display: 'inline-block',
+        paddingLeft: '20px',
+        paddingRight: '20px'
+      }
+    };
     return (
-      <div id="indexPage">
+      <div id='indexPage'>
         <PageContainer>
-          <GlassCard onClick={ this.openDataManagementPage } style={{cursor: pointer, width: "50%", display: "inline-block"}}>
-            <CardTitle
-              title="Data Management"
-              subtitle="Import/export data."
-            />
-          </GlassCard>
+
+          <div style={style.indexCardPadding}>
+            <GlassCard onClick={ this.openDiscussionForum } style={style.indexCard} >
+              <CardTitle
+                title='Discussion Forum'
+                subtitle='Get help developing healthcare apps using Meteor.js'
+              />
+            </GlassCard>
+          </div>
+
+          <div style={style.indexCardPadding}>
+            <GlassCard onClick={ this.openWeblog } style={style.indexCard} >
+              <CardTitle
+                title='Weblog'
+                subtitle='Post public thoughts using a Wordpress/Twitter style format.'
+              />
+            </GlassCard>
+          </div>
+
           <Spacer />
 
-          <GlassCard onClick={ this.openUsersPage } style={{cursor: pointer, width: "50%", display: "inline-block"}}>
-            <CardTitle
-              title="User Management"
-              subtitle="Admin controls for user accounts."
-            />
-          </GlassCard>
+
+          <div style={style.indexCardPadding}>
+            <GlassCard style={style.inactive} >
+              <CardTitle
+                title='Data Management'
+                subtitle='Import/export data.'
+              />
+            </GlassCard>
+          </div>
+
+          <div style={style.indexCardPadding}>
+            <GlassCard onClick={ this.openUserManagement } style={style.indexCard} >
+              <CardTitle
+                title='User Management'
+                subtitle='Admin controls for user accounts.'
+              />
+            </GlassCard>
+          </div>
+
+          <Spacer />
+
+
+          <div style={style.indexCardPadding}>
+            <GlassCard onClick={ this.openPatients } style={style.indexCard} >
+              <CardTitle
+                title='Patients'
+                subtitle='Browse patient in system.'
+              />
+            </GlassCard>
+          </div>
+          <div style={style.indexCardPadding}>
+            <GlassCard onClick={ this.openPractitioners } style={style.indexCard} >
+              <CardTitle
+                title='Practitioners'
+                subtitle='Browse practitioners in system.'
+              />
+            </GlassCard>
+          </div>
 
         </PageContainer>
       </div>
     );
   }
 
-  openUsersPage(){
+  openDiscussionForum(){
+    browserHistory.push('/forums');
+  }
+  openWeblog(){
+    browserHistory.push('/weblog');
+  }
+  openUserManagement(){
     browserHistory.push('/users');
   }
+  openMyProfile(){
+    browserHistory.push('/myprofile');
+  }
+  openPatients(){
+    browserHistory.push('/patients');
+  }
+  openPractitioners(){
+    browserHistory.push('/practitioners');
+  }
   openDataManagementPage(){
-    console.log("openDataManagementPage");
+    console.log('openDataManagementPage');
   }
 }
 
@@ -80,40 +154,40 @@ ReactMixin(Index.prototype, ReactMeteorData);
 
 // <GlassCard>
 //   <CardTitle
-//     title="Imaging"
-//     subtitle="Radiology, pathology, and anatomical images."
+//     title='Imaging'
+//     subtitle='Radiology, pathology, and anatomical images.'
 //   />
 // </GlassCard>
 // <Spacer />
 //
 // <GlassCard>
 //   <CardTitle
-//     title="Medications"
-//     subtitle="Medication inventory and tracking."
+//     title='Medications'
+//     subtitle='Medication inventory and tracking.'
 //   />
 // </GlassCard>
 // <Spacer />
 //
 // <GlassCard>
 //   <CardTitle
-//     title="Laboratory"
-//     subtitle="Observations and reports from laboratories."
+//     title='Laboratory'
+//     subtitle='Observations and reports from laboratories.'
 //   />
 // </GlassCard>
 // <Spacer />
 //
 // <GlassCard>
 //   <CardTitle
-//     title="Biometrics"
-//     subtitle="Biometrics tracking and device management."
+//     title='Biometrics'
+//     subtitle='Biometrics tracking and device management.'
 //   />
 // </GlassCard>
 // <Spacer />
 //
 // <GlassCard>
 //   <CardTitle
-//     title="Genomics"
-//     subtitle="Genetic profiles and analysis."
+//     title='Genomics'
+//     subtitle='Genetic profiles and analysis.'
 //     disabled
 //   />
 // </GlassCard>

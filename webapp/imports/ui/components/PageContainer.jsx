@@ -22,7 +22,8 @@ export class PageContainer extends React.Component {
         // overflowY: 'scroll',
         // WebkitOverflowScrolling: 'touch',
         WebkitTransition: 'ease .2s',
-        transition: 'ease .2s'
+        transition: 'ease .2s',
+        marginBottom: "100px"
       }
     };
 
