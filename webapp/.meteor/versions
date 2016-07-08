@@ -7,6 +7,7 @@ aldeed:schema-deny@1.0.1
 aldeed:schema-index@1.0.1
 aldeed:simple-schema@1.5.3
 allow-deny@1.0.5
+anti:gagarin@0.4.12
 audit-argument-checks@1.0.7
 autopublish@1.0.7
 autoupdate@1.2.10

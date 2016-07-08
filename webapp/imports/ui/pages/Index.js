@@ -39,8 +39,12 @@ export class Index extends React.Component {
   }
   render() {
     let style = {
-      inactive: {
-        opacity: .5
+      inactiveIndexCard: {
+        opacity: .5,
+        width: '50%',
+        display: 'inline-block',
+        paddingLeft: '20px',
+        paddingRight: '20px'
       },
       indexCard: {
         cursor: 'pointer'
@@ -56,8 +60,8 @@ export class Index extends React.Component {
       <div id='indexPage'>
         <PageContainer>
 
-          <div style={style.indexCardPadding}>
-            <GlassCard onClick={ this.openDiscussionForum } style={style.indexCard} >
+          <div style={style.indexCardPadding} onClick={ this.openDiscussionForum.bind(this) }>
+            <GlassCard style={style.indexCard} >
               <CardTitle
                 title='Discussion Forum'
                 subtitle='Get help developing healthcare apps using Meteor.js'
@@ -65,8 +69,8 @@ export class Index extends React.Component {
             </GlassCard>
           </div>
 
-          <div style={style.indexCardPadding}>
-            <GlassCard onClick={ this.openWeblog } style={style.indexCard} >
+          <div style={style.indexCardPadding} onClick={ this.openWeblog.bind(this) } >
+            <GlassCard style={style.indexCard} >
               <CardTitle
                 title='Weblog'
                 subtitle='Post public thoughts using a Wordpress/Twitter style format.'
@@ -76,38 +80,16 @@ export class Index extends React.Component {
 
           <Spacer />
 
-
-          <div style={style.indexCardPadding}>
-            <GlassCard style={style.inactive} >
-              <CardTitle
-                title='Data Management'
-                subtitle='Import/export data.'
-              />
-            </GlassCard>
-          </div>
-
-          <div style={style.indexCardPadding}>
-            <GlassCard onClick={ this.openUserManagement } style={style.indexCard} >
-              <CardTitle
-                title='User Management'
-                subtitle='Admin controls for user accounts.'
-              />
-            </GlassCard>
-          </div>
-
-          <Spacer />
-
-
-          <div style={style.indexCardPadding}>
-            <GlassCard onClick={ this.openPatients } style={style.indexCard} >
+          <div style={style.indexCardPadding} onClick={ this.openPatients.bind(this) } >
+            <GlassCard style={style.indexCard} >
               <CardTitle
                 title='Patients'
                 subtitle='Browse patient in system.'
               />
             </GlassCard>
           </div>
-          <div style={style.indexCardPadding}>
-            <GlassCard onClick={ this.openPractitioners } style={style.indexCard} >
+          <div style={style.indexCardPadding} onClick={ this.openPractitioners.bind(this) } >
+            <GlassCard style={style.indexCard} >
               <CardTitle
                 title='Practitioners'
                 subtitle='Browse practitioners in system.'
@@ -115,13 +97,34 @@ export class Index extends React.Component {
             </GlassCard>
           </div>
 
+          <Spacer />
+
+          <div style={style.inactiveIndexCard}>
+            <GlassCard >
+              <CardTitle
+                title='Data Management'
+                subtitle='Import/export data.'
+              />
+            </GlassCard>
+          </div>
+
+          <div style={style.indexCardPadding} onClick={ this.openUserManagement.bind(this) } >
+            <GlassCard style={style.indexCard} >
+              <CardTitle
+                title='User Management'
+                subtitle='Admin controls for user accounts.'
+              />
+            </GlassCard>
+          </div>
+
+
         </PageContainer>
       </div>
     );
   }
 
   openDiscussionForum(){
-    browserHistory.push('/forums');
+    browserHistory.push('/forum');
   }
   openWeblog(){
     browserHistory.push('/weblog');

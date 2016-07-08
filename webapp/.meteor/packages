@@ -53,7 +53,7 @@ react-meteor-data
 
 simple:dev-error-overlay
 
-clinical:fonts
+#clinical:fonts
 clinical:extended-api
 clinical:auto-resizing
 clinical:theming
@@ -70,3 +70,5 @@ clinical:hl7-resource-practitioner
 percolate:synced-cron
 
 awatson1978:accounts-muppets
+
+anti:gagarin

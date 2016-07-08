@@ -1,11 +1,11 @@
 App.info({
-  id: 'io.sympatomatic.demo',
-  name: 'Meteor on FHIR Forum',
-  description: 'A HIPAA and FDA compliant checklist app built in Meteor that supports HL7 FHIR.',
-  author: 'Symptomatic.io',
+  id: 'io.sympatomatic.support',
+  name: 'Symptomatic Support Forum',
+  description: 'A support forum for Clinical Meteor and managed services.',
+  author: 'Abigail Watson',
   email: 'pentasyllabic.studios@gmail.com',
   website: 'http://meteor-on-fhir.meteorapp.com',
-  version: '0.1.0'
+  version: '0.2.0'
 });
 
 App.icons({
