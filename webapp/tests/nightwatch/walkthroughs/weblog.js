@@ -3,23 +3,16 @@ Healthlog QA
 module.exports = {
   tags: ["healthlog", "weblog"],
   "user can log in/out" : function (client) {
-    client
-      .resizeWindow(1200, 1024)
-      .url("http://localhost:3000/login").pause(1200)
-    
-      .verify.elementPresent("#loginPage")
-        .verify.elementPresent('input[name="emailAddress"]')
-        .verify.elementPresent('input[name="password"]')
-        .verify.elementPresent('#loginButton')
+    const loginPage = client.page.loginPage();
+    const indexPage = client.page.indexPage();
+  
+    client.resizeWindow(1200, 1024);
 
-        .clearValue('input[name="emailAddress"]')
-        .clearValue('input[name="password"]')
+    loginPage
+      .navigate()
+      .login("janedoe@test.org", "janedoe123");
 
-        .setValue('input[name="emailAddress"]', 'janedoe@test.org')
-        .setValue('input[name="password"]', 'janedoe')
-
-        .click("#loginButton").pause(1000)
-          .verify.elementPresent("#indexPage");
+    indexPage.expect.element('@username').text.to.contain('Jane Doe.');
   },
   
   "user can navigate to weblog page" : function (client) {

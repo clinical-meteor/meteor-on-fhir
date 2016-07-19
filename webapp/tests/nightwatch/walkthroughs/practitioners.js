@@ -23,14 +23,25 @@ module.exports = {
   },
   "list Practitioners": function (client) {
     client
+      .verify.elementPresent("#practitionerList")
+      .verify.elementPresent("#practitionerList .practitioner:nth-child(1)")
+      .verify.elementPresent("#practitionerList .practitioner:nth-child(1) .name")
+      .verify.elementPresent("#practitionerList .practitioner:nth-child(1) .avatar")
 
   },
   "new practioner": function (client) {
     client
+      .verify.elementPresent("#newPractitionerCard")
+      .verify.elementPresent("#newPractitionerCard .name")
+      .verify.elementPresent("#newPractitionerCard .avatar")
 
   },
   "list Practitioners": function (client) {
     client
+      .verify.elementPresent("#practitionerList")
+      .verify.elementPresent("#practitionerList .practitioner:nth-child(1)")
+      .verify.elementPresent("#practitionerList .practitioner:nth-child(1) .name")
+      .verify.elementPresent("#practitionerList .practitioner:nth-child(1) .avatar")
 
   },
   "practitioner detail": function (client) {
