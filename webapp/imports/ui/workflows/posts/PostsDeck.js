@@ -90,7 +90,7 @@ export default class PostsDeck extends React.Component {
                   subtitle={createdAt}
                 />
 
-                <CardText>
+                <CardText className="postTitle">
                   { item.title}
                 </CardText>
                 { self.renderCardActions(i, item) }

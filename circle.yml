@@ -65,6 +65,7 @@ test:
     - sleep 60
   override:
     - starrynight run-tests --type validation --env travischrome
+    #- starrynight run-tests --type package-verification
 
 
 ## Customize deployment commands

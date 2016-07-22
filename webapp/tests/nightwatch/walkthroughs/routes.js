@@ -47,17 +47,17 @@ module.exports = {
   },
   "/ (signed in)": function (client) {
     client
-      .url("http://localhost:3000").pause(1500)
+      .url("http://localhost:3000").pause(2000)
         .verify.elementPresent("#indexPage");
   },
   "/documents": function (client) {
     client
-      .url("http://localhost:3000/documents").pause(1500)
+      .url("http://localhost:3000/documents").pause(2000)
         .verify.elementPresent("#documentsPage");
   },
   "/dashboard": function (client) {
     client
-      .url("http://localhost:3000/dashboard").pause(1500)
+      .url("http://localhost:3000/dashboard").pause(2000)
       .verify.elementPresent("#dashboardPage")
       .end();
   }

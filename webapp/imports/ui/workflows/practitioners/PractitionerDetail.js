@@ -173,13 +173,13 @@ export default class PractitionerDetail extends React.Component {
     if (practitionerId) {
       return (
         <div>
-          <Button label="Save" onClick={this.handleSaveButton.bind(this)} />
-          <Button label="Delete" onClick={this.handleDeleteButton.bind(this)} />
+          <Button id="savePractitionerButton" label="Save" onClick={this.handleSaveButton.bind(this)} />
+          <Button id="deletePractitionerButton" label="Delete" onClick={this.handleDeleteButton.bind(this)} />
         </div>
       );
     } else {
       return(
-        <Button label="Save" onClick={this.handleSaveButton.bind(this)} />
+        <Button id="savePractitionerButton" label="Save" onClick={this.handleSaveButton.bind(this)} />
       );
     }
   };

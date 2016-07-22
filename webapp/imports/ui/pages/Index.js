@@ -88,7 +88,7 @@ export class Index extends React.Component {
               />
             </GlassCard>
           </div>
-          <div style={style.indexCardPadding} onClick={ this.openPractitioners.bind(this) } >
+          <div id="practitionersTile" style={style.indexCardPadding} onClick={ this.openPractitioners.bind(this) } >
             <GlassCard style={style.indexCard} >
               <CardTitle
                 title='Practitioners'

@@ -4,60 +4,41 @@
 
 module.exports = {
   tags: ['accounts', 'passwords', 'users', 'entry'],
-  "User can sign up.": function (client) {
-    client
-      .resizeWindow(1200, 1024)
-      .url("http://localhost:3000").pause(1200)
+  'User can sign up.': function (client) {
+    client.resizeWindow(1200, 1024);
 
-        .click("#signupLink").pause(500)
-        .verify.elementPresent("#signupPage")
-        .verify.elementPresent('input[name="firstName"]')
-        .verify.elementPresent('input[name="lastName"]')
-        .verify.elementPresent('input[name="emailAddress"]')
-        .verify.elementPresent('input[name="password"]')
-        .verify.elementPresent('#signupButton')
+    const signupPage = client.page.signupPage();
+    const indexPage = client.page.indexPage();
 
-        .clearValue('input[name="firstName"]')
-        .clearValue('input[name="lastName"]')
-        .clearValue('input[name="emailAddress"]')
-        .clearValue('input[name="password"]')
+    client.page.signupPage()
+      .navigate()
+      .signup('Alice', 'Doe', 'alice@test.org', 'alicedoe')
+      .pause(1000, client);
 
-        .setValue('input[name="firstName"]', 'John')
-        .setValue('input[name="lastName"]', 'Doe')
-        .setValue('input[name="emailAddress"]', 'johndoe@test.org')
-        .setValue('input[name="password"]', 'johndoe')
-
-        .click("#signupButton").pause(1000);
+    indexPage.expect.element('#indexPage').to.be.present;
+    indexPage.expect.element('#authenticatedUsername').text.to.contain('Alice Doe');
   },
-  "User gets logged in after signup.": function (client) {
-    client
-        .verify.elementPresent("#indexPage")
+  'User gets logged in after signup.': function (client) {
+    client.verify.elementPresent('#indexPage')
   },
-  "User can log out.": function (client) {
-    client
-      .verify.elementPresent("#authenticatedUsername")
-      .click("#authenticatedUsername").pause(1000)
-
-      .verify.elementPresent("#authenticatedUserMenu .notificationMenu .logoutMenuItem")
-      .click("#authenticatedUserMenu .notificationMenu .logoutMenuItem").pause(500)
-
-      .verify.elementPresent("#loginPage")
+  'User can log out.': function (client) {
+    client.verify.elementPresent('#authenticatedUsername')
+      .click('#authenticatedUsername').pause(1000)
+      .verify.elementPresent('#authenticatedUserMenu .notificationMenu .logoutMenuItem')
+      .click('#authenticatedUserMenu .notificationMenu .logoutMenuItem').pause(500)
+      .verify.elementPresent('#loginPage')
   },
-  "User can sign in.": function (client) {
-    client
-        .verify.elementPresent("#loginPage")
-        .verify.elementPresent('input[name="emailAddress"]')
-        .verify.elementPresent('input[name="password"]')
-        .verify.elementPresent('#loginButton')
+  'User can sign in.': function (client) {
+    const loginPage = client.page.loginPage();
+    const indexPage = client.page.indexPage();
 
-        .clearValue('input[name="emailAddress"]')
-        .clearValue('input[name="password"]')
+    client.page.loginPage()
+      .navigate()
+      .login("alice@test.org", "alicedoe")
+      .pause(2000, client);
 
-        .setValue('input[name="emailAddress"]', 'johndoe@test.org')
-        .setValue('input[name="password"]', 'johndoe')
-
-        .click("#loginButton").pause(1000)
-          .verify.elementPresent("#indexPage");
+    indexPage.expect.element('#indexPage').to.be.present;
+    indexPage.expect.element('#authenticatedUsername').text.to.contain('Alice Doe');
   },
   "User can view profile.": function (client) {
     client
@@ -91,8 +72,8 @@ module.exports = {
         client.pause(3000).verify.attributeEquals('#avatarImage', 'src', 'https://pbs.twimg.com/profile_images/436598467956187136/yncbkX83_400x400.jpeg')
   },
   "User can change password.": function (client) {
-    var oldPassArray = 'johndoe'.split('');
-    var newPassArray = 'johndoe123'.split('');
+    var oldPassArray = 'alicedoe'.split('');
+    var newPassArray = 'alice123'.split('');
 
     client
       .verify.elementPresent("label.passwordTab")
@@ -108,9 +89,9 @@ module.exports = {
         .clearValue('input[name="newPassword"]')
         .clearValue('input[name="confirmPassword"]').pause(300);
 
-        // .setValue('input[name="oldPassword"]', 'johndoe').pause(300)
-        // .setValue('input[name="newPassword"]', 'johndoe123').pause(300)
-        // .setValue('input[name="confirmPassword"]', 'johndoe123').pause(300)
+        // .setValue('input[name="oldPassword"]', 'alice').pause(300)
+        // .setValue('input[name="newPassword"]', 'alice123').pause(300)
+        // .setValue('input[name="confirmPassword"]', 'alice123').pause(300)
         for(var i=0; i < oldPassArray.length; i++) {
           client.setValue('input[name="oldPassword"]', oldPassArray[i]).pause(100);
         };
@@ -145,15 +126,15 @@ module.exports = {
         .clearValue('input[name="emailAddress"]')
         .clearValue('input[name="password"]')
 
-        .setValue('input[name="emailAddress"]', 'johndoe@test.org')
-        .setValue('input[name="password"]', 'johndoe123')
+        .setValue('input[name="emailAddress"]', 'alice@test.org')
+        .setValue('input[name="password"]', 'alice123')
 
         .click("#loginButton").pause(1000)
           .verify.elementPresent("#indexPage");
   },
   "User can delete account.": function (client) {
     // log out
-    var userIdArray = "johndoe@test.org";
+    var userIdArray = "alice@test.org";
 
     client
       .verify.elementPresent("#authenticatedUsername")

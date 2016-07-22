@@ -1,17 +1,15 @@
-Social Health Record QA
-
 
 
 module.exports = {
-  tags: ["healthlog", "weblog"],
+  tags: ["social", "healthrecord", "healthlog"],
   "user can log in/out" : function (client) {
     client
   },
-  
+
   "user can log in/out" : function (client) {
     client
   },
- 
+
   // verification test
   "PatientId can be attached to user account" : function (client) {
     client
@@ -21,8 +19,8 @@ module.exports = {
   "PractitionerId can be attached to user account" : function (client) {
     client
   },
-  
-  
+
+
   // Patient.practitioners[]
   "patient can search practitioners" : function (client) {
     client
@@ -35,7 +33,7 @@ module.exports = {
   "patient displays on practitioner's notification channel" : function (client) {
     client
   },
-  
+
   "practitioner can approve being added to Patient.practitioners = []" : function (client) {
     client
   },

@@ -47,7 +47,7 @@ export class GlassCard extends React.Component {
 
   render(){
     return (
-       <Card style={this.data.style}>
+       <Card id={this.props.id} style={this.data.style}>
         { this.props.children }
        </Card>
     );

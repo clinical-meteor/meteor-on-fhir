@@ -11,7 +11,6 @@
   "output_folder": "./tests/nightwatch/reports",
   "custom_commands_path": [
     "./tests/nightwatch/commands",
-    "./tests/nightwatch/commands/api/meteor",
     "./tests/nightwatch/commands/actions",
     "./tests/nightwatch/commands/components",
     "./tests/nightwatch/commands/methods"
@@ -19,6 +18,7 @@
   "custom_assertions_path": [
     "./tests/nightwatch/assertions"
   ],
+  "page_objects_path": "./tests/nightwatch/pages",
   "globals_path": "./tests/nightwatch/globals.json",
   "selenium": {
     "start_process": true,

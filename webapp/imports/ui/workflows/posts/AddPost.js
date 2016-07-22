@@ -47,7 +47,7 @@ export class AddPost extends React.Component {
   }
   render(){
     return (
-      <GlassCard>
+      <GlassCard id="addPostCard">
         <CardTitle
           title="Weblog"
         />
@@ -62,7 +62,7 @@ export class AddPost extends React.Component {
             onChange={this.changePost.bind(this)}
             placeholder="Type some text and press enter to create a post..."
            />
-          <Button onMouseUp={ this.handleInsertPost.bind(this) } raised primary >New Post</Button>
+          <Button id="addPostButton" onMouseUp={ this.handleInsertPost.bind(this) } raised primary >New Post</Button>
         </CardText>
       </GlassCard>
     );

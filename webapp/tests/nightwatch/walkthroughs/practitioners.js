@@ -15,52 +15,59 @@
 
 module.exports = {
   tags: ['practitioners', 'Practitioners', 'crud', 'fhir'],
-  "Sign in.": function (client) {
-    client
-      .resizeWindow(1200, 1024)
-      .url("http://localhost:3000").pause(1200)
+  'Sign in.': function (client) {
+    client.resizeWindow(1200, 1024);
 
-  },
-  "list Practitioners": function (client) {
-    client
-      .verify.elementPresent("#practitionerList")
-      .verify.elementPresent("#practitionerList .practitioner:nth-child(1)")
-      .verify.elementPresent("#practitionerList .practitioner:nth-child(1) .name")
-      .verify.elementPresent("#practitionerList .practitioner:nth-child(1) .avatar")
+    const loginPage = client.page.loginPage();
+    const indexPage = client.page.indexPage();
 
-  },
-  "new practioner": function (client) {
-    client
-      .verify.elementPresent("#newPractitionerCard")
-      .verify.elementPresent("#newPractitionerCard .name")
-      .verify.elementPresent("#newPractitionerCard .avatar")
+    loginPage
+      .navigate()
+      .login('janedoe@test.org', 'janedoe')
+      .pause(1000, client);
 
-  },
-  "list Practitioners": function (client) {
-    client
-      .verify.elementPresent("#practitionerList")
-      .verify.elementPresent("#practitionerList .practitioner:nth-child(1)")
-      .verify.elementPresent("#practitionerList .practitioner:nth-child(1) .name")
-      .verify.elementPresent("#practitionerList .practitioner:nth-child(1) .avatar")
+    indexPage.expect.element('#indexPage').to.be.present;
+    indexPage.expect.element('#authenticatedUsername').text.to.contain('Jane Doe');
 
+    indexPage.selectPractitionersTile();
   },
-  "practitioner detail": function (client) {
-    client
-
+  'list practitioners': function (client) {
+    const practitionersPage = client.page.practitionersPage();
+    practitionersPage
+      .verifyElements()
+      .verifyListCard();
   },
-  "edit practitioner": function (client) {
-    client
+  'create new practioner': function (client) {
+    const practitionersPage = client.page.practitionersPage();
+    practitionersPage
+      .displayNewPractitionerCard()
+      .verifyNewPractitionerCard()
+      .createNewPractitioner('Dr. Spock');
   },
-  "list edited Practitioners": function (client) {
-    client
+  'list should contain recently created practitioner': function (client) {
+    const practitionersPage = client.page.practitionersPage();
+    practitionersPage
+      .displayListCard()
+      .verifyListCard()
+      .listContainsPractitioner(1, 'Dr. Spock');
   },
-  "delete practitioner": function (client) {
-    client
-
-  },
-  "list non-deleted Practitioners": function (client) {
-    client
-
-      .end();
-  }
+  // 'practitioner detail': function (client) {
+  //   client
+  //
+  // },
+  // 'edit practitioner': function (client) {
+  //   client
+  // },
+  // 'list edited Practitioners': function (client) {
+  //   client
+  // },
+  // 'delete practitioner': function (client) {
+  //   client
+  //
+  // },
+  // 'list non-deleted Practitioners': function (client) {
+  //   client
+  //
+  //     .end();
+  // }
 };

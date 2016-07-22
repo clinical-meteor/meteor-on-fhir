@@ -84,21 +84,21 @@ export class PractitionersPage extends React.Component {
 
   render() {
     return (
-      <div id="documentsPage">
+      <div id="practitionersPage">
         <PageContainer>
           <GlassCard>
 
-            <Tabs default index={this.data.state.index} onChange={this.handleTabChange}>
-             <Tab className="newPractitionerTab" label='New' style={{padded: "20px"}} onActive={ this.onNewTab } >
-               <PractitionerDetail />
-             </Tab>
-             <Tab label='Practitioners' onActive={this.handleActive}>
-               <PractitionerTable />
-             </Tab>
-             <Tab label='Detail' style={{padded: "20px"}}>
-               <PractitionerDetail />
-             </Tab>
-           </Tabs>
+            <Tabs id="practitionerTabs" default index={this.data.state.index} onChange={this.handleTabChange}>
+              <Tab className="newPractitionerTab" label='New' style={{padded: "20px"}} onActive={ this.onNewTab } >
+                <PractitionerDetail />
+              </Tab>
+              <Tab className="practitionerListTab" label='Practitioners' onActive={this.handleActive}>
+                <PractitionerTable />
+               </Tab>
+               <Tab className="practitionerDetailsTab" label='Detail' style={{padded: "20px"}}>
+                <PractitionerDetail />
+              </Tab>
+            </Tabs>
 
           </GlassCard>
         </PageContainer>

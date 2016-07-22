@@ -91,34 +91,32 @@ export default class PractitionerTable extends React.Component {
     Session.set('practitionerCardState', state);
   }
   render () {
-
     let tableRows = [];
     for (var i = 0; i < this.data.practitioners.length; i++) {
       tableRows.push(
       <tr className='practitionerRow' key={i} style={{cursor: 'pointer'}} onClick={ this.rowClick.bind('this', this.data.practitioners[i]._id) }>
-        <td>
+        <td className="avatar">
           <Avatar><img src={this.data.practitioners[i].photo }/></Avatar>
         </td>
-
-        <td>{this.data.practitioners[i].username}</td>
-        <td>{this.data.practitioners[i].name}</td>
-        <td>{this.data.practitioners[i].gender}</td>
-        <td>{this.data.practitioners[i].active}</td>
-        <td class="barcode">{this.data.practitioners[i]._id}</td>
+        <td className="username">{this.data.practitioners[i].username}</td>
+        <td className="name">{this.data.practitioners[i].name}</td>
+        <td className="gender">{this.data.practitioners[i].gender}</td>
+        <td className="active">{this.data.practitioners[i].active}</td>
+        <td className="barcode">{this.data.practitioners[i]._id}</td>
       </tr>);
     }
 
 
     return(
-      <Table responses hover >
+      <Table id="practitionersTable" responses hover >
         <thead>
           <tr>
-            <th>avatar</th>
-            <th>username</th>
-            <th>name</th>
-            <th>gender</th>
-            <th>active</th>
-            <th>_id</th>
+            <th className="avatar">avatar</th>
+            <th className="username">username</th>
+            <th className="name">name</th>
+            <th className="gender">gender</th>
+            <th className="isActive">active</th>
+            <th className="barcode">_id</th>
           </tr>
         </thead>
         <tbody>
@@ -130,7 +128,7 @@ export default class PractitionerTable extends React.Component {
   }
 }
 
-PractitionerTable.propTypes = {
 
-};
+
+PractitionerTable.propTypes = {};
 ReactMixin(PractitionerTable.prototype, ReactMeteorData);
