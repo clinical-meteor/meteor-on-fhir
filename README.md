@@ -28,8 +28,6 @@ meteor npm install --save jquery bootstrap react react-dom react-router react-bo
 ```sh
 meteor npm start
 meteor npm test
-meteor npm run chimp-watch
-meteor npm run chimp-test
 meteor npm run staging
 meteor npm run production
 
