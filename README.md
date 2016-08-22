@@ -1,10 +1,14 @@
 # Meteor on FHIR Forum
 We decided to write a Wordpress/Discourse clone using Meteor and FHIR resources.  
 
-#### Installation  
+
+#### Installation
 
 ```sh
-meteor npm install && meteor
+meteor npm install --save jquery bootstrap react react-dom react-router react-bootstrap react-komposer react-router-bootstrap faker jquery-validation react-addons-css-transition-group react-addons-pure-render-mixin react-toolbox react-mixin faker react-highcharts eslint-plugin-react eslint-plugin-meteor eslint-config-eslint react-scroll-box
+
+meteor npm install
+meteor
 ```
 
 #### Usage  
@@ -14,14 +18,6 @@ meteor npm install && meteor
 INITIALIZE=true Patients=true Practitioners=true meteor
 ```
 
-
-
-
-#### Installation from Scratch  
-
-```sh
-meteor npm install --save jquery bootstrap react react-dom react-router react-bootstrap react-komposer react-router-bootstrap faker jquery-validation react-addons-css-transition-group react-addons-pure-render-mixin react-toolbox react-mixin faker react-highcharts eslint-plugin-react eslint-plugin-meteor eslint-config-eslint react-scroll-box
-```
 
 #### Testing    
 
