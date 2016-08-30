@@ -31,12 +31,12 @@ general:
 dependencies:
   cache_directories:
     - "~/.meteor" # relative to the user's home directory
-    - ~/nvm/v0.10.33/lib/node_modules/starrynight
-    - ~/nvm/v0.10.33/bin/starrynight
+    #- ~/nvm/v0.10.33/lib/node_modules/starrynight
+    #- ~/nvm/v0.10.33/bin/starrynight
 
   pre:
     # Install Starrynight unless it is cached
-    - if [ ! -e ~/nvm/v0.10.33/bin/starrynight ]; then npm install -g starrynight; else echo "Starrynight seems to be cached"; fi;
+    #- if [ ! -e ~/nvm/v0.10.33/bin/starrynight ]; then npm install -g starrynight; else echo "Starrynight seems to be cached"; fi;
     # Install  Meteor
     - mkdir -p ${HOME}/.meteor
     # If Meteor is already cached, do not need to build it again.
@@ -54,7 +54,8 @@ dependencies:
 test:
   pre:
     - meteor update --release METEOR@1.3.4.1
-    # - meteor npm install --save jquery bootstrap react react-dom react-router react-bootstrap react-komposer react-router-bootstrap faker jquery-validation react-addons-css-transition-group react-addons-pure-render-mixin react-toolbox react-mixin faker react-highcharts eslint-plugin-react eslint-plugin-meteor eslint-config-eslint
+    - meteor npm install --save jquery bootstrap react react-dom react-router react-bootstrap react-komposer react-router-bootstrap faker jquery-validation react-addons-css-transition-group react-addons-pure-render-mixin react-toolbox react-mixin faker react-highcharts eslint-plugin-react eslint-plugin-meteor eslint-config-eslint
+    - meteor npm install nightwatch selenium-server-standalone-jar chromedriver phantomjs-prebuilt
     - meteor npm install
     - cat .meteor/nightwatch.json
     - meteor:
