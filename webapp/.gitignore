@@ -7,8 +7,7 @@ node_modules
 
 screenshots
 screenshots/*
-logs
-logs/*
+nightwatch/logs/*.log
 reports
 reports/*
 

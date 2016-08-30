@@ -26,6 +26,7 @@ general:
   build_dir: webapp
   artifacts:
     - "./tests/nightwatch/screenshots" # relative to the build directory
+    - "./tests/nightwatch/logs" # relative to the build directory
 
 ## Customize dependencies
 dependencies:
@@ -54,8 +55,8 @@ dependencies:
 test:
   pre:
     - meteor update --release METEOR@1.3.4.1
-    #- meteor npm install --save jquery bootstrap react react-dom react-router react-bootstrap react-komposer react-router-bootstrap faker jquery-validation react-addons-css-transition-group react-addons-pure-render-mixin react-toolbox react-mixin faker react-highcharts eslint-plugin-react eslint-plugin-meteor eslint-config-eslint
-    #- meteor npm install nightwatch selenium-server-standalone-jar chromedriver phantomjs-prebuilt
+    - meteor npm install --save jquery bootstrap react react-dom react-router react-bootstrap react-komposer react-router-bootstrap faker jquery-validation react-addons-css-transition-group react-addons-pure-render-mixin react-toolbox react-mixin faker react-highcharts eslint-plugin-react eslint-plugin-meteor eslint-config-eslint
+    - meteor npm install nightwatch selenium-server-standalone-jar chromedriver phantomjs-prebuilt
     - meteor npm install
     - ls -la ./node_modules/
     - cat .meteor/nightwatch.json

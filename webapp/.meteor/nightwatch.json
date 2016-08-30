@@ -17,9 +17,9 @@
   "selenium": {
     "start_process": true,
     "server_path": "./node_modules/selenium-server-standalone-jar/jar/selenium-server-standalone-2.48.2.jar",
-    "log_path": "tests/nightwatch/logs",
+    "log_path": "./tests/nightwatch/logs",
     "host": "127.0.0.1",
-    "port": 4445,
+    "port": 4444,
     "cli_args": {
       "webdriver.chrome.driver": "./node_modules/chromedriver/bin/chromedriver"
     }
@@ -28,7 +28,7 @@
     "default": {
       "launch_url": "http://localhost:5000",
       "selenium_host": "127.0.0.1",
-      "selenium_port": 4445,
+      "selenium_port": 4444,
       "pathname": "/wd/hub",
       "silent": true,
       "disable_colors": false,

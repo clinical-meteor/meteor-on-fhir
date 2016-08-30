@@ -24,6 +24,7 @@ INITIALIZE=true Patients=true Practitioners=true meteor
 
 
 #### Testing    
+You may need to install [Java SDK 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) to run the latest version of Selenium.
 
 ```sh
 meteor npm start
