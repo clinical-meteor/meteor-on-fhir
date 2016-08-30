@@ -1,7 +1,7 @@
 module.exports = {
   url: 'http://localhost:3000/weblog',
   commands: [{
-    post(text) {
+    post: function(text) {
       var self = this;
       var textArray = text.split('');
 
@@ -15,7 +15,7 @@ module.exports = {
 
       return self;
     },
-    confirmPostCreated(text, index) {
+    confirmPostCreated: function(text, index) {
       return this
         .verify.elementPresent('#weblogPage')
         .verify.elementPresent('#weblogPage .postDeck')
@@ -25,23 +25,23 @@ module.exports = {
         // .verify.elementPresent('#weblogPage .postDeck .postCard:nth-child(1) .title')
         // .verify.attributeEquals('#weblogPage .postDeck .postCard:nth-child(1) .title', 'value', text)
     },
-    edit(title, text, image, labels) {
+    edit: function(title, text, image, labels) {
       return this;
        //.stuff()
     },
-    search(string) {
+    search: function(string) {
       return this;
        //.stuff()
     },
-    remove(postId) {
+    remove: function(postId) {
       return this;
        //.stuff()
     },
-    filterByLabel(postId) {
+    filterByLabel: function(postId) {
       return this;
        //.stuff()
     },
-    verifyElements() {
+    verifyElements: function() {
       return this
         .verify.elementPresent('#addPostCard textarea')
         .verify.elementPresent('#weblogPage')

@@ -1,33 +1,27 @@
 {
-  "starrynight": {
-    "version": "3.7.0"
-  },
   "nightwatch": {
-    "version": "0.8.6"
+    "version": "0.9.8"
   },
   "src_folders": [
     "./tests/nightwatch/walkthroughs"
   ],
-  "output_folder": "./tests/nightwatch/reports",
   "custom_commands_path": [
-    "./tests/nightwatch/commands",
-    "./tests/nightwatch/commands/actions",
-    "./tests/nightwatch/commands/components",
-    "./tests/nightwatch/commands/methods"
+    "./tests/nightwatch/commands"
   ],
   "custom_assertions_path": [
     "./tests/nightwatch/assertions"
   ],
+  "output_folder": "./tests/nightwatch/reports",
   "page_objects_path": "./tests/nightwatch/pages",
   "globals_path": "./tests/nightwatch/globals.json",
   "selenium": {
     "start_process": true,
-    "server_path": "${npm_config_prefix}/lib/node_modules/starrynight/node_modules/selenium-server-standalone-jar/jar/selenium-server-standalone-2.45.0.jar",
+    "server_path": "./node_modules/selenium-server-standalone-jar/jar/selenium-server-standalone-2.44.0.jar",
     "log_path": "tests/nightwatch/logs",
     "host": "127.0.0.1",
     "port": 4444,
     "cli_args": {
-      "webdriver.chrome.driver": "${npm_config_prefix}/lib/node_modules/starrynight/node_modules/chromedriver/bin/chromedriver"
+      "webdriver.chrome.driver": "./node_modules/chromedriver/bin/chromedriver"
     }
   },
   "test_settings": {
@@ -52,9 +46,11 @@
           "browser": "ALL"
         }
       },
-      "exclude": "./tests/nightwatch/unittests/*"
+      "exclude": "./tests/nightwatch/unittests/*",
+      "persist_globals": true,
+      "detailed_output": false
     },
-    "phantomjs": {
+    "phantom": {
       "desiredCapabilities": {
         "browserName": "phantomjs",
         "javascriptEnabled": true,
@@ -66,62 +62,7 @@
         "acceptSslCerts": true,
         "rotatable": false,
         "nativeEvents": false,
-        "phantomjs.binary.path": "${npm_config_prefix}/lib/node_modules/starrynight/node_modules/phantomjs-prebuilt/bin/phantomjs"
-      }
-    },
-    "travis": {
-      "launch_url": "http://localhost:3000",
-      "selenium_host": "127.0.0.1",
-      "selenium_port": 4444,
-      "pathname": "/wd/hub",
-      "silent": true,
-      "disable_colors": false,
-      "firefox_profile": false,
-      "screenshots": {
-        "enabled": false,
-        "path": "./tests/nightwatch/screenshots"
-      },
-      "desiredCapabilities": {
-        "browserName": "firefox",
-        "javascriptEnabled": true,
-        "databaseEnabled": true,
-        "locationContextEnabled": true,
-        "applicationCacheEnabled": true,
-        "browserConnectionEnabled": true,
-        "webStorageEnabled": true,
-        "acceptSslCerts": true,
-        "rotatable": true,
-        "nativeEvents": true
-      }
-    },
-    "travischrome": {
-      "launch_url": "http://localhost:3000",
-      "selenium_host": "127.0.0.1",
-      "selenium_port": 4444,
-      "pathname": "/wd/hub",
-      "silent": true,
-      "disable_colors": false,
-      "firefox_profile": false,
-      "screenshots": {
-        "enabled": false,
-        "path": "./tests/nightwatch/screenshots"
-      },
-      "desiredCapabilities": {
-        "browserName": "chrome",
-        "javascriptEnabled": true,
-        "databaseEnabled": true,
-        "locationContextEnabled": true,
-        "applicationCacheEnabled": true,
-        "browserConnectionEnabled": true,
-        "webStorageEnabled": true,
-        "acceptSslCerts": true,
-        "rotatable": true,
-        "nativeEvents": true,
-        "chromeOptions": {
-          "args": [
-            "--no-sandbox"
-          ]
-        }
+        "phantomjs.binary.path": "./node_modules/phantomjs-prebuilt/bin/phantomjs"
       }
     },
     "unittests": {
