@@ -35,7 +35,7 @@
       "firefox_profile": false,
       "ie_driver": "",
       "screenshots": {
-        "enabled": false,
+        "enabled": true,
         "on_failure" : true,
         "on_error" : true,
         "path": "./tests/nightwatch/screenshots"
