@@ -1,7 +1,7 @@
 module.exports = {
   url: 'http://localhost:3000/signup',
   commands: [{
-  signup(firstName, lastName, emailAddress, password) {
+  signup: function(firstName, lastName, emailAddress, password) {
     return this
       .verify.elementPresent("#signupPage")
       .verify.elementPresent('input[name="firstName"]')
@@ -22,7 +22,7 @@ module.exports = {
     .verify.elementPresent('#signupButton')
     .click('#signupButton')
   },
-  clear() {
+  clear: function() {
     return this
       .clearValue('input[name="firstName"]')
       .clearValue('input[name="lastName"]')
@@ -30,7 +30,7 @@ module.exports = {
       .clearValue('input[name="password"]');
   },
   // refactor to
-  verifyElements() {
+  verifyElements: function() {
     return this
       .verify.elementPresent('#addPostCard textarea')
       .verify.elementPresent('#weblogPage')

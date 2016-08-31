@@ -2,20 +2,20 @@ module.exports = {
   url: 'http://localhost:3000/practitioners',
   commands: [{
 
-    verifyElements() {
+    verifyElements: function() {
       return this
         .verify.elementPresent('#practitionersPage')
         .verify.elementPresent('#practitionersTable')
         .verify.elementPresent('#practitionersTable .practitionerRow:nth-child(1)');
     },
-    verifyListCard() {
+    verifyListCard: function() {
       return this
         .verify.elementPresent('#practitionersTable')
         .verify.elementPresent('#practitionersTable .practitionerRow:nth-child(1)')
         .verify.elementPresent('#practitionersTable .practitionerRow:nth-child(1) .name')
         .verify.elementPresent('#practitionersTable .practitionerRow:nth-child(1) .avatar');
     },
-    verifyNewPractitionerCard() {
+    verifyNewPractitionerCard: function() {
       return this
         .verify.elementPresent('#practitionersPage .practitionerDetail')
         .verify.elementPresent('#practitionersPage .practitionerDetail input[name="name"]')
@@ -23,31 +23,31 @@ module.exports = {
         .verify.elementPresent('#practitionersPage .practitionerDetail input[name="photo"]')
         .verify.elementPresent('#practitionersPage .practitionerDetail input[name="active"]');
     },
-    verifyPractitionerDetails(name, avatar) {
+    verifyPractitionerDetails: function(name, avatar) {
       return this
         .verify.containsText('#practitionersPage .practitionerDetail input[name="name"]', name)
         .verify.containsText('#practitionersPage .practitionerDetail input[name="photo"]', avatar);
     },
-    listContainsPractitioner (index, name, avatar) {
+    listContainsPractitioner: function (index, name, avatar) {
       return this
         .verify.elementPresent('#practitionersTable')
         .verify.elementPresent('#practitionersTable .practitionerRow:nth-child(' + index + ')')
         .verify.elementPresent('#practitionersTable .practitionerRow:nth-child(' + index + ') .name', name)
         .verify.elementPresent('#practitionersTable .practitionerRow:nth-child(' + index + ') .avatar', avatar);
     },
-    displayListCard(){
+    displayListCard: function(){
       return this.click('#practitionersPage .practitionerListTab');
     },
-    displayNewPractitionerCard(){
+    displayNewPractitionerCard: function(){
       return this.click('#practitionersPage .newPractitionerTab');
     },
-    displayPractitionerDetails(){
+    displayPractitionerDetails: function(){
       return this.click('#practitionersPage .practitionerDetailsTab');
     },
-    selectPractitioner(index){
+    selectPractitioner: function(index){
       return this.click('#practitionersTable .practitionerRow:nth-child(' + index + ')');
     },
-    createNewPractitioner(name, gender, photo) {
+    createNewPractitioner: function(name, gender, photo) {
       return this
         .verify.elementPresent('#practitionersPage .practitionerDetail')
 

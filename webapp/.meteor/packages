@@ -21,8 +21,9 @@ insecure                # Allow all DB writes from clients (for prototyping)
 
 accounts-password
 accounts-base
+less
 
-grove:less
+#grove:less
 check
 audit-argument-checks
 reactive-dict
@@ -38,9 +39,6 @@ mdg:validated-method
 dburles:factory
 
 momentjs:moment
-
-xolvio:cleaner
-xolvio:backdoor
 
 lmieulet:meteor-coverage
 practicalmeteor:chai

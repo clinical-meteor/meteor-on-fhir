@@ -16,16 +16,20 @@
     "staging": "meteor deploy staging.meteor.com --settings settings-development.json",
     "production": "meteor deploy production.meteor.com --settings settings-production.json",
     "coverage": "COVERAGE=1 meteor",
-    "monitor": "COVERAGE=1 meteor test --driver-package dispatch:mocha --port 5000"
+    "monitor": "COVERAGE=1 meteor test --driver-package dispatch:mocha --port 5000",
+    "nightwatch": "nightwatch -c .meteor/nightwatch.json",
+    "phantom": "nightwatch -c .meteor/nightwatch.json --env phantom"
   },
   "devDependencies": {
-    "chimp": "^0.33.1",
     "eslint": "^2.13.0",
     "eslint-config-airbnb": "^7.0.0",
     "eslint-plugin-meteor": "^3.5.2",
     "eslint-plugin-react": "^4.3.0",
     "faker": "^3.1.0",
-    "starrynight": "^3.9.1"
+    "nightwatch": "0.9.8",
+    "selenium-server-standalone-jar": "2.45.0",
+    "chromedriver": "2.19.0",
+    "phantomjs-prebuilt": "2.1.12"
   },
   "eslintConfig": {
     "parserOptions": {

@@ -20,9 +20,7 @@ module.exports = {
     const weblogPage = client.page.weblogPage();
 
     weblogPage
-      .navigate();
-
-    weblogPage
+      .navigate()
       .pause(1000, client)
       .verifyElements()
   },
