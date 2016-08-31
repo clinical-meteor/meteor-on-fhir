@@ -59,6 +59,7 @@ test:
     - meteor npm install nightwatch selenium-server-standalone-jar chromedriver phantomjs-prebuilt
     - meteor npm install
     - ls -la ./node_modules/
+    - ls -la ./node_modules/selenium-server-standalone-jar/jar
     - cat .meteor/nightwatch.json
     - meteor:
           background: true
