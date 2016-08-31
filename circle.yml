@@ -61,7 +61,7 @@ test:
     - cat .meteor/nightwatch.json
     - meteor:
           background: true
-    - sleep 60
+    - sleep 120
   override:
     - meteor npm run-script nightwatch
 
