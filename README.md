@@ -1,6 +1,8 @@
 # Meteor on FHIR Forum
 We decided to write a Wordpress/Discourse clone using Meteor and FHIR resources.  
 
+[![CircleCI](https://circleci.com/gh/clinical-meteor/meteor-on-fhir/tree/master.svg?style=svg)](https://circleci.com/gh/clinical-meteor/meteor-on-fhir/tree/master)  
+
 
 #### Installation
 
