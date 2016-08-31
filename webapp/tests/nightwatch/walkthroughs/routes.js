@@ -49,7 +49,7 @@ module.exports = {
         .saveScreenshot("tests/nightwatch/screenshots/routes/login.png")
 
         .click("#loginButton").pause(1000)
-          .verify.elementPresent("#indexPage")l
+          .verify.elementPresent("#indexPage");
   },
   "/ (signed in)": function (client) {
     client
