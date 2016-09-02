@@ -1,6 +1,13 @@
 
 module.exports = {
   tags: ["healthlog", "weblog"],
+  before: function(client){
+    client
+      .url("http://localhost:3000").pause(3000)
+      .executeAsync(function(data){
+        Meteor.call('initializeTestUsers');
+      });
+  },
   "user can log in/out" : function (client) {
     client.resizeWindow(1200, 1024);
 
@@ -9,7 +16,7 @@ module.exports = {
 
     client.page.loginPage()
       .navigate()
-      .login("janedoe@test.org", "janedoe")
+      .login("janedoe@test.org", "janedoe123")
       .pause(1000, client);
 
     indexPage.expect.element('#indexPage').to.be.present;

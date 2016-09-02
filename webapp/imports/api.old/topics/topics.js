@@ -8,27 +8,27 @@ export const Topics = new Mongo.Collection('Topics');
 Topics.schema = new SimpleSchema({
   'name': {
     type: String,
-    label: 'Forum topic'
+    label: 'Forum topic.'
   },
   'cateogry': {
     type: String,
     optional: true,
-    label: 'Topic category'
+    label: 'Topic category.'
   },
   'replies': {
     type: Number,
     optional: true,
-    label: 'Number of replies'
+    label: 'Number of replies.'
   },
   'views': {
     type: Number,
     optional: true,
-    label: 'Number of views'
+    label: 'Number of views.'
   },
   'createdAt': {
     type: Date,
     optional: true,
-    label: 'CreatedAt date'
+    label: 'Created at.'
   },
   'createdBy.display': {
     type: String,
@@ -60,6 +60,5 @@ Topics.schema = new SimpleSchema({
 Topics.attachSchema(Topics.schema);
 
 Factory.define('topic', Topics, {
-  name: () => faker.hacker.phrase(),
-  createdAt: () => new Date()
+  title: () => faker.hacker.phrase()
 });

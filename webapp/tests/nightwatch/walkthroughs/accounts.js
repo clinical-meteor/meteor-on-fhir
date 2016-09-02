@@ -4,6 +4,13 @@
 
 module.exports = {
   tags: ['accounts', 'passwords', 'users', 'entry'],
+  before: function(client){
+    client
+      .url("http://localhost:3000").pause(3000)
+      .executeAsync(function(data){
+        Meteor.call('dropTestUsers');
+      });
+  },
   'User can sign up.': function (client) {
     client.resizeWindow(1200, 1024);
 
