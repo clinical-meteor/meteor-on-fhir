@@ -9,7 +9,8 @@ import { Meteor } from 'meteor/meteor';
 
 Meteor.startup(function (){
 
-  if (Meteor.users.find({username: 'janedoe'}).count() === 0) {
+  // if (Meteor.users.find({username: 'janedoe'}).count() === 0) {
+  if (Meteor.users.find({'emails.0.address': 'janedoe@test.org'}).count() === 0) {
     let newAccount = Accounts.createUser({
       username: 'janedoe',
       email: 'janedoe@test.org',

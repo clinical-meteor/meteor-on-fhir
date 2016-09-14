@@ -72,7 +72,7 @@
     "react-highcharts": "^8.4.2",
     "react-komposer": "^1.13.1",
     "react-mixin": "^3.0.5",
-    "react-router": "^2.7.0",
+    "react-router": "^2.8.0",
     "react-router-bootstrap": "^0.20.1",
     "react-scroll-box": "^0.3.3-beta",
     "react-tappable": "^0.8.1",

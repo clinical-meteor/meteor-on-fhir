@@ -13,6 +13,25 @@ Meteor.startup(function (){
 
 
 Meteor.methods({
+  initializeUser: function(email, password, name){
+    check(email, String);
+    check(password, String);
+
+
+    console.log('Initializing user... ' + email);
+
+    if (Meteor.users.find({'emails.0.address': email}).count() === 0) {
+      Accounts.createUser({
+        email: email,
+        password: password,
+        profile: {
+          name: {
+            text: name
+          }
+        }
+      });
+    }
+  },
   dropTestUsers: function(){
     console.log('Dropping test users...');
 
@@ -51,20 +70,19 @@ Meteor.methods({
     // JANEDOE
 
     var user = {
-      username: 'janedoe',
       password: 'janedoe123',
-      email: 'janedoe@test.org'
-    };
-    let existingUser = Meteor.users.findOne({username: 'janedoe'});
-    if (!existingUser) {
-      let janedoeId = Accounts.createUser(user);
-      Meteor.users.update({_id: janedoeId}, {$set: {
-        'profile.name': {
+      email: 'janedoe@test.org',
+      profile: {
+        name: {
           text: 'Jane Doe',
           given: 'Jane',
           family: 'Doe'
         }
-      }});
+      }
+    };
+    let existingUser = Meteor.users.findOne({username: 'janedoe'});
+    if (!existingUser) {
+      Accounts.createUser(user);
     }
 
 
@@ -72,20 +90,19 @@ Meteor.methods({
     // ADMIN
 
     var admin = {
-      username: 'admin',
       password: 'admin123',
-      email: 'admin@admin.com'
-    };
-    let existingAdmin = Meteor.users.findOne({username: 'admin'});
-    if (!existingAdmin) {
-      let adminId = Accounts.createUser(admin);
-      Meteor.users.update({_id: adminId}, {$set: {
-        'profile.name': {
+      email: 'admin@test.org',
+      password: {
+        name: {
           text: 'System Admin',
           given: 'System',
           family: 'Admin'
         }
-      }});
+      }
+    };
+    let existingAdmin = Meteor.users.findOne({username: 'admin'});
+    if (!existingAdmin) {
+      Accounts.createUser(admin);
     }
   }
 });
