@@ -7,7 +7,7 @@ module.exports = {
       .executeAsync(function(data){
         // Meteor.call('initializeTestUsers');
         Meteor.call('dropTestUsers');
-        Meteor.call('initializeUser', 'janedoe@test.org', 'janedoe123', 'Jane Doe');
+        Meteor.call('initializeUser', 'janedoe@test.org', 'janedoe', 'Jane Doe');
       });
   },
   "user can log in/out" : function (client) {
@@ -18,7 +18,7 @@ module.exports = {
 
     client.page.loginPage()
       .navigate()
-      .login("janedoe@test.org", "janedoe123")
+      .login("janedoe@test.org", "janedoe")
       .pause(1000, client);
 
     indexPage.expect.element('#indexPage').to.be.present;
@@ -77,7 +77,7 @@ module.exports = {
   //
   // "user can edit status after its posted" : function (client) {
   //   client
-  //     // Navigate.login("janedoe@test.org", "janedoe123")
+  //     // Navigate.login("janedoe@test.org", "janedoe")
   //
   //       .verify.elementPresent("#loginPage")
   //       .verify.elementPresent('input[name="emailAddress"]')

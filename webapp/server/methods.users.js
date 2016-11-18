@@ -16,6 +16,7 @@ Meteor.methods({
   initializeUser: function(email, password, name){
     check(email, String);
     check(password, String);
+    check(name, String);
 
 
     console.log('Initializing user... ' + email);

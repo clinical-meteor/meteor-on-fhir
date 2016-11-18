@@ -11,7 +11,6 @@ nightwatch/logs/*.log
 reports
 reports/*
 
-settings.*.json
 settings.json
 
 packages/*

@@ -7,7 +7,7 @@ module.exports = {
       .executeAsync(function(data){
         //Meteor.call('initializeTestUsers');
         Meteor.call('dropTestUsers');
-        Meteor.call('initializeUser', 'janedoe@test.org', 'janedoe123', 'Jane Doe');
+        Meteor.call('initializeUser', 'janedoe@test.org', 'janedoe', 'Jane Doe');
       });
   },
   'user can log in/out' : function (client) {
@@ -18,7 +18,7 @@ module.exports = {
 
     loginPage
       .navigate()
-      .login('janedoe@test.org', 'janedoe123')
+      .login('janedoe@test.org', 'janedoe')
       .pause(2000, client);
 
 

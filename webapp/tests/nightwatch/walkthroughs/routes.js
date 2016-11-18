@@ -51,7 +51,7 @@ module.exports = {
         .clearValue('input[name="password"]')
 
         .setValue('input[name="emailAddress"]', 'janedoe@test.org')
-        .setValue('input[name="password"]', 'janedoe123')
+        .setValue('input[name="password"]', 'janedoe')
 
         .saveScreenshot("tests/nightwatch/screenshots/routes/login.png")
 
@@ -78,7 +78,7 @@ module.exports = {
       .saveScreenshot("tests/nightwatch/screenshots/routes/dashboard.png")
       .end();
   },
-  "/dashboard": function (client) {
+  "/weblog": function (client) {
     client
       .url("http://localhost:3000/weblog").pause(2000)
       .verify.elementPresent("#weblogPage")

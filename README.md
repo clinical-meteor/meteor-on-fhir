@@ -30,7 +30,7 @@ You may need to install [Java SDK 8](http://www.oracle.com/technetwork/java/java
 
 ```sh
 ## install test tools
-meteor npm install -g nightwatch starrynight chromedriver phantomjs selenium-standalone-jar
+meteor npm install nightwatch starrynight chromedriver phantomjs-prebuilt selenium-standalone-jar
 
 ## run validation tests (using nightwatch)
 meteor npm run-script nightwatch
@@ -39,7 +39,7 @@ meteor npm run-script nightwatch
 COVERAGE_APP_FOLDER=/Users/abigailwatson/Code/GlassUI/fire-demo/ meteor npm run-script coverage
 # http://localhost:3000/coverage
 ```
-```
+
 
 #### Mobile Build  
 
