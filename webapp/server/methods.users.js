@@ -93,7 +93,7 @@ Meteor.methods({
     var admin = {
       password: 'admin123',
       email: 'admin@test.org',
-      password: {
+      profile: {
         name: {
           text: 'System Admin',
           given: 'System',
