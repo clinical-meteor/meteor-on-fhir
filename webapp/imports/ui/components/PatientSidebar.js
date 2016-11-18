@@ -47,16 +47,8 @@ export class PatientSidebar extends React.Component {
       <div id='patientSidebarMenu'>
         <List style={{paddingLeft: '20px', position: 'absolute'}}>
 
-          <LinkContainer to='/carousel'>
-             <ListItem eventKey={ 4 } leftIcon={<FontAwesome name='plus-square' />} caption='Care Plan' href='/carousel/SessionStart' />
-          </LinkContainer>
-
           <LinkContainer to='/myprofile'>
           <ListItem className="profileMenuItem" leftIcon='face' eventKey={ 4.1 } href='/myprofile' caption='Profile' />
-          </LinkContainer>
-
-          <LinkContainer to='/calldoctor'>
-           <ListItem eventKey={ 4.2 } leftIcon='phone' caption='Call Doctor' href='/calldoctor' />
           </LinkContainer>
 
           <LinkContainer to='/about'>
