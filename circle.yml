@@ -60,7 +60,7 @@ test:
     - meteor --version
     - meteor npm install --save jquery bootstrap react react-dom react-router react-bootstrap react-komposer react-router-bootstrap faker jquery-validation react-addons-css-transition-group react-addons-pure-render-mixin react-toolbox react-mixin faker react-highcharts eslint-plugin-react eslint-plugin-meteor eslint-config-eslint
 
-    - meteor npm install nightwatch starrynight chromedriver phantomjs-prebuilt selenium-standalone-jar
+    - meteor npm install nightwatch starrynight chromedriver@"2.19.0 phantomjs-prebuilt selenium-standalone-jar@2.45.0
 
     - cat .meteor/nightwatch.json
     - "meteor run":
