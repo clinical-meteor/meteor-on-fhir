@@ -48,8 +48,8 @@ export default class AboutAppPage extends React.Component {
             <CardTitle
               title="About this Application"
             />
-            <CardText>              
-              Copyright (c) 2016, DxRx Inc.<br />
+            <CardText>
+              Copyright (c) 2016, Symptomatic.io<br />
               All rights reserved.
               </div><br/>
             </CardText>
