@@ -63,6 +63,7 @@
     "faker": "^3.1.0",
     "jquery": "^2.2.4",
     "jquery-validation": "^1.15.1",
+    "material-ui": "^0.15.4",
     "normalize.css": "^4.1.1",
     "react": "^15.3.1",
     "react-addons-css-transition-group": "^15.3.1",

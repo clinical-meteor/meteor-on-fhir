@@ -4,24 +4,29 @@ We decided to write a Wordpress/Discourse clone using Meteor and FHIR resources.
 [![CircleCI](https://circleci.com/gh/clinical-meteor/meteor-on-fhir/tree/master.svg?style=svg)](https://circleci.com/gh/clinical-meteor/meteor-on-fhir/tree/master)  
 
 
-#### Installation
+#### A. Installation  
 
 ```sh
 # get the application
 git clone http://github.com/clinical-meteor/meteor-on-fhir
 cd meteor-on-fhir/webapp
 
-#install dependencies
-meteor npm install --save jquery bootstrap react react-dom react-router react-bootstrap react-komposer react-router-bootstrap faker jquery-validation react-addons-css-transition-group react-addons-pure-render-mixin react-toolbox react-mixin faker react-highcharts eslint-plugin-react eslint-plugin-meteor eslint-config-eslint react-scroll-box
+# #install dependencies
+# meteor npm install --save jquery bootstrap react react-dom react-router react-bootstrap react-komposer react-router-bootstrap faker jquery-validation react-addons-css-transition-group react-addons-pure-render-mixin react-toolbox react-mixin faker react-highcharts eslint-plugin-react eslint-plugin-meteor eslint-config-eslint react-scroll-box
 
 # install the app
 meteor npm install
+```
 
-# launch the app
-meteor run
 
+#### B. Running Local
+
+```sh
 ## Initialize with FHIR test data
 INITIALIZE=true Patients=true Practitioners=true meteor
+
+## general development
+NODE_ENV=test INITIALIZE=true Patients=true Practitioners=true meteor --settings settings.test.json
 ```
 
 
