@@ -1,8 +1,10 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
 
-import { GlassCard } from '/imports/ui/components/GlassCard';
 import { PageContainer } from '../components/PageContainer';
+import { GlassCard } from '/imports/ui/components/GlassCard';
+import { CardText } from 'react-toolbox/lib/card';
+
 
 export class WelcomePatientPage extends React.Component {
   constructor(props) {
@@ -18,9 +20,9 @@ export class WelcomePatientPage extends React.Component {
       <div id="welcomePatientPage">
         <PageContainer>
           <GlassCard>
-            Welcome Patient!
-
-            
+            <CardText>
+              Welcome Patient!
+            </CardText>
           </GlassCard>
         </PageContainer>
       </div>

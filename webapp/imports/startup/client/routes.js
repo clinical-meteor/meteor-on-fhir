@@ -20,11 +20,20 @@ import { Weblog } from '/imports/ui/pages/Weblog';
 import { NotFound } from '/imports/ui/pages/NotFound';
 import { RecoverPassword } from '/imports/ui/pages/RecoverPassword';
 import { ResetPassword } from '/imports/ui/pages/ResetPassword';
+import { WelcomePatientPage } from '/imports/ui/pages/WelcomePatientPage';
 
 import { ConversationsPage } from '/imports/ui/pages/ConversationsPage';
 import { NewTopicPage } from '/imports/ui/pages/NewTopicPage';
 
+// we're storing the current route URL in a reactive variable
+// which will be used to update active controls
+// mostly used to toggle header and footer buttons
+Session.setDefault('pathname', '/');
+browserHistory.listen(function(event) {
+    Session.set('pathname', event.pathname)
+});
 
+// patient authentication function
 const requireAuth = (nextState, replace) => {
   if (!Meteor.loggingIn() && !Meteor.userId()) {
     replace({
@@ -33,6 +42,18 @@ const requireAuth = (nextState, replace) => {
     });
   }
 };
+
+
+// practitioner authentication function
+const requirePractitioner = (nextState, replace) => {
+  if (!Roles.userIsInRole(Meteor.userId(), 'practitioner')) {
+    replace({
+      pathname: '/need-to-be-practitioner',
+      state: { nextPathname: nextState.location.pathname }
+    });
+  }
+};
+
 
 Meteor.startup(() => {
   render(
@@ -65,6 +86,8 @@ Meteor.startup(() => {
 
         <Route name="weblog" path="/weblog" component={ Weblog } />
         <Route name="weblogByUserId" path="/weblog/:userId" component={ Weblog } />
+
+        <Route name="welcomePatient" path="/welcome/patient" component={ WelcomePatientPage } onEnter={ requireAuth }/>
 
         <Route path="*" component={ NotFound } />
 

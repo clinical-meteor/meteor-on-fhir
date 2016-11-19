@@ -67,7 +67,7 @@ test:
           background: true
     - sleep 180
   override:
-    - meteor npm run-script nightwatch
+    - meteor npm run-script circle-nightwatch
 
 
 ## Customize deployment commands

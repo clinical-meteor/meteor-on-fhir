@@ -3,7 +3,7 @@
 
 
 module.exports = {
-  tags: ['accounts', 'passwords', 'users', 'entry'],
+  tags: ['accounts', 'passwords', 'users', 'entry', 'circle'],
   before: function(client){
     client
       .url("http://localhost:3000").pause(3000)
@@ -22,11 +22,11 @@ module.exports = {
       .signup('Alice', 'Doe', 'alice@test.org', 'alicedoe')
       .pause(1000, client);
 
-    indexPage.expect.element('#indexPage').to.be.present;
+    indexPage.expect.element('#welcomePatientPage').to.be.present;
     indexPage.expect.element('#authenticatedUsername').text.to.contain('Alice Doe');
   },
   'User gets logged in after signup.': function (client) {
-    client.verify.elementPresent('#indexPage')
+    client.verify.elementPresent('#welcomePatientPage')
   },
   'User can log out.': function (client) {
     client.verify.elementPresent('#authenticatedUsername')

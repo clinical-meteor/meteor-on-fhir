@@ -1,6 +1,6 @@
 
 module.exports = {
-  tags: ["healthlog", "weblog"],
+  tags: ["healthlog", "weblog", 'circle'],
   before: function(client){
     client
       .url("http://localhost:3000").pause(3000)

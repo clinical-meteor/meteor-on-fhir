@@ -1,0 +1,12 @@
+// This disables Chrome's yellow autohighlight
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px rgba(255, 255, 255, .01) inset !important;
+  background-color: rgba(255, 255, 255, .01) !important;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-transition-delay: 9999s;
+    -webkit-transition: color 9999s ease-out, background-color 9999s ease-out;
+}

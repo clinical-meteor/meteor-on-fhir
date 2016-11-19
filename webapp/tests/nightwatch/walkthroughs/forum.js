@@ -1,6 +1,6 @@
 
 module.exports = {
-  tags: ['forum', 'topics'],
+  tags: ['forum', 'topics', 'circle'],
   before: function(client){
     client
       .url('http://localhost:3000').pause(3000)
