@@ -8,7 +8,7 @@ import { PrivacyPage } from '/imports/ui/pages/PrivacyPage';
 import { DashboardPage } from '/imports/ui/pages/DashboardPage';
 import { Documents } from '/imports/ui/pages/Documents';
 import { ForumPage } from '/imports/ui/pages/ForumPage';
-import { Index } from '/imports/ui/pages/Index';
+import { PatientIndex } from '/imports/ui/pages/PatientIndex';
 import { Login } from '/imports/ui/pages/Login';
 import { MyProfilePage } from '/imports/ui/pages/MyProfilePage';
 import { PatientsPage } from '/imports/ui/pages/PatientsPage';
@@ -59,7 +59,7 @@ Meteor.startup(() => {
   render(
     <Router history={ browserHistory }>
       <Route path="/" component={ App }>
-        <IndexRoute name="index" component={ Index } onEnter={ requireAuth } />
+        <IndexRoute name="index" component={ PatientIndex } onEnter={ requireAuth } />
 
         <Route name="documents" path="/documents" component={ Documents } onEnter={ requireAuth } />
         <Route name="login" path="/login" component={ Login } />

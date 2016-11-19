@@ -3,16 +3,39 @@ import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
 import { browserHistory } from 'react-router';
-import { IndexLinkContainer, LinkContainer } from 'react-router-bootstrap';
-import { Nav, NavItem, NavDropdown, Navbar } from 'react-bootstrap';
 import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session';
 
-import { List, ListItem, ListSubHeader, ListDivider, ListCheckbox } from 'react-toolbox/lib/list';
-import {Menu, IconMenu, MenuItem, MenuDivider } from 'react-toolbox/lib/menu';
+import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
+import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 
+import IconMenu from 'material-ui/IconMenu';
+import IconButton from 'material-ui/IconButton';
+import FontIcon from 'material-ui/FontIcon';
+import Menu from 'material-ui/Menu';
+import MenuItem from 'material-ui/MenuItem';
+import Divider from 'material-ui/Divider';
+import DropDownMenu from 'material-ui/DropDownMenu';
+
+import ActionAccountCircle from 'material-ui/svg-icons/action/account-circle';
+import {List, ListItem} from 'material-ui/List';
+import Subheader from 'material-ui/Subheader';
+import Avatar from 'material-ui/Avatar';
+
+import ActionInfo from 'material-ui/svg-icons/action/info';
+import ActionExitToApp from 'material-ui/svg-icons/action/exit-to-app';
 
 Session.get('notificationMenuOpen', true);
+
+let style = {
+  username: {
+    userSelect: 'none',
+    WebkitUserSelect: 'none',
+    MozUserSelect: 'none',
+    msUserSelect: 'none',
+    top: '-5px'
+  }
+};
 
 export class AuthenticatedNavigation extends React.Component {
   getMeteorData() {
@@ -57,42 +80,43 @@ export class AuthenticatedNavigation extends React.Component {
   }
 
   render () {
-
-      // <ListItem
-      //   avatar='https://dl.dropboxusercontent.com/u/2247264/assets/m.jpg'
-      //   caption='Dr. Manhattan'
-      //   legend="Jonathan 'Jon' Osterman"
-      //   rightIcon='done block'
-      // />
-      // <ListItem
-      //   avatar='https://dl.dropboxusercontent.com/u/2247264/assets/o.jpg'
-      //   caption='Ozymandias'
-      //   legend='Adrian Veidt'
-      //   rightIcon='done block'
-      // />
-      // <ListItem
-      //   avatar='https://dl.dropboxusercontent.com/u/2247264/assets/r.jpg'
-      //   caption='Rorschach'
-      //   legend='Walter Joseph Kovacs'
-      //   rightIcon='done block'
-      // />
-
     return(
-      <div>
-        <div >
-          <div eventKey={ 4 } id="authenticatedUsername" onClick={this.toggleNotificationMenu} >
-            { this.data.user }
-          </div>
-        </div>
-        <div id="authenticatedUserMenu">
-          <IconMenu active={ this.data.state.notificationMenuOpen } eventKey={ 4 } title={ this.data.user } icon='whatshot' position='top-right' menuRipple>
-            <List selectable ripple outline className="notificationMenu">
-                <ListDivider />
-                <ListItem className="profileMenuItem" leftIcon='face' eventKey={ 4.1 } onClick={ this.handleProfile } caption='Profile' />
-                <ListItem id="logoutMenuItem" className="logoutMenuItem" leftIcon='power_settings_new' eventKey={ 4.2 } onClick={ this.handleLogout } caption='Logout' />
-              </List>
-            </IconMenu>
-        </div>
+      <div id='authenticatedUserMenu' >
+        <ToolbarGroup onTouchTap={this.toggleNotificationMenu }>
+
+
+          <IconMenu
+            anchorOrigin={{horizontal: 'right', vertical: 'bottom'}}
+            targetOrigin={{horizontal: 'right', vertical: 'top'}}
+            iconButtonElement={
+              <div>
+                <IconButton touch={true}>
+                  <ActionAccountCircle />
+                </IconButton>
+                <ToolbarTitle
+                  id='authenticatedUsername'
+                  text={ this.data.user }
+                  style={style.username}
+                  onTouchTap={this.toggleNotificationMenu }
+                />
+              </div>
+            }
+          >
+            <MenuItem
+              type="block"
+              onTouchTap={ this.handleProfile }
+              primaryText='Profile'
+              leftIcon={<ActionAccountCircle />}
+              />
+            <MenuItem
+              id='logoutMenuItem'
+              type="block"
+              onTouchTap={ this.handleLogout }
+              leftIcon={<ActionExitToApp />}
+              primaryText='Logout' />
+          </IconMenu>
+
+        </ToolbarGroup>
       </div>
 
     );
@@ -107,12 +131,14 @@ export class AuthenticatedNavigation extends React.Component {
   }
 
   toggleNotificationMenu(){
+    //console.log('toggleNotificationMenu', Session.get('notificationMenuOpen'));
+
     if (Session.get('notificationMenuOpen')) {
       Session.set('notificationMenuOpen', false);
     } else {
       Session.set('notificationMenuOpen', true);
     }
-    $('#authenticatedUserMenu .material-icons')[0].click();
+    // $('#authenticatedUserMenu .material-icons')[0].click();
   }
 }
 AuthenticatedNavigation.propTypes = {

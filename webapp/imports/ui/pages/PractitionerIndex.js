@@ -187,10 +187,10 @@ export class PractitionerIndex extends React.Component {
 
 
 
-Index.propTypes = {
+PatientIndex.propTypes = {
   hasUser: React.PropTypes.object
 };
-ReactMixin(Index.prototype, ReactMeteorData);
+ReactMixin(PatientIndex.prototype, ReactMeteorData);
 
 
 

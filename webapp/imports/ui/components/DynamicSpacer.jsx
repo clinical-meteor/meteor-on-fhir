@@ -24,7 +24,7 @@ export class DynamicSpacer extends React.Component {
 
   render () {
     return(
-      <div class="spacer" style={this.data.style}></div>
+      <div className="spacer" style={this.data.style}></div>
     );
   }
 }

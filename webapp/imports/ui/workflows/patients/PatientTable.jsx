@@ -115,7 +115,7 @@ export default class PatientTable extends React.Component {
           <td>{this.data.patients[i].gender}</td>
           <td>{this.data.patients[i].birthdate }</td>
           <td>{this.data.patients[i].active}</td>
-          <td><span class="barcode">{this.data.patients[i]._id}</span></td>
+          <td><span className="barcode">{this.data.patients[i]._id}</span></td>
         </tr>
       )
     }

@@ -10,7 +10,7 @@ const users = [{
     avatar: "https://media.licdn.com/mpr/mpr/shrink_100_100/AAEAAQAAAAAAAAKeAAAAJDJkM2RmNTMzLWI4OGUtNDZmOC1iNTliLWYwOTc1ZWM0YmIyZg.jpg",
     birthdate: "1978/01/25"
   },
-  roles: ['admin'],
+  roles: ['admin']
 }];
 
 users.forEach(({ email, password, profile, roles }) => {

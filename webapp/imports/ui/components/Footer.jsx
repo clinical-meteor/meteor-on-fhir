@@ -2,7 +2,11 @@ import React from 'react';
 import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
-import Button from 'react-toolbox/lib/button';
+// import Button from 'react-toolbox/lib/button';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ImageBlurOn from 'material-ui/svg-icons/image/blur-on';
+import ImageExposure from 'material-ui/svg-icons/image/exposure';
+
 import OpacitySlider from './OpacitySlider';
 import {Session} from 'meteor/session';
 
@@ -82,8 +86,12 @@ export class Footer extends React.Component {
     return(
        <footer id='appFooter' className={style.appbar} style={this.data.style}>
         <div className='westFooterElements' style={this.data.westStyle} >
-          <Button ref='blurButton' className={style.button} icon='blur_on' floating accent onClick={this.clickOnBlurButton} style={{marginLeft: '40px'}} />
-          <Button ref='darkroomButton' className={style.button} icon='exposure' floating accent onClick={this.clickOnDarkroomButton} style={{marginLeft: '20px'}} />
+          <FloatingActionButton ref='blurButton' onClick={this.clickOnBlurButton} style={{marginLeft: '40px', height: '56px'}} secondary={true}>
+            <ImageBlurOn />
+          </FloatingActionButton>
+          <FloatingActionButton ref='darkroomButton' onClick={this.clickOnDarkroomButton} style={{marginLeft: '20px', height: '56px'}} secondary={true}>
+            <ImageExposure />
+          </FloatingActionButton>
         </div>
         <div className='eastFooterElements' style={this.data.eastStyle} >
          <OpacitySlider />

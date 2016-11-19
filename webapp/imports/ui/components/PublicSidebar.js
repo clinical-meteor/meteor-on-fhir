@@ -31,7 +31,7 @@ export class PublicSidebar extends React.Component {
     return(
       <List style={{paddingLeft: '20px', position: 'absolute'}}>
         <IndexLinkContainer to='/'>
-           <ListItem eventKey={ 4 } caption='Index' href='/' />
+           <ListItem eventKey={ 4 } caption='PatientIndex' href='/' />
         </IndexLinkContainer>
 
         <IndexLinkContainer to='/support'>
