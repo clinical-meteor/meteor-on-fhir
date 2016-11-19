@@ -99,7 +99,7 @@ export class GlassApp extends React.Component {
           ref='BackgroundVideo'
           style={this.data.video.style}
           poster=''
-          autoplay
+          autoPlay
           loop
         >
         <source src={videoSrc} type='video/mp4'></source>

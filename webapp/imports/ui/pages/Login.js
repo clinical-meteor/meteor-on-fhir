@@ -4,13 +4,16 @@ import TextField from 'material-ui/TextField';
 
 import { Row, Col, Button } from 'react-bootstrap';
 
-import { PageContainer } from '../components/PageContainer';
-import { MobilePadding } from '../components/MobilePadding';
+import { PageContainer } from '/imports/ui/components/PageContainer';
+import { PhoneContainer } from '/imports/ui/components/PhoneContainer';
+import { MobilePadding } from '/imports/ui/components/MobilePadding';
 
 import { browserHistory } from 'react-router';
 
 import { Meteor } from 'meteor/meteor';
 import { Bert } from 'meteor/themeteorchef:bert';
+
+import RaisedButton from 'material-ui/RaisedButton';
 
 export class Login extends React.Component {
   componentDidMount() {
@@ -18,6 +21,9 @@ export class Login extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+  }
+  forgotPasswordRoute(){
+    browserHistory.push('/recover-password');
   }
   handleTouchTap(){
     if(process.env.NODE_ENV === "test") console.log("this", this);
@@ -44,34 +50,28 @@ export class Login extends React.Component {
     return (
       <div id="loginPage">
         <MobilePadding>
-          <PageContainer>
+          <PhoneContainer>
                 <h4 className="page-header" style={{color: "black"}}>Login</h4>
                 <form ref="login" className="login">
-                  <Col xs={ 6 } sm={ 6 }>
-                    <Row>
                       <TextField
                         type="email"
                         ref="emailAddress"
                         name="emailAddress"
                         placeholder="Email Address"
                       />
-                    </Row>
-                    <Row>
+                      <br/>
                       <TextField
                         type="password"
                         ref="password"
                         name="password"
                         placeholder="Password"
                       />
-                    </Row>
-                    <Row>
-                      <Button id="loginButton" onTouchTap={this.handleTouchTap.bind(this)} bsStyle="success">Login</Button><br/>
-                      <Link to="/recover-password" style={{color: "black"}}>Forgot password?</Link>
-                    </Row>
-                  </Col>
+                      <br/>
+                      <RaisedButton id="loginButton" onTouchTap={this.handleTouchTap.bind(this)} label="Login" primary={true} />
+                      <RaisedButton id="forgotPasswordButton" onTouchTap={this.forgotPasswordRoute } label="Forgot password?" style={{marginLeft: "20px"}} />
                 </form>
 
-          </PageContainer>
+          </PhoneContainer>
         </MobilePadding>
       </div>
     );

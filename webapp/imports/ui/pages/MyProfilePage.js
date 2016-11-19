@@ -12,8 +12,8 @@ import { Meteor } from 'meteor/meteor';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import Spacer from '/imports/ui/components/Spacer';
 
-import { GlassCard } from '../components/GlassCard';
-import { PageContainer } from '../components/PageContainer';
+import { GlassCard } from '/imports/ui/components/GlassCard';
+import { PageContainer } from '/imports/ui/components/PageContainer';
 import { removeUserById } from '../../api/users/methods';
 
 

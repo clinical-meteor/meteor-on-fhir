@@ -2,8 +2,8 @@ import React from 'react';
 import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
-import { PageContainer } from '../components/PageContainer';
-import { GlassCard } from '../components/GlassCard';
+import { PageContainer } from '/imports/ui/components/PageContainer';
+import { GlassCard } from '/imports/ui/components/GlassCard';
 import { CardTitle, CardText } from 'react-toolbox/lib/card';
 
 

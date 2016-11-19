@@ -1,7 +1,7 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
 
-import { PageContainer } from '../components/PageContainer';
+import { PageContainer } from '/imports/ui/components/PageContainer';
 import { GlassCard } from '/imports/ui/components/GlassCard';
 import { CardText } from 'react-toolbox/lib/card';
 

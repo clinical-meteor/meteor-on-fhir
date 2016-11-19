@@ -4,12 +4,14 @@ import TextField from 'material-ui/TextField';
 
 import { Row, Col, Button } from 'react-bootstrap';
 
-import { PageContainer } from '../components/PageContainer';
-import { MobilePadding } from '../components/MobilePadding';
+import { PageContainer } from '/imports/ui/components/PageContainer';
+import { MobilePadding } from '/imports/ui/components/MobilePadding';
 
 import { browserHistory } from 'react-router';
 import { Accounts } from 'meteor/accounts-base';
 import { Bert } from 'meteor/themeteorchef:bert';
+
+import RaisedButton from 'material-ui/RaisedButton';
 
 export class Signup extends React.Component {
   componentDidMount() {
@@ -18,8 +20,11 @@ export class Signup extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
   }
+  loginRoute(){
+    browserHistory.push('/login');
+  }
   handleTouchTap(){
-    //console.log("this", this);
+    //console.log('this', this);
 
     let newUserData = {
       email: this.refs.emailAddress.input.value,
@@ -46,25 +51,25 @@ export class Signup extends React.Component {
 
   render() {
     return (
-      <div id="signupPage">
+      <div id='signupPage'>
         <MobilePadding>
           <PageContainer>
-                <h4 className="page-header" style={{color: "black"}}>Sign Up</h4>
-                <form ref="signup" className="signup" onSubmit={ this.handleSubmit }>
+                <h4 className='page-header' style={{color: 'black'}}>Sign Up</h4>
+                <form ref='signup' className='signup' onSubmit={ this.handleSubmit }>
                   <Row>
                     <Col xs={ 6 } sm={ 6 }>
                       <TextField
-                        id="firstNameInput"
+                        id='firstNameInput'
                         name='firstName'
                         ref='firstName'
-                        floatingLabelText="First Name"
+                        floatingLabelText='First Name'
                         fullWidth
                         /><br/>
                     </Col>
                     <Col xs={ 6 } sm={ 6 }>
                       <TextField
-                        id="lastNameInput"
-                        ref="lastName"
+                        id='lastNameInput'
+                        ref='lastName'
                         name='lastName'
                         type='text'
                         floatingLabelText='Last Name'
@@ -73,16 +78,16 @@ export class Signup extends React.Component {
                     </Col>
                   </Row>
                     <TextField
-                      id="emailAddressInput"
-                      ref="emailAddress"
+                      id='emailAddressInput'
+                      ref='emailAddress'
                       name='emailAddress'
                       type='text'
                       floatingLabelText='Email Address'
                       fullWidth
                       /><br/>
                     <TextField
-                      id="passwordInput"
-                      ref="password"
+                      id='passwordInput'
+                      ref='password'
                       name='password'
                       type='text'
                       floatingLabelText='Password'
@@ -90,17 +95,16 @@ export class Signup extends React.Component {
                       /><br/>
 
                     <TextField
-                      id="accessCodeInput"
-                      ref="accessCode"
+                      id='accessCodeInput'
+                      ref='accessCode'
                       name='accessCode'
                       type='text'
                       floatingLabelText='Have an access code?'
                       /><br/>
 
-                  <Button id="signupButton" onTouchTap={this.handleTouchTap.bind(this)} bsStyle="success">Sign Up</Button>
+                  <RaisedButton id='signupButton' onTouchTap={this.handleTouchTap.bind(this)} label='Sign Up' primary={true} />
+                  <RaisedButton id='alreadyHaveAccountButton' onTouchTap={this.loginRoute } label='Already have an account?' style={{marginLeft: '20px'}} />
                 </form>
-                <p>Already have an account? <Link to="/login">Log In</Link>.</p>
-
 
           </PageContainer>
         </MobilePadding>

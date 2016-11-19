@@ -3,7 +3,7 @@ import ReactMixin  from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
 import { PageContainer } from '/imports/ui/components/PageContainer';
-import { GlassCard } from '../components/GlassCard';
+import { GlassCard } from '/imports/ui/components/GlassCard';
 import { CardTitle, CardText } from 'react-toolbox/lib/card';
 
 // import DevicesList from '../containers/devices-list';

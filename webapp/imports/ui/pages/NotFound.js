@@ -1,8 +1,8 @@
 import React from 'react';
 import { Alert } from 'react-bootstrap';
 
-import { PageContainer } from '../components/PageContainer';
-import { MobilePadding } from '../components/MobilePadding';
+import { PageContainer } from '/imports/ui/components/PageContainer';
+import { MobilePadding } from '/imports/ui/components/MobilePadding';
 
 export const NotFound = () => (
   <div id="notFoundPage">

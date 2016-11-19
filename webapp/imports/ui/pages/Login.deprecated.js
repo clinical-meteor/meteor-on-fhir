@@ -3,8 +3,8 @@ import { Link } from 'react-router';
 import { Row, Col, FormGroup, ControlLabel, FormControl, Button } from 'react-bootstrap';
 import { handleLogin } from '/imports/modules/handleLogin';
 
-import { PageContainer } from '../components/PageContainer';
-import { MobilePadding } from '../components/MobilePadding';
+import { PageContainer } from '/imports/ui/components/PageContainer';
+import { MobilePadding } from '/imports/ui/components/MobilePadding';
 
 
 export class Login extends React.Component {

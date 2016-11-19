@@ -3,8 +3,8 @@ import { Link } from 'react-router';
 import { Row, Col, FormGroup, ControlLabel, FormControl, Button } from 'react-bootstrap';
 import { handleSignup } from '/imports/modules/handleSignup';
 
-import { PageContainer } from '../components/PageContainer';
-import { MobilePadding } from '../components/MobilePadding';
+import { PageContainer } from '/imports/ui/components/PageContainer';
+import { MobilePadding } from '/imports/ui/components/MobilePadding';
 
 
 export class Signup extends React.Component {

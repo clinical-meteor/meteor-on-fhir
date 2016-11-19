@@ -79,13 +79,12 @@ export class AuthenticatedNavigation extends React.Component {
 
     return(
       <div>
-        <Nav pullRight>
-
-          <NavItem id="authenticatedNavDropdown" eventKey={ 4 } id="authenticatedUsername" onClick={this.toggleNotificationMenu} >
+        <div >
+          <div eventKey={ 4 } id="authenticatedUsername" onClick={this.toggleNotificationMenu} >
             { this.data.user }
-          </NavItem>
-        </Nav>
-        <Nav id="authenticatedUserMenu" pullRight>
+          </div>
+        </div>
+        <div id="authenticatedUserMenu">
           <IconMenu active={ this.data.state.notificationMenuOpen } eventKey={ 4 } title={ this.data.user } icon='whatshot' position='top-right' menuRipple>
             <List selectable ripple outline className="notificationMenu">
                 <ListDivider />
@@ -93,8 +92,7 @@ export class AuthenticatedNavigation extends React.Component {
                 <ListItem id="logoutMenuItem" className="logoutMenuItem" leftIcon='power_settings_new' eventKey={ 4.2 } onClick={ this.handleLogout } caption='Logout' />
               </List>
             </IconMenu>
-
-        </Nav>
+        </div>
       </div>
 
     );
