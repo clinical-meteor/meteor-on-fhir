@@ -88,7 +88,10 @@ export class GlassLayout extends React.Component {
     return data;
   }
   toggleDrawerActive(){
-    Session.toggle('drawerPinned');
+    // Session.toggle('drawerPinned');
+    Meteor.setTimeout(function(){
+      Session.toggle('drawerPinned');
+    }, 200);
   }
   toggleSidebar() {
     Session.toggle('sidebarPinned');
@@ -102,6 +105,12 @@ export class GlassLayout extends React.Component {
       }
     } else {
       return <PublicSidebar /> ;
+    }
+  }
+  closeOpenedSidebar(){
+    //console.log("this.data.state[closeOpenedSidebar]", this.data.state);
+    if (Session.get('drawerPinned')) {
+      Session.set('drawerPinned', false);
     }
   }
   render(){
@@ -125,12 +134,12 @@ export class GlassLayout extends React.Component {
         </NavDrawer>
 
         <Panel pinned={this.data.state.drawerPinned} >
-          <div style={{ flex: 1, overflowY: 'auto', width: '100%' }}>
+          <div onClick={this.closeOpenedSidebar} style={{ flex: 1, overflowY: 'auto', width: '100%' }}>
             {this.props.children}
           </div>
         </Panel>
         <Sidebar pinned={ this.data.state.sidebarPinned } width={ 5 }>
-          <div><IconButton icon='close' onClick={ this.toggleSidebar }/></div>
+          <div><IconButton icon='close' onClick={ this.toggleDrawerActive }/></div>
           <div style={{ flex: 1 }}>
             <p>Supplemental content goes here.</p>
           </div>
