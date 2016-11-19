@@ -1,5 +1,6 @@
 {
   "name": "fhir-demo",
+  "license": "MIT",
   "version": "1.0.0",
   "repository": "http://github.com/awatson1978/fire-demo",
   "description": "Application description.",
@@ -25,6 +26,7 @@
     "eslint-config-airbnb": "^7.0.0",
     "eslint-plugin-meteor": "^3.5.2",
     "eslint-plugin-react": "^4.3.0",
+    "eslint-plugin-jsx-a11y": "^0.6.2",
     "faker": "^3.1.0",
     "nightwatch": "0.9.8",
     "selenium-standalone-jar": "3.0.1",
@@ -77,7 +79,8 @@
     "react-router-bootstrap": "^0.20.1",
     "react-scroll-box": "^0.3.3-beta",
     "react-tappable": "^0.8.1",
-    "react-toolbox": "^0.16.2"
+    "react-toolbox": "^0.16.2",
+    "react-tap-event-plugin": "^1.0.0"
   },
   "cssModules": {
     "extensions": [
