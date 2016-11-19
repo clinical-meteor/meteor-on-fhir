@@ -26,11 +26,14 @@ meteor npm install
 INITIALIZE=true Patients=true Practitioners=true meteor
 
 ## general development
-NODE_ENV=test INITIALIZE=true Patients=true Practitioners=true meteor --settings settings.test.json
+NODE_ENV=test INITIALIZE=true Patients=true Practitioners=true meteor --settings settings.dev.json
+
+## general development
+meteor npm run-script start
 ```
 
 
-#### Testing    
+#### C. Testing    
 You may need to install [Java SDK 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) to run the latest version of Selenium.
 
 ```sh
@@ -45,12 +48,38 @@ COVERAGE_APP_FOLDER=/Users/abigailwatson/Code/GlassUI/fire-demo/ meteor npm run-
 # http://localhost:3000/coverage
 ```
 
-
-#### Mobile Build  
+#### D. Deploy to Production  
 
 ```sh
-meteor run ios --mobile-server meteor-on-fhir.meteorapp.com
+TIMEOUT_SCALE_FACTOR=10 DEPLOY_HOSTNAME=galaxy.meteor.com meteor deploy meteor-on-fhir.meteorapp.com --settings settings.dev.json
+```   
+
+
+#### E. Mobile Build   
+
+```sh
+# development
+# this can be tricky, because http://localhost:3000 may need to be a local IP address
+# you may need to use `ifconfig` to find that address
+# beware network isolation, and make sure your phone and workstation are on the same network
+NODE_ENV=dev meteor run ios-device --mobile-server http://localhost:3000 --settings settings.dev.json
+
+# production
+# we need to specify the production server
+NODE_ENV=dev meteor run ios-device --mobile-server http://meteor-on-fhir.meteorapp.com --settings settings.dev.json
 ```    
+
+#### F. Publish to Testflight  
+
+- [ ] Update version/build numbers
+- [ ] Set Deployment Target to iOS v10.0
+- [ ] Set Team Signing Certificate
+- [ ] Build to local device
+- [ ] Product > Clean
+- [ ] Set Provision Profile
+- [ ] Set Signing Profile
+- [ ] Product > Archive > Validate
+- [ ] Product > Archive > Upload to App Store
 
 
 

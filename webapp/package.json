@@ -4,7 +4,7 @@
   "repository": "http://github.com/awatson1978/fire-demo",
   "description": "Application description.",
   "scripts": {
-    "start": "meteor --settings settings-development.json",
+    "start": "NODE_ENV=test meteor --settings settings.dev.json",
     "test": "meteor test --driver-package dispatch:mocha-phantomjs --port 5000",
     "test-app": "meteor test --full-app --driver-package dispatch:mocha-phantomjs --port 5000 --once",
     "package-verification": "starrynight run-tests --type package-verification",
