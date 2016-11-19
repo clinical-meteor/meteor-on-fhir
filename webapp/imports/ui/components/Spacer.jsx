@@ -7,7 +7,7 @@ const Spacer = React.createClass({
     let data = {
       style: {}
     };
-    if (this.props) {
+    if (this.props && this.props.style) {
       data.style = this.props.style;
     }
     data.style.height = '3.2rem';

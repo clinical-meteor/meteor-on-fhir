@@ -12,11 +12,12 @@ import {Session} from 'meteor/session';
 
 import style from './appbar';
 
+Session.setDefault('showThemingControls', false);
 
 export class Footer extends React.Component {
   getMeteorData() {
     let data = {
-      style: {
+      footerStyle: {
         position: 'fixed',
         bottom: '0px',
         width: '100%',
@@ -31,8 +32,7 @@ export class Footer extends React.Component {
         flexDirection: 'row',
         position: 'absolute',
         left: '0px',
-        height: '6.4rem',
-        bottom: '2.4rem'
+        height: '6.4rem'
       },
       eastStyle: {
         display: 'flex',
@@ -42,27 +42,34 @@ export class Footer extends React.Component {
         height: '6.4rem',
         padding: '0 2.4rem',
         paddingTop: '1.2rem'
-      }
+      },
+      displayThemeNavbar: false
     };
 
+    if (Session.get('showThemingControls')) {
+      data.displayThemeNavbar = Session.get('showThemingControls');
+      data.westStyle.bottom = '2.4rem';
+      //data.eastStyle.bottom = '2.4rem';
+    }
+
     if (!Session.get('showNavbars')) {
-      data.style.bottom = '-100px';
+      data.footerStyle.bottom = '-100px';
     }
 
     // this should all be handled by props
     // or a mixin!
     if (Session.get('darkroomEnabled')) {
-      data.style.color = 'black';
-      data.style.background = 'white';
+      data.footerStyle.color = 'black';
+      data.footerStyle.background = 'white';
     } else {
-      data.style.color = 'white';
-      data.style.background = 'black';
+      data.footerStyle.color = 'white';
+      data.footerStyle.background = 'black';
     }
 
     // this could be another mixin
     if (Session.get('glassBlurEnabled')) {
-      data.style.filter = 'blur(3px)';
-      data.style.webkitFilter = 'blur(3px)';
+      data.footerStyle.filter = 'blur(3px)';
+      data.footerStyle.webkitFilter = 'blur(3px)';
     }
 
     //phone layout
@@ -82,10 +89,12 @@ export class Footer extends React.Component {
     Session.toggle('glassBlurEnabled');
   }
 
-  render () {
-    return(
-       <footer id='appFooter' className={style.appbar} style={this.data.style}>
-        <div className='westFooterElements' style={this.data.westStyle} >
+
+  renderWestNavbar(displayThemeNavbar){
+    if (displayThemeNavbar) {
+      // the user has pressed ctrl-cmd-t and is looking at theming controls
+      return (
+        <div>
           <FloatingActionButton ref='blurButton' onClick={this.clickOnBlurButton} style={{marginLeft: '40px', height: '56px'}} secondary={true}>
             <ImageBlurOn />
           </FloatingActionButton>
@@ -93,8 +102,45 @@ export class Footer extends React.Component {
             <ImageExposure />
           </FloatingActionButton>
         </div>
+      );
+    } else {
+
+      if (Meteor.userId() && (Session.equals('pathname', '/'))) {
+        // the user is logged in as a normal user
+        return (
+          <div></div>
+        );
+      } else {
+        // anything else
+        return (
+          <div></div>
+        );
+
+      }
+    }
+  }
+  renderEastNavbar(displayThemeNavbar){
+    if (displayThemeNavbar) {
+      return (
+        <OpacitySlider />
+      );
+    } else {
+      return (
+        <div>
+
+        </div>
+      );
+    }
+  }
+
+  render () {
+    return(
+       <footer id='appFooter' className={style.appbar} style={this.data.footerStyle}>
+        <div className='westFooterElements' style={this.data.westStyle} >
+          { this.renderWestNavbar(this.data.displayThemeNavbar) }
+        </div>
         <div className='eastFooterElements' style={this.data.eastStyle} >
-         <OpacitySlider />
+          { this.renderEastNavbar(this.data.displayThemeNavbar) }
         </div>
        </footer>
    );

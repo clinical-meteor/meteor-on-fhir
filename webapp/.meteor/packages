@@ -46,8 +46,7 @@ react-meteor-data
 
 simple:dev-error-overlay
 
-#clinical:fonts
-#clinical:keybindings
+clinical:fonts
 clinical:extended-api
 clinical:auto-resizing
 clinical:theming
