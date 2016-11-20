@@ -1,6 +1,6 @@
 module.exports = {
   commands: [{
-    selectLink(elementId) {
+    selectLink: function(elementId) {
       return this
         .verify.elementPresent(elementId)
         .click(elementId);
