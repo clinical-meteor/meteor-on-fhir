@@ -9,11 +9,30 @@ let DailyStats = {
     let newDailyStat = {
       date: new Date(),
       usersCount: Meteor.users.find().count(),
-      postsCount: Posts.find().count(),
-      topicsCount: Topics.find().count(),
-      patientsCount: Patients.find().count(),
-      practitionersCount: Practitioners.find().count()
+      postsCount: 0,
+      topicsCount: 0,
+      patientsCount: 0,
+      practitionersCount: 0,
+      observationsCount: 0,
+      questionnaireResponsesCount: 0
     };
+
+    if (Posts) {
+      newDailyStat.postsCount = Posts.find().count();
+    }
+    if (Topics) {
+      newDailyStat.topicsCount = Topics.find().count();
+    }
+    if (Patients) {
+      newDailyStat.patientsCount = Patients.find().count();
+    }
+    if (Practitioners) {
+      newDailyStat.practitionersCount = Practitioners.find().count();
+    }
+    // if (QuestionnaireResponses) {
+    //   newDailyStat.postsCount = QuestionnaireResponses.find().count();
+    // }
+    
     console.log('newDailyStat', newDailyStat);
 
     return Statistics.insert(newDailyStat);

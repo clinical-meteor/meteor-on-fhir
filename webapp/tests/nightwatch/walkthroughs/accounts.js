@@ -23,16 +23,19 @@ module.exports = {
       .pause(1000, client);
 
     indexPage.expect.element('#welcomePatientPage').to.be.present;
+    indexPage.expect.element('#authenticatedUserMenuToggle').to.be.present;
     indexPage.expect.element('#authenticatedUsername').text.to.contain('Alice Doe');
   },
   'User gets logged in after signup.': function (client) {
     client.verify.elementPresent('#welcomePatientPage')
   },
   'User can log out.': function (client) {
-    client.verify.elementPresent('#authenticatedUsername')
-      .click('#authenticatedUsername').pause(1000)
-      .verify.elementPresent('#authenticatedUserMenu .notificationMenu .logoutMenuItem')
-      .click('#authenticatedUserMenu .notificationMenu .logoutMenuItem').pause(500)
+    client.verify.elementPresent('#authenticatedUserMenuToggle')
+      .click('#authenticatedUserMenuToggle').pause(1000)
+      .click('#authenticatedUserMenuToggle').pause(2000)
+      .verify.elementPresent('#authenticatedUserMenu')
+      .verify.elementPresent('#authenticatedUserMenu #logoutMenuItem')
+      .click('#authenticatedUserMenu #logoutMenuItem').pause(1000)
       .verify.elementPresent('#loginPage')
   },
   'User can sign in.': function (client) {
@@ -48,12 +51,12 @@ module.exports = {
     indexPage.expect.element('#authenticatedUsername').text.to.contain('Alice Doe');
   },
   "User can view profile.": function (client) {
-    client
-      .verify.elementPresent("#authenticatedUsername")
-      .click("#authenticatedUsername").pause(500)
+    client.verify.elementPresent('#authenticatedUserMenuToggle')
+      .click('#authenticatedUserMenuToggle').pause(1000)
+      .click('#authenticatedUserMenuToggle').pause(2000)
 
-      .verify.elementPresent("#authenticatedUserMenu .profileMenuItem")
-      .click("#authenticatedUserMenu .profileMenuItem").pause(500)
+      .verify.elementPresent("#authenticatedUserMenu #myProfileMenuItem")
+      .click("#authenticatedUserMenu #myProfileMenuItem").pause(500)
 
       .verify.elementPresent("#myProfilePage")
   },
@@ -115,11 +118,12 @@ module.exports = {
         .verify.attributeEquals('input[name="newPassword"]', 'value', '')
         .verify.attributeEquals('input[name="confirmPassword"]', 'value', '')
 
-      .verify.elementPresent("#authenticatedUsername")
-      .click("#authenticatedUsername").pause(500)
+    client.verify.elementPresent('#authenticatedUserMenuToggle')
+      .click('#authenticatedUserMenuToggle').pause(1000)
+      .click('#authenticatedUserMenuToggle').pause(2000)
 
-      .verify.elementPresent("#authenticatedUserMenu .logoutMenuItem")
-      .click("#authenticatedUserMenu .logoutMenuItem").pause(500)
+      .verify.elementPresent("#authenticatedUserMenu #logoutMenuItem")
+      .click("#authenticatedUserMenu #logoutMenuItem").pause(500)
 
       .verify.elementPresent("#loginPage")
   },
@@ -144,16 +148,17 @@ module.exports = {
     var userIdArray = "alice@test.org";
 
     client
-      .verify.elementPresent("#authenticatedUsername")
-      .click("#authenticatedUsername").pause(500)
+    client.verify.elementPresent('#authenticatedUserMenuToggle')
+      .click('#authenticatedUserMenuToggle').pause(1000)
+      .click('#authenticatedUserMenuToggle').pause(2000)
 
-      .verify.elementPresent("#authenticatedUserMenu .profileMenuItem")
-      .click("#authenticatedUserMenu .profileMenuItem").pause(500)
+      .verify.elementPresent("#authenticatedUserMenu #myProfileMenuItem")
+      .click("#authenticatedUserMenu #myProfileMenuItem").pause(500)
 
-      // the menu doesn't auto-close, so we need to manually close it
-      // so it doesn't obscure other components
-      .verify.elementPresent("#authenticatedUsername")
-      .click("#authenticatedUsername").pause(500)
+      // // the menu doesn't auto-close, so we need to manually close it
+      // // so it doesn't obscure other components
+      // .verify.elementPresent("#authenticatedUsername")
+      // .click("#authenticatedUsername").pause(500)
 
       .verify.elementPresent("label.systemTab")
       .click("label.systemTab").pause(500)

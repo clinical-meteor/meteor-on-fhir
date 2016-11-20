@@ -26,10 +26,23 @@
     "meteor"
   ],
   "globals": {
+    "Meteor": true,
+    "Random": true,
+    "Roles": true,
     "React": true,
     "Session": true,
+    "HipaaLogger": true,
+    "CarePlans": true,
+    "Conditions": true,
+    "Devices": true,
+    "Encounters": true,
+    "Goals": true,
+    "Observations": true,
     "Patients": true,
     "Practitioners": true,
-    "moment": true
+    "check": true,
+    "moment": true,
+    "process": true,
+    "module": true
   }
 }

@@ -25,7 +25,7 @@ import Avatar from 'material-ui/Avatar';
 import ActionInfo from 'material-ui/svg-icons/action/info';
 import ActionExitToApp from 'material-ui/svg-icons/action/exit-to-app';
 
-Session.get('notificationMenuOpen', true);
+Session.get('showNotificationMenu', true);
 
 let style = {
   username: {
@@ -33,7 +33,8 @@ let style = {
     WebkitUserSelect: 'none',
     MozUserSelect: 'none',
     msUserSelect: 'none',
-    top: '-5px'
+    top: '-5px',
+    cursor: 'pointer'
   }
 };
 
@@ -55,7 +56,7 @@ export class AuthenticatedNavigation extends React.Component {
         position: 'relative'
       },
       state: {
-        notificationMenuOpen: Session.get('notificationMenuOpen')
+        showNotificationMenu: Session.get('showNotificationMenu')
       }
     };
 
@@ -81,13 +82,14 @@ export class AuthenticatedNavigation extends React.Component {
 
   render () {
     return(
-      <div id='authenticatedUserMenu' >
-        <ToolbarGroup onTouchTap={this.toggleNotificationMenu }>
-
+      <div id='authenticatedUserMenuToggle' onTouchTap={this.toggleNotificationMenu } onClick={this.toggleNotificationMenu } style={style.username}>
+        <ToolbarGroup >
 
           <IconMenu
+            id='authenticatedUserMenu'
             anchorOrigin={{horizontal: 'right', vertical: 'bottom'}}
             targetOrigin={{horizontal: 'right', vertical: 'top'}}
+            open={!this.data.state.showNotificationMenu}
             iconButtonElement={
               <div>
                 <IconButton touch={true}>
@@ -103,6 +105,7 @@ export class AuthenticatedNavigation extends React.Component {
             }
           >
             <MenuItem
+              id='myProfileMenuItem'
               type="block"
               onTouchTap={ this.handleProfile }
               primaryText='Profile'
@@ -118,7 +121,6 @@ export class AuthenticatedNavigation extends React.Component {
 
         </ToolbarGroup>
       </div>
-
     );
   }
 
@@ -131,14 +133,13 @@ export class AuthenticatedNavigation extends React.Component {
   }
 
   toggleNotificationMenu(){
-    //console.log('toggleNotificationMenu', Session.get('notificationMenuOpen'));
+    console.log("showNotificationMenu", Session.get('showNotificationMenu'));
 
-    if (Session.get('notificationMenuOpen')) {
-      Session.set('notificationMenuOpen', false);
+    if (Session.get('showNotificationMenu')) {
+      Session.set('showNotificationMenu', false);
     } else {
-      Session.set('notificationMenuOpen', true);
+      Session.set('showNotificationMenu', true);
     }
-    // $('#authenticatedUserMenu .material-icons')[0].click();
   }
 }
 AuthenticatedNavigation.propTypes = {
