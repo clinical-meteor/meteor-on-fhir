@@ -10,7 +10,7 @@ import { PageContainer } from '/imports/ui/components/PageContainer';
 
 import { browserHistory } from 'react-router';
 
-export class PractitionerIndex extends React.Component {
+export class AdminIndex extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -68,6 +68,7 @@ export class PractitionerIndex extends React.Component {
               />
             </GlassCard>
           </div>
+
           <div id="practitionersTile" style={style.indexCardPadding} onClick={ this.openPractitioners.bind(this) } >
             <GlassCard style={style.indexCard} >
               <CardTitle
@@ -77,13 +78,11 @@ export class PractitionerIndex extends React.Component {
             </GlassCard>
           </div>
 
-          <Spacer />
-
-          <div style={style.indexCardPadding} onClick={ this.openDevicepage.bind(this) } >
+          <div style={style.indexCardPadding} onClick={ this.openUserManagement.bind(this) } >
             <GlassCard style={style.indexCard} >
               <CardTitle
-                title='Devices'
-                subtitle='BAC and other devices.'
+                title='User Management'
+                subtitle='Admin controls for user accounts.'
               />
             </GlassCard>
           </div>
@@ -97,16 +96,6 @@ export class PractitionerIndex extends React.Component {
             </GlassCard>
           </div>
 
-          <Spacer />
-
-          <div style={style.indexCardPadding} onClick={ this.openBreathalyzerpage.bind(this) } >
-            <GlassCard style={style.indexCard} >
-              <CardTitle
-                title='Breathalyzer'
-                subtitle='Test breathalyzer.'
-              />
-            </GlassCard>
-          </div>
 
         </PageContainer>
       </div>
@@ -147,7 +136,7 @@ export class PractitionerIndex extends React.Component {
 
 
 
-PractitionerIndex.propTypes = {
+AdminIndex.propTypes = {
   hasUser: React.PropTypes.object
 };
-ReactMixin(PractitionerIndex.prototype, ReactMeteorData);
+ReactMixin(AdminIndex.prototype, ReactMeteorData);

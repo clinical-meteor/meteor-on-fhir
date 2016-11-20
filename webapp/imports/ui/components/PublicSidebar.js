@@ -42,6 +42,10 @@ export class PublicSidebar extends React.Component {
            <ListItem eventKey={ 10 } caption='About' href='/about' />
         </IndexLinkContainer>
 
+        <IndexLinkContainer to='/privacy'>
+           <ListItem eventKey={ 10 } caption='Privacy Page' href='/privacy' />
+        </IndexLinkContainer>
+
       </List>
     );
   }

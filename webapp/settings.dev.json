@@ -3,6 +3,7 @@
     "title": "Meteor on FHIR Forum"
   },
   "private": {
-    "accessCode": ""
+    "practitionerAccessCode": "hippocrates",
+    "sysadminAccessCode": "rootaccess"
   }
 }

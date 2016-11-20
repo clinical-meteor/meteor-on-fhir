@@ -1,4 +1,4 @@
-import { LinkContainer } from 'react-router-bootstrap';
+import { IndexLinkContainer, LinkContainer } from 'react-router-bootstrap';
 import { List, ListItem } from 'react-toolbox/lib/list';
 import React from 'react';
 import ReactMixin from 'react-mixin';
@@ -6,7 +6,6 @@ import { browserHistory } from 'react-router';
 import { Meteor } from 'meteor/meteor';
 import FontAwesome from 'react-fontawesome';
 import { Session } from 'meteor/session';
-import { logMeOut } from './LogMeOut';
 
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
@@ -34,7 +33,7 @@ export class PatientSidebar extends React.Component {
 
   handleLogout() {
     console.log("handleLogout");
-    logMeOut();
+    Meteor.logout();
   }
 
   handleProfile() {
@@ -44,20 +43,32 @@ export class PatientSidebar extends React.Component {
 
   render () {
     return(
-      <div id='patientSidebarMenu'>
+      <div id='patientSidebar'>
         <List style={{paddingLeft: '20px', position: 'absolute'}}>
 
-          <LinkContainer to='/myprofile'>
-          <ListItem className="profileMenuItem" leftIcon='face' eventKey={ 4.1 } href='/myprofile' caption='Profile' />
-          </LinkContainer>
+          <IndexLinkContainer to='/myprofile'>
+            <ListItem className="profileMenuItem" leftIcon='face' eventKey={ 4.1 } href='/myprofile' caption='Profile' />
+          </IndexLinkContainer>
 
-          <LinkContainer to='/about'>
-             <ListItem eventKey={ 4.3 } leftIcon='info' caption='About' href='/about' />
-          </LinkContainer>
+          <IndexLinkContainer to='/medications'>
+             <ListItem eventKey={ 6 } caption='Medications' href='/medications' />
+          </IndexLinkContainer>
 
-          <LinkContainer to='/login' >
-            <ListItem className="logoutMenuItem" leftIcon='power_settings_new' eventKey={ 4.5 } caption='Logout' onClick={ this.handleLogout } />
-          </LinkContainer>
+          <IndexLinkContainer to='/observation-history'>
+             <ListItem eventKey={ 3 } caption='Observation History' href='/observation-history' />
+          </IndexLinkContainer>
+
+          <IndexLinkContainer to='/weblog'>
+             <ListItem eventKey={ 3 } caption='Weblog' href='/weblog' />
+          </IndexLinkContainer>
+
+          <IndexLinkContainer to='/theming'>
+             <ListItem eventKey={ 9 } caption='Theming' href='/theming' />
+          </IndexLinkContainer>
+
+          <IndexLinkContainer to='/about'>
+             <ListItem eventKey={ 10 } caption='About' href='/about' />
+          </IndexLinkContainer>
 
         </List>
       </div>

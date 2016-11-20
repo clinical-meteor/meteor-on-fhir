@@ -1,4 +1,4 @@
-// export default {
+// module.exports = {
 //   url: 'http://localhost:3000/weblog',
 //   commands: [{
 //   createTopic(title, text, image, labels) {

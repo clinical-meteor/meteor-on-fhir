@@ -15,6 +15,8 @@ import { IndexLinkContainer } from 'react-router-bootstrap';
 
 import { PublicSidebar }  from '/imports/ui/components/PublicSidebar';
 import { AuthenticatedSidebar }  from '/imports/ui/components/AuthenticatedSidebar';
+import { PatientSidebar }  from '/imports/ui/components/PatientSidebar';
+import { PractitionerSidebar }  from '/imports/ui/components/PractitionerSidebar';
 import { AdminSidebar }  from '/imports/ui/components/AdminSidebar';
 
 Session.setDefault('backgroundImagePath', 'url(\"images\/ForestInMist.jpg\")');
@@ -63,11 +65,15 @@ export class GlassLayout extends React.Component {
     if (Meteor.user()) {
       data.card.title = currentUser.fullName();
       if (Meteor.user().profile) {
-        data.card.subtitle = Meteor.user().profile.birthdate;
+        //data.card.subtitle = Meteor.user().profile.birthdate;
         data.card.avatar = Meteor.user().profile.avatar;
-        data.card.subtitle = 'Basic User';
+        data.card.subtitle = 'Patient';
       }
-      if (Meteor.user().roles && (Meteor.user().roles[0] === 'admin')) {
+      if (Meteor.user().roles && (Meteor.user().roles[0] === 'practitioner')) {
+        data.card.subtitle = 'Practitioner';
+        data.state.isAdmin = false;
+      }
+      if (Meteor.user().roles && (Meteor.user().roles[0] === 'sysadmin')) {
         data.card.subtitle = 'Admin';
         data.state.isAdmin = true;
       }
@@ -101,7 +107,11 @@ export class GlassLayout extends React.Component {
       if (isAdmin) {
         return <AdminSidebar /> ;
       } else {
-        return <AuthenticatedSidebar /> ;
+        if (Meteor.user() && Meteor.user().roles && Meteor.user().roles[0] && (Meteor.user().roles[0] === 'practitioner')) {
+          return <PractitionerSidebar /> ;
+        } else {
+          return <PatientSidebar /> ;
+        }
       }
     } else {
       return <PublicSidebar /> ;

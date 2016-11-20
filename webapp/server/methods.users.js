@@ -40,7 +40,7 @@ Meteor.methods({
       let count = 0;
       Meteor.users.find().forEach(function(user){
         if (user.emails && user.emails[0]) {
-          if ((user.emails[0].address === 'alice@test.org') || (user.emails[0].address === 'janedoe@test.org') || (user.emails[0].address === 'admin@admin.com')){
+          if ((user.emails[0].address === 'alice@test.org') || (user.emails[0].address === 'janedoe@test.org') || (user.emails[0].address === 'sysadmin@test.org')){
             Meteor.users.remove({_id: user._id});
             count++;
           }
@@ -91,8 +91,8 @@ Meteor.methods({
     // ADMIN
 
     var admin = {
-      password: 'admin123',
-      email: 'admin@test.org',
+      password: 'sysadmin123',
+      email: 'sysadmin@test.org',
       profile: {
         name: {
           text: 'System Admin',
@@ -103,7 +103,8 @@ Meteor.methods({
     };
     let existingAdmin = Meteor.users.findOne({username: 'admin'});
     if (!existingAdmin) {
-      Accounts.createUser(admin);
+      let userId = Accounts.createUser(admin);
+      Roles.addUsersToRoles(userId, ['sysadmin']);
     }
   }
 });

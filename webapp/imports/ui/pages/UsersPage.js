@@ -81,7 +81,7 @@ export class UsersPage extends React.Component {
 
   render() {
     return (
-      <div id="documentsPage">
+      <div id="usersPage">
         <PageContainer>
           <GlassCard>
 

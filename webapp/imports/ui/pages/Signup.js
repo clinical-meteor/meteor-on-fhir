@@ -39,13 +39,18 @@ export class Signup extends React.Component {
       }
     };
 
-    Accounts.createUser(newUserData, function(error){
+    Accounts.createUser(newUserData, function(error, result){
       if (error) {
         Bert.alert(error.reason, 'danger');
-      } else {
-        browserHistory.push('/welcome/patient');
-        Bert.alert('Welcome!', 'success');
       }
+      if (result) {
+        console.log("Accounts.createUser[result]", result);
+      }
+      browserHistory.push('/');
+      // Meteor.setTimeout(function(){
+      //   browserHistory.push('/welcome/patient');
+      //   Bert.alert('Welcome!', 'success');
+      // }, 1000);
     });
   }
 

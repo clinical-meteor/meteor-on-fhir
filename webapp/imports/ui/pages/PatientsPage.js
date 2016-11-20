@@ -93,7 +93,7 @@ export class PatientsPage extends React.Component {
 
   render() {
     return (
-      <div id="documentsPage">
+      <div id="patientsPage">
         <PageContainer>
           <GlassCard>
             <CardTitle

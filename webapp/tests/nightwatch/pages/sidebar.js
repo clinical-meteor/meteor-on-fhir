@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   commands: [{
     selectLink(elementId) {
       return this

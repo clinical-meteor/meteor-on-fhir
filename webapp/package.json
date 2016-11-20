@@ -73,6 +73,7 @@
     "react-addons-pure-render-mixin": "^15.3.1",
     "react-bootstrap": "^0.29.5",
     "react-dom": "^15.3.1",
+    "react-fontawesome": "^1.4.0",
     "react-highcharts": "^8.4.2",
     "react-komposer": "^1.13.1",
     "react-mixin": "^3.0.5",

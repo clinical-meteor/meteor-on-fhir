@@ -29,45 +29,31 @@ export class AdminSidebar extends React.Component {
 
   render () {
     return(
-      <List style={{paddingLeft: '20px', position: 'absolute'}}>
+      <div id="adminSidebar">
+        <List style={{paddingLeft: '20px', position: 'absolute'}}>
 
-        <IndexLinkContainer to='/dashboard'>
-           <ListItem eventKey={ 2 } caption='Dashboard' href='/dashboard' />
-        </IndexLinkContainer>
+          <IndexLinkContainer to='/'>
+             <ListItem eventKey={ 4 } caption='Admin Index' href='/' />
+          </IndexLinkContainer>
 
-        <IndexLinkContainer to='/weblog'>
-           <ListItem eventKey={ 3 } caption='Weblog' href='/weblog' />
-        </IndexLinkContainer>
+          <IndexLinkContainer to='/dashboard'>
+             <ListItem eventKey={ 2 } caption='Dashboard' href='/dashboard' />
+          </IndexLinkContainer>
 
-        <IndexLinkContainer to='/forum'>
-           <ListItem eventKey={ 3 } caption='Forum' href='/forum' />
-        </IndexLinkContainer>
+          <IndexLinkContainer to='/users'>
+             <ListItem eventKey={ 6 } caption='Users' href='/users' />
+          </IndexLinkContainer>
 
-        <IndexLinkContainer to='/'>
-           <ListItem eventKey={ 4 } caption='PatientIndex' href='/' />
-        </IndexLinkContainer>
+          <IndexLinkContainer to='/patients'>
+             <ListItem eventKey={ 7 } caption='Patients' href='/patients' />
+          </IndexLinkContainer>
 
-        <IndexLinkContainer to='/users'>
-           <ListItem eventKey={ 6 } caption='Users' href='/users' />
-        </IndexLinkContainer>
+          <IndexLinkContainer to='/practitioners'>
+             <ListItem eventKey={ 8 } caption='Practitioners' href='/practitioners' />
+          </IndexLinkContainer>
 
-        <IndexLinkContainer to='/patients'>
-           <ListItem eventKey={ 7 } caption='Patients' href='/patients' />
-        </IndexLinkContainer>
-
-        <IndexLinkContainer to='/practitioners'>
-           <ListItem eventKey={ 8 } caption='Practitioners' href='/practitioners' />
-        </IndexLinkContainer>
-
-        <IndexLinkContainer to='/theming'>
-           <ListItem eventKey={ 9 } caption='Theming' href='/theming' />
-        </IndexLinkContainer>
-
-        <IndexLinkContainer to='/about'>
-           <ListItem eventKey={ 10 } caption='About' href='/about' />
-        </IndexLinkContainer>
-
-      </List>
+        </List>
+      </div>
     );
   }
 }

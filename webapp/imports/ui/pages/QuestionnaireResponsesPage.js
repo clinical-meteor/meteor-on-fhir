@@ -69,7 +69,7 @@ export class QuestionnaireResponsesPage extends React.Component {
 
   render() {
     return (
-      <div id="documentsPage">
+      <div id="questionnaireResponsesPage">
         <PageContainer>
           <GlassCard>
             <CardTitle

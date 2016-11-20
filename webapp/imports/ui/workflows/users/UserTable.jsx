@@ -29,7 +29,7 @@ export class UserTable extends React.Component {
       users: Meteor.users.find().fetch()
     };
 
-    if (Meteor.user() && Meteor.user().roles && (Meteor.user().roles[0] === 'admin')) {
+    if (Meteor.user() && Meteor.user().roles && (Meteor.user().roles[0] === 'sysadmin')) {
       data.state.isAdmin = true;
     }
 
