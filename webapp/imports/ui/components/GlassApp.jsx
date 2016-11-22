@@ -105,7 +105,10 @@ export class GlassApp extends React.Component {
 
   renderVideoBackground(showVideoBackground){
     if (showVideoBackground) {
-      let videoSrc = '/VideoBackgrounds/Flames.mp4';
+      let videoSrc = '/VideoBackgrounds/Circulation.mp4';
+      if (Meteor.settings.public.theme.defaultVideo) {
+        videoSrc = Meteor.settings.public.theme.defaultVideo;
+      }
       return(
         <video
           ref='BackgroundVideo'

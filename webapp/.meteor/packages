@@ -58,6 +58,7 @@ clinical:accounts-famous-dead-people
 
 clinical:hl7-resource-patient
 clinical:hl7-resource-practitioner
+clinical:hl7-resource-medication
 
 percolate:synced-cron
 
