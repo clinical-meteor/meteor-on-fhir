@@ -18,13 +18,12 @@ ecmascript              # Enable ECMAScript2015+ syntax in app code
 autopublish             # Publish all data to the clients (for prototyping)
 insecure                # Allow all DB writes from clients (for prototyping)
 
-accounts-password
-accounts-base
 less
-
 check
-audit-argument-checks
 reactive-dict
+accounts-base
+accounts-password
+audit-argument-checks
 
 
 aldeed:collection2
@@ -52,7 +51,7 @@ clinical:auto-resizing
 clinical:theming
 clinical:user-model
 clinical:accounts-housemd
-clinical:keybindings
+clinical:keybindings@1.3.4
 
 clinical:accounts-famous-dead-people
 
