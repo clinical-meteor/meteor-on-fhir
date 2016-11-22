@@ -62,6 +62,8 @@ test:
 
     - meteor npm install nightwatch starrynight chromedriver@2.19.0 phantomjs-prebuilt selenium-server-standalone-jar@2.45.0
 
+    - meteor update clinical:modals
+
     - cat .meteor/nightwatch.json
     - "meteor run":
           background: true
