@@ -12,6 +12,11 @@ Session.setDefault('darkroomEnabled', true);
 Session.setDefault('glassBlurEnabled', false);
 Session.setDefault('backgroundBlurEnabled', false);
 
+Session.setDefault('showVideoBackground', false)
+if (Meteor.settings && Meteor.settings.public && Meteor.settings.public.theme && Meteor.settings.public.theme.showVideoBackground) {
+  Session.set('showVideoBackground', Meteor.settings.public.theme.showVideoBackground);
+  Session.set('backgroundImagePath', Meteor.settings.public.theme.defaultVideo);
+}
 
 export class GlassApp extends React.Component {
   constructor(props) {
@@ -29,7 +34,8 @@ export class GlassApp extends React.Component {
           height: '100%',
           position: 'absolute',
           background: 'inherit'
-        }
+        },
+        showVideoBackground: Session.get('showVideoBackground')
       },
       video: {
         style: {
@@ -46,6 +52,9 @@ export class GlassApp extends React.Component {
         }
       }
     };
+    // if (Session.get('showVideoBackground')) {
+    //   data.app.showVideoBackground = Session.get('showVideoBackground');
+    // }
 
     if (Session.get('lastVideoRun')) {
       ReactDOM.findDOMNode(this.refs.BackgroundVideo).play();
@@ -87,14 +96,17 @@ export class GlassApp extends React.Component {
     data.app.style.height = '100%';
     data.app.style.position = 'absolute';
 
+
+    console.log("data" , data);
+
+
     return data;
   }
 
-  render(){
-    // let videoSrc = '/VideoBackgrounds/11763620.mp4';
-    let videoSrc = '/VideoBackgrounds/Flames.mp4';
-    return (
-      <div>
+  renderVideoBackground(showVideoBackground){
+    if (showVideoBackground) {
+      let videoSrc = '/VideoBackgrounds/Flames.mp4';
+      return(
         <video
           ref='BackgroundVideo'
           style={this.data.video.style}
@@ -102,8 +114,17 @@ export class GlassApp extends React.Component {
           autoPlay
           loop
         >
-        <source src={videoSrc} type='video/mp4'></source>
+          <source src={videoSrc} type='video/mp4'></source>
         </video>
+      );
+    }
+  }
+
+  render(){
+    // let videoSrc = '/VideoBackgrounds/11763620.mp4';
+    return (
+      <div>
+        {this.renderVideoBackground(this.data.app.showVideoBackground)}
 
         <div data-react-toolbox='app' style={this.data.app.style}>
           {this.props.children}

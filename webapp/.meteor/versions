@@ -33,7 +33,7 @@ clinical:fonts@1.1.1
 clinical:hl7-resource-datatypes@0.4.4
 clinical:hl7-resource-patient@1.3.0
 clinical:hl7-resource-practitioner@1.3.0
-clinical:keybindings@1.3.3
+clinical:keybindings@1.3.4
 clinical:modals@1.0.7
 clinical:theming@0.4.10
 clinical:user-model@1.4.9

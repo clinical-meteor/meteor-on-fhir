@@ -1,6 +1,11 @@
 {
   "public": {
-    "title": "Meteor on FHIR Forum"
+    "title": "Meteor on FHIR Forum",
+    "theme": {
+      "showVideoBackground": false,
+      "defaultVideo": "Circulation.mp4",
+      "backgroundImagePath": "/backgrounds/medical/PlasmidGray.jpg"
+    }
   },
   "private": {
     "practitionerAccessCode": "hippocrates",
