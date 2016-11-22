@@ -7,7 +7,7 @@ module.exports = {
     client
       .url("http://localhost:3000").pause(3000)
       .executeAsync(function(data){
-        Meteor.call('initializeTestUsers');
+        Meteor.call('dropTestUsers');
       });
   },
   "/": function (client) {

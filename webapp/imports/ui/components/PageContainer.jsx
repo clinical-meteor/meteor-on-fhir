@@ -8,6 +8,7 @@ import { Meteor } from 'meteor/meteor';
 
 Meteor.startup(function (){
   Session.set('appSurfaceOffset', false);
+  Session.set('hasPagePadding', true);
 });
 
 export class PageContainer extends React.Component {
@@ -23,6 +24,7 @@ export class PageContainer extends React.Component {
         // WebkitOverflowScrolling: 'touch',
         WebkitTransition: 'ease .2s',
         transition: 'ease .2s',
+        marginTop: "100px",
         marginBottom: "100px"
       }
     };

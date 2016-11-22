@@ -40,7 +40,10 @@ Meteor.methods({
       let count = 0;
       Meteor.users.find().forEach(function(user){
         if (user.emails && user.emails[0]) {
-          if ((user.emails[0].address === 'alice@test.org') || (user.emails[0].address === 'janedoe@test.org') || (user.emails[0].address === 'sysadmin@test.org')){
+          if ((user.emails[0].address === 'alice@test.org')
+          || (user.emails[0].address === 'janedoe@test.org')
+          || (user.emails[0].address === 'sysadmin@test.org')
+          || (user.emails[0].address === 'house@test.org')){
             Meteor.users.remove({_id: user._id});
             count++;
           }
