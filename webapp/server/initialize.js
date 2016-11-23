@@ -28,7 +28,7 @@ Meteor.startup(function(){
     Meteor.call('initializeDevice');
     Meteor.call('initializeEncounters');
     Meteor.call('initializeGoals');
-    Meteor.call('initializeObservation');
+    Meteor.call('initializeObservation', 70.0, '');
     Meteor.call('initializePatient');
     Meteor.call('initializePractitioner');
     Meteor.call('initializeQuestionnaire');

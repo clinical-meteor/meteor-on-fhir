@@ -24,7 +24,8 @@ Meteor.methods({
       console.log('Try setting NODE_ENV=test');
     }
   },
-  initializeObservation:function(deviceId){
+  initializeObservation:function(observationValue, deviceId){
+    check(observationValue, Number);
     check(deviceId, String);
 
     if (Observations.find().count() === 0) {
@@ -50,7 +51,7 @@ Meteor.methods({
           reference: deviceId
         },
         valueQuantity: {
-          value: 0.00,
+          value: observationValue,
           unit: 'kg',
           system: 'http://unitsofmeasure.org'
         }
