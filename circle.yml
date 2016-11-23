@@ -15,6 +15,7 @@ machine:
     INITIALIZE: true
     Patients: true
     Practitioners: true
+    METEOR_SETTINGS: '{"public": {"title": "Meteor on FHIR"},"private": {"practitionerAccessCode": "hippocrates", "sysadminAccessCode": "rootaccess"}}'
 
 
 ## Customize checkout
@@ -59,12 +60,7 @@ test:
     - sleep 60
     - meteor --version
     - meteor npm install --save jquery bootstrap react react-dom react-router react-bootstrap react-komposer react-router-bootstrap faker jquery-validation react-addons-css-transition-group react-addons-pure-render-mixin react-toolbox react-mixin faker react-highcharts eslint-plugin-react eslint-plugin-meteor eslint-config-eslint
-
     - meteor npm install nightwatch starrynight chromedriver@2.19.0 phantomjs-prebuilt selenium-server-standalone-jar@2.45.0
-
-    - meteor list
-    - for p in `meteor list | grep '^[a-z]' | awk '{ print $1"@"$2 }'`; do echo "$p"; meteor show "$p" | grep -E '^  [a-z]'; echo; done
-
 
     - cat .meteor/nightwatch.json
     - "meteor run --settings settings.dev.json":
