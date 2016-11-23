@@ -61,12 +61,12 @@ test:
     - meteor --version
     #- meteor npm install --save jquery bootstrap react react-dom react-router react-bootstrap react-komposer react-router-bootstrap faker jquery-validation react-addons-css-transition-group react-addons-pure-render-mixin react-toolbox react-mixin faker react-highcharts eslint-plugin-react eslint-plugin-meteor eslint-config-eslint
     - meteor npm install --production
-    - meteor npm install nightwatch starrynight chromedriver@2.19.0 phantomjs-prebuilt selenium-server-standalone-jar@2.45.0
+    - meteor npm install nightwatch chromedriver@2.19.0 phantomjs-prebuilt selenium-server-standalone-jar@2.45.0
 
     - cat .meteor/nightwatch.json
     - "meteor run --settings settings.dev.json":
           background: true
-    - sleep 180
+    - sleep 120
   override:
     - meteor npm run-script circle-nightwatch
 

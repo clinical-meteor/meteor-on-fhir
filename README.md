@@ -82,7 +82,6 @@ NODE_ENV=dev meteor run ios-device --mobile-server http://meteor-on-fhir.meteora
 - [ ] Product > Archive > Upload to App Store
 
 
-
 #### Licensing
 
 Abigail Watson
