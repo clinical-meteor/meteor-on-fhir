@@ -12,7 +12,7 @@ machine:
     CXX: g++-4.8
     DISPLAY: :99.0
     NPM_PREFIX: /home/ubuntu/nvm/v0.10.33
-    INITIALIZE: true
+    INITIALIZE: false
     Patients: true
     Practitioners: true
     METEOR_SETTINGS: '{"public": {"title": "Meteor on FHIR"},"private": {"practitionerAccessCode": "hippocrates", "sysadminAccessCode": "rootaccess"}}'
