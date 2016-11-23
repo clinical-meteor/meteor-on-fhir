@@ -1,5 +1,5 @@
 # Meteor on FHIR 
-We decided to write a Health Information Exchange infrastructure.  The technical infrastructure uses MongoDB, Meteor, and React.  The HIE uses a wordpress business model, and is intended to be a distributed and federated peer-to-peer network.  We use HL7 Fast Healthcare Interoperability Resources (FHIR) for data exchange and interoperability.  
+For my Masters of Science in Biomedical Informatics, we are required to create a Capstone Project.  So I decided to write a Health Information Exchange infrastructure.  The technical infrastructure uses MongoDB (a modern hierarchical database, similar to the MUMPS/Cache database what Epic uses), a full-stack isomorphic javascript framework called Meteor, and Facebook's user interface layer React.  The HIE uses a wordpress business model, and is intended to be a distributed and federated peer-to-peer network.  We use HL7 Fast Healthcare Interoperability Resources (FHIR) for data exchange and interoperability.  
 
 [![CircleCI](https://circleci.com/gh/clinical-meteor/meteor-on-fhir/tree/master.svg?style=svg)](https://circleci.com/gh/clinical-meteor/meteor-on-fhir/tree/master)  
 
@@ -48,14 +48,36 @@ COVERAGE_APP_FOLDER=/Users/abigailwatson/Code/GlassUI/fire-demo/ meteor npm run-
 # http://localhost:3000/coverage
 ```
 
-#### D. Deploy to Production  
+#### D. Theme and Remove Licensed Media Assets
+Edit the `settings.dev.json` file, and update:
+```
+{
+  "public": {
+    "title": "Rainbow's End Nursing Home Health Exchange",
+    "theme": {
+      "showVideoBackground": false
+    }
+  },
+  "private": {
+    "practitionerAccessCode": "hippocrates",
+    "sysadminAccessCode": "rootaccess"
+  }
+}
+```
+
+Run the script to remove restricted media assets:
+```
+scripts/remove_restricted_media_assets.sh
+```
+
+#### E. Deploy to Production  
 
 ```sh
 TIMEOUT_SCALE_FACTOR=10 DEPLOY_HOSTNAME=galaxy.meteor.com meteor deploy meteor-on-fhir.meteorapp.com --settings settings.dev.json
 ```   
 
 
-#### E. Mobile Build   
+#### F. Mobile Build   
 
 ```sh
 # development
@@ -69,7 +91,7 @@ NODE_ENV=dev meteor run ios-device --mobile-server http://localhost:3000 --setti
 NODE_ENV=dev meteor run ios-device --mobile-server http://meteor-on-fhir.meteorapp.com --settings settings.dev.json
 ```    
 
-#### F. Publish to Testflight  
+#### G. Publish to Testflight  
 
 - [ ] Update version/build numbers
 - [ ] Set Deployment Target to iOS v10.0
