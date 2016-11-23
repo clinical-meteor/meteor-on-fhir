@@ -51,16 +51,16 @@ clinical:auto-resizing
 clinical:theming
 clinical:user-model
 clinical:accounts-housemd
-clinical:keybindings@1.3.4
-
-clinical:accounts-famous-dead-people
+clinical:keybindings
 
 clinical:hl7-resource-patient
 clinical:hl7-resource-practitioner
 clinical:hl7-resource-medication
 
+clinical:accounts-famous-dead-people
+awatson1978:accounts-muppets
+
 percolate:synced-cron
 
-awatson1978:accounts-muppets
 
 anti:gagarin
