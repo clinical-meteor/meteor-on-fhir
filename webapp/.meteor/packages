@@ -50,15 +50,15 @@ clinical:extended-api
 clinical:auto-resizing
 clinical:theming
 clinical:user-model
-clinical:accounts-housemd
 clinical:keybindings
 
 clinical:hl7-resource-patient
 clinical:hl7-resource-practitioner
 clinical:hl7-resource-medication
 
-clinical:accounts-famous-dead-people
-awatson1978:accounts-muppets
+#clinical:accounts-housemd
+#clinical:accounts-famous-dead-people
+#awatson1978:accounts-muppets
 
 percolate:synced-cron
 

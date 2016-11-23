@@ -62,6 +62,10 @@ test:
 
     - meteor npm install nightwatch starrynight chromedriver@2.19.0 phantomjs-prebuilt selenium-server-standalone-jar@2.45.0
 
+    - meteor list
+    - for p in `meteor list | grep '^[a-z]' | awk '{ print $1"@"$2 }'`; do echo "$p"; meteor show "$p" | grep -E '^  [a-z]'; echo; done
+
+
     - cat .meteor/nightwatch.json
     - "meteor run":
           background: true
