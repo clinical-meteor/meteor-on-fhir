@@ -1,5 +1,5 @@
-# Meteor on FHIR Forum
-We decided to write a Wordpress/Discourse clone using Meteor and FHIR resources.  
+# Meteor on FHIR 
+We decided to write a Health Information Exchange infrastructure.  The technical infrastructure uses MongoDB, Meteor, and React.  The HIE uses a wordpress business model, and is intended to be a distributed and federated peer-to-peer network.  We use HL7 Fast Healthcare Interoperability Resources (FHIR) for data exchange and interoperability.  
 
 [![CircleCI](https://circleci.com/gh/clinical-meteor/meteor-on-fhir/tree/master.svg?style=svg)](https://circleci.com/gh/clinical-meteor/meteor-on-fhir/tree/master)  
 
