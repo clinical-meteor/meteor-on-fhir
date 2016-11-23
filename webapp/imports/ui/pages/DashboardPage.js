@@ -44,7 +44,11 @@ export class DashboardPage extends React.Component {
   getMeteorData() {
 
     let data = {
-      style: {},
+      style: {
+        summaryCards: {
+          display: 'inline-block'
+        }
+      },
       state: {
         usersCount: 0,
         postsCount: 0,
@@ -55,7 +59,7 @@ export class DashboardPage extends React.Component {
       config: {
         chart: {
           title: {
-            text: "History"
+            text: 'History'
           }
           // backgroundColor: {
           //   linearGradient: [0, 0, 0, 400],
@@ -66,34 +70,34 @@ export class DashboardPage extends React.Component {
         xAxis: {
           // categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
           categories: Statistics.find().map(function(datum){
-            return moment(datum.date).format("MMM DD");
+            return moment(datum.date).format('MMM DD');
           })
         },
         // series: [{
         //   data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 295.6, 454.4]
         // }]
         series: [{
-          name: "Users",
+          name: 'Users',
           data: Statistics.find().map(function(datum){
             return datum.usersCount;
           })
         }, {
-          name: "Posts",
+          name: 'Posts',
           data: Statistics.find().map(function(datum){
             return datum.postsCount;
           })
         }, {
-          name: "Topics",
+          name: 'Topics',
           data: Statistics.find().map(function(datum){
             return datum.topicsCount;
           })
         }, {
-          name: "Patients",
+          name: 'Patients',
           data: Statistics.find().map(function(datum){
             return datum.patientsCount;
           })
         }, {
-          name: "Practitioners",
+          name: 'Practitioners',
           data: Statistics.find().map(function(datum){
             return datum.practitionersCount;
           })
@@ -107,35 +111,41 @@ export class DashboardPage extends React.Component {
     data.state.postsCount = Posts.find().count();
     data.state.topicsCount = Topics.find().count();
 
+    if (Session.get('appWidth') < 1024) {
+      data.style.summaryCards.display = 'none';
+    }
+
     return data;
   }
 
   render(){
     return(
-      <div id='dashboardPage' style={this.data.style}>
+      <div id='dashboardPage'>
         <PageContainer>
             <Spacer />
-            <GlassCard style={{width: '164px', marginRight: '40px', display: 'inline-block'}}>
-              <h2 style={{marginLeft: '10px'}}>{this.data.state.usersCount}</h2>
-              <h4 style={{marginLeft: '10px', color: 'gray'}}>Users</h4>
-            </GlassCard>
-            <GlassCard style={{width: '164px', marginRight: '40px', display: 'inline-block'}}>
-              <h2 style={{marginLeft: '10px'}}>{this.data.state.postsCount}</h2>
-              <h4 style={{marginLeft: '10px', color: 'gray'}}>Posts</h4>
-            </GlassCard>
-            <GlassCard style={{width: '164px', marginRight: '40px', display: 'inline-block'}}>
-              <h2 style={{marginLeft: '10px'}}>{this.data.state.topicsCount}</h2>
-              <h4 style={{marginLeft: '10px', color: 'gray'}}>Topics</h4>
-            </GlassCard>
-            <GlassCard style={{width: '164px', marginRight: '40px', display: 'inline-block'}}>
-              <h2 style={{marginLeft: '10px'}}>{this.data.state.patientsCount}</h2>
-              <h4 style={{marginLeft: '10px', color: 'gray'}}>Patients</h4>
-            </GlassCard>
-            <GlassCard style={{width: '164px', display: 'inline-block'}}>
-              <h2 style={{marginLeft: '10px'}}>{this.data.state.practitionersCount}</h2>
-              <h4 style={{marginLeft: '10px', color: 'gray'}}>Practitioners</h4>
-            </GlassCard>
-            <Spacer />
+            <div style={this.data.style.summaryCards }>
+              <GlassCard style={{width: '164px', marginRight: '40px', display: 'inline-block'}}>
+                <h2 style={{marginLeft: '10px'}}>{this.data.state.usersCount}</h2>
+                <h4 style={{marginLeft: '10px', color: 'gray'}}>Users</h4>
+              </GlassCard>
+              <GlassCard style={{width: '164px', marginRight: '40px', display: 'inline-block'}}>
+                <h2 style={{marginLeft: '10px'}}>{this.data.state.postsCount}</h2>
+                <h4 style={{marginLeft: '10px', color: 'gray'}}>Posts</h4>
+              </GlassCard>
+              <GlassCard style={{width: '164px', marginRight: '40px', display: 'inline-block'}}>
+                <h2 style={{marginLeft: '10px'}}>{this.data.state.topicsCount}</h2>
+                <h4 style={{marginLeft: '10px', color: 'gray'}}>Topics</h4>
+              </GlassCard>
+              <GlassCard style={{width: '164px', marginRight: '40px', display: 'inline-block'}}>
+                <h2 style={{marginLeft: '10px'}}>{this.data.state.patientsCount}</h2>
+                <h4 style={{marginLeft: '10px', color: 'gray'}}>Patients</h4>
+              </GlassCard>
+              <GlassCard style={{width: '164px', display: 'inline-block'}}>
+                <h2 style={{marginLeft: '10px'}}>{this.data.state.practitionersCount}</h2>
+                <h4 style={{marginLeft: '10px', color: 'gray'}}>Practitioners</h4>
+              </GlassCard>
+              <Spacer />
+            </div>
 
             <GlassCard>
               <ReactHighcharts title='Welcome back' config = {this.data.config}></ReactHighcharts>

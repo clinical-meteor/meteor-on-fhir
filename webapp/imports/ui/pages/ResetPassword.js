@@ -2,7 +2,7 @@ import React from 'react';
 import { Row, Col, Alert, FormGroup, ControlLabel, FormControl, Button } from 'react-bootstrap';
 import { handleResetPassword } from '/imports/modules/handleResetPassword';
 
-import { PageContainer } from '../components/PageContainer';
+import { PageContainer } from '/imports/ui/components/PageContainer';
 
 
 export class ResetPassword extends React.Component {

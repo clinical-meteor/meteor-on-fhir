@@ -34,6 +34,10 @@ export class AboutAppCard extends React.Component {
                  <td>ctrl+cmd+n</td>
                  <td>Hide/Show Navbars</td>
                </tr>
+               <tr className='themingRow' style={{cursor: 'pointer'}} >
+                 <td>ctrl+cmd+t</td>
+                 <td>Theming Controls</td>
+               </tr>
                <tr className='keybindingRow' style={{cursor: 'pointer'}} >
                  <td>ctrl+cmd+b</td>
                  <td>Left Offset</td>

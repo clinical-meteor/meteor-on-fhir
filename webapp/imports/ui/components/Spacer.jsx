@@ -1,16 +1,25 @@
 import React from 'react';
+import ReactMixin from 'react-mixin';
+import { ReactMeteorData } from 'meteor/react-meteor-data';
 
 const Spacer = React.createClass({
   getMeteorData() {
-    return {};
+    let data = {
+      style: {}
+    };
+    if (this.props && this.props.style) {
+      data.style = this.props.style;
+    }
+    data.style.height = '3.2rem';
+    return data;
   },
   render () {
-    let spacerStyle = {
-      height: '3.2rem'
-    };
     return(
-      <div class="spacer" style={spacerStyle}></div>
+      <div className="spacer" style={ this.data.style }></div>
     );
   }
 });
 export default Spacer;
+
+
+ReactMixin(Spacer.prototype, ReactMeteorData);

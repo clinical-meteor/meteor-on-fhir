@@ -3,14 +3,14 @@ import { Roles } from 'meteor/alanning:roles';
 import { Accounts } from 'meteor/accounts-base';
 
 const users = [{
-  email: 'admin@admin.com',
+  email: 'sysadmin@test.org',
   password: 'password',
   profile: {
     name: [{ given: 'Abigail', family: 'Watson' , text: 'Abigail Watson'}],
     avatar: "https://media.licdn.com/mpr/mpr/shrink_100_100/AAEAAQAAAAAAAAKeAAAAJDJkM2RmNTMzLWI4OGUtNDZmOC1iNTliLWYwOTc1ZWM0YmIyZg.jpg",
     birthdate: "1978/01/25"
   },
-  roles: ['admin'],
+  roles: ['sysadmin']
 }];
 
 users.forEach(({ email, password, profile, roles }) => {

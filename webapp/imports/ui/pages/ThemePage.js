@@ -11,9 +11,9 @@ import { Bert } from 'meteor/themeteorchef:bert';
 
 import { Session } from 'meteor/session';
 
-import { GlassCard } from '../components/GlassCard';
-import { PageContainer } from '../components/PageContainer';
-import OpacitySlider from '../components/OpacitySlider';
+import { GlassCard } from '/imports/ui/components/GlassCard';
+import { PageContainer } from '/imports/ui/components/PageContainer';
+import OpacitySlider from '/imports/ui/components/OpacitySlider';
 
 import { Meteor } from 'meteor/meteor';
 import { setUserTheme } from '../../api/users/methods';

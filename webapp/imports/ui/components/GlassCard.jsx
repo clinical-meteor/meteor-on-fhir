@@ -19,10 +19,12 @@ export class GlassCard extends React.Component {
       data.style = this.props.style;
     }
 
+    // GlassFactory.addOpacity(data.style);
     if (Session.get('globalOpacity')) {
       data.style.opacity = Session.get('globalOpacity');
     }
 
+    // GlassFactory.addDarkroom(data.style);
     if (Session.get('darkroomEnabled')) {
       data.style.color = 'black';
       data.style.background = 'white';
@@ -31,16 +33,18 @@ export class GlassCard extends React.Component {
       data.style.background = 'black';
     }
 
-    // this could be another mixin
+    // GlassFactory.addBlur(data.style);
     if (Session.get('glassBlurEnabled')) {
       data.style.filter = 'blur(3px)';
       data.style.webkitFilter = 'blur(3px)';
     }
 
-    // this could be another mixin
+    // GlassFactory.addBackgroundBlur(data.style);
     if (Session.get('backgroundBlurEnabled')) {
       data.style.backdropFilter = 'blur(5px)';
     }
+
+    // GlassFactory.addStyling(data);
 
     return data;
   }

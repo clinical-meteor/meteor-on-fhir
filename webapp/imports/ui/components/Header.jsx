@@ -42,11 +42,19 @@ export class Header extends React.Component {
         paddingLeft: '1.2rem',
         paddingRight: '1.2rem',
         paddingTop: '0.6rem'
+      },
+      app: {
+        title: ''
       }
     };
 
+    if (Meteor.settings && Meteor.settings.public && Meteor.settings.public.title) {
+      data.app.title = Meteor.settings.public.title;
+    }
+
     if (!Session.get('showNavbars')) {
       data.style.top = '-60px';
+      // data.style.top = '-6.4rem';
     }
 
     // this should all be handled by props
@@ -83,7 +91,12 @@ export class Header extends React.Component {
   }
 
   toggleDrawerActive(){
-    Session.toggle('drawerPinned');
+    // this is hacky
+    // taping on the Panel should autoclose the sidebar (we may even gray out the panel eventually)
+    // and we set a small timeout on the toggleDrawerActive to let closeOpenedSidebar() do it's thing first
+    Meteor.setTimeout(function(){
+      Session.toggle('drawerPinned');
+    }, 200);
   }
 
   renderNavigation(hasUser) {
@@ -97,8 +110,10 @@ export class Header extends React.Component {
   render () {
     return(
       <header className={style.appbar} flat style={this.data.style}>
-        <IconButton icon='menu' floating accent onClick={ this.toggleDrawerActive } style={{zIndex:10000}}/>
-        <h1 className={style.title} style={{paddingLeft: '20px'}}>Meteor on FHIR Forum</h1>
+        <IconButton id='sidebarToggleButton' icon='menu' floating accent onClick={ this.toggleDrawerActive } style={{zIndex:10000}}/>
+        <h1 className={style.title} style={{paddingLeft: '20px'}}>
+          {this.data.app.title}
+        </h1>
         <div className="eastHeaderElements" style={this.data.eastStyle} >
           { this.renderNavigation(this.data.hasUser) }
         </div>

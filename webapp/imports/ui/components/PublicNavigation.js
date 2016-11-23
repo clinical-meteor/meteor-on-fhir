@@ -2,7 +2,7 @@ import React from 'react';
 import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
-import { LinkContainer } from 'react-router-bootstrap';
+import { IndexLinkContainer } from 'react-router-bootstrap';
 import { Nav, NavItem } from 'react-bootstrap';
 
 export class PublicNavigation extends React.Component {
@@ -29,12 +29,12 @@ export class PublicNavigation extends React.Component {
   render () {
     return(
       <Nav id="publicNavigation" pullRight>
-        <LinkContainer to="signup">
+        <IndexLinkContainer to="signup">
           <NavItem id="signupLink" eventKey={ 2 } href="/signup" style={this.data.listItem} >Sign Up</NavItem>
-        </LinkContainer>
-        <LinkContainer to="login">
+        </IndexLinkContainer>
+        <IndexLinkContainer to="login">
           <NavItem id="loginLink" eventKey={ 3 } href="/login" style={this.data.listItem} >Log In</NavItem>
-        </LinkContainer>
+        </IndexLinkContainer>
       </Nav>
     );
   }

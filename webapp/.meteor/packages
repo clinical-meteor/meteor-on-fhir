@@ -13,25 +13,19 @@ tracker                 # Meteor's client-side reactive programming library
 
 standard-minifier-css   # CSS minifier run for production mode
 standard-minifier-js    # JS minifier run for production mode
-#es5-shim                # ECMAScript 5 compatibility for older browsers.
 ecmascript              # Enable ECMAScript2015+ syntax in app code
 
 autopublish             # Publish all data to the clients (for prototyping)
 insecure                # Allow all DB writes from clients (for prototyping)
 
-accounts-password
-accounts-base
 less
-
-#grove:less
 check
-audit-argument-checks
 reactive-dict
-#static-html
-#browser-policy
+accounts-base
+accounts-password
+audit-argument-checks
 
 
-#fourseven:scss
 aldeed:collection2
 alanning:roles
 themeteorchef:bert
@@ -40,10 +34,10 @@ dburles:factory
 
 momentjs:moment
 
-lmieulet:meteor-coverage
-practicalmeteor:chai
+#lmieulet:meteor-coverage
+#practicalmeteor:chai
+#practicalmeteor:mocha-console-runner
 #practicalmeteor:mocha
-practicalmeteor:mocha-console-runner
 #dispatch:mocha-phantomjs
 
 nathantreid:css-modules
@@ -51,22 +45,32 @@ react-meteor-data
 
 simple:dev-error-overlay
 
-#clinical:fonts
+clinical:fonts
 clinical:extended-api
 clinical:auto-resizing
 clinical:theming
-#clinical:keybindings
 clinical:user-model
-clinical:accounts-housemd
 clinical:keybindings
-
-clinical:accounts-famous-dead-people
 
 clinical:hl7-resource-patient
 clinical:hl7-resource-practitioner
+clinical:hl7-resource-medication
+clinical:hl7-resource-careplan
+clinical:hl7-resource-condition
+clinical:hl7-resource-encounter
+clinical:hl7-resource-goal
+clinical:hl7-resource-questionnaire
+clinical:hl7-resource-questionnaire-response
+
+# partially implemented in /imports/api
+#clinical:hl7-resource-observation
+#clinical:hl7-resource-device
+
+clinical:accounts-housemd
+clinical:accounts-famous-dead-people
+awatson1978:accounts-muppets
 
 percolate:synced-cron
 
-awatson1978:accounts-muppets
 
 anti:gagarin

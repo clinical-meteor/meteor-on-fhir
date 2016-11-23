@@ -31,31 +31,19 @@ export class PublicSidebar extends React.Component {
     return(
       <List style={{paddingLeft: '20px', position: 'absolute'}}>
         <IndexLinkContainer to='/'>
-           <ListItem eventKey={ 4 } caption='Index' href='/' />
-        </IndexLinkContainer>
-
-        <IndexLinkContainer to='/dashboard'>
-           <ListItem eventKey={ 1 } caption='Dashboard' href='/dashboard' />
-        </IndexLinkContainer>
-
-        <IndexLinkContainer to='/weblog'>
-           <ListItem eventKey={ 2 } caption='Weblog' href='/weblog' />
+           <ListItem eventKey={ 4 } caption='PatientIndex' href='/' />
         </IndexLinkContainer>
 
         <IndexLinkContainer to='/support'>
            <ListItem eventKey={ 3 } caption='Support' href='/support' />
         </IndexLinkContainer>
 
-        <IndexLinkContainer to='/patients'>
-           <ListItem eventKey={ 7 } caption='Patients' href='/patients' />
-        </IndexLinkContainer>
-
-        <IndexLinkContainer to='/practitioners'>
-           <ListItem eventKey={ 8 } caption='Practitioners' href='/practitioners' />
-        </IndexLinkContainer>
-
         <IndexLinkContainer to='/about'>
            <ListItem eventKey={ 10 } caption='About' href='/about' />
+        </IndexLinkContainer>
+
+        <IndexLinkContainer to='/privacy'>
+           <ListItem eventKey={ 10 } caption='Privacy Page' href='/privacy' />
         </IndexLinkContainer>
 
       </List>

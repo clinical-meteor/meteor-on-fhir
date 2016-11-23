@@ -2,7 +2,6 @@
   "rules": {
     "strict": 0,
     "indent": [2, 2],
-    "quotes": [2, "single"],
     "linebreak-style": [2, "unix"],
     "semi": [2, "always"],
     "no-unused-vars": ["warn", { "vars": "all", "args": "after-used" }],
@@ -26,10 +25,23 @@
     "meteor"
   ],
   "globals": {
+    "Meteor": true,
+    "Random": true,
+    "Roles": true,
     "React": true,
     "Session": true,
+    "HipaaLogger": true,
+    "CarePlans": true,
+    "Conditions": true,
+    "Devices": true,
+    "Encounters": true,
+    "Goals": true,
+    "Observations": true,
     "Patients": true,
     "Practitioners": true,
-    "moment": true
+    "check": true,
+    "moment": true,
+    "process": true,
+    "module": true
   }
 }

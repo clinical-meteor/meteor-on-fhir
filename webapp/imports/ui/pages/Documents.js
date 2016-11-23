@@ -4,10 +4,10 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 
 import { Row, Col } from 'react-bootstrap';
 import DocumentsList from '../containers/documents-list.js';
-import { AddDocument } from '../components/AddDocument.js';
+import { AddDocument } from '/imports/ui/components/AddDocument.js';
 
-import { PageContainer } from '../components/PageContainer';
-import { GlassCard } from '../components/GlassCard';
+import { PageContainer } from '/imports/ui/components/PageContainer';
+import { GlassCard } from '/imports/ui/components/GlassCard';
 import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
 
 export class Documents extends React.Component {

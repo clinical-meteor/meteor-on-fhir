@@ -28,7 +28,7 @@ export class ForumTopicsTable extends React.Component {
       topics: []
     };
 
-    if (Meteor.user() && Meteor.user().roles && (Meteor.user().roles[0] === 'admin')) {
+    if (Meteor.user() && Meteor.user().roles && (Meteor.user().roles[0] === 'sysadmin')) {
       data.state.isAdmin = true;
     }
 

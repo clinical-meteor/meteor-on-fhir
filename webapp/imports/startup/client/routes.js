@@ -8,7 +8,6 @@ import { PrivacyPage } from '/imports/ui/pages/PrivacyPage';
 import { DashboardPage } from '/imports/ui/pages/DashboardPage';
 import { Documents } from '/imports/ui/pages/Documents';
 import { ForumPage } from '/imports/ui/pages/ForumPage';
-import { Index } from '/imports/ui/pages/Index';
 import { Login } from '/imports/ui/pages/Login';
 import { MyProfilePage } from '/imports/ui/pages/MyProfilePage';
 import { PatientsPage } from '/imports/ui/pages/PatientsPage';
@@ -20,11 +19,28 @@ import { Weblog } from '/imports/ui/pages/Weblog';
 import { NotFound } from '/imports/ui/pages/NotFound';
 import { RecoverPassword } from '/imports/ui/pages/RecoverPassword';
 import { ResetPassword } from '/imports/ui/pages/ResetPassword';
+import { WelcomePatientPage } from '/imports/ui/pages/WelcomePatientPage';
 
 import { ConversationsPage } from '/imports/ui/pages/ConversationsPage';
 import { NewTopicPage } from '/imports/ui/pages/NewTopicPage';
 
+import { NeedToBeSysadmin } from '/imports/ui/pages/NeedToBeSysadmin';
+import { NeedToBePractitioner } from '/imports/ui/pages/NeedToBePractitioner';
 
+import { PatientIndex } from '/imports/ui/pages/PatientIndex';
+import { AdminIndex } from '/imports/ui/pages/AdminIndex';
+import { PractitionerIndex } from '/imports/ui/pages/PractitionerIndex';
+
+
+// we're storing the current route URL in a reactive variable
+// which will be used to update active controls
+// mostly used to toggle header and footer buttons
+Session.setDefault('pathname', '/');
+browserHistory.listen(function(event) {
+    Session.set('pathname', event.pathname)
+});
+
+// patient authentication function
 const requireAuth = (nextState, replace) => {
   if (!Meteor.loggingIn() && !Meteor.userId()) {
     replace({
@@ -34,11 +50,65 @@ const requireAuth = (nextState, replace) => {
   }
 };
 
+
+// const indexRouteAuth = (nextState, replace) => {
+//   if (!Meteor.loggingIn() && !Meteor.userId()) {
+//     replace({
+//       pathname: '/login',
+//       state: { nextPathname: nextState.location.pathname }
+//     });
+//   }
+//   if (Meteor.user()) {
+//     // the following logic would be a lot cleaner if we had a 'pracitioner' role
+//     if (Meteor.user().roles[0] === 'sysadmin') {
+//       replace({
+//         pathname: '/sysadmin',
+//         state: { nextPathname: nextState.location.pathname }
+//       });
+//     } else if (Meteor.user().roles[0] === 'practitioner') {
+//       replace({
+//         pathname: '/practitioner',
+//         state: { nextPathname: nextState.location.pathname }
+//       });
+//     } else {
+//       if (Meteor.user().profile.firstTimeVisit) {
+//         replace({
+//           pathname: '/welcome/patient',
+//           state: { nextPathname: nextState.location.pathname }
+//         });
+//       }
+//     }
+//   }
+// };
+
+
+// practitioner authentication function
+const requirePractitioner = (nextState, replace) => {
+  if (!Roles.userIsInRole(Meteor.userId(), 'practitioner')) {
+    replace({
+      pathname: '/need-to-be-practitioner',
+      state: { nextPathname: nextState.location.pathname }
+    });
+  }
+};
+// practitioner authentication function
+const requreSysadmin = (nextState, replace) => {
+  if (!Roles.userIsInRole(Meteor.userId(), 'sysadmin')) {
+    replace({
+      pathname: '/need-to-be-sysadmin',
+      state: { nextPathname: nextState.location.pathname }
+    });
+  }
+};
+
 Meteor.startup(() => {
   render(
     <Router history={ browserHistory }>
       <Route path="/" component={ App }>
-        <IndexRoute name="index" component={ Index } onEnter={ requireAuth } />
+        <IndexRoute name="index" component={ PatientIndex } onEnter={ requireAuth } />
+
+        <Route name="sysadmin" path="/sysadmin" component={ AdminIndex } onEnter={ requreSysadmin } />
+        <Route name="practitioner" path="/practitioner" component={ PractitionerIndex } onEnter={ requireAuth } />
 
         <Route name="documents" path="/documents" component={ Documents } onEnter={ requireAuth } />
         <Route name="login" path="/login" component={ Login } />
@@ -65,6 +135,11 @@ Meteor.startup(() => {
 
         <Route name="weblog" path="/weblog" component={ Weblog } />
         <Route name="weblogByUserId" path="/weblog/:userId" component={ Weblog } />
+
+        <Route name="welcomePatient" path="/welcome/patient" component={ WelcomePatientPage } onEnter={ requireAuth }/>
+
+        <Route name="needToBeSysadmin" path="/need-to-be-sysadmin" component={ NeedToBeSysadmin } />
+        <Route name="needToBePractitioner" path="/need-to-be-practitioner" component={ NeedToBePractitioner }  />
 
         <Route path="*" component={ NotFound } />
 

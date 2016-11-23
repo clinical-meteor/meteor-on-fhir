@@ -2,7 +2,7 @@
 // http://nightwatchjs.org/api
 
 module.exports = {
-  tags: ["itunes", "publish", "marketing"],
+  tags: ["itunes", "publish", "marketing", 'circle'],
   "iTunesConnect" : function (client) {
     client
       .resizeWindow(1024, 768)

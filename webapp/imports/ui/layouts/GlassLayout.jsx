@@ -15,6 +15,8 @@ import { IndexLinkContainer } from 'react-router-bootstrap';
 
 import { PublicSidebar }  from '/imports/ui/components/PublicSidebar';
 import { AuthenticatedSidebar }  from '/imports/ui/components/AuthenticatedSidebar';
+import { PatientSidebar }  from '/imports/ui/components/PatientSidebar';
+import { PractitionerSidebar }  from '/imports/ui/components/PractitionerSidebar';
 import { AdminSidebar }  from '/imports/ui/components/AdminSidebar';
 
 Session.setDefault('backgroundImagePath', 'url(\"images\/ForestInMist.jpg\")');
@@ -63,11 +65,15 @@ export class GlassLayout extends React.Component {
     if (Meteor.user()) {
       data.card.title = currentUser.fullName();
       if (Meteor.user().profile) {
-        data.card.subtitle = Meteor.user().profile.birthdate;
+        //data.card.subtitle = Meteor.user().profile.birthdate;
         data.card.avatar = Meteor.user().profile.avatar;
-        data.card.subtitle = 'Basic User';
+        data.card.subtitle = 'Patient';
       }
-      if (Meteor.user().roles && (Meteor.user().roles[0] === 'admin')) {
+      if (Meteor.user().roles && (Meteor.user().roles[0] === 'practitioner')) {
+        data.card.subtitle = 'Practitioner';
+        data.state.isAdmin = false;
+      }
+      if (Meteor.user().roles && (Meteor.user().roles[0] === 'sysadmin')) {
         data.card.subtitle = 'Admin';
         data.state.isAdmin = true;
       }
@@ -88,7 +94,10 @@ export class GlassLayout extends React.Component {
     return data;
   }
   toggleDrawerActive(){
-    Session.toggle('drawerPinned');
+    // Session.toggle('drawerPinned');
+    Meteor.setTimeout(function(){
+      Session.toggle('drawerPinned');
+    }, 200);
   }
   toggleSidebar() {
     Session.toggle('sidebarPinned');
@@ -98,10 +107,20 @@ export class GlassLayout extends React.Component {
       if (isAdmin) {
         return <AdminSidebar /> ;
       } else {
-        return <AuthenticatedSidebar /> ;
+        if (Meteor.user() && Meteor.user().roles && Meteor.user().roles[0] && (Meteor.user().roles[0] === 'practitioner')) {
+          return <PractitionerSidebar /> ;
+        } else {
+          return <PatientSidebar /> ;
+        }
       }
     } else {
       return <PublicSidebar /> ;
+    }
+  }
+  closeOpenedSidebar(){
+    //console.log("this.data.state[closeOpenedSidebar]", this.data.state);
+    if (Session.get('drawerPinned')) {
+      Session.set('drawerPinned', false);
     }
   }
   render(){
@@ -125,12 +144,12 @@ export class GlassLayout extends React.Component {
         </NavDrawer>
 
         <Panel pinned={this.data.state.drawerPinned} >
-          <div style={{ flex: 1, overflowY: 'auto', width: '100%' }}>
+          <div onClick={this.closeOpenedSidebar} style={{ flex: 1, overflowY: 'auto', width: '100%' }}>
             {this.props.children}
           </div>
         </Panel>
         <Sidebar pinned={ this.data.state.sidebarPinned } width={ 5 }>
-          <div><IconButton icon='close' onClick={ this.toggleSidebar }/></div>
+          <div><IconButton icon='close' onClick={ this.toggleDrawerActive }/></div>
           <div style={{ flex: 1 }}>
             <p>Supplemental content goes here.</p>
           </div>

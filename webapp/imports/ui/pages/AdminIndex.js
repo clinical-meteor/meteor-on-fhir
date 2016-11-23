@@ -5,12 +5,12 @@ import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import Spacer from '/imports/ui/components/Spacer';
 
-import { GlassCard } from '../components/GlassCard';
-import { PageContainer } from '../components/PageContainer';
+import { GlassCard } from '/imports/ui/components/GlassCard';
+import { PageContainer } from '/imports/ui/components/PageContainer';
 
 import { browserHistory } from 'react-router';
 
-export class Index extends React.Component {
+export class AdminIndex extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -60,26 +60,6 @@ export class Index extends React.Component {
       <div id='indexPage'>
         <PageContainer>
 
-          <div style={style.indexCardPadding} onClick={ this.openDiscussionForum.bind(this) }>
-            <GlassCard style={style.indexCard} >
-              <CardTitle
-                title='Discussion Forum'
-                subtitle='Get help developing healthcare apps using Meteor.js'
-              />
-            </GlassCard>
-          </div>
-
-          <div style={style.indexCardPadding} onClick={ this.openWeblog.bind(this) } >
-            <GlassCard style={style.indexCard} >
-              <CardTitle
-                title='Weblog'
-                subtitle='Post public thoughts using a Wordpress/Twitter style format.'
-              />
-            </GlassCard>
-          </div>
-
-          <Spacer />
-
           <div style={style.indexCardPadding} onClick={ this.openPatients.bind(this) } >
             <GlassCard style={style.indexCard} >
               <CardTitle
@@ -88,6 +68,7 @@ export class Index extends React.Component {
               />
             </GlassCard>
           </div>
+
           <div id="practitionersTile" style={style.indexCardPadding} onClick={ this.openPractitioners.bind(this) } >
             <GlassCard style={style.indexCard} >
               <CardTitle
@@ -97,22 +78,20 @@ export class Index extends React.Component {
             </GlassCard>
           </div>
 
-          <Spacer />
-
-          <div style={style.inactiveIndexCard}>
-            <GlassCard >
-              <CardTitle
-                title='Data Management'
-                subtitle='Import/export data.'
-              />
-            </GlassCard>
-          </div>
-
           <div style={style.indexCardPadding} onClick={ this.openUserManagement.bind(this) } >
             <GlassCard style={style.indexCard} >
               <CardTitle
                 title='User Management'
                 subtitle='Admin controls for user accounts.'
+              />
+            </GlassCard>
+          </div>
+
+          <div style={style.indexCardPadding} onClick={ this.openObservationpage.bind(this) } >
+            <GlassCard style={style.indexCard} >
+              <CardTitle
+                title='Observations'
+                subtitle='Observations from devices.'
               />
             </GlassCard>
           </div>
@@ -129,6 +108,15 @@ export class Index extends React.Component {
   openWeblog(){
     browserHistory.push('/weblog');
   }
+  openDevicepage(){
+    browserHistory.push('/devices');
+  }
+  openObservationpage(){
+    browserHistory.push('/observations');
+  }
+  openBreathalyzerpage(){
+    browserHistory.push('/breathalyzer');
+  }
   openUserManagement(){
     browserHistory.push('/users');
   }
@@ -142,55 +130,13 @@ export class Index extends React.Component {
     browserHistory.push('/practitioners');
   }
   openDataManagementPage(){
-    console.log('openDataManagementPage');
+    if(process.env.NODE_ENV === "test") console.log('openDataManagementPage');
   }
 }
 
 
 
-Index.propTypes = {
+AdminIndex.propTypes = {
   hasUser: React.PropTypes.object
 };
-ReactMixin(Index.prototype, ReactMeteorData);
-
-
-
-// <GlassCard>
-//   <CardTitle
-//     title='Imaging'
-//     subtitle='Radiology, pathology, and anatomical images.'
-//   />
-// </GlassCard>
-// <Spacer />
-//
-// <GlassCard>
-//   <CardTitle
-//     title='Medications'
-//     subtitle='Medication inventory and tracking.'
-//   />
-// </GlassCard>
-// <Spacer />
-//
-// <GlassCard>
-//   <CardTitle
-//     title='Laboratory'
-//     subtitle='Observations and reports from laboratories.'
-//   />
-// </GlassCard>
-// <Spacer />
-//
-// <GlassCard>
-//   <CardTitle
-//     title='Biometrics'
-//     subtitle='Biometrics tracking and device management.'
-//   />
-// </GlassCard>
-// <Spacer />
-//
-// <GlassCard>
-//   <CardTitle
-//     title='Genomics'
-//     subtitle='Genetic profiles and analysis.'
-//     disabled
-//   />
-// </GlassCard>
+ReactMixin(AdminIndex.prototype, ReactMeteorData);

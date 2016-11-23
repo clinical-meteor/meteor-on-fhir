@@ -8,13 +8,14 @@ machine:
   # Add some environment variables
   environment:
     CIRCLE_ENV: test
+    NODE_ENV: test
     CXX: g++-4.8
     DISPLAY: :99.0
     NPM_PREFIX: /home/ubuntu/nvm/v0.10.33
-    INITIALIZE: true
-    METEOR_OFFLINE_CATALOG: true
+    INITIALIZE: false
     Patients: true
     Practitioners: true
+    METEOR_SETTINGS: '{"public": {"title": "Meteor on FHIR"},"private": {"practitionerAccessCode": "hippocrates", "sysadminAccessCode": "rootaccess"}}'
 
 
 ## Customize checkout
@@ -58,15 +59,16 @@ test:
     - meteor update --release METEOR@1.3.4.1
     - sleep 60
     - meteor --version
-    - meteor npm install --save jquery bootstrap react react-dom react-router react-bootstrap react-komposer react-router-bootstrap faker jquery-validation react-addons-css-transition-group react-addons-pure-render-mixin react-toolbox react-mixin faker react-highcharts eslint-plugin-react eslint-plugin-meteor eslint-config-eslint
-    #- meteor npm install nightwatch selenium-server-standalone-jar chromedriver phantomjs-prebuilt
-    - meteor npm install
+    #- meteor npm install --save jquery bootstrap react react-dom react-router react-bootstrap react-komposer react-router-bootstrap faker jquery-validation react-addons-css-transition-group react-addons-pure-render-mixin react-toolbox react-mixin faker react-highcharts eslint-plugin-react eslint-plugin-meteor eslint-config-eslint
+    - meteor npm install --production
+    - meteor npm install nightwatch chromedriver@2.19.0 phantomjs-prebuilt selenium-server-standalone-jar@2.45.0
+
     - cat .meteor/nightwatch.json
-    - "meteor run":
+    - "meteor run --settings settings.dev.json":
           background: true
-    - sleep 180
+    - sleep 120
   override:
-    - meteor npm run-script nightwatch
+    - meteor npm run-script circle-nightwatch
 
 
 ## Customize deployment commands
