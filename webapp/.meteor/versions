@@ -97,6 +97,9 @@ nathantreid:css-modules-import-path-helpers@0.1.3
 npm-bcrypt@0.8.6_1
 npm-mongo@1.4.44_1
 observe-sequence@1.0.12
+omega:meteor-desktop-bundler@0.2.1
+omega:meteor-desktop-localstorage@0.0.11
+omega:meteor-desktop-watcher@0.2.1
 ordered-dict@1.0.8
 percolate:synced-cron@1.3.2
 prime8consulting:meteor-oauth2-server@0.0.2

@@ -20,19 +20,21 @@
     "monitor": "COVERAGE=1 meteor test --driver-package dispatch:mocha --port 5000",
     "nightwatch": "nightwatch -c .meteor/nightwatch.json",
     "phantom": "nightwatch -c .meteor/nightwatch.json --env phantom",
-    "circle-nightwatch": "nightwatch -c .meteor/nightwatch.circle.json --tag circle"
+    "circle-nightwatch": "nightwatch -c .meteor/nightwatch.circle.json --tag circle",
+    "desktop": "meteor-desktop"
   },
   "devDependencies": {
+    "chromedriver": "2.25.1",
     "eslint": "^2.13.0",
     "eslint-config-airbnb": "^7.0.0",
+    "eslint-plugin-jsx-a11y": "^0.6.2",
     "eslint-plugin-meteor": "^3.5.2",
     "eslint-plugin-react": "^4.3.0",
-    "eslint-plugin-jsx-a11y": "^0.6.2",
     "faker": "^3.1.0",
+    "meteor-desktop": "^0.2.1",
     "nightwatch": "0.9.8",
-    "selenium-standalone-jar": "3.0.1",
-    "chromedriver": "2.25.1",
-    "phantomjs-prebuilt": "2.1.12"
+    "phantomjs-prebuilt": "2.1.12",
+    "selenium-standalone-jar": "3.0.1"
   },
   "eslintConfig": {
     "parserOptions": {

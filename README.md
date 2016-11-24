@@ -1,4 +1,4 @@
-# Meteor on FHIR 
+# Meteor on FHIR
 For my Masters of Science in Biomedical Informatics, we are required to create a Capstone Project.  So I decided to write a Health Information Exchange infrastructure.  The technical infrastructure uses MongoDB (a modern hierarchical database, similar to the MUMPS/Cache database what Epic uses), a full-stack isomorphic javascript framework called Meteor, and Facebook's user interface layer React.  The HIE uses a wordpress business model, and is intended to be a distributed and federated peer-to-peer network.  We use HL7 Fast Healthcare Interoperability Resources (FHIR) for data exchange and interoperability.  
 
 [![CircleCI](https://circleci.com/gh/clinical-meteor/meteor-on-fhir/tree/master.svg?style=svg)](https://circleci.com/gh/clinical-meteor/meteor-on-fhir/tree/master)  
@@ -29,7 +29,7 @@ INITIALIZE=true Patients=true Practitioners=true meteor
 NODE_ENV=test INITIALIZE=true Patients=true Practitioners=true meteor --settings settings.dev.json
 
 ## general development
-meteor npm run-script start
+npm run desktop
 ```
 
 
@@ -103,6 +103,18 @@ NODE_ENV=dev meteor run ios-device --mobile-server http://meteor-on-fhir.meteora
 - [ ] Product > Archive > Validate
 - [ ] Product > Archive > Upload to App Store
 
+
+#### F. Desktop Build   
+
+```sh
+# run the app locally, as if you were doing a mobile build
+# (you may be able to just use the running mobile build server)
+NODE_ENV=dev meteor --mobile-server http://localhost:3000 --settings settings.dev.json
+
+# production
+# we need to specify the production server
+ meteor npm run-script desktop
+```    
 
 #### Licensing
 
