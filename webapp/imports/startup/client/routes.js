@@ -31,6 +31,7 @@ import { PatientIndex } from '/imports/ui/pages/PatientIndex';
 import { AdminIndex } from '/imports/ui/pages/AdminIndex';
 import { PractitionerIndex } from '/imports/ui/pages/PractitionerIndex';
 
+import { HexGridPage } from '/imports/ui/pages/HexGridPage';
 
 // we're storing the current route URL in a reactive variable
 // which will be used to update active controls
@@ -140,6 +141,8 @@ Meteor.startup(() => {
 
         <Route name="needToBeSysadmin" path="/need-to-be-sysadmin" component={ NeedToBeSysadmin } />
         <Route name="needToBePractitioner" path="/need-to-be-practitioner" component={ NeedToBePractitioner }  />
+
+        <Route name="hexGrid" path="/hex" component={ HexGridPage } />
 
         <Route path="*" component={ NotFound } />
 
