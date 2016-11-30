@@ -65,12 +65,14 @@ export class PageContainer extends React.Component {
     data.style.WebkitTransform = 'translate3d(0, 0, 0)';
     data.style.WebkitPerspective = 'translateZ(0px)';
 
+    data.style.height = Session.get('appHeight');
+
     return data;
   }
 
   render(){
     return (
-      <section style={this.data.style}>
+      <section className="pageContainer" style={this.data.style}>
           { this.props.children }
       </section>
     );

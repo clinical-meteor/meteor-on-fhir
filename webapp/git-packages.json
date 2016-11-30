@@ -3,9 +3,9 @@
     "git": "https://github.com/clinical-meteor/extended-api.git"
   },
   "clinical:hl7-resource-patient": {
-    "git": "https://github.com/clinical-meteor/hl7-=resource-patient.git"
+    "git": "https://github.com/clinical-meteor/hl7-resource-patient.git"
   },
   "clinical:hl7-resource-practitioner": {
-    "git": "https://github.com/clinical-meteor/hl7-=resource-practitioner.git"
+    "git": "https://github.com/clinical-meteor/hl7-resource-practitioner.git"
   }
 }

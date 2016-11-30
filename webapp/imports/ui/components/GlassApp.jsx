@@ -23,7 +23,9 @@ export class GlassApp extends React.Component {
     super(props);
   }
   componentDidMount() {
-    ReactDOM.findDOMNode(this.refs.BackgroundVideo).play();
+    if (this.refs.BackgroundVideo) {
+      ReactDOM.findDOMNode(this.refs.BackgroundVideo).play();
+    }
   }
 
   getMeteorData() {
