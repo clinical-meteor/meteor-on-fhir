@@ -28,7 +28,7 @@ INITIALIZE=true Patients=true Practitioners=true meteor
 ## general development
 NODE_ENV=test INITIALIZE=true Patients=true Practitioners=true meteor --settings settings.dev.json
 
-## general development
+## general development  for desktop app
 npm run desktop
 ```
 
@@ -38,7 +38,8 @@ You may need to install [Java SDK 8](http://www.oracle.com/technetwork/java/java
 
 ```sh
 ## install test tools
-meteor npm install nightwatch starrynight chromedriver phantomjs-prebuilt selenium-standalone-jar
+# meteor npm install nightwatch starrynight chromedriver phantomjs-prebuilt selenium-standalone-jar
+meteor npm install
 
 ## run validation tests (using nightwatch)
 meteor npm run-script nightwatch
@@ -111,8 +112,10 @@ NODE_ENV=dev meteor run ios-device --mobile-server http://meteor-on-fhir.meteora
 # (you may be able to just use the running mobile build server)
 NODE_ENV=dev meteor --mobile-server http://localhost:3000 --settings settings.dev.json
 
-# production
-# we need to specify the production server
+# then run the desktop build
+npm run desktop
+
+# or try the shortcut script
  meteor npm run-script desktop
 ```    
 
