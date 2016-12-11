@@ -45,7 +45,7 @@ dependencies:
     - if [ ! -e .meteor/meteor ]; then curl https://install.meteor.com?=release=1.3.4.1 | /bin/sh; else echo "Meteor seems to be cached"; fi;
 
     # Link the meteor executable into /usr/bin
-    - sudo ln -s .meteor/metepor /usr/bin/meteor
+    - sudo ln -s .meteor/meteor /usr/bin/meteor
 
   override:
     #- meteor list
