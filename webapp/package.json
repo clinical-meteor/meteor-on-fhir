@@ -18,7 +18,7 @@
     "production": "meteor deploy production.meteor.com --settings settings-production.json",
     "coverage": "COVERAGE=1 meteor",
     "monitor": "COVERAGE=1 meteor test --driver-package dispatch:mocha --port 5000",
-    "nightwatch": "nightwatch -c .meteor/nightwatch.json",
+    "nightwatch": "nightwatch -c .meteor/nightwatch.json --tag circle",
     "phantom": "nightwatch -c .meteor/nightwatch.json --env phantom",
     "circle-nightwatch": "nightwatch -c .meteor/nightwatch.circle.json --tag circle",
     "desktop": "meteor-desktop"

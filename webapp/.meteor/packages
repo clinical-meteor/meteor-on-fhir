@@ -63,8 +63,8 @@ clinical:hl7-resource-questionnaire
 clinical:hl7-resource-questionnaire-response
 
 # partially implemented in /imports/api
-#clinical:hl7-resource-observation
-#clinical:hl7-resource-device
+# clinical:hl7-resource-observation
+# clinical:hl7-resource-device
 
 clinical:accounts-housemd
 clinical:accounts-famous-dead-people
