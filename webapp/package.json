@@ -18,23 +18,10 @@
     "production": "meteor deploy production.meteor.com --settings settings-production.json",
     "coverage": "COVERAGE=1 meteor",
     "monitor": "COVERAGE=1 meteor test --driver-package dispatch:mocha --port 5000",
-    "nightwatch": "nightwatch -c .meteor/nightwatch.json",
+    "nightwatch": "nightwatch -c .meteor/nightwatch.json --tag circle",
     "phantom": "nightwatch -c .meteor/nightwatch.json --env phantom",
     "circle-nightwatch": "nightwatch -c .meteor/nightwatch.circle.json --tag circle",
     "desktop": "meteor-desktop"
-  },
-  "devDependencies": {
-    "chromedriver": "2.25.1",
-    "eslint": "^2.13.0",
-    "eslint-config-airbnb": "^7.0.0",
-    "eslint-plugin-jsx-a11y": "^0.6.2",
-    "eslint-plugin-meteor": "^3.5.2",
-    "eslint-plugin-react": "^4.3.0",
-    "faker": "^3.1.0",
-    "meteor-desktop": "^0.2.1",
-    "nightwatch": "0.9.8",
-    "phantomjs-prebuilt": "2.1.12",
-    "selenium-standalone-jar": "3.0.1"
   },
   "eslintConfig": {
     "parserOptions": {
@@ -62,20 +49,19 @@
   "dependencies": {
     "bootstrap": "^3.3.7",
     "classnames": "^2.2.5",
-    "eslint-config-eslint": "^3.0.0",
-    "eslint-plugin-meteor": "^3.6.0",
-    "eslint-plugin-react": "^4.3.0",
     "faker": "^3.1.0",
     "jquery": "^2.2.4",
     "jquery-validation": "^1.15.1",
     "material-ui": "^0.16.4",
     "normalize.css": "^4.1.1",
+    "onecolor": "^3.0.4",
     "react": "^15.4.0",
     "react-addons-css-transition-group": "^15.3.1",
     "react-addons-pure-render-mixin": "^15.3.1",
     "react-bootstrap": "^0.29.5",
     "react-dom": "^15.4.0",
     "react-fontawesome": "^1.4.0",
+    "react-hexgrid": "^0.1.5",
     "react-highcharts": "^8.4.2",
     "react-komposer": "^1.13.1",
     "react-mixin": "^3.0.5",
@@ -85,6 +71,21 @@
     "react-tap-event-plugin": "^2.0.1",
     "react-tappable": "^0.8.1",
     "react-toolbox": "^0.16.2"
+  },
+  "devDependencies": {
+    "chromedriver": "2.25.1",
+    "eslint": "^2.13.0",
+    "eslint-config-airbnb": "^7.0.0",
+    "eslint-plugin-jsx-a11y": "^0.6.2",
+    "eslint-plugin-meteor": "^3.5.2",
+    "eslint-plugin-react": "^4.3.0",
+    "meteor-desktop": "^0.2.1",
+    "nightwatch": "0.9.8",
+    "phantomjs-prebuilt": "2.1.12",
+    "selenium-standalone-jar": "3.0.1"
+  },
+  "peerDependencies": {
+    "react": "^0.14.7"
   },
   "cssModules": {
     "extensions": [
