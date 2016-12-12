@@ -7,9 +7,10 @@ import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import { Session } from 'meteor/session';
 import { Topics } from '/imports/api/topics/topics';
-import IconButton from 'react-toolbox/lib/button';
+import IconButton from 'material-ui/IconButton';
 
 import { removeTopicById } from '/imports/api/topics/methods';
+import { Bert } from 'meteor/themeteorchef:bert';
 
 export class ForumTopicsTable extends React.Component {
 
@@ -83,25 +84,14 @@ export class ForumTopicsTable extends React.Component {
   }
 
   rowClick(id){
-
-    //console.log('/topic/' + id);
-
     browserHistory.push('/topic/' + id);
-
-    // // set the user
-    // Session.set('selectedPatient', id);
-    //
-    // // set which tab is selected
-    // let state = Session.get('patientCardState');
-    // state['index'] = 2;
-    // Session.set('patientCardState', state);
   }
 
   renderAdminControls(isAdmin, i) {
     if (isAdmin) {
       return (
         <td>
-          <IconButton icon='clear' onClick={ this.removeTopic.bind(this, this.data.topics[i]._id) } />
+          <IconButton iconClassName="muidocs-icon-content-clear" onClick={ this.removeTopic.bind(this, this.data.topics[i]._id) } />
         </td>
       );
     }
@@ -173,6 +163,5 @@ export class ForumTopicsTable extends React.Component {
 }
 
 
-ForumTopicsTable.propTypes = {};
-ForumTopicsTable.defaultProps = {};
+
 ReactMixin(ForumTopicsTable.prototype, ReactMeteorData);

@@ -6,7 +6,7 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
 import Avatar from 'react-toolbox/lib/avatar';
 
-import IconButton from 'react-toolbox/lib/button';
+import IconButton from 'material-ui/IconButton';
 import { browserHistory } from 'react-router';
 import { Bert } from 'meteor/themeteorchef:bert';
 
@@ -62,7 +62,7 @@ export class UserTable extends React.Component {
     if (isAdmin) {
       return (
         <td>
-          <IconButton icon='clear' onClick={ this.removeUser.bind(this, this.data.users[i]._id) } />
+          <IconButton iconClassName="muidocs-icon-content-clear" onClick={ this.removeUser.bind(this, this.data.users[i]._id) } />
         </td>
       );
     }
@@ -141,5 +141,4 @@ export class UserTable extends React.Component {
   }
 }
 
-UserTable.propTypes = {};
 ReactMixin(UserTable.prototype, ReactMeteorData);
