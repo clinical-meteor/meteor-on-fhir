@@ -2,7 +2,7 @@ import React from 'react';
 import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
-import Avatar from 'react-toolbox/lib/avatar';
+import Avatar from 'material-ui/Avatar';
 import { Table } from 'react-bootstrap';
 
 
@@ -24,7 +24,8 @@ export default class PatientTable extends React.Component {
           gender: person.gender,
           name: person.name ? person.name[0].text : "",
           birthdate: moment(person.birthDate).format("YYYY-MM-DD"),
-          photo: person.photo ? person.photo[0].url: ""
+          photo: person.photo ? person.photo[0].url : "/thumbnail-blank.png",
+          initials: 'abc'
         };
       })
     };
@@ -48,26 +49,25 @@ export default class PatientTable extends React.Component {
       data.style.backdropFilter = "blur(5px)";
     }
 
-    console.log("data", data);
-
+    console.log("PatientTable[data]", data);
 
     return data;
-  };
+  }
   handleChange(row, key, value) {
     const source = this.state.source;
     source[row][key] = value;
     this.setState({source});
-  };
+  }
 
   handleSelect(selected) {
     this.setState({selected});
-  };
+  }
   getDate(){
-    return "YYYY/MM/DD"
-  };
+    return "YYYY/MM/DD";
+  }
   noChange(){
     return "";
-  };
+  }
   rowClick(id){
     // set the user
     Session.set("selectedPatient", id);
@@ -76,7 +76,7 @@ export default class PatientTable extends React.Component {
     let state = Session.get('patientCardState');
     state["index"] = 2;
     Session.set('patientCardState', state);
-  };
+  }
   render () {
     let tableRows = [];
     for (var i = 0; i < this.data.patients.length; i++) {
@@ -84,7 +84,7 @@ export default class PatientTable extends React.Component {
         <tr key={i} className="patientRow" style={{cursor: "pointer"}} onClick={ this.rowClick.bind('this', this.data.patients[i]._id)} >
 
           <td>
-            <Avatar><img src={this.data.patients[i].photo }/></Avatar>
+            <Avatar src={this.data.patients[i].photo} />
           </td>
 
           <td>{this.data.patients[i].name }</td>
@@ -93,7 +93,7 @@ export default class PatientTable extends React.Component {
           <td>{this.data.patients[i].active}</td>
           <td><span className="barcode">{this.data.patients[i]._id}</span></td>
         </tr>
-      )
+      );
     }
 
 
@@ -115,20 +115,8 @@ export default class PatientTable extends React.Component {
       </Table>
 
     );
-    // return(
-    //   <Table
-    //     model={PatientModel}
-    //     onChange={this.handleChange}
-    //     onSelect={this.handleSelect}
-    //     selectable
-    //     selected={this.data.selected}
-    //     source={this.data.source}
-    //     onChange={this.noChange}
-    //   />
-    // );
   }
 }
 
 
-PatientTable.propTypes = {};
 ReactMixin(PatientTable.prototype, ReactMeteorData);

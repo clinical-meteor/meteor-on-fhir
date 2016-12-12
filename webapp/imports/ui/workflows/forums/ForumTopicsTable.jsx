@@ -1,6 +1,6 @@
 import { Table } from 'react-bootstrap';
 import { browserHistory } from 'react-router';
-import Avatar from 'react-toolbox/lib/avatar';
+import Avatar from 'material-ui/Avatar';
 import React from 'react';
 import ReactMixin from 'react-mixin';
 
@@ -45,7 +45,8 @@ export class ForumTopicsTable extends React.Component {
           activity: record.activity ?  moment(record.activity).fromNow() : '',
           createdAt: moment(record.createdAt).format('YYYY-MM-DD'),
           createdByAvatar: record.createdBy ? record.createdBy.avatar : '/thumbnail-blank.png',
-          photo: record.photo ? record.photo[0].url: '/thumbnail-blank.png'
+          photo: record.photo ? record.photo[0].url : '/thumbnail-blank.png',
+          initials: record.name[0]
         };
       });
     }
@@ -113,7 +114,9 @@ export class ForumTopicsTable extends React.Component {
           <td onClick={ this.rowClick.bind('this', this.data.topics[i]._id)}>{this.data.topics[i].name }</td>
           <td onClick={ this.rowClick.bind('this', this.data.topics[i]._id)}> {this.data.topics[i].category}</td>
           <td onClick={ this.rowClick.bind('this', this.data.topics[i]._id)}>
-            <Avatar><img src={this.data.topics[i].createdByAvatar }/></Avatar>
+            <Avatar src={this.data.topics[i].createdByAvatar}>
+              {this.data.topics[i].initials}
+            </Avatar>
           </td>
 
           <td onClick={ this.rowClick.bind('this', this.data.topics[i]._id)}>{this.data.topics[i].createdAt }</td>

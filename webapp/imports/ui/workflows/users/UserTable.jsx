@@ -4,7 +4,7 @@ import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
 import { Meteor } from 'meteor/meteor';
-import Avatar from 'react-toolbox/lib/avatar';
+import Avatar from 'material-ui/Avatar';
 
 import IconButton from 'material-ui/IconButton';
 import { browserHistory } from 'react-router';
@@ -81,7 +81,7 @@ export class UserTable extends React.Component {
       tableRows.push(
       <tr key={i}>
         <td>
-          <Avatar><img src={this.data.users[i].profile ? this.data.users[i].profile.avatar : '/thumbnail-blank.png' }/></Avatar>
+          <Avatar src={this.data.users[i].profile ? this.data.users[i].profile.avatar : '/thumbnail-blank.png' } />
         </td>
         <td onClick={this.routeToWeblog.bind(this, this.data.users[i]._id)} style={{cursor: 'pointer'}}>/weblog/{this.data.users[i]._id}</td>
         <td>{this.data.users[i].username}</td>

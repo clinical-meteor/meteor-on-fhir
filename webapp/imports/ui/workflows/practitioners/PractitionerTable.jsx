@@ -2,7 +2,7 @@ import React from 'react';
 import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
-import Avatar from 'react-toolbox/lib/avatar';
+import Avatar from 'material-ui/Avatar';
 
 import { Table } from 'react-bootstrap';
 
@@ -90,7 +90,7 @@ export default class PractitionerTable extends React.Component {
       tableRows.push(
       <tr className='practitionerRow' key={i} style={{cursor: 'pointer'}} onClick={ this.rowClick.bind('this', this.data.practitioners[i]._id) }>
         <td className="avatar">
-          <Avatar><img src={this.data.practitioners[i].photo }/></Avatar>
+          <Avatar src={this.data.practitioners[i].photo} />
         </td>
         <td className="username">{this.data.practitioners[i].username}</td>
         <td className="name">{this.data.practitioners[i].name}</td>
