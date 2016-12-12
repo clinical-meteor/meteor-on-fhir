@@ -1,4 +1,6 @@
-import IconButton from 'react-toolbox/lib/button';
+import IconButton from 'material-ui/IconButton';
+import ActionHome from 'material-ui/svg-icons/action/home';
+
 import React  from 'react';
 import ReactMixin from 'react-mixin';
 
@@ -19,7 +21,6 @@ export class Header extends React.Component {
         top: '0px',
         width: '100%',
         display: 'flex',
-        // height: '6.4rem',
         alignItems: 'center',
         padding: '0 2.4rem',
         opacity: Session.get('globalOpacity'),
@@ -54,7 +55,6 @@ export class Header extends React.Component {
 
     if (!Session.get('showNavbars')) {
       data.style.top = '-60px';
-      // data.style.top = '-6.4rem';
     }
 
     // this should all be handled by props
@@ -110,7 +110,14 @@ export class Header extends React.Component {
   render () {
     return(
       <header className={style.appbar} flat style={this.data.style}>
-        <IconButton id='sidebarToggleButton' icon='menu' floating accent onClick={ this.toggleDrawerActive } style={{zIndex:10000}}/>
+        <IconButton
+        id='sidebarToggleButton'
+        iconClassName="muidocs-icon-custom-github"
+        onClick={ this.toggleDrawerActive }
+        style={{zIndex:10000}}
+        >
+          <ActionHome />
+        </IconButton>
         <h1 className={style.title} style={{paddingLeft: '20px'}}>
           {this.data.app.title}
         </h1>
@@ -122,10 +129,4 @@ export class Header extends React.Component {
   }
 }
 
-Header.propTypes = {
-
-};
-Header.defaultProps = {
-
-};
 ReactMixin(Header.prototype, ReactMeteorData);

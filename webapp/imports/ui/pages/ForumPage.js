@@ -45,8 +45,6 @@ export class ForumPage extends React.Component {
   }
 
   renderAuthenticatedUserControls(isLoggedIn) {
-    //console.log("renderAuthenticatedUserControls");
-
     if (isLoggedIn) {
       return (
         <div>
