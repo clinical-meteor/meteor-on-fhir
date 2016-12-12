@@ -31,13 +31,12 @@ export class PatientSidebar extends React.Component {
   }
 
   handleLogout() {
-    console.log("handleLogout");
+    //console.log("handleLogout");
     Meteor.logout();
   }
 
   handleProfile() {
     browserHistory.push('/myprofile');
-    // $('body')[0].click();
   }
 
   render () {
@@ -45,8 +44,12 @@ export class PatientSidebar extends React.Component {
       <div id='patientSidebar'>
         <List style={{paddingLeft: '20px', position: 'absolute'}}>
 
+          <IndexLinkContainer to='/'>
+            <ListItem className="indexItem" eventKey={ 4.1 } href='/' caption='Index' />
+          </IndexLinkContainer>
+
           <IndexLinkContainer to='/myprofile'>
-            <ListItem className="profileMenuItem" leftIcon='face' eventKey={ 4.1 } href='/myprofile' caption='Profile' />
+            <ListItem className="profileMenuItem" eventKey={ 4.1 } href='/myprofile' caption='Profile' />
           </IndexLinkContainer>
 
           <IndexLinkContainer to='/medications'>

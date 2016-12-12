@@ -3,7 +3,7 @@ import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
 import Input from 'react-toolbox/lib/input';
-import Button from 'react-toolbox/lib/button';
+import RaisedButton from 'material-ui/RaisedButton';
 
 import { insertMedication, updateMedication, removeMedicationById } from '../../../api/medications/methods';
 import { Bert } from 'meteor/themeteorchef:bert';
@@ -164,13 +164,13 @@ export default class MedicationDetail extends React.Component {
     if (medicationId) {
       return (
         <div>
-          <Button id="saveMedicationButton" label="Save" onClick={this.handleSaveButton.bind(this)} />
-          <Button id="deleteMedicationButton" label="Delete" onClick={this.handleDeleteButton.bind(this)} />
+          <RaisedButton id="saveMedicationButton" label="Save" primary={true} onClick={this.handleSaveButton.bind(this)} />
+          <RaisedButton id="deleteMedicationButton" label="Delete" onClick={this.handleDeleteButton.bind(this)} />
         </div>
       );
     } else {
       return(
-        <Button id="saveMedicationButton" label="Save" onClick={this.handleSaveButton.bind(this)} />
+        <RaisedButton id="saveMedicationButton" label="Save" primary={true} onClick={this.handleSaveButton.bind(this)} />
       );
     }
   }

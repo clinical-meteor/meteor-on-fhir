@@ -3,9 +3,11 @@ import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
 import { CardTitle } from 'material-ui/Card';
+import RaisedButton from 'material-ui/RaisedButton';
+import FontIcon from 'material-ui/FontIcon';
+
 import { Image } from 'react-bootstrap';
 import { Tab, Tabs } from 'react-toolbox/lib/tabs';
-import Button from 'react-toolbox/lib/button';
 import Input from 'react-toolbox/lib/input';
 import { Bert } from 'meteor/themeteorchef:bert';
 
@@ -142,7 +144,11 @@ export class ThemePage extends React.Component {
                   <OpacitySlider />
                   <br />
                   <label>Darkroom</label>
-                  <Button ref='darkroomButton' icon='exposure' onClick={this.clickOnDarkroomButton} style={{marginLeft: '20px', backgroundColor: '#dddddd'}} />
+                  <RaisedButton
+                  ref='darkroomButton'
+                  icon={<FontIcon className="muidocs-icon-image-exposure" />}
+                  onClick={this.clickOnDarkroomButton}
+                  style={{marginLeft: '20px', backgroundColor: '#dddddd'}} />
                 </div>
 
               </Tab>

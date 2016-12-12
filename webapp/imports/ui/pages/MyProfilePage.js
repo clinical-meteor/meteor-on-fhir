@@ -2,7 +2,7 @@ import { CardTitle } from 'material-ui/Card';
 import { Col, Grid } from 'react-bootstrap';
 import { Tab, Tabs } from 'react-toolbox/lib/tabs';
 import { browserHistory } from 'react-router';
-import Button from 'react-toolbox/lib/button';
+import RaisedButton from 'material-ui/RaisedButton';
 import Input from 'react-toolbox/lib/input';
 import React from 'react';
 import ReactMixin from 'react-mixin';
@@ -96,10 +96,10 @@ export class MyProfilePage extends React.Component {
       }
     }
 
-    //console.log(''data'', data);
+    if(process.env.NODE_ENV === "test") console.log("MyProfilePage[data]" , data);
 
     return data;
-  };
+  }
 
 
   render(){
@@ -140,7 +140,13 @@ export class MyProfilePage extends React.Component {
                       <Input type='text' label='oldPassword' name='oldPassword' ref='oldPassword' style={this.data.style} value={this.data.state.oldPassword} onChange={ this.changeState.bind(this, 'oldPassword') } />
                       <Input type='text' label='newPassword' name='newPassword' ref='newPassword' style={this.data.style} value={this.data.state.newPassword} onChange={ this.changeState.bind(this, 'newPassword') } />
                       <Input type='text' label='confirmPassword' name='confirmPassword' ref='confirmPassword' style={this.data.style} value={this.data.state.confirmPassword} onChange={ this.changeState.bind(this, 'confirmPassword') } />
-                      <Button id='changePasswordButton' icon='bookmark' label='Change Password' onClick={this.changePassword.bind(this)} raised primary />
+                      <RaisedButton
+                        id='changePasswordButton'
+                        label='Change Password'
+                        onClick={this.changePassword.bind(this)}
+                        icon={<FontIcon className="muidocs-icon-action-bookmark" />}
+                        primary={true}
+                        />
                     </div>
 
                   </Tab>
@@ -214,7 +220,7 @@ export class MyProfilePage extends React.Component {
   }
 
   handleChangeAvatar() {
-    console.log('Lets change the avatar...', this.refs.avatar.refs.input.value);
+    if(process.env.NODE_ENV === "test") console.log('Lets change the avatar...', this.refs.avatar.refs.input.value);
 
     Meteor.users.update({  _id: Meteor.userId()}, {$set:{
       'profile.avatar': this.refs.avatar.refs.input.value
@@ -224,7 +230,7 @@ export class MyProfilePage extends React.Component {
     let state = Session.get('myProfileState');
     state.wantsToDelete = true;
     Session.set('myProfileState', state);
-  };
+  }
   handleConfirm() {
     let state = Session.get('myProfileState');
     state.confirm = this.refs.confirm.refs.input.value;
@@ -233,7 +239,7 @@ export class MyProfilePage extends React.Component {
   confirmDelete() {
     // janky, but it works, i guess
     if ((this.refs.confirm.refs.input.value === Meteor.userId()) || (this.refs.confirm.refs.input.value === Meteor.user().emails[0].address)) {
-      console.log('Confirm _id match.  Removing.');
+      if(process.env.NODE_ENV === "test") console.log('Confirm _id match.  Removing.');
 
       removeUserById.call({
         _id:  Meteor.userId()

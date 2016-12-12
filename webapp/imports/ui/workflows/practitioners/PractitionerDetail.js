@@ -3,7 +3,7 @@ import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
 import Input from 'react-toolbox/lib/input';
-import Button from 'react-toolbox/lib/button';
+import RaisedButton from 'material-ui/RaisedButton';
 
 import { CardText, CardActions } from 'material-ui/Card';
 
@@ -30,7 +30,7 @@ export default class PractitionerDetail extends React.Component {
         name: "",
         photo: ""
       }
-    }
+    };
 
     if (Session.get('selectedPractitioner')) {
       data.practitionerId = Session.get('selectedPractitioner');
@@ -46,7 +46,7 @@ export default class PractitionerDetail extends React.Component {
           name: selectedPractitioner.name ? selectedPractitioner.name.text : "",
           given: selectedPractitioner.name ? selectedPractitioner.name.given : "",
           family: selectedPractitioner.name ? selectedPractitioner.name.family : ""
-        }
+        };
       }
     }
 
@@ -55,7 +55,7 @@ export default class PractitionerDetail extends React.Component {
     }
 
     return data;
-  };
+  }
 
 
   // this could be a mixin
@@ -87,13 +87,14 @@ export default class PractitionerDetail extends React.Component {
     console.log("practitionerUpdate", practitionerUpdate);
 
     Session.set('practitionerDetailState', practitionerUpdate);
-  };
+  }
+
   openTab(index){
     // set which tab is selected
     let state = Session.get('practitionerCardState');
     state["index"] = index;
     Session.set('practitionerCardState', state);
-  };
+  }
 
   // this could be a mixin
   handleSaveButton(){
@@ -106,7 +107,7 @@ export default class PractitionerDetail extends React.Component {
         'photo': [{
           url: this.refs.photo.refs.input.value
         }]
-      }
+      };
 
       if (this.refs.active.refs.input.value === "true") {
         practitionerFormData.active = true;
@@ -164,13 +165,13 @@ export default class PractitionerDetail extends React.Component {
     if (practitionerId) {
       return (
         <div>
-          <Button id="savePractitionerButton" label="Save" onClick={this.handleSaveButton.bind(this)} />
-          <Button id="deletePractitionerButton" label="Delete" onClick={this.handleDeleteButton.bind(this)} />
+          <RaisedButton id="savePractitionerButton" primary={true} label="Save" onClick={this.handleSaveButton.bind(this)} />
+          <RaisedButton id="deletePractitionerButton" label="Delete" onClick={this.handleDeleteButton.bind(this)} />
         </div>
       );
     } else {
       return(
-        <Button id="savePractitionerButton" label="Save" onClick={this.handleSaveButton.bind(this)} />
+        <RaisedButton id="savePractitionerButton" primary={true} label="Save" onClick={this.handleSaveButton.bind(this)} />
       );
     }
   };

@@ -8,7 +8,7 @@ import Spacer from              '/imports/ui/components/Spacer';
 import { ForumTopicsTable } from    '/imports/ui/workflows/forums/ForumTopicsTable';
 
 import { Meteor } from 'meteor/meteor';
-import Button from 'react-toolbox/lib/button';
+import RaisedButton from 'material-ui/RaisedButton';
 
 import { browserHistory } from 'react-router';
 
@@ -48,7 +48,7 @@ export class ForumPage extends React.Component {
     if (isLoggedIn) {
       return (
         <div>
-          <Button onMouseUp={this.newTopic.bind(this)} raised >New Topic</Button>
+          <RaisedButton label="New Topic" onMouseUp={this.newTopic.bind(this)} />
           <Spacer />
         </div>
       );
@@ -60,7 +60,7 @@ export class ForumPage extends React.Component {
       <div id="forumPage">
         <PageContainer>
           { this.renderAuthenticatedUserControls(this.data.state.isLoggedIn) }
-          <GlassCard>
+          <GlassCard style={{minHeight: "300px"}}>
             <ForumTopicsTable />
           </GlassCard>
         </PageContainer>

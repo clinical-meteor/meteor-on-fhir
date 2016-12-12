@@ -3,7 +3,8 @@ import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
 import Input from 'react-toolbox/lib/input';
-import Button from 'react-toolbox/lib/button';
+import RaisedButton from 'material-ui/RaisedButton';
+import FontIcon from 'material-ui/FontIcon';
 
 import { PageContainer } from '/imports/ui/components/PageContainer';
 import { GlassCard } from '/imports/ui/components/GlassCard';
@@ -93,8 +94,8 @@ export class UsersPage extends React.Component {
                   <Input type='text' label='family name' name='family' value={this.data.state.family} onChange={ this.changeState.bind(this, 'family')} />
                </CardText>
                <CardActions>
-                 <Button label="Save" onClick={this.handleSaveButton} />
-                 <Button label="Clear" onClick={this.handleCancelButton} />
+                 <RaisedButton label="Save" primary={true} onClick={this.handleSaveButton} />
+                 <RaisedButton label="Clear" onClick={this.handleCancelButton} />
                </CardActions>
              </Tab>
            </Tabs>

@@ -5,7 +5,7 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 import { CardTitle, CardText, CardActions } from 'material-ui/Card';
 import { GlassCard } from '/imports/ui/components/GlassCard';
 
-import Button from 'react-toolbox/lib/button';
+import RaisedButton from 'material-ui/RaisedButton';
 import { Bert } from 'meteor/themeteorchef:bert';
 import { removePost } from '/imports/api/posts/methods';
 
@@ -67,6 +67,7 @@ export class ConversationPosts extends React.Component {
         topicId: this.props.topicId
       },{sort: {createdAt: 1}}).fetch();
     }
+
     //console.log('data.posts', data.posts);
 
     return data;
@@ -116,18 +117,11 @@ export class ConversationPosts extends React.Component {
   }
 
   renderCardActions(i, item){
-    // console.log("self", self);
-    // console.log("canManagePost", canManagePost);
-    // console.log("i", i);
-    // console.log("item", item);
-
-    // <Button className='editButton' label='Edit' style={{color: 'lightgray'}} />
-
     if (item && item.createdBy && item.createdBy.reference) {
       if (item.createdBy.reference === Meteor.userId()) {
         return (
           <CardActions>
-            <Button className='deleteButton' onMouseUp={this.handleDeleteButton.bind(self, i, item)} label='Delete' style={{color: 'lightgray'}} />
+            <RaisedButton className='deleteButton' onMouseUp={this.handleDeleteButton.bind(self, i, item)} label='Delete' style={{color: 'lightgray'}} />
           </CardActions>
         );
       }
@@ -135,8 +129,6 @@ export class ConversationPosts extends React.Component {
   }
 
   handleDeleteButton(index, post){
-    //console.log("handleDeleteButton");
-
     removePost.call({
       _id: post._id
     }, (error) => {
@@ -150,6 +142,4 @@ export class ConversationPosts extends React.Component {
 }
 
 
-ConversationPosts.propTypes = {};
-ConversationPosts.defaultProps = {};
 ReactMixin(ConversationPosts.prototype, ReactMeteorData);

@@ -1,10 +1,11 @@
-import { CardTitle, CardText, CardActions } from 'material-ui/Card';
-import Button from 'react-toolbox/lib/button';
 import React from 'react';
 import ReactMixin from 'react-mixin';
 
 import { GlassCard } from '/imports/ui/components/GlassCard';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
+
+import { CardTitle, CardText, CardActions } from 'material-ui/Card';
+import RaisedButton from 'material-ui/RaisedButton';
 
 import { removeDevice } from '/imports/api/devices/methods.js';
 import { DynamicSpacer } from '/imports/ui/components/DynamicSpacer';
@@ -89,7 +90,7 @@ export default class DevicesDeck extends React.Component {
 			       if (item.createdBy && item.createdBy.avatar) {
 				   createdByAvatar = item.createdBy.avatar;
 			       }
-			       
+
 			       return (
 				       <div className='deviceCard' key={i}>
 				       <GlassCard>
@@ -119,11 +120,6 @@ export default class DevicesDeck extends React.Component {
   }
 
 
-  // <CardActions>
-  //   <Button className='editButton' label='Edit' style={{color: 'lightgray'}} />
-  //   <Button className='deleteButton' onMouseUp={self.handleDeleteButton.bind(self, i, item)} label='Delete' style={{color: 'lightgray'}} />
-  // </CardActions>
-
   handleDeleteButton(index, device){
     if(process.env.NODE_ENV === "test") console.log('handleDeleteButton');
 
@@ -140,13 +136,11 @@ export default class DevicesDeck extends React.Component {
 
   renderCardActions(i, item){
 
-    // <Button className='editButton' label='Edit' style={{color: 'lightgray'}} />
-
     if (item && item.createdBy && item.createdBy.reference) {
       if (item.createdBy.reference === Meteor.userId()) {
         return (
           <CardActions>
-            <Button className='deleteButton' onMouseUp={this.handleDeleteButton.bind(self, i, item)} label='Delete' style={{color: 'lightgray'}} />
+            <RaisedButton className='deleteButton' primary=true} onMouseUp={this.handleDeleteButton.bind(self, i, item)} label='Delete' style={{color: 'lightgray'}} />
           </CardActions>
         );
       }

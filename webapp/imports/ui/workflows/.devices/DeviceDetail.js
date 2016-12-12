@@ -5,7 +5,8 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 import Input from 'react-toolbox/lib/input';
 import { CardText, CardActions } from 'material-ui/Card';
 
-import Button from 'react-toolbox/lib/button';
+import RaisedButton from 'material-ui/RaisedButton';
+import FontIcon from 'material-ui/FontIcon';
 
 import { insertDevice, updateDevice, removeDeviceById } from '../../../api/devices/methods';
 import { Bert } from 'meteor/themeteorchef:bert';
@@ -67,7 +68,7 @@ export default class DeviceDetail extends React.Component {
     if (deviceId) {
       return (
         <div>
-          <Button label="Save" onClick={this.handleSaveDevice.bind(this)} />
+          <Button label="Save" primary={true} onClick={this.handleSaveDevice.bind(this)} />
           <Button label="Delete" onClick={this.handleDeleteButton.bind(this)} />
         </div>
       );

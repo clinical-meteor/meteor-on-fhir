@@ -3,7 +3,7 @@ import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
 import Input from 'react-toolbox/lib/input';
-import Button from 'react-toolbox/lib/button';
+import RaisedButton from 'material-ui/RaisedButton';
 
 import { CardText, CardActions } from 'material-ui/Card';
 
@@ -29,7 +29,7 @@ export default class PatientDetail extends React.Component {
         birthdate: new Date(),
         photo: ""
       }
-    }
+    };
 
     if (Session.get('selectedPatient')) {
       data.patientId = Session.get('selectedPatient');
@@ -43,7 +43,7 @@ export default class PatientDetail extends React.Component {
           active: selectedPatient.active.toString(),
           photo: selectedPatient.photo ? selectedPatient.photo[0].url : "",
           name: selectedPatient.name ? selectedPatient.name[0].text : ""
-        }
+        };
       }
     }
 
@@ -54,7 +54,7 @@ export default class PatientDetail extends React.Component {
     //console.log("data", data);
 
     return data;
-  };
+  }
 
   render() {
     return (
@@ -76,16 +76,17 @@ export default class PatientDetail extends React.Component {
     if (patientId) {
       return (
         <div>
-          <Button label="Save" onClick={this.handleSaveButton.bind(this)} />
-          <Button label="Delete" onClick={this.handleDeleteButton.bind(this)} />
+          <RaisedButton label="Save" primary={true} onClick={this.handleSaveButton.bind(this)} />
+          <RaisedButton label="Delete" onClick={this.handleDeleteButton.bind(this)} />
         </div>
       );
     } else {
       return(
-        <Button label="Save" onClick={this.handleSaveButton.bind(this)} />
+        <RaisedButton label="Save" primary={true} onClick={this.handleSaveButton.bind(this)} />
       );
     }
-  };
+  }
+
   // this could be a mixin
   changeState(field, value){
 
@@ -99,7 +100,7 @@ export default class PatientDetail extends React.Component {
       active: true,
       name: "",
       photo: ""
-    }
+    };
 
     // if there's an existing patient, use them
     if (Session.get('selectedPatient')) {
@@ -119,13 +120,14 @@ export default class PatientDetail extends React.Component {
     console.log("patientUpdate", patientUpdate);
 
     Session.set('patientDetailState', patientUpdate);
-  };
+  }
+
   openTab(index){
     // set which tab is selected
     let state = Session.get('patientCardState');
     state["index"] = index;
     Session.set('patientCardState', state);
-  };
+  }
 
   // this could be a mixin
   handleSaveButton(){
@@ -140,7 +142,7 @@ export default class PatientDetail extends React.Component {
         'photo': [{
           url: this.refs.photo.refs.input.value
         }]
-      }
+      };
 
       if (this.refs.active.refs.input.value === "true") {
         patientFormData.active = true;
@@ -153,7 +155,7 @@ export default class PatientDetail extends React.Component {
 
     if (Session.get('selectedPatient')) {
       console.log("update practioner");
-      //Meteor.users.insert(patientFormData);
+
       updatePatient.call(
         {_id: Session.get('selectedPatient'), update: patientFormData }, (error) => {
         if (error) {
@@ -183,7 +185,8 @@ export default class PatientDetail extends React.Component {
   // this could be a mixin
   handleCancelButton(){
     console.log("handleCancelButton");
-  };
+  }
+
   handleDeleteButton(){
     removePatientById.call(
       {_id: Session.get('selectedPatient')}, (error) => {
@@ -200,6 +203,6 @@ export default class PatientDetail extends React.Component {
 
 
 PatientDetail.propTypes = {
-  hasUser: React.PropTypes.object,
+  hasUser: React.PropTypes.object
 };
 ReactMixin(PatientDetail.prototype, ReactMeteorData);

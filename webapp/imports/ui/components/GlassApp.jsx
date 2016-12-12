@@ -84,8 +84,6 @@ export class GlassApp extends React.Component {
         // }
       } else {
         // user does not have a theme set
-        console.log("User doesn't have a profile; using the global default background.");
-
         this.useGlobalDefaultBackground(data.app.style);
       }
     } else {
@@ -113,9 +111,6 @@ export class GlassApp extends React.Component {
     style.MozBackgroundSize = 'cover';
     style.OBackgroundSize = 'cover';
     style.backgroundSize = 'cover';
-
-    console.log("useGlobalDefaultBackground", style);
-
 
     return style;
   }

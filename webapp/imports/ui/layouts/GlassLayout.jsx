@@ -4,7 +4,6 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 
 import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session';
-import IconButton  from 'react-toolbox/lib/button';
 import { CardTitle } from 'material-ui/Card';
 import User  from '/imports/api/User';
 import Layout  from '/imports/ui/layouts/Layout';
@@ -35,8 +34,6 @@ export class GlassLayout extends React.Component {
   getMeteorData() {
 
     var currentUser = new User(Meteor.user());
-    //console.log('currentUser', currentUser);
-    //console.log('currentUser.fullName()', currentUser.fullName());
 
     let data = {
       state: {
@@ -148,9 +145,10 @@ export class GlassLayout extends React.Component {
           </div>
         </Panel>
         <Sidebar pinned={ this.data.state.sidebarPinned } width={ 5 }>
-          <div><IconButton icon='close' onClick={ this.toggleDrawerActive }/></div>
-          <div style={{ flex: 1 }}>
-            <p>Supplemental content goes here.</p>
+          <div id='sidebarContent' style={{borderLeft: '1px solid lightgray', padding: '10px', height: '100%'}}>
+            <div style={{ flex: 1 }}>
+              <p>Sidebar content goes here.</p>
+            </div>
           </div>
         </Sidebar>
       </Layout>
@@ -160,6 +158,4 @@ export class GlassLayout extends React.Component {
 
 
 
-GlassLayout.propTypes = {};
-GlassLayout.defaultProps = {};
 ReactMixin(GlassLayout.prototype, ReactMeteorData);

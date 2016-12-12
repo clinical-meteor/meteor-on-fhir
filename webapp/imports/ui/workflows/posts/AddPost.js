@@ -7,7 +7,7 @@ import Input  from 'react-toolbox/lib/input';
 import { insertPost } from '/imports/api/posts/methods';
 import { GlassCard } from '/imports/ui/components/GlassCard';
 
-import Button from 'react-toolbox/lib/button';
+import RaisedButton from 'material-ui/RaisedButton';
 
 import { Meteor } from 'meteor/meteor';
 
@@ -60,7 +60,7 @@ export class AddPost extends React.Component {
             onChange={this.changePost.bind(this)}
             placeholder="Type some text and press enter to create a post..."
            />
-          <Button id="addPostButton" onMouseUp={ this.handleInsertPost.bind(this) } raised primary >New Post</Button>
+          <RaisedButton id="addPostButton" onMouseUp={ this.handleInsertPost.bind(this) } primary={true} label='New Post' />
         </CardText>
       </GlassCard>
     );
@@ -95,5 +95,4 @@ export class AddPost extends React.Component {
 
 
 
-AddPost.propTypes = {};
 ReactMixin(AddPost.prototype, ReactMeteorData);

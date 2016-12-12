@@ -14,7 +14,7 @@ import { Session } from 'meteor/session';
 import { insertTopic } from '/imports/api/topics/methods';
 import { insertPost } from '/imports/api/posts/methods';
 
-import Button from 'react-toolbox/lib/button';
+import RaisedButton from 'material-ui/RaisedButton';
 import { browserHistory } from 'react-router';
 
 Session.setDefault('topicName', false);
@@ -94,7 +94,7 @@ export class AddForumTopic extends React.Component {
         if (Meteor.user().profile && Meteor.user().profile.avatar) {
           newPost.createdBy.avatar = Meteor.user().profile.avatar;
         }
-        
+
         console.log("newPost", newPost);
 
         insertPost.call(newPost, (error) => {
@@ -139,7 +139,7 @@ export class AddForumTopic extends React.Component {
               onChange={this.changePost.bind(this)}
               rows='5'
               />
-              <Button onMouseUp={ this.handleInsertPost.bind(this) } raised primary >New Topic</Button>
+              <RaisedButton onMouseUp={ this.handleInsertPost.bind(this) } primary={true} label='New Topic' />
 
           </FormGroup>
         </CardText>
@@ -157,5 +157,4 @@ export class AddForumTopic extends React.Component {
 }
 
 
-AddForumTopic.propTypes = {};
 ReactMixin(AddForumTopic.prototype, ReactMeteorData);

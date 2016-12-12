@@ -1,5 +1,5 @@
 import { CardText, CardActions } from 'material-ui/Card';
-import Button from 'react-toolbox/lib/button';
+import RaisedButton from 'material-ui/RaisedButton';
 import Input from 'react-toolbox/lib/input';
 import React from 'react';
 import ReactMixin from 'react-mixin';
@@ -158,13 +158,13 @@ export default class PractitionerDetail extends React.Component {
     if (practitionerId) {
       return (
         <div>
-          <Button label="Save" onClick={this.handleSaveButton.bind(this)} />
-          <Button label="Delete" onClick={this.handleDeleteButton.bind(this)} />
+          <RaisedButton label="Save" primary={true} onClick={this.handleSaveButton.bind(this)} />
+          <RaisedButton label="Delete" onClick={this.handleDeleteButton.bind(this)} />
         </div>
       );
     } else {
       return(
-        <Button label="Save" onClick={this.handleSaveButton.bind(this)} />
+        <RaisedButton label="Save" primary={true}onClick={this.handleSaveButton.bind(this)} />
       );
     }
   }
