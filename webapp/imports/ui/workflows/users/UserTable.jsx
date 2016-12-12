@@ -4,7 +4,6 @@ import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
 import { Meteor } from 'meteor/meteor';
-import { Accounts } from 'meteor/accounts-base';
 import Avatar from 'react-toolbox/lib/avatar';
 
 import IconButton from 'react-toolbox/lib/button';

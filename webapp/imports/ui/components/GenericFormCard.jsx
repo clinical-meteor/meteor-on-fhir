@@ -1,19 +1,10 @@
 import React from 'react';
 import ReactMixin from 'react-mixin';
-import { ReactMeteorData, createContainer } from 'meteor/react-meteor-data';
+import { ReactMeteorData } from 'meteor/react-meteor-data';
 
-import AppBar from 'react-toolbox/lib/app_bar';
-import Button from 'react-toolbox/lib/button';
 import Input from 'react-toolbox/lib/input';
-import Table from 'react-toolbox/lib/table';
-import Dialog from 'react-toolbox/lib/dialog';
-import Spacer from './Spacer';
 
-// import './style';
-
-import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
-import { List, ListItem, ListSubHeader, ListDivider, ListCheckbox } from 'react-toolbox/lib/list';
-import { DatePicker, DatePickerDialog, Calendar, CalendarDay, CalendarMonth } from 'react-toolbox/lib/date_picker';
+import { Card, CardTitle, CardText } from 'material-ui/Card';
 
 
 let defaultState = {
@@ -24,7 +15,7 @@ let defaultState = {
   date1: "",
   date2: "",
   date3: ""
-}
+};
 Session.setDefault('genericFormState', defaultState);
 
 

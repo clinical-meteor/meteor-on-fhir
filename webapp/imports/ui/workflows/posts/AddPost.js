@@ -2,14 +2,12 @@ import React from 'react';
 import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
-import { FormGroup, FormControl } from 'react-bootstrap'
-import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card'
-import Input  from 'react-toolbox/lib/input'
-import { insertPost } from '/imports/api/posts/methods'
-import { GlassCard } from '/imports/ui/components/GlassCard'
+import { CardTitle, CardText } from 'material-ui/Card';
+import Input  from 'react-toolbox/lib/input';
+import { insertPost } from '/imports/api/posts/methods';
+import { GlassCard } from '/imports/ui/components/GlassCard';
 
 import Button from 'react-toolbox/lib/button';
-import { browserHistory } from 'react-router';
 
 import { Meteor } from 'meteor/meteor';
 

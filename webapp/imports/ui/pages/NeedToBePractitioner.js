@@ -3,7 +3,7 @@ import React from 'react';
 import { AboutAppCard } from '/imports/ui/components/AboutAppCard';
 import { GlassCard } from '/imports/ui/components/GlassCard';
 import { PhoneContainer } from '/imports/ui/components/PhoneContainer';
-import { CardTitle, CardText } from 'react-toolbox/lib/card';
+import { CardTitle, CardText } from 'material-ui/Card';
 
 export class NeedToBePractioner extends React.Component {
   constructor(props) {

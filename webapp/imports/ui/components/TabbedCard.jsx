@@ -1,8 +1,7 @@
 import React from 'react';
-import AppBar from 'react-toolbox/lib/app_bar';
 import Button from 'react-toolbox/lib/button';
 import Input from 'react-toolbox/lib/input';
-import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
+import { Card, CardActions } from 'material-ui/Card';
 import {Tab, Tabs} from 'react-toolbox/lib/tabs';
 import PatientTable from '../workflows/patients/PatientTable';
 import { UserTable } from '../workflows/users/UserTable';
@@ -19,7 +18,7 @@ let defaultState = {
   address: "",
   city: "",
   zip: ""
-}
+};
 Session.setDefault('tabbedCardState', defaultState);
 
 

@@ -1,4 +1,4 @@
-import { CardTitle } from 'react-toolbox/lib/card';
+import { CardTitle } from 'material-ui/Card';
 import { Col, Grid } from 'react-bootstrap';
 import { Tab, Tabs } from 'react-toolbox/lib/tabs';
 import { browserHistory } from 'react-router';

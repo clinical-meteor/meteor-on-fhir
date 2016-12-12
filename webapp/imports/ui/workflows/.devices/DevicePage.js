@@ -4,11 +4,9 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 
 import { PageContainer } from '/imports/ui/components/PageContainer';
 import { GlassCard } from '/imports/ui/components/GlassCard';
-import { CardTitle, CardText } from 'react-toolbox/lib/card';
+import { CardTitle, CardText } from 'material-ui/Card';
 
-// import DevicesList from '../containers/devices-list';
 import DeviceDetail from '../workflows/devices/DeviceDetail';
-import { DevicesDeck } from '../workflows/devices/DevicesDeck';
 import { Tab, Tabs } from 'react-toolbox/lib/tabs';
 
 import { Meteor } from 'meteor/meteor';

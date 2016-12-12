@@ -1,15 +1,9 @@
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import React  from 'react';
-import { Row, Col } from 'react-bootstrap';
 import ReactMixin  from 'react-mixin';
-import Button  from 'react-toolbox/lib/button';
-import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
-import Input  from 'react-toolbox/lib/input';
 import { Tab, Tabs } from 'react-toolbox/lib/tabs';
-import { AddDocument } from '/imports/ui/components/AddDocument.js';
 import { GlassCard } from '/imports/ui/components/GlassCard';
 import { PageContainer } from '/imports/ui/components/PageContainer';
-import DocumentsList  from '../containers/documents-list.js';
 
 import MedicationDetail from '../workflows/medications/MedicationDetail';
 import MedicationTable from '../workflows/medications/MedicationTable';

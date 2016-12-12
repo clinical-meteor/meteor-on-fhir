@@ -1,10 +1,9 @@
-import { IndexLinkContainer, LinkContainer } from 'react-router-bootstrap';
+import { IndexLinkContainer } from 'react-router-bootstrap';
 import { List, ListItem } from 'react-toolbox/lib/list';
 import React from 'react';
 import ReactMixin from 'react-mixin';
 import { browserHistory } from 'react-router';
 import { Meteor } from 'meteor/meteor';
-import FontAwesome from 'react-fontawesome';
 import { Session } from 'meteor/session';
 
 import { ReactMeteorData } from 'meteor/react-meteor-data';

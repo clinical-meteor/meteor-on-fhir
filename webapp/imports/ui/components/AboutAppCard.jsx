@@ -1,5 +1,5 @@
 import React from 'react';
-import { CardTitle, CardText } from 'react-toolbox/lib/card';
+import { CardTitle, CardText } from 'material-ui/Card';
 import { Link } from 'react-router';
 import { Table } from 'react-bootstrap';
 

@@ -2,11 +2,7 @@ import React from 'react';
 import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
-// import Avatar from 'react-toolbox/lib/avatar';
 import { Table } from 'react-bootstrap';
-
-import { CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
-// import Checkbox from 'material-ui/Checkbox';
 import Toggle from 'material-ui/Toggle';
 
 Session.setDefault('selectedMedications', []);

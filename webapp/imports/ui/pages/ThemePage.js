@@ -2,7 +2,7 @@ import React from 'react';
 import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
-import { CardTitle } from 'react-toolbox/lib/card';
+import { CardTitle } from 'material-ui/Card';
 import { Image } from 'react-bootstrap';
 import { Tab, Tabs } from 'react-toolbox/lib/tabs';
 import Button from 'react-toolbox/lib/button';

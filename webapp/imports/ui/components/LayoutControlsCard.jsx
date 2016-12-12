@@ -1,9 +1,6 @@
 import React from 'react';
-import AppBar from 'react-toolbox/lib/app_bar';
-import Button from 'react-toolbox/lib/button';
 import Checkbox from 'react-toolbox/lib/checkbox';
-import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
-// import './style';
+import { Card, CardTitle, CardText } from 'material-ui/Card';
 
 
 LayoutControlsCard = React.createClass({

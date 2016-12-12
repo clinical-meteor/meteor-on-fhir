@@ -5,7 +5,7 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session';
 import IconButton  from 'react-toolbox/lib/button';
-import { CardTitle } from 'react-toolbox/lib/card';
+import { CardTitle } from 'material-ui/Card';
 import User  from '/imports/api/User';
 import Layout  from '/imports/ui/layouts/Layout';
 import NavDrawer  from '/imports/ui/layouts/NavDrawer';
@@ -14,7 +14,6 @@ import Sidebar  from '/imports/ui/layouts/Sidebar';
 import { IndexLinkContainer } from 'react-router-bootstrap';
 
 import { PublicSidebar }  from '/imports/ui/components/PublicSidebar';
-import { AuthenticatedSidebar }  from '/imports/ui/components/AuthenticatedSidebar';
 import { PatientSidebar }  from '/imports/ui/components/PatientSidebar';
 import { PractitionerSidebar }  from '/imports/ui/components/PractitionerSidebar';
 import { AdminSidebar }  from '/imports/ui/components/AdminSidebar';

@@ -1,4 +1,4 @@
-import { CardText, CardActions } from 'react-toolbox/lib/card';
+import { CardText, CardActions } from 'material-ui/Card';
 import Button from 'react-toolbox/lib/button';
 import Input from 'react-toolbox/lib/input';
 import React from 'react';

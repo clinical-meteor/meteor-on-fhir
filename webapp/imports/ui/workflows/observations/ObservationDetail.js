@@ -5,23 +5,11 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 import Input from 'react-toolbox/lib/input';
 import Button from 'react-toolbox/lib/button';
 
-import { Row, Col } from 'react-bootstrap';
-import DocumentsList from '../../containers/documents-list.js';
-import { AddDocument } from '/imports/ui/components/AddDocument.js';
-
-import { PageContainer } from '/imports/ui/components/PageContainer';
-import { GlassCard } from '/imports/ui/components/GlassCard';
-import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
-
-
-import {Tab, Tabs} from 'react-toolbox/lib/tabs';
-import ObservationTable from '../../workflows/observations/ObservationTable';
+import { CardText, CardActions } from 'material-ui/Card';
 
 import { insertObservation, updateObservation, removeObservationById } from '../../../api/observations/methods';
 import { Bert } from 'meteor/themeteorchef:bert';
 
-import DatePicker from 'react-toolbox/lib/date_picker';
-//import { DatePicker, DatePickerDialog, Calendar, CalendarDay, CalendarMonth } from 'react-toolbox/lib/date_picker';
 
 let defaultState = false;
 
@@ -33,13 +21,13 @@ export default class ObservationDetail extends React.Component {
     let data = {
       observationId: false,
       observation: {
-        observationType: "",
-	observationValue: "",
-	observationUnits: "",
-	observationStatus: "",
-        patientId: "",
+        observationType: '',
+        observationValue: '',
+        observationUnits: '',
+        observationStatus: '',
+        patientId: ''
       }
-    }
+    };
 
     if (Session.get('selectedObservation')) {
       data.observationId = Session.get('selectedObservation');
@@ -48,12 +36,12 @@ export default class ObservationDetail extends React.Component {
       if (selectedObservation) {
         data.observation = {
           id: selectedObservation._id,
-	  observationType: selectedObservation.observationType,
-	  observationValue: selectedObservation.observationValue,
-	  observationUnits: selectedObservation.observationUnits,
-	  observationStatus: selectedObservation.observationStatus,
-	  patientId: selectedObservation.patientId
-        }
+          observationType: selectedObservation.observationType,
+          observationValue: selectedObservation.observationValue,
+          observationUnits: selectedObservation.observationUnits,
+          observationStatus: selectedObservation.observationStatus,
+          patientId: selectedObservation.patientId
+        };
       }
     }
 
@@ -64,7 +52,7 @@ export default class ObservationDetail extends React.Component {
     //console.log("data", data);
 
     return data;
-  };
+  }
 
   render() {
       if (this.data.observation.patientid) {
@@ -221,6 +209,6 @@ export default class ObservationDetail extends React.Component {
 
 
 ObservationDetail.propTypes = {
-  hasUser: React.PropTypes.object,
+  hasUser: React.PropTypes.object
 };
 ReactMixin(ObservationDetail.prototype, ReactMeteorData);

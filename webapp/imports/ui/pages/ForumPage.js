@@ -2,7 +2,6 @@ import React from 'react';
 import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
-import { AddForumTopic } from   '/imports/ui/workflows/forums/AddForumTopic';
 import { PageContainer } from   '/imports/ui/components/PageContainer';
 import { GlassCard } from       '/imports/ui/components/GlassCard';
 import Spacer from              '/imports/ui/components/Spacer';

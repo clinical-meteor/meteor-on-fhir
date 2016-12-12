@@ -1,9 +1,6 @@
-import { createContainer } from 'meteor/react-meteor-data'
-import { Session } from 'meteor/session'
-import React  from 'react'
-import AppBar  from 'react-toolbox/lib/app_bar'
-import Button  from 'react-toolbox/lib/button'
-import Slider  from 'react-toolbox/lib/slider'
+import { Session } from 'meteor/session';
+import React  from 'react';
+import Slider  from 'react-toolbox/lib/slider';
 
 Session.setDefault('globalOpacity', 0.95);
 

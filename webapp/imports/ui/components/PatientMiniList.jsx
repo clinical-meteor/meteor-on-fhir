@@ -1,24 +1,6 @@
 import React from 'react';
-import AppBar from 'react-toolbox/lib/app_bar';
-import Button from 'react-toolbox/lib/button';
-import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
-import Table from 'react-toolbox/lib/table';
-import { List, ListItem, ListSubHeader, ListDivider, ListCheckbox } from 'react-toolbox/lib/list';
-
-// const UserModel = {
-//   name: {type: String},
-//   twitter: {type: String},
-//   birthdate: {type: Date},
-//   cats: {type: Number},
-//   dogs: {type: Number},
-//   active: {type: Boolean}
-// };
-//
-// const users = [
-//   {name: 'Javi Jimenez', twitter: '@soyjavi', birthdate: new Date(1980, 3, 11), cats: 1},
-//   {name: 'Javi Velasco', twitter: '@javivelasco', birthdate: new Date(1987, 1, 1), dogs: 1, active: true}
-// ];
-
+import { Card } from 'material-ui/Card';
+import { List, ListItem, ListSubHeader, ListDivider } from 'react-toolbox/lib/list';
 
 
 PatientMiniList = React.createClass({
@@ -35,7 +17,7 @@ PatientMiniList = React.createClass({
         checkbox: false
       },
       patients: []
-    }
+    };
 
     if (Session.get('darkroomEnabled')) {
       data.style.color = "black";
@@ -61,7 +43,7 @@ PatientMiniList = React.createClass({
         let item = {
           avatar: "",
           caption: ""
-        }
+        };
         if (patient && patient.photo && patient.photo[0] && patient.photo[0].url) {
           item.avatar = patient.photo[0].url;
         }

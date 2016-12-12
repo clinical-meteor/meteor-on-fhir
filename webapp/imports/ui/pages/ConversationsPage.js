@@ -6,7 +6,7 @@ import Spacer from                      '/imports/ui/components/Spacer';
 import { PageContainer } from           '/imports/ui/components/PageContainer';
 import { AddPostToConversation } from   '/imports/ui/workflows/conversations/AddPostToConversation';
 import { ConversationPosts } from       '/imports/ui/workflows/conversations/ConversationPosts';
-import { CardTitle } from 'react-toolbox/lib/card';
+import { CardTitle } from 'material-ui/Card';
 import { GlassCard } from '/imports/ui/components/GlassCard';
 import { DynamicSpacer } from '/imports/ui/components/DynamicSpacer';
 

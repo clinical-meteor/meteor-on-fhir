@@ -5,13 +5,9 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 import Input from 'react-toolbox/lib/input';
 import Button from 'react-toolbox/lib/button';
 
-import { Row, Col } from 'react-bootstrap';
-import DocumentsList from '../containers/documents-list.js';
-import { AddDocument } from '/imports/ui/components/AddDocument.js';
-
 import { PageContainer } from '/imports/ui/components/PageContainer';
 import { GlassCard } from '/imports/ui/components/GlassCard';
-import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
+import { CardText, CardActions } from 'material-ui/Card';
 
 import {Tab, Tabs} from 'react-toolbox/lib/tabs';
 import { UserTable } from '../workflows/users/UserTable';
@@ -23,9 +19,8 @@ let defaultState = {
   username: "",
   email: "",
   given: "",
-  family: "",
-
-}
+  family: ""
+};
 Session.setDefault('userCardTabbedState', defaultState);
 
 
@@ -39,7 +34,7 @@ export class UsersPage extends React.Component {
         opacity: Session.get('globalOpacity')
       },
       state: defaultState
-    }
+    };
 
     if (Session.get('userCardTabbedState')) {
       data.state = Session.get('userCardTabbedState');

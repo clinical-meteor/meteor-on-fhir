@@ -2,22 +2,19 @@ import React  from 'react';
 import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
-import { CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
+import { CardTitle, CardText, CardActions } from 'material-ui/Card';
 import { GlassCard } from '/imports/ui/components/GlassCard';
 
 import Button from 'react-toolbox/lib/button';
 import { Bert } from 'meteor/themeteorchef:bert';
 import { removePost } from '/imports/api/posts/methods';
 
-import Spacer from '/imports/ui/components/Spacer';
 import { DynamicSpacer } from '/imports/ui/components/DynamicSpacer';
 
 import { Meteor } from 'meteor/meteor';
 
 export class ConversationPosts extends React.Component {
   getMeteorData() {
-    //console.log("getMeteorData() this.props", this.props);
-
 
     // this should all be handled by props
     // or a mixin!

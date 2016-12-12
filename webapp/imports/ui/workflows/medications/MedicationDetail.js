@@ -8,7 +8,7 @@ import Button from 'react-toolbox/lib/button';
 import { insertMedication, updateMedication, removeMedicationById } from '../../../api/medications/methods';
 import { Bert } from 'meteor/themeteorchef:bert';
 
-import { CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
+import { CardText, CardActions } from 'material-ui/Card';
 
 let defaultState = false;
 

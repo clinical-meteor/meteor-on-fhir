@@ -2,14 +2,6 @@ import React from 'react';
 import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
-import AppBar from 'react-toolbox/lib/app_bar';
-import Button from 'react-toolbox/lib/button';
-import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
-
-import { Meteor } from 'meteor/meteor';
-import { Accounts } from 'meteor/accounts-base';
-import Avatar from 'react-toolbox/lib/avatar';
-
 import { Table } from 'react-bootstrap';
 
 
@@ -31,10 +23,10 @@ export default class DeviceTable extends React.Component {
           deviceProductId: device.deviceProductId,
           patientId: device.patientId,
           createdBy: device.createdBy,
-          createdAt: device.createdAt,
+          createdAt: device.createdAt
         };
       })
-    }
+    };
 
     if (Session.get('darkroomEnabled')) {
       data.style.color = "black";

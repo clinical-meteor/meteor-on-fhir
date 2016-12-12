@@ -1,10 +1,6 @@
-// import './style';
 
 import React from 'react';
-import AppBar from 'react-toolbox/lib/app_bar';
-import Button from 'react-toolbox/lib/button';
-import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
-import Table from 'react-toolbox/lib/table';
+import { Card } from 'material-ui/Card';
 import { List, ListItem, ListSubHeader, ListDivider, ListCheckbox } from 'react-toolbox/lib/list';
 
 const UserModel = {

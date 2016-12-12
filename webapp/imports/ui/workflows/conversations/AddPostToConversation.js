@@ -4,42 +4,13 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 
 import { Bert } from 'meteor/themeteorchef:bert';
 import { FormGroup } from 'react-bootstrap';
-import { CardTitle, CardText } from 'react-toolbox/lib/card';
+import { CardText } from 'material-ui/Card';
 import Input  from 'react-toolbox/lib/input';
 import { insertPost } from '../../../api/posts/methods.js';
 import { GlassCard } from '/imports/ui/components/GlassCard';
 
 import { Meteor } from 'meteor/meteor';
 
-// const handleInsertPost = (event, topicId) => {
-//   const target = event.target;
-//   const title = target.value.trim();
-//
-//   if (title !== '' && event.keyCode === 13) {
-//     //console.log('title', title);
-//     let newPost = {
-//       title: title,
-//       createdAt: new Date(),
-//       createdBy: {
-//         display: Meteor.user().fullName(),
-//         reference: Meteor.userId()
-//       },
-//       topicId: topicId
-//     };
-//     if (Meteor.user().profile && Meteor.user().profile.avatar) {
-//
-//     }
-//
-//     insertPost.call(newPost, (error) => {
-//       if (error) {
-//         Bert.alert(error.reason, 'danger');
-//       } else {
-//         target.value = '';
-//         Bert.alert('Post added!', 'success');
-//       }
-//     });
-//   }
-// };
 
 export class AddPostToConversation extends React.Component {
   getMeteorData() {

@@ -1,17 +1,11 @@
-import { ReactMeteorData } from 'meteor/react-meteor-data'
-import React  from 'react'
-import { Row, Col } from 'react-bootstrap'
-import ReactMixin  from 'react-mixin'
-import Button  from 'react-toolbox/lib/button'
-import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card'
-import Input  from 'react-toolbox/lib/input'
-import { Tab, Tabs } from 'react-toolbox/lib/tabs'
-import { AddDocument } from '/imports/ui/components/AddDocument.js'
-import { GlassCard } from '/imports/ui/components/GlassCard'
-import { PageContainer } from '/imports/ui/components/PageContainer'
-import DocumentsList  from '../containers/documents-list.js'
-import PractitionerDetail  from '../workflows/practitioners/PractitionerDetail'
-import PractitionerTable  from '../workflows/practitioners/PractitionerTable'
+import { ReactMeteorData } from 'meteor/react-meteor-data';
+import React  from 'react';
+import ReactMixin  from 'react-mixin';
+import { Tab, Tabs } from 'react-toolbox/lib/tabs';
+import { GlassCard } from '/imports/ui/components/GlassCard';
+import { PageContainer } from '/imports/ui/components/PageContainer';
+import PractitionerDetail  from '../workflows/practitioners/PractitionerDetail';
+import PractitionerTable  from '../workflows/practitioners/PractitionerTable';
 
 let defaultState = {
   index: 1,
@@ -19,8 +13,8 @@ let defaultState = {
   username: "",
   email: "",
   given: "",
-  family: "",
-}
+  family: ""
+};
 Session.setDefault('practitionerCardState', defaultState);
 
 export class PractitionersPage extends React.Component {
@@ -30,7 +24,7 @@ export class PractitionersPage extends React.Component {
         opacity: Session.get('globalOpacity')
       },
       state: defaultState
-    }
+    };
 
     if (Session.get('practitionerCardState')) {
       data.state = Session.get('practitionerCardState');

@@ -2,21 +2,13 @@ import React from 'react';
 import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
-import Input from 'react-toolbox/lib/input';
-import Button from 'react-toolbox/lib/button';
-
-import { Row, Col } from 'react-bootstrap';
-import DocumentsList from '../containers/documents-list.js';
-import { AddDocument } from '/imports/ui/components/AddDocument.js';
-
 import { PageContainer } from '/imports/ui/components/PageContainer';
 import { GlassCard } from '/imports/ui/components/GlassCard';
-import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
+import { CardTitle, CardText } from 'material-ui/Card';
 
 import {Tab, Tabs} from 'react-toolbox/lib/tabs';
 import PatientDetail from '../workflows/patients/PatientDetail';
 import PatientTable from '../workflows/patients/PatientTable';
-//import DatePicker from 'react-toolbox/lib/date_picker';
 
 
 let defaultState = {
@@ -27,8 +19,7 @@ let defaultState = {
   given: "",
   family: "",
   gender: ""
-
-}
+};
 Session.setDefault('patientCardState', defaultState);
 
 export class PatientsPage extends React.Component {
@@ -38,7 +29,7 @@ export class PatientsPage extends React.Component {
         opacity: Session.get('globalOpacity')
       },
       state: defaultState
-    }
+    };
 
     if (Session.get('patientCardState')) {
       data.state = Session.get('patientCardState');

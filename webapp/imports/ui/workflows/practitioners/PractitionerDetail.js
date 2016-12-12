@@ -5,17 +5,8 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 import Input from 'react-toolbox/lib/input';
 import Button from 'react-toolbox/lib/button';
 
-import { Row, Col } from 'react-bootstrap';
-import DocumentsList from '../../containers/documents-list.js';
-import { AddDocument } from '/imports/ui/components/AddDocument.js';
+import { CardText, CardActions } from 'material-ui/Card';
 
-import { PageContainer } from '/imports/ui/components/PageContainer';
-import { GlassCard } from '/imports/ui/components/GlassCard';
-import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
-
-
-import {Tab, Tabs} from 'react-toolbox/lib/tabs';
-import PractitionerTable from '../../workflows/practitioners/PractitionerTable';
 
 import { insertPractitioner, updatePractitioner, removePractitionerById } from '../../../api/practitioners/methods';
 import { Bert } from 'meteor/themeteorchef:bert';

@@ -6,33 +6,6 @@ import Menu from 'react-toolbox/lib/menu';
 import { IconButton } from 'react-toolbox/lib/button';
 
 export default class CardMenu extends React.Component {
-  // static propTypes = {
-  //   children: React.PropTypes.node,
-  //   className: React.PropTypes.string,
-  //   icon: React.PropTypes.oneOfType([
-  //     React.PropTypes.string,
-  //     React.PropTypes.element
-  //   ]),
-  //   iconRipple: React.PropTypes.bool,
-  //   menuRipple: React.PropTypes.bool,
-  //   onClick: React.PropTypes.func,
-  //   onHide: React.PropTypes.func,
-  //   onSelect: React.PropTypes.func,
-  //   onShow: React.PropTypes.func,
-  //   position: React.PropTypes.string,
-  //   selectable: React.PropTypes.bool,
-  //   selected: React.PropTypes.any
-  // };
-  //
-  // static defaultProps = {
-  //   className: '',
-  //   icon: 'more_vert',
-  //   iconRipple: true,
-  //   menuRipple: true,
-  //   position: 'auto',
-  //   selectable: false
-  // };
-  //
 
   getMeteorData() {
     return {};

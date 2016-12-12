@@ -2,32 +2,8 @@ import React from 'react';
 import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
-import AppBar from 'react-toolbox/lib/app_bar';
-import Button from 'react-toolbox/lib/button';
-import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
-
-import { Meteor } from 'meteor/meteor';
-import { Accounts } from 'meteor/accounts-base';
 import Avatar from 'react-toolbox/lib/avatar';
-
 import { Table } from 'react-bootstrap';
-
-// const PatientModel = {
-//   _id: {type: String};
-//   active: {type: Boolean},
-//   birthdate: {type: Date},
-//   gender: {type: String},
-//   name: {type: String},
-//   photo: {type: String}
-// };
-
-// const users = [
-//   {name: 'Javi Jimenez', twitter: '@soyjavi', birthdate: new Date(1980, 3, 11), cats: 1},
-//   {name: 'Javi Velasco', twitter: '@javivelasco', birthdate: new Date(1987, 1, 1), dogs: 1, active: true},
-//   {name: 'Jane Doe', twitter: '@jdoe', birthdate: new Date(1951, 1, 1), cats: 2, active: true},
-//   {name: 'John Doe', twitter: '@johndoe', birthdate: new Date(1950, 1, 1), cats: 2, active: true}
-// ];
-
 
 
 export default class PatientTable extends React.Component {
@@ -51,7 +27,7 @@ export default class PatientTable extends React.Component {
           photo: person.photo ? person.photo[0].url: ""
         };
       })
-    }
+    };
 
     if (Session.get('darkroomEnabled')) {
       data.style.color = "black";

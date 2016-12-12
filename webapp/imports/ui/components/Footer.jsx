@@ -2,7 +2,6 @@ import React from 'react';
 import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
-// import Button from 'react-toolbox/lib/button';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ImageBlurOn from 'material-ui/svg-icons/image/blur-on';
 import ImageExposure from 'material-ui/svg-icons/image/exposure';

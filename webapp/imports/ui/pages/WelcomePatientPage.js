@@ -3,7 +3,7 @@ import { browserHistory } from 'react-router';
 
 import { PageContainer } from '/imports/ui/components/PageContainer';
 import { GlassCard } from '/imports/ui/components/GlassCard';
-import { CardText } from 'react-toolbox/lib/card';
+import { CardText } from 'material-ui/Card';
 
 
 export class WelcomePatientPage extends React.Component {
