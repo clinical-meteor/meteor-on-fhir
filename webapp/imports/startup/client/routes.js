@@ -38,7 +38,7 @@ import { HexGridPage } from '/imports/ui/pages/HexGridPage';
 // mostly used to toggle header and footer buttons
 Session.setDefault('pathname', '/');
 browserHistory.listen(function(event) {
-    Session.set('pathname', event.pathname)
+  Session.set('pathname', event.pathname);
 });
 
 // patient authentication function
@@ -51,36 +51,6 @@ const requireAuth = (nextState, replace) => {
   }
 };
 
-
-// const indexRouteAuth = (nextState, replace) => {
-//   if (!Meteor.loggingIn() && !Meteor.userId()) {
-//     replace({
-//       pathname: '/login',
-//       state: { nextPathname: nextState.location.pathname }
-//     });
-//   }
-//   if (Meteor.user()) {
-//     // the following logic would be a lot cleaner if we had a 'pracitioner' role
-//     if (Meteor.user().roles[0] === 'sysadmin') {
-//       replace({
-//         pathname: '/sysadmin',
-//         state: { nextPathname: nextState.location.pathname }
-//       });
-//     } else if (Meteor.user().roles[0] === 'practitioner') {
-//       replace({
-//         pathname: '/practitioner',
-//         state: { nextPathname: nextState.location.pathname }
-//       });
-//     } else {
-//       if (Meteor.user().profile.firstTimeVisit) {
-//         replace({
-//           pathname: '/welcome/patient',
-//           state: { nextPathname: nextState.location.pathname }
-//         });
-//       }
-//     }
-//   }
-// };
 
 
 // practitioner authentication function

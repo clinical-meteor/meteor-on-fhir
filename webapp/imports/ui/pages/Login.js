@@ -1,10 +1,8 @@
-import React from 'react';
-import { Link } from 'react-router';
+import React  from 'react';
+import ReactMixin  from 'react-mixin';
+import { ReactMeteorData } from 'meteor/react-meteor-data';
+
 import TextField from 'material-ui/TextField';
-
-import { Row, Col, Button } from 'react-bootstrap';
-
-import { PageContainer } from '/imports/ui/components/PageContainer';
 import { PhoneContainer } from '/imports/ui/components/PhoneContainer';
 import { MobilePadding } from '/imports/ui/components/MobilePadding';
 
@@ -14,11 +12,51 @@ import { Meteor } from 'meteor/meteor';
 import { Bert } from 'meteor/themeteorchef:bert';
 
 import RaisedButton from 'material-ui/RaisedButton';
+import { lightBaseTheme, darkBaseTheme } from 'material-ui/styles';
 
 export class Login extends React.Component {
   componentDidMount() {
   }
+  getMeteorData() {
+    let data = {
+      style: {
+        textColor: {
+          color: darkBaseTheme.palette.textColor
+        },
+        inputStyle: {
+          color: darkBaseTheme.palette.textColor
+        },
+        errorStyle: {
+          color: darkBaseTheme.palette.accent1Color
+        },
+        hintStyle: {
+          color: darkBaseTheme.palette.secondaryTextColor
+        },
+        underlineStyle: {
+          borderColor: darkBaseTheme.palette.secondaryTextColor
+        },
+        floatingLabelStyle: {
+          color: darkBaseTheme.palette.secondaryTextColor
+        },
+        floatingLabelFocusStyle: {
+          color: darkBaseTheme.palette.secondaryTextColor
+        }
+      }
+    };
+    if (Meteor.settings && Meteor.settings.theme && Meteor.settings.theme.darkroomTextEnabled ) {
+      data.style.textColor.color = lightBaseTheme.palette.textColor;
+      data.style.inputStyle.color = lightBaseTheme.palette.textColor;
+      data.style.errorStyle.color = lightBaseTheme.palette.accent1Color;
+      data.style.hintStyle.color = lightBaseTheme.palette.secondaryTextColor;
+      data.style.underlineStyle.color = lightBaseTheme.palette.secondaryTextColor;
+      data.style.floatingLabelStyle.color = lightBaseTheme.palette.secondaryTextColor;
+      data.style.floatingLabelFocusStyle.color = lightBaseTheme.palette.secondaryTextColor;
+    }
 
+    if(process.env.NODE_ENV === "test") console.log("Login[data]", data);
+
+    return data;
+  }
   handleSubmit(event) {
     event.preventDefault();
   }
@@ -51,13 +89,19 @@ export class Login extends React.Component {
       <div id="loginPage">
         <MobilePadding>
           <PhoneContainer>
-                <h4 className="page-header" style={{color: "black"}}>Login</h4>
+                <h4 className="page-header" style={this.data.style.textColor}>Login</h4>
                 <form ref="login" className="login">
                       <TextField
                         type="email"
                         ref="emailAddress"
                         name="emailAddress"
                         placeholder="Email Address"
+                        inputStyle={this.data.style.inputStyle}
+                        hintStyle={this.data.style.hintStyle}
+                        errorStyle={this.data.style.errorStyle}
+                        underlineFocusStyle={this.data.style.underlineFocusStyle}
+                        floatingLabelStyle={this.data.style.floatingLabelStyle}
+                        floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
                       />
                       <br/>
                       <TextField
@@ -65,6 +109,12 @@ export class Login extends React.Component {
                         ref="password"
                         name="password"
                         placeholder="Password"
+                        inputStyle={this.data.style.inputStyle}
+                        hintStyle={this.data.style.hintStyle}
+                        errorStyle={this.data.style.errorStyle}
+                        underlineFocusStyle={this.data.style.underlineFocusStyle}
+                        floatingLabelStyle={this.data.style.floatingLabelStyle}
+                        floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
                       />
                       <br/>
                       <RaisedButton id="loginButton" onTouchTap={this.handleTouchTap.bind(this)} label="Login" primary={true} />
@@ -77,3 +127,4 @@ export class Login extends React.Component {
     );
   }
 }
+ReactMixin(Login.prototype, ReactMeteorData);

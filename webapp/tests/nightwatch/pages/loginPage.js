@@ -3,7 +3,7 @@
 module.exports = {
   url: 'http://localhost:3000/login',
   commands: [{
-  login: function(email, password) {
+  fillOutLoginPage: function(email, password) {
     return this
       .verify.elementPresent("#loginPage")
       .verify.elementPresent('input[name="emailAddress"]')
@@ -13,9 +13,11 @@ module.exports = {
       .clearValue('input[name="password"]')
 
       .setValue('input[name="emailAddress"]', email)
-      .setValue('input[name="password"]', password)
-
-      .verify.elementPresent('#loginButton')
+      .setValue('input[name="password"]', password);
+  },
+  login: function(){
+    return this
+      .waitForElementPresent('#loginButton', 3000)
       .click("#loginButton");
   },
   clear: function() {

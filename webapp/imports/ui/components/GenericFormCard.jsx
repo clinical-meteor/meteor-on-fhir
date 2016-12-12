@@ -35,7 +35,7 @@ export class GenericFormCard extends React.Component {
         opacity: Session.get('globalOpacity')
       },
       state: defaultState
-    }
+    };
 
     if (Session.get('genericFormState')) {
       data.state = Session.get('genericFormState');
@@ -63,7 +63,8 @@ export class GenericFormCard extends React.Component {
 
     //console.log("data", data);
     return data;
-  };
+  }
+
   handleNameChange(name, value) {
     console.log("handleNameChange", name, value);
     //if (value) {

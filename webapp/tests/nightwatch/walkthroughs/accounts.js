@@ -14,52 +14,96 @@ module.exports = {
   'User can sign up.': function (client) {
     client.resizeWindow(1200, 1024);
 
-    // const signupPage = client.page.signupPage();
-    const indexPage = client.page.indexPage();
-
     client.page.signupPage()
       .navigate()
-      .signup('Alice', 'Doe', 'alice@test.org', 'alicedoe')
-      .pause(1000, client);
+      .fillOutSignupPage('Alice', 'Doe', 'alice@test.org', 'alicedoe', '')
+      .saveScreenshot('tests/nightwatch/screenshots/accounts/A-signupPage.png', client)
+      .signup()
+      .pause(2000, client);
 
-    // indexPage.expect.element('#welcomePatientPage').to.be.present;
-    indexPage.expect.element('#indexPage').to.be.present;
-    indexPage.expect.element('#authenticatedUserMenuToggle').to.be.present;
-    indexPage.expect.element('#authenticatedUsername').text.to.contain('Alice Doe');
+    // // const signupPage = client.page.signupPage();
+    // const indexPage = client.page.indexPage();
+    //
+    // client.page.signupPage()
+    //   .navigate()
+    //   .signup('Alice', 'Doe', 'alice@test.org', 'alicedoe')
+    //   .pause(1000, client);
+    //
+    // // indexPage.expect.element('#welcomePatientPage').to.be.present;
+    // indexPage.expect.element('#indexPage').to.be.present;
+    // indexPage.expect.element('#authenticatedUserMenuToggle').to.be.present;
+    // indexPage.expect.element('#authenticatedUsername').text.to.contain('Alice Doe');
   },
   'User gets logged in after signup.': function (client) {
-    // client.verify.elementPresent('#welcomePatientPage');
-    client.verify.elementPresent('#indexPage');
+    client
+      .waitForElementPresent('#welcomePatientPage', 1000)
+
+      .verify.elementPresent('#sidebarToggleButton')
+        .click('#sidebarToggleButton').pause(1000)
+
+      .verify.elementPresent('#patientSynopsis div h5')
+      .verify.containsText('#patientSynopsis div h5', 'Alice Doe')
+      .saveScreenshot('tests/nightwatch/screenshots/accounts/B-profileSetupPage.png');
   },
   'User can log out.': function (client) {
-    client.verify.elementPresent('#authenticatedUserMenuToggle')
-      .click('#authenticatedUserMenuToggle').pause(1000)
-      .click('#authenticatedUserMenuToggle').pause(2000)
-      .verify.elementPresent('#authenticatedUserMenu')
-      .verify.elementPresent('#authenticatedUserMenu #logoutMenuItem')
-      .click('#authenticatedUserMenu #logoutMenuItem').pause(1000)
-      .verify.elementPresent('#loginPage');
+    client
+      .verify.elementPresent('#patientSidebarMenu .logoutMenuItem')
+      .saveScreenshot('tests/nightwatch/screenshots/accounts/C-logoutMenuItem.png')
+      .click('#patientSidebarMenu .logoutMenuItem').pause(1000)
+
+      .verify.elementPresent('#loginPage')
+      .saveScreenshot('tests/nightwatch/screenshots/accounts/D-loginPage.png');
+
+    // client.verify.elementPresent('#authenticatedUserMenuToggle')
+    //   .click('#authenticatedUserMenuToggle').pause(1000)
+    //   .click('#authenticatedUserMenuToggle').pause(2000)
+    //   .verify.elementPresent('#authenticatedUserMenu')
+    //   .verify.elementPresent('#authenticatedUserMenu #logoutMenuItem')
+    //   .click('#authenticatedUserMenu #logoutMenuItem').pause(1000)
+    //   .verify.elementPresent('#loginPage');
   },
   'User can sign in.': function (client) {
-    const indexPage = client.page.indexPage();
+    // const loginPage = client.page.loginPage();
+    const carePlanPage = client.page.carePlanPage();
 
     client.page.loginPage()
       .navigate()
-      .login("alice@test.org", "alicedoe")
+      .fillOutLoginPage('alice@test.org', 'alicedoe')
+      .saveScreenshot('tests/nightwatch/screenshots/accounts/E-loginPage.png', client)
+      .pause(1000, client)
+      .login()
       .pause(2000, client);
 
-    indexPage.expect.element('#indexPage').to.be.present;
-    indexPage.expect.element('#authenticatedUsername').text.to.contain('Alice Doe');
+    client
+      .verify.elementPresent('#cardActionsContainer')
+      .verify.containsText('#authenticatedUsername', 'Alice Doe');
+    // const indexPage = client.page.indexPage();
+    //
+    // client.page.loginPage()
+    //   .navigate()
+    //   .login("alice@test.org", "alicedoe")
+    //   .pause(2000, client);
+    //
+    // indexPage.expect.element('#indexPage').to.be.present;
+    // indexPage.expect.element('#authenticatedUsername').text.to.contain('Alice Doe');
   },
   "User can view profile.": function (client) {
-    client.verify.elementPresent('#authenticatedUserMenuToggle')
-      .click('#authenticatedUserMenuToggle').pause(1000)
-      .click('#authenticatedUserMenuToggle').pause(2000)
+    client
+      .verify.elementPresent('#authenticatedUsername')
+      .click('#authenticatedUsername').pause(500)
 
-      .verify.elementPresent("#authenticatedUserMenu #myProfileMenuItem")
-      .click("#authenticatedUserMenu #myProfileMenuItem").pause(500)
+      .verify.elementPresent('#authenticatedUserMenu .profileMenuItem')
+      .click('#authenticatedUserMenu .profileMenuItem').pause(500)
 
-      .verify.elementPresent("#myProfilePage");
+      .verify.elementPresent('#myProfilePage');
+    // client.verify.elementPresent('#authenticatedUserMenuToggle')
+    //   .click('#authenticatedUserMenuToggle').pause(1000)
+    //   .click('#authenticatedUserMenuToggle').pause(2000)
+    //
+    //   .verify.elementPresent("#authenticatedUserMenu #myProfileMenuItem")
+    //   .click("#authenticatedUserMenu #myProfileMenuItem").pause(500)
+    //
+    //   .verify.elementPresent("#myProfilePage");
   },
   "User can edit profile avatar.": function (client) {
     var myArray = 'https://pbs.twimg.com/profile_images/436598467956187136/yncbkX83_400x400.jpeg'.split('');
@@ -81,6 +125,26 @@ module.exports = {
     }
 
     client.pause(3000).verify.attributeEquals('#avatarImage', 'src', 'https://pbs.twimg.com/profile_images/436598467956187136/yncbkX83_400x400.jpeg');
+
+    // var myArray = 'https://pbs.twimg.com/profile_images/436598467956187136/yncbkX83_400x400.jpeg'.split('');
+    //
+    // client
+    //   .verify.elementPresent('#avatarImage')
+    //   .verify.attributeEquals('#avatarImage', 'src', 'http://localhost:3000/thumbnail.png')
+    //
+    //   .verify.elementPresent('input[name="avatar"]')
+    //     .clearValue('input[name="avatar"]')
+    //     .setValue('input[name="avatar"]', 'https://foo').pause(500)
+    //     .verify.attributeEquals('#avatarImage', 'src', 'http://localhost:3000/noAvatar.png')
+    //
+    //   .verify.elementPresent('input[name="avatar"]')
+    //     .clearValue('input[name="avatar"]');
+    //
+    // for(var i=0; i < myArray.length; i++) {
+    //   client.setValue('input[name="avatar"]', myArray[i]).pause(50);
+    // }
+    //
+    // client.pause(3000).verify.attributeEquals('#avatarImage', 'src', 'https://pbs.twimg.com/profile_images/436598467956187136/yncbkX83_400x400.jpeg');
   },
   "User can change password.": function (client) {
     var oldPassArray = 'alicedoe'.split('');

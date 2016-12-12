@@ -3,6 +3,7 @@
     "title": "Meteor on FHIR Forum",
     "theme": {
       "showVideoBackground": false,
+      "darkroomTextEnabled": false,
       "defaultVideo": "/VideoBackgrounds/Circulation.mp4",
       "backgroundImagePath": "/backgrounds/medical/PlasmidGray.jpg"
     }

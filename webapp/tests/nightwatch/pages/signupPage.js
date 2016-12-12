@@ -1,7 +1,7 @@
 module.exports = {
   url: 'http://localhost:3000/signup',
   commands: [{
-    signup: function(firstName, lastName, emailAddress, password, accessCode) {
+    fillOutSignupPage: function(firstName, lastName, emailAddress, password, accessCode) {
       this
         .verify.elementPresent("#signupPage")
         .verify.elementPresent('input[name="firstName"]')
@@ -24,7 +24,9 @@ module.exports = {
       if (accessCode) {
         this.setValue('input[name="accessCode"]', accessCode);
       }
-
+      return this;
+    },
+    signup: function(){
       return this
         .verify.elementPresent('#signupButton')
         .click('#signupButton');
