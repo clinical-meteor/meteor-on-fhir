@@ -11,14 +11,21 @@ OpacitySlider = React.createClass({
       opacity: Session.get('globalOpacity')
     };
   },
-  onChange (value){
-    //console.log('OpacitySlider changed...', value)
+  onChange (event, value){
     Session.set('globalOpacity', value);
   },
   render () {
     return(
-      <div style={{width: "300px"}}>
-        <Slider min={0} max={1} step={0.01} ref="opacitySlider" value={this.data.opacity} onChange={this.onChange} style={{width: "300px"}} />
+      <div style={{width: "300px", top: '0px', right: '20px', position: 'absolute'}}>
+        <Slider
+          min={0}
+          max={1}
+          step={0.01}
+          ref="opacitySlider"
+          value={this.data.opacity}
+          onChange={this.onChange }
+          style={{width: "300px"}}
+          />
       </div>
     );
   }
