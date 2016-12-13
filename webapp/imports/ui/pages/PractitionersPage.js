@@ -1,7 +1,7 @@
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import React  from 'react';
 import ReactMixin  from 'react-mixin';
-import { Tab, Tabs } from 'react-toolbox/lib/tabs';
+import { Tabs, Tab } from 'material-ui/Tabs';
 import { GlassCard } from '/imports/ui/components/GlassCard';
 import { PageContainer } from '/imports/ui/components/PageContainer';
 import PractitionerDetail  from '../workflows/practitioners/PractitionerDetail';
@@ -83,13 +83,13 @@ export class PractitionersPage extends React.Component {
           <GlassCard>
 
             <Tabs id="practitionerTabs" default index={this.data.state.index} onChange={this.handleTabChange}>
-              <Tab className="newPractitionerTab" label='New' style={{padded: "20px"}} onActive={ this.onNewTab } >
+              <Tab className="newPractitionerTab" label='New' style={{padded: "20px", backgroundColor: 'white', color: 'black', borderBottom: '1px solid lightgray'}} onActive={ this.onNewTab } >
                 <PractitionerDetail />
               </Tab>
-              <Tab className="practitionerListTab" label='Practitioners' onActive={this.handleActive}>
+              <Tab className="practitionerListTab" label='Practitioners' onActive={this.handleActive} style={{backgroundColor: 'white', color: 'black', borderBottom: '1px solid lightgray'}}>
                 <PractitionerTable />
                </Tab>
-               <Tab className="practitionerDetailsTab" label='Detail' style={{padded: "20px"}}>
+               <Tab className="practitionerDetailsTab" label='Detail' style={{padded: "20px", backgroundColor: 'white', color: 'black', borderBottom: '1px solid lightgray'}}>
                 <PractitionerDetail />
               </Tab>
             </Tabs>

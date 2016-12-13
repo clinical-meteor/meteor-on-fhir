@@ -6,7 +6,7 @@ import { PageContainer } from '/imports/ui/components/PageContainer';
 import { GlassCard } from '/imports/ui/components/GlassCard';
 import { CardTitle, CardText } from 'material-ui/Card';
 
-import {Tab, Tabs} from 'react-toolbox/lib/tabs';
+import { Tabs, Tab } from 'material-ui/Tabs';
 import PatientDetail from '../workflows/patients/PatientDetail';
 import PatientTable from '../workflows/patients/PatientTable';
 
@@ -93,13 +93,13 @@ export class PatientsPage extends React.Component {
             <CardText>
 
             <Tabs default index={this.data.state.index} onChange={this.handleTabChange}>
-             <Tab className="newPatientTab" label='New' style={{padded: "20px"}} onActive={ this.onNewTab } >
+             <Tab className="newPatientTab" label='New' style={{padded: "20px", color: 'black', borderBottom: '1px solid lightgray'}} onActive={ this.onNewTab } >
                <PatientDetail />
              </Tab>
-             <Tab label='Patients' onActive={this.handleActive}>
+             <Tab label='Patients' onActive={this.handleActive} style={{color: 'black', borderBottom: '1px solid lightgray'}}>
                <PatientTable />
              </Tab>
-             <Tab label='Detail' onActive={this.handleActive} style={{padded: "20px"}} >
+             <Tab label='Detail' onActive={this.handleActive} style={{padded: "20px", color: 'black', borderBottom: '1px solid lightgray'}} >
                <PatientDetail />
              </Tab>
            </Tabs>

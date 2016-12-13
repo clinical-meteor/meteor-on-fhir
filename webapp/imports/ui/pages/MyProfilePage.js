@@ -1,9 +1,9 @@
 import { CardTitle } from 'material-ui/Card';
 import { Col, Grid } from 'react-bootstrap';
-import { Tab, Tabs } from 'react-toolbox/lib/tabs';
+import { Tabs, Tab } from 'material-ui/Tabs';
 import { browserHistory } from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
-import {FontIcon} from 'material-ui/FontIcon';
+import { FontIcon } from 'material-ui/FontIcon';
 import TextField from 'material-ui/TextField';
 import React from 'react';
 import ReactMixin from 'react-mixin';
@@ -121,7 +121,7 @@ export class MyProfilePage extends React.Component {
                 />
                 <Tabs index={this.data.state.index} onChange={this.handleTabChange}>
 
-                  <Tab className='demographicsTab' label='Demographics'>
+                  <Tab className='demographicsTab' label='Demographics' style={{backgroundColor: 'white', color: 'black', borderBottom: '1px solid lightgray'}}>
                     <div id='profileDemographicsPane' style={{position: 'relative'}}>
                       <TextField
                         id='givenNameInput'
@@ -158,7 +158,7 @@ export class MyProfilePage extends React.Component {
                         /><br/>
                     </div>
                   </Tab>
-                  <Tab className='environmentalTab' label='Environmental' onActive={this.handleActive}>
+                  <Tab className='environmentalTab' label='Environmental' onActive={this.handleActive} style={{backgroundColor: 'white', color: 'black', borderBottom: '1px solid lightgray'}}>
                     <div id='profileEnvironmentalPane' style={{position: 'relative'}} >
                       <TextField
                         id='zipcodeInput'
@@ -187,7 +187,7 @@ export class MyProfilePage extends React.Component {
                     </div>
 
                   </Tab>
-                  <Tab className='passwordTab' label='Password'>
+                  <Tab className='passwordTab' label='Password' style={{backgroundColor: 'white', color: 'black', borderBottom: '1px solid lightgray'}}>
                     <div id='profilePasswordPane' style={{position: 'relative'}} >
                       <TextField
                         id='oldPasswordInput'

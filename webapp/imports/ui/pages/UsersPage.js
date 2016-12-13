@@ -9,7 +9,7 @@ import { PageContainer } from '/imports/ui/components/PageContainer';
 import { GlassCard } from '/imports/ui/components/GlassCard';
 import { CardText, CardActions } from 'material-ui/Card';
 
-import {Tab, Tabs} from 'react-toolbox/lib/tabs';
+import {Tabs, Tab} from 'material-ui/Tabs';
 import { UserTable } from '../workflows/users/UserTable';
 
 
@@ -66,7 +66,7 @@ export class UsersPage extends React.Component {
   handleSaveButton(){
 
   }
-  
+
   // this could be a mixin
   handleTabChange(index){
     let state = Session.get('userCardTabbedState');
@@ -88,10 +88,10 @@ export class UsersPage extends React.Component {
           <GlassCard>
 
             <Tabs default index={this.data.state.index} onChange={this.handleTabChange}>
-             <Tab label='Users' onActive={this.handleActive}>
+             <Tab label='Users' onActive={this.handleActive} style={{backgroundColor: 'white', color: 'black', borderBottom: '1px solid lightgray'}}>
                <UserTable />
              </Tab>
-             <Tab label='New' style={{padded: "20px"}}>
+             <Tab label='New' style={{padded: "20px", backgroundColor: 'white', color: 'black', borderBottom: '1px solid lightgray'}}>
                <CardText>
                  <TextField
                    id='userIdInput'

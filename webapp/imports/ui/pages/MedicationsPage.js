@@ -1,7 +1,7 @@
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import React  from 'react';
 import ReactMixin  from 'react-mixin';
-import { Tab, Tabs } from 'react-toolbox/lib/tabs';
+import {Tabs, Tab} from 'material-ui/Tabs';
 import { GlassCard } from '/imports/ui/components/GlassCard';
 import { PageContainer } from '/imports/ui/components/PageContainer';
 
@@ -85,13 +85,13 @@ export class MedicationsPage extends React.Component {
           <GlassCard>
 
             <Tabs id="medicationTabs" default index={this.data.state.index} onChange={this.handleTabChange}>
-              <Tab className="newMedicationTab" label='New' style={{padded: "20px"}} onActive={ this.onNewTab } >
+              <Tab className="newMedicationTab" label='New' style={{padded: "20px", backgroundColor: 'white', color: 'black', borderBottom: '1px solid lightgray'}} onActive={ this.onNewTab } >
                 <MedicationDetail />
               </Tab>
-              <Tab className="medicationListTab" label='Medications' onActive={this.handleActive}>
+              <Tab className="medicationListTab" label='Medications' onActive={this.handleActive} style={{backgroundColor: 'white', color: 'black', borderBottom: '1px solid lightgray'}}>
                 <MedicationTable />
                </Tab>
-               <Tab className="medicationDetailsTab" label='Detail' style={{padded: "20px"}}>
+               <Tab className="medicationDetailsTab" label='Detail' style={{padded: "20px", backgroundColor: 'white', color: 'black', borderBottom: '1px solid lightgray'}}>
                 <MedicationDetail />
               </Tab>
             </Tabs>

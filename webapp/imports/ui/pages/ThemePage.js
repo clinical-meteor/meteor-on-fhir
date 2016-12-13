@@ -7,7 +7,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import FontIcon from 'material-ui/FontIcon';
 
 import { Image } from 'react-bootstrap';
-import { Tab, Tabs } from 'react-toolbox/lib/tabs';
+import { Tabs, Tab } from 'material-ui/Tabs';
 import Input from 'react-toolbox/lib/input';
 import { Bert } from 'meteor/themeteorchef:bert';
 
@@ -87,7 +87,7 @@ export class ThemePage extends React.Component {
             />
             <Tabs index={this.data.state.index} onChange={this.handleTabChange}>
 
-              <Tab label='Backgrounds' onActive={this.handleActive}>
+              <Tab label='Backgrounds' onActive={this.handleActive} style={{backgroundColor: 'white', color: 'black', borderBottom: '1px solid lightgray'}}>
                 <div style={{position: 'relative'}}>
 
                   <div id='backgroundImageGallary' style={{display: 'inline-block'}}>
@@ -128,7 +128,7 @@ export class ThemePage extends React.Component {
                   </div>
                 </div>
               </Tab>
-              <Tab label='Colors'>
+              <Tab label='Colors' style={{backgroundColor: 'white', color: 'black', borderBottom: '1px solid lightgray'}}>
                 <div style={{position: 'relative'}}>
                   <Input type='text' label='colorA' name='colorA' style={this.data.style} value={this.data.colors.colorA} />
                   <Input type='text' label='colorB' name='colorB' style={this.data.style} value={this.data.colors.colorB} />
@@ -138,7 +138,7 @@ export class ThemePage extends React.Component {
                 </div>
 
               </Tab>
-              <Tab label='Settings'>
+              <Tab label='Settings' style={{backgroundColor: 'white', color: 'black', borderBottom: '1px solid lightgray'}}>
                 <div style={{position: 'relative'}}>
                   <label>Opacity</label>
                   <OpacitySlider />
@@ -231,6 +231,4 @@ export class ThemePage extends React.Component {
 }
 
 
-ThemePage.propTypes = {};
-ThemePage.defaultProps = {};
 ReactMixin(ThemePage.prototype, ReactMeteorData);
