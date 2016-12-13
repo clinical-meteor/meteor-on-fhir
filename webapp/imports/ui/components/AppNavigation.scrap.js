@@ -45,7 +45,7 @@ export class AppNavigation extends React.Component {
     if (hasUser) {
       return <AuthenticatedNavigation /> ;
     } else {
-      return <PublicNavigation /> ;      
+      return <PublicNavigation /> ;
     }
   }
 
@@ -67,6 +67,6 @@ export class AppNavigation extends React.Component {
 }
 
 AppNavigation.propTypes = {
-  hasUser: React.PropTypes.object,
+  hasUser: React.PropTypes.object
 };
 ReactMixin(AppNavigation.prototype, ReactMeteorData);

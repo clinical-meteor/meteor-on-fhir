@@ -1,13 +1,13 @@
 import { CardText, CardActions } from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
-import Input from 'react-toolbox/lib/input';
+import TextField from 'material-ui/TextField';
 import React from 'react';
 import ReactMixin from 'react-mixin';
 
 import { Bert } from 'meteor/themeteorchef:bert';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
-import { insertPractitioner, updatePractitioner, removePractitionerById } from '../../../api/practitioners/methods';
+import { insertUser, updateUser, removeUserById } from '../../../api/practitioners/methods';
 
 
 let defaultState = false;
@@ -15,7 +15,7 @@ let defaultState = false;
 Session.setDefault('practitionerDetailState', defaultState);
 
 
-export default class PractitionerDetail extends React.Component {
+export default class UserDetail extends React.Component {
   getMeteorData() {
     let data = {
       practitionerId: false,
@@ -30,20 +30,20 @@ export default class PractitionerDetail extends React.Component {
       }
     };
 
-    if (Session.get('selectedPractitioner')) {
-      data.practitionerId = Session.get('selectedPractitioner');
+    if (Session.get('selectedUser')) {
+      data.practitionerId = Session.get('selectedUser');
 
-      let selectedPractitioner = Practitioners.findOne({_id: Session.get('selectedPractitioner')});
-      if (selectedPractitioner) {
+      let selectedUser = Users.findOne({_id: Session.get('selectedUser')});
+      if (selectedUser) {
         data.practitioner = {
-          id: selectedPractitioner._id,
-          username: selectedPractitioner.username,
-          gender: selectedPractitioner.gender,
-          active: selectedPractitioner.active.toString(),
-          email: selectedPractitioner.emails ? selectedPractitioner.emails[0].address : '',
-          name: selectedPractitioner.name ? selectedPractitioner.name.text : '',
-          given: selectedPractitioner.name ? selectedPractitioner.name.given : '',
-          family: selectedPractitioner.name ? selectedPractitioner.name.family : ''
+          id: selectedUser._id,
+          username: selectedUser.username,
+          gender: selectedUser.gender,
+          active: selectedUser.active.toString(),
+          email: selectedUser.emails ? selectedUser.emails[0].address : '',
+          name: selectedUser.name ? selectedUser.name.text : '',
+          given: selectedUser.name ? selectedUser.name.given : '',
+          family: selectedUser.name ? selectedUser.name.family : ''
         };
       }
     }
@@ -73,7 +73,7 @@ export default class PractitionerDetail extends React.Component {
     };
 
     // if there's an existing practitioner, use them
-    if (Session.get('selectedPractitioner')) {
+    if (Session.get('selectedUser')) {
       practitionerUpdate = this.data.practitioner;
     }
 
@@ -115,15 +115,15 @@ export default class PractitionerDetail extends React.Component {
     //console.log("practitionerFormData", practitionerFormData);
 
 
-    if (Session.get('selectedPractitioner')) {
+    if (Session.get('selectedUser')) {
       //console.log("update practioner");
       //Meteor.users.insert(practitionerFormData);
-      updatePractitioner.call(
-        {_id: Session.get('selectedPractitioner'), update: practitionerFormData }, (error) => {
+      updateUser.call(
+        {_id: Session.get('selectedUser'), update: practitionerFormData }, (error) => {
           if (error) {
             Bert.alert(error.reason, 'danger');
           } else {
-            Bert.alert('Practitioner updated!', 'success');
+            Bert.alert('User updated!', 'success');
             this.openTab(1);
           }
         });
@@ -132,11 +132,11 @@ export default class PractitionerDetail extends React.Component {
       //console.log("create a new practitioner", practitionerFormData);
 
       //Meteor.users.insert(practitionerFormData);
-      insertPractitioner.call(practitionerFormData, (error) => {
+      insertUser.call(practitionerFormData, (error) => {
         if (error) {
           Bert.alert(error.reason, 'danger');
         } else {
-          Bert.alert('Practitioner added!', 'success');
+          Bert.alert('User added!', 'success');
           this.openTab(1);
         }
       });
@@ -144,12 +144,12 @@ export default class PractitionerDetail extends React.Component {
   }
 
   handleDeleteButton(){
-    removePractitionerById.call(
-      {_id: Session.get('selectedPractitioner')}, (error) => {
+    removeUserById.call(
+      {_id: Session.get('selectedUser')}, (error) => {
         if (error) {
           Bert.alert(error.reason, 'danger');
         } else {
-          Bert.alert('Practitioner deleted!', 'success');
+          Bert.alert('User deleted!', 'success');
           this.openTab(1);
         }
       });
@@ -173,10 +173,43 @@ export default class PractitionerDetail extends React.Component {
     return (
       <div className="practitionerDetail">
         <CardText>
-           <Input type='text' ref='name' label='name' name='name' value={this.data.practitioner.name} onChange={ this.changeState.bind(this, 'name')} />
-           <Input type='text' ref='gender' label='gender' name='gender' value={this.data.practitioner.gender} onChange={ this.changeState.bind(this, 'gender')} />
-           <Input type='text' ref='photo' label='photo' name='photo' value={this.data.practitioner.photo} onChange={ this.changeState.bind(this, 'photo')} />
-           <Input type='text' ref='active' label='active' name='active' value={this.data.practitioner.active} onChange={ this.changeState.bind(this, 'active')} />
+          <TextField
+            id='userNameInput'
+            ref='name'
+            name='name'
+            type='text'
+            floatingLabelText='name'
+            value={this.data.user.name}
+            onChange={ this.changeState.bind(this, 'name')}
+            /><br/>
+          <TextField
+            id='userGenderInput'
+            ref='gender'
+            name='gender'
+            type='text'
+            floatingLabelText='gender'
+            value={this.data.user.gender}
+            onChange={ this.changeState.bind(this, 'gender')}
+            /><br/>
+          <TextField
+            id='userPhotoInput'
+            ref='photo'
+            name='photo'
+            type='text'
+            floatingLabelText='photo'
+            value={this.data.user.photo}
+            onChange={ this.changeState.bind(this, 'photo')}
+            /><br/>
+          <TextField
+            id='userActiveInput'
+            ref='active'
+            name='active'
+            type='text'
+            floatingLabelText='active'
+            value={this.data.user.active}
+            onChange={ this.changeState.bind(this, 'active')}
+            /><br/>
+
         </CardText>
         <CardActions>
           { this.determineButtons(this.data.practitionerId) }
@@ -187,7 +220,7 @@ export default class PractitionerDetail extends React.Component {
 }
 
 
-PractitionerDetail.propTypes = {
+UserDetail.propTypes = {
   hasUser: React.PropTypes.object
 };
-ReactMixin(PractitionerDetail.prototype, ReactMeteorData);
+ReactMixin(UserDetail.prototype, ReactMeteorData);

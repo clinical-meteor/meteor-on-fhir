@@ -145,5 +145,4 @@ export default class ObservationTable extends React.Component {
 }
 
 
-ObservationTable.propTypes = {};
 ReactMixin(ObservationTable.prototype, ReactMeteorData);

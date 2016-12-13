@@ -1,6 +1,6 @@
 import { Session } from 'meteor/session';
 import React  from 'react';
-import Slider  from 'react-toolbox/lib/slider';
+import Slider from 'material-ui/Slider';
 
 Session.setDefault('globalOpacity', 0.95);
 
@@ -18,7 +18,7 @@ OpacitySlider = React.createClass({
   render () {
     return(
       <div style={{width: "300px"}}>
-        <Slider min={0} max={1} step={0.01} ref="opacitySlider" editable value={this.data.opacity} onChange={this.onChange} style={{width: "300px"}} />
+        <Slider min={0} max={1} step={0.01} ref="opacitySlider" value={this.data.opacity} onChange={this.onChange} style={{width: "300px"}} />
       </div>
     );
   }

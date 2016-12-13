@@ -141,6 +141,4 @@ export default class ObservationsDeck extends React.Component {
 }
 
 
-ObservationsDeck.propTypes = {};
-ObservationsDeck.defaultProps = {};
 ReactMixin(ObservationsDeck.prototype, ReactMeteorData);

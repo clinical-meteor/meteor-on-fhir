@@ -2,12 +2,10 @@ import React from 'react';
 import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
-import Input from 'react-toolbox/lib/input';
+import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
 import { CardText, CardActions } from 'material-ui/Card';
-
-
 import { insertPractitioner, updatePractitioner, removePractitionerById } from '../../../api/practitioners/methods';
 import { Bert } from 'meteor/themeteorchef:bert';
 
@@ -56,6 +54,13 @@ export default class PractitionerDetail extends React.Component {
 
     return data;
   }
+
+  // // this could be a mixin
+  // changeState(field, event, value){
+  //   let state = Session.get('userCardTabbedState');
+  //   state[field] = value;
+  //   Session.set('userCardTabbedState', state);
+  // }
 
 
   // this could be a mixin
@@ -144,12 +149,13 @@ export default class PractitionerDetail extends React.Component {
         }
       });
     }
-  };
+  }
 
   // this could be a mixin
   handleCancelButton(){
     console.log("handleCancelButton");
-  };
+  }
+
   handleDeleteButton(){
     removePractitionerById.call(
       {_id: Session.get('selectedPractitioner')}, (error) => {
@@ -160,7 +166,8 @@ export default class PractitionerDetail extends React.Component {
         this.openTab(1);
       }
     });
-  };
+  }
+
   determineButtons(practitionerId){
     if (practitionerId) {
       return (
@@ -174,15 +181,28 @@ export default class PractitionerDetail extends React.Component {
         <RaisedButton id="savePractitionerButton" primary={true} label="Save" onClick={this.handleSaveButton.bind(this)} />
       );
     }
-  };
+  }
+
   render() {
     return (
       <div className="practitionerDetail">
         <CardText>
-           <Input type='text' ref='name' label='name' name='name' value={this.data.practitioner.name} onChange={ this.changeState.bind(this, 'name')} />
-           <Input type='text' ref='gender' label='gender' name='gender' value={this.data.practitioner.gender} onChange={ this.changeState.bind(this, 'gender')} />
-           <Input type='text' ref='photo' label='photo' name='photo' value={this.data.practitioner.photo} onChange={ this.changeState.bind(this, 'photo')} />
-           <Input type='text' ref='active' label='active' name='active' value={this.data.practitioner.active} onChange={ this.changeState.bind(this, 'active')} />
+          <TextField
+            id='practitionerNameInput'
+            ref='name'
+            name='name'
+            type='text'
+            floatingLabelText='name'
+            value={this.data.practitioner.name}
+            /><br/>
+          <TextField
+            id='activePractitionerInput'
+            ref='active'
+            name='active'
+            type='text'
+            floatingLabelText='active'
+            value={this.data.practitioner.active}
+            /><br/>
         </CardText>
         <CardActions>
           { this.determineButtons(this.data.practitionerId) }

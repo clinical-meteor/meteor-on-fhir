@@ -10,7 +10,6 @@ import { CardText, CardActions } from 'material-ui/Card';
 
 import { insertPatient, updatePatient, removePatientById } from '../../../api/patients/methods';
 import { Bert } from 'meteor/themeteorchef:bert';
-import DatePicker from 'react-toolbox/lib/date_picker';
 
 let defaultState = false;
 
@@ -64,7 +63,6 @@ export default class PatientDetail extends React.Component {
           <Input ref="active" type='text' label='active' name='active' value={this.data.patient.active} onChange={ this.changeState.bind(this, 'active')} />
           <Input ref="gender" type='text' label='gender' name='gender' value={this.data.patient.gender} onChange={ this.changeState.bind(this, 'gender')} />
           <Input ref="photo" type='text' label='photo' name='photo' value={this.data.patient.photo} onChange={ this.changeState.bind(this, 'photo')} />
-          <DatePicker ref="birthdate" label='birthdate' name='birthdate' value={this.data.patient.birthdate} onChange={ this.changeState.bind(this, 'birthdate')}  />
         </CardText>
         <CardActions>
           { this.determineButtons(this.data.patientId) }

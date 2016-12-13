@@ -122,7 +122,4 @@ export default class PractitionerTable extends React.Component {
   }
 }
 
-
-
-PractitionerTable.propTypes = {};
 ReactMixin(PractitionerTable.prototype, ReactMeteorData);

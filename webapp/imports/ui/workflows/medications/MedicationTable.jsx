@@ -147,6 +147,4 @@ export default class MedicationTable extends React.Component {
 }
 
 
-
-MedicationTable.propTypes = {};
 ReactMixin(MedicationTable.prototype, ReactMeteorData);

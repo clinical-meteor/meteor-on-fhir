@@ -1,5 +1,5 @@
 import { IndexLinkContainer } from 'react-router-bootstrap';
-import { List, ListItem } from 'react-toolbox/lib/list';
+import { List, ListItem } from 'material-ui/List';
 import React from 'react';
 import ReactMixin from 'react-mixin';
 
@@ -29,46 +29,46 @@ export class PractitionerSidebar extends React.Component {
   handleLogout() {
     Meteor.logout();
   }
-  
+
   render () {
     return(
       <div id="practitionerSidebar">
         <List style={{paddingLeft: '20px', position: 'absolute'}}>
 
           <IndexLinkContainer to='/dashboard'>
-             <ListItem eventKey={ 2 } caption='Dashboard' href='/dashboard' />
+             <ListItem primaryText='Dashboard' href='/dashboard' />
           </IndexLinkContainer>
 
           <IndexLinkContainer to='/patients'>
-             <ListItem eventKey={ 7 } caption='Patients' href='/patients' />
+             <ListItem primaryText='Patients' href='/patients' />
           </IndexLinkContainer>
 
           <IndexLinkContainer to='/practitioners'>
-             <ListItem eventKey={ 8 } caption='Practitioners' href='/practitioners' />
+             <ListItem primaryText='Practitioners' href='/practitioners' />
           </IndexLinkContainer>
 
           <IndexLinkContainer to='/medications'>
-             <ListItem eventKey={ 6 } caption='Medications' href='/medications' />
+             <ListItem primaryText='Medications' href='/medications' />
           </IndexLinkContainer>
 
           <IndexLinkContainer to='/users'>
-             <ListItem eventKey={ 6 } caption='Users' href='/users' />
+             <ListItem primaryText='Users' href='/users' />
           </IndexLinkContainer>
 
           <IndexLinkContainer to='/observation-history'>
-             <ListItem eventKey={ 3 } caption='Observation History' href='/observation-history' />
+             <ListItem primaryText='Observation History' href='/observation-history' />
           </IndexLinkContainer>
 
           <IndexLinkContainer to='/careplan-designer'>
-             <ListItem eventKey={ 7 } caption='Careplan Designer' href='/careplan-designer' />
+             <ListItem primaryText='Careplan Designer' href='/careplan-designer' />
           </IndexLinkContainer>
 
           <IndexLinkContainer to='/careplan-history'>
-             <ListItem eventKey={ 7 } caption='Careplan History' href='/careplan-history' />
+             <ListItem primaryText='Careplan History' href='/careplan-history' />
           </IndexLinkContainer>
 
           <IndexLinkContainer to='/login'>
-             <ListItem className='logoutMenuItem' eventKey={ 11 } caption='Logout' href='/login' onClick={this.handleLogout} />
+             <ListItem className='logoutMenuItem' primaryText='Logout' href='/login' onClick={this.handleLogout} />
           </IndexLinkContainer>
 
         </List>
