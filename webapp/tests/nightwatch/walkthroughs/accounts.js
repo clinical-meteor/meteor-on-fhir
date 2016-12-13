@@ -20,19 +20,6 @@ module.exports = {
       .saveScreenshot('tests/nightwatch/screenshots/accounts/A-signupPage.png', client)
       .signup()
       .pause(2000, client);
-
-    // // const signupPage = client.page.signupPage();
-    // const indexPage = client.page.indexPage();
-    //
-    // client.page.signupPage()
-    //   .navigate()
-    //   .signup('Alice', 'Doe', 'alice@test.org', 'alicedoe')
-    //   .pause(1000, client);
-    //
-    // // indexPage.expect.element('#welcomePatientPage').to.be.present;
-    // indexPage.expect.element('#indexPage').to.be.present;
-    // indexPage.expect.element('#authenticatedUserMenuToggle').to.be.present;
-    // indexPage.expect.element('#authenticatedUsername').text.to.contain('Alice Doe');
   },
   'User gets logged in after signup.': function (client) {
     client
@@ -41,33 +28,21 @@ module.exports = {
       .verify.elementPresent('#sidebarToggleButton')
         .click('#sidebarToggleButton').pause(1000)
 
-      .verify.elementPresent('#patientSynopsis div h5')
-      .verify.containsText('#patientSynopsis div h5', 'Alice Doe')
+      .waitForElementPresent('#userIdentification span', 5000)
+      .verify.containsText('#userIdentification span', 'Alice Doe')
       .saveScreenshot('tests/nightwatch/screenshots/accounts/B-profileSetupPage.png');
   },
   'User can log out.': function (client) {
     client
-      .verify.elementPresent('#patientSidebarMenu .logoutMenuItem')
+      .waitForElementPresent('#patientSidebar .logoutMenuItem', 5000)
       .saveScreenshot('tests/nightwatch/screenshots/accounts/C-logoutMenuItem.png')
-      .click('#patientSidebarMenu .logoutMenuItem').pause(1000)
+      .click('#patientSidebar .logoutMenuItem').pause(1000)
 
       .verify.elementPresent('#loginPage')
       .saveScreenshot('tests/nightwatch/screenshots/accounts/D-loginPage.png');
-
-    // client.verify.elementPresent('#authenticatedUserMenuToggle')
-    //   .click('#authenticatedUserMenuToggle').pause(1000)
-    //   .click('#authenticatedUserMenuToggle').pause(2000)
-    //   .verify.elementPresent('#authenticatedUserMenu')
-    //   .verify.elementPresent('#authenticatedUserMenu #logoutMenuItem')
-    //   .click('#authenticatedUserMenu #logoutMenuItem').pause(1000)
-    //   .verify.elementPresent('#loginPage');
   },
   'User can sign in.': function (client) {
-    // const loginPage = client.page.loginPage();
-    const carePlanPage = client.page.carePlanPage();
-
     client.page.loginPage()
-      .navigate()
       .fillOutLoginPage('alice@test.org', 'alicedoe')
       .saveScreenshot('tests/nightwatch/screenshots/accounts/E-loginPage.png', client)
       .pause(1000, client)
@@ -75,35 +50,18 @@ module.exports = {
       .pause(2000, client);
 
     client
-      .verify.elementPresent('#cardActionsContainer')
+      .verify.elementPresent('#indexPage')
       .verify.containsText('#authenticatedUsername', 'Alice Doe');
-    // const indexPage = client.page.indexPage();
-    //
-    // client.page.loginPage()
-    //   .navigate()
-    //   .login("alice@test.org", "alicedoe")
-    //   .pause(2000, client);
-    //
-    // indexPage.expect.element('#indexPage').to.be.present;
-    // indexPage.expect.element('#authenticatedUsername').text.to.contain('Alice Doe');
   },
   "User can view profile.": function (client) {
     client
-      .verify.elementPresent('#authenticatedUsername')
-      .click('#authenticatedUsername').pause(500)
+      .verify.elementPresent('#sidebarToggleButton')
+        .click('#sidebarToggleButton').pause(1000)
 
-      .verify.elementPresent('#authenticatedUserMenu .profileMenuItem')
-      .click('#authenticatedUserMenu .profileMenuItem').pause(500)
+      .waitForElementPresent('#userIdentification', 5000)
+      .click("#userIdentification")
 
-      .verify.elementPresent('#myProfilePage');
-    // client.verify.elementPresent('#authenticatedUserMenuToggle')
-    //   .click('#authenticatedUserMenuToggle').pause(1000)
-    //   .click('#authenticatedUserMenuToggle').pause(2000)
-    //
-    //   .verify.elementPresent("#authenticatedUserMenu #myProfileMenuItem")
-    //   .click("#authenticatedUserMenu #myProfileMenuItem").pause(500)
-    //
-    //   .verify.elementPresent("#myProfilePage");
+      .waitForElementPresent('#myProfilePage', 5000);
   },
   "User can edit profile avatar.": function (client) {
     var myArray = 'https://pbs.twimg.com/profile_images/436598467956187136/yncbkX83_400x400.jpeg'.split('');
@@ -152,7 +110,7 @@ module.exports = {
 
     client
       .verify.elementPresent("label.passwordTab")
-      .click("label.passwordTab").pause(500)
+      .click("label.passwordTab").pause(1000)
 
       .verify.elementPresent("input[name=oldPassword]")
       .verify.elementPresent("input[name=newPassword]")
@@ -177,7 +135,7 @@ module.exports = {
       client.setValue('input[name="confirmPassword"]', newPassArray[l]).pause(100);
     }
 
-    client.click("#changePasswordButton").pause(1000)
+    client.click("#changePasswordButton").pause(2000)
 
       .verify.attributeEquals('input[name="oldPassword"]', 'value', '')
       .verify.attributeEquals('input[name="newPassword"]', 'value', '')
@@ -188,7 +146,7 @@ module.exports = {
       .click('#authenticatedUserMenuToggle').pause(2000)
 
       .verify.elementPresent("#authenticatedUserMenu #logoutMenuItem")
-      .click("#authenticatedUserMenu #logoutMenuItem").pause(500)
+      .click("#authenticatedUserMenu #logoutMenuItem").pause(1000)
 
       .verify.elementPresent("#loginPage");
   },

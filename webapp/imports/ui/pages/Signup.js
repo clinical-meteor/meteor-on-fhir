@@ -89,13 +89,27 @@ export class Signup extends React.Component {
 
     Accounts.createUser(newUserData, function(error, result){
       if (error) {
-        Bert.alert(error.reason, 'danger');
+        // for some reason, we're getting an "Email already exists!" on signup
+        //if (!error.reason.includes("Email already exists.")) {
+          Bert.alert(error.reason, 'danger');
+        //}
       }
       if (result) {
         console.log("Accounts.createUser[result]", result);
       }
-      browserHistory.push('/welcome/patient');
-      // browserHistory.push('/');
+
+      // if this is a patient's first visit, we want to send them to a welcome screen
+      // where they can fill out HIPAA
+      if (Roles.userIsInRole(Meteor.userId(), 'patient')) {
+        if (Meteor.user() && Meteor.user().profile && Meteor.user().profile.firstTimeVisit) {
+          browserHistory.push('/welcome/patient');
+        } else {
+          browserHistory.push('/');
+        }
+      } else {
+        browserHistory.push('/');
+      }
+
     });
   }
 

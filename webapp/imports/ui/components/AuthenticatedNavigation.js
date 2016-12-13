@@ -6,23 +6,15 @@ import { browserHistory } from 'react-router';
 import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session';
 
-import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import {ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar';
+import { CardText} from 'material-ui/Card';
 
 import IconMenu from 'material-ui/IconMenu';
 import IconButton from 'material-ui/IconButton';
-import FontIcon from 'material-ui/FontIcon';
-import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
-import Divider from 'material-ui/Divider';
-import DropDownMenu from 'material-ui/DropDownMenu';
 
 import ActionAccountCircle from 'material-ui/svg-icons/action/account-circle';
-import {List, ListItem} from 'material-ui/List';
-import Subheader from 'material-ui/Subheader';
-import Avatar from 'material-ui/Avatar';
 
-import ActionInfo from 'material-ui/svg-icons/action/info';
 import ActionExitToApp from 'material-ui/svg-icons/action/exit-to-app';
 
 Session.get('showNotificationMenu', true);

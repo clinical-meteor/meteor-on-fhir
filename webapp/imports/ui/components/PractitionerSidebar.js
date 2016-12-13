@@ -26,7 +26,10 @@ export class PractitionerSidebar extends React.Component {
 
     return data;
   }
-
+  handleLogout() {
+    Meteor.logout();
+  }
+  
   render () {
     return(
       <div id="practitionerSidebar">
@@ -62,6 +65,10 @@ export class PractitionerSidebar extends React.Component {
 
           <IndexLinkContainer to='/careplan-history'>
              <ListItem eventKey={ 7 } caption='Careplan History' href='/careplan-history' />
+          </IndexLinkContainer>
+
+          <IndexLinkContainer to='/login'>
+             <ListItem className='logoutMenuItem' eventKey={ 11 } caption='Logout' href='/login' onClick={this.handleLogout} />
           </IndexLinkContainer>
 
         </List>

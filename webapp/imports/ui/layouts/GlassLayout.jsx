@@ -130,10 +130,11 @@ export class GlassLayout extends React.Component {
 
           <IndexLinkContainer to='/myprofile' >
              <CardTitle
-               id="patientSynopsis"
+               id="userIdentification"
                avatar={this.data.card.avatar}
                title={this.data.card.title}
                subtitle={this.data.card.subtitle}
+               style={{pointer: 'cursor'}}
              />
           </IndexLinkContainer>
 

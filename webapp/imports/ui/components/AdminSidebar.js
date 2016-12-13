@@ -26,6 +26,9 @@ export class AdminSidebar extends React.Component {
 
     return data;
   }
+  handleLogout() {
+    Meteor.logout();
+  }
 
   render () {
     return(
@@ -52,6 +55,9 @@ export class AdminSidebar extends React.Component {
              <ListItem eventKey={ 8 } caption='Practitioners' href='/practitioners' />
           </IndexLinkContainer>
 
+          <IndexLinkContainer to='/login'>
+             <ListItem className='logoutMenuItem' eventKey={ 11 } caption='Logout' href='/login' onClick={this.handleLogout} />
+          </IndexLinkContainer>
         </List>
       </div>
     );
