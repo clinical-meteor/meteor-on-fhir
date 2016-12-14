@@ -31,6 +31,7 @@ export class PatientSidebar extends React.Component {
   }
 
   handleLogout() {
+    console.log("handleLogout");
     Meteor.logout();
   }
 
@@ -41,7 +42,7 @@ export class PatientSidebar extends React.Component {
   render () {
     return(
       <div id='patientSidebar'>
-        <List style={{paddingLeft: '20px', position: 'absolute'}}>
+        <List style={{paddingLeft: '20px', position: 'static'}}>
 
           <IndexLinkContainer to='/'>
             <ListItem className="indexItem" href='/' primaryText='Index' />

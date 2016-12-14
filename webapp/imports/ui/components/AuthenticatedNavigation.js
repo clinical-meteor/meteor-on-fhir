@@ -7,7 +7,7 @@ import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session';
 
 import {ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar';
-import { CardText} from 'material-ui/Card';
+import { CardText } from 'material-ui/Card';
 
 import IconMenu from 'material-ui/IconMenu';
 import IconButton from 'material-ui/IconButton';
@@ -74,14 +74,14 @@ export class AuthenticatedNavigation extends React.Component {
 
   render () {
     return(
-      <div id='authenticatedUserMenuToggle' onTouchTap={this.toggleNotificationMenu } onClick={this.toggleNotificationMenu } style={style.username}>
+      <div id='authenticatedUserMenuToggle' onTouchTap={this.toggleNotificationMenu } style={style.username}>
         <ToolbarGroup >
 
           <IconMenu
             id='authenticatedUserMenu'
             anchorOrigin={{horizontal: 'right', vertical: 'bottom'}}
             targetOrigin={{horizontal: 'right', vertical: 'top'}}
-            open={!this.data.state.showNotificationMenu}
+            open={false}
             iconButtonElement={
               <div>
                 <IconButton touch={true}>
@@ -96,19 +96,6 @@ export class AuthenticatedNavigation extends React.Component {
               </div>
             }
           >
-            <MenuItem
-              id='myProfileMenuItem'
-              type="block"
-              onTouchTap={ this.handleProfile }
-              primaryText='Profile'
-              leftIcon={<ActionAccountCircle />}
-              />
-            <MenuItem
-              id='logoutMenuItem'
-              type="block"
-              onTouchTap={ this.handleLogout }
-              leftIcon={<ActionExitToApp />}
-              primaryText='Logout' />
           </IconMenu>
 
         </ToolbarGroup>
@@ -134,10 +121,6 @@ export class AuthenticatedNavigation extends React.Component {
     }
   }
 }
-AuthenticatedNavigation.propTypes = {
 
-};
-AuthenticatedNavigation.defaultProps = {
 
-};
 ReactMixin(AuthenticatedNavigation.prototype, ReactMeteorData);

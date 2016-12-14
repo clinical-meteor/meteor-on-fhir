@@ -128,13 +128,12 @@ export class GlassLayout extends React.Component {
           onOverlayClick={ this.toggleDrawerActive }
           >
 
-          <IndexLinkContainer to='/myprofile' >
-             <CardTitle
-               id="userIdentification"
+          <IndexLinkContainer id="userIdentification" to='/myprofile' >
+             <CardTitle               
                avatar={this.data.card.avatar}
                title={this.data.card.title}
                subtitle={this.data.card.subtitle}
-               style={{pointer: 'cursor'}}
+               style={{cursor: 'pointer'}}
              />
           </IndexLinkContainer>
 

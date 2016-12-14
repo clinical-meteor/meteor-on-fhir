@@ -2,6 +2,8 @@
 // http://nightwatchjs.org/api
 
 
+// All right, you mutinous, computerized, disloyal half-breed - we'll see about you deserting my ship.
+
 module.exports = {
   tags: ['accounts', 'passwords', 'users', 'entry', 'circle'],
   before: function(client){
@@ -109,8 +111,8 @@ module.exports = {
     var newPassArray = 'alice123'.split('');
 
     client
-      .verify.elementPresent("label.passwordTab")
-      .click("label.passwordTab").pause(1000)
+      .verify.elementPresent("#profilePageTabs .passwordTab")
+      .click("#profilePageTabs .passwordTab").pause(1000)
 
       .verify.elementPresent("input[name=oldPassword]")
       .verify.elementPresent("input[name=newPassword]")
@@ -139,16 +141,16 @@ module.exports = {
 
       .verify.attributeEquals('input[name="oldPassword"]', 'value', '')
       .verify.attributeEquals('input[name="newPassword"]', 'value', '')
-      .verify.attributeEquals('input[name="confirmPassword"]', 'value', '');
+      .verify.attributeEquals('input[name="confirmPassword"]', 'value', '')
 
-    client.verify.elementPresent('#authenticatedUserMenuToggle')
-      .click('#authenticatedUserMenuToggle').pause(1000)
-      .click('#authenticatedUserMenuToggle').pause(2000)
+      .waitForElementPresent('#sidebarToggleButton', 2000)
+      .click('#sidebarToggleButton').pause(2000)
+      .click('#sidebarToggleButton').pause(2000)
 
-      .verify.elementPresent("#authenticatedUserMenu #logoutMenuItem")
-      .click("#authenticatedUserMenu #logoutMenuItem").pause(1000)
+      .waitForElementPresent('#patientSidebar .logoutMenuItem', 5000)
+      .click('#patientSidebar .logoutMenuItem').pause(20000)
 
-      .verify.elementPresent("#loginPage");
+      .waitForElementPresent("#loginPage", 5000);
   },
   "User can sign in with new password.": function (client) {
     client
@@ -170,20 +172,16 @@ module.exports = {
     // log out
     var userIdArray = "alice@test.org";
 
-    client.verify.elementPresent('#authenticatedUserMenuToggle')
-      .click('#authenticatedUserMenuToggle').pause(1000)
-      .click('#authenticatedUserMenuToggle').pause(2000)
+    client.verify.elementPresent('#sidebarToggleButton')
+      .click('#sidebarToggleButton').pause(2000)
 
-      .verify.elementPresent('#authenticatedUserMenu #myProfileMenuItem')
-      .click('#authenticatedUserMenu #myProfileMenuItem').pause(500)
+      .verify.elementPresent('#userIdentification')
+      .click('#userIdentification').pause(1000)
 
-      // // the menu doesn't auto-close, so we need to manually close it
-      // // so it doesn't obscure other components
-      // .verify.elementPresent('#authenticatedUsername')
-      // .click('#authenticatedUsername').pause(500)
+      .waitForElementPresent('#myProfilePage', 5000)
 
-      .verify.elementPresent('label.systemTab')
-      .click('label.systemTab').pause(500)
+      .verify.elementPresent('#profilePageTabs .systemTab')
+      .click('#profilePageTabs .systemTab').pause(500)
 
       .verify.elementPresent('#deleteUserButton')
       .click('#deleteUserButton').pause(500)

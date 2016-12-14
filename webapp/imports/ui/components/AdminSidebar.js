@@ -33,7 +33,7 @@ export class AdminSidebar extends React.Component {
   render () {
     return(
       <div id="adminSidebar">
-        <List style={{paddingLeft: '20px', position: 'absolute', width: '100%'}}>
+        <List style={{paddingLeft: '20px', position: 'static', width: '100%'}}>
 
           <IndexLinkContainer to='/'>
              <ListItem primaryText='Admin Index' href='/' />

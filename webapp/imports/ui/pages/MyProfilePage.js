@@ -1,5 +1,5 @@
 import { CardTitle } from 'material-ui/Card';
-import { Col, Grid } from 'react-bootstrap';
+import { Col, Grid, Row } from 'react-bootstrap';
 import { Tabs, Tab } from 'material-ui/Tabs';
 import { browserHistory } from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -110,18 +110,18 @@ export class MyProfilePage extends React.Component {
         <PageContainer>
           <GlassCard>
             <hr />
-            <Grid>
+            <Row>
               <Col xs={6} md={4} lg={2}>
                 <img id='avatarImage' ref='avatarImage' src={this.data.user.profileImage} onError={this.imgError.bind(this)} style={{width: '100%'}} />
               </Col>
-              <Col xs={12} md={8} lg={10}>
+              <Col xs={12} md={8} md={10}>
                 <CardTitle
                   title={this.data.user.fullName}
                   subtitle={this.data.user.email}
                 />
-                <Tabs index={this.data.state.index} onChange={this.handleTabChange}>
+                <Tabs id="profilePageTabs" index={this.data.state.index} onChange={this.handleTabChange} initialSelectedIndex={this.data.state.index} value={this.data.state.index} >
 
-                  <Tab className='demographicsTab' label='Demographics' style={{backgroundColor: 'white', color: 'black', borderBottom: '1px solid lightgray'}}>
+                  <Tab className='demographicsTab' label='Demographics' style={{backgroundColor: 'white', color: 'black', borderBottom: '1px solid lightgray'}} value={0} >
                     <div id='profileDemographicsPane' style={{position: 'relative'}}>
                       <TextField
                         id='givenNameInput'
@@ -158,7 +158,8 @@ export class MyProfilePage extends React.Component {
                         /><br/>
                     </div>
                   </Tab>
-                  <Tab className='environmentalTab' label='Environmental' onActive={this.handleActive} style={{backgroundColor: 'white', color: 'black', borderBottom: '1px solid lightgray'}}>
+
+                  <Tab className='environmentalTab' label='Environmental' onActive={this.handleActive} style={{backgroundColor: 'white', color: 'black', borderBottom: '1px solid lightgray'}} value={1}>
                     <div id='profileEnvironmentalPane' style={{position: 'relative'}} >
                       <TextField
                         id='zipcodeInput'
@@ -185,9 +186,9 @@ export class MyProfilePage extends React.Component {
                         defaultValue={this.data.user.longitude}
                         /><br/>
                     </div>
-
                   </Tab>
-                  <Tab className='passwordTab' label='Password' style={{backgroundColor: 'white', color: 'black', borderBottom: '1px solid lightgray'}}>
+
+                  <Tab className='passwordTab' label='Password' style={{backgroundColor: 'white', color: 'black', borderBottom: '1px solid lightgray'}} value={2} >
                     <div id='profilePasswordPane' style={{position: 'relative'}} >
                       <TextField
                         id='oldPasswordInput'
@@ -228,9 +229,9 @@ export class MyProfilePage extends React.Component {
                         primary={true}
                         />
                     </div>
-
                   </Tab>
-                  <Tab className="systemTab" label='System'>
+
+                  <Tab className="systemTab" label='System' style={{backgroundColor: 'white', color: 'black', borderBottom: '1px solid lightgray'}} value={3}>
                     <div id="profileSystemPane" style={{position: "relative"}}>
                       <TextField
                         id='idInput'
@@ -253,11 +254,11 @@ export class MyProfilePage extends React.Component {
 
                       { this.renderConfirmDelete(this.data.state.wantsToDelete) }
                     </div>
-
                   </Tab>
+
                 </Tabs>
               </Col>
-            </Grid>
+            </Row>
             <Spacer />
 
 

@@ -28,7 +28,7 @@ export class AuthenticatedSidebar extends React.Component {
 
   render () {
     return(
-      <List style={{paddingLeft: '20px', position: 'absolute'}}>
+      <List style={{paddingLeft: '20px', position: 'static'}}>
 
         <IndexLinkContainer to='/dashboard'>
            <ListItem primaryText='Dashboard' href='/dashboard' />

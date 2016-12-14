@@ -33,7 +33,7 @@ export class PractitionerSidebar extends React.Component {
   render () {
     return(
       <div id="practitionerSidebar">
-        <List style={{paddingLeft: '20px', position: 'absolute'}}>
+        <List style={{paddingLeft: '20px', position: 'static'}}>
 
           <IndexLinkContainer to='/dashboard'>
              <ListItem primaryText='Dashboard' href='/dashboard' />

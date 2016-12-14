@@ -95,10 +95,10 @@ export class Footer extends React.Component {
       return (
         <div>
           <FloatingActionButton ref='blurButton' onClick={this.clickOnBlurButton} style={{marginLeft: '40px', height: '56px'}} secondary={true}>
-            <ImageBlurOn />
+            <ImageBlurOn style={{color: 'white'}} />
           </FloatingActionButton>
           <FloatingActionButton ref='darkroomButton' onClick={this.clickOnDarkroomButton} style={{marginLeft: '20px', height: '56px'}} secondary={true}>
-            <ImageExposure />
+            <ImageExposure style={{color: 'white'}} />
           </FloatingActionButton>
         </div>
       );
