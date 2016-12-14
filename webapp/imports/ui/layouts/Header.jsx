@@ -123,6 +123,8 @@ export class Header extends React.Component {
       <AppBar
         id='appHeader'
         title={this.data.app.title}
+        onTitleTouchTap={this.toggleDrawerActive}
+        onLeftIconButtonTouchTap={this.toggleDrawerActive}
         iconElementRight={ this.renderNavigation(this.data.hasUser) }
         style={this.data.style}
       />
