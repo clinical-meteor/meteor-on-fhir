@@ -2,7 +2,7 @@ import React from 'react';
 import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
-import Input from 'react-toolbox/lib/input';
+import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
 import { CardText, CardActions } from 'material-ui/Card';
@@ -59,10 +59,42 @@ export default class PatientDetail extends React.Component {
     return (
       <div className="patientDetail">
         <CardText>
-          <Input ref="name" type='text' label='name' name='name' value={this.data.patient.name} onChange={ this.changeState.bind(this, 'name')} />
-          <Input ref="active" type='text' label='active' name='active' value={this.data.patient.active} onChange={ this.changeState.bind(this, 'active')} />
-          <Input ref="gender" type='text' label='gender' name='gender' value={this.data.patient.gender} onChange={ this.changeState.bind(this, 'gender')} />
-          <Input ref="photo" type='text' label='photo' name='photo' value={this.data.patient.photo} onChange={ this.changeState.bind(this, 'photo')} />
+          <TextField
+            id='nameInput'
+            ref='name'
+            name='name'
+            floatingLabelText='name'
+            defaultValue={this.data.patient.name}
+            onChange={ this.changeState.bind(this, 'name')}
+            fullWidth
+            /><br/>
+          <TextField
+            id='genderInput'
+            ref='gender'
+            name='gender'
+            floatingLabelText='gender'
+            defaultValue={this.data.patient.gender}
+            onChange={ this.changeState.bind(this, 'gender')}
+            fullWidth
+            /><br/>
+          <TextField
+            id='photoInput'
+            ref='photo'
+            name='photo'
+            floatingLabelText='photo'
+            defaultValue={this.data.patient.photo}
+            onChange={ this.changeState.bind(this, 'photo')}
+            fullWidth
+            /><br/>
+          <TextField
+            id='activeInput'
+            ref='active'
+            name='active'
+            floatingLabelText='active'
+            defaultValue={this.data.patient.active}
+            onChange={ this.changeState.bind(this, 'active')}
+            fullWidth
+            /><br/>
         </CardText>
         <CardActions>
           { this.determineButtons(this.data.patientId) }

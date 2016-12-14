@@ -2,7 +2,7 @@ import React from 'react';
 import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
-import Input from 'react-toolbox/lib/input';
+import TextField from 'material-ui/TextField';
 import { CardText, CardActions } from 'material-ui/Card';
 
 import RaisedButton from 'material-ui/RaisedButton';
@@ -52,9 +52,34 @@ export default class DeviceDetail extends React.Component {
     return (
       <div className="deviceDetail">
         <CardText>
-          <Input ref="name" type='text' label='name' name='name' value={this.data.device.deviceName} onChange={ this.changeState.bind(this, 'name')} />
-          <Input ref="productid" type='text' label='productid' name='productid' value={this.data.device.deviceProductId} onChange={ this.changeState.bind(this, 'productid')} />
-          <Input ref="patientid" type='text' label='patientid' name='patientid' value={this.data.device.patientId} onChange={ this.changeState.bind(this, 'patientid')} />
+          <TextField
+            id='deviceNameInput'
+            ref='name'
+            name='name'
+            floatingLabelText='name'
+            defaultValue={this.data.device.deviceName}
+            onChange={ this.changeState.bind(this, 'name')}
+            fullWidth
+            /><br/>
+          <TextField
+            id='productIdInput'
+            ref='productid'
+            name='productid'
+            floatingLabelText='productid'
+            defaultValue={this.data.device.deviceProductId}
+            onChange={ this.changeState.bind(this, 'productid')}
+            fullWidth
+            /><br/>
+          <TextField
+            id='patientIdInput'
+            ref='patientid'
+            name='patientid'
+            floatingLabelText='patientid'
+            defaultValue={this.data.device.patientId}
+            onChange={ this.changeState.bind(this, 'patientid')}
+            fullWidth
+            /><br/>
+
         </CardText>
         <CardActions>
           { this.determineButtons(this.data.deviceId) }

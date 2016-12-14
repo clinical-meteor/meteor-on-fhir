@@ -1,26 +1,14 @@
 import React from 'react';
 import ReactMixin from 'react-mixin';
-import {
-  ReactMeteorData
-}
-from 'meteor/react-meteor-data';
+import { ReactMeteorData } from 'meteor/react-meteor-data';
 
-import Input from 'react-toolbox/lib/input';
+import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
-import {
-  CardText, CardActions
-}
-from 'material-ui/Card';
+import { CardText, CardActions } from 'material-ui/Card';
 
-import {
-  insertObservation, updateObservation, removeObservationById
-}
-from '../../../api/observations/methods';
-import {
-  Bert
-}
-from 'meteor/themeteorchef:bert';
+import { insertObservation, updateObservation, removeObservationById } from '../../../api/observations/methods';
+import { Bert } from 'meteor/themeteorchef:bert';
 
 
 let defaultState = false;
@@ -75,12 +63,61 @@ export default class ObservationDetail extends React.Component {
       return (
         <div className="observationDetail">
           <CardText>
-            <Input ref="patientid" type='text' label='patientid' type='patientid' value={this.data.observation.patientId} onChange={ this.changeState.bind(this, 'patientid')} />
-            <Input ref="type" type='text' label='type' type='type' value={this.data.observation.observationType} onChange={ this.changeState.bind(this, 'type')} />
-            <Input ref="value" type='text' label='value' type='value' value={this.data.observation.observationValue} onChange={ this.changeState.bind(this, 'value')} />
-            <Input ref="units" type='text' label='units' type='units' value={this.data.observation.observationValue} onChange={ this.changeState.bind(this, 'units')} />
-            <Input ref="status" type='text' label='status' type='status' value={this.data.observation.observationValue} onChange={ this.changeState.bind(this, 'status')} />
-            <Input ref="source" type='text' label='source' type='source' value={this.data.observation.observationValue} onChange={ this.changeState.bind(this, 'source')} />
+            <TextField
+              id='patientIdInput'
+              ref='patientid'
+              name='patientid'
+              floatingLabelText='patientid'
+              defaultValue={this.data.observation.patientid}
+              onChange={ this.changeState.bind(this, 'patientid')}
+              fullWidth
+              /><br/>
+            <TextField
+              id='typeInput'
+              ref='type'
+              name='type'
+              floatingLabelText='type'
+              defaultValue={this.data.observation.type}
+              onChange={ this.changeState.bind(this, 'type')}
+              fullWidth
+              /><br/>
+            <TextField
+              id='valueInput'
+              ref='value'
+              name='value'
+              floatingLabelText='value'
+              defaultValue={this.data.observation.value}
+              onChange={ this.changeState.bind(this, 'value')}
+              fullWidth
+              /><br/>
+            <TextField
+              id='unitsInput'
+              ref='units'
+              name='units'
+              floatingLabelText='units'
+              defaultValue={this.data.observation.units}
+              onChange={ this.changeState.bind(this, 'units')}
+              fullWidth
+              /><br/>
+            <TextField
+              id='statusInput'
+              ref='status'
+              name='status'
+              floatingLabelText='status'
+              defaultValue={this.data.observation.status}
+              onChange={ this.changeState.bind(this, 'status')}
+              fullWidth
+              /><br/>
+            <TextField
+              id='sourceInput'
+              ref='source'
+              name='source'
+              floatingLabelText='source'
+              defaultValue={this.data.observation.source}
+              onChange={ this.changeState.bind(this, 'source')}
+              fullWidth
+              /><br/>
+
           </CardText>
           <CardActions>
             { this.determineButtons(this.data.observationId) }
