@@ -48,7 +48,7 @@ export class ForumPage extends React.Component {
     if (isLoggedIn) {
       return (
         <div>
-          <RaisedButton label="New Topic" onMouseUp={this.newTopic.bind(this)} />
+          <RaisedButton id='newTopicButton' label="New Topic" onMouseUp={this.newTopic.bind(this)} />
           <Spacer />
         </div>
       );

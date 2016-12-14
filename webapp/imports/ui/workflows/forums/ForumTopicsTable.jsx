@@ -109,36 +109,36 @@ export class ForumTopicsTable extends React.Component {
     let tableRows = [];
     for (var i = 0; i < this.data.topics.length; i++) {
       tableRows.push(
-        <tr key={i} className='patientRow' style={{cursor: 'pointer'}} >
+        <tr key={i} className='topicRow' style={{cursor: 'pointer'}} >
 
-          <td onClick={ this.rowClick.bind('this', this.data.topics[i]._id)}>{this.data.topics[i].name }</td>
-          <td onClick={ this.rowClick.bind('this', this.data.topics[i]._id)}> {this.data.topics[i].category}</td>
-          <td onClick={ this.rowClick.bind('this', this.data.topics[i]._id)}>
+          <td className='description' onClick={ this.rowClick.bind('this', this.data.topics[i]._id)}>{this.data.topics[i].name }</td>
+          <td className='category' onClick={ this.rowClick.bind('this', this.data.topics[i]._id)}> {this.data.topics[i].category}</td>
+          <td className='created-by' onClick={ this.rowClick.bind('this', this.data.topics[i]._id)}>
             <Avatar src={this.data.topics[i].createdByAvatar}>
               {this.data.topics[i].initials}
             </Avatar>
           </td>
 
-          <td onClick={ this.rowClick.bind('this', this.data.topics[i]._id)}>{this.data.topics[i].createdAt }</td>
-          <td onClick={ this.rowClick.bind('this', this.data.topics[i]._id)}>{this.data.topics[i].replies}</td>
-          <td onClick={ this.rowClick.bind('this', this.data.topics[i]._id)}>{this.data.topics[i].views}</td>
-          <td onClick={ this.rowClick.bind('this', this.data.topics[i]._id)}>{this.data.topics[i].activity}</td>
+          <td className='created-by' onClick={ this.rowClick.bind('this', this.data.topics[i]._id)}>{this.data.topics[i].createdAt }</td>
+          <td className='replies' onClick={ this.rowClick.bind('this', this.data.topics[i]._id)}>{this.data.topics[i].replies}</td>
+          <td className='views' onClick={ this.rowClick.bind('this', this.data.topics[i]._id)}>{this.data.topics[i].views}</td>
+          <td className='last-activity' onClick={ this.rowClick.bind('this', this.data.topics[i]._id)}>{this.data.topics[i].activity}</td>
           { this.renderAdminControls(this.data.state.isAdmin, i) }
         </tr>
       );
     }
 
     return(
-      <Table responses hover >
+      <Table id='forumTopicsTable' responses hover >
         <thead>
           <tr>
-            <th>Topic</th>
-            <th>Category</th>
-            <th>CreatedBy</th>
-            <th>Created On</th>
-            <th>Replies</th>
-            <th>Views</th>
-            <th>Last Activity</th>
+            <th className='description'>Topic</th>
+            <th className='category'>Category</th>
+            <th className='created-by'>CreatedBy</th>
+            <th className='created-at'>Created At</th>
+            <th className='replies'>Replies</th>
+            <th className='views'>Views</th>
+            <th className='last-activity'>Last Activity</th>
           { this.renderAdminHeaders(this.data.state.isAdmin) }
           </tr>
         </thead>

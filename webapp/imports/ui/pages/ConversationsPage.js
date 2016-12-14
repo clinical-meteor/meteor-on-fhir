@@ -49,10 +49,10 @@ export class ConversationsPage extends React.Component {
 
   render() {
     return (
-      <div id='ConversationsPage' >
+      <div id='conversationsPage' >
         <PageContainer>
           <GlassCard>
-            <CardTitle title={this.data.state.topicName} />
+            <CardTitle className='description' title={this.data.state.topicName} />
           </GlassCard>
           <DynamicSpacer />
           <ConversationPosts topicId={this.props.routeParams.topicId} />

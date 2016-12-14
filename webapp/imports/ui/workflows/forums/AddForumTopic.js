@@ -124,6 +124,7 @@ export class AddForumTopic extends React.Component {
             <Input
               label='Topic description'
               name='topicName'
+              id='topicDescriptionInput'
               ref='topicName'
               type='textarea'
               value={this.data.state.topicName}
@@ -133,13 +134,14 @@ export class AddForumTopic extends React.Component {
               multiline
               label='Post content'
               name='postContent'
+              id='postContentInput'
               ref='postContent'
               type='textarea'
               value={this.data.state.postContent}
               onChange={this.changePost.bind(this)}
               rows='5'
               />
-              <RaisedButton onMouseUp={ this.handleInsertPost.bind(this) } primary={true} label='New Topic' />
+              <RaisedButton id='newTopicButton' onMouseUp={ this.handleInsertPost.bind(this) } primary={true} label='New Topic' />
 
           </FormGroup>
         </CardText>

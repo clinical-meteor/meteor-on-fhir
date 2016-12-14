@@ -72,7 +72,7 @@ export class PatientIndex extends React.Component {
       <div id='indexPage'>
         <PageContainer>
 
-          <div style={this.data.style.indexCardPadding} onClick={ this.openDiscussionForum.bind(this) }>
+          <div id='forumTile' style={this.data.style.indexCardPadding} onClick={ this.openDiscussionForum.bind(this) }>
             <GlassCard style={this.data.style.indexCard} >
               <CardTitle
                 title='Discussion Forum'

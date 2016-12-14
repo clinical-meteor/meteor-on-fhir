@@ -92,7 +92,7 @@ export class ConversationPosts extends React.Component {
             createdByAvatar = item.createdBy.avatar;
           }
           return (
-            <div className="postCard" key={i}>
+            <div className="conversationPostCard" key={i}>
               <GlassCard>
                 <CardTitle
                   avatar={createdByAvatar}
@@ -100,7 +100,7 @@ export class ConversationPosts extends React.Component {
                   subtitle={createdAt}
                 />
 
-                <CardText>
+                <CardText className='postText'>
                   { item.title}
                 </CardText>
                 { self.renderCardActions(i, item) }
