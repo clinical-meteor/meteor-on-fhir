@@ -59,7 +59,7 @@ test:
     - cd webapp && meteor --version
     - cd webapp && meteor npm install --production
     - cd webapp && meteor npm install nightwatch chromedriver@2.19.0 phantomjs-prebuilt selenium-server-standalone-jar@2.45.0
-    #- meteor npm install --save jquery bootstrap react react-dom react-router react-bootstrap react-komposer react-router-bootstrap faker jquery-validation react-addons-css-transition-group react-addons-pure-render-mixin react-toolbox react-mixin faker react-highcharts eslint-plugin-react eslint-plugin-meteor eslint-config-eslint
+    #- meteor npm install --save jquery bootstrap react react-dom react-router react-bootstrap react-komposer react-router-bootstrap faker jquery-validation react-addons-css-transition-group react-addons-pure-render-mixin react-mixin faker react-highcharts eslint-plugin-react eslint-plugin-meteor eslint-config-eslint
     # - meteor npm install --production
 
     - "cd webapp && meteor run --settings settings.dev.json":

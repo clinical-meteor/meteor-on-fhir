@@ -12,8 +12,8 @@ const Sidebar = (props) => {
   });
 
   return (
-    <div data-react-toolbox='sidebar' className={wrapperClasses}>
-      <aside data-react-toolbox='sidebar-content' className={innerClasses}>
+    <div className={wrapperClasses}>
+      <aside className={innerClasses}>
         {props.children}
       </aside>
     </div>

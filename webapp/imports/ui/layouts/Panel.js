@@ -11,7 +11,7 @@ const Panel = ({ children, className, scrollY }) => {
   }, className);
 
   return (
-    <div data-react-toolbox='panel' className={_className} style={{width: "100%", height: "100%"}}>
+    <div className={_className} style={{width: "100%", height: "100%"}}>
       {children}
     </div>
   );

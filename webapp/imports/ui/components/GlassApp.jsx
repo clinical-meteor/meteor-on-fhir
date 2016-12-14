@@ -143,7 +143,7 @@ export class GlassApp extends React.Component {
       <div id="glassApp">
         {this.renderBackground(this.data.app.showVideoBackground)}
 
-        <div data-react-toolbox='app' style={this.data.app.style}>
+        <div style={this.data.app.style}>
           {this.props.children}
         </div>
       </div>
