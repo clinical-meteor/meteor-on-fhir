@@ -1,45 +1,45 @@
-20:50:57.926 INFO - Selenium build info: version: '3.0.1', revision: '1969d75'
-20:50:57.926 INFO - Launching a standalone Selenium Server
-2016-12-13 20:50:57.950:INFO::main: Logging initialized @352ms
-20:50:58.010 INFO - Driver provider org.openqa.selenium.ie.InternetExplorerDriver registration is skipped:
+22:08:55.389 INFO - Selenium build info: version: '3.0.1', revision: '1969d75'
+22:08:55.390 INFO - Launching a standalone Selenium Server
+2016-12-13 22:08:55.424:INFO::main: Logging initialized @430ms
+22:08:55.517 INFO - Driver provider org.openqa.selenium.ie.InternetExplorerDriver registration is skipped:
  registration capabilities Capabilities [{ensureCleanSession=true, browserName=internet explorer, version=, platform=WINDOWS}] does not match the current platform MAC
-20:50:58.010 INFO - Driver provider org.openqa.selenium.edge.EdgeDriver registration is skipped:
+22:08:55.518 INFO - Driver provider org.openqa.selenium.edge.EdgeDriver registration is skipped:
  registration capabilities Capabilities [{browserName=MicrosoftEdge, version=, platform=WINDOWS}] does not match the current platform MAC
-20:50:58.010 INFO - Driver class not found: com.opera.core.systems.OperaDriver
-20:50:58.011 INFO - Driver provider com.opera.core.systems.OperaDriver registration is skipped:
+22:08:55.518 INFO - Driver class not found: com.opera.core.systems.OperaDriver
+22:08:55.518 INFO - Driver provider com.opera.core.systems.OperaDriver registration is skipped:
 Unable to create new instances on this machine.
-20:50:58.011 INFO - Driver class not found: com.opera.core.systems.OperaDriver
-20:50:58.011 INFO - Driver provider com.opera.core.systems.OperaDriver is not registered
-2016-12-13 20:50:58.058:INFO:osjs.Server:main: jetty-9.2.15.v20160210
-2016-12-13 20:50:58.089:INFO:osjsh.ContextHandler:main: Started o.s.j.s.ServletContextHandler@7dc7cbad{/,null,AVAILABLE}
-2016-12-13 20:50:58.120:INFO:osjs.ServerConnector:main: Started ServerConnector@289abac{HTTP/1.1}{0.0.0.0:4444}
-2016-12-13 20:50:58.121:INFO:osjs.Server:main: Started @522ms
-20:50:58.121 INFO - Selenium Server is up and running
-20:50:58.656 INFO - SessionCleaner initialized with insideBrowserTimeout 0 and clientGoneTimeout 1800000 polling every 180000
-20:50:58.689 INFO - Executing: [new session: Capabilities [{acceptSslCerts=true, loggingPrefs=org.openqa.selenium.logging.LoggingPreferences@58631e4b, name=Forum, browserName=chrome, javascriptEnabled=true, platform=ANY}]])
-20:50:58.703 INFO - Creating a new session for Capabilities [{acceptSslCerts=true, loggingPrefs=org.openqa.selenium.logging.LoggingPreferences@58631e4b, name=Forum, browserName=chrome, javascriptEnabled=true, platform=ANY}]
-Starting ChromeDriver 2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1) on port 44640
+22:08:55.518 INFO - Driver class not found: com.opera.core.systems.OperaDriver
+22:08:55.518 INFO - Driver provider com.opera.core.systems.OperaDriver is not registered
+2016-12-13 22:08:55.583:INFO:osjs.Server:main: jetty-9.2.15.v20160210
+2016-12-13 22:08:55.617:INFO:osjsh.ContextHandler:main: Started o.s.j.s.ServletContextHandler@7dc7cbad{/,null,AVAILABLE}
+2016-12-13 22:08:55.654:INFO:osjs.ServerConnector:main: Started ServerConnector@1d057a39{HTTP/1.1}{0.0.0.0:4444}
+2016-12-13 22:08:55.654:INFO:osjs.Server:main: Started @660ms
+22:08:55.655 INFO - Selenium Server is up and running
+22:08:56.362 INFO - SessionCleaner initialized with insideBrowserTimeout 0 and clientGoneTimeout 1800000 polling every 180000
+22:08:56.407 INFO - Executing: [new session: Capabilities [{acceptSslCerts=true, loggingPrefs=org.openqa.selenium.logging.LoggingPreferences@44a962f, name=Forum, browserName=chrome, javascriptEnabled=true, platform=ANY}]])
+22:08:56.425 INFO - Creating a new session for Capabilities [{acceptSslCerts=true, loggingPrefs=org.openqa.selenium.logging.LoggingPreferences@44a962f, name=Forum, browserName=chrome, javascriptEnabled=true, platform=ANY}]
+Starting ChromeDriver 2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1) on port 47195
 Only local connections are allowed.
-20:50:59.123 INFO - Attempting bi-dialect session, assuming Postel's Law holds true on the remote end
-20:50:59.819 INFO - Detected dialect: OSS
-20:50:59.835 INFO - Done: [new session: Capabilities [{acceptSslCerts=true, loggingPrefs=org.openqa.selenium.logging.LoggingPreferences@58631e4b, name=Forum, browserName=chrome, javascriptEnabled=true, platform=ANY}]]
-20:50:59.859 INFO - Executing: [get: http://localhost:3000])
-20:51:02.682 INFO - Done: [get: http://localhost:3000]
-20:51:05.697 INFO - Executing: [execute async script: var passedArgs = Array.prototype.slice.call(arguments,0); return function (){
+22:08:56.965 INFO - Attempting bi-dialect session, assuming Postel's Law holds true on the remote end
+22:08:57.834 INFO - Detected dialect: OSS
+22:08:57.856 INFO - Done: [new session: Capabilities [{acceptSslCerts=true, loggingPrefs=org.openqa.selenium.logging.LoggingPreferences@44a962f, name=Forum, browserName=chrome, javascriptEnabled=true, platform=ANY}]]
+22:08:57.889 INFO - Executing: [get: http://localhost:3000])
+22:09:30.286 INFO - Done: [get: http://localhost:3000]
+22:09:33.303 INFO - Executing: [execute async script: var passedArgs = Array.prototype.slice.call(arguments,0); return function (){
         Meteor.call('dropTopics');
         Meteor.call('dropTestUsers');
         Meteor.call('initializeUser', 'janedoe@test.org', 'janedoe', 'Jane Doe');
       }.apply(window, passedArgs);, []])
-20:51:07.409 WARN - Exception thrown
+22:09:35.039 WARN - Exception thrown
 org.openqa.selenium.ScriptTimeoutException: asynchronous script timeout: result was not received in 0 seconds
   (Session info: chrome=54.0.2840.98)
   (Driver info: chromedriver=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1),platform=Mac OS X 10.11.5 x86_64) (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 187 milliseconds
+Command duration or timeout: 31 milliseconds
 Build info: version: '3.0.1', revision: '1969d75', time: '2016-10-18 09:48:19 -0700'
 System info: host: 'Abigails-Mac-mini-3.local', ip: '10.0.0.36', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.5', java.version: '1.8.0_111'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1), userDataDir=/var/folders/wy/x2wnhsd15rxbcnwr07g161b00000gn/T/.org.chromium.Chromium.X8gsAq}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.98, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
-Session ID: 9264e971dd28b29b3645bac6a267c4f0
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1), userDataDir=/var/folders/wy/x2wnhsd15rxbcnwr07g161b00000gn/T/.org.chromium.Chromium.rI0Kt5}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.98, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 431e105762cdb3e37b2ccf31aad8d7c1
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
@@ -61,798 +61,800 @@ Session ID: 9264e971dd28b29b3645bac6a267c4f0
 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
 	at java.lang.Thread.run(Thread.java:745)
-20:51:07.411 WARN - Exception: asynchronous script timeout: result was not received in 0 seconds
+22:09:35.042 WARN - Exception: asynchronous script timeout: result was not received in 0 seconds
   (Session info: chrome=54.0.2840.98)
   (Driver info: chromedriver=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1),platform=Mac OS X 10.11.5 x86_64) (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 187 milliseconds
+Command duration or timeout: 31 milliseconds
 Build info: version: '3.0.1', revision: '1969d75', time: '2016-10-18 09:48:19 -0700'
 System info: host: 'Abigails-Mac-mini-3.local', ip: '10.0.0.36', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.5', java.version: '1.8.0_111'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1), userDataDir=/var/folders/wy/x2wnhsd15rxbcnwr07g161b00000gn/T/.org.chromium.Chromium.X8gsAq}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.98, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
-Session ID: 9264e971dd28b29b3645bac6a267c4f0
-20:51:07.806 INFO - Executing: [set window size])
-20:51:08.005 INFO - Done: [set window size]
-20:51:08.012 INFO - Executing: [find elements: By.cssSelector: #loginPage])
-20:51:08.043 INFO - Done: [find elements: By.cssSelector: #loginPage]
-20:51:08.049 INFO - Executing: [find elements: By.cssSelector: input[name="emailAddress"]])
-20:51:08.067 INFO - Done: [find elements: By.cssSelector: input[name="emailAddress"]]
-20:51:08.073 INFO - Executing: [find elements: By.cssSelector: input[name="password"]])
-20:51:08.094 INFO - Done: [find elements: By.cssSelector: input[name="password"]]
-20:51:08.099 INFO - Executing: [find element: By.cssSelector: input[name="emailAddress"]])
-20:51:08.116 INFO - Done: [find element: By.cssSelector: input[name="emailAddress"]]
-20:51:08.120 INFO - Executing: [clear: 1 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: input[name="emailAddress"]]])
-20:51:08.159 INFO - Done: [clear: 1 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: input[name="emailAddress"]]]
-20:51:08.164 INFO - Executing: [find element: By.cssSelector: input[name="password"]])
-20:51:08.186 INFO - Done: [find element: By.cssSelector: input[name="password"]]
-20:51:08.189 INFO - Executing: [clear: 2 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: input[name="password"]]])
-20:51:08.219 INFO - Done: [clear: 2 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: input[name="password"]]]
-20:51:08.223 INFO - Executing: [find element: By.cssSelector: input[name="emailAddress"]])
-20:51:08.230 INFO - Done: [find element: By.cssSelector: input[name="emailAddress"]]
-20:51:08.234 INFO - Executing: [send keys: 1 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: input[name="emailAddress"]], [j, a, n, e, d, o, e, @, t, e, s, t, ., o, r, g]])
-20:51:08.335 INFO - Done: [send keys: 1 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: input[name="emailAddress"]], [j, a, n, e, d, o, e, @, t, e, s, t, ., o, r, g]]
-20:51:08.339 INFO - Executing: [find element: By.cssSelector: input[name="password"]])
-20:51:08.349 INFO - Done: [find element: By.cssSelector: input[name="password"]]
-20:51:08.354 INFO - Executing: [send keys: 2 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: input[name="password"]], [j, a, n, e, d, o, e]])
-20:51:08.411 INFO - Done: [send keys: 2 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: input[name="password"]], [j, a, n, e, d, o, e]]
-20:51:08.415 INFO - Executing: [take screenshot])
-20:51:08.946 INFO - Done: [take screenshot]
-20:51:10.049 INFO - Executing: [find elements: By.cssSelector: #loginButton])
-20:51:10.064 INFO - Done: [find elements: By.cssSelector: #loginButton]
-20:51:10.068 INFO - Executing: [find element: By.cssSelector: #loginButton])
-20:51:10.085 INFO - Done: [find element: By.cssSelector: #loginButton]
-20:51:10.088 INFO - Executing: [click: 3 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #loginButton]])
-20:51:10.158 INFO - Done: [click: 3 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #loginButton]]
-20:51:12.165 INFO - Executing: [find elements: By.cssSelector: #indexPage])
-20:51:12.183 INFO - Done: [find elements: By.cssSelector: #indexPage]
-20:51:14.191 INFO - Executing: [take screenshot])
-20:51:14.599 INFO - Done: [take screenshot]
-20:51:14.782 INFO - Executing: [find elements: By.cssSelector: #forumTile])
-20:51:14.798 INFO - Done: [find elements: By.cssSelector: #forumTile]
-20:51:14.802 INFO - Executing: [find element: By.cssSelector: #forumTile])
-20:51:14.819 INFO - Done: [find element: By.cssSelector: #forumTile]
-20:51:14.822 INFO - Executing: [click: 5 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #forumTile]])
-20:51:14.904 INFO - Done: [click: 5 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #forumTile]]
-20:51:15.911 INFO - Executing: [find elements: By.cssSelector: #forumPage])
-20:51:15.926 INFO - Done: [find elements: By.cssSelector: #forumPage]
-20:51:15.930 INFO - Executing: [find elements: By.cssSelector: #forumTopicsTable])
-20:51:15.947 INFO - Done: [find elements: By.cssSelector: #forumTopicsTable]
-20:51:15.951 INFO - Executing: [find elements: By.cssSelector: #forumTopicsTable .topicRow:nth-child(1)])
-20:51:15.967 INFO - Done: [find elements: By.cssSelector: #forumTopicsTable .topicRow:nth-child(1)]
-20:51:16.004 INFO - Executing: [find elements: By.cssSelector: #forumPage])
-20:51:16.012 INFO - Done: [find elements: By.cssSelector: #forumPage]
-20:51:16.016 INFO - Executing: [find elements: By.cssSelector: #newTopicButton])
-20:51:16.032 INFO - Done: [find elements: By.cssSelector: #newTopicButton]
-20:51:16.035 INFO - Executing: [find element: By.cssSelector: #newTopicButton])
-20:51:16.052 INFO - Done: [find element: By.cssSelector: #newTopicButton]
-20:51:16.055 INFO - Executing: [click: 8 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #newTopicButton]])
-20:51:16.137 INFO - Done: [click: 8 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #newTopicButton]]
-20:51:17.142 INFO - Executing: [find elements: By.cssSelector: #newTopicPage])
-20:51:17.158 INFO - Done: [find elements: By.cssSelector: #newTopicPage]
-20:51:17.162 INFO - Executing: [find elements: By.cssSelector: #topicDescriptionInput])
-20:51:17.176 INFO - Done: [find elements: By.cssSelector: #topicDescriptionInput]
-20:51:17.179 INFO - Executing: [find elements: By.cssSelector: #postContentInput])
-20:51:17.195 INFO - Done: [find elements: By.cssSelector: #postContentInput]
-20:51:17.199 INFO - Executing: [find element: By.cssSelector: #topicDescriptionInput])
-20:51:17.215 INFO - Done: [find element: By.cssSelector: #topicDescriptionInput]
-20:51:17.217 INFO - Executing: [clear: 10 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #topicDescriptionInput]])
-20:51:17.242 INFO - Done: [clear: 10 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #topicDescriptionInput]]
-20:51:17.247 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:17.265 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:17.268 INFO - Executing: [clear: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput]])
-20:51:17.292 INFO - Done: [clear: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput]]
-20:51:17.296 INFO - Executing: [find element: By.cssSelector: #topicDescriptionInput])
-20:51:17.302 INFO - Done: [find element: By.cssSelector: #topicDescriptionInput]
-20:51:17.305 INFO - Executing: [send keys: 10 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #topicDescriptionInput], [L]])
-20:51:17.347 INFO - Done: [send keys: 10 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #topicDescriptionInput], [L]]
-20:51:17.452 INFO - Executing: [find element: By.cssSelector: #topicDescriptionInput])
-20:51:17.461 INFO - Done: [find element: By.cssSelector: #topicDescriptionInput]
-20:51:17.465 INFO - Executing: [send keys: 10 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #topicDescriptionInput], [o]])
-20:51:17.484 INFO - Done: [send keys: 10 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #topicDescriptionInput], [o]]
-20:51:17.591 INFO - Executing: [find element: By.cssSelector: #topicDescriptionInput])
-20:51:17.598 INFO - Done: [find element: By.cssSelector: #topicDescriptionInput]
-20:51:17.601 INFO - Executing: [send keys: 10 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #topicDescriptionInput], [r]])
-20:51:17.618 INFO - Done: [send keys: 10 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #topicDescriptionInput], [r]]
-20:51:17.726 INFO - Executing: [find element: By.cssSelector: #topicDescriptionInput])
-20:51:17.732 INFO - Done: [find element: By.cssSelector: #topicDescriptionInput]
-20:51:17.735 INFO - Executing: [send keys: 10 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #topicDescriptionInput], [e]])
-20:51:17.751 INFO - Done: [send keys: 10 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #topicDescriptionInput], [e]]
-20:51:17.857 INFO - Executing: [find element: By.cssSelector: #topicDescriptionInput])
-20:51:17.863 INFO - Done: [find element: By.cssSelector: #topicDescriptionInput]
-20:51:17.866 INFO - Executing: [send keys: 10 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #topicDescriptionInput], [m]])
-20:51:17.883 INFO - Done: [send keys: 10 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #topicDescriptionInput], [m]]
-20:51:17.991 INFO - Executing: [find element: By.cssSelector: #topicDescriptionInput])
-20:51:17.998 INFO - Done: [find element: By.cssSelector: #topicDescriptionInput]
-20:51:18.001 INFO - Executing: [send keys: 10 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #topicDescriptionInput], [ ]])
-20:51:18.017 INFO - Done: [send keys: 10 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #topicDescriptionInput], [ ]]
-20:51:18.124 INFO - Executing: [find element: By.cssSelector: #topicDescriptionInput])
-20:51:18.131 INFO - Done: [find element: By.cssSelector: #topicDescriptionInput]
-20:51:18.134 INFO - Executing: [send keys: 10 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #topicDescriptionInput], [i]])
-20:51:18.150 INFO - Done: [send keys: 10 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #topicDescriptionInput], [i]]
-20:51:18.257 INFO - Executing: [find element: By.cssSelector: #topicDescriptionInput])
-20:51:18.263 INFO - Done: [find element: By.cssSelector: #topicDescriptionInput]
-20:51:18.266 INFO - Executing: [send keys: 10 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #topicDescriptionInput], [p]])
-20:51:18.280 INFO - Done: [send keys: 10 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #topicDescriptionInput], [p]]
-20:51:18.386 INFO - Executing: [find element: By.cssSelector: #topicDescriptionInput])
-20:51:18.392 INFO - Done: [find element: By.cssSelector: #topicDescriptionInput]
-20:51:18.395 INFO - Executing: [send keys: 10 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #topicDescriptionInput], [s]])
-20:51:18.410 INFO - Done: [send keys: 10 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #topicDescriptionInput], [s]]
-20:51:18.519 INFO - Executing: [find element: By.cssSelector: #topicDescriptionInput])
-20:51:18.527 INFO - Done: [find element: By.cssSelector: #topicDescriptionInput]
-20:51:18.530 INFO - Executing: [send keys: 10 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #topicDescriptionInput], [u]])
-20:51:18.548 INFO - Done: [send keys: 10 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #topicDescriptionInput], [u]]
-20:51:18.655 INFO - Executing: [find element: By.cssSelector: #topicDescriptionInput])
-20:51:18.662 INFO - Done: [find element: By.cssSelector: #topicDescriptionInput]
-20:51:18.665 INFO - Executing: [send keys: 10 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #topicDescriptionInput], [m]])
-20:51:18.682 INFO - Done: [send keys: 10 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #topicDescriptionInput], [m]]
-20:51:18.787 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:18.794 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:18.796 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [S]])
-20:51:18.834 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [S]]
-20:51:18.939 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:18.948 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:18.951 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [e]])
-20:51:18.971 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [e]]
-20:51:19.078 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:19.086 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:19.089 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [d]])
-20:51:19.107 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [d]]
-20:51:19.215 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:19.222 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:19.225 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [ ]])
-20:51:19.241 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [ ]]
-20:51:19.346 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:19.353 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:19.355 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [p]])
-20:51:19.372 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [p]]
-20:51:19.481 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:19.487 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:19.490 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [r]])
-20:51:19.505 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [r]]
-20:51:19.611 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:19.618 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:19.621 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [e]])
-20:51:19.636 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [e]]
-20:51:19.744 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:19.751 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:19.753 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [t]])
-20:51:19.768 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [t]]
-20:51:19.873 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:19.879 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:19.882 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [i]])
-20:51:19.897 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [i]]
-20:51:20.003 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:20.010 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:20.013 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [u]])
-20:51:20.028 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [u]]
-20:51:20.134 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:20.140 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:20.143 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [m]])
-20:51:20.158 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [m]]
-20:51:20.264 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:20.272 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:20.274 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [ ]])
-20:51:20.290 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [ ]]
-20:51:20.397 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:20.403 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:20.407 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [i]])
-20:51:20.423 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [i]]
-20:51:20.527 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:20.534 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:20.536 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [p]])
-20:51:20.551 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [p]]
-20:51:20.656 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:20.663 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:20.665 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [s]])
-20:51:20.680 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [s]]
-20:51:20.783 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:20.790 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:20.792 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [u]])
-20:51:20.807 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [u]]
-20:51:20.912 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:20.919 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:20.921 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [m]])
-20:51:20.936 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [m]]
-20:51:21.041 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:21.048 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:21.051 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [ ]])
-20:51:21.066 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [ ]]
-20:51:21.174 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:21.181 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:21.183 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [a]])
-20:51:21.198 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [a]]
-20:51:21.303 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:21.309 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:21.312 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [ ]])
-20:51:21.326 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [ ]]
-20:51:21.431 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:21.438 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:21.441 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [e]])
-20:51:21.457 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [e]]
-20:51:21.565 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:21.571 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:21.574 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [x]])
-20:51:21.591 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [x]]
-20:51:21.697 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:21.704 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:21.706 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [ ]])
-20:51:21.727 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [ ]]
-20:51:21.836 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:21.842 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:21.845 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [g]])
-20:51:21.859 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [g]]
-20:51:21.964 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:21.970 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:21.974 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [r]])
-20:51:21.990 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [r]]
-20:51:22.096 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:22.103 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:22.105 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [a]])
-20:51:22.119 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [a]]
-20:51:22.224 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:22.231 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:22.233 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [v]])
-20:51:22.248 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [v]]
-20:51:22.354 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:22.361 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:22.363 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [i]])
-20:51:22.378 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [i]]
-20:51:22.481 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:22.488 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:22.491 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [d]])
-20:51:22.507 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [d]]
-20:51:22.615 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:22.621 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:22.623 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [a]])
-20:51:22.638 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [a]]
-20:51:22.742 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:22.749 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:22.751 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [,]])
-20:51:22.767 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [,]]
-20:51:22.871 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:22.878 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:22.881 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [ ]])
-20:51:22.897 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [ ]]
-20:51:23.005 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:23.011 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:23.013 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [a]])
-20:51:23.029 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [a]]
-20:51:23.137 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:23.144 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:23.147 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [ ]])
-20:51:23.163 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [ ]]
-20:51:23.272 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:23.278 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:23.280 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [t]])
-20:51:23.295 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [t]]
-20:51:23.400 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:23.406 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:23.412 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [r]])
-20:51:23.427 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [r]]
-20:51:23.536 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:23.542 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:23.545 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [i]])
-20:51:23.560 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [i]]
-20:51:23.668 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:23.675 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:23.677 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [s]])
-20:51:23.691 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [s]]
-20:51:23.799 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:23.805 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:23.807 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [t]])
-20:51:23.822 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [t]]
-20:51:23.927 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:23.933 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:23.936 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [i]])
-20:51:23.951 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [i]]
-20:51:24.055 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:24.061 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:24.064 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [q]])
-20:51:24.079 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [q]]
-20:51:24.186 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:24.193 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:24.195 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [u]])
-20:51:24.210 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [u]]
-20:51:24.320 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:24.326 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:24.329 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [e]])
-20:51:24.343 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [e]]
-20:51:24.451 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:24.457 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:24.459 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [ ]])
-20:51:24.474 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [ ]]
-20:51:24.581 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:24.587 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:24.589 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [n]])
-20:51:24.605 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [n]]
-20:51:24.711 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:24.722 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:24.725 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [u]])
-20:51:24.741 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [u]]
-20:51:24.849 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:24.855 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:24.857 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [n]])
-20:51:24.873 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [n]]
-20:51:24.979 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:24.985 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:24.988 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [c]])
-20:51:25.002 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [c]]
-20:51:25.108 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:25.115 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:25.118 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [ ]])
-20:51:25.134 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [ ]]
-20:51:25.239 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:25.245 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:25.248 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [b]])
-20:51:25.263 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [b]]
-20:51:25.371 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:25.377 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:25.379 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [l]])
-20:51:25.395 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [l]]
-20:51:25.500 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:25.506 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:25.508 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [a]])
-20:51:25.523 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [a]]
-20:51:25.627 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:25.634 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:25.636 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [n]])
-20:51:25.651 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [n]]
-20:51:25.756 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:25.763 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:25.766 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [d]])
-20:51:25.785 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [d]]
-20:51:25.892 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:25.898 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:25.900 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [i]])
-20:51:25.915 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [i]]
-20:51:26.020 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:26.027 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:26.030 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [t]])
-20:51:26.046 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [t]]
-20:51:26.152 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:26.158 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:26.160 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [.]])
-20:51:26.175 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [.]]
-20:51:26.282 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:26.288 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:26.290 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [ ]])
-20:51:26.306 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [ ]]
-20:51:26.412 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:26.419 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:26.421 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [P]])
-20:51:26.438 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [P]]
-20:51:26.543 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:26.550 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:26.552 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [e]])
-20:51:26.567 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [e]]
-20:51:26.671 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:26.677 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:26.679 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [l]])
-20:51:26.694 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [l]]
-20:51:26.799 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:26.805 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:26.807 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [l]])
-20:51:26.822 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [l]]
-20:51:26.927 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:26.933 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:26.936 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [e]])
-20:51:26.952 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [e]]
-20:51:27.056 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:27.062 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:27.065 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [n]])
-20:51:27.082 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [n]]
-20:51:27.187 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:27.194 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:27.196 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [t]])
-20:51:27.212 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [t]]
-20:51:27.319 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:27.326 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:27.331 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [e]])
-20:51:27.350 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [e]]
-20:51:27.458 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:27.464 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:27.466 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [s]])
-20:51:27.481 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [s]]
-20:51:27.589 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:27.595 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:27.598 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [q]])
-20:51:27.612 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [q]]
-20:51:27.722 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:27.728 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:27.731 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [u]])
-20:51:27.745 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [u]]
-20:51:27.852 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:27.858 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:27.861 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [e]])
-20:51:27.877 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [e]]
-20:51:27.982 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:27.988 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:27.991 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [ ]])
-20:51:28.006 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [ ]]
-20:51:28.111 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:28.117 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:28.119 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [v]])
-20:51:28.134 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [v]]
-20:51:28.241 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:28.247 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:28.249 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [i]])
-20:51:28.265 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [i]]
-20:51:28.370 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:28.376 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:28.378 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [v]])
-20:51:28.392 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [v]]
-20:51:28.497 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:28.503 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:28.505 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [e]])
-20:51:28.520 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [e]]
-20:51:28.627 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:28.633 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:28.635 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [r]])
-20:51:28.650 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [r]]
-20:51:28.757 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:28.765 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:28.768 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [r]])
-20:51:28.782 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [r]]
-20:51:28.887 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:28.894 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:28.896 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [a]])
-20:51:28.910 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [a]]
-20:51:29.015 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:29.021 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:29.023 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [ ]])
-20:51:29.038 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [ ]]
-20:51:29.143 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:29.149 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:29.152 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [i]])
-20:51:29.166 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [i]]
-20:51:29.271 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:29.277 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:29.279 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [d]])
-20:51:29.294 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [d]]
-20:51:29.399 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:29.405 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:29.407 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [ ]])
-20:51:29.422 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [ ]]
-20:51:29.527 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:29.533 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:29.535 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [d]])
-20:51:29.552 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [d]]
-20:51:29.658 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:29.664 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:29.666 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [i]])
-20:51:29.680 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [i]]
-20:51:29.788 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:29.794 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:29.796 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [a]])
-20:51:29.811 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [a]]
-20:51:29.918 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:29.924 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:29.927 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [m]])
-20:51:29.941 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [m]]
-20:51:30.046 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:30.053 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:30.055 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [ ]])
-20:51:30.070 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [ ]]
-20:51:30.175 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:30.181 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:30.184 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [i]])
-20:51:30.199 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [i]]
-20:51:30.306 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:30.312 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:30.314 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [n]])
-20:51:30.330 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [n]]
-20:51:30.436 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:30.442 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:30.445 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [ ]])
-20:51:30.459 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [ ]]
-20:51:30.567 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:30.574 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:30.576 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [v]])
-20:51:30.592 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [v]]
-20:51:30.701 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:30.707 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:30.709 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [o]])
-20:51:30.728 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [o]]
-20:51:30.832 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:30.838 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:30.841 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [l]])
-20:51:30.856 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [l]]
-20:51:30.960 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:30.967 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:30.969 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [u]])
-20:51:30.984 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [u]]
-20:51:31.088 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:31.094 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:31.097 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [t]])
-20:51:31.112 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [t]]
-20:51:31.217 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:31.223 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:31.225 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [p]])
-20:51:31.240 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [p]]
-20:51:31.344 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:31.350 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:31.352 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [a]])
-20:51:31.367 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [a]]
-20:51:31.473 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:31.479 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:31.482 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [t]])
-20:51:31.500 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [t]]
-20:51:31.607 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:31.614 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:31.617 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [.]])
-20:51:31.634 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [.]]
-20:51:31.740 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:31.746 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:31.749 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [ ]])
-20:51:31.764 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [ ]]
-20:51:31.868 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:31.875 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:31.877 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [A]])
-20:51:31.893 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [A]]
-20:51:32.001 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:32.007 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:32.011 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [e]])
-20:51:32.025 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [e]]
-20:51:32.130 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:32.138 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:32.140 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [n]])
-20:51:32.159 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [n]]
-20:51:32.265 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:32.271 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:32.274 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [e]])
-20:51:32.288 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [e]]
-20:51:32.393 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:32.399 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:32.401 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [a]])
-20:51:32.417 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [a]]
-20:51:32.525 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:32.531 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:32.533 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [n]])
-20:51:32.548 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [n]]
-20:51:32.653 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:32.659 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:32.661 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [ ]])
-20:51:32.676 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [ ]]
-20:51:32.783 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:32.789 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:32.791 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [a]])
-20:51:32.805 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [a]]
-20:51:32.909 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:32.915 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:32.917 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [t]])
-20:51:32.931 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [t]]
-20:51:33.037 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:33.043 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:33.045 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [ ]])
-20:51:33.062 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [ ]]
-20:51:33.166 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:33.172 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:33.175 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [a]])
-20:51:33.190 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [a]]
-20:51:33.298 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:33.304 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:33.307 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [r]])
-20:51:33.320 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [r]]
-20:51:33.427 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:33.433 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:33.435 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [c]])
-20:51:33.449 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [c]]
-20:51:33.555 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:33.561 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:33.563 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [u]])
-20:51:33.578 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [u]]
-20:51:33.687 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:33.693 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:33.695 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [ ]])
-20:51:33.711 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [ ]]
-20:51:33.818 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:33.824 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:33.826 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [n]])
-20:51:33.841 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [n]]
-20:51:33.945 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:33.951 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:33.953 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [u]])
-20:51:33.967 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [u]]
-20:51:34.074 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:34.081 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:34.083 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [l]])
-20:51:34.098 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [l]]
-20:51:34.202 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:34.208 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:34.210 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [l]])
-20:51:34.225 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [l]]
-20:51:34.328 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:34.335 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:34.337 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [a]])
-20:51:34.352 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [a]]
-20:51:34.456 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:34.462 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:34.464 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [.]])
-20:51:34.481 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [.]]
-20:51:34.587 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:34.593 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:34.595 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [ ]])
-20:51:34.611 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [ ]]
-20:51:34.719 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:34.724 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:34.727 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [N]])
-20:51:34.743 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [N]]
-20:51:34.850 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:34.856 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:34.858 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [u]])
-20:51:34.873 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [u]]
-20:51:34.979 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:34.986 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:34.988 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [n]])
-20:51:35.002 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [n]]
-20:51:35.106 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:35.112 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:35.114 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [c]])
-20:51:35.129 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [c]]
-20:51:35.235 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:35.241 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:35.248 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [ ]])
-20:51:35.264 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [ ]]
-20:51:35.366 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:35.372 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:35.374 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [a]])
-20:51:35.390 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [a]]
-20:51:35.496 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:35.502 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:35.504 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [ ]])
-20:51:35.519 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [ ]]
-20:51:35.622 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:35.635 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:35.637 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [m]])
-20:51:35.652 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [m]]
-20:51:35.757 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:35.764 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:35.766 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [i]])
-20:51:35.781 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [i]]
-20:51:35.885 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:35.891 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:35.893 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [ ]])
-20:51:35.909 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [ ]]
-20:51:36.015 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:36.022 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:36.024 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [n]])
-20:51:36.042 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [n]]
-20:51:36.146 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:36.153 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:36.155 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [o]])
-20:51:36.171 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [o]]
-20:51:36.274 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:36.280 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:36.282 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [n]])
-20:51:36.296 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [n]]
-20:51:36.404 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:36.410 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:36.412 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [ ]])
-20:51:36.427 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [ ]]
-20:51:36.530 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:36.536 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:36.538 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [o]])
-20:51:36.553 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [o]]
-20:51:36.658 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:36.664 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:36.666 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [r]])
-20:51:36.680 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [r]]
-20:51:36.784 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:36.790 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:36.793 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [c]])
-20:51:36.808 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [c]]
-20:51:36.912 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:36.918 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:36.920 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [i]])
-20:51:36.934 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [i]]
-20:51:37.042 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:37.048 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:37.050 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [ ]])
-20:51:37.065 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [ ]]
-20:51:37.172 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:37.178 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:37.180 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [m]])
-20:51:37.194 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [m]]
-20:51:37.299 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:37.305 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:37.307 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [a]])
-20:51:37.322 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [a]]
-20:51:37.428 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:37.435 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:37.437 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [t]])
-20:51:37.452 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [t]]
-20:51:37.560 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:37.566 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:37.568 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [t]])
-20:51:37.583 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [t]]
-20:51:37.688 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:37.694 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:37.697 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [i]])
-20:51:37.712 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [i]]
-20:51:37.820 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:37.826 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:37.828 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [s]])
-20:51:37.842 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [s]]
-20:51:37.950 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:37.956 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:37.958 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [ ]])
-20:51:37.972 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [ ]]
-20:51:38.077 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:38.083 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:38.085 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [d]])
-20:51:38.100 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [d]]
-20:51:38.207 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:38.213 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:38.215 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [i]])
-20:51:38.229 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [i]]
-20:51:38.334 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:38.340 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:38.342 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [c]])
-20:51:38.357 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [c]]
-20:51:38.464 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:38.470 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:38.472 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [t]])
-20:51:38.487 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [t]]
-20:51:38.595 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:38.600 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:38.603 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [u]])
-20:51:38.618 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [u]]
-20:51:38.724 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:38.730 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:38.732 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [m]])
-20:51:38.748 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [m]]
-20:51:38.851 INFO - Executing: [find element: By.cssSelector: #postContentInput])
-20:51:38.857 INFO - Done: [find element: By.cssSelector: #postContentInput]
-20:51:38.859 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [.]])
-20:51:38.873 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #postContentInput], [.]]
-20:51:38.981 INFO - Executing: [find elements: By.cssSelector: #newTopicButton])
-20:51:38.988 INFO - Done: [find elements: By.cssSelector: #newTopicButton]
-20:51:38.990 INFO - Executing: [find element: By.cssSelector: #newTopicButton])
-20:51:38.996 INFO - Done: [find element: By.cssSelector: #newTopicButton]
-20:51:38.998 INFO - Executing: [click: 12 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #newTopicButton]])
-20:51:39.067 INFO - Done: [click: 12 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #newTopicButton]]
-20:51:40.077 INFO - Executing: [find elements: By.cssSelector: #conversationsPage])
-20:51:40.094 INFO - Done: [find elements: By.cssSelector: #conversationsPage]
-20:51:40.097 INFO - Executing: [find elements: By.cssSelector: #conversationsPage .conversation])
-20:51:40.113 INFO - Done: [find elements: By.cssSelector: #conversationsPage .conversation]
-20:51:40.120 INFO - Executing: [find elements: By.cssSelector: #conversationsPage .description])
-20:51:40.135 INFO - Done: [find elements: By.cssSelector: #conversationsPage .description]
-20:51:40.138 INFO - Executing: [find element: By.cssSelector: #conversationsPage .description])
-20:51:40.152 INFO - Done: [find element: By.cssSelector: #conversationsPage .description]
-20:51:40.156 INFO - Executing: [get text: 15 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #conversationsPage .description]])
-20:51:40.177 INFO - Done: [get text: 15 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #conversationsPage .description]]
-20:51:40.181 INFO - Executing: [find elements: By.cssSelector: #conversationsPage .conversation .conversationPostCard:nth-child(1)])
-20:51:40.197 INFO - Done: [find elements: By.cssSelector: #conversationsPage .conversation .conversationPostCard:nth-child(1)]
-20:51:40.200 INFO - Executing: [find elements: By.cssSelector: #conversationsPage .conversation .conversationPostCard:nth-child(1) .postText])
-20:51:40.217 INFO - Done: [find elements: By.cssSelector: #conversationsPage .conversation .conversationPostCard:nth-child(1) .postText]
-20:51:40.220 INFO - Executing: [find element: By.cssSelector: #conversationsPage .conversation .conversationPostCard:nth-child(1) .postText])
-20:51:40.236 INFO - Done: [find element: By.cssSelector: #conversationsPage .conversation .conversationPostCard:nth-child(1) .postText]
-20:51:40.238 INFO - Executing: [get text: 17 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #conversationsPage .conversation .conversationPostCard:nth-child(1) .postText]])
-20:51:40.256 INFO - Done: [get text: 17 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #conversationsPage .conversation .conversationPostCard:nth-child(1) .postText]]
-20:51:40.263 INFO - Executing: [find elements: By.cssSelector: #addPostToConversationCard])
-20:51:40.278 INFO - Done: [find elements: By.cssSelector: #addPostToConversationCard]
-20:51:40.281 INFO - Executing: [find elements: By.cssSelector: #addPostToConversationInput])
-20:51:40.296 INFO - Done: [find elements: By.cssSelector: #addPostToConversationInput]
-20:51:40.299 INFO - Executing: [find element: By.cssSelector: #addPostToConversationInput])
-20:51:40.316 INFO - Done: [find element: By.cssSelector: #addPostToConversationInput]
-20:51:40.323 INFO - Executing: [clear: 19 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #addPostToConversationInput]])
-20:51:40.343 INFO - Done: [clear: 19 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #addPostToConversationInput]]
-20:51:40.346 INFO - Executing: [find element: By.cssSelector: #addPostToConversationInput])
-20:51:40.352 INFO - Done: [find element: By.cssSelector: #addPostToConversationInput]
-20:51:40.355 INFO - Executing: [send keys: 19 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #addPostToConversationInput], [P, e, l, l, e, n, t, e, s, q, u, e,  , h, a, b, i, t, a, n, t,  , m, o, r, b, i,  , t, r, i, s, t, i, q, u, e,  , s, e, n, e, c, t, u, s,  , e, t,  , n, e, t, u, s,  , e, t,  , m, a, l, e, s, u, a, d, a,  , f, a, m, e, s,  , a, c,  , t, u, r, p, i, s,  , e, g, e, s, t, a, s, .,  , C, u, r, a, b, i, t, u, r,  , l, a, o, r, e, e, t,  , m, a, s, s, a,  , v, i, t, a, e,  , v, e, l, i, t,  , d, a, p, i, b, u, s, ,,  , v, e, l,  , m, a, x, i, m, u, s,  , l, e, c, t, u, s,  , p, o, r, t, a, .]])
-20:51:40.734 INFO - Done: [send keys: 19 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #addPostToConversationInput], [P, e, l, l, e, n, t, e, s, q, u, e,  , h, a, b, i, t, a, n, t,  , m, o, r, b, i,  , t, r, i, s, t, i, q, u, e,  , s, e, n, e, c, t, u, s,  , e, t,  , n, e, t, u, s,  , e, t,  , m, a, l, e, s, u, a, d, a,  , f, a, m, e, s,  , a, c,  , t, u, r, p, i, s,  , e, g, e, s, t, a, s, .,  , C, u, r, a, b, i, t, u, r,  , l, a, o, r, e, e, t,  , m, a, s, s, a,  , v, i, t, a, e,  , v, e, l, i, t,  , d, a, p, i, b, u, s, ,,  , v, e, l,  , m, a, x, i, m, u, s,  , l, e, c, t, u, s,  , p, o, r, t, a, .]]
-20:51:40.738 INFO - Executing: [find elements: By.cssSelector: #addPostButton])
-20:51:40.754 INFO - Done: [find elements: By.cssSelector: #addPostButton]
-20:51:40.759 INFO - Executing: [find element: By.cssSelector: #addPostButton])
-20:51:40.779 INFO - Done: [find element: By.cssSelector: #addPostButton]
-20:51:40.781 INFO - Executing: [click: 20 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #addPostButton]])
-20:51:40.834 INFO - Done: [click: 20 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #addPostButton]]
-20:51:41.841 INFO - Executing: [find elements: By.cssSelector: #conversationsPage])
-20:51:41.848 INFO - Done: [find elements: By.cssSelector: #conversationsPage]
-20:51:41.851 INFO - Executing: [find elements: By.cssSelector: #conversationsPage .conversation .conversationPostCard:nth-child(2)])
-20:51:41.868 INFO - Done: [find elements: By.cssSelector: #conversationsPage .conversation .conversationPostCard:nth-child(2)]
-20:51:41.876 INFO - Executing: [find element: By.cssSelector: #conversationsPage .conversation .conversationPostCard:nth-child(2) .postText])
-20:51:41.894 INFO - Done: [find element: By.cssSelector: #conversationsPage .conversation .conversationPostCard:nth-child(2) .postText]
-20:51:41.900 INFO - Executing: [get text: 22 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #conversationsPage .conversation .conversationPostCard:nth-child(2) .postText]])
-20:51:41.919 INFO - Done: [get text: 22 [[ChromeDriver: chrome on MAC (9264e971dd28b29b3645bac6a267c4f0)] -> css selector: #conversationsPage .conversation .conversationPostCard:nth-child(2) .postText]]
-20:51:41.924 INFO - Executing: [delete session: 8f4d7844-d959-4187-a9aa-44a36731beee])
-20:51:42.007 INFO - Done: [delete session: 8f4d7844-d959-4187-a9aa-44a36731beee]
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1), userDataDir=/var/folders/wy/x2wnhsd15rxbcnwr07g161b00000gn/T/.org.chromium.Chromium.rI0Kt5}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.98, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 431e105762cdb3e37b2ccf31aad8d7c1
+22:09:35.472 INFO - Executing: [set window size])
+22:09:35.690 INFO - Done: [set window size]
+22:09:35.699 INFO - Executing: [find elements: By.cssSelector: #loginPage])
+22:09:35.742 INFO - Done: [find elements: By.cssSelector: #loginPage]
+22:09:35.751 INFO - Executing: [find elements: By.cssSelector: input[name="emailAddress"]])
+22:09:35.773 INFO - Done: [find elements: By.cssSelector: input[name="emailAddress"]]
+22:09:35.778 INFO - Executing: [find elements: By.cssSelector: input[name="password"]])
+22:09:35.798 INFO - Done: [find elements: By.cssSelector: input[name="password"]]
+22:09:35.805 INFO - Executing: [find element: By.cssSelector: input[name="emailAddress"]])
+22:09:35.823 INFO - Done: [find element: By.cssSelector: input[name="emailAddress"]]
+22:09:35.827 INFO - Executing: [clear: 1 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: input[name="emailAddress"]]])
+22:09:35.868 INFO - Done: [clear: 1 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: input[name="emailAddress"]]]
+22:09:35.873 INFO - Executing: [find element: By.cssSelector: input[name="password"]])
+22:09:35.892 INFO - Done: [find element: By.cssSelector: input[name="password"]]
+22:09:35.896 INFO - Executing: [clear: 2 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: input[name="password"]]])
+22:09:35.929 INFO - Done: [clear: 2 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: input[name="password"]]]
+22:09:35.935 INFO - Executing: [find element: By.cssSelector: input[name="emailAddress"]])
+22:09:35.943 INFO - Done: [find element: By.cssSelector: input[name="emailAddress"]]
+22:09:35.948 INFO - Executing: [send keys: 1 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: input[name="emailAddress"]], [j, a, n, e, d, o, e, @, t, e, s, t, ., o, r, g]])
+22:09:36.069 INFO - Done: [send keys: 1 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: input[name="emailAddress"]], [j, a, n, e, d, o, e, @, t, e, s, t, ., o, r, g]]
+22:09:36.073 INFO - Executing: [find element: By.cssSelector: input[name="password"]])
+22:09:36.081 INFO - Done: [find element: By.cssSelector: input[name="password"]]
+22:09:36.085 INFO - Executing: [send keys: 2 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: input[name="password"]], [j, a, n, e, d, o, e]])
+22:09:36.150 INFO - Done: [send keys: 2 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: input[name="password"]], [j, a, n, e, d, o, e]]
+22:09:36.155 INFO - Executing: [take screenshot])
+22:09:36.767 INFO - Done: [take screenshot]
+22:09:37.987 INFO - Executing: [find elements: By.cssSelector: #loginButton])
+22:09:38.002 INFO - Done: [find elements: By.cssSelector: #loginButton]
+22:09:38.007 INFO - Executing: [find element: By.cssSelector: #loginButton])
+22:09:38.022 INFO - Done: [find element: By.cssSelector: #loginButton]
+22:09:38.026 INFO - Executing: [click: 3 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #loginButton]])
+22:09:38.099 INFO - Done: [click: 3 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #loginButton]]
+22:09:40.108 INFO - Executing: [find elements: By.cssSelector: #indexPage])
+22:09:40.126 INFO - Done: [find elements: By.cssSelector: #indexPage]
+22:09:42.133 INFO - Executing: [take screenshot])
+22:09:42.547 INFO - Done: [take screenshot]
+22:09:42.651 INFO - Executing: [find elements: By.cssSelector: #forumTile])
+22:09:42.667 INFO - Done: [find elements: By.cssSelector: #forumTile]
+22:09:42.672 INFO - Executing: [find element: By.cssSelector: #forumTile])
+22:09:42.690 INFO - Done: [find element: By.cssSelector: #forumTile]
+22:09:42.707 INFO - Executing: [click: 5 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #forumTile]])
+22:09:42.784 INFO - Done: [click: 5 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #forumTile]]
+22:09:43.793 INFO - Executing: [find elements: By.cssSelector: #forumPage])
+22:09:43.809 INFO - Done: [find elements: By.cssSelector: #forumPage]
+22:09:43.813 INFO - Executing: [find elements: By.cssSelector: #forumTopicsTable])
+22:09:43.830 INFO - Done: [find elements: By.cssSelector: #forumTopicsTable]
+22:09:43.835 INFO - Executing: [find elements: By.cssSelector: #forumTopicsTable .topicRow:nth-child(1)])
+22:09:43.851 INFO - Done: [find elements: By.cssSelector: #forumTopicsTable .topicRow:nth-child(1)]
+22:09:43.889 INFO - Executing: [find elements: By.cssSelector: #forumPage])
+22:09:43.897 INFO - Done: [find elements: By.cssSelector: #forumPage]
+22:09:43.902 INFO - Executing: [find elements: By.cssSelector: #newTopicButton])
+22:09:43.918 INFO - Done: [find elements: By.cssSelector: #newTopicButton]
+22:09:43.921 INFO - Executing: [find element: By.cssSelector: #newTopicButton])
+22:09:43.940 INFO - Done: [find element: By.cssSelector: #newTopicButton]
+22:09:43.943 INFO - Executing: [click: 8 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #newTopicButton]])
+22:09:44.043 INFO - Done: [click: 8 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #newTopicButton]]
+22:09:45.050 INFO - Executing: [find elements: By.cssSelector: #newTopicPage])
+22:09:45.066 INFO - Done: [find elements: By.cssSelector: #newTopicPage]
+22:09:45.071 INFO - Executing: [find elements: By.cssSelector: #topicDescriptionInput])
+22:09:45.086 INFO - Done: [find elements: By.cssSelector: #topicDescriptionInput]
+22:09:45.090 INFO - Executing: [find elements: By.cssSelector: #postContentInput])
+22:09:45.108 INFO - Done: [find elements: By.cssSelector: #postContentInput]
+22:09:45.111 INFO - Executing: [find element: By.cssSelector: #topicDescriptionInput])
+22:09:45.127 INFO - Done: [find element: By.cssSelector: #topicDescriptionInput]
+22:09:45.130 INFO - Executing: [clear: 10 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #topicDescriptionInput]])
+22:09:45.161 INFO - Done: [clear: 10 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #topicDescriptionInput]]
+22:09:45.165 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:45.185 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:45.189 INFO - Executing: [clear: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput]])
+22:09:45.221 INFO - Done: [clear: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput]]
+22:09:45.226 INFO - Executing: [find element: By.cssSelector: #topicDescriptionInput])
+22:09:45.233 INFO - Done: [find element: By.cssSelector: #topicDescriptionInput]
+22:09:45.236 INFO - Executing: [send keys: 10 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #topicDescriptionInput], [L]])
+22:09:45.285 INFO - Done: [send keys: 10 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #topicDescriptionInput], [L]]
+22:09:45.393 INFO - Executing: [find element: By.cssSelector: #topicDescriptionInput])
+22:09:45.401 INFO - Done: [find element: By.cssSelector: #topicDescriptionInput]
+22:09:45.405 INFO - Executing: [send keys: 10 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #topicDescriptionInput], [o]])
+22:09:45.422 INFO - Done: [send keys: 10 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #topicDescriptionInput], [o]]
+22:09:45.531 INFO - Executing: [find element: By.cssSelector: #topicDescriptionInput])
+22:09:45.538 INFO - Done: [find element: By.cssSelector: #topicDescriptionInput]
+22:09:45.543 INFO - Executing: [send keys: 10 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #topicDescriptionInput], [r]])
+22:09:45.568 INFO - Done: [send keys: 10 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #topicDescriptionInput], [r]]
+22:09:45.676 INFO - Executing: [find element: By.cssSelector: #topicDescriptionInput])
+22:09:45.684 INFO - Done: [find element: By.cssSelector: #topicDescriptionInput]
+22:09:45.687 INFO - Executing: [send keys: 10 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #topicDescriptionInput], [e]])
+22:09:45.706 INFO - Done: [send keys: 10 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #topicDescriptionInput], [e]]
+22:09:45.812 INFO - Executing: [find element: By.cssSelector: #topicDescriptionInput])
+22:09:45.820 INFO - Done: [find element: By.cssSelector: #topicDescriptionInput]
+22:09:45.824 INFO - Executing: [send keys: 10 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #topicDescriptionInput], [m]])
+22:09:45.843 INFO - Done: [send keys: 10 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #topicDescriptionInput], [m]]
+22:09:45.950 INFO - Executing: [find element: By.cssSelector: #topicDescriptionInput])
+22:09:45.958 INFO - Done: [find element: By.cssSelector: #topicDescriptionInput]
+22:09:45.960 INFO - Executing: [send keys: 10 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #topicDescriptionInput], [ ]])
+22:09:45.980 INFO - Done: [send keys: 10 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #topicDescriptionInput], [ ]]
+22:09:46.088 INFO - Executing: [find element: By.cssSelector: #topicDescriptionInput])
+22:09:46.095 INFO - Done: [find element: By.cssSelector: #topicDescriptionInput]
+22:09:46.099 INFO - Executing: [send keys: 10 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #topicDescriptionInput], [i]])
+22:09:46.114 INFO - Done: [send keys: 10 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #topicDescriptionInput], [i]]
+22:09:46.223 INFO - Executing: [find element: By.cssSelector: #topicDescriptionInput])
+22:09:46.230 INFO - Done: [find element: By.cssSelector: #topicDescriptionInput]
+22:09:46.232 INFO - Executing: [send keys: 10 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #topicDescriptionInput], [p]])
+22:09:46.247 INFO - Done: [send keys: 10 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #topicDescriptionInput], [p]]
+22:09:46.352 INFO - Executing: [find element: By.cssSelector: #topicDescriptionInput])
+22:09:46.359 INFO - Done: [find element: By.cssSelector: #topicDescriptionInput]
+22:09:46.362 INFO - Executing: [send keys: 10 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #topicDescriptionInput], [s]])
+22:09:46.378 INFO - Done: [send keys: 10 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #topicDescriptionInput], [s]]
+22:09:46.485 INFO - Executing: [find element: By.cssSelector: #topicDescriptionInput])
+22:09:46.491 INFO - Done: [find element: By.cssSelector: #topicDescriptionInput]
+22:09:46.495 INFO - Executing: [send keys: 10 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #topicDescriptionInput], [u]])
+22:09:46.512 INFO - Done: [send keys: 10 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #topicDescriptionInput], [u]]
+22:09:46.620 INFO - Executing: [find element: By.cssSelector: #topicDescriptionInput])
+22:09:46.629 INFO - Done: [find element: By.cssSelector: #topicDescriptionInput]
+22:09:46.631 INFO - Executing: [send keys: 10 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #topicDescriptionInput], [m]])
+22:09:46.655 INFO - Done: [send keys: 10 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #topicDescriptionInput], [m]]
+22:09:46.759 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:46.766 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:46.768 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [S]])
+22:09:46.817 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [S]]
+22:09:46.926 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:46.933 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:46.937 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [e]])
+22:09:46.956 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [e]]
+22:09:47.064 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:47.071 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:47.075 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [d]])
+22:09:47.095 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [d]]
+22:09:47.202 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:47.210 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:47.213 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [ ]])
+22:09:47.230 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [ ]]
+22:09:47.337 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:47.344 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:47.346 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [p]])
+22:09:47.365 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [p]]
+22:09:47.472 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:47.479 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:47.482 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [r]])
+22:09:47.498 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [r]]
+22:09:47.606 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:47.612 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:47.615 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [e]])
+22:09:47.631 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [e]]
+22:09:47.738 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:47.745 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:47.747 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [t]])
+22:09:47.763 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [t]]
+22:09:47.871 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:47.877 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:47.880 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [i]])
+22:09:47.896 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [i]]
+22:09:47.999 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:48.007 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:48.010 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [u]])
+22:09:48.026 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [u]]
+22:09:48.133 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:48.139 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:48.142 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [m]])
+22:09:48.159 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [m]]
+22:09:48.264 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:48.270 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:48.273 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [ ]])
+22:09:48.289 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [ ]]
+22:09:48.397 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:48.403 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:48.406 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [i]])
+22:09:48.421 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [i]]
+22:09:48.528 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:48.534 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:48.537 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [p]])
+22:09:48.554 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [p]]
+22:09:48.659 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:48.666 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:48.668 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [s]])
+22:09:48.684 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [s]]
+22:09:48.791 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:48.798 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:48.801 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [u]])
+22:09:48.817 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [u]]
+22:09:48.922 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:48.929 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:48.932 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [m]])
+22:09:48.947 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [m]]
+22:09:49.053 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:49.060 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:49.063 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [ ]])
+22:09:49.079 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [ ]]
+22:09:49.187 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:49.194 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:49.196 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [a]])
+22:09:49.212 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [a]]
+22:09:49.317 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:49.323 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:49.327 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [ ]])
+22:09:49.343 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [ ]]
+22:09:49.449 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:49.456 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:49.459 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [e]])
+22:09:49.476 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [e]]
+22:09:49.584 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:49.590 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:49.593 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [x]])
+22:09:49.609 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [x]]
+22:09:49.713 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:49.719 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:49.721 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [ ]])
+22:09:49.737 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [ ]]
+22:09:49.844 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:49.850 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:49.852 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [g]])
+22:09:49.868 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [g]]
+22:09:49.976 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:49.983 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:49.986 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [r]])
+22:09:50.003 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [r]]
+22:09:50.108 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:50.115 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:50.117 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [a]])
+22:09:50.133 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [a]]
+22:09:50.241 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:50.248 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:50.250 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [v]])
+22:09:50.266 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [v]]
+22:09:50.373 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:50.380 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:50.382 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [i]])
+22:09:50.398 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [i]]
+22:09:50.504 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:50.510 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:50.513 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [d]])
+22:09:50.529 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [d]]
+22:09:50.636 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:50.642 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:50.649 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [a]])
+22:09:50.666 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [a]]
+22:09:50.774 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:50.781 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:50.784 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [,]])
+22:09:50.801 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [,]]
+22:09:50.910 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:50.916 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:50.919 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [ ]])
+22:09:50.935 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [ ]]
+22:09:51.043 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:51.050 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:51.052 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [a]])
+22:09:51.071 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [a]]
+22:09:51.178 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:51.185 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:51.188 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [ ]])
+22:09:51.205 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [ ]]
+22:09:51.312 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:51.318 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:51.321 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [t]])
+22:09:51.337 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [t]]
+22:09:51.445 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:51.452 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:51.458 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [r]])
+22:09:51.473 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [r]]
+22:09:51.589 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:51.596 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:51.599 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [i]])
+22:09:51.614 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [i]]
+22:09:51.721 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:51.727 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:51.730 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [s]])
+22:09:51.745 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [s]]
+22:09:51.851 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:51.857 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:51.860 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [t]])
+22:09:51.875 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [t]]
+22:09:51.979 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:51.986 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:51.988 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [i]])
+22:09:52.004 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [i]]
+22:09:52.107 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:52.114 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:52.116 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [q]])
+22:09:52.132 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [q]]
+22:09:52.240 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:52.247 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:52.249 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [u]])
+22:09:52.266 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [u]]
+22:09:52.372 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:52.378 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:52.381 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [e]])
+22:09:52.396 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [e]]
+22:09:52.502 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:52.509 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:52.512 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [ ]])
+22:09:52.526 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [ ]]
+22:09:52.634 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:52.640 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:52.643 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [n]])
+22:09:52.663 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [n]]
+22:09:52.766 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:52.772 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:52.774 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [u]])
+22:09:52.790 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [u]]
+22:09:52.896 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:52.903 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:52.905 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [n]])
+22:09:52.920 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [n]]
+22:09:53.023 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:53.029 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:53.034 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [c]])
+22:09:53.049 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [c]]
+22:09:53.157 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:53.164 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:53.167 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [ ]])
+22:09:53.183 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [ ]]
+22:09:53.288 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:53.294 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:53.297 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [b]])
+22:09:53.313 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [b]]
+22:09:53.417 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:53.423 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:53.426 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [l]])
+22:09:53.444 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [l]]
+22:09:53.552 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:53.559 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:53.561 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [a]])
+22:09:53.576 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [a]]
+22:09:53.684 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:53.690 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:53.692 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [n]])
+22:09:53.708 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [n]]
+22:09:53.816 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:53.822 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:53.825 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [d]])
+22:09:53.841 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [d]]
+22:09:53.947 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:53.953 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:53.956 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [i]])
+22:09:53.973 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [i]]
+22:09:54.079 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:54.086 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:54.089 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [t]])
+22:09:54.104 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [t]]
+22:09:54.209 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:54.216 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:54.219 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [.]])
+22:09:54.235 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [.]]
+22:09:54.341 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:54.348 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:54.350 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [ ]])
+22:09:54.366 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [ ]]
+22:09:54.472 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:54.479 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:54.483 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [P]])
+22:09:54.503 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [P]]
+22:09:54.608 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:54.615 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:54.617 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [e]])
+22:09:54.633 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [e]]
+22:09:54.736 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:54.743 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:54.746 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [l]])
+22:09:54.762 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [l]]
+22:09:54.869 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:54.876 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:54.878 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [l]])
+22:09:54.894 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [l]]
+22:09:55.001 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:55.008 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:55.010 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [e]])
+22:09:55.027 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [e]]
+22:09:55.133 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:55.140 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:55.142 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [n]])
+22:09:55.158 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [n]]
+22:09:55.265 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:55.271 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:55.274 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [t]])
+22:09:55.289 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [t]]
+22:09:55.394 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:55.400 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:55.404 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [e]])
+22:09:55.422 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [e]]
+22:09:55.530 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:55.537 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:55.540 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [s]])
+22:09:55.556 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [s]]
+22:09:55.664 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:55.671 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:55.674 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [q]])
+22:09:55.689 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [q]]
+22:09:55.796 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:55.803 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:55.805 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [u]])
+22:09:55.820 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [u]]
+22:09:55.926 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:55.933 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:55.936 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [e]])
+22:09:55.951 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [e]]
+22:09:56.054 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:56.061 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:56.064 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [ ]])
+22:09:56.079 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [ ]]
+22:09:56.187 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:56.193 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:56.195 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [v]])
+22:09:56.211 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [v]]
+22:09:56.315 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:56.322 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:56.324 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [i]])
+22:09:56.341 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [i]]
+22:09:56.444 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:56.451 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:56.453 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [v]])
+22:09:56.469 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [v]]
+22:09:56.574 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:56.580 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:56.582 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [e]])
+22:09:56.597 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [e]]
+22:09:56.701 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:56.707 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:56.709 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [r]])
+22:09:56.725 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [r]]
+22:09:56.833 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:56.840 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:56.843 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [r]])
+22:09:56.858 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [r]]
+22:09:56.966 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:56.973 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:56.976 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [a]])
+22:09:56.992 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [a]]
+22:09:57.101 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:57.107 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:57.109 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [ ]])
+22:09:57.125 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [ ]]
+22:09:57.233 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:57.240 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:57.242 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [i]])
+22:09:57.257 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [i]]
+22:09:57.362 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:57.369 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:57.371 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [d]])
+22:09:57.387 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [d]]
+22:09:57.492 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:57.499 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:57.501 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [ ]])
+22:09:57.516 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [ ]]
+22:09:57.621 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:57.628 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:57.630 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [d]])
+22:09:57.654 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [d]]
+22:09:57.757 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:57.765 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:57.767 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [i]])
+22:09:57.782 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [i]]
+22:09:57.888 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:57.895 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:57.897 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [a]])
+22:09:57.912 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [a]]
+22:09:58.018 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:58.025 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:58.027 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [m]])
+22:09:58.042 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [m]]
+22:09:58.150 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:58.157 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:58.159 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [ ]])
+22:09:58.175 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [ ]]
+22:09:58.283 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:58.289 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:58.292 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [i]])
+22:09:58.309 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [i]]
+22:09:58.416 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:58.423 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:58.425 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [n]])
+22:09:58.441 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [n]]
+22:09:58.546 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:58.553 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:58.555 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [ ]])
+22:09:58.572 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [ ]]
+22:09:58.677 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:58.685 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:58.687 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [v]])
+22:09:58.706 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [v]]
+22:09:58.813 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:58.821 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:58.823 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [o]])
+22:09:58.839 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [o]]
+22:09:58.947 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:58.953 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:58.955 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [l]])
+22:09:58.972 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [l]]
+22:09:59.081 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:59.087 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:59.090 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [u]])
+22:09:59.106 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [u]]
+22:09:59.209 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:59.216 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:59.219 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [t]])
+22:09:59.235 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [t]]
+22:09:59.339 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:59.345 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:59.347 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [p]])
+22:09:59.362 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [p]]
+22:09:59.470 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:59.476 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:59.479 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [a]])
+22:09:59.497 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [a]]
+22:09:59.605 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:59.611 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:59.614 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [t]])
+22:09:59.631 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [t]]
+22:09:59.741 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:59.748 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:59.750 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [.]])
+22:09:59.766 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [.]]
+22:09:59.874 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:09:59.880 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:09:59.883 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [ ]])
+22:09:59.898 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [ ]]
+22:10:00.007 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:10:00.013 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:10:00.015 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [A]])
+22:10:00.032 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [A]]
+22:10:00.141 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:10:00.147 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:10:00.151 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [e]])
+22:10:00.166 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [e]]
+22:10:00.273 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:10:00.280 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:10:00.282 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [n]])
+22:10:00.300 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [n]]
+22:10:00.406 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:10:00.413 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:10:00.415 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [e]])
+22:10:00.434 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [e]]
+22:10:00.540 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:10:00.547 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:10:00.549 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [a]])
+22:10:00.564 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [a]]
+22:10:00.671 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:10:00.678 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:10:00.680 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [n]])
+22:10:00.696 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [n]]
+22:10:00.803 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:10:00.809 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:10:00.811 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [ ]])
+22:10:00.827 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [ ]]
+22:10:00.934 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:10:00.941 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:10:00.943 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [a]])
+22:10:00.958 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [a]]
+22:10:01.062 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:10:01.069 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:10:01.071 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [t]])
+22:10:01.087 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [t]]
+22:10:01.193 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:10:01.199 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:10:01.201 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [ ]])
+22:10:01.217 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [ ]]
+22:10:01.324 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:10:01.330 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:10:01.333 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [a]])
+22:10:01.349 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [a]]
+22:10:01.457 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:10:01.464 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:10:01.466 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [r]])
+22:10:01.481 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [r]]
+22:10:01.589 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:10:01.596 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:10:01.598 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [c]])
+22:10:01.613 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [c]]
+22:10:01.720 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:10:01.726 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:10:01.728 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [u]])
+22:10:01.743 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [u]]
+22:10:01.851 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:10:01.858 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:10:01.860 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [ ]])
+22:10:01.875 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [ ]]
+22:10:01.980 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:10:01.987 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:10:01.989 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [n]])
+22:10:02.004 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [n]]
+22:10:02.112 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:10:02.118 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:10:02.120 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [u]])
+22:10:02.134 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [u]]
+22:10:02.244 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:10:02.250 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:10:02.252 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [l]])
+22:10:02.267 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [l]]
+22:10:02.374 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:10:02.381 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:10:02.383 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [l]])
+22:10:02.398 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [l]]
+22:10:02.504 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:10:02.510 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:10:02.512 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [a]])
+22:10:02.528 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [a]]
+22:10:02.635 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:10:02.646 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:10:02.649 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [.]])
+22:10:02.665 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [.]]
+22:10:02.771 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:10:02.778 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:10:02.780 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [ ]])
+22:10:02.795 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [ ]]
+22:10:02.900 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:10:02.906 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:10:02.908 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [N]])
+22:10:02.926 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [N]]
+22:10:03.036 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:10:03.042 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:10:03.045 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [u]])
+22:10:03.059 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [u]]
+22:10:03.165 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:10:03.171 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:10:03.174 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [n]])
+22:10:03.189 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [n]]
+22:10:03.295 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:10:03.301 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:10:03.304 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [c]])
+22:10:03.319 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [c]]
+22:10:03.424 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:10:03.431 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:10:03.433 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [ ]])
+22:10:03.450 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [ ]]
+22:10:03.558 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:10:03.564 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:10:03.567 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [a]])
+22:10:03.582 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [a]]
+22:10:03.690 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:10:03.696 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:10:03.698 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [ ]])
+22:10:03.713 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [ ]]
+22:10:03.821 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:10:03.827 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:10:03.829 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [m]])
+22:10:03.845 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [m]]
+22:10:03.953 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:10:03.959 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:10:03.961 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [i]])
+22:10:03.977 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [i]]
+22:10:04.084 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:10:04.090 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:10:04.093 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [ ]])
+22:10:04.109 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [ ]]
+22:10:04.215 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:10:04.221 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:10:04.223 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [n]])
+22:10:04.238 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [n]]
+22:10:04.344 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:10:04.350 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:10:04.353 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [o]])
+22:10:04.367 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [o]]
+22:10:04.476 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:10:04.482 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:10:04.484 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [n]])
+22:10:04.500 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [n]]
+22:10:04.605 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:10:04.611 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:10:04.614 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [ ]])
+22:10:04.638 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [ ]]
+22:10:04.749 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:10:04.755 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:10:04.757 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [o]])
+22:10:04.773 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [o]]
+22:10:04.881 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:10:04.887 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:10:04.889 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [r]])
+22:10:04.904 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [r]]
+22:10:05.011 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:10:05.017 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:10:05.019 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [c]])
+22:10:05.035 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [c]]
+22:10:05.139 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:10:05.146 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:10:05.148 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [i]])
+22:10:05.163 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [i]]
+22:10:05.271 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:10:05.278 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:10:05.280 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [ ]])
+22:10:05.295 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [ ]]
+22:10:05.401 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:10:05.408 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:10:05.410 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [m]])
+22:10:05.426 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [m]]
+22:10:05.532 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:10:05.538 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:10:05.541 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [a]])
+22:10:05.557 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [a]]
+22:10:05.664 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:10:05.670 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:10:05.673 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [t]])
+22:10:05.690 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [t]]
+22:10:05.796 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:10:05.802 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:10:05.804 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [t]])
+22:10:05.820 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [t]]
+22:10:05.929 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:10:05.935 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:10:05.938 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [i]])
+22:10:05.954 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [i]]
+22:10:06.061 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:10:06.067 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:10:06.069 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [s]])
+22:10:06.084 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [s]]
+22:10:06.190 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:10:06.196 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:10:06.198 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [ ]])
+22:10:06.213 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [ ]]
+22:10:06.321 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:10:06.328 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:10:06.330 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [d]])
+22:10:06.346 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [d]]
+22:10:06.452 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:10:06.459 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:10:06.461 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [i]])
+22:10:06.476 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [i]]
+22:10:06.582 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:10:06.589 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:10:06.591 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [c]])
+22:10:06.607 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [c]]
+22:10:06.714 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:10:06.720 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:10:06.722 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [t]])
+22:10:06.737 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [t]]
+22:10:06.844 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:10:06.851 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:10:06.853 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [u]])
+22:10:06.868 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [u]]
+22:10:06.974 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:10:06.982 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:10:06.984 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [m]])
+22:10:06.998 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [m]]
+22:10:07.104 INFO - Executing: [find element: By.cssSelector: #postContentInput])
+22:10:07.111 INFO - Done: [find element: By.cssSelector: #postContentInput]
+22:10:07.113 INFO - Executing: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [.]])
+22:10:07.129 INFO - Done: [send keys: 11 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #postContentInput], [.]]
+22:10:07.235 INFO - Executing: [find elements: By.cssSelector: #newTopicButton])
+22:10:07.242 INFO - Done: [find elements: By.cssSelector: #newTopicButton]
+22:10:07.246 INFO - Executing: [find element: By.cssSelector: #newTopicButton])
+22:10:07.252 INFO - Done: [find element: By.cssSelector: #newTopicButton]
+22:10:07.254 INFO - Executing: [click: 12 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #newTopicButton]])
+22:10:07.323 INFO - Done: [click: 12 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #newTopicButton]]
+22:10:07.330 INFO - Executing: [find elements: By.cssSelector: #conversationsPage])
+22:10:07.449 INFO - Done: [find elements: By.cssSelector: #conversationsPage]
+22:10:07.956 INFO - Executing: [find elements: By.cssSelector: #conversationsPage])
+22:10:07.964 INFO - Done: [find elements: By.cssSelector: #conversationsPage]
+22:10:07.967 INFO - Executing: [find elements: By.cssSelector: #conversationsPage .conversation])
+22:10:07.986 INFO - Done: [find elements: By.cssSelector: #conversationsPage .conversation]
+22:10:07.989 INFO - Executing: [find elements: By.cssSelector: #conversationsPage .description])
+22:10:08.006 INFO - Done: [find elements: By.cssSelector: #conversationsPage .description]
+22:10:08.010 INFO - Executing: [find element: By.cssSelector: #conversationsPage .description])
+22:10:08.026 INFO - Done: [find element: By.cssSelector: #conversationsPage .description]
+22:10:08.029 INFO - Executing: [get text: 15 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #conversationsPage .description]])
+22:10:08.052 INFO - Done: [get text: 15 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #conversationsPage .description]]
+22:10:08.056 INFO - Executing: [find elements: By.cssSelector: #conversationsPage .conversation .conversationPostCard:nth-child(1)])
+22:10:08.074 INFO - Done: [find elements: By.cssSelector: #conversationsPage .conversation .conversationPostCard:nth-child(1)]
+22:10:08.077 INFO - Executing: [find elements: By.cssSelector: #conversationsPage .conversation .conversationPostCard:nth-child(1) .postText])
+22:10:08.096 INFO - Done: [find elements: By.cssSelector: #conversationsPage .conversation .conversationPostCard:nth-child(1) .postText]
+22:10:08.100 INFO - Executing: [find element: By.cssSelector: #conversationsPage .conversation .conversationPostCard:nth-child(1) .postText])
+22:10:08.117 INFO - Done: [find element: By.cssSelector: #conversationsPage .conversation .conversationPostCard:nth-child(1) .postText]
+22:10:08.119 INFO - Executing: [get text: 17 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #conversationsPage .conversation .conversationPostCard:nth-child(1) .postText]])
+22:10:08.139 INFO - Done: [get text: 17 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #conversationsPage .conversation .conversationPostCard:nth-child(1) .postText]]
+22:10:08.148 INFO - Executing: [find elements: By.cssSelector: #addPostToConversationCard])
+22:10:08.166 INFO - Done: [find elements: By.cssSelector: #addPostToConversationCard]
+22:10:08.169 INFO - Executing: [find elements: By.cssSelector: #addPostToConversationInput])
+22:10:08.188 INFO - Done: [find elements: By.cssSelector: #addPostToConversationInput]
+22:10:08.191 INFO - Executing: [find element: By.cssSelector: #addPostToConversationInput])
+22:10:08.206 INFO - Done: [find element: By.cssSelector: #addPostToConversationInput]
+22:10:08.209 INFO - Executing: [clear: 19 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #addPostToConversationInput]])
+22:10:08.238 INFO - Done: [clear: 19 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #addPostToConversationInput]]
+22:10:08.241 INFO - Executing: [find element: By.cssSelector: #addPostToConversationInput])
+22:10:08.250 INFO - Done: [find element: By.cssSelector: #addPostToConversationInput]
+22:10:08.254 INFO - Executing: [send keys: 19 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #addPostToConversationInput], [P, e, l, l, e, n, t, e, s, q, u, e,  , h, a, b, i, t, a, n, t,  , m, o, r, b, i,  , t, r, i, s, t, i, q, u, e,  , s, e, n, e, c, t, u, s,  , e, t,  , n, e, t, u, s,  , e, t,  , m, a, l, e, s, u, a, d, a,  , f, a, m, e, s,  , a, c,  , t, u, r, p, i, s,  , e, g, e, s, t, a, s, .,  , C, u, r, a, b, i, t, u, r,  , l, a, o, r, e, e, t,  , m, a, s, s, a,  , v, i, t, a, e,  , v, e, l, i, t,  , d, a, p, i, b, u, s, ,,  , v, e, l,  , m, a, x, i, m, u, s,  , l, e, c, t, u, s,  , p, o, r, t, a, .]])
+22:10:08.794 INFO - Done: [send keys: 19 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #addPostToConversationInput], [P, e, l, l, e, n, t, e, s, q, u, e,  , h, a, b, i, t, a, n, t,  , m, o, r, b, i,  , t, r, i, s, t, i, q, u, e,  , s, e, n, e, c, t, u, s,  , e, t,  , n, e, t, u, s,  , e, t,  , m, a, l, e, s, u, a, d, a,  , f, a, m, e, s,  , a, c,  , t, u, r, p, i, s,  , e, g, e, s, t, a, s, .,  , C, u, r, a, b, i, t, u, r,  , l, a, o, r, e, e, t,  , m, a, s, s, a,  , v, i, t, a, e,  , v, e, l, i, t,  , d, a, p, i, b, u, s, ,,  , v, e, l,  , m, a, x, i, m, u, s,  , l, e, c, t, u, s,  , p, o, r, t, a, .]]
+22:10:08.799 INFO - Executing: [find elements: By.cssSelector: #addPostButton])
+22:10:08.817 INFO - Done: [find elements: By.cssSelector: #addPostButton]
+22:10:08.821 INFO - Executing: [find element: By.cssSelector: #addPostButton])
+22:10:08.836 INFO - Done: [find element: By.cssSelector: #addPostButton]
+22:10:08.838 INFO - Executing: [click: 20 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #addPostButton]])
+22:10:08.899 INFO - Done: [click: 20 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #addPostButton]]
+22:10:09.905 INFO - Executing: [find elements: By.cssSelector: #conversationsPage])
+22:10:09.913 INFO - Done: [find elements: By.cssSelector: #conversationsPage]
+22:10:09.922 INFO - Executing: [find elements: By.cssSelector: #conversationsPage .conversation .conversationPostCard:nth-child(2)])
+22:10:09.938 INFO - Done: [find elements: By.cssSelector: #conversationsPage .conversation .conversationPostCard:nth-child(2)]
+22:10:09.944 INFO - Executing: [find element: By.cssSelector: #conversationsPage .conversation .conversationPostCard:nth-child(2) .postText])
+22:10:09.965 INFO - Done: [find element: By.cssSelector: #conversationsPage .conversation .conversationPostCard:nth-child(2) .postText]
+22:10:09.968 INFO - Executing: [get text: 22 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #conversationsPage .conversation .conversationPostCard:nth-child(2) .postText]])
+22:10:09.993 INFO - Done: [get text: 22 [[ChromeDriver: chrome on MAC (431e105762cdb3e37b2ccf31aad8d7c1)] -> css selector: #conversationsPage .conversation .conversationPostCard:nth-child(2) .postText]]
+22:10:09.997 INFO - Executing: [delete session: 149fda4a-64e3-4a30-805a-8e2f87435065])
+22:10:10.139 INFO - Done: [delete session: 149fda4a-64e3-4a30-805a-8e2f87435065]

@@ -5,12 +5,14 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 import { Bert } from 'meteor/themeteorchef:bert';
 import { FormGroup } from 'react-bootstrap';
 import { CardText } from 'material-ui/Card';
-import Input  from 'react-toolbox/lib/input';
+
 import { insertPost } from '../../../api/posts/methods.js';
 import { GlassCard } from '/imports/ui/components/GlassCard';
 
 import { Meteor } from 'meteor/meteor';
+
 import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
 
 export class AddPostToConversation extends React.Component {
   getMeteorData() {
@@ -38,19 +40,15 @@ export class AddPostToConversation extends React.Component {
     return data;
   }
 
-  handleKeypress(topicId, event){
-    const target = event.target;
-    const title = this.refs.addPostToConversationInput.refs.input.value.trim();
+  handleKeypress(topicId, event, title){
+    Session.set('postContent', title);
 
     if (title !== '' && event.keyCode === 13) {
-      this.handleInsertPost(topicId, title, target);
+      this.handleInsertPost(topicId, title, event.target);
     }
   }
-  handleAddPostButton(topicId, event){
-    const target = event.target;
-    const title = this.refs.addPostToConversationInput.refs.input.value.trim();
-
-    this.handleInsertPost(topicId, title, target);
+  handleAddPostButton(topicId, event, value){
+    this.handleInsertPost(topicId, Session.get('postContent'), event.target);
   }
   handleInsertPost(topicId, title, target){
     let newPost = {
@@ -83,18 +81,16 @@ export class AddPostToConversation extends React.Component {
     return (
       <GlassCard id='addPostToConversationCard'>
         <CardText>
-          <FormGroup>
-            <Input
-              multiline
-              label='Add Post'
-              name='addPost'
-              type="textarea"
-              onKeyUp={ this.handleKeypress.bind(this, this.props.topicId) }
-              rows="5"
-              ref="addPostToConversationInput"
-              id='addPostToConversationInput'
-              />
-          </FormGroup>
+          <TextField
+            id='addPostToConversationInput'
+            ref='addPostToConversationInput'
+            name='addPost'
+            floatingLabelText='Add Post'
+            onChange={ this.handleKeypress.bind(this, this.props.topicId) }
+            multiLine={true}
+            rows={5}
+            fullWidth
+            /><br/>
           <RaisedButton id='addPostButton' onMouseUp={ this.handleAddPostButton.bind(this, this.props.topicId) } primary={true} label='Post' />
         </CardText>
       </GlassCard>

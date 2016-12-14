@@ -66,7 +66,7 @@ module.exports = {
 
     client
       .verify.elementPresent("#newTopicButton")
-      .click("#newTopicButton").pause(1000);
+      .click("#newTopicButton");
   },
   'topic should have post' : function (client) {
     client
@@ -74,7 +74,7 @@ module.exports = {
       // .verify.elementPresent("#forumTopicsTable .topicRow:nth-child(1)", 1000)
       // .click("#forumTopicsTable .topicRow:nth-child(1)").pause(1000)
 
-      .waitForElementPresent('#conversationsPage', 1000)
+      .waitForElementPresent('#conversationsPage', 2000)
       .verify.elementPresent("#conversationsPage .conversation")
       .verify.elementPresent("#conversationsPage .description")
       .verify.containsText('#conversationsPage .description', topicDescription)

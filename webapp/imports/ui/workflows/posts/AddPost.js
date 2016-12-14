@@ -3,7 +3,7 @@ import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
 import { CardTitle, CardText } from 'material-ui/Card';
-import Input  from 'react-toolbox/lib/input';
+import TextField from 'material-ui/TextField';
 import { insertPost } from '/imports/api/posts/methods';
 import { GlassCard } from '/imports/ui/components/GlassCard';
 
@@ -50,16 +50,16 @@ export class AddPost extends React.Component {
           title="Weblog"
         />
         <CardText>
-          <Input
-            multiline
-            rows='5'
-            name='weblogPostContent'
+          <TextField
+            id='weblogPostInput'
             ref='weblogPostContent'
-            type='textarea'
+            name='weblogPostContent'
+            floatingLabelText="Type some text and press enter to create a post..."
             value={this.data.state.weblogPostContent}
             onChange={this.changePost.bind(this)}
-            placeholder="Type some text and press enter to create a post..."
-           />
+            multiLine={true}
+            rows={5}
+            /><br/>
           <RaisedButton id="addPostButton" onMouseUp={ this.handleInsertPost.bind(this) } primary={true} label='New Post' />
         </CardText>
       </GlassCard>
