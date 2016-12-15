@@ -14,6 +14,7 @@ import ActionHome from 'material-ui/svg-icons/action/home';
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
+import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
 import FlatButton from 'material-ui/FlatButton';
 
 
@@ -22,17 +23,18 @@ export class Header extends React.Component {
   getMeteorData() {
     let data = {
       style: {
-        position: 'fixed',
-        top: '0px',
-        width: '100%',
-        display: 'flex',
-        alignItems: 'center',
-        padding: '0 2.4rem',
-        opacity: Session.get('globalOpacity'),
-        WebkitTransition: 'ease .2s',
-        transition: 'ease .2s',
-        zIndex: 100,
-        color: 'black'
+        appbar: {
+          position: 'fixed',
+          top: '0px',
+          width: '100%',
+          opacity: Session.get('globalOpacity'),
+          WebkitTransition: 'ease .2s',
+          transition: 'ease .2s'
+        },
+        title: {
+          color: 'black',
+          cursor: 'pointer'
+        }
       },
       westStyle: {
         display: 'flex',
@@ -123,10 +125,12 @@ export class Header extends React.Component {
       <AppBar
         id='appHeader'
         title={this.data.app.title}
+        iconElementLeft={<IconButton className='sidebarToggleButton'><NavigationMenu /></IconButton>}
         onTitleTouchTap={this.toggleDrawerActive}
         onLeftIconButtonTouchTap={this.toggleDrawerActive}
         iconElementRight={ this.renderNavigation(this.data.hasUser) }
-        style={this.data.style}
+        style={this.data.style.appbar}
+        titleStyle={this.data.style.title}
       />
     );
   }

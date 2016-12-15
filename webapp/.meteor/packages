@@ -32,6 +32,7 @@ themeteorchef:bert
 mdg:validated-method
 dburles:factory
 
+fourseven:scss
 momentjs:moment
 
 #lmieulet:meteor-coverage

@@ -6,6 +6,9 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ImageBlurOn from 'material-ui/svg-icons/image/blur-on';
 import ImageExposure from 'material-ui/svg-icons/image/exposure';
 
+// import ImageBlurOn from 'react-material-icons/icons/image/blur-on';
+// import ImageExposure from 'react-material-icons/icons/image/exposure';
+
 import {Session} from 'meteor/session';
 
 import OpacitySlider from '../components/OpacitySlider';
@@ -100,11 +103,11 @@ export class Footer extends React.Component {
       // the user has pressed ctrl-cmd-t and is looking at theming controls
       return (
         <div>
-          <FloatingActionButton ref='blurButton' onClick={this.clickOnBlurButton} style={{marginLeft: '40px', height: '56px'}} secondary={true}>
-            <ImageBlurOn/>
+          <FloatingActionButton className='blurButton' ref='blurButton' onClick={this.clickOnBlurButton} style={{marginLeft: '40px', height: '56px'}} secondary={true}>
+            <ImageBlurOn className='ImageBlurOn' />
           </FloatingActionButton>
-          <FloatingActionButton ref='darkroomButton' onClick={this.clickOnDarkroomButton} style={{marginLeft: '20px', height: '56px'}} secondary={true}>
-            <ImageExposure/>
+          <FloatingActionButton className='darkroomButton' ref='darkroomButton' onClick={this.clickOnDarkroomButton} style={{marginLeft: '20px', height: '56px'}} secondary={true}>
+            <ImageExposure className='ImageExposure' />
           </FloatingActionButton>
         </div>
       );
