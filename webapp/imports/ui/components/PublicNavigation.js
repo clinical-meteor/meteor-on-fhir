@@ -3,46 +3,34 @@ import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
 import { IndexLinkContainer } from 'react-router-bootstrap';
-import { Nav, NavItem } from 'react-bootstrap';
+import FlatButton from 'material-ui/FlatButton';
 
 export class PublicNavigation extends React.Component {
   getMeteorData() {
     let data = {
       style: {
-        position: "fixed",
-        top: "0px",
-        width: "100%",
-        display: "flex",
-        // height: "6.4rem",
-        alignItems: "center",
-        padding: "0 2.4rem",
-        opacity: Session.get('globalOpacity')
-      },
-      listItem: {
-        display: "inline-block",
-        position: "relative"
+        title: {
+          color: 'black',
+          cursor: 'pointer'
+        }
       }
-    }
+    };
 
     return data;
-  };
+  }
+
   render () {
     return(
-      <Nav id="publicNavigation" pullRight>
+      <div id="publicNavigation" pullRight>
         <IndexLinkContainer to="signup">
-          <NavItem id="signupLink" eventKey={ 2 } href="/signup" style={this.data.listItem} >Sign Up</NavItem>
+          <FlatButton id='loginLink' label="Login" style={this.data.style.title} href='/login' />
         </IndexLinkContainer>
         <IndexLinkContainer to="login">
-          <NavItem id="loginLink" eventKey={ 3 } href="/login" style={this.data.listItem} >Log In</NavItem>
+          <FlatButton id='signupLink' label="Register" style={this.data.style.title} href='/signup' />
         </IndexLinkContainer>
-      </Nav>
+      </div>
     );
   }
 }
-PublicNavigation.propTypes = {
 
-};
-PublicNavigation.defaultProps = {
-
-};
 ReactMixin(PublicNavigation.prototype, ReactMeteorData);

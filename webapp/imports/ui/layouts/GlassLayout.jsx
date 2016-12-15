@@ -20,6 +20,10 @@ import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 
+import Sidebar from '/imports/api/Sidebar';
+
+
+
 Session.setDefault('backgroundImagePath', 'url(\"images\/ForestInMist.jpg\")');
 Session.setDefault('backgroundColor', '#eeeeee');
 Session.setDefault('darkroomEnabled', false);
@@ -28,6 +32,7 @@ Session.setDefault('backgroundBlurEnabled', false);
 
 Session.setDefault('drawerActive', false);
 Session.setDefault('drawerActive', false);
+
 
 export class GlassLayout extends React.Component {
   constructor(props) {
@@ -110,6 +115,7 @@ export class GlassLayout extends React.Component {
     }
   }
   closeOpenedSidebar(){
+    //Sidebar.close();
     if (Session.equals('drawerActive', true)) {
       Session.set('drawerActive', false);
     }
@@ -118,21 +124,24 @@ export class GlassLayout extends React.Component {
 
     return (
       <div>
-        <Drawer open={this.data.state.drawerActive}
-          docked={true}
-          onOverlayClick={ this.toggleDrawerActive }
+        <Drawer
+          open={this.data.state.drawerActive}
+          docked={false}
+          onRequestChange={ this.closeOpenedSidebar }
           >
 
-          <IndexLinkContainer id="userIdentification" to='/myprofile' >
-             <CardTitle
-               avatar={this.data.card.avatar}
-               title={this.data.card.title}
-               subtitle={this.data.card.subtitle}
-               style={{cursor: 'pointer'}}
-             />
-          </IndexLinkContainer>
+          <div onClick={ this.closeOpenedSidebar }>
+              <IndexLinkContainer id="userIdentification" to='/myprofile' >
+                 <CardTitle
+                   avatar={this.data.card.avatar}
+                   title={this.data.card.title}
+                   subtitle={this.data.card.subtitle}
+                   style={{cursor: 'pointer'}}
+                 />
+              </IndexLinkContainer>
 
-           { this.renderSidebar(this.data.state.isAdmin) }
+               { this.renderSidebar(this.data.state.isAdmin) }
+          </div>
         </Drawer>
 
         <div>
