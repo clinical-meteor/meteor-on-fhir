@@ -2,21 +2,10 @@ import React from 'react';
 import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
-import Input from 'react-toolbox/lib/input';
-import Button from 'react-toolbox/lib/button';
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
 
-import { Row, Col } from 'react-bootstrap';
-import DocumentsList from '../../containers/documents-list.js';
-import { AddDocument } from '/imports/ui/components/AddDocument.js';
-
-import { PageContainer } from '/imports/ui/components/PageContainer';
-import { GlassCard } from '/imports/ui/components/GlassCard';
-import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
-
-
-import {Tab, Tabs} from 'react-toolbox/lib/tabs';
-import PractitionerTable from '../../workflows/practitioners/PractitionerTable';
-
+import { CardText, CardActions } from 'material-ui/Card';
 import { insertPractitioner, updatePractitioner, removePractitionerById } from '../../../api/practitioners/methods';
 import { Bert } from 'meteor/themeteorchef:bert';
 
@@ -39,7 +28,7 @@ export default class PractitionerDetail extends React.Component {
         name: "",
         photo: ""
       }
-    }
+    };
 
     if (Session.get('selectedPractitioner')) {
       data.practitionerId = Session.get('selectedPractitioner');
@@ -55,7 +44,7 @@ export default class PractitionerDetail extends React.Component {
           name: selectedPractitioner.name ? selectedPractitioner.name.text : "",
           given: selectedPractitioner.name ? selectedPractitioner.name.given : "",
           family: selectedPractitioner.name ? selectedPractitioner.name.family : ""
-        }
+        };
       }
     }
 
@@ -64,7 +53,14 @@ export default class PractitionerDetail extends React.Component {
     }
 
     return data;
-  };
+  }
+
+  // // this could be a mixin
+  // changeState(field, event, value){
+  //   let state = Session.get('userCardTabbedState');
+  //   state[field] = value;
+  //   Session.set('userCardTabbedState', state);
+  // }
 
 
   // this could be a mixin
@@ -96,13 +92,14 @@ export default class PractitionerDetail extends React.Component {
     console.log("practitionerUpdate", practitionerUpdate);
 
     Session.set('practitionerDetailState', practitionerUpdate);
-  };
+  }
+
   openTab(index){
     // set which tab is selected
     let state = Session.get('practitionerCardState');
     state["index"] = index;
     Session.set('practitionerCardState', state);
-  };
+  }
 
   // this could be a mixin
   handleSaveButton(){
@@ -115,7 +112,7 @@ export default class PractitionerDetail extends React.Component {
         'photo': [{
           url: this.refs.photo.refs.input.value
         }]
-      }
+      };
 
       if (this.refs.active.refs.input.value === "true") {
         practitionerFormData.active = true;
@@ -152,12 +149,13 @@ export default class PractitionerDetail extends React.Component {
         }
       });
     }
-  };
+  }
 
   // this could be a mixin
   handleCancelButton(){
     console.log("handleCancelButton");
-  };
+  }
+
   handleDeleteButton(){
     removePractitionerById.call(
       {_id: Session.get('selectedPractitioner')}, (error) => {
@@ -168,29 +166,43 @@ export default class PractitionerDetail extends React.Component {
         this.openTab(1);
       }
     });
-  };
+  }
+
   determineButtons(practitionerId){
     if (practitionerId) {
       return (
         <div>
-          <Button id="savePractitionerButton" label="Save" onClick={this.handleSaveButton.bind(this)} />
-          <Button id="deletePractitionerButton" label="Delete" onClick={this.handleDeleteButton.bind(this)} />
+          <RaisedButton id="savePractitionerButton" primary={true} label="Save" onClick={this.handleSaveButton.bind(this)} />
+          <RaisedButton id="deletePractitionerButton" label="Delete" onClick={this.handleDeleteButton.bind(this)} />
         </div>
       );
     } else {
       return(
-        <Button id="savePractitionerButton" label="Save" onClick={this.handleSaveButton.bind(this)} />
+        <RaisedButton id="savePractitionerButton" primary={true} label="Save" onClick={this.handleSaveButton.bind(this)} />
       );
     }
-  };
+  }
+
   render() {
     return (
       <div className="practitionerDetail">
         <CardText>
-           <Input type='text' ref='name' label='name' name='name' value={this.data.practitioner.name} onChange={ this.changeState.bind(this, 'name')} />
-           <Input type='text' ref='gender' label='gender' name='gender' value={this.data.practitioner.gender} onChange={ this.changeState.bind(this, 'gender')} />
-           <Input type='text' ref='photo' label='photo' name='photo' value={this.data.practitioner.photo} onChange={ this.changeState.bind(this, 'photo')} />
-           <Input type='text' ref='active' label='active' name='active' value={this.data.practitioner.active} onChange={ this.changeState.bind(this, 'active')} />
+          <TextField
+            id='practitionerNameInput'
+            ref='name'
+            name='name'
+            type='text'
+            floatingLabelText='name'
+            value={this.data.practitioner.name}
+            /><br/>
+          <TextField
+            id='activePractitionerInput'
+            ref='active'
+            name='active'
+            type='text'
+            floatingLabelText='active'
+            value={this.data.practitioner.active}
+            /><br/>
         </CardText>
         <CardActions>
           { this.determineButtons(this.data.practitionerId) }

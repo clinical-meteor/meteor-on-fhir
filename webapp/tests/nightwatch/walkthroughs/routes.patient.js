@@ -29,7 +29,9 @@ module.exports = {
   "/signup": function (client) {
     client.page.signupPage()
       .navigate()
-      .signup('Alice', 'Doe', 'alice@test.org', 'alicedoe')
+      .fillOutSignupPage('Alice', 'Doe', 'alice@test.org', 'alicedoe')
+      .saveScreenshot('tests/nightwatch/screenshots/accounts/A-signupPage.png', client)
+      .signup()
       .pause(1000, client);
   },
   "/ (signed in)": function (client) {

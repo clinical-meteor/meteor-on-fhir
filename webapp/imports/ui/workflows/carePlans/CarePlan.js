@@ -4,7 +4,7 @@ import { Bert } from 'meteor/themeteorchef:bert';
 import { updateCarePlan, removeCarePlan } from '../../../api/careplans/methods.js';
 
 import { GlassCard } from '/imports/ui/components/GlassCard';
-import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
+import { Card, CardMedia, CardTitle, CardText, CardActions } from 'material-ui/Card';
 
 
 const handleUpdateCarePlan = (carePlanId, event) => {

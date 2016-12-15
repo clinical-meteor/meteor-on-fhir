@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
+import { Card, CardMedia, CardTitle, CardText, CardActions } from 'material-ui/Card';
 
 
 export class PrivacyPolicyCard extends React.Component {

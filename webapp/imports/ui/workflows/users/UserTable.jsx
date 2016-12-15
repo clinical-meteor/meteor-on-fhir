@@ -4,10 +4,9 @@ import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
 import { Meteor } from 'meteor/meteor';
-import { Accounts } from 'meteor/accounts-base';
-import Avatar from 'react-toolbox/lib/avatar';
+import Avatar from 'material-ui/Avatar';
 
-import IconButton from 'react-toolbox/lib/button';
+import IconButton from 'material-ui/IconButton';
 import { browserHistory } from 'react-router';
 import { Bert } from 'meteor/themeteorchef:bert';
 
@@ -63,7 +62,7 @@ export class UserTable extends React.Component {
     if (isAdmin) {
       return (
         <td>
-          <IconButton icon='clear' onClick={ this.removeUser.bind(this, this.data.users[i]._id) } />
+          <IconButton iconClassName="muidocs-icon-content-clear" onClick={ this.removeUser.bind(this, this.data.users[i]._id) } />
         </td>
       );
     }
@@ -82,7 +81,7 @@ export class UserTable extends React.Component {
       tableRows.push(
       <tr key={i}>
         <td>
-          <Avatar><img src={this.data.users[i].profile ? this.data.users[i].profile.avatar : '/thumbnail-blank.png' }/></Avatar>
+          <Avatar src={this.data.users[i].profile ? this.data.users[i].profile.avatar : '/thumbnail-blank.png' } />
         </td>
         <td onClick={this.routeToWeblog.bind(this, this.data.users[i]._id)} style={{cursor: 'pointer'}}>/weblog/{this.data.users[i]._id}</td>
         <td>{this.data.users[i].username}</td>
@@ -142,5 +141,4 @@ export class UserTable extends React.Component {
   }
 }
 
-UserTable.propTypes = {};
 ReactMixin(UserTable.prototype, ReactMeteorData);

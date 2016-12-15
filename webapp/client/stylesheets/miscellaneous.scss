@@ -1,0 +1,57 @@
+
+//--------------------------------------------------
+// ANIMATIONS
+
+@keyframes rotate {
+  from { transform: rotate( 0deg ); }
+  to   { transform: rotate( 360deg ); }
+}
+
+@-webkit-keyframes rotate {
+  from { -webkit-transform: rotate( 0deg );   }
+  to   { -webkit-transform: rotate( 360deg ); }
+}
+
+//--------------------------------------------------
+// FORMS
+
+form label.error {
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 0px;
+  font-weight: normal;
+  color: lighten( red, 20% );
+}
+
+//--------------------------------------------------
+// CLEARFIX
+
+%clearfix {
+  *zoom: 1;
+
+  &:before,
+  &:after {
+    display: table;
+    content: "";
+  }
+
+  &:after {
+    clear: both;
+  }
+}
+
+
+//--------------------------------------------------
+// LOADING
+
+
+.loading {
+  -webkit-animation-name: rotate;
+  -webkit-animation-duration: 0.5s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  animation-name: rotate;
+  animation-duration: 0.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}

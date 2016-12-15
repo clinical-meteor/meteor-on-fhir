@@ -2,14 +2,13 @@ import React from 'react';
 import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
-import { AddForumTopic } from   '/imports/ui/workflows/forums/AddForumTopic';
 import { PageContainer } from   '/imports/ui/components/PageContainer';
 import { GlassCard } from       '/imports/ui/components/GlassCard';
 import Spacer from              '/imports/ui/components/Spacer';
 import { ForumTopicsTable } from    '/imports/ui/workflows/forums/ForumTopicsTable';
 
 import { Meteor } from 'meteor/meteor';
-import Button from 'react-toolbox/lib/button';
+import RaisedButton from 'material-ui/RaisedButton';
 
 import { browserHistory } from 'react-router';
 
@@ -46,12 +45,10 @@ export class ForumPage extends React.Component {
   }
 
   renderAuthenticatedUserControls(isLoggedIn) {
-    //console.log("renderAuthenticatedUserControls");
-
     if (isLoggedIn) {
       return (
         <div>
-          <Button onMouseUp={this.newTopic.bind(this)} raised >New Topic</Button>
+          <RaisedButton id='newTopicButton' label="New Topic" onMouseUp={this.newTopic.bind(this)} />
           <Spacer />
         </div>
       );
@@ -63,7 +60,7 @@ export class ForumPage extends React.Component {
       <div id="forumPage">
         <PageContainer>
           { this.renderAuthenticatedUserControls(this.data.state.isLoggedIn) }
-          <GlassCard>
+          <GlassCard style={{minHeight: "300px"}}>
             <ForumTopicsTable />
           </GlassCard>
         </PageContainer>

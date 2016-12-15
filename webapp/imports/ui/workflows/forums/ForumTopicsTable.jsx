@@ -1,15 +1,16 @@
 import { Table } from 'react-bootstrap';
 import { browserHistory } from 'react-router';
-import Avatar from 'react-toolbox/lib/avatar';
+import Avatar from 'material-ui/Avatar';
 import React from 'react';
 import ReactMixin from 'react-mixin';
 
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import { Session } from 'meteor/session';
 import { Topics } from '/imports/api/topics/topics';
-import IconButton from 'react-toolbox/lib/button';
+import IconButton from 'material-ui/IconButton';
 
 import { removeTopicById } from '/imports/api/topics/methods';
+import { Bert } from 'meteor/themeteorchef:bert';
 
 export class ForumTopicsTable extends React.Component {
 
@@ -44,7 +45,8 @@ export class ForumTopicsTable extends React.Component {
           activity: record.activity ?  moment(record.activity).fromNow() : '',
           createdAt: moment(record.createdAt).format('YYYY-MM-DD'),
           createdByAvatar: record.createdBy ? record.createdBy.avatar : '/thumbnail-blank.png',
-          photo: record.photo ? record.photo[0].url: '/thumbnail-blank.png'
+          photo: record.photo ? record.photo[0].url : '/thumbnail-blank.png',
+          initials: record.name[0]
         };
       });
     }
@@ -83,25 +85,14 @@ export class ForumTopicsTable extends React.Component {
   }
 
   rowClick(id){
-
-    //console.log('/topic/' + id);
-
     browserHistory.push('/topic/' + id);
-
-    // // set the user
-    // Session.set('selectedPatient', id);
-    //
-    // // set which tab is selected
-    // let state = Session.get('patientCardState');
-    // state['index'] = 2;
-    // Session.set('patientCardState', state);
   }
 
   renderAdminControls(isAdmin, i) {
     if (isAdmin) {
       return (
         <td>
-          <IconButton icon='clear' onClick={ this.removeTopic.bind(this, this.data.topics[i]._id) } />
+          <IconButton iconClassName="muidocs-icon-content-clear" onClick={ this.removeTopic.bind(this, this.data.topics[i]._id) } />
         </td>
       );
     }
@@ -118,34 +109,36 @@ export class ForumTopicsTable extends React.Component {
     let tableRows = [];
     for (var i = 0; i < this.data.topics.length; i++) {
       tableRows.push(
-        <tr key={i} className='patientRow' style={{cursor: 'pointer'}} >
+        <tr key={i} className='topicRow' style={{cursor: 'pointer'}} >
 
-          <td onClick={ this.rowClick.bind('this', this.data.topics[i]._id)}>{this.data.topics[i].name }</td>
-          <td onClick={ this.rowClick.bind('this', this.data.topics[i]._id)}> {this.data.topics[i].category}</td>
-          <td onClick={ this.rowClick.bind('this', this.data.topics[i]._id)}>
-            <Avatar><img src={this.data.topics[i].createdByAvatar }/></Avatar>
+          <td className='description' onClick={ this.rowClick.bind('this', this.data.topics[i]._id)}>{this.data.topics[i].name }</td>
+          <td className='category' onClick={ this.rowClick.bind('this', this.data.topics[i]._id)}> {this.data.topics[i].category}</td>
+          <td className='created-by' onClick={ this.rowClick.bind('this', this.data.topics[i]._id)}>
+            <Avatar src={this.data.topics[i].createdByAvatar}>
+              {this.data.topics[i].initials}
+            </Avatar>
           </td>
 
-          <td onClick={ this.rowClick.bind('this', this.data.topics[i]._id)}>{this.data.topics[i].createdAt }</td>
-          <td onClick={ this.rowClick.bind('this', this.data.topics[i]._id)}>{this.data.topics[i].replies}</td>
-          <td onClick={ this.rowClick.bind('this', this.data.topics[i]._id)}>{this.data.topics[i].views}</td>
-          <td onClick={ this.rowClick.bind('this', this.data.topics[i]._id)}>{this.data.topics[i].activity}</td>
+          <td className='created-by' onClick={ this.rowClick.bind('this', this.data.topics[i]._id)}>{this.data.topics[i].createdAt }</td>
+          <td className='replies' onClick={ this.rowClick.bind('this', this.data.topics[i]._id)}>{this.data.topics[i].replies}</td>
+          <td className='views' onClick={ this.rowClick.bind('this', this.data.topics[i]._id)}>{this.data.topics[i].views}</td>
+          <td className='last-activity' onClick={ this.rowClick.bind('this', this.data.topics[i]._id)}>{this.data.topics[i].activity}</td>
           { this.renderAdminControls(this.data.state.isAdmin, i) }
         </tr>
       );
     }
 
     return(
-      <Table responses hover >
+      <Table id='forumTopicsTable' responses hover >
         <thead>
           <tr>
-            <th>Topic</th>
-            <th>Category</th>
-            <th>CreatedBy</th>
-            <th>Created On</th>
-            <th>Replies</th>
-            <th>Views</th>
-            <th>Last Activity</th>
+            <th className='description'>Topic</th>
+            <th className='category'>Category</th>
+            <th className='created-by'>CreatedBy</th>
+            <th className='created-at'>Created At</th>
+            <th className='replies'>Replies</th>
+            <th className='views'>Views</th>
+            <th className='last-activity'>Last Activity</th>
           { this.renderAdminHeaders(this.data.state.isAdmin) }
           </tr>
         </thead>
@@ -173,6 +166,5 @@ export class ForumTopicsTable extends React.Component {
 }
 
 
-ForumTopicsTable.propTypes = {};
-ForumTopicsTable.defaultProps = {};
+
 ReactMixin(ForumTopicsTable.prototype, ReactMeteorData);

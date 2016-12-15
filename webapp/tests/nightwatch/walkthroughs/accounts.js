@@ -2,6 +2,8 @@
 // http://nightwatchjs.org/api
 
 
+// All right, you mutinous, computerized, disloyal half-breed - we'll see about you deserting my ship.
+
 module.exports = {
   tags: ['accounts', 'passwords', 'users', 'entry', 'circle'],
   before: function(client){
@@ -14,52 +16,54 @@ module.exports = {
   'User can sign up.': function (client) {
     client.resizeWindow(1200, 1024);
 
-    // const signupPage = client.page.signupPage();
-    const indexPage = client.page.indexPage();
-
     client.page.signupPage()
       .navigate()
-      .signup('Alice', 'Doe', 'alice@test.org', 'alicedoe')
-      .pause(1000, client);
-
-    // indexPage.expect.element('#welcomePatientPage').to.be.present;
-    indexPage.expect.element('#indexPage').to.be.present;
-    indexPage.expect.element('#authenticatedUserMenuToggle').to.be.present;
-    indexPage.expect.element('#authenticatedUsername').text.to.contain('Alice Doe');
+      .fillOutSignupPage('Alice', 'Doe', 'alice@test.org', 'alicedoe', '')
+      .saveScreenshot('tests/nightwatch/screenshots/accounts/A-signupPage.png', client)
+      .signup()
+      .pause(2000, client);
   },
   'User gets logged in after signup.': function (client) {
-    // client.verify.elementPresent('#welcomePatientPage');
-    client.verify.elementPresent('#indexPage');
+    client
+      .waitForElementPresent('#welcomePatientPage', 1000)
+
+      .verify.elementPresent('#sidebarToggleButton')
+        .click('#sidebarToggleButton').pause(1000)
+
+      .waitForElementPresent('#userIdentification span', 5000)
+      .verify.containsText('#userIdentification span', 'Alice Doe')
+      .saveScreenshot('tests/nightwatch/screenshots/accounts/B-profileSetupPage.png');
   },
   'User can log out.': function (client) {
-    client.verify.elementPresent('#authenticatedUserMenuToggle')
-      .click('#authenticatedUserMenuToggle').pause(1000)
-      .click('#authenticatedUserMenuToggle').pause(2000)
-      .verify.elementPresent('#authenticatedUserMenu')
-      .verify.elementPresent('#authenticatedUserMenu #logoutMenuItem')
-      .click('#authenticatedUserMenu #logoutMenuItem').pause(1000)
-      .verify.elementPresent('#loginPage');
+    client
+      .waitForElementPresent('#patientSidebar .logoutMenuItem', 5000)
+      .saveScreenshot('tests/nightwatch/screenshots/accounts/C-logoutMenuItem.png')
+      .click('#patientSidebar .logoutMenuItem').pause(1000)
+
+      .verify.elementPresent('#loginPage')
+      .saveScreenshot('tests/nightwatch/screenshots/accounts/D-loginPage.png');
   },
   'User can sign in.': function (client) {
-    const indexPage = client.page.indexPage();
-
     client.page.loginPage()
-      .navigate()
-      .login("alice@test.org", "alicedoe")
+      .fillOutLoginPage('alice@test.org', 'alicedoe')
+      .saveScreenshot('tests/nightwatch/screenshots/accounts/E-loginPage.png', client)
+      .pause(1000, client)
+      .login()
       .pause(2000, client);
 
-    indexPage.expect.element('#indexPage').to.be.present;
-    indexPage.expect.element('#authenticatedUsername').text.to.contain('Alice Doe');
+    client
+      .verify.elementPresent('#indexPage')
+      .verify.containsText('#authenticatedUsername', 'Alice Doe');
   },
   "User can view profile.": function (client) {
-    client.verify.elementPresent('#authenticatedUserMenuToggle')
-      .click('#authenticatedUserMenuToggle').pause(1000)
-      .click('#authenticatedUserMenuToggle').pause(2000)
+    client
+      .verify.elementPresent('#sidebarToggleButton')
+        .click('#sidebarToggleButton').pause(1000)
 
-      .verify.elementPresent("#authenticatedUserMenu #myProfileMenuItem")
-      .click("#authenticatedUserMenu #myProfileMenuItem").pause(500)
+      .waitForElementPresent('#userIdentification', 5000)
+      .click("#userIdentification")
 
-      .verify.elementPresent("#myProfilePage");
+      .waitForElementPresent('#myProfilePage', 5000);
   },
   "User can edit profile avatar.": function (client) {
     var myArray = 'https://pbs.twimg.com/profile_images/436598467956187136/yncbkX83_400x400.jpeg'.split('');
@@ -81,14 +85,34 @@ module.exports = {
     }
 
     client.pause(3000).verify.attributeEquals('#avatarImage', 'src', 'https://pbs.twimg.com/profile_images/436598467956187136/yncbkX83_400x400.jpeg');
+
+    // var myArray = 'https://pbs.twimg.com/profile_images/436598467956187136/yncbkX83_400x400.jpeg'.split('');
+    //
+    // client
+    //   .verify.elementPresent('#avatarImage')
+    //   .verify.attributeEquals('#avatarImage', 'src', 'http://localhost:3000/thumbnail.png')
+    //
+    //   .verify.elementPresent('input[name="avatar"]')
+    //     .clearValue('input[name="avatar"]')
+    //     .setValue('input[name="avatar"]', 'https://foo').pause(500)
+    //     .verify.attributeEquals('#avatarImage', 'src', 'http://localhost:3000/noAvatar.png')
+    //
+    //   .verify.elementPresent('input[name="avatar"]')
+    //     .clearValue('input[name="avatar"]');
+    //
+    // for(var i=0; i < myArray.length; i++) {
+    //   client.setValue('input[name="avatar"]', myArray[i]).pause(50);
+    // }
+    //
+    // client.pause(3000).verify.attributeEquals('#avatarImage', 'src', 'https://pbs.twimg.com/profile_images/436598467956187136/yncbkX83_400x400.jpeg');
   },
   "User can change password.": function (client) {
     var oldPassArray = 'alicedoe'.split('');
     var newPassArray = 'alice123'.split('');
 
     client
-      .verify.elementPresent("label.passwordTab")
-      .click("label.passwordTab").pause(500)
+      .verify.elementPresent("#profilePageTabs .passwordTab")
+      .click("#profilePageTabs .passwordTab").pause(1000)
 
       .verify.elementPresent("input[name=oldPassword]")
       .verify.elementPresent("input[name=newPassword]")
@@ -113,20 +137,20 @@ module.exports = {
       client.setValue('input[name="confirmPassword"]', newPassArray[l]).pause(100);
     }
 
-    client.click("#changePasswordButton").pause(1000)
+    client.click("#changePasswordButton").pause(2000)
 
       .verify.attributeEquals('input[name="oldPassword"]', 'value', '')
       .verify.attributeEquals('input[name="newPassword"]', 'value', '')
-      .verify.attributeEquals('input[name="confirmPassword"]', 'value', '');
+      .verify.attributeEquals('input[name="confirmPassword"]', 'value', '')
 
-    client.verify.elementPresent('#authenticatedUserMenuToggle')
-      .click('#authenticatedUserMenuToggle').pause(1000)
-      .click('#authenticatedUserMenuToggle').pause(2000)
+      .waitForElementPresent('#sidebarToggleButton', 2000)
+      .click('#sidebarToggleButton').pause(2000)
+      .click('#sidebarToggleButton').pause(2000)
 
-      .verify.elementPresent("#authenticatedUserMenu #logoutMenuItem")
-      .click("#authenticatedUserMenu #logoutMenuItem").pause(500)
+      .waitForElementPresent('#patientSidebar .logoutMenuItem', 5000)
+      .click('#patientSidebar .logoutMenuItem').pause(20000)
 
-      .verify.elementPresent("#loginPage");
+      .waitForElementPresent("#loginPage", 5000);
   },
   "User can sign in with new password.": function (client) {
     client
@@ -148,20 +172,16 @@ module.exports = {
     // log out
     var userIdArray = "alice@test.org";
 
-    client.verify.elementPresent('#authenticatedUserMenuToggle')
-      .click('#authenticatedUserMenuToggle').pause(1000)
-      .click('#authenticatedUserMenuToggle').pause(2000)
+    client.verify.elementPresent('#sidebarToggleButton')
+      .click('#sidebarToggleButton').pause(2000)
 
-      .verify.elementPresent('#authenticatedUserMenu #myProfileMenuItem')
-      .click('#authenticatedUserMenu #myProfileMenuItem').pause(500)
+      .verify.elementPresent('#userIdentification')
+      .click('#userIdentification').pause(1000)
 
-      // // the menu doesn't auto-close, so we need to manually close it
-      // // so it doesn't obscure other components
-      // .verify.elementPresent('#authenticatedUsername')
-      // .click('#authenticatedUsername').pause(500)
+      .waitForElementPresent('#myProfilePage', 5000)
 
-      .verify.elementPresent('label.systemTab')
-      .click('label.systemTab').pause(500)
+      .verify.elementPresent('#profilePageTabs .systemTab')
+      .click('#profilePageTabs .systemTab').pause(500)
 
       .verify.elementPresent('#deleteUserButton')
       .click('#deleteUserButton').pause(500)

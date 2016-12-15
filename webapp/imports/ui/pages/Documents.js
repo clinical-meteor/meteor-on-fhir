@@ -8,7 +8,7 @@ import { AddDocument } from '/imports/ui/components/AddDocument.js';
 
 import { PageContainer } from '/imports/ui/components/PageContainer';
 import { GlassCard } from '/imports/ui/components/GlassCard';
-import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
+import { Card, CardMedia, CardTitle, CardText, CardActions } from 'material-ui/Card';
 
 export class Documents extends React.Component {
   getMeteorData() {

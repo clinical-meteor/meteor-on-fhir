@@ -1,5 +1,5 @@
-import { CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
-import Button from 'react-toolbox/lib/button';
+import { CardTitle, CardText, CardActions } from 'material-ui/Card';
+import RaisedButton from 'material-ui/RaisedButton';
 import React from 'react';
 import ReactMixin from 'react-mixin';
 
@@ -105,10 +105,6 @@ export default class PostsDeck extends React.Component {
   }
 
 
-  // <CardActions>
-  //   <Button className='editButton' label='Edit' style={{color: 'lightgray'}} />
-  //   <Button className='deleteButton' onMouseUp={self.handleDeleteButton.bind(self, i, item)} label='Delete' style={{color: 'lightgray'}} />
-  // </CardActions>
 
   handleDeleteButton(index, post){
     console.log('handleDeleteButton');
@@ -125,14 +121,11 @@ export default class PostsDeck extends React.Component {
   }
 
   renderCardActions(i, item){
-
-    // <Button className='editButton' label='Edit' style={{color: 'lightgray'}} />
-
     if (item && item.createdBy && item.createdBy.reference) {
       if (item.createdBy.reference === Meteor.userId()) {
         return (
           <CardActions>
-            <Button className='deleteButton' onMouseUp={this.handleDeleteButton.bind(self, i, item)} label='Delete' style={{color: 'lightgray'}} />
+            <RaisedButton className='deleteButton' primary={true} onMouseUp={this.handleDeleteButton.bind(self, i, item)} label='Delete' style={{color: 'lightgray'}} />
           </CardActions>
         );
       }
@@ -142,6 +135,5 @@ export default class PostsDeck extends React.Component {
 }
 
 
-PostsDeck.propTypes = {};
-PostsDeck.defaultProps = {};
+
 ReactMixin(PostsDeck.prototype, ReactMeteorData);

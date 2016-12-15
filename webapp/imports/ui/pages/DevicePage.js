@@ -4,12 +4,10 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 
 import { PageContainer } from '/imports/ui/components/PageContainer';
 import { GlassCard } from '/imports/ui/components/GlassCard';
-import { CardTitle, CardText } from 'react-toolbox/lib/card';
+import { CardTitle, CardText } from 'material-ui/Card';
 
-// import DevicesList from '../containers/devices-list';
 import DeviceDetail from '../workflows/devices/DeviceDetail';
-import { DevicesDeck } from '../workflows/devices/DevicesDeck';
-import { Tab, Tabs } from 'react-toolbox/lib/tabs';
+import {Tabs, Tab} from 'material-ui/Tabs';
 
 import { Meteor } from 'meteor/meteor';
 
@@ -63,13 +61,13 @@ export class DevicePage extends React.Component {
             <CardTitle title='Devices' />
             <CardText>
               <Tabs default index={this.data.state.index} onChange={this.handleTabChange}>
-               <Tab className='newDeviceTab' label='New' style={{padded: '20px'}} onActive={ this.onNewTab } >
+               <Tab className='newDeviceTab' label='New' style={{padded: '20px', backgroundColor: 'white', color: 'black', borderBottom: '1px solid lightgray'}} onActive={ this.onNewTab } >
                  <DeviceDetail />
                </Tab>
-               <Tab label='Devices' onActive={this.handleActive}>
+               <Tab label='Devices' onActive={this.handleActive} style={{backgroundColor: 'white', color: 'black', borderBottom: '1px solid lightgray'}}>
 
                </Tab>
-               <Tab label='Detail' onActive={this.handleActive} style={{padded: '20px'}} >
+               <Tab label='Detail' onActive={this.handleActive} style={{padded: '20px', backgroundColor: 'white', color: 'black', borderBottom: '1px solid lightgray'}} >
                  <DeviceDetail />
                </Tab>
              </Tabs>

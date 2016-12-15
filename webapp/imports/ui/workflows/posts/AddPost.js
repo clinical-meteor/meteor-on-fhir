@@ -2,14 +2,12 @@ import React from 'react';
 import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
-import { FormGroup, FormControl } from 'react-bootstrap'
-import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card'
-import Input  from 'react-toolbox/lib/input'
-import { insertPost } from '/imports/api/posts/methods'
-import { GlassCard } from '/imports/ui/components/GlassCard'
+import { CardTitle, CardText } from 'material-ui/Card';
+import TextField from 'material-ui/TextField';
+import { insertPost } from '/imports/api/posts/methods';
+import { GlassCard } from '/imports/ui/components/GlassCard';
 
-import Button from 'react-toolbox/lib/button';
-import { browserHistory } from 'react-router';
+import RaisedButton from 'material-ui/RaisedButton';
 
 import { Meteor } from 'meteor/meteor';
 
@@ -52,17 +50,17 @@ export class AddPost extends React.Component {
           title="Weblog"
         />
         <CardText>
-          <Input
-            multiline
-            rows='5'
-            name='weblogPostContent'
+          <TextField
+            id='weblogPostInput'
             ref='weblogPostContent'
-            type='textarea'
+            name='weblogPostContent'
+            floatingLabelText="Type some text and press enter to create a post..."
             value={this.data.state.weblogPostContent}
             onChange={this.changePost.bind(this)}
-            placeholder="Type some text and press enter to create a post..."
-           />
-          <Button id="addPostButton" onMouseUp={ this.handleInsertPost.bind(this) } raised primary >New Post</Button>
+            multiLine={true}
+            rows={5}
+            /><br/>
+          <RaisedButton id="addPostButton" onMouseUp={ this.handleInsertPost.bind(this) } primary={true} label='New Post' />
         </CardText>
       </GlassCard>
     );
@@ -97,5 +95,4 @@ export class AddPost extends React.Component {
 
 
 
-AddPost.propTypes = {};
 ReactMixin(AddPost.prototype, ReactMeteorData);

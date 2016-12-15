@@ -12,7 +12,7 @@ Session.setDefault('darkroomEnabled', true);
 Session.setDefault('glassBlurEnabled', false);
 Session.setDefault('backgroundBlurEnabled', false);
 
-Session.setDefault('showVideoBackground', false)
+Session.setDefault('showVideoBackground', false);
 if (Meteor.settings && Meteor.settings.public && Meteor.settings.public.theme && Meteor.settings.public.theme.showVideoBackground) {
   Session.set('showVideoBackground', Meteor.settings.public.theme.showVideoBackground);
   Session.set('backgroundImagePath', Meteor.settings.public.theme.defaultVideo);
@@ -34,8 +34,7 @@ export class GlassApp extends React.Component {
         style: {
           width: '100%',
           height: '100%',
-          position: 'absolute',
-          background: 'inherit'
+          position: 'absolute'
         },
         showVideoBackground: Session.get('showVideoBackground')
       },
@@ -54,58 +53,68 @@ export class GlassApp extends React.Component {
         }
       }
     };
-    // if (Session.get('showVideoBackground')) {
-    //   data.app.showVideoBackground = Session.get('showVideoBackground');
-    // }
 
     if (Session.get('lastVideoRun')) {
       ReactDOM.findDOMNode(this.refs.BackgroundVideo).play();
     }
 
-    data.app.style = {
-      zIndex: 1,
-      cursor: 'pointer'
-    };
+    if (Meteor.user()) {
+      // play a video if no background image or color has been set
+      // and we're on a tablet or larger device (no phone)
+      if (Meteor.user() && Meteor.user().profile && Meteor.user().profile.theme) {
 
-    // play a video if no background image or color has been set
-    // and we're on a tablet or larger device (no phone)
-    if (Meteor.user() && Meteor.user().profile && Meteor.user().profile.theme) {
+        if (Meteor.user().profile.theme.backgroundColor) {
+          data.app.style.background = Meteor.user().profile.theme.backgroundColor;
+        } else {
+          data.app.style.background = 'inherit';
+        }
 
-      if (Meteor.user().profile.theme.backgroundColor) {
-        data.app.style.background = Meteor.user().profile.theme.backgroundColor;
+        if (Meteor.user().profile.theme.backgroundImagePath) {
+          data.app.style = {
+            backgroundImage: 'url(' + Meteor.user().profile.theme.backgroundImagePath + ')',
+            WebkitBackgroundSize: 'cover',
+            MozBackgroundSize: 'cover',
+            OBackgroundSize: 'cover',
+            backgroundSize: 'cover'
+          };
+        }
+
+        // if (!Meteor.user().profile.theme.backgroundColor && !Meteor.user().profile.theme.backgroundImagePath && (Session.get('appWidth') > 768)) {
+        //   data.video.source = Meteor.absoluteUrl() + 'Flames.mp4';
+        // }
       } else {
-        data.app.style.background = 'inherit';
+        // user does not have a theme set
+        this.useGlobalDefaultBackground(data.app.style);
       }
-
-      if (Meteor.user().profile.theme.backgroundImagePath) {
-        data.app.style = {
-          backgroundImage: 'url(' + Meteor.user().profile.theme.backgroundImagePath + ')',
-          WebkitBackgroundSize: 'cover',
-          MozBackgroundSize: 'cover',
-          OBackgroundSize: 'cover',
-          backgroundSize: 'cover'
-        };
-      } else {
-        backgroundImage: 'none';
-      }
-
-      if (!Meteor.user().profile.theme.backgroundColor && !Meteor.user().profile.theme.backgroundImagePath && (Session.get('appWidth') > 768)) {
-        data.video.source = Meteor.absoluteUrl() + 'Flames.mp4';
-      }
+    } else {
+      // user is not logged in
+      this.useGlobalDefaultBackground(data.app.style);
     }
 
     data.app.style.width = '100%';
     data.app.style.height = '100%';
     data.app.style.position = 'absolute';
 
-
-    console.log("data" , data);
-
+    if(process.env.NODE_ENV === "test") console.log("GlassApp[data]" , data);
+    if(process.env.NODE_ENV === "test") console.log("Meteor.settings" , Meteor.settings);
 
     return data;
   }
 
-  renderVideoBackground(showVideoBackground){
+  useGlobalDefaultBackground(style){
+    if (Meteor.settings.public.theme.backgroundImagePath) {
+      style.backgroundImage = 'url(' + Meteor.settings.public.theme.backgroundImagePath + ')';
+    } else {
+      style.backgroundImage = 'none';
+    }
+    style.WebkitBackgroundSize = 'cover';
+    style.MozBackgroundSize = 'cover';
+    style.OBackgroundSize = 'cover';
+    style.backgroundSize = 'cover';
+
+    return style;
+  }
+  renderBackground(showVideoBackground){
     if (showVideoBackground) {
       let videoSrc = '/VideoBackgrounds/Circulation.mp4';
       if (Meteor.settings.public.theme.defaultVideo) {
@@ -122,26 +131,24 @@ export class GlassApp extends React.Component {
           <source src={videoSrc} type='video/mp4'></source>
         </video>
       );
+    } else {
+      return(
+        <div id='backgroundLayer' style={this.data.app.style}></div>
+      );
     }
   }
 
   render(){
-    // let videoSrc = '/VideoBackgrounds/11763620.mp4';
     return (
-      <div>
-        {this.renderVideoBackground(this.data.app.showVideoBackground)}
+      <div id="glassApp">
+        {this.renderBackground(this.data.app.showVideoBackground)}
 
-        <div data-react-toolbox='app' style={this.data.app.style}>
+        <div style={this.data.app.style}>
           {this.props.children}
         </div>
       </div>
     );
   }
 }
-GlassApp.propTypes = {
 
-};
-GlassApp.defaultProps = {
-
-};
 ReactMixin(GlassApp.prototype, ReactMeteorData);

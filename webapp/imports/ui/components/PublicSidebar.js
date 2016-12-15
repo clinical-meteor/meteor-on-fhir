@@ -1,5 +1,5 @@
 import { IndexLinkContainer } from 'react-router-bootstrap';
-import { List, ListItem } from 'react-toolbox/lib/list';
+import { List, ListItem } from 'material-ui/List';
 import React from 'react';
 import ReactMixin from 'react-mixin';
 
@@ -29,27 +29,30 @@ export class PublicSidebar extends React.Component {
 
   render () {
     return(
-      <List style={{paddingLeft: '20px', position: 'absolute'}}>
-        <IndexLinkContainer to='/'>
-           <ListItem eventKey={ 4 } caption='PatientIndex' href='/' />
+      <List style={{paddingLeft: '20px', position: 'static'}}>
+        <IndexLinkContainer to='/login'>
+           <ListItem primaryText='Sign In' href='/login' />
+        </IndexLinkContainer>
+
+        <IndexLinkContainer to='/signup'>
+           <ListItem primaryText='Register' href='/signup' />
         </IndexLinkContainer>
 
         <IndexLinkContainer to='/support'>
-           <ListItem eventKey={ 3 } caption='Support' href='/support' />
+           <ListItem primaryText='Support' href='/support' />
         </IndexLinkContainer>
 
         <IndexLinkContainer to='/about'>
-           <ListItem eventKey={ 10 } caption='About' href='/about' />
+           <ListItem primaryText='About' href='/about' />
         </IndexLinkContainer>
 
         <IndexLinkContainer to='/privacy'>
-           <ListItem eventKey={ 10 } caption='Privacy Page' href='/privacy' />
+           <ListItem primaryText='Privacy Page' href='/privacy' />
         </IndexLinkContainer>
 
       </List>
     );
   }
 }
-PublicSidebar.propTypes = {};
-PublicSidebar.defaultProps = {};
+
 ReactMixin(PublicSidebar.prototype, ReactMeteorData);

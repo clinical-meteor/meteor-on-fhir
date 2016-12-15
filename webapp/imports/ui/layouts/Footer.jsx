@@ -2,15 +2,23 @@ import React from 'react';
 import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
-// import Button from 'react-toolbox/lib/button';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ImageBlurOn from 'material-ui/svg-icons/image/blur-on';
 import ImageExposure from 'material-ui/svg-icons/image/exposure';
 
-import OpacitySlider from './OpacitySlider';
+// import ImageBlurOn from 'react-material-icons/icons/image/blur-on';
+// import ImageExposure from 'react-material-icons/icons/image/exposure';
+
 import {Session} from 'meteor/session';
 
-import style from './appbar';
+import OpacitySlider from '../components/OpacitySlider';
+
+// footer
+import ActionHome from 'material-ui/svg-icons/action/home';
+import AppBar from 'material-ui/AppBar';
+import IconButton from 'material-ui/IconButton';
+import NavigationClose from 'material-ui/svg-icons/navigation/close';
+import FlatButton from 'material-ui/FlatButton';
 
 Session.setDefault('showThemingControls', false);
 
@@ -95,11 +103,11 @@ export class Footer extends React.Component {
       // the user has pressed ctrl-cmd-t and is looking at theming controls
       return (
         <div>
-          <FloatingActionButton ref='blurButton' onClick={this.clickOnBlurButton} style={{marginLeft: '40px', height: '56px'}} secondary={true}>
-            <ImageBlurOn />
+          <FloatingActionButton className='blurButton' ref='blurButton' onClick={this.clickOnBlurButton} style={{marginLeft: '40px', height: '56px'}} secondary={true}>
+            <ImageBlurOn className='ImageBlurOn' />
           </FloatingActionButton>
-          <FloatingActionButton ref='darkroomButton' onClick={this.clickOnDarkroomButton} style={{marginLeft: '20px', height: '56px'}} secondary={true}>
-            <ImageExposure />
+          <FloatingActionButton className='darkroomButton' ref='darkroomButton' onClick={this.clickOnDarkroomButton} style={{marginLeft: '20px', height: '56px'}} secondary={true}>
+            <ImageExposure className='ImageExposure' />
           </FloatingActionButton>
         </div>
       );
@@ -135,18 +143,15 @@ export class Footer extends React.Component {
 
   render () {
     return(
-       <footer id='appFooter' className={style.appbar} style={this.data.footerStyle}>
-        <div className='westFooterElements' style={this.data.westStyle} >
-          { this.renderWestNavbar(this.data.displayThemeNavbar) }
-        </div>
-        <div className='eastFooterElements' style={this.data.eastStyle} >
-          { this.renderEastNavbar(this.data.displayThemeNavbar) }
-        </div>
-       </footer>
+      <AppBar
+        id='appFooter'
+        iconElementLeft={ this.renderWestNavbar(this.data.displayThemeNavbar) }
+        iconElementRight={ this.renderEastNavbar(this.data.displayThemeNavbar) }
+        style={this.data.footerStyle}
+        titleStyle={{color: 'black'}}
+      />
    );
   }
 }
 
-Footer.propTypes = {};
-Footer.defaultProps = {};
 ReactMixin(Footer.prototype, ReactMeteorData);

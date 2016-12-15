@@ -1,10 +1,12 @@
 import React from 'react';
 import ReactMixin from 'react-mixin';
-import { ReactMeteorData } from 'meteor/react-meteor-data';
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
 
-import { CardTitle, CardText } from 'react-toolbox/lib/card';
+import { ReactMeteorData } from 'meteor/react-meteor-data';
+import { CardTitle, CardText } from 'material-ui/Card';
 import { FormGroup } from 'react-bootstrap';
-import Input  from 'react-toolbox/lib/input';
+
 
 import { Bert } from 'meteor/themeteorchef:bert';
 import { GlassCard } from '/imports/ui/components/GlassCard';
@@ -14,7 +16,6 @@ import { Session } from 'meteor/session';
 import { insertTopic } from '/imports/api/topics/methods';
 import { insertPost } from '/imports/api/posts/methods';
 
-import Button from 'react-toolbox/lib/button';
 import { browserHistory } from 'react-router';
 
 Session.setDefault('topicName', false);
@@ -62,7 +63,7 @@ export class AddForumTopic extends React.Component {
 
 
     let newTopic = {
-      name: this.refs.topicName.refs.input.value.trim(),
+      name: Session.get('topicName'),
       createdAt: new Date(),
       createdBy: {
         display: Meteor.user().fullName(),
@@ -84,7 +85,7 @@ export class AddForumTopic extends React.Component {
 
         let newPost = {
           topicId: topicId,
-          title: this.refs.postContent.refs.input.value.trim(),
+          title: Session.get('postContent'),
           createdAt: new Date(),
           createdBy: {
             display: Meteor.user().fullName(),
@@ -94,7 +95,7 @@ export class AddForumTopic extends React.Component {
         if (Meteor.user().profile && Meteor.user().profile.avatar) {
           newPost.createdBy.avatar = Meteor.user().profile.avatar;
         }
-        
+
         console.log("newPost", newPost);
 
         insertPost.call(newPost, (error) => {
@@ -109,9 +110,6 @@ export class AddForumTopic extends React.Component {
         });
       }
     });
-
-
-    //}
   }
   render(){
     return(
@@ -121,25 +119,28 @@ export class AddForumTopic extends React.Component {
         />
         <CardText>
           <FormGroup>
-            <Input
-              label='Topic description'
-              name='topicName'
+            <TextField
+              id='topicDescriptionInput'
               ref='topicName'
-              type='textarea'
-              value={this.data.state.topicName}
+              name='topicName'
+              floatingLabelText='Topic description'
+              defaultValue={this.data.state.topicName}
               onChange={this.changeTopic.bind(this)}
-              />
-            <Input
-              multiline
-              label='Post content'
-              name='postContent'
+              fullWidth
+              /><br/>
+            <TextField
+              id='postContentInput'
               ref='postContent'
-              type='textarea'
-              value={this.data.state.postContent}
+              name='postContent'
+              floatingLabelText='Post content'
+              defaultValue={this.data.state.postContent}
               onChange={this.changePost.bind(this)}
-              rows='5'
-              />
-              <Button onMouseUp={ this.handleInsertPost.bind(this) } raised primary >New Topic</Button>
+              multiLine={true}
+              rows={5}
+              fullWidth
+              /><br/>
+
+              <RaisedButton id='newTopicButton' onMouseUp={ this.handleInsertPost.bind(this) } primary={true} label='New Topic' />
 
           </FormGroup>
         </CardText>
@@ -147,15 +148,14 @@ export class AddForumTopic extends React.Component {
     );
   }
 
-  changeTopic(){
-    Session.set('topicName', this.refs.topicName.refs.input.value);
+  changeTopic(event, value){
+    Session.set('topicName', value);
   }
 
-  changePost(){
-    Session.set('postContent', this.refs.postContent.refs.input.value);
+  changePost(event, value){
+    Session.set('postContent', value);
   }
 }
 
 
-AddForumTopic.propTypes = {};
 ReactMixin(AddForumTopic.prototype, ReactMeteorData);

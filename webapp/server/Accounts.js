@@ -16,6 +16,7 @@ Accounts.onCreateUser(function(options, user) {
 
     user.profile = options.profile;
     user.profile.firstTimeVisit = true;
+    user.roles = [];
 
 
     // some of our test data will be initialized with a profile.role of Physician
@@ -49,6 +50,12 @@ Accounts.onCreateUser(function(options, user) {
           Roles.addUsersToRoles(user._id, ['sysadmin']);
         }
       }
+    }
+
+    // if no other roles have been assigned, make the new user a patient
+    if (user.roles.length === 0) {
+      user.roles.push('patient');
+      Roles.addUsersToRoles(user._id, ['patient']);
     }
   }
 

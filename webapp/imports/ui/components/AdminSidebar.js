@@ -1,5 +1,5 @@
 import { IndexLinkContainer } from 'react-router-bootstrap';
-import { List, ListItem } from 'react-toolbox/lib/list';
+import { List, ListItem } from 'material-ui/List';
 import React from 'react';
 import ReactMixin from 'react-mixin';
 
@@ -26,32 +26,38 @@ export class AdminSidebar extends React.Component {
 
     return data;
   }
+  handleLogout() {
+    Meteor.logout();
+  }
 
   render () {
     return(
       <div id="adminSidebar">
-        <List style={{paddingLeft: '20px', position: 'absolute'}}>
+        <List style={{paddingLeft: '20px', position: 'static', width: '100%'}}>
 
           <IndexLinkContainer to='/'>
-             <ListItem eventKey={ 4 } caption='Admin Index' href='/' />
+             <ListItem primaryText='Admin Index' href='/' />
           </IndexLinkContainer>
 
           <IndexLinkContainer to='/dashboard'>
-             <ListItem eventKey={ 2 } caption='Dashboard' href='/dashboard' />
+             <ListItem primaryText='Dashboard' href='/dashboard' />
           </IndexLinkContainer>
 
           <IndexLinkContainer to='/users'>
-             <ListItem eventKey={ 6 } caption='Users' href='/users' />
+             <ListItem primaryText='Users' href='/users' />
           </IndexLinkContainer>
 
           <IndexLinkContainer to='/patients'>
-             <ListItem eventKey={ 7 } caption='Patients' href='/patients' />
+             <ListItem primaryText='Patients' href='/patients' />
           </IndexLinkContainer>
 
           <IndexLinkContainer to='/practitioners'>
-             <ListItem eventKey={ 8 } caption='Practitioners' href='/practitioners' />
+             <ListItem primaryText='Practitioners' href='/practitioners' />
           </IndexLinkContainer>
 
+          <IndexLinkContainer to='/login'>
+             <ListItem className='logoutMenuItem' primaryText='Logout' href='/login' onClick={this.handleLogout} />
+          </IndexLinkContainer>
         </List>
       </div>
     );

@@ -2,26 +2,13 @@ import React from 'react';
 import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
-import Input from 'react-toolbox/lib/input';
-import { CardText, CardActions } from 'react-toolbox/lib/card';
+import TextField from 'material-ui/TextField';
+import { CardText, CardActions } from 'material-ui/Card';
 
-import Button from 'react-toolbox/lib/button';
-
-// import { Row, Col } from 'react-bootstrap';
-// import DocumentsList from '../../containers/documents-list.js';
-// import AddDocument from '/imports/ui/components/AddDocument.js';
-//
-// import { PageContainer } from '/imports/ui/components/PageContainer';
-// import { GlassCard } from '/imports/ui/components/GlassCard';
-// import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
-//
-// import {Tab, Tabs} from 'react-toolbox/lib/tabs';
+import RaisedButton from 'material-ui/RaisedButton';
 
 import { insertDevice, updateDevice, removeDeviceById } from '../../../api/devices/methods';
 import { Bert } from 'meteor/themeteorchef:bert';
-
-// import DatePicker from 'react-toolbox/lib/date_picker';
-//import { DatePicker, DatePickerDialog, Calendar, CalendarDay, CalendarMonth } from 'react-toolbox/lib/date_picker';
 
 let defaultState = false;
 
@@ -65,9 +52,34 @@ export default class DeviceDetail extends React.Component {
     return (
       <div className="deviceDetail">
         <CardText>
-          <Input ref="name" type='text' label='name' name='name' value={this.data.device.deviceName} onChange={ this.changeState.bind(this, 'name')} />
-          <Input ref="productid" type='text' label='productid' name='productid' value={this.data.device.deviceProductId} onChange={ this.changeState.bind(this, 'productid')} />
-          <Input ref="patientid" type='text' label='patientid' name='patientid' value={this.data.device.patientId} onChange={ this.changeState.bind(this, 'patientid')} />
+          <TextField
+            id='deviceNameInput'
+            ref='name'
+            name='name'
+            floatingLabelText='name'
+            defaultValue={this.data.device.deviceName}
+            onChange={ this.changeState.bind(this, 'name')}
+            fullWidth
+            /><br/>
+          <TextField
+            id='productIdInput'
+            ref='productid'
+            name='productid'
+            floatingLabelText='productid'
+            defaultValue={this.data.device.deviceProductId}
+            onChange={ this.changeState.bind(this, 'productid')}
+            fullWidth
+            /><br/>
+          <TextField
+            id='patientIdInput'
+            ref='patientid'
+            name='patientid'
+            floatingLabelText='patientid'
+            defaultValue={this.data.device.patientId}
+            onChange={ this.changeState.bind(this, 'patientid')}
+            fullWidth
+            /><br/>
+
         </CardText>
         <CardActions>
           { this.determineButtons(this.data.deviceId) }
@@ -80,8 +92,8 @@ export default class DeviceDetail extends React.Component {
     if (deviceId) {
       return (
         <div>
-          <Button label="Save" onClick={this.handleSaveDevice.bind(this)} />
-          <Button label="Delete" onClick={this.handleDeleteButton.bind(this)} />
+          <RaisedButton label="Save" primary={true} onClick={this.handleSaveDevice.bind(this)} />
+          <RaisedButton label="Delete" onClick={this.handleDeleteButton.bind(this)} />
         </div>
       );
     } else {

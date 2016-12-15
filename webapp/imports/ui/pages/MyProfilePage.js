@@ -1,9 +1,10 @@
-import { CardTitle } from 'react-toolbox/lib/card';
-import { Col, Grid } from 'react-bootstrap';
-import { Tab, Tabs } from 'react-toolbox/lib/tabs';
+import { CardTitle } from 'material-ui/Card';
+import { Col, Grid, Row } from 'react-bootstrap';
+import { Tabs, Tab } from 'material-ui/Tabs';
 import { browserHistory } from 'react-router';
-import Button from 'react-toolbox/lib/button';
-import Input from 'react-toolbox/lib/input';
+import RaisedButton from 'material-ui/RaisedButton';
+import { FontIcon } from 'material-ui/FontIcon';
+import TextField from 'material-ui/TextField';
 import React from 'react';
 import ReactMixin from 'react-mixin';
 
@@ -53,6 +54,7 @@ export class MyProfilePage extends React.Component {
         confirmPassword: ''
       },
       user: {
+        _id: '',
         given: '',
         familiy: '',
         email: '',
@@ -60,7 +62,7 @@ export class MyProfilePage extends React.Component {
         zip: '',
         longitude: '',
         latitude: '',
-        profileImage: 'thumbnail.png',
+        profileImage: 'noAvatar.png',
         birthdate: ''
       }
     };
@@ -96,10 +98,10 @@ export class MyProfilePage extends React.Component {
       }
     }
 
-    //console.log(''data'', data);
+    if(process.env.NODE_ENV === "test") console.log("MyProfilePage[data]" , data);
 
     return data;
-  };
+  }
 
 
   render(){
@@ -108,54 +110,155 @@ export class MyProfilePage extends React.Component {
         <PageContainer>
           <GlassCard>
             <hr />
-            <Grid>
+            <Row>
               <Col xs={6} md={4} lg={2}>
                 <img id='avatarImage' ref='avatarImage' src={this.data.user.profileImage} onError={this.imgError.bind(this)} style={{width: '100%'}} />
               </Col>
-              <Col xs={12} md={8} lg={10}>
+              <Col xs={12} md={8} md={10}>
                 <CardTitle
                   title={this.data.user.fullName}
                   subtitle={this.data.user.email}
                 />
-                <Tabs index={this.data.state.index} onChange={this.handleTabChange}>
+                <Tabs id="profilePageTabs" index={this.data.state.index} onChange={this.handleTabChange} initialSelectedIndex={this.data.state.index} value={this.data.state.index} >
 
-                  <Tab className='demographicsTab' label='Demographics'>
+                  <Tab className='demographicsTab' label='Demographics' style={{backgroundColor: 'white', color: 'black', borderBottom: '1px solid lightgray'}} value={0} >
                     <div id='profileDemographicsPane' style={{position: 'relative'}}>
-                      <Input type='text' label='given name' ref="given" name='given' style={this.data.style} value={this.data.user.given} />
-                      <Input type='text' label='family name' ref="family" name='family' style={this.data.style} value={this.data.user.family} />
-                      <Input type='text' label='date of birth (yyyy-mm-dd)' ref="birthdate" name='birthdate' style={this.data.style} value={this.data.user.birthdate} />
-                      <Input type='text' label='avatar' ref="avatar" name='avatar' style={this.data.style} value={this.data.user.avatar} onChange={ this.handleChangeAvatar.bind(this) } />
+                      <TextField
+                        id='givenNameInput'
+                        ref='given'
+                        name='given'
+                        type='text'
+                        floatingLabelText='given name'
+                        defaultValue={this.data.user.given}
+                        /><br/>
+                      <TextField
+                        id='familyNameInput'
+                        ref='family'
+                        name='family'
+                        type='text'
+                        floatingLabelText='family name'
+                        defaultValue={this.data.user.family}
+                        /><br/>
+                      <TextField
+                        id='birthdateInput'
+                        ref='birthdate'
+                        name='birthdate'
+                        type='text'
+                        floatingLabelText='date of birth (yyyy-mm-dd)'
+                        defaultValue={this.data.user.birthdate}
+                        /><br/>
+                      <TextField
+                        id='avatarInput'
+                        ref='avatar'
+                        name='avatar'
+                        type='text'
+                        floatingLabelText='avatar'
+                        defaultValue={this.data.user.avatar}
+                        onChange={ this.handleChangeAvatar.bind(this) }
+                        /><br/>
                     </div>
                   </Tab>
-                  <Tab className='environmentalTab' label='Environmental' onActive={this.handleActive}>
+
+                  <Tab className='environmentalTab' label='Environmental' onActive={this.handleActive} style={{backgroundColor: 'white', color: 'black', borderBottom: '1px solid lightgray'}} value={1}>
                     <div id='profileEnvironmentalPane' style={{position: 'relative'}} >
-                      <Input type='text' label='zipcode' name='zipcode' ref='zipcode' style={this.data.style} value={this.data.user.zip} />
-                      <Input type='text' label='latitude' name='latitude' ref='latitude' style={this.data.style} value={this.data.user.latitude} />
-                      <Input type='text' label='longitude' name='longitude' ref='longitude' style={this.data.style} value={this.data.user.longitude} />
+                      <TextField
+                        id='zipcodeInput'
+                        ref='zipcode'
+                        name='zipcode'
+                        type='text'
+                        floatingLabelText='zipcode'
+                        defaultValue={this.data.user.zipcode}
+                        /><br/>
+                      <TextField
+                        id='latitudeInput'
+                        ref='latitude'
+                        name='latitude'
+                        type='text'
+                        floatingLabelText='latitude'
+                        defaultValue={this.data.user.latitude}
+                        /><br/>
+                      <TextField
+                        id='longitudeInput'
+                        ref='longitude'
+                        name='longitude'
+                        type='text'
+                        floatingLabelText='longitude'
+                        defaultValue={this.data.user.longitude}
+                        /><br/>
                     </div>
-
                   </Tab>
-                  <Tab className='passwordTab' label='Password'>
+
+                  <Tab className='passwordTab' label='Password' style={{backgroundColor: 'white', color: 'black', borderBottom: '1px solid lightgray'}} value={2} >
                     <div id='profilePasswordPane' style={{position: 'relative'}} >
-                      <Input type='text' label='oldPassword' name='oldPassword' ref='oldPassword' style={this.data.style} value={this.data.state.oldPassword} onChange={ this.changeState.bind(this, 'oldPassword') } />
-                      <Input type='text' label='newPassword' name='newPassword' ref='newPassword' style={this.data.style} value={this.data.state.newPassword} onChange={ this.changeState.bind(this, 'newPassword') } />
-                      <Input type='text' label='confirmPassword' name='confirmPassword' ref='confirmPassword' style={this.data.style} value={this.data.state.confirmPassword} onChange={ this.changeState.bind(this, 'confirmPassword') } />
-                      <Button id='changePasswordButton' icon='bookmark' label='Change Password' onClick={this.changePassword.bind(this)} raised primary />
-                    </div>
+                      <TextField
+                        id='oldPasswordInput'
+                        ref='oldPassword'
+                        name='oldPassword'
+                        type='text'
+                        floatingLabelText='oldPassword'
+                        floatingLabelFixed={true}
+                        value={this.data.state.oldPassword}
+                        onChange={ this.rememberOldPassword.bind(this) }
+                        /><br/>
+                      <TextField
+                        id='newPasswordInput'
+                        ref='newPassword'
+                        name='newPassword'
+                        type='text'
+                        floatingLabelText='newPassword'
+                        floatingLabelFixed={true}
+                        value={this.data.state.newPassword}
+                        onChange={ this.rememberNewPassword.bind(this) }
+                        /><br/>
+                      <TextField
+                        id='confirmPasswordInput'
+                        ref='confirmPassword'
+                        name='confirmPassword'
+                        type='text'
+                        floatingLabelText='confirmPassword'
+                        floatingLabelFixed={true}
+                        value={this.data.state.confirmPassword}
+                        onChange={ this.rememberConfirmPassword.bind(this) }
+                        /><br/>
 
+                      <RaisedButton
+                        id='changePasswordButton'
+                        label='Change Password'
+                        onClick={this.changePassword.bind(this)}
+                        className="muidocs-icon-action-delete"
+                        primary={true}
+                        />
+                    </div>
                   </Tab>
-                  <Tab className="systemTab" label='System'>
+
+                  <Tab className="systemTab" label='System' style={{backgroundColor: 'white', color: 'black', borderBottom: '1px solid lightgray'}} value={3}>
                     <div id="profileSystemPane" style={{position: "relative"}}>
-                      <Input disabled type='text' label='symptomatic _id' name='_id' style={this.data.style} value={this.data.user._id} />
-                      <Input disabled type='text' label='email' name='email' style={this.data.style} value={this.data.user.email} />
+                      <TextField
+                        id='idInput'
+                        ref='_id'
+                        name='_id'
+                        type='text'
+                        floatingLabelText='symptomatic _id'
+                        value={this.data.user._id}
+                        disabled
+                        /><br/>
+                      <TextField
+                        id='emailInput'
+                        ref='email'
+                        name='email'
+                        type='text'
+                        floatingLabelText='symptomatic email'
+                        value={this.data.user.email}
+                        disabled
+                        /><br/>
 
                       { this.renderConfirmDelete(this.data.state.wantsToDelete) }
                     </div>
-
                   </Tab>
+
                 </Tabs>
               </Col>
-            </Grid>
+            </Row>
             <Spacer />
 
 
@@ -173,35 +276,48 @@ export class MyProfilePage extends React.Component {
         <div>
           <br />
           <br />
-          <Input
-            type='text'
-            label='confirm email or _id'
-            name='confirm'
+          <TextField
+            id='confirmInput'
             ref='confirm'
-            style={this.data.style}
-            value={this.data.state.confirm}
+            name='confirm'
+            type='text'
+            floatingLabelText='confirm email or _id'
+            defaultValue={this.data.user.confirm}
             onChange={this.handleConfirm.bind(this)}
-            floating
-            style={{color: 'red'}}
-            />
-          <Button
+            /><br/><br/>
+
+          <RaisedButton
             id='confirmDeleteUserButton'
-            icon='delete'
             label='Confirm Delete'
-            onMouseUp={this.confirmDelete.bind(this) }
-            raised
-            primary
+            onClick={this.confirmDelete.bind(this) }
+            className="muidocs-icon-action-delete"
+            primary={true}
             style={{backgroundColor: 'red'}}
             />
         </div>
       );
     } else {
       return(
-        <Button id='deleteUserButton' icon='delete' label='Delete User' onClick={this.handleDelete} raised primary />
+        <RaisedButton id='deleteUserButton' className="muidocs-icon-action-delete" label='Delete User' onClick={this.handleDelete } primary={true} />
       );
     }
   }
 
+  rememberOldPassword(event, value){
+    let state = Session.get('myProfileState');
+    state['oldPassword'] = value;
+    Session.set('myProfileState', state);
+  }
+  rememberNewPassword(event, value){
+    let state = Session.get('myProfileState');
+    state['newPassword'] = value;
+    Session.set('myProfileState', state);
+  }
+  rememberConfirmPassword(event, value){
+    let state = Session.get('myProfileState');
+    state['confirmPassword'] = value;
+    Session.set('myProfileState', state);
+  }
   changeState(field){
     let state = Session.get('myProfileState');
     state[field] = this.refs[field].refs.input.value;
@@ -213,27 +329,30 @@ export class MyProfilePage extends React.Component {
     Session.set('myProfileState', state);
   }
 
-  handleChangeAvatar() {
-    console.log('Lets change the avatar...', this.refs.avatar.refs.input.value);
+  handleChangeAvatar(event, value) {
+    // if(process.env.NODE_ENV === "test") console.log('Lets change the avatar...');
+    // if(process.env.NODE_ENV === "test") console.log('value', value);
 
     Meteor.users.update({  _id: Meteor.userId()}, {$set:{
-      'profile.avatar': this.refs.avatar.refs.input.value
+      'profile.avatar': value
     }});
   }
-  handleDelete(component) {
+  handleDelete() {
     let state = Session.get('myProfileState');
     state.wantsToDelete = true;
     Session.set('myProfileState', state);
-  };
-  handleConfirm() {
+  }
+  handleConfirm(event, value) {
     let state = Session.get('myProfileState');
-    state.confirm = this.refs.confirm.refs.input.value;
+    state.confirm = value;
     Session.set('myProfileState', state);
   }
   confirmDelete() {
+    let state = Session.get('myProfileState');
+
     // janky, but it works, i guess
-    if ((this.refs.confirm.refs.input.value === Meteor.userId()) || (this.refs.confirm.refs.input.value === Meteor.user().emails[0].address)) {
-      console.log('Confirm _id match.  Removing.');
+    if ((state.confirm === Meteor.userId()) || (state.confirm === Meteor.user().emails[0].address)) {
+      if(process.env.NODE_ENV === "test") console.log('Confirm _id match.  Removing.');
 
       removeUserById.call({
         _id:  Meteor.userId()
@@ -250,10 +369,11 @@ export class MyProfilePage extends React.Component {
     }
   }
   changePassword() {
-    if (this.refs.newPassword.refs.input.value === this.refs.confirmPassword.refs.input.value) {
+    let state = Session.get('myProfileState');
+    if (state.newPassword === state.confirmPassword) {
       console.log('Passwords match.  Lets send to the server and make it official.');
 
-      Accounts.changePassword(this.refs.oldPassword.refs.input.value, this.refs.newPassword.refs.input.value, function(error, result){
+      Accounts.changePassword(state.oldPassword, state.newPassword, function(error, result){
         if (error) {
           Bert.alert(error.reason, 'danger');
         } else {
@@ -269,11 +389,11 @@ export class MyProfilePage extends React.Component {
 
     } else {
       console.log("Passwords don't match.  Please try again.");
+      Bert.alert("Passwords don't match.  Please try again.", 'danger');
     }
   }
 }
 
 
-MyProfilePage.propTypes = {};
-MyProfilePage.defaultProps = {};
+
 ReactMixin(MyProfilePage.prototype, ReactMeteorData);

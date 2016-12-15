@@ -1,5 +1,5 @@
 import { IndexLinkContainer } from 'react-router-bootstrap';
-import { List, ListItem } from 'react-toolbox/lib/list';
+import { List, ListItem } from 'material-ui/List';
 import React from 'react';
 import ReactMixin from 'react-mixin';
 
@@ -13,7 +13,6 @@ export class AuthenticatedSidebar extends React.Component {
         top: '0px',
         width: '100%',
         display: 'flex',
-        // height: '6.4rem',
         alignItems: 'center',
         padding: '0 2.4rem',
         opacity: Session.get('globalOpacity')
@@ -29,42 +28,42 @@ export class AuthenticatedSidebar extends React.Component {
 
   render () {
     return(
-      <List style={{paddingLeft: '20px', position: 'absolute'}}>
+      <List style={{paddingLeft: '20px', position: 'static'}}>
 
         <IndexLinkContainer to='/dashboard'>
-           <ListItem eventKey={ 2 } caption='Dashboard' href='/dashboard' />
+           <ListItem primaryText='Dashboard' href='/dashboard' />
         </IndexLinkContainer>
 
         <IndexLinkContainer to='/weblog'>
-           <ListItem eventKey={ 3 } caption='Weblog' href='/weblog' />
+           <ListItem primaryText='Weblog' href='/weblog' />
         </IndexLinkContainer>
 
         <IndexLinkContainer to='/forum'>
-           <ListItem eventKey={ 3 } caption='Forum' href='/forum' />
+           <ListItem primaryText='Forum' href='/forum' />
         </IndexLinkContainer>
 
         <IndexLinkContainer to='/'>
-           <ListItem eventKey={ 4 } caption='PatientIndex' href='/' />
+           <ListItem primaryText='PatientIndex' href='/' />
         </IndexLinkContainer>
 
         <IndexLinkContainer to='/users'>
-           <ListItem eventKey={ 6 } caption='Users' href='/users' />
+           <ListItem primaryText='Users' href='/users' />
         </IndexLinkContainer>
 
         <IndexLinkContainer to='/patients'>
-           <ListItem eventKey={ 7 } caption='Patients' href='/patients' />
+           <ListItem primaryText='Patients' href='/patients' />
         </IndexLinkContainer>
 
         <IndexLinkContainer to='/practitioners'>
-           <ListItem eventKey={ 8 } caption='Practitioners' href='/practitioners' />
+           <ListItem primaryText='Practitioners' href='/practitioners' />
         </IndexLinkContainer>
 
         <IndexLinkContainer to='/theming'>
-           <ListItem eventKey={ 9 } caption='Theming' href='/theming' />
+           <ListItem primaryText='Theming' href='/theming' />
         </IndexLinkContainer>
 
         <IndexLinkContainer to='/about'>
-           <ListItem eventKey={ 10 } caption='About' href='/about' />
+           <ListItem primaryText='About' href='/about' />
         </IndexLinkContainer>
 
       </List>

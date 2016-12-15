@@ -1,5 +1,5 @@
 import React from 'react';
-import { CardTitle, CardText } from 'react-toolbox/lib/card';
+import { CardTitle, CardText } from 'material-ui/Card';
 import { Link } from 'react-router';
 import { Table } from 'react-bootstrap';
 
@@ -53,6 +53,10 @@ export class AboutAppCard extends React.Component {
                <tr className='keybindingRow' style={{cursor: 'pointer'}} >
                  <td>ctrl+cmd+c</td>
                  <td>Display as Card</td>
+               </tr>
+               <tr className='keybindingRow' style={{cursor: 'pointer'}} >
+                 <td>ctrl+cmd+4</td>
+                 <td>Meta/Context Sidebar</td>
                </tr>
              </tbody>
            </Table>

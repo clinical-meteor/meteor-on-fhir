@@ -2,7 +2,7 @@ import React from 'react';
 import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import { Session } from 'meteor/session';
-import { Card } from 'react-toolbox/lib/card';
+import { Card } from 'material-ui/Card';
 
 export class GlassCard extends React.Component {
   constructor(props) {

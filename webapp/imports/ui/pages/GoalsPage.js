@@ -5,7 +5,7 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 import { PageContainer } from '/imports/ui/components/PageContainer';
 
 import ObservationsList  from '/imports/ui/workflows/observations/ObservationsList';
-import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
+import { Card, CardMedia, CardTitle, CardText, CardActions } from 'material-ui/Card';
 import { GlassCard } from '/imports/ui/components/GlassCard';
 import { GoalsCard } from '/imports/ui/components/GoalsCard';
 

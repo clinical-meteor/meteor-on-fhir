@@ -4,20 +4,25 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 
 import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session';
-import IconButton  from 'react-toolbox/lib/button';
-import { CardTitle } from 'react-toolbox/lib/card';
+import { CardTitle } from 'material-ui/Card';
 import User  from '/imports/api/User';
 import Layout  from '/imports/ui/layouts/Layout';
 import NavDrawer  from '/imports/ui/layouts/NavDrawer';
 import Panel  from '/imports/ui/layouts/Panel';
-import Sidebar  from '/imports/ui/layouts/Sidebar';
 import { IndexLinkContainer } from 'react-router-bootstrap';
 
 import { PublicSidebar }  from '/imports/ui/components/PublicSidebar';
-import { AuthenticatedSidebar }  from '/imports/ui/components/AuthenticatedSidebar';
 import { PatientSidebar }  from '/imports/ui/components/PatientSidebar';
 import { PractitionerSidebar }  from '/imports/ui/components/PractitionerSidebar';
 import { AdminSidebar }  from '/imports/ui/components/AdminSidebar';
+
+import Drawer from 'material-ui/Drawer';
+import MenuItem from 'material-ui/MenuItem';
+import RaisedButton from 'material-ui/RaisedButton';
+
+import Sidebar from '/imports/api/Sidebar';
+
+
 
 Session.setDefault('backgroundImagePath', 'url(\"images\/ForestInMist.jpg\")');
 Session.setDefault('backgroundColor', '#eeeeee');
@@ -26,8 +31,8 @@ Session.setDefault('glassBlurEnabled', false);
 Session.setDefault('backgroundBlurEnabled', false);
 
 Session.setDefault('drawerActive', false);
-Session.setDefault('drawerPinned', false);
-Session.setDefault('sidebarPinned', false);
+Session.setDefault('drawerActive', false);
+
 
 export class GlassLayout extends React.Component {
   constructor(props) {
@@ -36,14 +41,10 @@ export class GlassLayout extends React.Component {
   getMeteorData() {
 
     var currentUser = new User(Meteor.user());
-    //console.log('currentUser', currentUser);
-    //console.log('currentUser.fullName()', currentUser.fullName());
 
     let data = {
       state: {
         drawerActive: Session.get('drawerActive'),
-        drawerPinned: Session.get('drawerPinned'),
-        sidebarPinned: Session.get('sidebarPinned'),
         isAdmin: false
       },
       style: {
@@ -94,13 +95,9 @@ export class GlassLayout extends React.Component {
     return data;
   }
   toggleDrawerActive(){
-    // Session.toggle('drawerPinned');
     Meteor.setTimeout(function(){
-      Session.toggle('drawerPinned');
+      Session.toggle('drawerActive');
     }, 200);
-  }
-  toggleSidebar() {
-    Session.toggle('sidebarPinned');
   }
   renderSidebar(isAdmin) {
     if (Meteor.user()) {
@@ -118,49 +115,45 @@ export class GlassLayout extends React.Component {
     }
   }
   closeOpenedSidebar(){
-    //console.log("this.data.state[closeOpenedSidebar]", this.data.state);
-    if (Session.get('drawerPinned')) {
-      Session.set('drawerPinned', false);
+    //Sidebar.close();
+    if (Session.equals('drawerActive', true)) {
+      Session.set('drawerActive', false);
     }
   }
   render(){
 
     return (
-      <Layout>
-        <NavDrawer active={this.data.state.drawerActive}
-          pinned={this.data.state.drawerPinned} permanentAt='xxxl'
-          onOverlayClick={ this.toggleDrawerActive }
+      <div>
+        <Drawer
+          open={this.data.state.drawerActive}
+          docked={false}
+          onRequestChange={ this.closeOpenedSidebar }
           >
 
-          <IndexLinkContainer to='/myprofile' >
-             <CardTitle
-               avatar={this.data.card.avatar}
-               title={this.data.card.title}
-               subtitle={this.data.card.subtitle}
-             />
-          </IndexLinkContainer>
+          <div onClick={ this.closeOpenedSidebar }>
+              <IndexLinkContainer id="userIdentification" to='/myprofile' >
+                 <CardTitle
+                   avatar={this.data.card.avatar}
+                   title={this.data.card.title}
+                   subtitle={this.data.card.subtitle}
+                   style={{cursor: 'pointer'}}
+                 />
+              </IndexLinkContainer>
 
-           { this.renderSidebar(this.data.state.isAdmin) }
-        </NavDrawer>
+               { this.renderSidebar(this.data.state.isAdmin) }
+          </div>
+        </Drawer>
 
-        <Panel pinned={this.data.state.drawerPinned} >
+        <div>
           <div onClick={this.closeOpenedSidebar} style={{ flex: 1, overflowY: 'auto', width: '100%' }}>
             {this.props.children}
           </div>
-        </Panel>
-        <Sidebar pinned={ this.data.state.sidebarPinned } width={ 5 }>
-          <div><IconButton icon='close' onClick={ this.toggleDrawerActive }/></div>
-          <div style={{ flex: 1 }}>
-            <p>Supplemental content goes here.</p>
-          </div>
-        </Sidebar>
-      </Layout>
+        </div>
+      </div>
     );
   }
 }
 
 
 
-GlassLayout.propTypes = {};
-GlassLayout.defaultProps = {};
 ReactMixin(GlassLayout.prototype, ReactMeteorData);

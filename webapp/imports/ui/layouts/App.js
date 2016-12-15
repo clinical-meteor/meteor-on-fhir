@@ -1,10 +1,10 @@
 import React from 'react';
 
 // base layout
-import { GlassApp } from '/imports/ui/components/GlassApp';
+import { GlassApp } from '/imports/ui/layouts/GlassApp';
 import { GlassLayout } from '/imports/ui/layouts/GlassLayout';
-import { Header } from '/imports/ui/components/Header';
-import { Footer } from '/imports/ui/components/Footer';
+import { Header } from '/imports/ui/layouts/Header';
+import { Footer } from '/imports/ui/layouts/Footer';
 
 // Material UI Theming
 import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';

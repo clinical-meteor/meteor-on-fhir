@@ -2,11 +2,13 @@ import React from 'react';
 import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
-import { CardTitle } from 'react-toolbox/lib/card';
+import { CardTitle, CardText } from 'material-ui/Card';
+import RaisedButton from 'material-ui/RaisedButton';
+import FontIcon from 'material-ui/FontIcon';
+
 import { Image } from 'react-bootstrap';
-import { Tab, Tabs } from 'react-toolbox/lib/tabs';
-import Button from 'react-toolbox/lib/button';
-import Input from 'react-toolbox/lib/input';
+import { Tabs, Tab } from 'material-ui/Tabs';
+import TextField from 'material-ui/TextField';
 import { Bert } from 'meteor/themeteorchef:bert';
 
 import { Session } from 'meteor/session';
@@ -85,7 +87,7 @@ export class ThemePage extends React.Component {
             />
             <Tabs index={this.data.state.index} onChange={this.handleTabChange}>
 
-              <Tab label='Backgrounds' onActive={this.handleActive}>
+              <Tab label='Backgrounds' onActive={this.handleActive} style={{backgroundColor: 'white', color: 'black', borderBottom: '1px solid lightgray'}}>
                 <div style={{position: 'relative'}}>
 
                   <div id='backgroundImageGallary' style={{display: 'inline-block'}}>
@@ -122,27 +124,67 @@ export class ThemePage extends React.Component {
                     <Image responsive style={greenTile} onClick={this.onColorClick} />
                     <Image responsive style={blueTile} onClick={this.onColorClick} />
 
-                    <Image src='/thumbnail/Flames.jpg' style={backgroundThumbnail} responsive onClick={this.onVideoClick} style={{border: '1px solid lightgray'}} />
                   </div>
                 </div>
               </Tab>
-              <Tab label='Colors'>
-                <div style={{position: 'relative'}}>
-                  <Input type='text' label='colorA' name='colorA' style={this.data.style} value={this.data.colors.colorA} />
-                  <Input type='text' label='colorB' name='colorB' style={this.data.style} value={this.data.colors.colorB} />
-                  <Input type='text' label='colorC' name='colorC' style={this.data.style} value={this.data.colors.colorC} />
-                  <Input type='text' label='colorD' name='colorD' style={this.data.style} value={this.data.colors.colorD} />
-                  <Input type='text' label='colorE' name='colorE' style={this.data.style} value={this.data.colors.colorE} />
-                </div>
+              <Tab label='Colors' style={{backgroundColor: 'white', color: 'black', borderBottom: '1px solid lightgray'}}>
+                <CardText>
+                  <div style={{position: 'relative'}}>
+                    <TextField
+                      ref='colorA'
+                      name='colorA'
+                      type='text'
+                      floatingLabelText='Color A'
+                      floatingLabelFixed={true}
+                      value={this.data.colors.colorA}
+                      /><br/>
+                    <TextField
+                      ref='colorB'
+                      name='colorB'
+                      type='text'
+                      floatingLabelText='Color B'
+                      floatingLabelFixed={true}
+                      value={this.data.colors.colorB}
+                      /><br/>
+                    <TextField
+                      ref='colorC'
+                      name='colorC'
+                      type='text'
+                      floatingLabelText='Color C'
+                      floatingLabelFixed={true}
+                      value={this.data.colors.colorC}
+                      /><br/>
+                    <TextField
+                      ref='colorD'
+                      name='colorD'
+                      type='text'
+                      floatingLabelText='Color D'
+                      floatingLabelFixed={true}
+                      value={this.data.colors.colorD}
+                      /><br/>
+                    <TextField
+                      ref='colorE'
+                      name='colorE'
+                      type='text'
+                      floatingLabelText='Color E'
+                      floatingLabelFixed={true}
+                      value={this.data.colors.colorE}
+                      /><br/>
+                  </div>
+                </CardText>
 
               </Tab>
-              <Tab label='Settings'>
+              <Tab label='Settings' style={{backgroundColor: 'white', color: 'black', borderBottom: '1px solid lightgray'}}>
                 <div style={{position: 'relative'}}>
                   <label>Opacity</label>
                   <OpacitySlider />
                   <br />
                   <label>Darkroom</label>
-                  <Button ref='darkroomButton' icon='exposure' onClick={this.clickOnDarkroomButton} style={{marginLeft: '20px', backgroundColor: '#dddddd'}} />
+                  <RaisedButton
+                    ref='darkroomButton'
+                    icon={<FontIcon className="muidocs-icon-image-exposure" />}
+                    onClick={this.clickOnDarkroomButton}
+                    style={{marginLeft: '20px', backgroundColor: '#dddddd'}} />
                 </div>
 
               </Tab>
@@ -164,8 +206,6 @@ export class ThemePage extends React.Component {
   }
 
   onColorClick(event){
-    //console.log("onColorClick", event.currentTarget.style['background-color']);
-
     Session.set('backgroundImagePath', false);
     Session.set('backgroundColor', event.currentTarget.style['background-color']);
 
@@ -225,6 +265,4 @@ export class ThemePage extends React.Component {
 }
 
 
-ThemePage.propTypes = {};
-ThemePage.defaultProps = {};
 ReactMixin(ThemePage.prototype, ReactMeteorData);

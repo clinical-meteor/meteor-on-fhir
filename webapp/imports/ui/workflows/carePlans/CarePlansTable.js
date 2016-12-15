@@ -2,14 +2,6 @@ import React from 'react';
 import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
-// import AppBar from 'react-toolbox/lib/app_bar';
-// import Button from 'react-toolbox/lib/button';
-import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
-
-// import { Meteor } from 'meteor/meteor';
-// import { Accounts } from 'meteor/accounts-base';
-
-
 import { Table } from 'react-bootstrap';
 
 

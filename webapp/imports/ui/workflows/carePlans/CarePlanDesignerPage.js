@@ -1,4 +1,4 @@
-import { CardTitle, CardText } from 'react-toolbox/lib/card';
+import { CardTitle, CardText } from 'material-ui/Card';
 import React from 'react';
 import ReactMixin from 'react-mixin';
 
