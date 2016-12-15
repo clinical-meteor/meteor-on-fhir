@@ -92,27 +92,8 @@ export class PatientIndex extends React.Component {
 
           <Spacer style={this.data.style.spacer} />
 
-          <div style={this.data.style.indexCardPadding} onClick={ this.openPatients.bind(this) } >
-            <GlassCard style={this.data.style.indexCard} >
-              <CardTitle
-                title='Patients'
-                subtitle='Browse patient in system.'
-              />
-            </GlassCard>
-          </div>
-          <div id="practitionersTile" style={this.data.style.indexCardPadding} onClick={ this.openPractitioners.bind(this) } >
-            <GlassCard style={this.data.style.indexCard} >
-              <CardTitle
-                title='Practitioners'
-                subtitle='Browse practitioners in system.'
-              />
-            </GlassCard>
-          </div>
-
-          <Spacer style={this.data.style.spacer} />
-
           <div style={this.data.style.inactiveIndexCard}>
-            <GlassCard >
+            <GlassCard style={this.data.style.indexCard} >
               <CardTitle
                 title='Data Management'
                 subtitle='Import/export data.'
@@ -120,11 +101,11 @@ export class PatientIndex extends React.Component {
             </GlassCard>
           </div>
 
-          <div style={this.data.style.indexCardPadding} onClick={ this.openUserManagement.bind(this) } >
+          <div id='forumTile' style={this.data.style.indexCardPadding} onClick={ this.openObservationpage.bind(this) } >
             <GlassCard style={this.data.style.indexCard} >
               <CardTitle
-                title='User Management'
-                subtitle='Admin controls for user accounts.'
+                title='Observations'
+                subtitle='Observations from devices.'
               />
             </GlassCard>
           </div>
@@ -155,6 +136,9 @@ export class PatientIndex extends React.Component {
   }
   openDataManagementPage(){
     console.log('openDataManagementPage');
+  }
+  openObservationpage(){
+    browserHistory.push('/observations');
   }
 }
 

@@ -57,7 +57,7 @@ export class PractitionerIndex extends React.Component {
       }
     };
     return (
-      <div id='indexPage'>
+      <div id='indexPage' class='practitionerIndex'>
         <PageContainer>
 
           <div style={style.indexCardPadding} onClick={ this.openPatients.bind(this) } >
@@ -99,14 +99,15 @@ export class PractitionerIndex extends React.Component {
 
           <Spacer />
 
-          <div style={style.indexCardPadding} onClick={ this.openBreathalyzerpage.bind(this) } >
-            <GlassCard style={style.indexCard} >
+          <div style={this.data.style.indexCardPadding} onClick={ this.openUserManagement.bind(this) } >
+            <GlassCard style={this.data.style.indexCard} >
               <CardTitle
-                title='Breathalyzer'
-                subtitle='Test breathalyzer.'
+                title='User Management'
+                subtitle='Admin controls for user accounts.'
               />
             </GlassCard>
           </div>
+
 
         </PageContainer>
       </div>

@@ -57,7 +57,7 @@ export class AdminIndex extends React.Component {
       }
     };
     return (
-      <div id='indexPage'>
+      <div id='indexPage' class='adminIndex'>
         <PageContainer>
 
           <div style={style.indexCardPadding} onClick={ this.openPatients.bind(this) } >
