@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { Row, Col, FormGroup, ControlLabel, FormControl, Button } from 'react-bootstrap';
-import { handleLogin } from '/imports/modules/handleLogin';
+import { handleLogin } from '/imports/client/entry/handleLogin';
 
 import { PageContainer } from '/imports/ui/components/PageContainer';
 import { MobilePadding } from '/imports/ui/components/MobilePadding';

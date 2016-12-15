@@ -1,6 +1,6 @@
 import React from 'react';
 import { Row, Col, Alert, FormGroup, FormControl, Button } from 'react-bootstrap';
-import { handleRecoverPassword } from '/imports/modules/handleRecoverPassword';
+import { handleRecoverPassword } from '/imports/client/entry/handleRecoverPassword';
 
 import { PageContainer } from '/imports/ui/components/PageContainer';
 import { MobilePadding } from '/imports/ui/components/MobilePadding';
