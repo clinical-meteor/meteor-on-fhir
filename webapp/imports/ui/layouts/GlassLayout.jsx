@@ -4,11 +4,8 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 
 import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session';
-import { CardTitle } from 'material-ui/Card';
-import User  from '/imports/api/User';
-import Layout  from '/imports/ui/layouts/Layout';
-import NavDrawer  from '/imports/ui/layouts/NavDrawer';
-import Panel  from '/imports/ui/layouts/Panel';
+import { CardHeader } from 'material-ui/Card';
+import User from '/imports/api/User';
 import { IndexLinkContainer } from 'react-router-bootstrap';
 
 import { PublicSidebar }  from '/imports/ui/components/PublicSidebar';
@@ -17,10 +14,6 @@ import { PractitionerSidebar }  from '/imports/ui/components/PractitionerSidebar
 import { AdminSidebar }  from '/imports/ui/components/AdminSidebar';
 
 import Drawer from 'material-ui/Drawer';
-import MenuItem from 'material-ui/MenuItem';
-import RaisedButton from 'material-ui/RaisedButton';
-
-import Sidebar from '/imports/api/Sidebar';
 
 
 
@@ -132,7 +125,7 @@ export class GlassLayout extends React.Component {
 
           <div onClick={ this.closeOpenedSidebar }>
               <IndexLinkContainer id="userIdentification" to='/myprofile' >
-                 <CardTitle
+                 <CardHeader
                    avatar={this.data.card.avatar}
                    title={this.data.card.title}
                    subtitle={this.data.card.subtitle}

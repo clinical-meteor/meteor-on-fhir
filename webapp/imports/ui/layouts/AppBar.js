@@ -373,7 +373,7 @@ process.env.NODE_ENV !== "production" ? AppBar.propTypes = {
   /**
    * Assign an ID to the title
    */
-  titleId: _react.PropTypes.object,
+  titleId: _react.PropTypes.string,
   /**
    * Override the inline-styles of the app bar's title element.
    */
