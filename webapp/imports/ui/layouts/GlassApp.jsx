@@ -34,7 +34,7 @@ export class GlassApp extends React.Component {
         style: {
           width: '100%',
           height: '100%',
-          position: 'absolute'
+          position: 'fixed'
         },
         showVideoBackground: Session.get('showVideoBackground')
       },
@@ -93,7 +93,7 @@ export class GlassApp extends React.Component {
 
     data.app.style.width = '100%';
     data.app.style.height = '100%';
-    data.app.style.position = 'absolute';
+    data.app.style.position = 'fixed';
 
     if(process.env.NODE_ENV === "test") console.log("GlassApp[data]" , data);
     if(process.env.NODE_ENV === "test") console.log("Meteor.settings" , Meteor.settings);
