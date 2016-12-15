@@ -9,7 +9,6 @@ import { Session } from 'meteor/session';
 import { AuthenticatedNavigation } from '../components/AuthenticatedNavigation';
 import { PublicNavigation } from '../components/PublicNavigation';
 
-//import AppBar from 'material-ui/AppBar';
 import AppBar from '/imports/ui/layouts/AppBar';
 
 // header
