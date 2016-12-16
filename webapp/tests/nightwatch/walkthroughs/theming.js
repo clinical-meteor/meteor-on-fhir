@@ -5,7 +5,7 @@
 // All right, you mutinous, computerized, disloyal half-breed - we'll see about you deserting my ship.
 
 module.exports = {
-  tags: ['theming', 'circle'],
+  tags: ['theming'],
   before: function(client){
     client
       .url("http://localhost:3000").pause(3000);
@@ -39,7 +39,7 @@ module.exports = {
       .executeAsync(function(){
         Session.set('globalOpacity', 0.8);
       })
-      
+
       .waitForElementPresent('#appHeader', 5000)
       .verify.cssProperty('#appHeader', "opacity", "0.8");
   },
