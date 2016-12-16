@@ -8,10 +8,7 @@ module.exports = {
   tags: ['theming', 'circle'],
   before: function(client){
     client
-      .url("http://localhost:3000").pause(3000)
-      .executeAsync(function(){
-        Meteor.call('dropTestUsers');
-      });
+      .url("http://localhost:3000").pause(3000);
   },
   'Inverted text > title text is white': function (client) {
     client
@@ -33,6 +30,18 @@ module.exports = {
 
       .waitForElementPresent('#appFooter', 5000)
       .verify.cssProperty('#appFooter', "opacity", "0.95");
+  },
+  'Header and footer opacity can be changed': function (client) {
+    client
+      .waitForElementPresent('#appHeader', 5000)
+      .verify.cssProperty('#appHeader', "opacity", "0.95")
+
+      .executeAsync(function(){
+        Session.set('globalOpacity', 0.8);
+      })
+      
+      .waitForElementPresent('#appHeader', 5000)
+      .verify.cssProperty('#appHeader', "opacity", "0.8");
   },
   'Fin': function (client) {
     client.end();
