@@ -15,8 +15,6 @@ import RaisedButton from 'material-ui/RaisedButton';
 import { lightBaseTheme, darkBaseTheme } from 'material-ui/styles';
 
 export class Login extends React.Component {
-  componentDidMount() {
-  }
   getMeteorData() {
     let data = {
       style: {
@@ -89,37 +87,37 @@ export class Login extends React.Component {
       <div id="loginPage">
         <MobilePadding>
           <PhoneContainer>
-                <h4 className="page-header" style={this.data.style.textColor}>Login</h4>
-                <form ref="login" className="login">
-                      <TextField
-                        type="email"
-                        ref="emailAddress"
-                        name="emailAddress"
-                        placeholder="Email Address"
-                        inputStyle={this.data.style.inputStyle}
-                        hintStyle={this.data.style.hintStyle}
-                        errorStyle={this.data.style.errorStyle}
-                        underlineFocusStyle={this.data.style.underlineFocusStyle}
-                        floatingLabelStyle={this.data.style.floatingLabelStyle}
-                        floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
-                      />
-                      <br/>
-                      <TextField
-                        type="password"
-                        ref="password"
-                        name="password"
-                        placeholder="Password"
-                        inputStyle={this.data.style.inputStyle}
-                        hintStyle={this.data.style.hintStyle}
-                        errorStyle={this.data.style.errorStyle}
-                        underlineFocusStyle={this.data.style.underlineFocusStyle}
-                        floatingLabelStyle={this.data.style.floatingLabelStyle}
-                        floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
-                      />
-                      <br/>
-                      <RaisedButton id="loginButton" onTouchTap={this.handleTouchTap.bind(this)} label="Login" primary={true} />
-                      <RaisedButton id="forgotPasswordButton" onTouchTap={this.forgotPasswordRoute } label="Forgot password?" style={{marginLeft: "20px"}} />
-                </form>
+            <h4 className="page-header" style={this.data.style.textColor}>Login</h4>
+            <form ref="login" className="login">
+              <TextField
+                type="email"
+                ref="emailAddress"
+                name="emailAddress"
+                placeholder="Email Address"
+                inputStyle={this.data.style.inputStyle}
+                hintStyle={this.data.style.hintStyle}
+                errorStyle={this.data.style.errorStyle}
+                underlineFocusStyle={this.data.style.underlineFocusStyle}
+                floatingLabelStyle={this.data.style.floatingLabelStyle}
+                floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
+              />
+              <br/>
+              <TextField
+                type="password"
+                ref="password"
+                name="password"
+                placeholder="Password"
+                inputStyle={this.data.style.inputStyle}
+                hintStyle={this.data.style.hintStyle}
+                errorStyle={this.data.style.errorStyle}
+                underlineFocusStyle={this.data.style.underlineFocusStyle}
+                floatingLabelStyle={this.data.style.floatingLabelStyle}
+                floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
+              />
+              <br/>
+              <RaisedButton id="loginButton" onTouchTap={this.handleTouchTap.bind(this)} label="Login" primary={true} />
+              <RaisedButton id="forgotPasswordButton" onTouchTap={this.forgotPasswordRoute } label="Forgot password?" style={{marginLeft: "20px"}} />
+            </form>
 
           </PhoneContainer>
         </MobilePadding>
