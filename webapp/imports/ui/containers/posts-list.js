@@ -1,7 +1,7 @@
 import { composeWithTracker } from 'react-komposer';
 import { Posts } from '../../api/posts/posts.js';
 import { PostsList } from '../workflows/posts/PostsList.js';
-import { Loading } from '/imports/ui/components/loading.js';
+import { Loading } from '/imports/ui/components/Loading';
 import { Meteor } from 'meteor/meteor';
 
 import { PostsDeck } from '../workflows/posts/PostsDeck.js';

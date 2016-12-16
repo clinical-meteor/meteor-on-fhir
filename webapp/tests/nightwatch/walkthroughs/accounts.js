@@ -30,8 +30,8 @@ module.exports = {
       .verify.elementPresent('#sidebarToggleButton')
         .click('#sidebarToggleButton').pause(1000)
 
-      .waitForElementPresent('#userIdentification span', 5000)
-      .verify.containsText('#userIdentification span', 'Alice Doe')
+      .waitForElementPresent('#userIdentification span:nth-child(1)', 5000)
+      .verify.containsText('#userIdentification span:nth-child(1)', 'Alice Doe')
       .saveScreenshot('tests/nightwatch/screenshots/accounts/B-profileSetupPage.png');
   },
   'User can log out.': function (client) {

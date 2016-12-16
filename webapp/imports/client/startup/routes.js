@@ -6,7 +6,6 @@ import { App } from '/imports/ui/layouts/App';
 import { AboutPage } from '/imports/ui/pages/AboutPage';
 import { PrivacyPage } from '/imports/ui/pages/PrivacyPage';
 import { DashboardPage } from '/imports/ui/pages/DashboardPage';
-import { Documents } from '/imports/ui/pages/Documents';
 import { ForumPage } from '/imports/ui/pages/ForumPage';
 import { Login } from '/imports/ui/pages/Login';
 import { MyProfilePage } from '/imports/ui/pages/MyProfilePage';
@@ -81,7 +80,6 @@ Meteor.startup(() => {
         <Route name="sysadmin" path="/sysadmin" component={ AdminIndex } onEnter={ requreSysadmin } />
         <Route name="practitioner" path="/practitioner" component={ PractitionerIndex } onEnter={ requireAuth } />
 
-        <Route name="documents" path="/documents" component={ Documents } onEnter={ requireAuth } />
         <Route name="login" path="/login" component={ Login } />
         <Route name="recover-password" path="/recover-password" component={ RecoverPassword } />
         <Route name="reset-password" path="/reset-password/:token" component={ ResetPassword } />

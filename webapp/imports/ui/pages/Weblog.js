@@ -4,8 +4,6 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 
 import { PageContainer } from '/imports/ui/components/PageContainer';
 import { DynamicSpacer }  from '/imports/ui/components/DynamicSpacer';
-import DocumentsList  from '/imports/ui/containers/documents-list';
-import PostsList  from '/imports/ui/containers/posts-list';
 
 import { AddPost } from '/imports/ui/workflows/posts/AddPost';
 import PostsDeck  from '/imports/ui/workflows/posts/PostsDeck';

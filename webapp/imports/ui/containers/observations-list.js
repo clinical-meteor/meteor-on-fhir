@@ -1,7 +1,7 @@
 import { composeWithTracker } from 'react-komposer';
 import Observations from '../../api/observations/observations.js';
 import ObservationsList from '../workflows/observations/ObservationsList.js';
-import { Loading } from '/imports/ui/components/loading.js';
+import { Loading } from '/imports/ui/components/Loading';
 import { Meteor } from 'meteor/meteor';
 
 import ObservationsDeck from '../workflows/observations/ObservationsDeck.js';
