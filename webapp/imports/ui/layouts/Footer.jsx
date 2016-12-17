@@ -14,11 +14,8 @@ import {Session} from 'meteor/session';
 import OpacitySlider from '../components/OpacitySlider';
 
 // footer
-import ActionHome from 'material-ui/svg-icons/action/home';
 import AppBar from 'material-ui/AppBar';
-import IconButton from 'material-ui/IconButton';
-import NavigationClose from 'material-ui/svg-icons/navigation/close';
-import FlatButton from 'material-ui/FlatButton';
+import Glass from '/imports/ui/Glass';
 
 Session.setDefault('showThemingControls', false);
 
@@ -64,21 +61,10 @@ export class Footer extends React.Component {
       data.footerStyle.bottom = '-100px';
     }
 
-    // this should all be handled by props
-    // or a mixin!
-    if (Session.get('darkroomEnabled')) {
-      data.footerStyle.color = 'black';
-      data.footerStyle.background = 'white';
-    } else {
-      data.footerStyle.color = 'white';
-      data.footerStyle.background = 'black';
-    }
 
-    // this could be another mixin
-    if (Session.get('glassBlurEnabled')) {
-      data.footerStyle.filter = 'blur(3px)';
-      data.footerStyle.webkitFilter = 'blur(3px)';
-    }
+
+    data.style = Glass.blur(data.style);
+    data.footerStyle = Glass.darkroom(data.footerStyle);
 
     //phone layout
     if (Session.get('appWidth') < 768) {
