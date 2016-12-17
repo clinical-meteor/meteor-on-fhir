@@ -16,6 +16,14 @@ export default Glass = {
     }
     return style;
   },
+  backgroundBlur: function(style){
+    if (style) {
+      if (Session.get('backgroundBlurEnabled')) {
+        style.backdropFilter = 'blur(5px)';
+      }
+    }
+    return style;
+  },
   darkroom: function(style){
     if (style) {
       if (Session.get('darkroomEnabled')) {

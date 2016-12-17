@@ -1,4 +1,7 @@
 import React from 'react';
+import ReactMixin  from 'react-mixin';
+import { ReactMeteorData } from 'meteor/react-meteor-data';
+
 import { Row, Col, Alert, FormGroup, FormControl, Button } from 'react-bootstrap';
 import { handleRecoverPassword } from '/imports/client/entry/handleRecoverPassword';
 
@@ -11,16 +14,25 @@ import { Bert } from 'meteor/themeteorchef:bert';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 
+import Theme from '/imports/ui/Theme';
+
 export class RecoverPassword extends React.Component {
   componentDidMount() {
     handleRecoverPassword({ component: this });
   }
-
   handleSubmit(event) {
     event.preventDefault();
   }
+  getMeteorData() {
+    let data = {
+      style: Theme.palette()
+    };
+
+    if(process.env.NODE_ENV === "test") console.log("Login[data]", data);
+    return data;
+  }
   recoverPassword(){
-    
+    console.log("recoverPassword");
   }
 
   render() {
@@ -28,7 +40,7 @@ export class RecoverPassword extends React.Component {
       <div id='recoverPasswordPage'>
         <MobilePadding>
           <PageContainer>
-            <h4 className="page-header">Recover Password</h4>
+            <h4 className="page-header" style={this.data.style.textColor}>Recover Password</h4>
             <Alert bsStyle="info">
               Enter your email address below to receive a link to reset your password.
             </Alert>
@@ -40,6 +52,13 @@ export class RecoverPassword extends React.Component {
                   name='emailAddress'
                   type='email'
                   floatingLabelText='Email Address'
+                  inputStyle={this.data.style.inputStyle}
+                  hintStyle={this.data.style.hintStyle}
+                  errorStyle={this.data.style.errorStyle}
+                  underlineFocusStyle={this.data.style.underlineFocusStyle}
+                  floatingLabelStyle={this.data.style.floatingLabelStyle}
+                  floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
+                  fullWidth
                   /><br/>
               </FormGroup>
               <RaisedButton id='recoverPasswordButton' type="submit" onTouchTap={this.recoverPassword } label='Recover Password' primary={true} />
@@ -51,3 +70,4 @@ export class RecoverPassword extends React.Component {
     );
   }
 }
+ReactMixin(RecoverPassword.prototype, ReactMeteorData);

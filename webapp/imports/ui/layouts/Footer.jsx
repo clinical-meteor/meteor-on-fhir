@@ -54,13 +54,11 @@ export class Footer extends React.Component {
     if (Session.get('showThemingControls')) {
       data.displayThemeNavbar = Session.get('showThemingControls');
       data.westStyle.bottom = '2.4rem';
-      //data.eastStyle.bottom = '2.4rem';
     }
 
     if (!Session.get('showNavbars')) {
       data.footerStyle.bottom = '-100px';
     }
-
 
 
     data.style = Glass.blur(data.style);

@@ -196,6 +196,10 @@ export class Signup extends React.Component {
                       floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
                       /><br/>
 
+                  <br/>
+                  <br/>
+                  <br/>
+                  <br/>
                   <RaisedButton
                     id='signupButton'
                     onTouchTap={this.handleTouchTap.bind(this)}

@@ -14,45 +14,15 @@ import { Bert } from 'meteor/themeteorchef:bert';
 import RaisedButton from 'material-ui/RaisedButton';
 import { lightBaseTheme, darkBaseTheme } from 'material-ui/styles';
 
+import Theme from '/imports/ui/Theme';
+
 export class Login extends React.Component {
   getMeteorData() {
     let data = {
-      style: {
-        textColor: {
-          color: darkBaseTheme.palette.textColor
-        },
-        inputStyle: {
-          color: darkBaseTheme.palette.textColor
-        },
-        errorStyle: {
-          color: darkBaseTheme.palette.accent1Color
-        },
-        hintStyle: {
-          color: darkBaseTheme.palette.secondaryTextColor
-        },
-        underlineStyle: {
-          borderColor: darkBaseTheme.palette.secondaryTextColor
-        },
-        floatingLabelStyle: {
-          color: darkBaseTheme.palette.secondaryTextColor
-        },
-        floatingLabelFocusStyle: {
-          color: darkBaseTheme.palette.secondaryTextColor
-        }
-      }
+      style: Theme.palette()
     };
-    if (Meteor.settings && Meteor.settings.theme && Meteor.settings.theme.darkroomTextEnabled ) {
-      data.style.textColor.color = lightBaseTheme.palette.textColor;
-      data.style.inputStyle.color = lightBaseTheme.palette.textColor;
-      data.style.errorStyle.color = lightBaseTheme.palette.accent1Color;
-      data.style.hintStyle.color = lightBaseTheme.palette.secondaryTextColor;
-      data.style.underlineStyle.color = lightBaseTheme.palette.secondaryTextColor;
-      data.style.floatingLabelStyle.color = lightBaseTheme.palette.secondaryTextColor;
-      data.style.floatingLabelFocusStyle.color = lightBaseTheme.palette.secondaryTextColor;
-    }
 
     if(process.env.NODE_ENV === "test") console.log("Login[data]", data);
-
     return data;
   }
   handleSubmit(event) {
@@ -114,6 +84,9 @@ export class Login extends React.Component {
                 floatingLabelStyle={this.data.style.floatingLabelStyle}
                 floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
               />
+              <br/>
+              <br/>
+              <br/>
               <br/>
               <RaisedButton id="loginButton" onTouchTap={this.handleTouchTap.bind(this)} label="Login" primary={true} />
               <RaisedButton id="forgotPasswordButton" onTouchTap={this.forgotPasswordRoute } label="Forgot password?" style={{marginLeft: "20px"}} />
