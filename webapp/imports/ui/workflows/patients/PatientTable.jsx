@@ -61,13 +61,15 @@ export default class PatientTable extends React.Component {
     return "";
   }
   rowClick(id){
+    console.log("rowClick", id);
+
     // set the user
     Session.set("selectedPatient", id);
 
     // set which tab is selected
-    let state = Session.get('patientCardState');
+    let state = Session.get('patientFormData');
     state["index"] = 2;
-    Session.set('patientCardState', state);
+    Session.set('patientFormData', state);
   }
 
   render () {

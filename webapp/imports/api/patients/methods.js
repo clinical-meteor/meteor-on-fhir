@@ -7,6 +7,29 @@ import { ValidatedMethod } from 'meteor/mdg:validated-method';
 
 //import { Patients } from 'meteor/accounts-base';
 
+convertBirthdateToValidDate = function(document){
+  // we need to check if the birthdate is a valid string
+  let newDate = moment(document.birthDate).toDate();
+
+  // moment() is a champ for doing this, but will return an Invalid Date object
+  // which we have to check for with this wacky function
+  if ( Object.prototype.toString.call(newDate) === "[object Date]" ) {
+    // it is a date
+    if ( isNaN( newDate.getTime() ) ) {  // d.valueOf() could also work
+      // date is not valid
+      delete document.birthDate;
+    }
+    else {
+      // date is valid
+      document.birthDate = newDate;
+    }
+  }
+  else {
+    // not a date
+    delete document.birthDate;
+  }
+  return document;
+}
 
 export const insertPatient = new ValidatedMethod({
   name: 'patients.insert',
@@ -15,12 +38,20 @@ export const insertPatient = new ValidatedMethod({
     'identifier': { type: [ String ], optional: true },
     'gender': { type: String, optional: true },
     'active': { type: Boolean, optional: true },
-    'birthDate': { type: Date, optional: true },
+    'birthDate': { type: String, optional: true },
     'photo.$.url': { type: String, optional: true }
   }).validator(),
   run(document) {
 
+    console.log("insertPatient", document);
+
+    document = convertBirthdateToValidDate(document);
+    console.log("convertBirthdateToValidDate", document);
+
+
+    // now that's all done, we can insert the document
     Patients.insert(document);
+
   }
 });
 
@@ -34,6 +65,8 @@ export const updatePatient = new ValidatedMethod({
     console.log("updatePatient");
     console.log("_id", _id);
     console.log("update", update);
+
+    update = convertBirthdateToValidDate(update);
 
     let patient = Patients.findOne({_id: _id});
 

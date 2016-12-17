@@ -111,13 +111,13 @@ export default class PatientDetail extends React.Component {
     if (patientId) {
       return (
         <div>
-          <RaisedButton label="Save" primary={true} onClick={this.handleSaveButton.bind(this)} />
+          <RaisedButton id='savePatientButton' label="Save" primary={true} onClick={this.handleSaveButton.bind(this)} />
           <RaisedButton label="Delete" onClick={this.handleDeleteButton.bind(this)} />
         </div>
       );
     } else {
       return(
-        <RaisedButton label="Save" primary={true} onClick={this.handleSaveButton.bind(this)} />
+        <RaisedButton id='savePatientButton' label="Save" primary={true} onClick={this.handleSaveButton.bind(this)} />
       );
     }
   }
@@ -154,18 +154,16 @@ export default class PatientDetail extends React.Component {
 
   openTab(index){
     // set which tab is selected
-    let state = Session.get('patientCardState');
+    let state = Session.get('patientFormData');
     state["index"] = index;
-    Session.set('patientCardState', state);
+    Session.set('patientFormData', state);
   }
 
   // this could be a mixin
   handleSaveButton(){
     //console.log("handleSaveButton", this);
 
-      if (typeof Session.get('patientDetailState') === "object") {
-        patientUpdate = Session.get('patientDetailState');
-      }
+      let patientUpdate = Session.get('patientDetailState');
       console.log("patientUpdate", patientUpdate);
 
       let patientFormData = {

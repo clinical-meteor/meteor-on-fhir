@@ -57,7 +57,7 @@ module.exports = {
     const patientsPage = client.page.patientsPage();
     patientsPage
       .displayListCard()
-      .verifyListCard()
+      .verifyPatientListCard()
       .listContainsPatient(1, 'Jane Doe');
   }
   // 'patient detail': function (client) {

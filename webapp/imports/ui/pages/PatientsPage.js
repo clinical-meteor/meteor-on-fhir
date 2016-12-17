@@ -50,7 +50,7 @@ export class PatientsPage extends React.Component {
     data.style.appbar = Glass.darkroom(data.style.appbar);
     data.style.tab = Glass.darkroom(data.style.tab);
 
-    if(process.env.NODE_ENV === "test") console.log("PractitionerDashboard[data]", data);
+    if(process.env.NODE_ENV === "test") console.log("PatientsPage[data]", data);
     return data;
   }
 
@@ -85,18 +85,17 @@ export class PatientsPage extends React.Component {
               title="Patients"
             />
             <CardText>
-            <Tabs default index={this.data.patient.index} onChange={this.handleTabChange} initialSelectedIndex={1}>
-             <Tab className="newPatientTab" label='New' style={this.data.style.tab} onActive={ this.onNewTab } value={0}>
-               <PatientDetail />
-             </Tab>
-             <Tab label='Patients' onActive={this.handleActive} style={this.data.style.tab} value={1}>
-               <PatientTable showBarcodes={true} />
-             </Tab>
-             <Tab label='Detail' onActive={this.handleActive} style={this.data.style.tab} value={2}>
-               <PatientDetail />
-             </Tab>
-           </Tabs>
-
+              <Tabs id='patientsPageTabs' default value={this.data.patient.index} onChange={this.handleTabChange} initialSelectedIndex={1}>
+                 <Tab className="newPatientTab" label='New' style={this.data.style.tab} onActive={ this.onNewTab } value={0}>
+                   <PatientDetail />
+                 </Tab>
+                 <Tab className="patientListTab" label='Patients' onActive={this.handleActive} style={this.data.style.tab} value={1}>
+                   <PatientTable showBarcodes={true} />
+                 </Tab>
+                 <Tab className="patientDetailTab" label='Detail' onActive={this.handleActive} style={this.data.style.tab} value={2}>
+                   <PatientDetail />
+                 </Tab>
+             </Tabs>
 
 
             </CardText>

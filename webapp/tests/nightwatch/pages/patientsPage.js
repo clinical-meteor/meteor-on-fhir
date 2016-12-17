@@ -27,7 +27,7 @@ module.exports = {
         .verify.elementPresent('#patientsPage .patientDetail input[name="name"]')
         .verify.elementPresent('#patientsPage .patientDetail input[name="gender"]')
         .verify.elementPresent('#patientsPage .patientDetail input[name="photo"]')
-        .verify.elementPresent('#patientsPage .patientDetail input[name="active"]');
+        .verify.elementPresent('#patientsPage .patientDetail input[name="birthdate"]');
     },
     verifyPatientDetails: function(name, avatar) {
       return this
