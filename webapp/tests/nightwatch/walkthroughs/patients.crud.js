@@ -37,31 +37,28 @@ module.exports = {
       .verify.containsText('#authenticatedUsername', 'Gregory House');
   },
   'list patients': function (client) {
-    client
-      .page
+    client.page
       .indexPage()
       .selectPatientsTile();
 
-    client
-      .page
+    client.page
       .patientsPage()
       .verifyElements()
       .verifyPatientListCard();
   },
   'create new patient': function (client) {
-    client
-      .page
+    client.page
       .patientsPage()
       .selectNewPatientTab()
       .verifyNewPatientCard()
-      .createNewPatient('Dr. Spock');
+      .createNewPatient('Jane Doe', 'Female', '1980-11-23');
   },
   'list should contain recently created patient': function (client) {
     const patientsPage = client.page.patientsPage();
     patientsPage
       .displayListCard()
       .verifyListCard()
-      .listContainsPatient(1, 'Dr. Spock');
+      .listContainsPatient(1, 'Jane Doe');
   }
   // 'patient detail': function (client) {
   //   client

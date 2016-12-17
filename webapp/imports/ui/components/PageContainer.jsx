@@ -46,10 +46,24 @@ export class PageContainer extends React.Component {
       data.style.paddingBottom = '6.4em';
     } else {
       if (Session.get('mainPanelIsCard')) {
-        data.style.padding = '20px';
+        data.style.paddingTop = '20px';
+        data.style.paddingBottom = '20px';
       } else {
         data.style.paddingTop = '0px';
         data.style.paddingBottom = '0px';
+      }
+    }
+
+    if (Session.get('hasPagePadding')) {
+      data.style.paddingLeft = '20px';
+      data.style.paddingRight = '20px';
+    } else {
+      if (Session.get('mainPanelIsCard')) {
+        data.style.paddingLeft = '20px';
+        data.style.paddingRight = '20px';
+      } else {
+        data.style.paddingLeft = '0px';
+        data.style.paddingRight = '0px';
       }
     }
 

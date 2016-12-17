@@ -19,7 +19,7 @@ module.exports = {
       return this
         .verify.elementPresent('#patientsPageTabs')
         .verify.elementPresent('#patientsPageTabs .newPatientTab')
-        .click("#patientsPageTabs .newPatientTab").pause(1000);
+        .click("#patientsPageTabs .newPatientTab");
     },
     verifyNewPatientCard: function() {
       return this

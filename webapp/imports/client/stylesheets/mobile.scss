@@ -6,4 +6,12 @@
   video::-webkit-media-controls {
     display:none !important;
   }
+  .active{
+    visibility: hidden;
+    display: none;
+  }
+  .id{
+    visibility: hidden;
+    display: none;
+  }
 }

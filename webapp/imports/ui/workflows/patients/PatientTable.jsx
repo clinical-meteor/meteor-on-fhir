@@ -14,7 +14,10 @@ export default class PatientTable extends React.Component {
     // or a mixin!
     let data = {
       style: {
-        opacity: Session.get('globalOpacity')
+        hideOnPhone: {
+          visibility: 'visible',
+          display: 'table'
+        }
       },
       selected: [],
       patients: Patients.find().map(function(person){
@@ -30,23 +33,12 @@ export default class PatientTable extends React.Component {
       })
     };
 
-    if (Session.get('darkroomEnabled')) {
-      data.style.color = "black";
-      data.style.background = "white";
+    if (Session.get('appWidth') < 768) {
+      data.style.hideOnPhone.visibility = 'hidden';
+      data.style.hideOnPhone.display = 'none';
     } else {
-      data.style.color = "white";
-      data.style.background = "black";
-    }
-
-    // this could be another mixin
-    if (Session.get('glassBlurEnabled')) {
-      data.style.filter = "blur(3px)";
-      data.style.webkitFilter = "blur(3px)";
-    }
-
-    // this could be another mixin
-    if (Session.get('backgroundBlurEnabled')) {
-      data.style.backdropFilter = "blur(5px)";
+      data.style.hideOnPhone.visibility = 'visible';
+      data.style.hideOnPhone.display = 'table-cell';
     }
 
     console.log("PatientTable[data]", data);
@@ -90,9 +82,9 @@ export default class PatientTable extends React.Component {
 
           <td className='name'>{this.data.patients[i].name }</td>
           <td className='gender'>{this.data.patients[i].gender}</td>
-          <td className='birthdate'>{this.data.patients[i].birthdate }</td>
-          <td className='active'>{this.data.patients[i].active}</td>
-          <td className='id'><span className="barcode">{this.data.patients[i]._id}</span></td>
+          <td className='birthdate' style={{minWidth: '100px'}}>{this.data.patients[i].birthdate }</td>
+          <td className='active' style={this.data.style.hideOnPhone}>{this.data.patients[i].active}</td>
+          <td className='id' style={this.data.style.hideOnPhone}><span className="barcode">{this.data.patients[i]._id}</span></td>
         </tr>
       );
     }
@@ -105,9 +97,9 @@ export default class PatientTable extends React.Component {
             <th className='avatar'>photo</th>
             <th className='name'>name</th>
             <th className='gender'>gender</th>
-            <th className='birthdate'>birthdate</th>
-            <th className='active'>active</th>
-            <th className='id'>_id</th>
+            <th className='birthdate' style={{minWidth: '100px'}}>birthdate</th>
+            <th className='active' style={this.data.style.hideOnPhone}>active</th>
+            <th className='id' style={this.data.style.hideOnPhone}>_id</th>
           </tr>
         </thead>
         <tbody>
