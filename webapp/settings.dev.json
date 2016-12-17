@@ -6,6 +6,9 @@
       "darkroomTextEnabled": false,
       "defaultVideo": "/VideoBackgrounds/Circulation.mp4",
       "backgroundImagePath": "/backgrounds/medical/PlasmidGray.jpg"
+    },
+    "app":{
+      "barcodes": true
     }
   },
   "private": {

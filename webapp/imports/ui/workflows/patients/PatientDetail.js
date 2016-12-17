@@ -83,21 +83,21 @@ export default class PatientDetail extends React.Component {
             fullWidth
             /><br/>
           <TextField
-            id='photoInput'
-            ref='photo'
-            name='photo'
-            floatingLabelText='photo'
-            defaultValue={this.data.patient.photo}
-            onChange={ this.changeState.bind(this, 'photo')}
-            fullWidth
-            /><br/>
-          <TextField
             id='birthdateInput'
             ref='birthdate'
             name='birthdate'
             floatingLabelText='birthdate'
             defaultValue={this.data.patient.birthdate}
             onChange={ this.changeState.bind(this, 'birthdate')}
+            fullWidth
+            /><br/>
+          <TextField
+            id='photoInput'
+            ref='photo'
+            name='photo'
+            floatingLabelText='photo'
+            defaultValue={this.data.patient.photo}
+            onChange={ this.changeState.bind(this, 'photo')}
             fullWidth
             /><br/>
         </CardText>

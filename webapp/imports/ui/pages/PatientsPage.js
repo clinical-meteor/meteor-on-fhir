@@ -9,19 +9,21 @@ import { CardTitle, CardText } from 'material-ui/Card';
 import { Tabs, Tab } from 'material-ui/Tabs';
 import PatientDetail from '../workflows/patients/PatientDetail';
 import PatientTable from '../workflows/patients/PatientTable';
+import TextField from 'material-ui/TextField';
 
 import Glass from '/imports/ui/Glass';
 
-let defaultState = {
+let defaultPatient = {
   index: 2,
-  id: "",
-  username: "",
-  email: "",
-  given: "",
-  family: "",
-  gender: ""
+  id: '',
+  username: '',
+  email: '',
+  given: '',
+  family: '',
+  gender: ''
 };
-Session.setDefault('patientCardState', defaultState);
+Session.setDefault('patientFormData', defaultPatient);
+Session.setDefault('patientSearchFilter', '');
 
 export class PatientsPage extends React.Component {
   getMeteorData() {
@@ -30,14 +32,18 @@ export class PatientsPage extends React.Component {
         opacity: Session.get('globalOpacity'),
         tab: {
           borderBottom: '1px solid lightgray',
-          borderLeft: 'none'
+          borderRight: 'none'
         }
       },
-      state: defaultState
+      patient: defaultPatient,
+      patientSearchFilter: ''
     };
 
-    if (Session.get('patientCardState')) {
-      data.state = Session.get('patientCardState');
+    if (Session.get('patientFormData')) {
+      data.patient = Session.get('patientFormData');
+    }
+    if (Session.get('patientSearchFilter')) {
+      data.patientSearchFilter = Session.get('patientSearchFilter');
     }
 
     data.style = Glass.blur(data.style);
@@ -50,19 +56,19 @@ export class PatientsPage extends React.Component {
 
   // this could be a mixin
   handleTabChange(index){
-    let state = Session.get('patientCardState');
-    state["index"] = index;
-    Session.set('patientCardState', state);
+    let patient = Session.get('patientFormData');
+    patient["index"] = index;
+    Session.set('patientFormData', patient);
   }
 
   // this could be a mixin
   changeState(field, value){
-    let state = Session.get('patientCardState');
+    let patient = Session.get('patientFormData');
     // console.log("this", this);
     // console.log("value", value);
 
-    state[field] = value;
-    Session.set('patientCardState', state);
+    patient[field] = value;
+    Session.set('patientFormData', patient);
   }
 
   onNewTab(){
@@ -79,13 +85,12 @@ export class PatientsPage extends React.Component {
               title="Patients"
             />
             <CardText>
-
-            <Tabs default index={this.data.state.index} onChange={this.handleTabChange} initialSelectedIndex={1}>
+            <Tabs default index={this.data.patient.index} onChange={this.handleTabChange} initialSelectedIndex={1}>
              <Tab className="newPatientTab" label='New' style={this.data.style.tab} onActive={ this.onNewTab } value={0}>
                <PatientDetail />
              </Tab>
              <Tab label='Patients' onActive={this.handleActive} style={this.data.style.tab} value={1}>
-               <PatientTable />
+               <PatientTable showBarcodes={true} />
              </Tab>
              <Tab label='Detail' onActive={this.handleActive} style={this.data.style.tab} value={2}>
                <PatientDetail />

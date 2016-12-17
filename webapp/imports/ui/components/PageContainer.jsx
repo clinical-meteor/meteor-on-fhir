@@ -45,9 +45,14 @@ export class PageContainer extends React.Component {
       data.style.paddingTop = '6.4em';
       data.style.paddingBottom = '6.4em';
     } else {
-      data.style.paddingTop = '0px';
-      data.style.paddingBottom = '0px';
+      if (Session.get('mainPanelIsCard')) {
+        data.style.padding = '20px';
+      } else {
+        data.style.paddingTop = '0px';
+        data.style.paddingBottom = '0px';
+      }
     }
+
 
 
     data.style.overflowY = 'scroll';

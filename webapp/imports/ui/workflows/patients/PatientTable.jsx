@@ -77,7 +77,7 @@ export default class PatientTable extends React.Component {
     state["index"] = 2;
     Session.set('patientCardState', state);
   }
-  
+
   render () {
     let tableRows = [];
     for (var i = 0; i < this.data.patients.length; i++) {
