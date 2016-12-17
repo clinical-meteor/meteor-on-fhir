@@ -2,7 +2,7 @@
 // http://nightwatchjs.org/api
 
 module.exports = {
-  tags: ['routes', 'patient', 'circle'],
+  tags: ['routes', 'patients', 'circle'],
   before: function(client){
     client
       .url("http://localhost:3000").pause(3000)

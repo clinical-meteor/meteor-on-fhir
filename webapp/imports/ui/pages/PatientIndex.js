@@ -36,8 +36,25 @@ export class PatientIndex extends React.Component {
         spacer: {
           display: 'block'
         }
+      },
+      user: {
+        isAdmin: false,
+        isPractitioner: false,
+        isPatient: true
       }
     };
+
+    if (Roles.userIsInRole(Meteor.userId(), 'sysadmin')) {
+      data.user.isAdmin = true;
+    }
+    if (Roles.userIsInRole(Meteor.userId(), 'practitioner')) {
+      data.user.isPractitioner = true;
+    }
+    //// not sure how we want to do handle the default case
+    //// so leaving out for now
+    // if (Roles.userIsInRole(Meteor.userId(), 'sysadmin')) {
+    //   data.user.isAdmin = true;
+    // }
 
     if (Session.get('appWidth') < 768) {
       data.style.indexCardPadding.width = '100%';
@@ -49,22 +66,10 @@ export class PatientIndex extends React.Component {
       data.style.spacer.display = 'none';
     }
 
-    // this should all be handled by props
-    // or a mixin!
-    if (Session.get('darkroomEnabled')) {
-      data.style.color = 'black';
-      data.style.background = 'white';
-    } else {
-      data.style.color = 'white';
-      data.style.background = 'black';
-    }
+    data.style = Glass.blur(data.style);
+    data.style.appbar = Glass.darkroom(data.style.appbar);
 
-    // this could be another mixin
-    if (Session.get('glassBlurEnabled')) {
-      data.style.filter = 'blur(3px)';
-      data.style.webkitFilter = 'blur(3px)';
-    }
-
+    if(process.env.NODE_ENV === "test") console.log("PractitionerDashboard[data]", data);
     return data;
   }
   render() {
@@ -109,9 +114,35 @@ export class PatientIndex extends React.Component {
               />
             </GlassCard>
           </div>
+          <Spacer style={this.data.style.spacer} />
 
+          {this.renderPractitionerTiles(this.data.user.isPractitioner)}
 
         </PageContainer>
+      </div>
+    );
+  }
+
+  renderPractitionerTiles(isPractitioner){
+    return (
+      <div>
+        <div id='patientsTile' style={this.data.style.indexCardPadding} onClick={ this.openPatients.bind(this) } >
+          <GlassCard style={this.data.style.indexCard} >
+            <CardTitle
+              title='Patients'
+              subtitle='Browse patient in system.'
+            />
+          </GlassCard>
+        </div>
+        <div id="practitionersTile" style={this.data.style.indexCardPadding} onClick={ this.openPractitioners.bind(this) } >
+          <GlassCard style={this.data.style.indexCard} >
+            <CardTitle
+              title='Practitioners'
+              subtitle='Browse practitioners in system.'
+            />
+          </GlassCard>
+        </div>
+          <Spacer style={this.data.style.spacer} />
       </div>
     );
   }

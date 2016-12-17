@@ -11,9 +11,14 @@ import { CardText, CardActions } from 'material-ui/Card';
 import { insertPatient, updatePatient, removePatientById } from '../../../api/patients/methods';
 import { Bert } from 'meteor/themeteorchef:bert';
 
-let defaultState = false;
-
-Session.setDefault('patientDetailState', defaultState);
+Session.setDefault('patientDetailState', {
+  id: "",
+  name: "",
+  gender: "",
+  active: true,
+  birthdate: '',
+  photo: ""
+});
 
 
 export default class PatientDetail extends React.Component {
@@ -87,12 +92,12 @@ export default class PatientDetail extends React.Component {
             fullWidth
             /><br/>
           <TextField
-            id='activeInput'
-            ref='active'
-            name='active'
-            floatingLabelText='active'
-            defaultValue={this.data.patient.active}
-            onChange={ this.changeState.bind(this, 'active')}
+            id='birthdateInput'
+            ref='birthdate'
+            name='birthdate'
+            floatingLabelText='birthdate'
+            defaultValue={this.data.patient.birthdate}
+            onChange={ this.changeState.bind(this, 'birthdate')}
             fullWidth
             /><br/>
         </CardText>
@@ -118,18 +123,18 @@ export default class PatientDetail extends React.Component {
   }
 
   // this could be a mixin
-  changeState(field, value){
+  changeState(field, event, value){
 
-    //console.log("changeState", value);
+    //console.log("changeState", field, value);
 
     // by default, assume there's no other data and we're creating a new patient
     let patientUpdate = {
       id: "",
-      birthdate: new Date(),
-      gender: "",
+      birthdate: '',
+      gender: '',
       active: true,
       name: "",
-      photo: ""
+      photo: ''
     };
 
     // if there's an existing patient, use them
@@ -140,15 +145,10 @@ export default class PatientDetail extends React.Component {
     if (typeof Session.get('patientDetailState') === "object") {
       patientUpdate = Session.get('patientDetailState');
     }
-    // if (field === "birthdate") {
-    //   patientUpdate[field] = new Date(value);
-    // } else {
-    //   patientUpdate[field] = value;
-    // }
+
     patientUpdate[field] = value;
 
-    console.log("patientUpdate", patientUpdate);
-
+    //console.log("patientUpdate", patientUpdate);
     Session.set('patientDetailState', patientUpdate);
   }
 
@@ -161,31 +161,29 @@ export default class PatientDetail extends React.Component {
 
   // this could be a mixin
   handleSaveButton(){
-    console.log("this", this);
+    //console.log("handleSaveButton", this);
+
+      if (typeof Session.get('patientDetailState') === "object") {
+        patientUpdate = Session.get('patientDetailState');
+      }
+      console.log("patientUpdate", patientUpdate);
 
       let patientFormData = {
+        'active': true,
         'name': [{
-          'text': this.refs.name.refs.input.value
+          'text': patientUpdate.name
         }],
-        'birthdate': this.refs.birthdate.props.value,
-        'gender': this.refs.gender.refs.input.value,
+        'birthDate': patientUpdate.birthdate,
+        'gender': patientUpdate.gender,
         'photo': [{
-          url: this.refs.photo.refs.input.value
+          url: patientUpdate.photo
         }]
       };
 
-      if (this.refs.active.refs.input.value === "true") {
-        patientFormData.active = true;
-      } else {
-        patientFormData.active = false;
-      }
-
-      console.log("patientFormData", patientFormData);
-
+    console.log("patientFormData", patientFormData);
 
     if (Session.get('selectedPatient')) {
-      console.log("update practioner");
-
+      console.log("Updating patient...");
       updatePatient.call(
         {_id: Session.get('selectedPatient'), update: patientFormData }, (error) => {
         if (error) {
@@ -194,23 +192,36 @@ export default class PatientDetail extends React.Component {
         } else {
           Bert.alert('Patient updated!', 'success');
           this.openTab(1);
+          Session.set('patientDetailState', {
+            id: "",
+            name: "",
+            gender: "",
+            active: true,
+            birthdate: new Date(),
+            photo: ""
+          });
         }
       });
     } else {
-
-      console.log("create a new patient", patientFormData);
-
-      //Meteor.users.insert(patientFormData);
+      console.log("Creating a new patient...");
       insertPatient.call(patientFormData, (error) => {
         if (error) {
           Bert.alert(error.reason, 'danger');
         } else {
           Bert.alert('Patient added!', 'success');
           this.openTab(1);
+          Session.set('patientDetailState', {
+            id: "",
+            name: "",
+            gender: "",
+            active: true,
+            birthdate: new Date(),
+            photo: ""
+          });
         }
       });
     }
-  };
+  }
 
   // this could be a mixin
   handleCancelButton(){
@@ -220,15 +231,14 @@ export default class PatientDetail extends React.Component {
   handleDeleteButton(){
     removePatientById.call(
       {_id: Session.get('selectedPatient')}, (error) => {
-      if (error) {
-        Bert.alert(error.reason, 'danger');
-      } else {
-        Bert.alert('Patient deleted!', 'success');
-        this.openTab(1);
-      }
-    });
-  };
-
+        if (error) {
+          Bert.alert(error.reason, 'danger');
+        } else {
+          Bert.alert('Patient deleted!', 'success');
+          this.openTab(1);
+        }
+      });
+  }
 }
 
 

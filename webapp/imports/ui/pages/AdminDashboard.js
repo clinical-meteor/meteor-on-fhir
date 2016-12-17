@@ -9,8 +9,9 @@ import { GlassCard } from '/imports/ui/components/GlassCard';
 import { PageContainer } from '/imports/ui/components/PageContainer';
 
 import { browserHistory } from 'react-router';
+import Glass from '/imports/ui/Glass';
 
-export class PractitionerIndex extends React.Component {
+export class AdminDashboard extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -19,21 +20,8 @@ export class PractitionerIndex extends React.Component {
       style: {}
     };
 
-    // this should all be handled by props
-    // or a mixin!
-    if (Session.get('darkroomEnabled')) {
-      data.style.color = 'black';
-      data.style.background = 'white';
-    } else {
-      data.style.color = 'white';
-      data.style.background = 'black';
-    }
-
-    // this could be another mixin
-    if (Session.get('glassBlurEnabled')) {
-      data.style.filter = 'blur(3px)';
-      data.style.webkitFilter = 'blur(3px)';
-    }
+    data.style = Glass.blur(data.style);
+    data.style.appbar = Glass.darkroom(data.style.appbar);
 
     return data;
   }
@@ -57,7 +45,7 @@ export class PractitionerIndex extends React.Component {
       }
     };
     return (
-      <div id='indexPage' class='practitionerIndex'>
+      <div id='indexPage' class='AdminDashboard'>
         <PageContainer>
 
           <div style={style.indexCardPadding} onClick={ this.openPatients.bind(this) } >
@@ -68,6 +56,7 @@ export class PractitionerIndex extends React.Component {
               />
             </GlassCard>
           </div>
+
           <div id="practitionersTile" style={style.indexCardPadding} onClick={ this.openPractitioners.bind(this) } >
             <GlassCard style={style.indexCard} >
               <CardTitle
@@ -77,13 +66,11 @@ export class PractitionerIndex extends React.Component {
             </GlassCard>
           </div>
 
-          <Spacer />
-
-          <div style={style.indexCardPadding} onClick={ this.openDevicepage.bind(this) } >
+          <div style={style.indexCardPadding} onClick={ this.openUserManagement.bind(this) } >
             <GlassCard style={style.indexCard} >
               <CardTitle
-                title='Devices'
-                subtitle='BAC and other devices.'
+                title='User Management'
+                subtitle='Admin controls for user accounts.'
               />
             </GlassCard>
           </div>
@@ -93,17 +80,6 @@ export class PractitionerIndex extends React.Component {
               <CardTitle
                 title='Observations'
                 subtitle='Observations from devices.'
-              />
-            </GlassCard>
-          </div>
-
-          <Spacer />
-
-          <div style={this.data.style.indexCardPadding} onClick={ this.openUserManagement.bind(this) } >
-            <GlassCard style={this.data.style.indexCard} >
-              <CardTitle
-                title='User Management'
-                subtitle='Admin controls for user accounts.'
               />
             </GlassCard>
           </div>
@@ -148,7 +124,7 @@ export class PractitionerIndex extends React.Component {
 
 
 
-PractitionerIndex.propTypes = {
+AdminDashboard.propTypes = {
   hasUser: React.PropTypes.object
 };
-ReactMixin(PractitionerIndex.prototype, ReactMeteorData);
+ReactMixin(AdminDashboard.prototype, ReactMeteorData);

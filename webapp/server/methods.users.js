@@ -81,7 +81,8 @@ Meteor.methods({
           text: 'Jane Doe',
           given: 'Jane',
           family: 'Doe'
-        }
+        },
+        firstTimeVisit: false
       }
     };
     let existingUser = Meteor.users.findOne({username: 'janedoe'});

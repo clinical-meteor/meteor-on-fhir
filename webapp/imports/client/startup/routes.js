@@ -27,8 +27,8 @@ import { NeedToBeSysadmin } from '/imports/ui/pages/NeedToBeSysadmin';
 import { NeedToBePractitioner } from '/imports/ui/pages/NeedToBePractitioner';
 
 import { PatientIndex } from '/imports/ui/pages/PatientIndex';
-import { AdminIndex } from '/imports/ui/pages/AdminIndex';
-import { PractitionerIndex } from '/imports/ui/pages/PractitionerIndex';
+import { AdminDashboard } from '/imports/ui/pages/AdminDashboard';
+import { PractitionerDashboard } from '/imports/ui/pages/PractitionerDashboard';
 
 import { HexGridPage } from '/imports/ui/pages/HexGridPage';
 
@@ -71,14 +71,38 @@ const requreSysadmin = (nextState, replace) => {
   }
 };
 
+// const parseAuthentication = (nextState, replace) => {
+//   console.log("Parsing authentication...", Meteor.users.find().fetch());
+//
+//   if (!Meteor.loggingIn() && !Meteor.userId()) {
+//     replace({
+//       pathname: '/login',
+//       state: { nextPathname: nextState.location.pathname }
+//     });
+//   } else if (Roles.userIsInRole(Meteor.userId(), 'sysadmin')) {
+//     console.log("User is a sysadmin!  Redirecting to /sysadmin");
+//
+//     replace({
+//       pathname: '/sysadmin',
+//       state: { nextPathname: nextState.location.pathname }
+//     });
+//   } else if (Roles.userIsInRole(Meteor.userId(), 'practitioner')) {
+//     console.log("User is a practitioner!  Redirecting to /practitioner");
+//     replace({
+//       pathname: '/practitioner',
+//       state: { nextPathname: nextState.location.pathname }
+//     });
+//   }
+// };
+
 Meteor.startup(() => {
   render(
     <Router history={ browserHistory }>
       <Route path="/" component={ App }>
         <IndexRoute name="index" component={ PatientIndex } onEnter={ requireAuth } />
 
-        <Route name="sysadmin" path="/sysadmin" component={ AdminIndex } onEnter={ requreSysadmin } />
-        <Route name="practitioner" path="/practitioner" component={ PractitionerIndex } onEnter={ requireAuth } />
+        <Route name="sysadmin" path="/sysadmin" component={ AdminDashboard } onEnter={ requreSysadmin } />
+        <Route name="practitioner" path="/practitioner" component={ PractitionerDashboard } onEnter={ requireAuth } />
 
         <Route name="login" path="/login" component={ Login } />
         <Route name="recover-password" path="/recover-password" component={ RecoverPassword } />

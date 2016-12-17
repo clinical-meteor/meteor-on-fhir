@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
-import { createContainer } from 'meteor/react-meteor-data';
 
 import { Session } from 'meteor/session';
 import { Meteor } from 'meteor/meteor';
@@ -19,13 +18,8 @@ export class PageContainer extends React.Component {
   getMeteorData() {
     let data = {
       style: {
-        // WebkitTransform: 'translate3d(0px,0px,0px)',
-        // overflowY: 'scroll',
-        // WebkitOverflowScrolling: 'touch',
         WebkitTransition: 'ease .2s',
-        transition: 'ease .2s',
-        marginTop: "100px",
-        marginBottom: "100px"
+        transition: 'ease .2s'
       }
     };
 
@@ -34,6 +28,7 @@ export class PageContainer extends React.Component {
       data.style.position = 'relative';
       data.style.maxWidth = '1024px';
       data.style.width = '100%';
+
       if (Session.get('appSurfaceOffset')) {
         data.style.left = (Session.get('appWidth') - 1024) * 0.1618;
         data.style.marginRight = '100px';
@@ -46,18 +41,14 @@ export class PageContainer extends React.Component {
       data.style.width = '100%';
     }
 
-    // we should assume card layout by default, meaning there's bit of padding and negative space
-    if (Session.get('mainPanelIsCard')) {
-      data.style.padding = '20px';
+    if (Session.get('hasPagePadding')) {
+      data.style.paddingTop = '6.4em';
+      data.style.paddingBottom = '6.4em';
+    } else {
+      data.style.paddingTop = '0px';
+      data.style.paddingBottom = '0px';
     }
 
-    if (Session.get('hasPagePadding')) {
-      data.style.marginTop = '50px';
-      data.style.marginBottom = '50px';
-    } else {
-      data.style.marginTop = '0px';
-      data.style.marginBottom = '0px';
-    }
 
     data.style.overflowY = 'scroll';
     data.style.WebkitOverflowScrolling = 'touch';
@@ -80,6 +71,4 @@ export class PageContainer extends React.Component {
 }
 
 
-PageContainer.propTypes = {};
-PageContainer.defaultProps = {};
 ReactMixin(PageContainer.prototype, ReactMeteorData);

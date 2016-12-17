@@ -9,32 +9,21 @@ import { GlassCard } from '/imports/ui/components/GlassCard';
 import { PageContainer } from '/imports/ui/components/PageContainer';
 
 import { browserHistory } from 'react-router';
+import Glass from '/imports/ui/Glass';
 
-export class AdminIndex extends React.Component {
+export class PractitionerDashboard extends React.Component {
   constructor(props) {
     super(props);
   }
   getMeteorData() {
     let data = {
-      style: {}
+      style: Glass.defaultStyle()
     };
 
-    // this should all be handled by props
-    // or a mixin!
-    if (Session.get('darkroomEnabled')) {
-      data.style.color = 'black';
-      data.style.background = 'white';
-    } else {
-      data.style.color = 'white';
-      data.style.background = 'black';
-    }
+    data.style = Glass.blur(data.style);
+    data.style.appbar = Glass.darkroom(data.style.appbar);
 
-    // this could be another mixin
-    if (Session.get('glassBlurEnabled')) {
-      data.style.filter = 'blur(3px)';
-      data.style.webkitFilter = 'blur(3px)';
-    }
-
+    if(process.env.NODE_ENV === "test") console.log("PractitionerDashboard[data]", data);
     return data;
   }
   render() {
@@ -57,7 +46,7 @@ export class AdminIndex extends React.Component {
       }
     };
     return (
-      <div id='indexPage' class='adminIndex'>
+      <div id='indexPage' class='PractitionerDashboard'>
         <PageContainer>
 
           <div style={style.indexCardPadding} onClick={ this.openPatients.bind(this) } >
@@ -68,7 +57,6 @@ export class AdminIndex extends React.Component {
               />
             </GlassCard>
           </div>
-
           <div id="practitionersTile" style={style.indexCardPadding} onClick={ this.openPractitioners.bind(this) } >
             <GlassCard style={style.indexCard} >
               <CardTitle
@@ -78,11 +66,13 @@ export class AdminIndex extends React.Component {
             </GlassCard>
           </div>
 
-          <div style={style.indexCardPadding} onClick={ this.openUserManagement.bind(this) } >
+          <Spacer />
+
+          <div style={style.indexCardPadding} onClick={ this.openDevicepage.bind(this) } >
             <GlassCard style={style.indexCard} >
               <CardTitle
-                title='User Management'
-                subtitle='Admin controls for user accounts.'
+                title='Devices'
+                subtitle='BAC and other devices.'
               />
             </GlassCard>
           </div>
@@ -92,6 +82,17 @@ export class AdminIndex extends React.Component {
               <CardTitle
                 title='Observations'
                 subtitle='Observations from devices.'
+              />
+            </GlassCard>
+          </div>
+
+          <Spacer />
+
+          <div style={this.data.style.indexCardPadding} onClick={ this.openUserManagement.bind(this) } >
+            <GlassCard style={this.data.style.indexCard} >
+              <CardTitle
+                title='User Management'
+                subtitle='Admin controls for user accounts.'
               />
             </GlassCard>
           </div>
@@ -136,7 +137,7 @@ export class AdminIndex extends React.Component {
 
 
 
-AdminIndex.propTypes = {
+PractitionerDashboard.propTypes = {
   hasUser: React.PropTypes.object
 };
-ReactMixin(AdminIndex.prototype, ReactMeteorData);
+ReactMixin(PractitionerDashboard.prototype, ReactMeteorData);

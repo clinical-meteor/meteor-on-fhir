@@ -25,15 +25,24 @@ export default Glass = {
     return style;
   },
   darkroom: function(style){
-    if (style) {
-      if (Session.get('darkroomEnabled')) {
-        style.color = 'black';
-        style.background = 'white';
-      } else {
-        style.color = 'white';
-        style.background = 'black';
-      }
+    if (!style) {
+      style = {};
     }
+    if (Session.get('darkroomEnabled')) {
+      style.color = 'black';
+      style.background = 'white';
+    } else {
+      style.color = 'white';
+      style.background = 'black';
+    }
+    return style;
+  },
+  defaultStyle: function(style){
+    if (!style) {
+      style = {};
+    }
+    this.blur(style);
+    this.darkroom(style);
     return style;
   }
 };

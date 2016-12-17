@@ -77,36 +77,37 @@ export default class PatientTable extends React.Component {
     state["index"] = 2;
     Session.set('patientCardState', state);
   }
+  
   render () {
     let tableRows = [];
     for (var i = 0; i < this.data.patients.length; i++) {
       tableRows.push(
         <tr key={i} className="patientRow" style={{cursor: "pointer"}} onClick={ this.rowClick.bind('this', this.data.patients[i]._id)} >
 
-          <td>
+          <td className='avatar'>
             <Avatar src={this.data.patients[i].photo} />
           </td>
 
-          <td>{this.data.patients[i].name }</td>
-          <td>{this.data.patients[i].gender}</td>
-          <td>{this.data.patients[i].birthdate }</td>
-          <td>{this.data.patients[i].active}</td>
-          <td><span className="barcode">{this.data.patients[i]._id}</span></td>
+          <td className='name'>{this.data.patients[i].name }</td>
+          <td className='gender'>{this.data.patients[i].gender}</td>
+          <td className='birthdate'>{this.data.patients[i].birthdate }</td>
+          <td className='active'>{this.data.patients[i].active}</td>
+          <td className='id'><span className="barcode">{this.data.patients[i]._id}</span></td>
         </tr>
       );
     }
 
 
     return(
-      <Table responses hover >
+      <Table id='patientsTable' responses hover >
         <thead>
           <tr>
-            <th>photo</th>
-            <th>name</th>
-            <th>gender</th>
-            <th>birthdate</th>
-            <th>active</th>
-            <th>_id</th>
+            <th className='avatar'>photo</th>
+            <th className='name'>name</th>
+            <th className='gender'>gender</th>
+            <th className='birthdate'>birthdate</th>
+            <th className='active'>active</th>
+            <th className='id'>_id</th>
           </tr>
         </thead>
         <tbody>

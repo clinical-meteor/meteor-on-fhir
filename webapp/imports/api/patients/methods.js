@@ -15,13 +15,13 @@ export const insertPatient = new ValidatedMethod({
     'identifier': { type: [ String ], optional: true },
     'gender': { type: String, optional: true },
     'active': { type: Boolean, optional: true },
-    'birthdate': { type: Date, optional: true },
+    'birthDate': { type: Date, optional: true },
     'photo.$.url': { type: String, optional: true }
   }).validator(),
   run(document) {
 
     Patients.insert(document);
-  },
+  }
 });
 
 export const updatePatient = new ValidatedMethod({
@@ -44,11 +44,14 @@ export const updatePatient = new ValidatedMethod({
     patient.gender = update.gender;
     patient.photo = update.gender.photo;
 
+    if (patient.birthDate) {
+      patient.birthDate = update.birthDate;
+    }
+
     console.log("diffedPatient", patient);
 
-
     Patients.update(_id, { $set: update });
-  },
+  }
 });
 
 export const removePatientById = new ValidatedMethod({
@@ -59,5 +62,5 @@ export const removePatientById = new ValidatedMethod({
   run({ _id }) {
     console.log("Removing user " + _id);
     Patients.remove({_id: _id});
-  },
+  }
 });

@@ -17,6 +17,7 @@ import { GlassCard } from '/imports/ui/components/GlassCard';
 import { PageContainer } from '/imports/ui/components/PageContainer';
 import { removeUserById } from '../../api/users/methods';
 
+import Glass from '/imports/ui/Glass';
 
 let defaultState = {
   index: 0,
@@ -37,11 +38,12 @@ export class MyProfilePage extends React.Component {
 
   getMeteorData() {
 
-    // this should all be handled by props
-    // or a mixin!
     let data = {
       style: {
-        opacity: Session.get('globalOpacity')
+        //opacity: Session.get('globalOpacity')
+        tab: {
+          borderBottom: '1px solid lightgray'
+        }
       },
       state: {
         index: 0,
@@ -66,6 +68,9 @@ export class MyProfilePage extends React.Component {
         birthdate: ''
       }
     };
+
+    data.style.tab = Glass.darkroom(data.style.tab);
+
 
     if (Session.get('myProfileState')) {
       data.state = Session.get('myProfileState');
@@ -99,7 +104,6 @@ export class MyProfilePage extends React.Component {
     }
 
     if(process.env.NODE_ENV === "test") console.log("MyProfilePage[data]" , data);
-
     return data;
   }
 
@@ -121,7 +125,7 @@ export class MyProfilePage extends React.Component {
                 />
                 <Tabs id="profilePageTabs" index={this.data.state.index} onChange={this.handleTabChange} initialSelectedIndex={this.data.state.index} value={this.data.state.index} >
 
-                  <Tab className='demographicsTab' label='Demographics' style={{backgroundColor: 'white', color: 'black', borderBottom: '1px solid lightgray'}} value={0} >
+                  <Tab className='demographicsTab' label='Demographics' style={this.data.style.tab} value={0} >
                     <div id='profileDemographicsPane' style={{position: 'relative'}}>
                       <TextField
                         id='givenNameInput'
@@ -159,7 +163,7 @@ export class MyProfilePage extends React.Component {
                     </div>
                   </Tab>
 
-                  <Tab className='environmentalTab' label='Environmental' onActive={this.handleActive} style={{backgroundColor: 'white', color: 'black', borderBottom: '1px solid lightgray'}} value={1}>
+                  <Tab className='environmentalTab' label='Environmental' onActive={this.handleActive} style={this.data.style.tab} value={1}>
                     <div id='profileEnvironmentalPane' style={{position: 'relative'}} >
                       <TextField
                         id='zipcodeInput'
@@ -188,7 +192,7 @@ export class MyProfilePage extends React.Component {
                     </div>
                   </Tab>
 
-                  <Tab className='passwordTab' label='Password' style={{backgroundColor: 'white', color: 'black', borderBottom: '1px solid lightgray'}} value={2} >
+                  <Tab className='passwordTab' label='Password' style={this.data.style.tab} value={2} >
                     <div id='profilePasswordPane' style={{position: 'relative'}} >
                       <TextField
                         id='oldPasswordInput'
@@ -231,7 +235,7 @@ export class MyProfilePage extends React.Component {
                     </div>
                   </Tab>
 
-                  <Tab className="systemTab" label='System' style={{backgroundColor: 'white', color: 'black', borderBottom: '1px solid lightgray'}} value={3}>
+                  <Tab className="systemTab" label='System' style={this.data.style.tab} value={3}>
                     <div id="profileSystemPane" style={{position: "relative"}}>
                       <TextField
                         id='idInput'

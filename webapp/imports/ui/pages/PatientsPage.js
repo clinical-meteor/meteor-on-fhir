@@ -10,9 +10,10 @@ import { Tabs, Tab } from 'material-ui/Tabs';
 import PatientDetail from '../workflows/patients/PatientDetail';
 import PatientTable from '../workflows/patients/PatientTable';
 
+import Glass from '/imports/ui/Glass';
 
 let defaultState = {
-  index: 1,
+  index: 2,
   id: "",
   username: "",
   email: "",
@@ -26,7 +27,11 @@ export class PatientsPage extends React.Component {
   getMeteorData() {
     let data = {
       style: {
-        opacity: Session.get('globalOpacity')
+        opacity: Session.get('globalOpacity'),
+        tab: {
+          borderBottom: '1px solid lightgray',
+          borderLeft: 'none'
+        }
       },
       state: defaultState
     };
@@ -35,52 +40,35 @@ export class PatientsPage extends React.Component {
       data.state = Session.get('patientCardState');
     }
 
-    // this should all be handled by props
-    // or a mixin!
-    if (Session.get('darkroomEnabled')) {
-      data.style.color = "black";
-      data.style.background = "white";
-    } else {
-      data.style.color = "white";
-      data.style.background = "black";
-    }
+    data.style = Glass.blur(data.style);
+    data.style.appbar = Glass.darkroom(data.style.appbar);
+    data.style.tab = Glass.darkroom(data.style.tab);
 
-    // this could be another mixin
-    if (Session.get('glassBlurEnabled')) {
-      data.style.filter = "blur(3px)";
-      data.style.webkitFilter = "blur(3px)";
-    }
-
-    // this could be another mixin
-    if (Session.get('backgroundBlurEnabled')) {
-      data.style.backdropFilter = "blur(5px)";
-    }
-
+    if(process.env.NODE_ENV === "test") console.log("PractitionerDashboard[data]", data);
     return data;
-  };
+  }
+
   // this could be a mixin
   handleTabChange(index){
     let state = Session.get('patientCardState');
     state["index"] = index;
     Session.set('patientCardState', state);
-  };
+  }
+
   // this could be a mixin
   changeState(field, value){
     let state = Session.get('patientCardState');
-    console.log("this", this);
-    console.log("value", value);
+    // console.log("this", this);
+    // console.log("value", value);
 
     state[field] = value;
     Session.set('patientCardState', state);
-  };
+  }
 
-  // this could be a mixin
   onNewTab(){
-    console.log("onNewTab");
-
     Session.set('selectedPatient', false);
     Session.set('patientDetailState', false);
-  };
+  }
 
   render() {
     return (
@@ -92,14 +80,14 @@ export class PatientsPage extends React.Component {
             />
             <CardText>
 
-            <Tabs default index={this.data.state.index} onChange={this.handleTabChange}>
-             <Tab className="newPatientTab" label='New' style={{padded: "20px", color: 'black', borderBottom: '1px solid lightgray'}} onActive={ this.onNewTab } >
+            <Tabs default index={this.data.state.index} onChange={this.handleTabChange} initialSelectedIndex={1}>
+             <Tab className="newPatientTab" label='New' style={this.data.style.tab} onActive={ this.onNewTab } value={0}>
                <PatientDetail />
              </Tab>
-             <Tab label='Patients' onActive={this.handleActive} style={{color: 'black', borderBottom: '1px solid lightgray'}}>
+             <Tab label='Patients' onActive={this.handleActive} style={this.data.style.tab} value={1}>
                <PatientTable />
              </Tab>
-             <Tab label='Detail' onActive={this.handleActive} style={{padded: "20px", color: 'black', borderBottom: '1px solid lightgray'}} >
+             <Tab label='Detail' onActive={this.handleActive} style={this.data.style.tab} value={2}>
                <PatientDetail />
              </Tab>
            </Tabs>
@@ -115,7 +103,7 @@ export class PatientsPage extends React.Component {
 }
 
 
-PatientsPage.propTypes = {
-  hasUser: React.PropTypes.object,
-};
+// PatientsPage.propTypes = {
+//   hasUser: React.PropTypes.objects
+// };
 ReactMixin(PatientsPage.prototype, ReactMeteorData);
