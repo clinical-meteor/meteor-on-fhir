@@ -8,7 +8,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import { CardText, CardActions } from 'material-ui/Card';
 
 
-import { insertPatient, updatePatient, removePatientById } from '../../../api/patients/methods';
+import { insertPatient, updatePatient, removePatientById } from '/imports/ui/workflows/patients/methods';
 import { Bert } from 'meteor/themeteorchef:bert';
 
 Session.setDefault('patientDetailState', {

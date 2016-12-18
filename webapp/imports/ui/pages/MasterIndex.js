@@ -10,7 +10,7 @@ import { PageContainer } from '/imports/ui/components/PageContainer';
 
 import { browserHistory } from 'react-router';
 
-export class PatientIndex extends React.Component {
+export class MasterIndex extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -175,7 +175,7 @@ export class PatientIndex extends React.Component {
 
 
 
-PatientIndex.propTypes = {
+MasterIndex.propTypes = {
   hasUser: React.PropTypes.object
 };
-ReactMixin(PatientIndex.prototype, ReactMeteorData);
+ReactMixin(MasterIndex.prototype, ReactMeteorData);

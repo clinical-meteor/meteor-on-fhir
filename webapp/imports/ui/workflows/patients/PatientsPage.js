@@ -7,8 +7,8 @@ import { GlassCard } from '/imports/ui/components/GlassCard';
 import { CardTitle, CardText } from 'material-ui/Card';
 
 import { Tabs, Tab } from 'material-ui/Tabs';
-import PatientDetail from '../workflows/patients/PatientDetail';
-import PatientTable from '../workflows/patients/PatientTable';
+import PatientDetail from '/imports/ui/workflows/patients/PatientDetail';
+import PatientTable from '/imports/ui/workflows/patients/PatientTable';
 
 import Glass from '/imports/ui/Glass';
 

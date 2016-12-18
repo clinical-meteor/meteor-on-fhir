@@ -2,7 +2,7 @@ import '/imports/server';
 
 import '/imports/api/users/methods';
 import '/imports/api/practitioners/methods';
-import '/imports/api/patients/methods';
+import '/imports/ui/workflows/patients/methods';
 
 import { Accounts } from 'meteor/accounts-base';
 import { Meteor } from 'meteor/meteor';

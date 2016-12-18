@@ -9,7 +9,7 @@ import { DashboardPage } from '/imports/ui/pages/DashboardPage';
 import { ForumPage } from '/imports/ui/pages/ForumPage';
 import { Login } from '/imports/ui/pages/Login';
 import { MyProfilePage } from '/imports/ui/pages/MyProfilePage';
-import { PatientsPage } from '/imports/ui/pages/PatientsPage';
+import { PatientsPage } from '/imports/ui/workflows/patients/PatientsPage';
 import { PractitionersPage } from '/imports/ui/pages/PractitionersPage';
 import { Signup } from '/imports/ui/pages/Signup';
 import { ThemePage } from '/imports/ui/pages/ThemePage';
@@ -26,7 +26,7 @@ import { NewTopicPage } from '/imports/ui/pages/NewTopicPage';
 import { NeedToBeSysadmin } from '/imports/ui/pages/NeedToBeSysadmin';
 import { NeedToBePractitioner } from '/imports/ui/pages/NeedToBePractitioner';
 
-import { PatientIndex } from '/imports/ui/pages/PatientIndex';
+import { MasterIndex } from '/imports/ui/pages/MasterIndex';
 import { AdminDashboard } from '/imports/ui/pages/AdminDashboard';
 import { PractitionerDashboard } from '/imports/ui/pages/PractitionerDashboard';
 
@@ -99,7 +99,7 @@ Meteor.startup(() => {
   render(
     <Router history={ browserHistory }>
       <Route path="/" component={ App }>
-        <IndexRoute name="index" component={ PatientIndex } onEnter={ requireAuth } />
+        <IndexRoute name="index" component={ MasterIndex } onEnter={ requireAuth } />
 
         <Route name="sysadmin" path="/sysadmin" component={ AdminDashboard } onEnter={ requreSysadmin } />
         <Route name="practitioner" path="/practitioner" component={ PractitionerDashboard } onEnter={ requireAuth } />
