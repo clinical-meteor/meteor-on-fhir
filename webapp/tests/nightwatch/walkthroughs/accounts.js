@@ -42,15 +42,15 @@ module.exports = {
       .saveScreenshot('tests/nightwatch/screenshots/accounts/C-logoutMenuItem.png')
       .click('#patientSidebar .logoutMenuItem').pause(1000)
 
-      .verify.elementPresent('#loginPage')
-      .saveScreenshot('tests/nightwatch/screenshots/accounts/D-loginPage.png');
+      .verify.elementPresent('#signinPage')
+      .saveScreenshot('tests/nightwatch/screenshots/accounts/D-signinPage.png');
   },
   'User can sign in.': function (client) {
-    client.page.loginPage()
+    client.page.signinPage()
       .fillOutSigninPage('alice@test.org', 'alicedoe')
-      .saveScreenshot('tests/nightwatch/screenshots/accounts/E-loginPage.png', client)
+      .saveScreenshot('tests/nightwatch/screenshots/accounts/E-signinPage.png', client)
       .pause(1000, client)
-      .login()
+      .signin()
       .pause(2000, client);
 
     client
@@ -152,14 +152,14 @@ module.exports = {
       .waitForElementPresent('#patientSidebar .logoutMenuItem', 5000)
       .click('#patientSidebar .logoutMenuItem').pause(20000)
 
-      .waitForElementPresent("#loginPage", 5000);
+      .waitForElementPresent("#signinPage", 5000);
   },
   "User can sign in with new password.": function (client) {
     client
-        .verify.elementPresent("#loginPage")
+        .verify.elementPresent("#signinPage")
         .verify.elementPresent('input[name="emailAddress"]')
         .verify.elementPresent('input[name="password"]')
-        .verify.elementPresent('#loginButton')
+        .verify.elementPresent('#signinButton')
 
         .clearValue('input[name="emailAddress"]')
         .clearValue('input[name="password"]')
@@ -167,7 +167,7 @@ module.exports = {
         .setValue('input[name="emailAddress"]', 'alice@test.org')
         .setValue('input[name="password"]', 'alice123')
 
-        .click("#loginButton").pause(1000)
+        .click("#signinButton").pause(1000)
           .verify.elementPresent("#indexPage");
   },
   "User can delete account.": function (client) {
@@ -201,7 +201,7 @@ module.exports = {
     client.verify.elementPresent("#confirmDeleteUserButton")
       .click("#confirmDeleteUserButton").pause(1500)
 
-      .verify.elementPresent("#loginPage")
+      .verify.elementPresent("#signinPage")
       .end();
   }
 };

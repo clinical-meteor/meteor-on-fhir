@@ -35,7 +35,7 @@ export class Signin extends React.Component {
     if(process.env.NODE_ENV === "test") console.log("this", this);
     let self = this;
 
-    Meteor.signinWithPassword(
+    Meteor.loginWithPassword(
       this.refs.emailAddress.input.value,
       this.refs.password.input.value,
     (error) => {

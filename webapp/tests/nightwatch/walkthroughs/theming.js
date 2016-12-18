@@ -12,8 +12,8 @@ module.exports = {
   },
   'Inverted text > title text is white': function (client) {
     client
-      .waitForElementPresent('#loginPage .page-header', 5000)
-      .verify.cssProperty('#loginPage .page-header', "color", "rgba(255, 255, 255, 1)");
+      .waitForElementPresent('#signinPage .page-header', 5000)
+      .verify.cssProperty('#signinPage .page-header', "color", "rgba(255, 255, 255, 1)");
   },
   'Regular theme > header and footer use white paper': function (client) {
     client

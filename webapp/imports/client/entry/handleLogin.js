@@ -11,7 +11,7 @@ const signin = () => {
   const email = getInputValue(component.refs.emailAddress);
   const password = getInputValue(component.refs.password);
 
-  Meteor.signinWithPassword(email, password, (error) => {
+  Meteor.loginWithPassword(email, password, (error) => {
     if (error) {
       Bert.alert(error.reason, 'warning');
     } else {

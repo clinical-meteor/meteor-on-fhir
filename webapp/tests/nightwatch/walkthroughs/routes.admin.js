@@ -18,13 +18,13 @@ module.exports = {
         .verify.elementPresent("body")
         .verify.elementPresent("#publicNavigation")
         .verify.elementPresent("#signupLink")
-        .verify.elementPresent("#loginLink")
+        .verify.elementPresent("#signinLink")
         .saveScreenshot("tests/nightwatch/screenshots/routes/root.png");
   },
-  "/login": function (client) {
+  "/signin": function (client) {
     client
-      .url("http://localhost:3000/login")
-        .waitForElementPresent("#loginPage", 3000);
+      .url("http://localhost:3000/signin")
+        .waitForElementPresent("#signinPage", 3000);
   },
   "/signup": function (client) {
     client.page.signupPage()

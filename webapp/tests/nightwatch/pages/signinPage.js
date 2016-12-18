@@ -1,11 +1,11 @@
 
 
 module.exports = {
-  url: 'http://localhost:3000/login',
+  url: 'http://localhost:3000/signin',
   commands: [{
   fillOutSigninPage: function(email, password) {
     return this
-      .verify.elementPresent("#loginPage")
+      .verify.elementPresent("#signinPage")
       .verify.elementPresent('input[name="emailAddress"]')
       .verify.elementPresent('input[name="password"]')
 
@@ -15,18 +15,18 @@ module.exports = {
       .setValue('input[name="emailAddress"]', email)
       .setValue('input[name="password"]', password);
   },
-  login: function(){
+  signin: function(){
     return this
-      .waitForElementPresent('#loginButton', 3000)
-      .click("#loginButton");
+      .waitForElementPresent('#signinButton', 3000)
+      .click("#signinButton");
   },
   clear: function() {
     return this
       .waitForElementVisible('@emailInput')
       .clearValue('@emailInput')
       .clearValue('@passInput')
-      .waitForElementVisible('@loginButton')
-      .click('@loginButton')
+      .waitForElementVisible('@signinButton')
+      .click('@signinButton')
   },
   pause: function(time, client) {
     client.pause(time);
@@ -44,7 +44,7 @@ module.exports = {
     passInput: {
       selector: 'input[name=password]'
     },
-    loginButton: {
+    signinButton: {
       selector: 'button[type=submit]'
     }
   }
