@@ -2,12 +2,12 @@ import React from 'react';
 import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
-import { PageContainer } from '/imports/ui/components/PageContainer';
+import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 import { GlassCard } from '/imports/ui/components/GlassCard';
 import { CardTitle, CardText } from 'material-ui/Card';
 
 
-import QuestionnaireResponseTable from '../workflows/questionnaires/QuestionnaireResponseTable';
+import QuestionnaireResponseTable from '/imports/ui/workflows/questionnaires/QuestionnaireResponseTable';
 
 
 export class QuestionnaireResponsesPage extends React.Component {
@@ -70,7 +70,7 @@ export class QuestionnaireResponsesPage extends React.Component {
   render() {
     return (
       <div id="questionnaireResponsesPage">
-        <PageContainer>
+        <VerticalCanvas>
           <GlassCard>
             <CardTitle
               title="Questionnaire Responses"
@@ -79,7 +79,7 @@ export class QuestionnaireResponsesPage extends React.Component {
               <QuestionnaireResponseTable />
             </CardText>
           </GlassCard>
-        </PageContainer>
+        </VerticalCanvas>
       </div>
     );
   }

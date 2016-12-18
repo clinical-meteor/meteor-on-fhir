@@ -3,7 +3,7 @@ import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
 import { AddForumTopic } from   '/imports/ui/workflows/forums/AddForumTopic';
-import { PageContainer } from   '/imports/ui/components/PageContainer';
+import { VerticalCanvas } from   '/imports/ui/components/VerticalCanvas';
 import { GlassCard } from       '/imports/ui/components/GlassCard';
 import Spacer from              '/imports/ui/components/Spacer';
 import { ForumTopicsTable } from    '/imports/ui/workflows/forums/ForumTopicsTable';
@@ -37,9 +37,9 @@ export class NewTopicPage extends React.Component {
   render() {
     return (
       <div id="newTopicPage">
-        <PageContainer>
+        <VerticalCanvas>
           <AddForumTopic />
-        </PageContainer>
+        </VerticalCanvas>
       </div>
     );
   }

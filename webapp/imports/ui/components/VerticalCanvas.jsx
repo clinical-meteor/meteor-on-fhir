@@ -10,7 +10,7 @@ Meteor.startup(function (){
   Session.set('hasPagePadding', true);
 });
 
-export class PageContainer extends React.Component {
+export class VerticalCanvas extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -90,4 +90,4 @@ export class PageContainer extends React.Component {
 }
 
 
-ReactMixin(PageContainer.prototype, ReactMeteorData);
+ReactMixin(VerticalCanvas.prototype, ReactMeteorData);

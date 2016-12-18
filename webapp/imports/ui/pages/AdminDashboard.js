@@ -6,7 +6,7 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 import Spacer from '/imports/ui/components/Spacer';
 
 import { GlassCard } from '/imports/ui/components/GlassCard';
-import { PageContainer } from '/imports/ui/components/PageContainer';
+import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 
 import { browserHistory } from 'react-router';
 import Glass from '/imports/ui/Glass';
@@ -46,7 +46,7 @@ export class AdminDashboard extends React.Component {
     };
     return (
       <div id='indexPage' class='AdminDashboard'>
-        <PageContainer>
+        <VerticalCanvas>
 
           <div style={style.indexCardPadding} onClick={ this.openPatients.bind(this) } >
             <GlassCard style={style.indexCard} >
@@ -85,7 +85,7 @@ export class AdminDashboard extends React.Component {
           </div>
 
 
-        </PageContainer>
+        </VerticalCanvas>
       </div>
     );
   }

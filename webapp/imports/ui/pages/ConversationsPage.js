@@ -2,7 +2,7 @@ import React from 'react';
 import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
-import { PageContainer } from           '/imports/ui/components/PageContainer';
+import { VerticalCanvas } from           '/imports/ui/components/VerticalCanvas';
 import { AddPostToConversation } from   '/imports/ui/workflows/conversations/AddPostToConversation';
 import { ConversationPosts } from       '/imports/ui/workflows/conversations/ConversationPosts';
 import { CardTitle } from 'material-ui/Card';
@@ -42,14 +42,14 @@ export class ConversationsPage extends React.Component {
   render() {
     return (
       <div id='conversationsPage' >
-        <PageContainer>
+        <VerticalCanvas>
           <GlassCard>
             <CardTitle className='description' title={this.data.state.topicName} />
           </GlassCard>
           <DynamicSpacer />
           <ConversationPosts topicId={this.props.routeParams.topicId} />
           <AddPostToConversation topicId={this.props.routeParams.topicId} />
-        </PageContainer>
+        </VerticalCanvas>
       </div>
     );
   }

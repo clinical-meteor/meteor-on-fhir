@@ -5,7 +5,7 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 import { Row, Col, Alert, FormGroup, FormControl, Button } from 'react-bootstrap';
 import { handleRecoverPassword } from '/imports/client/entry/handleRecoverPassword';
 
-import { PageContainer } from '/imports/ui/components/PageContainer';
+import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 import { MobilePadding } from '/imports/ui/components/MobilePadding';
 import { browserHistory } from 'react-router';
 import { Accounts } from 'meteor/accounts-base';
@@ -39,7 +39,7 @@ export class RecoverPassword extends React.Component {
     return(
       <div id='recoverPasswordPage'>
         <MobilePadding>
-          <PageContainer>
+          <VerticalCanvas>
             <h4 className="page-header" style={this.data.style.textColor}>Recover Password</h4>
             <Alert bsStyle="info">
               Enter your email address below to receive a link to reset your password.
@@ -64,7 +64,7 @@ export class RecoverPassword extends React.Component {
               <RaisedButton id='recoverPasswordButton' type="submit" onTouchTap={this.recoverPassword } label='Recover Password' primary={true} />
 
             </form>
-          </PageContainer>
+          </VerticalCanvas>
         </MobilePadding>
       </div>
     );

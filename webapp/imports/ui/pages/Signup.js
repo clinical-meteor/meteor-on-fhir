@@ -6,7 +6,7 @@ import TextField from 'material-ui/TextField';
 
 import { Row, Col } from 'react-bootstrap';
 
-import { PageContainer } from '/imports/ui/components/PageContainer';
+import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 import { MobilePadding } from '/imports/ui/components/MobilePadding';
 
 import { browserHistory } from 'react-router';
@@ -117,7 +117,7 @@ export class Signup extends React.Component {
     return (
       <div id='signupPage'>
         <MobilePadding>
-          <PageContainer>
+          <VerticalCanvas>
                 <h4 className='page-header' style={this.data.style.textColor}>Sign Up</h4>
                 <form ref='signup' className='signup' onSubmit={ this.handleSubmit }>
                   <Row>
@@ -214,7 +214,7 @@ export class Signup extends React.Component {
                     style={{marginLeft: '20px'}} />
                 </form>
 
-          </PageContainer>
+          </VerticalCanvas>
         </MobilePadding>
       </div>
     );

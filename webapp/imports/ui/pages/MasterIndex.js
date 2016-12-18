@@ -6,7 +6,7 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 import Spacer from '/imports/ui/components/Spacer';
 
 import { GlassCard } from '/imports/ui/components/GlassCard';
-import { PageContainer } from '/imports/ui/components/PageContainer';
+import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 
 import { browserHistory } from 'react-router';
 
@@ -75,7 +75,7 @@ export class MasterIndex extends React.Component {
   render() {
     return (
       <div id='indexPage'>
-        <PageContainer>
+        <VerticalCanvas>
 
           <div id='forumTile' style={this.data.style.indexCardPadding} onClick={ this.openDiscussionForum.bind(this) }>
             <GlassCard style={this.data.style.indexCard} >
@@ -118,7 +118,7 @@ export class MasterIndex extends React.Component {
 
           {this.renderPractitionerTiles(this.data.user.isPractitioner)}
 
-        </PageContainer>
+        </VerticalCanvas>
       </div>
     );
   }

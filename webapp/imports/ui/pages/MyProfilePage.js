@@ -14,7 +14,7 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 import Spacer from '/imports/ui/components/Spacer';
 
 import { GlassCard } from '/imports/ui/components/GlassCard';
-import { PageContainer } from '/imports/ui/components/PageContainer';
+import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 import { removeUserById } from '../../api/users/methods';
 
 import Glass from '/imports/ui/Glass';
@@ -111,7 +111,7 @@ export class MyProfilePage extends React.Component {
   render(){
     return(
       <div id='myProfilePage'>
-        <PageContainer>
+        <VerticalCanvas>
           <GlassCard>
             <hr />
             <Row>
@@ -267,7 +267,7 @@ export class MyProfilePage extends React.Component {
 
 
           </GlassCard>
-        </PageContainer>
+        </VerticalCanvas>
       </div>
     );
   }

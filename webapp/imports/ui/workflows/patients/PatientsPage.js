@@ -2,7 +2,7 @@ import React from 'react';
 import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
-import { PageContainer } from '/imports/ui/components/PageContainer';
+import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 import { GlassCard } from '/imports/ui/components/GlassCard';
 import { CardTitle, CardText } from 'material-ui/Card';
 
@@ -80,7 +80,7 @@ export class PatientsPage extends React.Component {
   render() {
     return (
       <div id="patientsPage">
-        <PageContainer>
+        <VerticalCanvas>
           <GlassCard>
             <CardTitle
               title="Patients"
@@ -101,7 +101,7 @@ export class PatientsPage extends React.Component {
 
             </CardText>
           </GlassCard>
-        </PageContainer>
+        </VerticalCanvas>
       </div>
     );
   }

@@ -5,7 +5,7 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 import Spacer from '/imports/ui/components/Spacer';
 
 import { GlassCard } from '/imports/ui/components/GlassCard';
-import { PageContainer } from '/imports/ui/components/PageContainer';
+import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 
 import { Topics } from '/imports/api/topics/topics';
 import { Posts } from '/imports/api/posts/posts';
@@ -121,7 +121,7 @@ export class DashboardPage extends React.Component {
   render(){
     return(
       <div id='dashboardPage'>
-        <PageContainer>
+        <VerticalCanvas>
             <Spacer />
             <div style={this.data.style.summaryCards }>
               <GlassCard style={{width: '164px', marginRight: '40px', display: 'inline-block'}}>
@@ -150,7 +150,7 @@ export class DashboardPage extends React.Component {
             <GlassCard>
               <ReactHighcharts title='Welcome back' config = {this.data.config}></ReactHighcharts>
             </GlassCard>
-        </PageContainer>
+        </VerticalCanvas>
       </div>
     );
   }

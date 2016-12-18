@@ -57,10 +57,5 @@ export class GlassCard extends React.Component {
     );
   }
 }
-GlassCard.propTypes = {
 
-};
-GlassCard.defaultProps = {
-
-};
 ReactMixin(GlassCard.prototype, ReactMeteorData);

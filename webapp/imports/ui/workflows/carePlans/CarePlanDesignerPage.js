@@ -7,7 +7,7 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 import Spacer from '/imports/ui/components/Spacer';
 
 import { GlassCard } from '/imports/ui/components/GlassCard';
-import { PageContainer } from '/imports/ui/components/PageContainer';
+import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 
 import { browserHistory } from 'react-router';
 
@@ -99,7 +99,7 @@ export class CarePlanDesignerPage extends React.Component {
     };
     return (
       <section id='carePlanPage' style={{paddingTop: "20px"}}>
-        <PageContainer>
+        <VerticalCanvas>
 
         <section id="patientSection" style={style.indexCardPadding} >
           <GlassCard style={style.indexCard} >
@@ -171,7 +171,7 @@ export class CarePlanDesignerPage extends React.Component {
           />
         </section>
 
-        </PageContainer>
+        </VerticalCanvas>
       </section>
     );
   }

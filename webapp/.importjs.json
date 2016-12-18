@@ -2,8 +2,8 @@
   "appliesTo": "**",
   "useRelativePaths": false,
   "namedExports": {
-    "/imports/ui/components/PageContainer": [
-      "PageContainer"
+    "/imports/ui/components/VerticalCanvas": [
+      "VerticalCanvas"
     ]
   }
 }

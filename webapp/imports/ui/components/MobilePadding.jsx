@@ -6,12 +6,12 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 export class MobilePadding extends React.Component {
   constructor(props) {
     super(props);
-  };
+  }
 
   getMeteorData() {
     let data = {
       style: {}
-    }
+    };
 
     //phone layout
     if (Session.get('appWidth') <= 1536) {
@@ -22,17 +22,15 @@ export class MobilePadding extends React.Component {
     }
 
     return data;
-  };
+  }
 
   render(){
     return (
       <div className="mobilePadding" style={this.data.style}>
         { this.props.children }
       </div>
-    )
+    );
   }
 }
 
-MobilePadding.propTypes = {};
-MobilePadding.defaultProps = {};
 ReactMixin(MobilePadding.prototype, ReactMeteorData);

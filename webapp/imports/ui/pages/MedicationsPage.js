@@ -3,10 +3,10 @@ import React  from 'react';
 import ReactMixin  from 'react-mixin';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import { GlassCard } from '/imports/ui/components/GlassCard';
-import { PageContainer } from '/imports/ui/components/PageContainer';
+import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 
-import MedicationDetail from '../workflows/medications/MedicationDetail';
-import MedicationTable from '../workflows/medications/MedicationTable';
+import MedicationDetail from '/imports/ui/workflows/medications/MedicationDetail';
+import MedicationTable from '/imports/ui/workflows/medications/MedicationTable';
 
 let defaultState = {
   index: 1,
@@ -81,7 +81,7 @@ export class MedicationsPage extends React.Component {
   render() {
     return (
       <div id="medicationsPage">
-        <PageContainer>
+        <VerticalCanvas>
           <GlassCard>
 
             <Tabs id="medicationTabs" default index={this.data.state.index} onChange={this.handleTabChange}>
@@ -97,7 +97,7 @@ export class MedicationsPage extends React.Component {
             </Tabs>
 
           </GlassCard>
-        </PageContainer>
+        </VerticalCanvas>
       </div>
     );
   }

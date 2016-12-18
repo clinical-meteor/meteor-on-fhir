@@ -2,7 +2,7 @@ import React from 'react';
 import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
-import { PageContainer } from   '/imports/ui/components/PageContainer';
+import { VerticalCanvas } from   '/imports/ui/components/VerticalCanvas';
 import { GlassCard } from       '/imports/ui/components/GlassCard';
 import Spacer from              '/imports/ui/components/Spacer';
 import { ForumTopicsTable } from    '/imports/ui/workflows/forums/ForumTopicsTable';
@@ -58,12 +58,12 @@ export class ForumPage extends React.Component {
   render() {
     return (
       <div id="forumPage">
-        <PageContainer>
+        <VerticalCanvas>
           { this.renderAuthenticatedUserControls(this.data.state.isLoggedIn) }
           <GlassCard style={{minHeight: "300px"}}>
             <ForumTopicsTable />
           </GlassCard>
-        </PageContainer>
+        </VerticalCanvas>
       </div>
     );
   }

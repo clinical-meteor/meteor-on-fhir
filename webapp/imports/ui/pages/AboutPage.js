@@ -2,7 +2,7 @@ import React from 'react';
 
 import { AboutAppCard } from '/imports/ui/components/AboutAppCard';
 import { GlassCard } from '/imports/ui/components/GlassCard';
-import { PhoneContainer } from '/imports/ui/components/PhoneContainer';
+import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 
 
 export class AboutPage extends React.Component {
@@ -13,11 +13,11 @@ export class AboutPage extends React.Component {
   render(){
     return(
       <div id="aboutPage">
-        <PhoneContainer >
+        <VerticalCanvas >
           <GlassCard>
             <AboutAppCard />
           </GlassCard>
-        </PhoneContainer>
+        </VerticalCanvas>
       </div>
     );
   }

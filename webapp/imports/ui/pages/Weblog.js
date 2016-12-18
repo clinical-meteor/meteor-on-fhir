@@ -2,7 +2,7 @@ import React  from 'react';
 import ReactMixin  from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
-import { PageContainer } from '/imports/ui/components/PageContainer';
+import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 import { DynamicSpacer }  from '/imports/ui/components/DynamicSpacer';
 
 import { AddPost } from '/imports/ui/workflows/posts/AddPost';
@@ -70,10 +70,10 @@ export class Weblog extends React.Component {
   render() {
     return (
       <div id="weblogPage">
-        <PageContainer>
+        <VerticalCanvas>
           { this.renderAuthenticatedUserControls(this.data.state.isLoggedIn) }
           <PostsDeck userId={this.props.routeParams.userId} />
-        </PageContainer>
+        </VerticalCanvas>
       </div>
     );
   }

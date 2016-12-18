@@ -14,7 +14,7 @@ import { Bert } from 'meteor/themeteorchef:bert';
 import { Session } from 'meteor/session';
 
 import { GlassCard } from '/imports/ui/components/GlassCard';
-import { PageContainer } from '/imports/ui/components/PageContainer';
+import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 import OpacitySlider from '/imports/ui/components/OpacitySlider';
 
 import { Meteor } from 'meteor/meteor';
@@ -79,7 +79,7 @@ export class ThemePage extends React.Component {
 
     return(
       <div id='aboutPage'>
-        <PageContainer>
+        <VerticalCanvas>
           <GlassCard>
             <CardTitle
               title='Theme'
@@ -191,7 +191,7 @@ export class ThemePage extends React.Component {
             </Tabs>
 
           </GlassCard>
-        </PageContainer>
+        </VerticalCanvas>
       </div>
     );
   }

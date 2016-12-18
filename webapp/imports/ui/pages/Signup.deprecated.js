@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import { Row, Col, FormGroup, ControlLabel, FormControl, Button } from 'react-bootstrap';
 import { handleSignup } from '/imports/client/entry/handleSignup';
 
-import { PageContainer } from '/imports/ui/components/PageContainer';
+import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 import { MobilePadding } from '/imports/ui/components/MobilePadding';
 
 
@@ -20,7 +20,7 @@ export class Signup extends React.Component {
     return (
       <div id="signupPage">
         <MobilePadding>
-          <PageContainer>
+          <VerticalCanvas>
                 <h4 className="page-header" style={{color: "white"}}>Sign Up</h4>
                 <form ref="signup" className="signup" onSubmit={ this.handleSubmit }>
                   <Row>
@@ -70,7 +70,7 @@ export class Signup extends React.Component {
                 <p>Already have an account? <Link to="/login">Log In</Link>.</p>
 
 
-          </PageContainer>
+          </VerticalCanvas>
         </MobilePadding>
       </div>
     );

@@ -3,7 +3,7 @@ import ReactMixin  from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
 import TextField from 'material-ui/TextField';
-import { PhoneContainer } from '/imports/ui/components/PhoneContainer';
+import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 import { MobilePadding } from '/imports/ui/components/MobilePadding';
 
 import { browserHistory } from 'react-router';
@@ -56,7 +56,7 @@ export class Login extends React.Component {
     return (
       <div id="loginPage">
         <MobilePadding>
-          <PhoneContainer>
+          <VerticalCanvas>
             <h4 className="page-header" style={this.data.style.textColor}>Login</h4>
             <form ref="login" className="login">
               <TextField
@@ -92,7 +92,7 @@ export class Login extends React.Component {
               <RaisedButton id="forgotPasswordButton" onTouchTap={this.forgotPasswordRoute } label="Forgot password?" style={{marginLeft: "20px"}} />
             </form>
 
-          </PhoneContainer>
+          </VerticalCanvas>
         </MobilePadding>
       </div>
     );
