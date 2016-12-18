@@ -34,6 +34,7 @@ Meteor.methods({
     }
   },
   dropTestUsers: function(){
+    console.log('==================================================================');
     console.log('Dropping test users...');
 
     if ((process.env.NODE_ENV === 'test') || (process.env.NODE_ENV === 'circle')) {
@@ -49,7 +50,8 @@ Meteor.methods({
           }
         }
       });
-      console.log(count + " users removed.");
+      Meteor.users.remove({test: true});
+      console.log(Meteor.users.find().count() + " users.");
 
     } else {
       console.log('Not in test mode.  Try using NODE_ENV=test');

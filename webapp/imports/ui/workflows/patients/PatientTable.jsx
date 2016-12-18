@@ -7,11 +7,7 @@ import { Table } from 'react-bootstrap';
 
 
 export default class PatientTable extends React.Component {
-
   getMeteorData() {
-
-    // this should all be handled by props
-    // or a mixin!
     let data = {
       style: {
         hideOnPhone: {
@@ -21,15 +17,19 @@ export default class PatientTable extends React.Component {
       },
       selected: [],
       patients: Patients.find().map(function(person){
-        return {
+        let result = {
           _id: person._id,
           active: person.active.toString(),
           gender: person.gender,
           name: person.name ? person.name[0].text : "",
           birthdate: moment(person.birthDate).format("YYYY-MM-DD"),
-          photo: person.photo ? person.photo[0].url : "/thumbnail-blank.png",
+          photo: "/thumbnail-blank.png",
           initials: 'abc'
         };
+        if (person.photo && person.photo[0] && person.photo[0].url) {
+          result.photo = person.photo[0].url;
+        }
+        return result;
       })
     };
 
@@ -63,6 +63,9 @@ export default class PatientTable extends React.Component {
   rowClick(id){
     console.log("rowClick", id);
 
+    // clear the patient detail form
+    Session.set('patientDetailState', false);
+
     // set the user
     Session.set("selectedPatient", id);
 
@@ -70,13 +73,17 @@ export default class PatientTable extends React.Component {
     let state = Session.get('patientFormData');
     state["index"] = 2;
     Session.set('patientFormData', state);
+
+    //alert('row clicked! ' + id);
   }
 
   render () {
     let tableRows = [];
     for (var i = 0; i < this.data.patients.length; i++) {
       tableRows.push(
-        <tr key={i} className="patientRow" style={{cursor: "pointer"}} onClick={ this.rowClick.bind('this', this.data.patients[i]._id)} >
+        <tr key={i} className="patientRow" style={{cursor: "pointer"}}
+          onClick={ this.rowClick.bind('this', this.data.patients[i]._id)}
+          >
 
           <td className='avatar'>
             <Avatar src={this.data.patients[i].photo} />

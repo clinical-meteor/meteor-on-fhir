@@ -30,7 +30,7 @@ export default class PatientDetail extends React.Component {
         name: "",
         gender: "",
         active: true,
-        birthdate: new Date(),
+        birthdate: '',
         photo: ""
       }
     };
@@ -42,12 +42,18 @@ export default class PatientDetail extends React.Component {
       if (selectedPatient) {
         data.patient = {
           id: selectedPatient._id,
-          birthdate: new Date(moment(selectedPatient.birthdate)),
+          birthdate: moment(selectedPatient.birthDate).format("YYYY-MM-DD"),
           gender: selectedPatient.gender,
           active: selectedPatient.active.toString(),
-          photo: selectedPatient.photo ? selectedPatient.photo[0].url : "",
-          name: selectedPatient.name ? selectedPatient.name[0].text : ""
+          photo: "",
+          name: ""
         };
+        if (selectedPatient.photo && selectedPatient.photo[0] && selectedPatient.photo[0].url) {
+          data.patient.photo = selectedPatient.photo[0].url;
+        }
+        if (selectedPatient.name && selectedPatient.name[0] && selectedPatient.name[0].text) {
+          data.patient.name = selectedPatient.name[0].text;
+        }
       }
     }
 
@@ -55,21 +61,20 @@ export default class PatientDetail extends React.Component {
       data.patient = Session.get('patientDetailState');
     }
 
-    //console.log("data", data);
-
+    if(process.env.NODE_ENV === "test") console.log("PatientDetail[data]", data);
     return data;
   }
 
   render() {
     return (
-      <div className="patientDetail">
+      <div id={this.props.id} className="patientDetail">
         <CardText>
           <TextField
             id='nameInput'
             ref='name'
             name='name'
             floatingLabelText='name'
-            defaultValue={this.data.patient.name}
+            value={this.data.patient.name}
             onChange={ this.changeState.bind(this, 'name')}
             fullWidth
             /><br/>
@@ -78,7 +83,7 @@ export default class PatientDetail extends React.Component {
             ref='gender'
             name='gender'
             floatingLabelText='gender'
-            defaultValue={this.data.patient.gender}
+            value={this.data.patient.gender}
             onChange={ this.changeState.bind(this, 'gender')}
             fullWidth
             /><br/>
@@ -87,7 +92,7 @@ export default class PatientDetail extends React.Component {
             ref='birthdate'
             name='birthdate'
             floatingLabelText='birthdate'
-            defaultValue={this.data.patient.birthdate}
+            value={this.data.patient.birthdate}
             onChange={ this.changeState.bind(this, 'birthdate')}
             fullWidth
             /><br/>
@@ -96,7 +101,7 @@ export default class PatientDetail extends React.Component {
             ref='photo'
             name='photo'
             floatingLabelText='photo'
-            defaultValue={this.data.patient.photo}
+            value={this.data.patient.photo}
             onChange={ this.changeState.bind(this, 'photo')}
             fullWidth
             /><br/>
@@ -111,13 +116,13 @@ export default class PatientDetail extends React.Component {
     if (patientId) {
       return (
         <div>
-          <RaisedButton id='savePatientButton' label="Save" primary={true} onClick={this.handleSaveButton.bind(this)} />
+          <RaisedButton id='savePatientButton' className='savePatientButton' label="Save" primary={true} onClick={this.handleSaveButton.bind(this)} />
           <RaisedButton label="Delete" onClick={this.handleDeleteButton.bind(this)} />
         </div>
       );
     } else {
       return(
-        <RaisedButton id='savePatientButton' label="Save" primary={true} onClick={this.handleSaveButton.bind(this)} />
+        <RaisedButton id='savePatientButton'  className='savePatientButton' label="Save" primary={true} onClick={this.handleSaveButton.bind(this)} />
       );
     }
   }
@@ -161,7 +166,7 @@ export default class PatientDetail extends React.Component {
 
   // this could be a mixin
   handleSaveButton(){
-    //console.log("handleSaveButton", this);
+    console.log("handleSaveButton", this);
 
       let patientUpdate = Session.get('patientDetailState');
       console.log("patientUpdate", patientUpdate);
@@ -182,23 +187,33 @@ export default class PatientDetail extends React.Component {
 
     if (Session.get('selectedPatient')) {
       console.log("Updating patient...");
-      updatePatient.call(
-        {_id: Session.get('selectedPatient'), update: patientFormData }, (error) => {
-        if (error) {
-          console.log("error", error);
-          Bert.alert(error.reason, 'danger');
-        } else {
-          Bert.alert('Patient updated!', 'success');
-          this.openTab(1);
-          Session.set('patientDetailState', {
-            id: "",
-            name: "",
-            gender: "",
-            active: true,
-            birthdate: new Date(),
-            photo: ""
-          });
-        }
+      updatePatient.call({
+          _id: Session.get('selectedPatient'),
+          update: patientFormData
+        }, function(error, result) {
+          if (error) {
+            console.log("error", error);
+            Bert.alert(error.reason, 'danger');
+          } else {
+            Bert.alert('Patient updated!', 'success');
+            Session.set('patientFormData', {
+              index: 1,
+              id: '',
+              username: '',
+              email: '',
+              given: '',
+              family: '',
+              gender: ''
+            });
+            Session.set('patientDetailState', {
+              id: "",
+              name: "",
+              gender: "",
+              active: true,
+              birthdate: '',
+              photo: ""
+            });
+          }
       });
     } else {
       console.log("Creating a new patient...");
@@ -207,13 +222,21 @@ export default class PatientDetail extends React.Component {
           Bert.alert(error.reason, 'danger');
         } else {
           Bert.alert('Patient added!', 'success');
-          this.openTab(1);
+          Session.set('patientFormData', {
+            index: 1,
+            id: '',
+            username: '',
+            email: '',
+            given: '',
+            family: '',
+            gender: ''
+          });
           Session.set('patientDetailState', {
             id: "",
             name: "",
             gender: "",
             active: true,
-            birthdate: new Date(),
+            birthdate: '',
             photo: ""
           });
         }
@@ -233,7 +256,15 @@ export default class PatientDetail extends React.Component {
           Bert.alert(error.reason, 'danger');
         } else {
           Bert.alert('Patient deleted!', 'success');
-          this.openTab(1);
+          Session.set('patientFormData', {
+            index: 1,
+            id: '',
+            username: '',
+            email: '',
+            given: '',
+            family: '',
+            gender: ''
+          });
         }
       });
   }

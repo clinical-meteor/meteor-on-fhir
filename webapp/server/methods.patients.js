@@ -63,11 +63,11 @@ Meteor.methods({
       console.log('Patients already exist.  Skipping.');
     }
   },
-  dropPatients: function(){
+  dropTestPatients: function(){
     if (process.env.NODE_ENV === 'test') {
       console.log('-----------------------------------------');
-      console.log('Dropping patients... ');
-      Patients.find().forEach(function(patient){
+      console.log('Dropping test patients... ');
+      Patients.find({test: true}).forEach(function(patient){
         Patients.remove({_id: patient._id});
       });
     } else {

@@ -13,13 +13,15 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 
-// subscriptions
 Meteor.startup(function (){
+  // subscriptions that aren't provided via packages
   Meteor.subscribe('posts');
   Meteor.subscribe('topics');
 
+  // global session variables
   Session.set('showNavbars', true);
   Session.set('hasPagePadding', true);
+  Session.set('appSurfaceOffset', true);
 });
 
 

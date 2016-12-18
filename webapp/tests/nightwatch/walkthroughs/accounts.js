@@ -25,8 +25,10 @@ module.exports = {
   },
   'User gets logged in after signup.': function (client) {
     client
-      .waitForElementPresent('#welcomePatientPage', 1000)
-
+      .waitForElementPresent('#welcomePatientPage', 1000);
+  },
+  'User can access sidebar.': function (client) {
+    client
       .verify.elementPresent('#sidebarToggleButton')
         .click('#sidebarToggleButton').pause(1000)
 

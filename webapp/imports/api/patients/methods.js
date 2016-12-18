@@ -29,7 +29,7 @@ convertBirthdateToValidDate = function(document){
     delete document.birthDate;
   }
   return document;
-}
+};
 
 export const insertPatient = new ValidatedMethod({
   name: 'patients.insert',
@@ -48,10 +48,14 @@ export const insertPatient = new ValidatedMethod({
     document = convertBirthdateToValidDate(document);
     console.log("convertBirthdateToValidDate", document);
 
+    if (process.env.NODE_ENV === "test") {
+      document.test = true;
+    } else {
+      document.test = false;
+    }
 
     // now that's all done, we can insert the document
-    Patients.insert(document);
-
+    return Patients.insert(document);
   }
 });
 
@@ -73,17 +77,30 @@ export const updatePatient = new ValidatedMethod({
     delete patient._id;
     delete patient._document;
     delete patient._super_;
-    patient.name.text = update.name.text;
-    patient.gender = update.gender;
-    patient.photo = update.gender.photo;
+    delete patient._collection;
 
-    if (patient.birthDate) {
+    console.log("update.name", update.name);
+    update.name[0].resourceType = 'HumanName';
+
+
+
+    patient.name = [];
+    patient.name.push(update.name[0]);
+    patient.gender = update.gender;
+    patient.photo = [];
+
+    if (update.birthDate) {
       patient.birthDate = update.birthDate;
+    }
+    if (update && update.photo && update.photo[0] && update.photo[0].url) {
+      patient.photo.push({
+        url: update.photo[0].url
+      });
     }
 
     console.log("diffedPatient", patient);
 
-    Patients.update(_id, { $set: update });
+    return Patients.update({_id: _id}, { $set: patient });
   }
 });
 
@@ -94,6 +111,6 @@ export const removePatientById = new ValidatedMethod({
   }).validator(),
   run({ _id }) {
     console.log("Removing user " + _id);
-    Patients.remove({_id: _id});
+    return Patients.remove({_id: _id});
   }
 });
