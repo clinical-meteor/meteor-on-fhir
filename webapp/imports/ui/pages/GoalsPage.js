@@ -2,7 +2,7 @@ import React  from 'react';
 import ReactMixin  from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
-import { PageContainer } from '/imports/ui/components/PageContainer';
+import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 
 import ObservationsList  from '/imports/ui/workflows/observations/ObservationsList';
 import { Card, CardMedia, CardTitle, CardText, CardActions } from 'material-ui/Card';
@@ -54,13 +54,13 @@ export class GoalsPage extends React.Component {
   render() {
     return (
       <div id="goalsPage">
-        <PageContainer>
+        <VerticalCanvas>
           <GlassCard>
             <CardText>
               <GoalsCard />
             </CardText>
           </GlassCard>
-        </PageContainer>
+        </VerticalCanvas>
       </div>
     );
   }

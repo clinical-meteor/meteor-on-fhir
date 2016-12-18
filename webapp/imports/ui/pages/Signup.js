@@ -6,7 +6,7 @@ import TextField from 'material-ui/TextField';
 
 import { Row, Col } from 'react-bootstrap';
 
-import { PageContainer } from '/imports/ui/components/PageContainer';
+import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 import { MobilePadding } from '/imports/ui/components/MobilePadding';
 
 import { browserHistory } from 'react-router';
@@ -68,8 +68,8 @@ export class Signup extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
   }
-  loginRoute(){
-    browserHistory.push('/login');
+  signinRoute(){
+    browserHistory.push('/signin');
   }
   handleTouchTap(){
     //console.log('this', this);
@@ -117,7 +117,7 @@ export class Signup extends React.Component {
     return (
       <div id='signupPage'>
         <MobilePadding>
-          <PageContainer>
+          <VerticalCanvas>
                 <h4 className='page-header' style={this.data.style.textColor}>Sign Up</h4>
                 <form ref='signup' className='signup' onSubmit={ this.handleSubmit }>
                   <Row>
@@ -196,6 +196,10 @@ export class Signup extends React.Component {
                       floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
                       /><br/>
 
+                  <br/>
+                  <br/>
+                  <br/>
+                  <br/>
                   <RaisedButton
                     id='signupButton'
                     onTouchTap={this.handleTouchTap.bind(this)}
@@ -204,13 +208,13 @@ export class Signup extends React.Component {
                     primary={true} />
                   <RaisedButton
                     id='alreadyHaveAccountButton'
-                    onTouchTap={this.loginRoute }
-                    onClick={this.loginRoute }
+                    onTouchTap={this.signinRoute }
+                    onClick={this.signinRoute }
                     label='Already have an account?'
                     style={{marginLeft: '20px'}} />
                 </form>
 
-          </PageContainer>
+          </VerticalCanvas>
         </MobilePadding>
       </div>
     );

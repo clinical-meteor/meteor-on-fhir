@@ -2,11 +2,11 @@ import React  from 'react';
 import ReactMixin  from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
-import { PageContainer } from '/imports/ui/components/PageContainer';
+import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 import { GlassCard } from '/imports/ui/components/GlassCard';
 import { CardTitle, CardText } from 'material-ui/Card';
 
-import DeviceDetail from '../workflows/devices/DeviceDetail';
+import DeviceDetail from '/imports/ui/workflows/devices/DeviceDetail';
 import {Tabs, Tab} from 'material-ui/Tabs';
 
 import { Meteor } from 'meteor/meteor';
@@ -56,7 +56,7 @@ export class DevicePage extends React.Component {
     if(process.env.NODE_ENV === "test") console.log('In DevicePage render');
     return (
       <div id='devicesPage'>
-        <PageContainer>
+        <VerticalCanvas>
           <GlassCard>
             <CardTitle title='Devices' />
             <CardText>
@@ -73,7 +73,7 @@ export class DevicePage extends React.Component {
              </Tabs>
             </CardText>
           </GlassCard>
-        </PageContainer>
+        </VerticalCanvas>
       </div>
     );
   }

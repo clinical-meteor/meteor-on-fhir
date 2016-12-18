@@ -62,7 +62,7 @@ module.exports = {
     passInput: {
       selector: 'input[name=password]'
     },
-    loginButton: {
+    signinButton: {
       selector: 'button[type=submit]'
     }
   }

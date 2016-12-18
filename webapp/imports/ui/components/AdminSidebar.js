@@ -55,8 +55,8 @@ export class AdminSidebar extends React.Component {
              <ListItem primaryText='Practitioners' href='/practitioners' />
           </IndexLinkContainer>
 
-          <IndexLinkContainer to='/login'>
-             <ListItem className='logoutMenuItem' primaryText='Logout' href='/login' onClick={this.handleLogout} />
+          <IndexLinkContainer to='/signin'>
+             <ListItem className='logoutMenuItem' primaryText='Logout' href='/signin' onClick={this.handleLogout} />
           </IndexLinkContainer>
         </List>
       </div>

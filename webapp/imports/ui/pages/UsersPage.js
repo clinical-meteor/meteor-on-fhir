@@ -5,12 +5,12 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
-import { PageContainer } from '/imports/ui/components/PageContainer';
+import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 import { GlassCard } from '/imports/ui/components/GlassCard';
 import { CardText, CardActions } from 'material-ui/Card';
 
 import {Tabs, Tab} from 'material-ui/Tabs';
-import { UserTable } from '../workflows/users/UserTable';
+import { UserTable } from '/imports/ui/workflows/users/UserTable';
 
 
 let userCardTabbedState = {
@@ -84,7 +84,7 @@ export class UsersPage extends React.Component {
   render() {
     return (
       <div id="usersPage">
-        <PageContainer>
+        <VerticalCanvas>
           <GlassCard>
 
             <Tabs default index={this.data.state.index} onChange={this.handleTabChange}>
@@ -147,7 +147,7 @@ export class UsersPage extends React.Component {
            </Tabs>
 
           </GlassCard>
-        </PageContainer>
+        </VerticalCanvas>
       </div>
     );
   }

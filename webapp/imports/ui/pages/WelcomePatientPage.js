@@ -1,7 +1,7 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
 
-import { PageContainer } from '/imports/ui/components/PageContainer';
+import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 import { GlassCard } from '/imports/ui/components/GlassCard';
 import { CardText, CardActions } from 'material-ui/Card';
 
@@ -24,7 +24,7 @@ export class WelcomePatientPage extends React.Component {
   render(){
     return(
       <div id="welcomePatientPage">
-        <PageContainer>
+        <VerticalCanvas>
           <GlassCard>
             <CardText>
               Welcome!
@@ -36,7 +36,7 @@ export class WelcomePatientPage extends React.Component {
               <FlatButton label="Accept" onTouchTap={this.handleGo} />
             </CardActions>
           </GlassCard>
-        </PageContainer>
+        </VerticalCanvas>
       </div>
     );
   }

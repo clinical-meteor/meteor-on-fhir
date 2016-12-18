@@ -30,8 +30,8 @@ export class PublicSidebar extends React.Component {
   render () {
     return(
       <List style={{paddingLeft: '20px', position: 'static'}}>
-        <IndexLinkContainer to='/login'>
-           <ListItem primaryText='Sign In' href='/login' />
+        <IndexLinkContainer to='/signin'>
+           <ListItem primaryText='Sign In' href='/signin' />
         </IndexLinkContainer>
 
         <IndexLinkContainer to='/signup'>

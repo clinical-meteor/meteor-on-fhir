@@ -17,11 +17,11 @@ module.exports = {
   'user can log in/out' : function (client) {
     client.resizeWindow(1200, 1024);
 
-    client.page.loginPage()
-      .fillOutLoginPage('janedoe@test.org', 'janedoe')
-      .saveScreenshot('tests/nightwatch/screenshots/accounts/E-loginPage.png', client)
+    client.page.signinPage()
+      .fillOutSigninPage('janedoe@test.org', 'janedoe')
+      .saveScreenshot('tests/nightwatch/screenshots/accounts/E-signinPage.png', client)
       .pause(1000, client)
-      .login()
+      .signin()
       .pause(2000, client);
 
 

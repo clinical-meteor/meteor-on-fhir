@@ -18,12 +18,12 @@
 //   'Sign in.': function (client) {
 //     client.resizeWindow(1200, 1024);
 //
-//     const loginPage = client.page.loginPage();
+//     const signinPage = client.page.signinPage();
 //     const indexPage = client.page.indexPage();
 //
-//     loginPage
+//     signinPage
 //       .navigate()
-//       .login('alice@test.org', 'alice123')
+//       .signin('alice@test.org', 'alice123')
 //       .pause(1000, client);
 //
 //     indexPage.expect.element('#indexPage').to.be.present;

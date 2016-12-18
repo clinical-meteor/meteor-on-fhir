@@ -3,7 +3,7 @@ import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
 import { GlassCard } from '/imports/ui/components/GlassCard';
-import { PageContainer } from '/imports/ui/components/PageContainer';
+import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 
 import { CardTitle, CardText } from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
@@ -43,7 +43,7 @@ export default class AboutAppPage extends React.Component {
     return(
       <div id="aboutAppPage">
 
-        <PageContainer >
+        <VerticalCanvas >
           <GlassCard>
             <CardTitle
               title="About this Application"
@@ -54,7 +54,7 @@ export default class AboutAppPage extends React.Component {
               </div><br/>
             </CardText>
           </GlassCard>
-        </PageContainer>
+        </VerticalCanvas>
       </div>
     );
   }

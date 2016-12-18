@@ -1,7 +1,7 @@
 import React from 'react';
 import { Alert } from 'react-bootstrap';
 
-import { PageContainer } from '/imports/ui/components/PageContainer';
+import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 import { MobilePadding } from '/imports/ui/components/MobilePadding';
 
 // import OrbitalGlyph from '/imports/ui/components/OrbitalGlyph';
@@ -10,9 +10,9 @@ import { MobilePadding } from '/imports/ui/components/MobilePadding';
 export const NotFound = () => (
   <div id="notFoundPage">
     <MobilePadding>
-      <PageContainer>
+      <VerticalCanvas>
           <h4 style={{textAlign: "center"}}><strong>Error [404]</strong>: { window.location.pathname } does not exist.</h4>
-      </PageContainer>
+      </VerticalCanvas>
     </MobilePadding>
   </div>
 );

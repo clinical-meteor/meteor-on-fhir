@@ -3,9 +3,9 @@ import React  from 'react';
 import ReactMixin  from 'react-mixin';
 import { Tabs, Tab } from 'material-ui/Tabs';
 import { GlassCard } from '/imports/ui/components/GlassCard';
-import { PageContainer } from '/imports/ui/components/PageContainer';
-import PractitionerDetail  from '../workflows/practitioners/PractitionerDetail';
-import PractitionerTable  from '../workflows/practitioners/PractitionerTable';
+import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
+import PractitionerDetail  from '/imports/ui/workflows/practitioners/PractitionerDetail';
+import PractitionerTable  from '/imports/ui/workflows/practitioners/PractitionerTable';
 
 let defaultState = {
   index: 1,
@@ -79,7 +79,7 @@ export class PractitionersPage extends React.Component {
   render() {
     return (
       <div id="practitionersPage">
-        <PageContainer>
+        <VerticalCanvas>
           <GlassCard>
 
             <Tabs id="practitionerTabs" default index={this.data.state.index} onChange={this.handleTabChange}>
@@ -95,7 +95,7 @@ export class PractitionersPage extends React.Component {
             </Tabs>
 
           </GlassCard>
-        </PageContainer>
+        </VerticalCanvas>
       </div>
     );
   }

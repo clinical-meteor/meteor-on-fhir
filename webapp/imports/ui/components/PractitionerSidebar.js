@@ -39,6 +39,10 @@ export class PractitionerSidebar extends React.Component {
              <ListItem primaryText='Dashboard' href='/dashboard' />
           </IndexLinkContainer>
 
+          <IndexLinkContainer to='/'>
+             <ListItem primaryText='Index' href='/' />
+          </IndexLinkContainer>
+
           <IndexLinkContainer to='/patients'>
              <ListItem primaryText='Patients' href='/patients' />
           </IndexLinkContainer>
@@ -67,8 +71,8 @@ export class PractitionerSidebar extends React.Component {
              <ListItem primaryText='Careplan History' href='/careplan-history' />
           </IndexLinkContainer>
 
-          <IndexLinkContainer to='/login'>
-             <ListItem className='logoutMenuItem' primaryText='Logout' href='/login' onClick={this.handleLogout} />
+          <IndexLinkContainer to='/signin'>
+             <ListItem className='logoutMenuItem' primaryText='Logout' href='/signin' onClick={this.handleLogout} />
           </IndexLinkContainer>
 
         </List>
@@ -77,6 +81,6 @@ export class PractitionerSidebar extends React.Component {
     );
   }
 }
-PractitionerSidebar.propTypes = {};
-PractitionerSidebar.defaultProps = {};
+
+
 ReactMixin(PractitionerSidebar.prototype, ReactMeteorData);

@@ -2,7 +2,7 @@ import React  from 'react';
 import ReactMixin  from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
-import { PageContainer } from '/imports/ui/components/PageContainer';
+import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 import { DynamicSpacer }  from '/imports/ui/components/DynamicSpacer';
 
 //import ObservationsList  from '/imports/ui/containers/observations-list';
@@ -72,10 +72,10 @@ export class ObservationPage extends React.Component {
   render() {
     return (
       <div id="ObservationPage">
-        <PageContainer>
+        <VerticalCanvas>
           { this.renderAuthenticatedUserControls(this.data.state.isLoggedIn) }
           <ObservationsDeck userId={this.props.routeParams.userId} />
-        </PageContainer>
+        </VerticalCanvas>
       </div>
     );
   }

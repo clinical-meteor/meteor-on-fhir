@@ -2,7 +2,7 @@ import React  from 'react';
 import ReactMixin  from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
-import { PageContainer } from '/imports/ui/components/PageContainer';
+import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 
 import ObservationTable  from '/imports/ui/workflows/observations/ObservationTable';
 import { Card, CardMedia, CardTitle, CardText, CardActions } from 'material-ui/Card';
@@ -53,11 +53,11 @@ export class ObservationHistoryPage extends React.Component {
   render() {
     return (
       <div id="observationHistoryPage">
-        <PageContainer>
+        <VerticalCanvas>
           <GlassCard>
             <ObservationTable />
           </GlassCard>
-        </PageContainer>
+        </VerticalCanvas>
       </div>
     );
   }

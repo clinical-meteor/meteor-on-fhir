@@ -12,13 +12,10 @@ import { PublicNavigation } from '../components/PublicNavigation';
 import AppBar from '/imports/ui/layouts/AppBar';
 
 // header
-import ActionHome from 'material-ui/svg-icons/action/home';
 import IconButton from 'material-ui/IconButton';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
-import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
-import FlatButton from 'material-ui/FlatButton';
 
-
+import Glass from '/imports/ui/Glass';
 
 Sidebar = {
   lastUpdate: new Date(),
@@ -83,25 +80,12 @@ export class Header extends React.Component {
     }
 
     if (!Session.get('showNavbars')) {
-      data.style.top = '-60px';
+      data.style.appbar.top = '-6.4em';
     }
 
 
-    // // this should all be handled by props
-    // // or a mixin!
-    // if (Session.get('darkroomEnabled')) {
-    //   data.style.appbar.color = 'black !important';
-    //   data.style.appbar.background = 'white';
-    // } else {
-    //   data.style.appbar.color = 'white !important';
-    //   data.style.appbar.background = 'black';
-    // }
-
-    // this could be another mixin
-    if (Session.get('glassBlurEnabled')) {
-      data.style.filter = 'blur(3px)';
-      data.style.webkitFilter = 'blur(3px)';
-    }
+    data.style = Glass.blur(data.style);
+    data.style.appbar = Glass.darkroom(data.style.appbar);
 
     if (Meteor.user()) {
       data.hasUser = true;
@@ -118,9 +102,6 @@ export class Header extends React.Component {
   }
 
   toggleDrawerActive(){
-    console.log("toggleDrawerActive");
-    //Session.toggle('drawerActive');
-
     // this is hacky
     // taping on the Panel should autoclose the sidebar (we may even gray out the panel eventually)
     // and we set a small timeout on the toggleDrawerActive to let closeOpenedSidebar() do it's thing first
@@ -134,15 +115,8 @@ export class Header extends React.Component {
 
   renderNavigation(hasUser) {
     if (hasUser) {
-      // return <FlatButton label="Authenticated" />;
       return <AuthenticatedNavigation />;
     } else {
-      // return(
-      //   <div id="publicNavigation">
-      //     <FlatButton id='loginLink' label="Login" style={this.data.style.title} href='/login' />
-      //     <FlatButton id='signupLink' label="Register" style={this.data.style.title} href='/signup' />
-      //   </div>
-      // );
       return <PublicNavigation />;
     }
   }
@@ -150,6 +124,7 @@ export class Header extends React.Component {
   render () {
     return(
       <AppBar
+        id="appHeader"
         title={this.data.app.title}
         iconElementLeft={<IconButton><NavigationClose style={this.data.style.title} /></IconButton>}
         onTitleTouchTap={this.toggleDrawerActive}

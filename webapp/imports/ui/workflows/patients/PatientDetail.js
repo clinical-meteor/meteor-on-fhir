@@ -8,12 +8,17 @@ import RaisedButton from 'material-ui/RaisedButton';
 import { CardText, CardActions } from 'material-ui/Card';
 
 
-import { insertPatient, updatePatient, removePatientById } from '../../../api/patients/methods';
+import { insertPatient, updatePatient, removePatientById } from '/imports/ui/workflows/patients/methods';
 import { Bert } from 'meteor/themeteorchef:bert';
 
-let defaultState = false;
-
-Session.setDefault('patientDetailState', defaultState);
+Session.setDefault('patientDetailState', {
+  id: "",
+  name: "",
+  gender: "",
+  active: true,
+  birthdate: '',
+  photo: ""
+});
 
 
 export default class PatientDetail extends React.Component {
@@ -25,7 +30,7 @@ export default class PatientDetail extends React.Component {
         name: "",
         gender: "",
         active: true,
-        birthdate: new Date(),
+        birthdate: '',
         photo: ""
       }
     };
@@ -37,12 +42,18 @@ export default class PatientDetail extends React.Component {
       if (selectedPatient) {
         data.patient = {
           id: selectedPatient._id,
-          birthdate: new Date(moment(selectedPatient.birthdate)),
+          birthdate: moment(selectedPatient.birthDate).format("YYYY-MM-DD"),
           gender: selectedPatient.gender,
           active: selectedPatient.active.toString(),
-          photo: selectedPatient.photo ? selectedPatient.photo[0].url : "",
-          name: selectedPatient.name ? selectedPatient.name[0].text : ""
+          photo: "",
+          name: ""
         };
+        if (selectedPatient.photo && selectedPatient.photo[0] && selectedPatient.photo[0].url) {
+          data.patient.photo = selectedPatient.photo[0].url;
+        }
+        if (selectedPatient.name && selectedPatient.name[0] && selectedPatient.name[0].text) {
+          data.patient.name = selectedPatient.name[0].text;
+        }
       }
     }
 
@@ -50,21 +61,20 @@ export default class PatientDetail extends React.Component {
       data.patient = Session.get('patientDetailState');
     }
 
-    //console.log("data", data);
-
+    if(process.env.NODE_ENV === "test") console.log("PatientDetail[data]", data);
     return data;
   }
 
   render() {
     return (
-      <div className="patientDetail">
+      <div id={this.props.id} className="patientDetail">
         <CardText>
           <TextField
             id='nameInput'
             ref='name'
             name='name'
             floatingLabelText='name'
-            defaultValue={this.data.patient.name}
+            value={this.data.patient.name}
             onChange={ this.changeState.bind(this, 'name')}
             fullWidth
             /><br/>
@@ -73,8 +83,17 @@ export default class PatientDetail extends React.Component {
             ref='gender'
             name='gender'
             floatingLabelText='gender'
-            defaultValue={this.data.patient.gender}
+            value={this.data.patient.gender}
             onChange={ this.changeState.bind(this, 'gender')}
+            fullWidth
+            /><br/>
+          <TextField
+            id='birthdateInput'
+            ref='birthdate'
+            name='birthdate'
+            floatingLabelText='birthdate'
+            value={this.data.patient.birthdate}
+            onChange={ this.changeState.bind(this, 'birthdate')}
             fullWidth
             /><br/>
           <TextField
@@ -82,17 +101,8 @@ export default class PatientDetail extends React.Component {
             ref='photo'
             name='photo'
             floatingLabelText='photo'
-            defaultValue={this.data.patient.photo}
+            value={this.data.patient.photo}
             onChange={ this.changeState.bind(this, 'photo')}
-            fullWidth
-            /><br/>
-          <TextField
-            id='activeInput'
-            ref='active'
-            name='active'
-            floatingLabelText='active'
-            defaultValue={this.data.patient.active}
-            onChange={ this.changeState.bind(this, 'active')}
             fullWidth
             /><br/>
         </CardText>
@@ -106,30 +116,30 @@ export default class PatientDetail extends React.Component {
     if (patientId) {
       return (
         <div>
-          <RaisedButton label="Save" primary={true} onClick={this.handleSaveButton.bind(this)} />
+          <RaisedButton id='savePatientButton' className='savePatientButton' label="Save" primary={true} onClick={this.handleSaveButton.bind(this)} />
           <RaisedButton label="Delete" onClick={this.handleDeleteButton.bind(this)} />
         </div>
       );
     } else {
       return(
-        <RaisedButton label="Save" primary={true} onClick={this.handleSaveButton.bind(this)} />
+        <RaisedButton id='savePatientButton'  className='savePatientButton' label="Save" primary={true} onClick={this.handleSaveButton.bind(this)} />
       );
     }
   }
 
   // this could be a mixin
-  changeState(field, value){
+  changeState(field, event, value){
 
-    //console.log("changeState", value);
+    //console.log("changeState", field, value);
 
     // by default, assume there's no other data and we're creating a new patient
     let patientUpdate = {
       id: "",
-      birthdate: new Date(),
-      gender: "",
+      birthdate: '',
+      gender: '',
       active: true,
       name: "",
-      photo: ""
+      photo: ''
     };
 
     // if there's an existing patient, use them
@@ -140,77 +150,99 @@ export default class PatientDetail extends React.Component {
     if (typeof Session.get('patientDetailState') === "object") {
       patientUpdate = Session.get('patientDetailState');
     }
-    // if (field === "birthdate") {
-    //   patientUpdate[field] = new Date(value);
-    // } else {
-    //   patientUpdate[field] = value;
-    // }
+
     patientUpdate[field] = value;
 
-    console.log("patientUpdate", patientUpdate);
-
+    //console.log("patientUpdate", patientUpdate);
     Session.set('patientDetailState', patientUpdate);
   }
 
   openTab(index){
     // set which tab is selected
-    let state = Session.get('patientCardState');
+    let state = Session.get('patientFormData');
     state["index"] = index;
-    Session.set('patientCardState', state);
+    Session.set('patientFormData', state);
   }
 
   // this could be a mixin
   handleSaveButton(){
-    console.log("this", this);
+    console.log("handleSaveButton", this);
+
+      let patientUpdate = Session.get('patientDetailState');
+      console.log("patientUpdate", patientUpdate);
 
       let patientFormData = {
+        'active': true,
         'name': [{
-          'text': this.refs.name.refs.input.value
+          'text': patientUpdate.name
         }],
-        'birthdate': this.refs.birthdate.props.value,
-        'gender': this.refs.gender.refs.input.value,
+        'birthDate': patientUpdate.birthdate,
+        'gender': patientUpdate.gender,
         'photo': [{
-          url: this.refs.photo.refs.input.value
+          url: patientUpdate.photo
         }]
       };
 
-      if (this.refs.active.refs.input.value === "true") {
-        patientFormData.active = true;
-      } else {
-        patientFormData.active = false;
-      }
-
-      console.log("patientFormData", patientFormData);
-
+    console.log("patientFormData", patientFormData);
 
     if (Session.get('selectedPatient')) {
-      console.log("update practioner");
-
-      updatePatient.call(
-        {_id: Session.get('selectedPatient'), update: patientFormData }, (error) => {
-        if (error) {
-          console.log("error", error);
-          Bert.alert(error.reason, 'danger');
-        } else {
-          Bert.alert('Patient updated!', 'success');
-          this.openTab(1);
-        }
+      console.log("Updating patient...");
+      updatePatient.call({
+          _id: Session.get('selectedPatient'),
+          update: patientFormData
+        }, function(error, result) {
+          if (error) {
+            console.log("error", error);
+            Bert.alert(error.reason, 'danger');
+          } else {
+            Bert.alert('Patient updated!', 'success');
+            Session.set('patientFormData', {
+              index: 1,
+              id: '',
+              username: '',
+              email: '',
+              given: '',
+              family: '',
+              gender: ''
+            });
+            Session.set('patientDetailState', {
+              id: "",
+              name: "",
+              gender: "",
+              active: true,
+              birthdate: '',
+              photo: ""
+            });
+          }
       });
     } else {
-
-      console.log("create a new patient", patientFormData);
-
-      //Meteor.users.insert(patientFormData);
+      console.log("Creating a new patient...");
       insertPatient.call(patientFormData, (error) => {
         if (error) {
           Bert.alert(error.reason, 'danger');
         } else {
           Bert.alert('Patient added!', 'success');
-          this.openTab(1);
+          Session.set('patientFormData', {
+            index: 1,
+            id: '',
+            username: '',
+            email: '',
+            given: '',
+            family: '',
+            gender: ''
+          });
+          Session.set('patientDetailState', {
+            id: "",
+            name: "",
+            gender: "",
+            active: true,
+            birthdate: '',
+            photo: ""
+          });
         }
       });
     }
-  };
+  }
 
   // this could be a mixin
   handleCancelButton(){
@@ -220,15 +252,22 @@ export default class PatientDetail extends React.Component {
   handleDeleteButton(){
     removePatientById.call(
       {_id: Session.get('selectedPatient')}, (error) => {
-      if (error) {
-        Bert.alert(error.reason, 'danger');
-      } else {
-        Bert.alert('Patient deleted!', 'success');
-        this.openTab(1);
-      }
-    });
-  };
-
+        if (error) {
+          Bert.alert(error.reason, 'danger');
+        } else {
+          Bert.alert('Patient deleted!', 'success');
+          Session.set('patientFormData', {
+            index: 1,
+            id: '',
+            username: '',
+            email: '',
+            given: '',
+            family: '',
+            gender: ''
+          });
+        }
+      });
+  }
 }
 
 

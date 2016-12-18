@@ -5,7 +5,7 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 
 import { AboutAppCard } from '/imports/ui/components/AboutAppCard';
 import { GlassCard } from '/imports/ui/components/GlassCard';
-import { PhoneContainer } from '/imports/ui/components/PhoneContainer';
+import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 
 import { CardTitle, CardText } from 'material-ui/Card';
 
@@ -22,7 +22,7 @@ export class SupportPage extends React.Component {
   render(){
     return(
       <div id="supportPage">
-        <PhoneContainer >
+        <VerticalCanvas >
           <GlassCard>
             <CardTitle
               title="Support"
@@ -31,7 +31,7 @@ export class SupportPage extends React.Component {
               For help and support email customerservice@symptomatic.io
             </CardText>
           </GlassCard>
-        </PhoneContainer>
+        </VerticalCanvas>
       </div>
     );
   }
