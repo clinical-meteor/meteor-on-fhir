@@ -365,7 +365,7 @@ export class MyProfilePage extends React.Component {
           Bert.alert(error.reason, 'danger');
         } else {
           Bert.alert('User removed!', 'success');
-          browserHistory.push('/login');
+          browserHistory.push('/signin');
         }
       });
     } else {

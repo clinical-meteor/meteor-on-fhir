@@ -3,7 +3,7 @@
 module.exports = {
   url: 'http://localhost:3000/login',
   commands: [{
-  fillOutLoginPage: function(email, password) {
+  fillOutSigninPage: function(email, password) {
     return this
       .verify.elementPresent("#loginPage")
       .verify.elementPresent('input[name="emailAddress"]')

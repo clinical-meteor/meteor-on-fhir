@@ -18,7 +18,7 @@ module.exports = {
     client.resizeWindow(1200, 1024);
 
     client.page.loginPage()
-      .fillOutLoginPage('janedoe@test.org', 'janedoe')
+      .fillOutSigninPage('janedoe@test.org', 'janedoe')
       .saveScreenshot('tests/nightwatch/screenshots/accounts/E-loginPage.png', client)
       .pause(1000, client)
       .login()

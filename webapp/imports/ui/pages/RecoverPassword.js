@@ -28,7 +28,7 @@ export class RecoverPassword extends React.Component {
       style: Theme.palette()
     };
 
-    if(process.env.NODE_ENV === "test") console.log("Login[data]", data);
+    if(process.env.NODE_ENV === "test") console.log("Signin[data]", data);
     return data;
   }
   recoverPassword(){

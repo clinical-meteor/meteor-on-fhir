@@ -7,7 +7,7 @@ import { AboutPage } from '/imports/ui/pages/AboutPage';
 import { PrivacyPage } from '/imports/ui/pages/PrivacyPage';
 import { DashboardPage } from '/imports/ui/pages/DashboardPage';
 import { ForumPage } from '/imports/ui/pages/ForumPage';
-import { Login } from '/imports/ui/pages/Login';
+import { Signin } from '/imports/ui/pages/Signin';
 import { MyProfilePage } from '/imports/ui/pages/MyProfilePage';
 import { PatientsPage } from '/imports/ui/workflows/patients/PatientsPage';
 import { PractitionersPage } from '/imports/ui/pages/PractitionersPage';
@@ -44,7 +44,7 @@ browserHistory.listen(function(event) {
 const requireAuth = (nextState, replace) => {
   if (!Meteor.loggingIn() && !Meteor.userId()) {
     replace({
-      pathname: '/login',
+      pathname: '/signin',
       state: { nextPathname: nextState.location.pathname }
     });
   }
@@ -76,7 +76,7 @@ const requreSysadmin = (nextState, replace) => {
 //
 //   if (!Meteor.loggingIn() && !Meteor.userId()) {
 //     replace({
-//       pathname: '/login',
+//       pathname: '/signin',
 //       state: { nextPathname: nextState.location.pathname }
 //     });
 //   } else if (Roles.userIsInRole(Meteor.userId(), 'sysadmin')) {
@@ -104,7 +104,7 @@ Meteor.startup(() => {
         <Route name="sysadmin" path="/sysadmin" component={ AdminDashboard } onEnter={ requreSysadmin } />
         <Route name="practitioner" path="/practitioner" component={ PractitionerDashboard } onEnter={ requireAuth } />
 
-        <Route name="login" path="/login" component={ Login } />
+        <Route name="signin" path="/signin" component={ Signin } />
         <Route name="recover-password" path="/recover-password" component={ RecoverPassword } />
         <Route name="reset-password" path="/reset-password/:token" component={ ResetPassword } />
         <Route name="signup" path="/signup" component={ Signup } />

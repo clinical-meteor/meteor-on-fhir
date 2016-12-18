@@ -104,7 +104,7 @@ export class AuthenticatedNavigation extends React.Component {
   }
 
   handleLogout() {
-    Meteor.logout(() => browserHistory.push('/login'));
+    Meteor.logout(() => browserHistory.push('/signin'));
   }
 
   handleProfile() {

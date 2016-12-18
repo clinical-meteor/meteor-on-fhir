@@ -47,7 +47,7 @@ module.exports = {
   },
   'User can sign in.': function (client) {
     client.page.loginPage()
-      .fillOutLoginPage('alice@test.org', 'alicedoe')
+      .fillOutSigninPage('alice@test.org', 'alicedoe')
       .saveScreenshot('tests/nightwatch/screenshots/accounts/E-loginPage.png', client)
       .pause(1000, client)
       .login()

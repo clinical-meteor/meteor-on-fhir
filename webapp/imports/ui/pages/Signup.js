@@ -68,8 +68,8 @@ export class Signup extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
   }
-  loginRoute(){
-    browserHistory.push('/login');
+  signinRoute(){
+    browserHistory.push('/signin');
   }
   handleTouchTap(){
     //console.log('this', this);
@@ -208,8 +208,8 @@ export class Signup extends React.Component {
                     primary={true} />
                   <RaisedButton
                     id='alreadyHaveAccountButton'
-                    onTouchTap={this.loginRoute }
-                    onClick={this.loginRoute }
+                    onTouchTap={this.signinRoute }
+                    onClick={this.signinRoute }
                     label='Already have an account?'
                     style={{marginLeft: '20px'}} />
                 </form>

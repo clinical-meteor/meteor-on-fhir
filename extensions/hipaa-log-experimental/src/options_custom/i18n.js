@@ -20,7 +20,7 @@ this.i18n = {
         "de": "Information"
     },
     "login": {
-        "en": "Login",
+        "en": "Signin",
         "de": "Anmeldung"
     },
     "username": {

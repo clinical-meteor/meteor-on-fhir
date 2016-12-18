@@ -16,13 +16,13 @@ import { lightBaseTheme, darkBaseTheme } from 'material-ui/styles';
 
 import Theme from '/imports/ui/Theme';
 
-export class Login extends React.Component {
+export class Signin extends React.Component {
   getMeteorData() {
     let data = {
       style: Theme.palette()
     };
 
-    if(process.env.NODE_ENV === "test") console.log("Login[data]", data);
+    if(process.env.NODE_ENV === "test") console.log("Signin[data]", data);
     return data;
   }
   handleSubmit(event) {
@@ -35,7 +35,7 @@ export class Login extends React.Component {
     if(process.env.NODE_ENV === "test") console.log("this", this);
     let self = this;
 
-    Meteor.loginWithPassword(
+    Meteor.signinWithPassword(
       this.refs.emailAddress.input.value,
       this.refs.password.input.value,
     (error) => {
@@ -54,11 +54,11 @@ export class Login extends React.Component {
   }
   render() {
     return (
-      <div id="loginPage">
+      <div id="signinPage">
         <MobilePadding>
           <VerticalCanvas>
-            <h4 className="page-header" style={this.data.style.textColor}>Login</h4>
-            <form ref="login" className="login">
+            <h4 className="page-header" style={this.data.style.textColor}>Sign In</h4>
+            <form ref="signin" className="signin">
               <TextField
                 type="email"
                 ref="emailAddress"
@@ -88,7 +88,7 @@ export class Login extends React.Component {
               <br/>
               <br/>
               <br/>
-              <RaisedButton id="loginButton" onTouchTap={this.handleTouchTap.bind(this)} label="Login" primary={true} />
+              <RaisedButton id="signinButton" onTouchTap={this.handleTouchTap.bind(this)} label="Signin" primary={true} />
               <RaisedButton id="forgotPasswordButton" onTouchTap={this.forgotPasswordRoute } label="Forgot password?" style={{marginLeft: "20px"}} />
             </form>
 
@@ -98,4 +98,4 @@ export class Login extends React.Component {
     );
   }
 }
-ReactMixin(Login.prototype, ReactMeteorData);
+ReactMixin(Signin.prototype, ReactMeteorData);

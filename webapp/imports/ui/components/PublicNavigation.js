@@ -22,8 +22,8 @@ export class PublicNavigation extends React.Component {
   render () {
     return(
       <div id="publicNavigation">
-        <IndexLinkContainer to="login">
-          <FlatButton id='loginLink' label="Login" style={this.data.style.title} href='/login' />
+        <IndexLinkContainer to="signin">
+          <FlatButton id='signinLink' label="Signin" style={this.data.style.title} href='/signin' />
         </IndexLinkContainer>
         <IndexLinkContainer to="signup">
           <FlatButton id='signupLink' label="Register" style={this.data.style.title} href='/signup' />

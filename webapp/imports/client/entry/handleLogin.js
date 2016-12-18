@@ -7,11 +7,11 @@ import { getInputValue } from './getInputValue';
 
 let component;
 
-const login = () => {
+const signin = () => {
   const email = getInputValue(component.refs.emailAddress);
   const password = getInputValue(component.refs.password);
 
-  Meteor.loginWithPassword(email, password, (error) => {
+  Meteor.signinWithPassword(email, password, (error) => {
     if (error) {
       Bert.alert(error.reason, 'warning');
     } else {
@@ -28,7 +28,7 @@ const login = () => {
 };
 
 const validate = () => {
-  $(component.refs.login).validate({
+  $(component.refs.signin).validate({
     rules: {
       emailAddress: {
         required: true,
@@ -47,11 +47,11 @@ const validate = () => {
         required: 'Need a password here.'
       }
     },
-    submitHandler() { login(); }
+    submitHandler() { signin(); }
   });
 };
 
-export const handleLogin = (options) => {
+export const handleSignin = (options) => {
   component = options.component;
   validate();
 };
