@@ -26,7 +26,7 @@ import { NewTopicPage } from '/imports/ui/pages/NewTopicPage';
 import { NeedToBeSysadmin } from '/imports/ui/pages/NeedToBeSysadmin';
 import { NeedToBePractitioner } from '/imports/ui/pages/NeedToBePractitioner';
 
-import { MasterIndex } from '/imports/ui/pages/MasterIndex';
+import { MainIndex } from '/imports/ui/pages/MainIndex';
 import { AdminDashboard } from '/imports/ui/pages/AdminDashboard';
 import { PractitionerDashboard } from '/imports/ui/pages/PractitionerDashboard';
 
@@ -99,7 +99,7 @@ Meteor.startup(() => {
   render(
     <Router history={ browserHistory }>
       <Route path="/" component={ App }>
-        <IndexRoute name="index" component={ MasterIndex } onEnter={ requireAuth } />
+        <IndexRoute name="index" component={ MainIndex } onEnter={ requireAuth } />
 
         <Route name="sysadmin" path="/sysadmin" component={ AdminDashboard } onEnter={ requreSysadmin } />
         <Route name="practitioner" path="/practitioner" component={ PractitionerDashboard } onEnter={ requireAuth } />

@@ -10,7 +10,7 @@ import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 
 import { browserHistory } from 'react-router';
 
-export class MasterIndex extends React.Component {
+export class MainIndex extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -175,7 +175,7 @@ export class MasterIndex extends React.Component {
 
 
 
-MasterIndex.propTypes = {
+MainIndex.propTypes = {
   hasUser: React.PropTypes.object
 };
-ReactMixin(MasterIndex.prototype, ReactMeteorData);
+ReactMixin(MainIndex.prototype, ReactMeteorData);
