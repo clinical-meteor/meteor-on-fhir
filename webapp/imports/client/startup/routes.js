@@ -10,7 +10,7 @@ import { ForumPage } from '/imports/ui/pages/ForumPage';
 import { Signin } from '/imports/ui/pages/Signin';
 import { MyProfilePage } from '/imports/ui/pages/MyProfilePage';
 import { PatientsPage } from '/imports/ui/workflows/patients/PatientsPage';
-import { PractitionersPage } from '/imports/ui/pages/PractitionersPage';
+import { PractitionersPage } from '/imports/ui/workflows/practitioners/PractitionersPage';
 import { Signup } from '/imports/ui/pages/Signup';
 import { ThemePage } from '/imports/ui/pages/ThemePage';
 import { UsersPage } from '/imports/ui/pages/UsersPage';

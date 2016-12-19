@@ -10,41 +10,59 @@ import { insertPractitioner, updatePractitioner, removePractitionerById } from '
 import { Bert } from 'meteor/themeteorchef:bert';
 
 
-let defaultState = false;
+let defaultPractitioner = {
+  name: '',
+  telecomValue: '',
+  telecomUse: '',
+  qualificationId: '',
+  qualificationStart: '',
+  qualificationEnd: '',
+  issuer: ''
+};
 
-Session.setDefault('practitionerDetailState', defaultState);
+Session.setDefault('practitionerDetailState', defaultPractitioner);
 
 
 export default class PractitionerDetail extends React.Component {
   getMeteorData() {
     let data = {
       practitionerId: false,
-      practitioner: {
-        id: "",
-        username: "",
-        gender: "",
-        active: "",
-        email: "",
-        name: "",
-        photo: ""
-      }
+      practitioner: defaultPractitioner
     };
 
     if (Session.get('selectedPractitioner')) {
       data.practitionerId = Session.get('selectedPractitioner');
 
       let selectedPractitioner = Practitioners.findOne({_id: Session.get('selectedPractitioner')});
+      console.log("selectedPractitioner", selectedPractitioner);
+
       if (selectedPractitioner) {
-        data.practitioner = {
-          id: selectedPractitioner._id,
-          username: selectedPractitioner.username,
-          gender: selectedPractitioner.gender,
-          active: selectedPractitioner.active.toString(),
-          email: selectedPractitioner.emails ? selectedPractitioner.emails[0].address : "",
-          name: selectedPractitioner.name ? selectedPractitioner.name.text : "",
-          given: selectedPractitioner.name ? selectedPractitioner.name.given : "",
-          family: selectedPractitioner.name ? selectedPractitioner.name.family : ""
-        };
+
+        if (selectedPractitioner._id) {
+          data.practitioner._id = selectedPractitioner._id;
+        }
+        if (selectedPractitioner.name && selectedPractitioner.name && selectedPractitioner.name.text ) {
+          data.practitioner.name = selectedPractitioner.name.text;
+        }
+        if (selectedPractitioner.telecom && selectedPractitioner.telecom[0] && selectedPractitioner.telecom[0].value ) {
+          data.practitioner.telecomValue = selectedPractitioner.telecom[0].value;
+        }
+        if (selectedPractitioner.telecom && selectedPractitioner.telecom[0] && selectedPractitioner.telecom[0].use ) {
+          data.practitioner.telecomUse = selectedPractitioner.telecom[0].use;
+        }
+
+        if (selectedPractitioner.qualification && selectedPractitioner.qualification[0] && selectedPractitioner.qualification[0].identifier && selectedPractitioner.qualification[0].identifier[0] && selectedPractitioner.qualification[0].identifier[0].value ) {
+          data.practitioner.qualificationId = selectedPractitioner.qualification[0].identifier[0].value;
+        }
+        if (selectedPractitioner.qualification && selectedPractitioner.qualification[0] && selectedPractitioner.qualification[0].identifier && selectedPractitioner.qualification[0].identifier[0] && selectedPractitioner.qualification[0].identifier[0].period && selectedPractitioner.qualification[0].identifier[0].period.start ) {
+          data.practitioner.qualificationStart = selectedPractitioner.qualification[0].identifier[0].period.start;
+        }
+        if (selectedPractitioner.qualification && selectedPractitioner.qualification[0] && selectedPractitioner.qualification[0].identifier && selectedPractitioner.qualification[0].identifier[0] && selectedPractitioner.qualification[0].identifier[0].period && selectedPractitioner.qualification[0].identifier[0].period.end) {
+          data.practitioner.qualificationEnd = selectedPractitioner.qualification[0].identifier[0].period.end;
+        }
+        if (selectedPractitioner.qualification && selectedPractitioner.qualification[0] && selectedPractitioner.qualification[0].issuer && selectedPractitioner.qualification[0].issuer.display ) {
+          data.practitioner.issuer = selectedPractitioner.qualification[0].issuer.display;
+        }
       }
     }
 
@@ -52,32 +70,114 @@ export default class PractitionerDetail extends React.Component {
       data.practitioner = Session.get('practitionerDetailState');
     }
 
+    if(process.env.NODE_ENV === "test") console.log("PractitionerDetail[data]", data);
     return data;
   }
 
-  // // this could be a mixin
-  // changeState(field, event, value){
-  //   let state = Session.get('userCardTabbedState');
-  //   state[field] = value;
-  //   Session.set('userCardTabbedState', state);
-  // }
 
+  render() {
+    return (
+      <div id={this.props.id} className="practitionerDetail">
+        <CardText>
+          <TextField
+            id='practitionerNameInput'
+            ref='name'
+            name='name'
+            type='text'
+            floatingLabelText='name'
+            value={this.data.practitioner.name}
+            onChange={ this.changeState.bind(this, 'name')}
+            fullWidth
+            /><br/>
+          <TextField
+            id='telecomValueInput'
+            ref='telecomValue'
+            name='telecomValue'
+            type='text'
+            floatingLabelText='telecom value (701-555-1234)'
+            value={this.data.practitioner.telecomValue}
+            onChange={ this.changeState.bind(this, 'telecomValue')}
+            fullWidth
+            /><br/>
+          <TextField
+            id='telecomUseInput'
+            ref='telecomUse'
+            name='telecomUse'
+            type='text'
+            floatingLabelText='telecom use (work | mobile | home)'
+            value={this.data.practitioner.telecomUse}
+            onChange={ this.changeState.bind(this, 'telecomUse')}
+            fullWidth
+            /><br/>
+          <TextField
+            id='issuerInput'
+            ref='issuer'
+            name='issuer'
+            type='text'
+            floatingLabelText='issuer'
+            value={this.data.practitioner.issuer}
+            onChange={ this.changeState.bind(this, 'issuer')}
+            fullWidth
+            /><br/>
+          <TextField
+            id='qualificationIdInput'
+            ref='qualificationId'
+            name='qualificationId'
+            type='text'
+            floatingLabelText='qualification ID'
+            value={this.data.practitioner.qualificationId}
+            onChange={ this.changeState.bind(this, 'qualificationId')}
+            fullWidth
+            /><br/>
+          <TextField
+            id='qualificationStartInput'
+            ref='qualificationStart'
+            name='qualificationStart'
+            type='text'
+            floatingLabelText='start'
+            value={this.data.practitioner.qualificationStart}
+            onChange={ this.changeState.bind(this, 'qualificationStart')}
+            fullWidth
+            /><br/>
+          <TextField
+            id='qualificationEndInput'
+            ref='qualificationEnd'
+            name='qualificationEnd'
+            type='text'
+            floatingLabelText='end'
+            value={this.data.practitioner.qualificationEnd}
+            onChange={ this.changeState.bind(this, 'qualificationEnd')}
+            fullWidth
+            /><br/>
+        </CardText>
+        <CardActions>
+          { this.determineButtons(this.data.practitionerId) }
+        </CardActions>
+      </div>
+    );
+  }
+  determineButtons(practitionerId){
+    if (practitionerId) {
+      return (
+        <div>
+          <RaisedButton id="savePractitionerButton" className="savePractitionerButton" primary={true} label="Save" onClick={this.handleSaveButton.bind(this)} />
+          <RaisedButton id="deletePractitionerButton" label="Delete" onClick={this.handleDeleteButton.bind(this)} />
+        </div>
+      );
+    } else {
+      return(
+        <RaisedButton id="savePractitionerButton" className="savePractitionerButton" primary={true} label="Save" onClick={this.handleSaveButton.bind(this)} />
+      );
+    }
+  }
 
   // this could be a mixin
-  changeState(field, value){
+  changeState(field, event, value){
 
     console.log("changeState", value);
 
     // by default, assume there's no other data and we're creating a new practitioner
-    let practitionerUpdate = {
-      id: "",
-      username: "",
-      gender: "",
-      active: "",
-      email: "",
-      name: "",
-      photo: ""
-    }
+    let practitionerUpdate = defaultPractitioner;
 
     // if there's an existing practitioner, use them
     if (Session.get('selectedPractitioner')) {
@@ -103,36 +203,24 @@ export default class PractitionerDetail extends React.Component {
 
   // this could be a mixin
   handleSaveButton(){
-      let practitionerFormData = {
-        'name': {
-          'text': this.refs.name.refs.input.value
-        },
-        'identifier': [],
-        'gender': this.refs.gender.refs.input.value,
-        'photo': [{
-          url: this.refs.photo.refs.input.value
-        }]
-      };
+    console.log("handleSaveButton", this);
 
-      if (this.refs.active.refs.input.value === "true") {
-        practitionerFormData.active = true;
-      } else {
-        practitionerFormData.active = false;
-      }
-
-      console.log("practitionerFormData", practitionerFormData);
+    let practitionerFormData = Session.get('practitionerDetailState');
+    console.log("practitionerFormData", practitionerFormData);
 
 
     if (Session.get('selectedPractitioner')) {
       console.log("update practioner");
-      //Meteor.users.insert(practitionerFormData);
+
       updatePractitioner.call(
         {_id: Session.get('selectedPractitioner'), update: practitionerFormData }, (error) => {
         if (error) {
           Bert.alert(error.reason, 'danger');
         } else {
           Bert.alert('Practitioner updated!', 'success');
-          this.openTab(1);
+          Session.set('patientFormData', defaultPractitioner);
+          Session.set('patientDetailState', defaultPractitioner);
+          Session.set('practitionerPageTabIndex', 1);
         }
       });
     } else {
@@ -145,7 +233,9 @@ export default class PractitionerDetail extends React.Component {
           Bert.alert(error.reason, 'danger');
         } else {
           Bert.alert('Practitioner added!', 'success');
-          this.openTab(1);
+          Session.set('patientFormData', defaultPractitioner);
+          Session.set('patientDetailState', defaultPractitioner);
+          Session.set('practitionerPageTabIndex', 1);
         }
       });
     }
@@ -167,53 +257,10 @@ export default class PractitionerDetail extends React.Component {
       }
     });
   }
-
-  determineButtons(practitionerId){
-    if (practitionerId) {
-      return (
-        <div>
-          <RaisedButton id="savePractitionerButton" primary={true} label="Save" onClick={this.handleSaveButton.bind(this)} />
-          <RaisedButton id="deletePractitionerButton" label="Delete" onClick={this.handleDeleteButton.bind(this)} />
-        </div>
-      );
-    } else {
-      return(
-        <RaisedButton id="savePractitionerButton" primary={true} label="Save" onClick={this.handleSaveButton.bind(this)} />
-      );
-    }
-  }
-
-  render() {
-    return (
-      <div className="practitionerDetail">
-        <CardText>
-          <TextField
-            id='practitionerNameInput'
-            ref='name'
-            name='name'
-            type='text'
-            floatingLabelText='name'
-            value={this.data.practitioner.name}
-            /><br/>
-          <TextField
-            id='activePractitionerInput'
-            ref='active'
-            name='active'
-            type='text'
-            floatingLabelText='active'
-            value={this.data.practitioner.active}
-            /><br/>
-        </CardText>
-        <CardActions>
-          { this.determineButtons(this.data.practitionerId) }
-        </CardActions>
-      </div>
-    );
-  }
 }
 
 
 PractitionerDetail.propTypes = {
-  hasUser: React.PropTypes.object,
+  hasUser: React.PropTypes.object
 };
 ReactMixin(PractitionerDetail.prototype, ReactMeteorData);

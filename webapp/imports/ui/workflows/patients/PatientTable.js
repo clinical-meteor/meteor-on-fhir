@@ -41,24 +41,8 @@ export default class PatientTable extends React.Component {
       data.style.hideOnPhone.display = 'table-cell';
     }
 
-    console.log("PatientTable[data]", data);
-
+    // console.log("PatientTable[data]", data);
     return data;
-  }
-  handleChange(row, key, value) {
-    const source = this.state.source;
-    source[row][key] = value;
-    this.setState({source});
-  }
-
-  handleSelect(selected) {
-    this.setState({selected});
-  }
-  getDate(){
-    return "YYYY/MM/DD";
-  }
-  noChange(){
-    return "";
   }
   rowClick(id){
     console.log("rowClick", id);

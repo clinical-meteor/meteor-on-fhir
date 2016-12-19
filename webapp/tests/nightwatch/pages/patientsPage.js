@@ -35,7 +35,7 @@ module.exports = {
     verifyPatientDetails: function(name, gender, birthdate, photo) {
       this
         .waitForElementPresent('#patientDetails', 5000)
-        .waitForElementPresent('#patientDetails input[name="name"]', 5000)
+        .waitForElementPresent('#patientDetails input[name="name"]', 5000);
 
       if (name) {
         this.verify.attributeEquals('#patientsPage .patientDetail  input[name="name"]', 'value', name);
@@ -55,7 +55,7 @@ module.exports = {
       }
       return this;
     },
-    listContainsPatient: function (index, name, client) {
+    listContainsPatient: function (index, name) {
       this
         .verify.elementPresent('#patientsTable')
         .verify.elementPresent('#patientsTable .patientRow:nth-child(' + index + ')')

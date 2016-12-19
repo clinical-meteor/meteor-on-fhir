@@ -12,7 +12,6 @@ import { insertPatient, updatePatient, removePatientById } from '/imports/ui/wor
 import { Bert } from 'meteor/themeteorchef:bert';
 
 Session.setDefault('patientDetailState', {
-  id: "",
   name: "",
   gender: "",
   active: true,
@@ -166,7 +165,7 @@ export default class PatientDetail extends React.Component {
 
   // this could be a mixin
   handleSaveButton(){
-    console.log("handleSaveButton", this);
+      console.log("handleSaveButton", this);
 
       let patientUpdate = Session.get('patientDetailState');
       console.log("patientUpdate", patientUpdate);
