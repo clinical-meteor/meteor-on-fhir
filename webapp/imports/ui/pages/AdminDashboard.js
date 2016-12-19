@@ -93,7 +93,7 @@ export class AdminDashboard extends React.Component {
   openDiscussionForum(){
     browserHistory.push('/forum');
   }
-  openWeblog(){
+  openHealthlog(){
     browserHistory.push('/weblog');
   }
   openDevicepage(){

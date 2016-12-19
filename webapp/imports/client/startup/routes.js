@@ -14,7 +14,7 @@ import { PractitionersPage } from '/imports/ui/workflows/practitioners/Practitio
 import { Signup } from '/imports/ui/pages/Signup';
 import { ThemePage } from '/imports/ui/pages/ThemePage';
 import { UsersPage } from '/imports/ui/pages/UsersPage';
-import { Weblog } from '/imports/ui/pages/Weblog';
+import { Healthlog } from '/imports/ui/pages/Healthlog';
 import { NotFound } from '/imports/ui/pages/NotFound';
 import { RecoverPassword } from '/imports/ui/pages/RecoverPassword';
 import { ResetPassword } from '/imports/ui/pages/ResetPassword';
@@ -108,8 +108,8 @@ Meteor.startup(() => {
         <Route name="topicById" path="/topic/:topicId" component={ ConversationsPage } onEnter={ requireAuth } />
         <Route name="newTopic" path="/new/topic" component={ NewTopicPage } onEnter={ requireAuth } />
 
-        <Route name="weblog" path="/weblog" component={ Weblog } />
-        <Route name="weblogByUserId" path="/weblog/:userId" component={ Weblog } />
+        <Route name="weblog" path="/weblog" component={ Healthlog } />
+        <Route name="weblogByUserId" path="/weblog/:userId" component={ Healthlog } />
 
         <Route name="welcomePatient" path="/welcome/patient" component={ WelcomePatientPage } onEnter={ requireAuth }/>
 

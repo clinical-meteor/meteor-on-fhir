@@ -10,7 +10,7 @@ import PostsDeck  from '/imports/ui/workflows/posts/PostsDeck';
 
 import { Meteor } from 'meteor/meteor';
 
-export class Weblog extends React.Component {
+export class Healthlog extends React.Component {
   getMeteorData() {
     let data = {
       style: {},
@@ -80,7 +80,7 @@ export class Weblog extends React.Component {
 }
 
 
-Weblog.propTypes = {
+Healthlog.propTypes = {
   children: React.PropTypes.any
 };
-ReactMixin(Weblog.prototype, ReactMeteorData);
+ReactMixin(Healthlog.prototype, ReactMeteorData);

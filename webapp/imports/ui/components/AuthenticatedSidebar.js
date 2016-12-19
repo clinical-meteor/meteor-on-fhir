@@ -35,7 +35,7 @@ export class AuthenticatedSidebar extends React.Component {
         </IndexLinkContainer>
 
         <IndexLinkContainer to='/weblog'>
-           <ListItem primaryText='Weblog' href='/weblog' />
+           <ListItem primaryText='Healthlog' href='/weblog' />
         </IndexLinkContainer>
 
         <IndexLinkContainer to='/forum'>

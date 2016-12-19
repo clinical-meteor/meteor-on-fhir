@@ -103,10 +103,10 @@ export class MainIndex extends React.Component {
           </GlassCard>
         </div>
 
-        <div id='weblogTile' style={this.data.style.indexCardPadding} onClick={ this.openWeblog.bind(this) } >
+        <div id='weblogTile' style={this.data.style.indexCardPadding} onClick={ this.openHealthlog.bind(this) } >
           <GlassCard style={this.data.style.indexCard} >
             <CardTitle
-              title='Weblog'
+              title='Healthlog'
               subtitle='Post public thoughts using a Wordpress/Twitter style format.'
             />
           </GlassCard>
@@ -186,7 +186,7 @@ export class MainIndex extends React.Component {
   openDiscussionForum(){
     browserHistory.push('/forum');
   }
-  openWeblog(){
+  openHealthlog(){
     browserHistory.push('/weblog');
   }
   openUserManagement(){
