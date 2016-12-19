@@ -31,6 +31,7 @@ import { AdminDashboard } from '/imports/ui/pages/AdminDashboard';
 import { PractitionerDashboard } from '/imports/ui/pages/PractitionerDashboard';
 
 import { HexGridPage } from '/imports/ui/pages/HexGridPage';
+import { AppInfoPage } from '/imports/ui/pages/AppInfoPage';
 
 // we're storing the current route URL in a reactive variable
 // which will be used to update active controls
@@ -71,29 +72,6 @@ const requreSysadmin = (nextState, replace) => {
   }
 };
 
-// const parseAuthentication = (nextState, replace) => {
-//   console.log("Parsing authentication...", Meteor.users.find().fetch());
-//
-//   if (!Meteor.loggingIn() && !Meteor.userId()) {
-//     replace({
-//       pathname: '/signin',
-//       state: { nextPathname: nextState.location.pathname }
-//     });
-//   } else if (Roles.userIsInRole(Meteor.userId(), 'sysadmin')) {
-//     console.log("User is a sysadmin!  Redirecting to /sysadmin");
-//
-//     replace({
-//       pathname: '/sysadmin',
-//       state: { nextPathname: nextState.location.pathname }
-//     });
-//   } else if (Roles.userIsInRole(Meteor.userId(), 'practitioner')) {
-//     console.log("User is a practitioner!  Redirecting to /practitioner");
-//     replace({
-//       pathname: '/practitioner',
-//       state: { nextPathname: nextState.location.pathname }
-//     });
-//   }
-// };
 
 Meteor.startup(() => {
   render(
@@ -135,6 +113,8 @@ Meteor.startup(() => {
         <Route name="needToBePractitioner" path="/need-to-be-practitioner" component={ NeedToBePractitioner }  />
 
         <Route name="hexGrid" path="/hex" component={ HexGridPage } />
+        <Route name="appInfoPage" path="/info" component={ AppInfoPage } />
+
 
         <Route path="*" component={ NotFound } />
 

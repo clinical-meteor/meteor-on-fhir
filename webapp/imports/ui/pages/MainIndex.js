@@ -50,6 +50,9 @@ export class MainIndex extends React.Component {
     if (Roles.userIsInRole(Meteor.userId(), 'practitioner')) {
       data.user.isPractitioner = true;
     }
+    if (!Roles.userIsInRole(Meteor.userId(), ['practitioner', 'sysadmin'])) {
+      data.user.isPatient = false;
+    }
     //// not sure how we want to do handle the default case
     //// so leaving out for now
     // if (Roles.userIsInRole(Meteor.userId(), 'sysadmin')) {
@@ -77,52 +80,62 @@ export class MainIndex extends React.Component {
       <div id='indexPage'>
         <VerticalCanvas>
 
-          <div id='forumTile' style={this.data.style.indexCardPadding} onClick={ this.openDiscussionForum.bind(this) }>
-            <GlassCard style={this.data.style.indexCard} >
-              <CardTitle
-                title='Discussion Forum'
-                subtitle='Get help developing healthcare apps using Meteor.js'
-              />
-            </GlassCard>
-          </div>
 
-          <div style={this.data.style.indexCardPadding} onClick={ this.openWeblog.bind(this) } >
-            <GlassCard style={this.data.style.indexCard} >
-              <CardTitle
-                title='Weblog'
-                subtitle='Post public thoughts using a Wordpress/Twitter style format.'
-              />
-            </GlassCard>
-          </div>
-
-          <Spacer style={this.data.style.spacer} />
-
-          <div style={this.data.style.inactiveIndexCard}>
-            <GlassCard style={this.data.style.indexCard} >
-              <CardTitle
-                title='Data Management'
-                subtitle='Import/export data.'
-              />
-            </GlassCard>
-          </div>
-
-          <div id='forumTile' style={this.data.style.indexCardPadding} onClick={ this.openObservationpage.bind(this) } >
-            <GlassCard style={this.data.style.indexCard} >
-              <CardTitle
-                title='Observations'
-                subtitle='Observations from devices.'
-              />
-            </GlassCard>
-          </div>
-          <Spacer style={this.data.style.spacer} />
-
+          {this.renderPatientTiles(this.data.user.isPatient)}
           {this.renderPractitionerTiles(this.data.user.isPractitioner)}
+          {this.renderAdminTiles(this.data.user.isAdmin)}
 
         </VerticalCanvas>
       </div>
     );
   }
 
+
+  renderPatientTiles(isPatient){
+    return (
+      <div>
+        <div id='forumTile' style={this.data.style.indexCardPadding} onClick={ this.openDiscussionForum.bind(this) }>
+          <GlassCard style={this.data.style.indexCard} >
+            <CardTitle
+              title='Discussion Forum'
+              subtitle='Get help developing healthcare apps using Meteor.js'
+            />
+          </GlassCard>
+        </div>
+
+        <div style={this.data.style.indexCardPadding} onClick={ this.openWeblog.bind(this) } >
+          <GlassCard style={this.data.style.indexCard} >
+            <CardTitle
+              title='Weblog'
+              subtitle='Post public thoughts using a Wordpress/Twitter style format.'
+            />
+          </GlassCard>
+        </div>
+
+        <Spacer style={this.data.style.spacer} />
+
+        <div style={this.data.style.inactiveIndexCard}>
+          <GlassCard style={this.data.style.indexCard} >
+            <CardTitle
+              title='Data Management'
+              subtitle='Import/export data.'
+            />
+          </GlassCard>
+        </div>
+
+        <div id='forumTile' style={this.data.style.indexCardPadding} onClick={ this.openObservationpage.bind(this) } >
+          <GlassCard style={this.data.style.indexCard} >
+            <CardTitle
+              title='Observations'
+              subtitle='Observations from devices.'
+            />
+          </GlassCard>
+        </div>
+        <Spacer style={this.data.style.spacer} />
+
+      </div>
+    );
+  }
   renderPractitionerTiles(isPractitioner){
     return (
       <div>
@@ -139,6 +152,29 @@ export class MainIndex extends React.Component {
             <CardTitle
               title='Practitioners'
               subtitle='Browse practitioners in system.'
+            />
+          </GlassCard>
+        </div>
+          <Spacer style={this.data.style.spacer} />
+      </div>
+    );
+  }
+  renderAdminTiles(isAdmin){
+    return (
+      <div>
+        <div id='patientsTile' style={this.data.style.inactiveIndexCard} onClick={ this.openPatients.bind(this) } >
+          <GlassCard style={this.data.style.indexCard} >
+            <CardTitle
+              title='Inbound Message Headers'
+              subtitle='Inbound HL7 FHIR message log.'
+            />
+          </GlassCard>
+        </div>
+        <div id="practitionersTile" style={this.data.style.inactiveIndexCard} onClick={ this.openPractitioners.bind(this) } >
+          <GlassCard style={this.data.style.indexCard} >
+            <CardTitle
+              title='Outbound Message Headers'
+              subtitle='Outbound messages.'
             />
           </GlassCard>
         </div>

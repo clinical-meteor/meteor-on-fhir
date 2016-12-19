@@ -5,6 +5,8 @@ import ReactMixin from 'react-mixin';
 
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
+import { AppInfoPage } from '/imports/ui/pages/AppInfoPage';
+
 export class AdminSidebar extends React.Component {
   getMeteorData() {
     let data = {
@@ -13,7 +15,6 @@ export class AdminSidebar extends React.Component {
         top: '0px',
         width: '100%',
         display: 'flex',
-        // height: '6.4rem',
         alignItems: 'center',
         padding: '0 2.4rem',
         opacity: Session.get('globalOpacity')
@@ -53,6 +54,10 @@ export class AdminSidebar extends React.Component {
 
           <IndexLinkContainer to='/practitioners'>
              <ListItem primaryText='Practitioners' href='/practitioners' />
+          </IndexLinkContainer>
+
+          <IndexLinkContainer to='/info'>
+             <ListItem primaryText='Info' href='/info' />
           </IndexLinkContainer>
 
           <IndexLinkContainer to='/signin'>
