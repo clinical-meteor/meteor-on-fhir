@@ -25,21 +25,48 @@ Meteor.methods({
 
       var defaultPractitioner = {
         name: {
-          given: ["Theodor"],
-          family: ["Seuss"],
-          text: "Dr. Theodor Seuss"
+          given: ["Benjamin"],
+          family: ["Spock"],
+          text: "Dr. Benjamin McLane Spock, MD"
         },
         telecom: [{
           system: 'phone',
           value: '415-555-1234',
           use: 'work',
           rank: '1'
-        }]
+        }],
+        qualification: [{
+          identifier: [{
+            use: 'certficate',
+            value: '123456',
+            period: {
+              start: new Date(2010, 1, 1),
+              end: new Date(2019, 12, 31)
+            }
+          }],
+          issuer: {
+            display: "American Board of Pediatrics",
+            reference: "Organizations/12345"
+          }
+        }],
+        test: true
       };
 
       Meteor.call('createPractitioner', defaultPractitioner);
     } else {
       console.log('Practitioners already exist.  Skipping.');
+    }
+  },
+  dropTestPractitioners: function(){
+    if (process.env.NODE_ENV === 'test') {
+      console.log('-----------------------------------------');
+      console.log('Dropping test practitioners... ');
+      Practitioners.find({test: true}).forEach(function(practitioner){
+        Practitioners.remove({_id: practitioner._id});
+      });
+    } else {
+      console.log('This command can only be run in a test environment.');
+      console.log('Try setting NODE_ENV=test');
     }
   },
   dropPractitioners: function(){

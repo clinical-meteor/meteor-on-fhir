@@ -99,7 +99,6 @@ export const updatePatient = new ValidatedMethod({
     }
 
     console.log("diffedPatient", patient);
-
     return Patients.update({_id: _id}, { $set: patient });
   }
 });
