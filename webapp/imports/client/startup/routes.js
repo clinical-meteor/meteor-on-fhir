@@ -33,6 +33,10 @@ import { PractitionerDashboard } from '/imports/ui/pages/PractitionerDashboard';
 import { HexGridPage } from '/imports/ui/pages/HexGridPage';
 import { AppInfoPage } from '/imports/ui/pages/AppInfoPage';
 
+import { InboundHeaderPage } from '/imports/ui/pages/InboundHeaderPage';
+import { OutboundHeaderPage } from '/imports/ui/pages/OutboundHeaderPage';
+import { DataManagementPage } from '/imports/ui/pages/DataManagementPage';
+
 // we're storing the current route URL in a reactive variable
 // which will be used to update active controls
 // mostly used to toggle header and footer buttons
@@ -115,6 +119,11 @@ Meteor.startup(() => {
         <Route name="hexGrid" path="/hex" component={ HexGridPage } />
         <Route name="appInfoPage" path="/info" component={ AppInfoPage } />
 
+        <Route name="appInfoPage" path="/info" component={ AppInfoPage } />
+
+        <Route name="inboundHeaderPage" path="/inbound" component={ InboundHeaderPage } />
+        <Route name="outboundHeaderPage" path="/outbound" component={ OutboundHeaderPage } />
+        <Route name="dataManagementPage" path="/data-management" component={ DataManagementPage } />
 
         <Route path="*" component={ NotFound } />
 

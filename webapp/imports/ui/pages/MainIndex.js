@@ -103,7 +103,7 @@ export class MainIndex extends React.Component {
           </GlassCard>
         </div>
 
-        <div style={this.data.style.indexCardPadding} onClick={ this.openWeblog.bind(this) } >
+        <div id='weblogTile' style={this.data.style.indexCardPadding} onClick={ this.openWeblog.bind(this) } >
           <GlassCard style={this.data.style.indexCard} >
             <CardTitle
               title='Weblog'
@@ -114,7 +114,7 @@ export class MainIndex extends React.Component {
 
         <Spacer style={this.data.style.spacer} />
 
-        <div style={this.data.style.inactiveIndexCard}>
+        <div id='dataManagementTile' style={this.data.style.inactiveIndexCard} onClick={ this.openDataManagement.bind(this) } >
           <GlassCard style={this.data.style.indexCard} >
             <CardTitle
               title='Data Management'
@@ -123,7 +123,7 @@ export class MainIndex extends React.Component {
           </GlassCard>
         </div>
 
-        <div id='forumTile' style={this.data.style.indexCardPadding} onClick={ this.openObservationpage.bind(this) } >
+        <div id='forumTile' style={this.data.style.indexCardPadding} onClick={ this.openObservations.bind(this) } >
           <GlassCard style={this.data.style.indexCard} >
             <CardTitle
               title='Observations'
@@ -162,7 +162,7 @@ export class MainIndex extends React.Component {
   renderAdminTiles(isAdmin){
     return (
       <div>
-        <div id='patientsTile' style={this.data.style.inactiveIndexCard} onClick={ this.openPatients.bind(this) } >
+        <div id='inboundMessagesTile' style={this.data.style.inactiveIndexCard} onClick={ this.openInboundMessages.bind(this) } >
           <GlassCard style={this.data.style.indexCard} >
             <CardTitle
               title='Inbound Message Headers'
@@ -170,7 +170,7 @@ export class MainIndex extends React.Component {
             />
           </GlassCard>
         </div>
-        <div id="practitionersTile" style={this.data.style.inactiveIndexCard} onClick={ this.openPractitioners.bind(this) } >
+        <div id="outboundMessagesTile" style={this.data.style.inactiveIndexCard} onClick={ this.openOutboundMessages.bind(this) } >
           <GlassCard style={this.data.style.indexCard} >
             <CardTitle
               title='Outbound Message Headers'
@@ -201,13 +201,25 @@ export class MainIndex extends React.Component {
   openPractitioners(){
     browserHistory.push('/practitioners');
   }
-  openDataManagementPage(){
-    console.log('openDataManagementPage');
+  openDataManagement(){
+    browserHistory.push('/data-management');
   }
-  openObservationpage(){
+  openObservations(){
     browserHistory.push('/observations');
   }
+  openInboundMessages(){
+    browserHistory.push('/inbound');
+  }
+  openOutboundMessages(){
+    browserHistory.push('/outbound');
+  }
+  openLink(url){
+    console.log("openLink", url);
+
+    browserHistory.push(url);
+  }
 }
+
 
 
 
