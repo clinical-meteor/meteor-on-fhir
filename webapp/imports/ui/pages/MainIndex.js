@@ -165,7 +165,7 @@ export class MainIndex extends React.Component {
         <div id='inboundMessagesTile' style={this.data.style.inactiveIndexCard} onClick={ this.openInboundMessages.bind(this) } >
           <GlassCard style={this.data.style.indexCard} >
             <CardTitle
-              title='Inbound Message Headers'
+              title='Inbound Messages'
               subtitle='Inbound HL7 FHIR message log.'
             />
           </GlassCard>
@@ -173,8 +173,8 @@ export class MainIndex extends React.Component {
         <div id="outboundMessagesTile" style={this.data.style.inactiveIndexCard} onClick={ this.openOutboundMessages.bind(this) } >
           <GlassCard style={this.data.style.indexCard} >
             <CardTitle
-              title='Outbound Message Headers'
-              subtitle='Outbound messages.'
+              title='Outbound Messages'
+              subtitle='Outbound HL7 log.'
             />
           </GlassCard>
         </div>

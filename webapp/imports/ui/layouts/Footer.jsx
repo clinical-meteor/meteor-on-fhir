@@ -5,7 +5,7 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ImageBlurOn from 'material-ui/svg-icons/image/blur-on';
 import ImageExposure from 'material-ui/svg-icons/image/exposure';
-
+import FlatButton from 'material-ui/FlatButton';
 // import ImageBlurOn from 'react-material-icons/icons/image/blur-on';
 // import ImageExposure from 'react-material-icons/icons/image/exposure';
 
@@ -16,6 +16,8 @@ import OpacitySlider from '../components/OpacitySlider';
 // footer
 import AppBar from 'material-ui/AppBar';
 import Glass from '/imports/ui/Glass';
+import { browserHistory } from 'react-router';
+import { ToolbarTitle } from 'material-ui/Toolbar';
 
 Session.setDefault('showThemingControls', false);
 
@@ -30,6 +32,7 @@ export class Footer extends React.Component {
         alignItems: 'center',
         WebkitTransition: 'ease .2s',
         transition: 'ease .2s',
+        margin: '0px',
         opacity: Session.get('globalOpacity')
       },
       westStyle: {
@@ -48,8 +51,13 @@ export class Footer extends React.Component {
         padding: '0 2.4rem',
         paddingTop: '1.2rem'
       },
-      displayThemeNavbar: false
+      displayThemeNavbar: false,
+      status: ''
     };
+
+    if (Meteor.status) {
+      data.status = Meteor.status().status;
+    }
 
     if (Session.get('showThemingControls')) {
       data.displayThemeNavbar = Session.get('showThemingControls');
@@ -86,13 +94,9 @@ export class Footer extends React.Component {
     if (displayThemeNavbar) {
       // the user has pressed ctrl-cmd-t and is looking at theming controls
       return (
-        <div>
-          <FloatingActionButton className='blurButton' ref='blurButton' onClick={this.clickOnBlurButton} style={{marginLeft: '40px', height: '56px'}} secondary={true}>
-            <ImageBlurOn className='ImageBlurOn' />
-          </FloatingActionButton>
-          <FloatingActionButton className='darkroomButton' ref='darkroomButton' onClick={this.clickOnDarkroomButton} style={{marginLeft: '20px', height: '56px'}} secondary={true}>
-            <ImageExposure className='ImageExposure' />
-          </FloatingActionButton>
+        <div style={{marginTop: '-8px'}}>
+          <FlatButton label='privacy screen' className='blurButton' ref='blurButton' onClick={this.clickOnBlurButton} style={{marginLeft: '40px'}} ></FlatButton>
+          <FlatButton label='darkroom' className='darkroomButton' ref='darkroomButton' onClick={this.clickOnDarkroomButton} style={{marginLeft: '20px'}} ></FlatButton>
         </div>
       );
     } else {
@@ -119,12 +123,19 @@ export class Footer extends React.Component {
     } else {
       return (
         <div>
-
+          <ToolbarTitle
+            id='authenticatedUsername'
+            text={this.data.status}
+            style={{fontSize: '18px', top: '-4px', cursor: 'pointer'}}
+            onTouchTap={this.openInfo }
+          />
         </div>
       );
     }
   }
-
+  openInfo(){
+    browserHistory.push('/info');
+  }
   render () {
     return(
       <AppBar
