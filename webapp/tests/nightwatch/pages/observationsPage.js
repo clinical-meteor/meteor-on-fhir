@@ -1,4 +1,4 @@
-// observationType, value, unit, name, userId
+// category, value, unit, name, userId
 // 'Weight', '60', 'kg', 'Jane Doe', '123456789',
 
 
@@ -39,13 +39,12 @@ module.exports = {
         .verify.elementPresent('#observationsPage .observationDetail input[name="subject.display"]')
         .verify.elementPresent('#observationsPage .observationDetail input[name="subject.reference"]');
     },
-    verifyObservationDetails: function(observationType, value, unit, name, userId) {
+    verifyObservationDetails: function(category, value, unit, name, userId) {
       this
-        .waitForElementPresent('#observationDetails', 5000)
-        .waitForElementPresent('#observationDetails input[name="name"]', 5000);
+        .waitForElementPresent('#observationDetails', 5000);
 
-      if (observationType) {
-        this.verify.attributeEquals('#observationsPage .observationDetail  input[name="category.text"]', 'value', observationType);
+      if (category) {
+        this.verify.attributeEquals('#observationsPage .observationDetail  input[name="category.text"]', 'value', category);
       }
       if (value) {
         this.verify.attributeEquals('#observationsPage .observationDetail  input[name="valueQuantity.value"]', 'value', value);
@@ -61,17 +60,17 @@ module.exports = {
       }
       return this;
     },
-    listContainsObservation: function (index, observationType, value, unit, name, userId) {
+    listContainsObservation: function (index, category, value, unit, name, userId) {
       this
         .verify.elementPresent('#observationsTable')
         .verify.elementPresent('#observationsTable .observationRow:nth-child(' + index + ')')
-        .verify.elementPresent('#observationsTable .observationRow:nth-child(' + index + ') .observationType')
+        .verify.elementPresent('#observationsTable .observationRow:nth-child(' + index + ') .category')
         .verify.elementPresent('#observationsTable .observationRow:nth-child(' + index + ') .value')
         .verify.elementPresent('#observationsTable .observationRow:nth-child(' + index + ') .unit')
         .verify.elementPresent('#observationsTable .observationRow:nth-child(' + index + ') .name');
 
-      if (observationType) {
-        this.verify.containsText('#observationsTable .observationRow:nth-child(' + index + ') .observationType', observationType);
+      if (category) {
+        this.verify.containsText('#observationsTable .observationRow:nth-child(' + index + ') .category', category);
       }
       if (value) {
         this.verify.containsText('#observationsTable .observationRow:nth-child(' + index + ') .value', value);
@@ -99,11 +98,11 @@ module.exports = {
     selectObservation: function(index){
       return this.click('#observationsTable .observationRow:nth-child(' + index + ')');
     },
-    upsertObservation: function(observationType, value, unit, name, userId, pageElement) {
-      if (observationType) {
-        var observationTypeArray = observationType.split('');
-        for (var i = 0; i < observationTypeArray.length; i++) {
-          this.setValue(pageElement + ' input[name="category.text"]', observationTypeArray[i]);
+    upsertObservation: function(category, value, unit, name, userId, pageElement) {
+      if (category) {
+        var categoryArray = category.split('');
+        for (var i = 0; i < categoryArray.length; i++) {
+          this.setValue(pageElement + ' input[name="category.text"]', categoryArray[i]);
         }
       }
       if (value) {

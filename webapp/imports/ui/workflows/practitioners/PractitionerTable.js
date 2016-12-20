@@ -61,7 +61,7 @@ export default class PractitionerTable extends React.Component {
   }
 
   rowClick(id){
-    console.log("PractitionerTable.rowClick", id);
+    //console.log("PractitionerTable.rowClick", id);
 
     Session.set('selectedPractitioner', id);
     Session.set('practitionerPageTabIndex', 2);

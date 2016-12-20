@@ -55,6 +55,10 @@ export default class ObservationDetail extends React.Component {
 
       if (selectedObservation) {
         data.observation = selectedObservation;
+
+        if (!Session.get('observationDetailState')) {
+          Session.set('observationDetailState', selectedObservation);
+        }
       }
     }
 
@@ -76,7 +80,7 @@ export default class ObservationDetail extends React.Component {
             ref='category.text'
             name='category.text'
             floatingLabelText='Category'
-            defaultValue={this.data.observation.category.text}
+            value={this.data.observation.category.text}
             onChange={ this.changeCategory.bind(this, 'category.text')}
             fullWidth
             /><br/>
@@ -85,7 +89,7 @@ export default class ObservationDetail extends React.Component {
             ref='valueQuantity.value'
             name='valueQuantity.value'
             floatingLabelText='Value'
-            defaultValue={this.data.observation.valueQuantity.value}
+            value={this.data.observation.valueQuantity.value}
             onChange={ this.changeQuantityValue.bind(this, 'valueQuantity.value')}
             fullWidth
             /><br/>
@@ -94,7 +98,7 @@ export default class ObservationDetail extends React.Component {
             ref='valueQuantity.unit'
             name='valueQuantity.unit'
             floatingLabelText='Unit'
-            defaultValue={this.data.observation.valueQuantity.unit}
+            value={this.data.observation.valueQuantity.unit}
             onChange={ this.changeQuantityUnit.bind(this, 'valueQuantity.unit')}
             fullWidth
             /><br/>
@@ -103,7 +107,7 @@ export default class ObservationDetail extends React.Component {
             ref='device.display'
             name='device.display'
             floatingLabelText='Device Name'
-            defaultValue={this.data.observation.device.display}
+            value={this.data.observation.device.display}
             onChange={ this.changeDeviceDisplay.bind(this, 'device.display')}
             fullWidth
             /><br/>
@@ -112,7 +116,7 @@ export default class ObservationDetail extends React.Component {
             ref='subject.display'
             name='subject.display'
             floatingLabelText='Subject Name'
-            defaultValue={this.data.observation.subject.display}
+            value={this.data.observation.subject.display}
             onChange={ this.changeSubjectDisplay.bind(this, 'subject.display')}
             fullWidth
             /><br/>
@@ -121,7 +125,7 @@ export default class ObservationDetail extends React.Component {
             ref='subject.reference'
             name='subject.reference'
             floatingLabelText='Subject ID'
-            defaultValue={this.data.observation.subject.reference}
+            value={this.data.observation.subject.reference}
             onChange={ this.changeSubjectReference.bind(this, 'subject.reference')}
             fullWidth
             /><br/>
@@ -137,18 +141,23 @@ export default class ObservationDetail extends React.Component {
     if (observationId) {
       return (
         <div>
-          <RaisedButton id="savePractitionerButton" label="Save" className="savePractitionerButton" primary={true} onClick={this.handleSaveButton.bind(this)} />
-          <RaisedButton id="deletePractitionerButton" label="Delete" onClick={this.handleDeleteButton.bind(this)} />
+          <RaisedButton id="saveObservationButton" label="Save" className="saveObservationButton" primary={true} onClick={this.handleSaveButton.bind(this)} />
+          <RaisedButton id="deleteObservationButton" label="Delete" onClick={this.handleDeleteButton.bind(this)} />
         </div>
       );
     } else {
       return (
-        <RaisedButton id="savePractitionerButton" label="Save" primary={true} onClick={this.handleSaveButton.bind(this)} />
+        <RaisedButton id="saveObservationButton" label="Save" primary={true} onClick={this.handleSaveButton.bind(this)} />
       );
     }
   }
 
-
+  getObservation(){
+    let observationUpdate = Session.get('observationDetailState');
+    if (!observationUpdate) {
+      observationUpdate = defaultObservation;
+    }
+  }
 
   changeCategory(field, event, value) {
     let observationUpdate = Session.get('observationDetailState');
@@ -182,28 +191,6 @@ export default class ObservationDetail extends React.Component {
   }
 
 
-  // // this could be a mixin
-  // changeState(field, event, value) {
-  //   console.log("changeState", value);
-  //
-  //   // by default, assume there's no other data and we're creating a new observation
-  //   let observationUpdate = defaultObservation;
-  //
-  //   // if there's an existing observation, use them
-  //   if (Session.get('selectedObservation')) {
-  //     observationUpdate = this.data.observation;
-  //   }
-  //
-  //   if (typeof Session.get('observationDetailState') === "object") {
-  //     observationUpdate = Session.get('observationDetailState');
-  //   }
-  //
-  //   observationUpdate[field] = value;
-  //   console.log("observationUpdate", observationUpdate);
-  //
-  //   Session.set('observationDetailState', observationUpdate);
-  // }
-
   openTab(index) {
     // set which tab is selected
     let state = Session.get('observationCardState');
@@ -216,44 +203,58 @@ export default class ObservationDetail extends React.Component {
     if (process.env.NODE_ENV === "test") console.log("this", this);
 
     let observationFormData = Session.get('observationDetailState');
-    console.log("observationFormData", observationFormData);
+    observationFormData.valueQuantity.value = Number(observationFormData.valueQuantity.value);
 
+    console.log("observationFormData", observationFormData);
 
     if (Session.get('selectedObservation')) {
 
-      updateObservation.call({
-        _id: Session.get('selectedObservation'),
-        update: observationFormData
-      }, function(error, result){
+
+      Observations.update({_id: Session.get('selectedObservation')}, {$set: observationFormData }, function(error, result){
         if (error) {
-          if (process.env.NODE_ENV === "test") console.log("error", error);
+          if(process.env.NODE_ENV === "test") console.log("Observations.insert[error]", error);
           Bert.alert(error.reason, 'danger');
         } else {
-          Bert.alert('Observation updated!', 'success');
-          Session.set('patientFormData', defaultObservation);
-          Session.set('patientDetailState', defaultObservation);
-          Session.set('practitionerPageTabIndex', 1);
-        }
-        if (result) {
-          console.log("result", result);
+          Bert.alert('Observation added!', 'success');
+          Session.set('observationFormData', defaultObservation);
+          Session.set('observationDetailState', defaultObservation);
+          Session.set('observationPageTabIndex', 1);
         }
       });
+
+      // updateObservation.call({
+      //   _id: Session.get('selectedObservation'),
+      //   update: observationFormData
+      // }, function(error, result){
+      //   if (error) {
+      //     if (process.env.NODE_ENV === "test") console.log("error", error);
+      //     Bert.alert(error.reason, 'danger');
+      //   } else {
+      //     Bert.alert('Observation updated!', 'success');
+      //     Session.set('observationFormData', defaultObservation);
+      //     Session.set('observationDetailState', defaultObservation);
+      //     Session.set('observationPageTabIndex', 1);
+      //   }
+      //   if (result) {
+      //     console.log("result", result);
+      //   }
+      // });
+
+
     } else {
 
-
       observationFormData.effectiveDateTime = new Date();
-      observationFormData.valueQuantity.value = Number(observationFormData.valueQuantity.value);
-
       if (process.env.NODE_ENV === "test") console.log("create a new observation", observationFormData);
-
 
       Observations.insert(observationFormData, function(error, result){
         if (error) {
-          console.log("error", error);
           if(process.env.NODE_ENV === "test") console.log("Observations.insert[error]", error);
-        }
-        if (result) {
-          console.log("result", result);
+          Bert.alert(error.reason, 'danger');
+        } else {
+          Bert.alert('Observation added!', 'success');
+          Session.set('observationFormData', defaultObservation);
+          Session.set('observationDetailState', defaultObservation);
+          Session.set('observationPageTabIndex', 1);
         }
       });
 
@@ -262,9 +263,9 @@ export default class ObservationDetail extends React.Component {
       //     Bert.alert(error.reason, 'danger');
       //   } else {
       //     Bert.alert('Observation added!', 'success');
-      //     Session.set('patientFormData', defaultObservation);
-      //     Session.set('patientDetailState', defaultObservation);
-      //     Session.set('practitionerPageTabIndex', 1);
+      //     Session.set('observationFormData', defaultObservation);
+      //     Session.set('observationDetailState', defaultObservation);
+      //     Session.set('observationPageTabIndex', 1);
       //   }
       //   if (result) {
       //     console.log("result", result);

@@ -231,9 +231,9 @@ export const cloneCarePlan = new ValidatedMethod({
         type: {
           text: "FooQuestionnaireResponse",
           coding: [{
-            system: "dxrxmedical",
+            system: "medical",
             version: "1",
-            code: "dxrx",
+            code: "",
             display: "Foo Survey Questionnaire",
             userSelected: false
           }]

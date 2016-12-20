@@ -47,7 +47,7 @@ module.exports = {
       .saveScreenshot('tests/nightwatch/screenshots/observations.crud/B-ObservationList.png', client);
 
     client
-      .click('#newObservation .saveObservationButton').pause(1000);
+      .click('#newObservation #saveObservationButton').pause(1000);
   },
   'list should contain recently created observation': function (client) {
     client.page

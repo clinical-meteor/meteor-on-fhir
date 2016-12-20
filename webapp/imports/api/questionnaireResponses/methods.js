@@ -7,28 +7,7 @@ import { Meteor } from 'meteor/meteor';
 export const insertQuestionnaireResponse = new ValidatedMethod({
   name: 'questionnaireResponses.insert',
   //survey response
-  validate: new SimpleSchema({
-    didDrink: {
-      type: Boolean
-    },
-    firstDrink: {
-      type: Date,
-      optional: true
-    },
-    lastDrink: {
-      type: Date,
-      optional: true
-    },
-    numberDrinks: {
-      type: Number,
-      optional: true
-    },
-    estimatedBAC: {
-      type: Number,
-      decimal: true,
-      optional: true
-    }
-  }).validator(),
+  validate: QuestionnaireResponseSchema.validator(),
   run(surveyData) {
 
     // we're going to map the survey data onto a FHIR QuestionnaireResponse resource
@@ -39,9 +18,9 @@ export const insertQuestionnaireResponse = new ValidatedMethod({
         type: {
           text: "FooQuestionnaireResponse",
           coding: [{
-            system: "dxrxmedical",
+            system: "medical",
             version: "1",
-            code: "dxrx",
+            code: "",
             display: "Foo Survey Questionnaire",
             userSelected: false
           }]
@@ -70,7 +49,7 @@ export const insertQuestionnaireResponse = new ValidatedMethod({
       },
       group: {
         linkId: '',
-        title: "BREATHALYZER SURVEY",
+        title: " SURVEY",
         text: "Foo Survey",
         required: false,
         repeats: true,
@@ -156,9 +135,9 @@ export const updateQuestionnaireResponse = new ValidatedMethod({
         type: {
           text: "FooQuestionnaireResponse",
           coding: [{
-            system: "dxrxmedical",
+            system: "medical",
             version: "1",
-            code: "dxrx",
+            code: "",
             display: "Foo Survey Questionnaire",
             userSelected: false
           }]

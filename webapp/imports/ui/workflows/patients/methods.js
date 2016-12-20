@@ -104,7 +104,7 @@ export const updatePatient = new ValidatedMethod({
 export const removePatientById = new ValidatedMethod({
   name: 'patients.removeById',
   validate: new SimpleSchema({
-    _id: { type: String },
+    _id: { type: String }
   }).validator(),
   run({ _id }) {
     console.log("Removing user " + _id);

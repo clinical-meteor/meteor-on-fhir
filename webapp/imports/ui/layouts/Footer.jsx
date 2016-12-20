@@ -72,7 +72,7 @@ export class Footer extends React.Component {
     }
 
     if (Meteor.settings && Meteor.settings.public && Meteor.settings.public.defaults && Meteor.settings.public.defaults.disableFooter) {
-      console.log("Meteor.settings.defaults.disableFooter");
+      //console.log("Meteor.settings.defaults.disableFooter");
 
       data.footerStyle.display = 'none !important';
       data.footerStyle.visibility = 'hidden !important';
