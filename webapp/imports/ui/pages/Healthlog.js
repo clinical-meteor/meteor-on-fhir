@@ -23,7 +23,6 @@ export class Healthlog extends React.Component {
       data.state.isLoggedIn = true;
     }
 
-
     // this should all be handled by props
     // or a mixin!
     if (Session.get('darkroomEnabled')) {

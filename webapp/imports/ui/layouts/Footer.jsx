@@ -6,8 +6,6 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ImageBlurOn from 'material-ui/svg-icons/image/blur-on';
 import ImageExposure from 'material-ui/svg-icons/image/exposure';
 import FlatButton from 'material-ui/FlatButton';
-// import ImageBlurOn from 'react-material-icons/icons/image/blur-on';
-// import ImageExposure from 'react-material-icons/icons/image/exposure';
 
 import {Session} from 'meteor/session';
 
@@ -64,11 +62,6 @@ export class Footer extends React.Component {
       data.westStyle.bottom = '2.4rem';
     }
 
-    if (!Session.get('showNavbars')) {
-      data.footerStyle.bottom = '-100px';
-    }
-
-
     data.style = Glass.blur(data.style);
     data.footerStyle = Glass.darkroom(data.footerStyle);
 
@@ -76,6 +69,17 @@ export class Footer extends React.Component {
     if (Session.get('appWidth') < 768) {
       data.westStyle.visibility = 'hidden';
       data.eastStyle.visibility = 'hidden';
+    }
+
+    if (Meteor.settings && Meteor.settings.public && Meteor.settings.public.defaults && Meteor.settings.public.defaults.disableFooter) {
+      console.log("Meteor.settings.defaults.disableFooter");
+
+      data.footerStyle.display = 'none !important';
+      data.footerStyle.visibility = 'hidden !important';
+    } else {
+      if (!Session.get('showNavbars')) {
+        data.footerStyle.bottom = '-100px';
+      }
     }
 
     return data;
@@ -138,13 +142,14 @@ export class Footer extends React.Component {
   }
   render () {
     return(
-      <AppBar
-        id='appFooter'
-        iconElementLeft={ this.renderWestNavbar(this.data.displayThemeNavbar) }
-        iconElementRight={ this.renderEastNavbar(this.data.displayThemeNavbar) }
-        style={this.data.footerStyle}
-        titleStyle={{color: 'black'}}
-      />
+      <div id='appFooter' style={this.data.footerStyle}>
+        <AppBar
+          iconElementLeft={ this.renderWestNavbar(this.data.displayThemeNavbar) }
+          iconElementRight={ this.renderEastNavbar(this.data.displayThemeNavbar) }
+          style={this.data.footerStyle}
+          titleStyle={{color: 'black'}}
+        />
+      </div>
    );
   }
 }

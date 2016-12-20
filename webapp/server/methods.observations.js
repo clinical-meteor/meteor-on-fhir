@@ -39,7 +39,7 @@ Meteor.methods({
         },
         effectiveDateTime: new Date(),
         subject: {
-          display: '',
+          display: 'Jane Doe',
           reference: ''
         },
         performer: {
@@ -75,6 +75,18 @@ Meteor.methods({
       Meteor.call('createObservation', defaultObservation);
     } else {
       console.log('Observations already exist.  Skipping.');
+    }
+  },
+  removeObservationById: function(){
+    if (process.env.NODE_ENV === 'test') {
+      console.log('-----------------------------------------');
+      console.log('Removing observation... ');
+      Observations.find().forEach(function(observation){
+        Observations.remove({_id: observation._id});
+      });
+    } else {
+      console.log('This command can only be run in a test environment.');
+      console.log('Try setting NODE_ENV=test');
     }
   },
   dropObservations: function(){

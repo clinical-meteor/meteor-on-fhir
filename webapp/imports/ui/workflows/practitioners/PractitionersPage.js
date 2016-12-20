@@ -1,6 +1,7 @@
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import React  from 'react';
 import ReactMixin  from 'react-mixin';
+
 import { Tabs, Tab } from 'material-ui/Tabs';
 import { GlassCard } from '/imports/ui/components/GlassCard';
 import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
@@ -8,7 +9,6 @@ import PractitionerDetail  from '/imports/ui/workflows/practitioners/Practitione
 import PractitionerTable  from '/imports/ui/workflows/practitioners/PractitionerTable';
 
 import Glass from '/imports/ui/Glass';
-
 
 
 Session.setDefault('practitionerPageTabIndex', 1);

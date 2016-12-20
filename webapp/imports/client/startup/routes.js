@@ -37,6 +37,9 @@ import { InboundHeaderPage } from '/imports/ui/pages/InboundHeaderPage';
 import { OutboundHeaderPage } from '/imports/ui/pages/OutboundHeaderPage';
 import { DataManagementPage } from '/imports/ui/pages/DataManagementPage';
 
+import { ObservationsPage } from '/imports/ui/pages/ObservationsPage';
+
+
 // we're storing the current route URL in a reactive variable
 // which will be used to update active controls
 // mostly used to toggle header and footer buttons
@@ -124,6 +127,8 @@ Meteor.startup(() => {
         <Route name="inboundHeaderPage" path="/inbound" component={ InboundHeaderPage } />
         <Route name="outboundHeaderPage" path="/outbound" component={ OutboundHeaderPage } />
         <Route name="dataManagementPage" path="/data-management" component={ DataManagementPage } />
+
+        <Route name="observationPage" path="/observations" component={ ObservationsPage } />
 
         <Route path="*" component={ NotFound } />
 
