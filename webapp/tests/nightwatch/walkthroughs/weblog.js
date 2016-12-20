@@ -1,4 +1,13 @@
-//
+//// Healthlog Goals
+//// - Log Vitals
+//// - Log narrative text
+//// - Log photo
+//// - Log medication
+
+
+
+
+
 // module.exports = {
 //   tags: ["healthlog", "weblog", 'circle'],
 //   before: function(client){

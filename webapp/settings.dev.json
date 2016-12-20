@@ -13,7 +13,7 @@
     "defaults": {
       "displayNavbars": true,
       "disableHeader": false,
-      "disableFooter": true,
+      "disableFooter": false,
       "darkroom": false
     }
   },

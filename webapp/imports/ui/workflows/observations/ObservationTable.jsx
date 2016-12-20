@@ -96,7 +96,6 @@ export default class ObservationTable extends React.Component {
     return "";
   }
   rowClick(id){
-    // set the user
     Session.set("selectedObservation", id);
     Session.set('observationPageTabIndex', 2);
     Session.set('observationDetailState', false);
