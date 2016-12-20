@@ -6,27 +6,42 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
 import { CardText, CardActions } from 'material-ui/Card';
-
-import { insertObservation, updateObservation, removeObservationById } from '../../../api/observations/methods';
+import { createObservation, updateObservation, removeObservation } from '/imports/api/observations/methods';
 import { Bert } from 'meteor/themeteorchef:bert';
 
 
-let defaultState = false;
-
-Session.setDefault('observationDetailState', defaultState);
+let defaultObservation = {
+  status: 'preliminary',
+  category: {
+    text: ''
+  },
+  effectiveDateTime: '',
+  subject: {
+    display: '',
+    reference: ''
+  },
+  performer: {
+    display: '',
+    reference: ''
+  },
+  device: {
+    display: '',
+    reference: ''
+  },
+  valueQuantity: {
+    value: '',
+    unit: '',
+    system: 'http://unitsofmeasure.org'
+  }
+};
+Session.setDefault('observationDetailState', defaultObservation);
 
 
 export default class ObservationDetail extends React.Component {
   getMeteorData() {
     let data = {
       observationId: false,
-      observation: {
-        observationType: '',
-        observationValue: '',
-        observationUnits: '',
-        observationStatus: '',
-        patientId: ''
-      }
+      observation: defaultObservation
     };
 
     if (Session.get('selectedObservation')) {
@@ -35,15 +50,15 @@ export default class ObservationDetail extends React.Component {
       let selectedObservation = Observations.findOne({
         _id: Session.get('selectedObservation')
       });
+      console.log("selectedObservation", selectedObservation);
+
+
       if (selectedObservation) {
-        data.observation = {
-          id: selectedObservation._id,
-          observationType: selectedObservation.observationType,
-          observationValue: selectedObservation.observationValue,
-          observationUnits: selectedObservation.observationUnits,
-          observationStatus: selectedObservation.observationStatus,
-          patientId: selectedObservation.patientId
-        };
+        data.observation = selectedObservation;
+
+        if (!Session.get('observationDetailState')) {
+          Session.set('observationDetailState', selectedObservation);
+        }
       }
     }
 
@@ -51,202 +66,213 @@ export default class ObservationDetail extends React.Component {
       data.observation = Session.get('observationDetailState');
     }
 
-    //console.log("data", data);
-
+    if(process.env.NODE_ENV === "test") console.log("ObservationDetail[data]", data);
     return data;
   }
 
   render() {
-    if (this.data.observation.patientid) {
-      if (process.env.NODE_ENV === "test") console.log("In observationDetail with patientid " + this.data.observation.patientid);
 
-      return (
-        <div className="observationDetail">
-          <CardText>
-            <TextField
-              id='patientIdInput'
-              ref='patientid'
-              name='patientid'
-              floatingLabelText='patientid'
-              defaultValue={this.data.observation.patientid}
-              onChange={ this.changeState.bind(this, 'patientid')}
-              fullWidth
-              /><br/>
-            <TextField
-              id='typeInput'
-              ref='type'
-              name='type'
-              floatingLabelText='type'
-              defaultValue={this.data.observation.type}
-              onChange={ this.changeState.bind(this, 'type')}
-              fullWidth
-              /><br/>
-            <TextField
-              id='valueInput'
-              ref='value'
-              name='value'
-              floatingLabelText='value'
-              defaultValue={this.data.observation.value}
-              onChange={ this.changeState.bind(this, 'value')}
-              fullWidth
-              /><br/>
-            <TextField
-              id='unitsInput'
-              ref='units'
-              name='units'
-              floatingLabelText='units'
-              defaultValue={this.data.observation.units}
-              onChange={ this.changeState.bind(this, 'units')}
-              fullWidth
-              /><br/>
-            <TextField
-              id='statusInput'
-              ref='status'
-              name='status'
-              floatingLabelText='status'
-              defaultValue={this.data.observation.status}
-              onChange={ this.changeState.bind(this, 'status')}
-              fullWidth
-              /><br/>
-            <TextField
-              id='sourceInput'
-              ref='source'
-              name='source'
-              floatingLabelText='source'
-              defaultValue={this.data.observation.source}
-              onChange={ this.changeState.bind(this, 'source')}
-              fullWidth
-              /><br/>
+    return (
+      <div id={this.props.id} className="observationDetail">
+        <CardText>
+          <TextField
+            id='categoryTextInput'
+            ref='category.text'
+            name='category.text'
+            floatingLabelText='Category'
+            value={this.data.observation.category.text}
+            onChange={ this.changeCategory.bind(this, 'category.text')}
+            fullWidth
+            /><br/>
+          <TextField
+            id='valueQuantityInput'
+            ref='valueQuantity.value'
+            name='valueQuantity.value'
+            floatingLabelText='Value'
+            value={this.data.observation.valueQuantity.value}
+            onChange={ this.changeQuantityValue.bind(this, 'valueQuantity.value')}
+            fullWidth
+            /><br/>
+          <TextField
+            id='valueQuantityUnitInput'
+            ref='valueQuantity.unit'
+            name='valueQuantity.unit'
+            floatingLabelText='Unit'
+            value={this.data.observation.valueQuantity.unit}
+            onChange={ this.changeQuantityUnit.bind(this, 'valueQuantity.unit')}
+            fullWidth
+            /><br/>
+          <TextField
+            id='deviceDisplayInput'
+            ref='device.display'
+            name='device.display'
+            floatingLabelText='Device Name'
+            value={this.data.observation.device.display}
+            onChange={ this.changeDeviceDisplay.bind(this, 'device.display')}
+            fullWidth
+            /><br/>
+          <TextField
+            id='subjectDisplayInput'
+            ref='subject.display'
+            name='subject.display'
+            floatingLabelText='Subject Name'
+            value={this.data.observation.subject.display}
+            onChange={ this.changeSubjectDisplay.bind(this, 'subject.display')}
+            fullWidth
+            /><br/>
+          <TextField
+            id='subjectIdInput'
+            ref='subject.reference'
+            name='subject.reference'
+            floatingLabelText='Subject ID'
+            value={this.data.observation.subject.reference}
+            onChange={ this.changeSubjectReference.bind(this, 'subject.reference')}
+            fullWidth
+            /><br/>
 
-          </CardText>
-          <CardActions>
-            { this.determineButtons(this.data.observationId) }
-          </CardActions>
-        </div>
-      );
-    } else {
-      return (
-        <div className="observatonDetail">
-          <CardText>
-            No observations
-          </CardText>
-        </div>
-      );
-    }
+        </CardText>
+        <CardActions>
+          { this.determineButtons(this.data.observationId) }
+        </CardActions>
+      </div>
+    );
   }
   determineButtons(observationId) {
     if (observationId) {
       return (
         <div>
-          <RaisedButton label="Save" primary={true} onClick={this.handleSaveButton.bind(this)} />
-          <RaisedButton label="Delete" onClick={this.handleDeleteButton.bind(this)} />
+          <RaisedButton id="saveObservationButton" label="Save" className="saveObservationButton" primary={true} onClick={this.handleSaveButton.bind(this)} />
+          <RaisedButton id="deleteObservationButton" label="Delete" onClick={this.handleDeleteButton.bind(this)} />
         </div>
       );
     } else {
       return (
-        <RaisedButton label="Save" primary={true} onClick={this.handleSaveButton.bind(this)} />
+        <RaisedButton id="saveObservationButton" label="Save" primary={true} onClick={this.handleSaveButton.bind(this)} />
       );
     }
   }
 
-  // this could be a mixin
-  changeState(field, value) {
-
-    //console.log("changeState", value);
-
-    // by default, assume there's no other data and we're creating a new observation
-    let observationUpdate = {
-      id: "",
-      observationType: "",
-      observationValue: "",
-      patientId: "",
+  getObservation(){
+    let observationUpdate = Session.get('observationDetailState');
+    if (!observationUpdate) {
+      observationUpdate = defaultObservation;
     }
+  }
 
-    // if there's an existing observation, use them
-    if (Session.get('selectedObservation')) {
-      observationUpdate = this.data.observation;
-    }
-
-    if (typeof Session.get('observationDetailState') === "object") {
-      observationUpdate = Session.get('observationDetailState');
-    }
-
-    observationUpdate[field] = value;
-    if (process.env.NODE_ENV === "test") console.log("observationUpdate", observationUpdate);
+  changeCategory(field, event, value) {
+    let observationUpdate = Session.get('observationDetailState');
+    observationUpdate.category.text = value;
     Session.set('observationDetailState', observationUpdate);
-  };
+  }
+  changeQuantityValue(field, event, value) {
+    let observationUpdate = Session.get('observationDetailState');
+    observationUpdate.valueQuantity.value = value;
+    Session.set('observationDetailState', observationUpdate);
+  }
+  changeQuantityUnit(field, event, value) {
+    let observationUpdate = Session.get('observationDetailState');
+    observationUpdate.valueQuantity.unit = value;
+    Session.set('observationDetailState', observationUpdate);
+  }
+  changeDeviceDisplay(field, event, value) {
+    let observationUpdate = Session.get('observationDetailState');
+    observationUpdate.device.display = value;
+    Session.set('observationDetailState', observationUpdate);
+  }
+  changeSubjectDisplay(field, event, value) {
+    let observationUpdate = Session.get('observationDetailState');
+    observationUpdate.subject.display = value;
+    Session.set('observationDetailState', observationUpdate);
+  }
+  changeSubjectReference(field, event, value) {
+    let observationUpdate = Session.get('observationDetailState');
+    observationUpdate.subject.reference = value;
+    Session.set('observationDetailState', observationUpdate);
+  }
+
+
   openTab(index) {
     // set which tab is selected
     let state = Session.get('observationCardState');
     state["index"] = index;
     Session.set('observationCardState', state);
-  };
+  }
 
   // this could be a mixin
   handleSaveButton() {
     if (process.env.NODE_ENV === "test") console.log("this", this);
 
-    let observationFormData = {
-      'observationType': [{
-        'text': this.refs.type.refs.input.value
-      }],
-      'observationValue': [{
-        'text': this.refs.value.refs.input.value
-      }],
-      'observationUnits': [{
-        'text': this.refs.units.refs.input.value
-      }],
-      'observationStatus': [{
-        'text': this.refs.status.refs.input.value
-      }],
-      'observationSource': [{
-        'text': this.refs.source.refs.input.value
-      }],
-      'observationPatientId': [{
-        'text': this.refs.patientid.refs.input.value
-      }]
-    }
+    let observationFormData = Session.get('observationDetailState');
+    observationFormData.valueQuantity.value = Number(observationFormData.valueQuantity.value);
 
-    if (this.refs.active.refs.input.value === "true") {
-      observationFormData.active = true;
-    } else {
-      observationFormData.active = false;
-    }
-
-    if (process.env.NODE_ENV === "test") console.log("observationFormData", observationFormData);
-
+    console.log("observationFormData", observationFormData);
 
     if (Session.get('selectedObservation')) {
-      if (process.env.NODE_ENV === "test") console.log("update practioner");
-      //Meteor.users.insert(observationFormData);
-      updateObservation.call({
-        _id: Session.get('selectedObservation'),
-        update: observationFormData
-      }, (error) => {
-        if (error) {
-          if (process.env.NODE_ENV === "test") console.log("error", error);
-          Bert.alert(error.reason, 'danger');
-        } else {
-          Bert.alert('Observation updated!', 'success');
-          this.openTab(1);
-        }
-      });
-    } else {
 
-      if (process.env.NODE_ENV === "test") console.log("create a new observation",
-        observationFormData);
 
-      //Meteor.users.insert(observationFormData);
-      insertObservation.call(observationFormData, (error) => {
+      Observations.update({_id: Session.get('selectedObservation')}, {$set: observationFormData }, function(error, result){
         if (error) {
+          if(process.env.NODE_ENV === "test") console.log("Observations.insert[error]", error);
           Bert.alert(error.reason, 'danger');
         } else {
           Bert.alert('Observation added!', 'success');
-          this.openTab(1);
+          Session.set('observationFormData', defaultObservation);
+          Session.set('observationDetailState', defaultObservation);
+          Session.set('observationPageTabIndex', 1);
         }
       });
+
+      // updateObservation.call({
+      //   _id: Session.get('selectedObservation'),
+      //   update: observationFormData
+      // }, function(error, result){
+      //   if (error) {
+      //     if (process.env.NODE_ENV === "test") console.log("error", error);
+      //     Bert.alert(error.reason, 'danger');
+      //   } else {
+      //     Bert.alert('Observation updated!', 'success');
+      //     Session.set('observationFormData', defaultObservation);
+      //     Session.set('observationDetailState', defaultObservation);
+      //     Session.set('observationPageTabIndex', 1);
+      //   }
+      //   if (result) {
+      //     console.log("result", result);
+      //   }
+      // });
+
+
+    } else {
+
+      observationFormData.effectiveDateTime = new Date();
+      if (process.env.NODE_ENV === "test") console.log("create a new observation", observationFormData);
+
+      Observations.insert(observationFormData, function(error, result){
+        if (error) {
+          if(process.env.NODE_ENV === "test") console.log("Observations.insert[error]", error);
+          Bert.alert(error.reason, 'danger');
+        } else {
+          Bert.alert('Observation added!', 'success');
+          Session.set('observationFormData', defaultObservation);
+          Session.set('observationDetailState', defaultObservation);
+          Session.set('observationPageTabIndex', 1);
+        }
+      });
+
+      // createObservation.call(observationFormData, function(error, result) {
+      //   if (error) {
+      //     Bert.alert(error.reason, 'danger');
+      //   } else {
+      //     Bert.alert('Observation added!', 'success');
+      //     Session.set('observationFormData', defaultObservation);
+      //     Session.set('observationDetailState', defaultObservation);
+      //     Session.set('observationPageTabIndex', 1);
+      //   }
+      //   if (result) {
+      //     console.log("result", result);
+      //   }
+      // });
     }
-  };
+  }
 
   // this could be a mixin
   handleCancelButton() {
@@ -264,8 +290,7 @@ export default class ObservationDetail extends React.Component {
         this.openTab(1);
       }
     });
-  };
-
+  }
 }
 
 

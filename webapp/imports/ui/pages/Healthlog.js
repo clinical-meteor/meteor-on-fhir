@@ -5,14 +5,12 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 import { DynamicSpacer }  from '/imports/ui/components/DynamicSpacer';
 
-//import ObservationsList  from '/imports/ui/containers/observations-list';
-
-import ObservationDetail from '/imports/ui/workflows/observations/ObservationDetail';
-import ObservationsDeck  from '/imports/ui/workflows/observations/ObservationsDeck';
+import { AddPost } from '/imports/ui/workflows/posts/AddPost';
+import PostsDeck  from '/imports/ui/workflows/posts/PostsDeck';
 
 import { Meteor } from 'meteor/meteor';
 
-export class ObservationPage extends React.Component {
+export class Healthlog extends React.Component {
   getMeteorData() {
     let data = {
       style: {},
@@ -24,7 +22,6 @@ export class ObservationPage extends React.Component {
     if (Meteor.user()) {
       data.state.isLoggedIn = true;
     }
-
 
     // this should all be handled by props
     // or a mixin!
@@ -55,13 +52,13 @@ export class ObservationPage extends React.Component {
 
   renderAuthenticatedUserControls(isLoggedIn) {
 
-    // user should be able to see the addObservation component if they're logged in and looking at their
+    // user should be able to see the addPost component if they're logged in and looking at their
     // own profile; otherwise,
     if (isLoggedIn) {
       if (!this.props.routeParams.userId) {
         return (
           <div>
-            <ObservationDetail />
+            <AddPost />
             <DynamicSpacer />
           </div>
         );
@@ -71,10 +68,10 @@ export class ObservationPage extends React.Component {
 
   render() {
     return (
-      <div id="ObservationPage">
+      <div id="weblogPage">
         <VerticalCanvas>
           { this.renderAuthenticatedUserControls(this.data.state.isLoggedIn) }
-          <ObservationsDeck userId={this.props.routeParams.userId} />
+          <PostsDeck userId={this.props.routeParams.userId} />
         </VerticalCanvas>
       </div>
     );
@@ -82,7 +79,7 @@ export class ObservationPage extends React.Component {
 }
 
 
-// ObservationPage.propTypes = {
-//   children: React.PropTypes.any
-// };
-ReactMixin(ObservationPage.prototype, ReactMeteorData);
+Healthlog.propTypes = {
+  children: React.PropTypes.any
+};
+ReactMixin(Healthlog.prototype, ReactMeteorData);

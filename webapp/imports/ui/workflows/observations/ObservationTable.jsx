@@ -6,9 +6,7 @@ import { Card, CardMedia, CardTitle, CardText, CardActions } from 'material-ui/C
 import { Meteor } from 'meteor/meteor';
 
 import { Table } from 'react-bootstrap';
-// import Table from 'material-ui/Table';
-import { Observations } from '/imports/api/observations/observations';
-//import { moment } from 'meteor/momentjs:moment';
+import { Observations } from 'meteor/clinical:hl7-resource-observation';
 
 export default class ObservationTable extends React.Component {
 
@@ -30,7 +28,8 @@ export default class ObservationTable extends React.Component {
           status: '',
           device: '',
           createdBy: '',
-          effectiveDateTime: ''
+          effectiveDateTime: '',
+          unit: ''
         };
 
         result._id =  observation._id;
@@ -39,6 +38,9 @@ export default class ObservationTable extends React.Component {
         }
         if (observation.valueQuantity && observation.valueQuantity.value) {
           result.observationValue =  observation.valueQuantity.value;
+        }
+        if (observation.valueQuantity && observation.valueQuantity.unit) {
+          result.unit =  observation.valueQuantity.unit;
         }
         if (observation.subject && observation.subject.display) {
           result.subject =  observation.subject.display;
@@ -75,9 +77,7 @@ export default class ObservationTable extends React.Component {
       data.style.backdropFilter = "blur(5px)";
     }
 
-    if(process.env.NODE_ENV === "test") console.log("data", data);
-
-
+    if(process.env.NODE_ENV === "test") console.log("ObservationTable[data]", data);
     return data;
   }
   handleChange(row, key, value) {
@@ -98,11 +98,8 @@ export default class ObservationTable extends React.Component {
   rowClick(id){
     // set the user
     Session.set("selectedObservation", id);
-
-    // // set which tab is selected
-    // let state = Session.get('observationCardState');
-    // state["index"] = 2;
-    // Session.set('observationCardState', state);
+    Session.set('observationPageTabIndex', 2);
+    Session.set('observationDetailState', false);
   }
   render () {
     let tableRows = [];
@@ -110,29 +107,33 @@ export default class ObservationTable extends React.Component {
       tableRows.push(
         <tr className="observationRow" style={{cursor: "pointer"}} onClick={ this.rowClick.bind('this', this.data.observations[i]._id)} >
 
-          <td>{this.data.observations[i].category }</td>
-          <td>{this.data.observations[i].observationValue }</td>
-          <td>{this.data.observations[i].subject }</td>
-          <td>{this.data.observations[i].status }</td>
-          <td>{this.data.observations[i].device }</td>
-          <td>{this.data.observations[i].effectiveDateTime }</td>
-          <td><span className="barcode">{ this.data.observations[i]._id }</span></td>
+          <td className='category'>{this.data.observations[i].category }</td>
+          <td className='value'>{this.data.observations[i].observationValue }</td>
+          <td className='unit'>{this.data.observations[i].unit }</td>
+          <td className='name'>{this.data.observations[i].subject }</td>
+          <td className='subject.reference'>{this.data.observations[i].subjectId }</td>
+          <td className='status'>{this.data.observations[i].status }</td>
+          <td className='device.display'>{this.data.observations[i].device }</td>
+          <td className='date'>{this.data.observations[i].effectiveDateTime }</td>
+          <td className='barcode'><span className="barcode">{ this.data.observations[i]._id }</span></td>
         </tr>
       );
     }
 
     return(
       <div>
-        <Table responses hover >
+        <Table id="observationsTable" responses hover >
           <thead>
             <tr>
-              <th>type</th>
-              <th>value</th>
-              <th>subject</th>
-              <th>status</th>
-              <th>source</th>
-              <th>date</th>
-              <th>_id</th>
+              <th className='category'>type</th>
+              <th className='value'>value</th>
+              <th className='unit'>unit</th>
+              <th className='name'>subject</th>
+              <th className='subject.reference'>subject id</th>
+              <th className='status'>status</th>
+              <th className='device.display'>source</th>
+              <th className='date'>date</th>
+              <th className='barcode'>_id</th>
             </tr>
           </thead>
           <tbody>

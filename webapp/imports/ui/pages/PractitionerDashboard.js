@@ -106,7 +106,7 @@ export class PractitionerDashboard extends React.Component {
   openDiscussionForum(){
     browserHistory.push('/forum');
   }
-  openWeblog(){
+  openHealthlog(){
     browserHistory.push('/weblog');
   }
   openDevicepage(){
@@ -115,8 +115,8 @@ export class PractitionerDashboard extends React.Component {
   openObservationpage(){
     browserHistory.push('/observations');
   }
-  openBreathalyzerpage(){
-    browserHistory.push('/breathalyzer');
+  openFoopage(){
+    browserHistory.push('/foo');
   }
   openUserManagement(){
     browserHistory.push('/users');

@@ -28,9 +28,9 @@ describe('QuestionnaireResponses methods', function () {
     let response = QuestionnaireResponses.findOne({_id: questionnaireResponseId });
 
     assert.equal(response.status, 'completed');
-    assert.equal(response.identifier.type.text, 'BreathalyzerQuestionnaireResponse');
-    assert.equal(response.questionnaire.display, 'BreathalyzerQuestionnaire');
-    assert.equal(response.group.text, 'Breathalyzer Survey');
+    assert.equal(response.identifier.type.text, 'FooQuestionnaireResponse');
+    assert.equal(response.questionnaire.display, 'FooQuestionnaire');
+    assert.equal(response.group.text, 'Foo Survey');
 
     assert.equal(response.group.question[0].answer[0].valueBoolean, true);
     assert.ok(response.group.question[1].answer[0].valueString);
@@ -56,9 +56,9 @@ describe('QuestionnaireResponses methods', function () {
     const response = QuestionnaireResponses.findOne(_id);
 
     assert.equal(response.status, 'completed');
-    assert.equal(response.identifier.type.text, 'BreathalyzerQuestionnaireResponse');
-    assert.equal(response.questionnaire.display, 'BreathalyzerQuestionnaire');
-    assert.equal(response.group.text, 'Breathalyzer Survey');
+    assert.equal(response.identifier.type.text, 'FooQuestionnaireResponse');
+    assert.equal(response.questionnaire.display, 'FooQuestionnaire');
+    assert.equal(response.group.text, 'Foo Survey');
 
     assert.equal(response.group.question[0].answer[0].valueBoolean, true);
     assert.ok(response.group.question[1].answer[0].valueString);

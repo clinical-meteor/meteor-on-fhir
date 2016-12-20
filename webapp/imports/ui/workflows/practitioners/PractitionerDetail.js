@@ -249,13 +249,13 @@ export default class PractitionerDetail extends React.Component {
   handleDeleteButton(){
     removePractitionerById.call(
       {_id: Session.get('selectedPractitioner')}, (error) => {
-      if (error) {
-        Bert.alert(error.reason, 'danger');
-      } else {
-        Bert.alert('Practitioner deleted!', 'success');
-        this.openTab(1);
-      }
-    });
+        if (error) {
+          Bert.alert(error.reason, 'danger');
+        } else {
+          Bert.alert('Practitioner deleted!', 'success');
+          this.openTab(1);
+        }
+      });
   }
 }
 

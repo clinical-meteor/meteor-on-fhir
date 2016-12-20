@@ -1,4 +1,4 @@
-// import { Medications, BreathalyzerSchema } from '/imports/api/medications/medications';
+// import { Medications, FooSchema } from '/imports/api/medications/medications';
 import { Medications, MedicationSchema } from 'meteor/clinical:hl7-resource-medication';
 
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
@@ -35,7 +35,7 @@ export const updateMedication = new ValidatedMethod({
     if(process.env.NODE_ENV === "test") console.log("medicationUpdate", medicationUpdate);
 
 
-    // we're going to map the breathalyzer data onto a FHIR Medication resource
+    // we're going to map the foo data onto a FHIR Medication resource
     let updatedMedication = {
       resourceType: 'Medication',
       code: {

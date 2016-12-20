@@ -1,4 +1,4 @@
-//import { Questionnaires, BreathalyzerSchema } from '/imports/api/questionnaires/questionnaires';
+//import { Questionnaires, FooSchema } from '/imports/api/questionnaires/questionnaires';
 import { Questionnaires } from 'meteor/clinical:hl7-resource-questionnaire';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
@@ -49,7 +49,7 @@ export const updateQuestionnaire = new ValidatedMethod({
   }).validator(),
   run({ _id, update }) {
 
-    // we're going to map the breathalyzer data onto a FHIR Questionnaire resource
+    // we're going to map the foo data onto a FHIR Questionnaire resource
     let updatedQuestionnaire = {
       resourceType: 'Questionnaire',
       version: update.version,

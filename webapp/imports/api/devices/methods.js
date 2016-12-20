@@ -27,7 +27,7 @@ export const insertDevice = new ValidatedMethod({
       'note' : [],
       'status' : 'available',
       'manufacturer' : 'BACtrack',
-      'model' : 'Mobile Breathalyzer',
+      'model' : 'Mobile Foo',
       'version' : 'BT-M5',
       'udi' : 'S8B-BTBLE40',
       'patient' : {
@@ -79,7 +79,7 @@ export const updateDevice = new ValidatedMethod({
       'note' : [],
       'status' : 'available',
       'manufacturer' : 'BACtrack',
-      'model' : 'Mobile Breathalyzer',
+      'model' : 'Mobile Foo',
       'version' : 'BT-M5',
       'udi' : 'S8B-BTBLE40',
       'patient' : {

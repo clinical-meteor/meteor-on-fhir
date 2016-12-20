@@ -14,7 +14,7 @@ import { PractitionersPage } from '/imports/ui/workflows/practitioners/Practitio
 import { Signup } from '/imports/ui/pages/Signup';
 import { ThemePage } from '/imports/ui/pages/ThemePage';
 import { UsersPage } from '/imports/ui/pages/UsersPage';
-import { Weblog } from '/imports/ui/pages/Weblog';
+import { Healthlog } from '/imports/ui/pages/Healthlog';
 import { NotFound } from '/imports/ui/pages/NotFound';
 import { RecoverPassword } from '/imports/ui/pages/RecoverPassword';
 import { ResetPassword } from '/imports/ui/pages/ResetPassword';
@@ -31,6 +31,14 @@ import { AdminDashboard } from '/imports/ui/pages/AdminDashboard';
 import { PractitionerDashboard } from '/imports/ui/pages/PractitionerDashboard';
 
 import { HexGridPage } from '/imports/ui/pages/HexGridPage';
+import { AppInfoPage } from '/imports/ui/pages/AppInfoPage';
+
+import { InboundHeaderPage } from '/imports/ui/pages/InboundHeaderPage';
+import { OutboundHeaderPage } from '/imports/ui/pages/OutboundHeaderPage';
+import { DataManagementPage } from '/imports/ui/pages/DataManagementPage';
+
+import { ObservationsPage } from '/imports/ui/pages/ObservationsPage';
+
 
 // we're storing the current route URL in a reactive variable
 // which will be used to update active controls
@@ -71,29 +79,6 @@ const requreSysadmin = (nextState, replace) => {
   }
 };
 
-// const parseAuthentication = (nextState, replace) => {
-//   console.log("Parsing authentication...", Meteor.users.find().fetch());
-//
-//   if (!Meteor.loggingIn() && !Meteor.userId()) {
-//     replace({
-//       pathname: '/signin',
-//       state: { nextPathname: nextState.location.pathname }
-//     });
-//   } else if (Roles.userIsInRole(Meteor.userId(), 'sysadmin')) {
-//     console.log("User is a sysadmin!  Redirecting to /sysadmin");
-//
-//     replace({
-//       pathname: '/sysadmin',
-//       state: { nextPathname: nextState.location.pathname }
-//     });
-//   } else if (Roles.userIsInRole(Meteor.userId(), 'practitioner')) {
-//     console.log("User is a practitioner!  Redirecting to /practitioner");
-//     replace({
-//       pathname: '/practitioner',
-//       state: { nextPathname: nextState.location.pathname }
-//     });
-//   }
-// };
 
 Meteor.startup(() => {
   render(
@@ -126,8 +111,8 @@ Meteor.startup(() => {
         <Route name="topicById" path="/topic/:topicId" component={ ConversationsPage } onEnter={ requireAuth } />
         <Route name="newTopic" path="/new/topic" component={ NewTopicPage } onEnter={ requireAuth } />
 
-        <Route name="weblog" path="/weblog" component={ Weblog } />
-        <Route name="weblogByUserId" path="/weblog/:userId" component={ Weblog } />
+        <Route name="weblog" path="/weblog" component={ Healthlog } />
+        <Route name="weblogByUserId" path="/weblog/:userId" component={ Healthlog } />
 
         <Route name="welcomePatient" path="/welcome/patient" component={ WelcomePatientPage } onEnter={ requireAuth }/>
 
@@ -135,6 +120,15 @@ Meteor.startup(() => {
         <Route name="needToBePractitioner" path="/need-to-be-practitioner" component={ NeedToBePractitioner }  />
 
         <Route name="hexGrid" path="/hex" component={ HexGridPage } />
+        <Route name="appInfoPage" path="/info" component={ AppInfoPage } />
+
+        <Route name="appInfoPage" path="/info" component={ AppInfoPage } />
+
+        <Route name="inboundHeaderPage" path="/inbound" component={ InboundHeaderPage } />
+        <Route name="outboundHeaderPage" path="/outbound" component={ OutboundHeaderPage } />
+        <Route name="dataManagementPage" path="/data-management" component={ DataManagementPage } />
+
+        <Route name="observationPage" path="/observations" component={ ObservationsPage } />
 
         <Route path="*" component={ NotFound } />
 

@@ -6,7 +6,7 @@ import { assert } from 'meteor/practicalmeteor:chai';
 // import { resetDatabase } from 'meteor/xolvio:cleaner';
 import { Factory } from 'meteor/dburles:factory';
 import { Observations } from './observations.js';
-import { newBreathalyzerObservation, updateObservation, removeObservation } from './methods.js';
+import { newFooObservation, updateObservation, removeObservation } from './methods.js';
 
 describe('Observations methods', function () {
   beforeEach(function () {
@@ -17,8 +17,8 @@ describe('Observations methods', function () {
     }
   });
 
-  it('inserts a breathalyzer record into the Observations collection', function () {
-    let observationId = newBreathalyzerObservation.call({
+  it('inserts a foo record into the Observations collection', function () {
+    let observationId = newFooObservation.call({
       value: 0.08,
       status: 'final',
       device: '',
@@ -33,7 +33,7 @@ describe('Observations methods', function () {
       }
     });
     let getObservation = Observations.findOne({_id: observationId });
-    assert.equal(getObservation.category.text, 'Breathalyzer');
+    assert.equal(getObservation.category.text, 'Foo');
     assert.equal(getObservation.valueQuantity.value, 0.08);
     assert.equal(getObservation.status, 'final');
     assert.equal(getObservation.subject.display, 'Julia Doe');
@@ -48,7 +48,7 @@ describe('Observations methods', function () {
 
     updateObservation.call({
       _id,
-      breathalyzerUpdate: {
+      fooUpdate: {
         observationValue: 0.07,
         observationType: 'BAC',
         observationStatus: 'OK',

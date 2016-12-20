@@ -83,7 +83,7 @@ export class UserTable extends React.Component {
         <td>
           <Avatar src={this.data.users[i].profile ? this.data.users[i].profile.avatar : '/thumbnail-blank.png' } />
         </td>
-        <td onClick={this.routeToWeblog.bind(this, this.data.users[i]._id)} style={{cursor: 'pointer'}}>/weblog/{this.data.users[i]._id}</td>
+        <td onClick={this.routeToHealthlog.bind(this, this.data.users[i]._id)} style={{cursor: 'pointer'}}>/weblog/{this.data.users[i]._id}</td>
         <td>{this.data.users[i].username}</td>
         <td>{this.data.users[i].fullName()}</td>
         <td>{this.data.users[i].emails ? this.data.users[i].emails[0].address : ''}</td>
@@ -121,7 +121,7 @@ export class UserTable extends React.Component {
   handleSelect(selected) {
     this.setState({selected});
   }
-  routeToWeblog(userId){
+  routeToHealthlog(userId){
     browserHistory.push('/weblog/' + userId);
   }
 

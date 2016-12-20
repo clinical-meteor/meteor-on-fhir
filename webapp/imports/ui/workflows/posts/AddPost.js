@@ -47,7 +47,7 @@ export class AddPost extends React.Component {
     return (
       <GlassCard id="addPostCard">
         <CardTitle
-          title="Weblog"
+          title="Healthlog"
         />
         <CardText>
           <TextField

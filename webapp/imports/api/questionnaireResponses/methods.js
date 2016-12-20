@@ -1,4 +1,3 @@
-//import { QuestionnaireResponses, BreathalyzerSchema } from '/imports/api/questionnaireResponses/questionnaireResponses';
 import { QuestionnaireResponses } from 'meteor/clinical:hl7-resource-questionnaire-response';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
@@ -8,28 +7,7 @@ import { Meteor } from 'meteor/meteor';
 export const insertQuestionnaireResponse = new ValidatedMethod({
   name: 'questionnaireResponses.insert',
   //survey response
-  validate: new SimpleSchema({
-    didDrink: {
-      type: Boolean
-    },
-    firstDrink: {
-      type: Date,
-      optional: true
-    },
-    lastDrink: {
-      type: Date,
-      optional: true
-    },
-    numberDrinks: {
-      type: Number,
-      optional: true
-    },
-    estimatedBAC: {
-      type: Number,
-      decimal: true,
-      optional: true
-    }
-  }).validator(),
+  validate: QuestionnaireResponseSchema.validator(),
   run(surveyData) {
 
     // we're going to map the survey data onto a FHIR QuestionnaireResponse resource
@@ -38,20 +16,20 @@ export const insertQuestionnaireResponse = new ValidatedMethod({
       identifier: {
         use: "usual",
         type: {
-          text: "BreathalyzerQuestionnaireResponse",
+          text: "FooQuestionnaireResponse",
           coding: [{
-            system: "dxrxmedical",
+            system: "medical",
             version: "1",
-            code: "dxrx",
-            display: "Breathalyzer Survey Questionnaire",
+            code: "",
+            display: "Foo Survey Questionnaire",
             userSelected: false
           }]
         }
       },
       status: "completed",
       questionnaire: {
-        display: "BreathalyzerQuestionnaire",
-        reference: "Questionnaires/BreathalyzerQuestionnaire"
+        display: "FooQuestionnaire",
+        reference: "Questionnaires/FooQuestionnaire"
       },
       author: {
         display: '',
@@ -71,8 +49,8 @@ export const insertQuestionnaireResponse = new ValidatedMethod({
       },
       group: {
         linkId: '',
-        title: "BREATHALYZER SURVEY",
-        text: "Breathalyzer Survey",
+        title: " SURVEY",
+        text: "Foo Survey",
         required: false,
         repeats: true,
         question: [{
@@ -155,20 +133,20 @@ export const updateQuestionnaireResponse = new ValidatedMethod({
       identifier: {
         use: "usual",
         type: {
-          text: "BreathalyzerQuestionnaireResponse",
+          text: "FooQuestionnaireResponse",
           coding: [{
-            system: "dxrxmedical",
+            system: "medical",
             version: "1",
-            code: "dxrx",
-            display: "Breathalyzer Survey Questionnaire",
+            code: "",
+            display: "Foo Survey Questionnaire",
             userSelected: false
           }]
         }
       },
       status: "completed",
       questionnaire: {
-        display: "BreathalyzerQuestionnaire",
-        reference: "Questionnaires/BreathalyzerQuestionnaire"
+        display: "FooQuestionnaire",
+        reference: "Questionnaires/FooQuestionnaire"
       },
       author: {
         display: '',
@@ -189,7 +167,7 @@ export const updateQuestionnaireResponse = new ValidatedMethod({
       group: {
         linkId: '',
         title: "BREATHALYZER SURVEY",
-        text: "Breathalyzer Survey",
+        text: "Foo Survey",
         required: false,
         repeats: true,
         question: [{

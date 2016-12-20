@@ -50,6 +50,9 @@ export class MainIndex extends React.Component {
     if (Roles.userIsInRole(Meteor.userId(), 'practitioner')) {
       data.user.isPractitioner = true;
     }
+    if (!Roles.userIsInRole(Meteor.userId(), ['practitioner', 'sysadmin'])) {
+      data.user.isPatient = false;
+    }
     //// not sure how we want to do handle the default case
     //// so leaving out for now
     // if (Roles.userIsInRole(Meteor.userId(), 'sysadmin')) {
@@ -77,52 +80,62 @@ export class MainIndex extends React.Component {
       <div id='indexPage'>
         <VerticalCanvas>
 
-          <div id='forumTile' style={this.data.style.indexCardPadding} onClick={ this.openDiscussionForum.bind(this) }>
-            <GlassCard style={this.data.style.indexCard} >
-              <CardTitle
-                title='Discussion Forum'
-                subtitle='Get help developing healthcare apps using Meteor.js'
-              />
-            </GlassCard>
-          </div>
 
-          <div style={this.data.style.indexCardPadding} onClick={ this.openWeblog.bind(this) } >
-            <GlassCard style={this.data.style.indexCard} >
-              <CardTitle
-                title='Weblog'
-                subtitle='Post public thoughts using a Wordpress/Twitter style format.'
-              />
-            </GlassCard>
-          </div>
-
-          <Spacer style={this.data.style.spacer} />
-
-          <div style={this.data.style.inactiveIndexCard}>
-            <GlassCard style={this.data.style.indexCard} >
-              <CardTitle
-                title='Data Management'
-                subtitle='Import/export data.'
-              />
-            </GlassCard>
-          </div>
-
-          <div id='forumTile' style={this.data.style.indexCardPadding} onClick={ this.openObservationpage.bind(this) } >
-            <GlassCard style={this.data.style.indexCard} >
-              <CardTitle
-                title='Observations'
-                subtitle='Observations from devices.'
-              />
-            </GlassCard>
-          </div>
-          <Spacer style={this.data.style.spacer} />
-
+          {this.renderPatientTiles(this.data.user.isPatient)}
           {this.renderPractitionerTiles(this.data.user.isPractitioner)}
+          {this.renderAdminTiles(this.data.user.isAdmin)}
 
         </VerticalCanvas>
       </div>
     );
   }
 
+
+  renderPatientTiles(isPatient){
+    return (
+      <div>
+        <div id='forumTile' style={this.data.style.indexCardPadding} onClick={ this.openDiscussionForum.bind(this) }>
+          <GlassCard style={this.data.style.indexCard} >
+            <CardTitle
+              title='Discussion Forum'
+              subtitle='Get help developing healthcare apps using Meteor.js'
+            />
+          </GlassCard>
+        </div>
+
+        <div id='weblogTile' style={this.data.style.indexCardPadding} onClick={ this.openHealthlog.bind(this) } >
+          <GlassCard style={this.data.style.indexCard} >
+            <CardTitle
+              title='Healthlog'
+              subtitle='Post public thoughts using a Wordpress/Twitter style format.'
+            />
+          </GlassCard>
+        </div>
+
+        <Spacer style={this.data.style.spacer} />
+
+        <div id='dataManagementTile' style={this.data.style.inactiveIndexCard} onClick={ this.openDataManagement.bind(this) } >
+          <GlassCard style={this.data.style.indexCard} >
+            <CardTitle
+              title='Data Management'
+              subtitle='Import/export data.'
+            />
+          </GlassCard>
+        </div>
+
+        <div id='observationsTile' style={this.data.style.inactiveIndexCard} onClick={ this.openObservations.bind(this) } >
+          <GlassCard style={this.data.style.indexCard} >
+            <CardTitle
+              title='Observations'
+              subtitle='Observations from devices.'
+            />
+          </GlassCard>
+        </div>
+        <Spacer style={this.data.style.spacer} />
+
+      </div>
+    );
+  }
   renderPractitionerTiles(isPractitioner){
     return (
       <div>
@@ -146,11 +159,34 @@ export class MainIndex extends React.Component {
       </div>
     );
   }
+  renderAdminTiles(isAdmin){
+    return (
+      <div>
+        <div id='inboundMessagesTile' style={this.data.style.inactiveIndexCard} onClick={ this.openInboundMessages.bind(this) } >
+          <GlassCard style={this.data.style.indexCard} >
+            <CardTitle
+              title='Inbound Messages'
+              subtitle='Inbound HL7 FHIR message log.'
+            />
+          </GlassCard>
+        </div>
+        <div id="outboundMessagesTile" style={this.data.style.inactiveIndexCard} onClick={ this.openOutboundMessages.bind(this) } >
+          <GlassCard style={this.data.style.indexCard} >
+            <CardTitle
+              title='Outbound Messages'
+              subtitle='Outbound HL7 log.'
+            />
+          </GlassCard>
+        </div>
+          <Spacer style={this.data.style.spacer} />
+      </div>
+    );
+  }
 
   openDiscussionForum(){
     browserHistory.push('/forum');
   }
-  openWeblog(){
+  openHealthlog(){
     browserHistory.push('/weblog');
   }
   openUserManagement(){
@@ -165,13 +201,25 @@ export class MainIndex extends React.Component {
   openPractitioners(){
     browserHistory.push('/practitioners');
   }
-  openDataManagementPage(){
-    console.log('openDataManagementPage');
+  openDataManagement(){
+    browserHistory.push('/data-management');
   }
-  openObservationpage(){
+  openObservations(){
     browserHistory.push('/observations');
   }
+  openInboundMessages(){
+    browserHistory.push('/inbound');
+  }
+  openOutboundMessages(){
+    browserHistory.push('/outbound');
+  }
+  openLink(url){
+    console.log("openLink", url);
+
+    browserHistory.push(url);
+  }
 }
+
 
 
 

@@ -1,4 +1,4 @@
-//import { CarePlans, BreathalyzerSchema } from '/imports/api/careplans/careplans';
+//import { CarePlans, FooSchema } from '/imports/api/careplans/careplans';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
 
@@ -181,7 +181,7 @@ export const cloneCarePlan = new ValidatedMethod({
     //     resourceType: 'Observation',
     //     status: 'final',
     //     category: {
-    //       text: 'Breathalyzer'
+    //       text: 'Foo'
     //     },
     //     effectiveDateTime: carouselDataPayload.clientTimestamp,
     //     subject: {
@@ -193,7 +193,7 @@ export const cloneCarePlan = new ValidatedMethod({
     //       reference: carouselDataPayload.subject.reference
     //     },
     //     device: {
-    //       display: 'Breathalyzer',
+    //       display: 'Foo',
     //       reference: ''
     //     },
     //     valueQuantity: {
@@ -229,20 +229,20 @@ export const cloneCarePlan = new ValidatedMethod({
       identifier: {
         use: "usual",
         type: {
-          text: "BreathalyzerQuestionnaireResponse",
+          text: "FooQuestionnaireResponse",
           coding: [{
-            system: "dxrxmedical",
+            system: "medical",
             version: "1",
-            code: "dxrx",
-            display: "Breathalyzer Survey Questionnaire",
+            code: "",
+            display: "Foo Survey Questionnaire",
             userSelected: false
           }]
         }
       },
       status: "started",
       questionnaire: {
-        display: "BreathalyzerQuestionnaire",
-        reference: "Questionnaires/BreathalyzerQuestionnaire"
+        display: "FooQuestionnaire",
+        reference: "Questionnaires/FooQuestionnaire"
       },
       author: {
         display: carouselDataPayload.subject.display,
@@ -263,7 +263,7 @@ export const cloneCarePlan = new ValidatedMethod({
       group: {
         linkId: '',
         title: "BREATHALYZER SURVEY",
-        text: "Breathalyzer Survey",
+        text: "Foo Survey",
         required: false,
         repeats: true,
         question: [{
@@ -480,7 +480,7 @@ export const authorCarePlan = new ValidatedMethod({
 //   }).validator(),
 //   run({ _id, update }) {
 //
-//     // we're going to map the breathalyzer data onto a FHIR CarePlan resource
+//     // we're going to map the foo data onto a FHIR CarePlan resource
 //     let updatedCarePlan = {
 //       resourceType: 'CarePlan',
 //       version: update.version,

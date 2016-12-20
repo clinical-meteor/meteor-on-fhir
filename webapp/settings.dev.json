@@ -9,6 +9,12 @@
     },
     "app":{
       "barcodes": true
+    },
+    "defaults": {
+      "displayNavbars": true,
+      "disableHeader": false,
+      "disableFooter": true,
+      "darkroom": false
     }
   },
   "private": {
