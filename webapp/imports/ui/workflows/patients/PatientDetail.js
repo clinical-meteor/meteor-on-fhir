@@ -6,8 +6,6 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
 import { CardText, CardActions } from 'material-ui/Card';
-
-
 import { insertPatient, updatePatient, removePatientById } from '/imports/ui/workflows/patients/methods';
 import { Bert } from 'meteor/themeteorchef:bert';
 

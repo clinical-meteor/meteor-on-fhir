@@ -480,7 +480,7 @@ export const authorCarePlan = new ValidatedMethod({
 //   }).validator(),
 //   run({ _id, update }) {
 //
-//     // we're going to map the breathalyzer data onto a FHIR CarePlan resource
+//     // we're going to map the foo data onto a FHIR CarePlan resource
 //     let updatedCarePlan = {
 //       resourceType: 'CarePlan',
 //       version: update.version,

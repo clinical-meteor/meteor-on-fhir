@@ -29,7 +29,7 @@ Meteor.methods({
     if (Questionnaires.find().count() === 0) {
       console.log('No records found in Questionnaires collection.  Lets create some...');
 
-      var breathalyzerQuestionnaire = {
+      var fooQuestionnaire = {
         resourceType: "Questionnaire",
         identifier: [{
           use: "usual",
@@ -83,7 +83,7 @@ Meteor.methods({
         }
       };
 
-      Meteor.call('createQuestionnaire', breathalyzerQuestionnaire);
+      Meteor.call('createQuestionnaire', fooQuestionnaire);
     } else {
       console.log('Questionnaires already exist.  Skipping.');
     }

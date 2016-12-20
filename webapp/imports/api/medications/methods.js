@@ -35,7 +35,7 @@ export const updateMedication = new ValidatedMethod({
     if(process.env.NODE_ENV === "test") console.log("medicationUpdate", medicationUpdate);
 
 
-    // we're going to map the breathalyzer data onto a FHIR Medication resource
+    // we're going to map the foo data onto a FHIR Medication resource
     let updatedMedication = {
       resourceType: 'Medication',
       code: {

@@ -9,23 +9,49 @@ export const createObservation = new ValidatedMethod({
 
     console.log("createObservation", observationData);
 
-
-    return Observations.insert(newObservation, function(error){
-      if (error) {
-        if(process.env.NODE_ENV === "test") console.log("Observations.insert[error]", error);
+    newObservation = {
+      status: 'final',
+      category: {
+        text: 'Foo'
+      },
+      effectiveDateTime: new Date(),
+      subject: {
+        display: 'Foo Faz',
+        reference: '12345'
+      },
+      performer: {
+        display: '',
+        reference: ''
+      },
+      device: {
+        display: 'Scale',
+        reference: ''
+      },
+      valueQuantity: {
+        value: 60,
+        unit: '%',
+        system: 'http://unitsofmeasure.org'
       }
-    });
+    };
+
+    // if (process.env.NODE_ENV === "test") {
+    //   observationData.test = true;
+    // } else {
+    //   observationData.test = false;
+    // }
+
+    return Observations.insert(newObservation);
   }
 });
 
 export const updateObservation = new ValidatedMethod({
   name: 'observations.update',
   validate: new SimpleSchema({
-    _id: { type: String, optional: true },
+    _id: { type: String, optional: true }
   }).validator(),
-  run({ _id, breathalyzerUpdate }) {
+  run({ _id, fooUpdate }) {
 
-    // we're going to map the breathalyzer data onto a FHIR Observation resource
+    // we're going to map the foo data onto a FHIR Observation resource
     let updatedObservation = {
       resourceType: 'Observation',
       status: 'final',

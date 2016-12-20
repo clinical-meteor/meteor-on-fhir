@@ -5,8 +5,6 @@ import { Accounts } from 'meteor/accounts-base';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
 
-//import { Patients } from 'meteor/accounts-base';
-
 convertBirthdateToValidDate = function(document){
   // we need to check if the birthdate is a valid string
   let newDate = moment(document.birthDate).toDate();

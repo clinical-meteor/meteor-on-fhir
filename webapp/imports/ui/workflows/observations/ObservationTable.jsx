@@ -6,9 +6,7 @@ import { Card, CardMedia, CardTitle, CardText, CardActions } from 'material-ui/C
 import { Meteor } from 'meteor/meteor';
 
 import { Table } from 'react-bootstrap';
-// import Table from 'material-ui/Table';
-//import { Observations } from '/imports/api/observations/observations';
-//import { moment } from 'meteor/momentjs:moment';
+import { Observations } from 'meteor/clinical:hl7-resource-observation';
 
 export default class ObservationTable extends React.Component {
 
@@ -75,9 +73,7 @@ export default class ObservationTable extends React.Component {
       data.style.backdropFilter = "blur(5px)";
     }
 
-    if(process.env.NODE_ENV === "test") console.log("data", data);
-
-
+    if(process.env.NODE_ENV === "test") console.log("ObservationTable[data]", data);
     return data;
   }
   handleChange(row, key, value) {

@@ -6,12 +6,11 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
 import { CardText, CardActions } from 'material-ui/Card';
-import { createObservation, initializeObservation, updateObservation, removeObservationById } from '/imports/api/observations/methods';
+import { createObservation, updateObservation, removeObservation } from '/imports/api/observations/methods';
 import { Bert } from 'meteor/themeteorchef:bert';
 
 
 let defaultObservation = {
-  resourceType: 'Observation',
   status: 'preliminary',
   category: {
     text: ''
@@ -225,7 +224,7 @@ export default class ObservationDetail extends React.Component {
       updateObservation.call({
         _id: Session.get('selectedObservation'),
         update: observationFormData
-      }, (error) => {
+      }, function(error, result){
         if (error) {
           if (process.env.NODE_ENV === "test") console.log("error", error);
           Bert.alert(error.reason, 'danger');
@@ -234,6 +233,9 @@ export default class ObservationDetail extends React.Component {
           Session.set('patientFormData', defaultObservation);
           Session.set('patientDetailState', defaultObservation);
           Session.set('practitionerPageTabIndex', 1);
+        }
+        if (result) {
+          console.log("result", result);
         }
       });
     } else {
@@ -244,16 +246,30 @@ export default class ObservationDetail extends React.Component {
 
       if (process.env.NODE_ENV === "test") console.log("create a new observation", observationFormData);
 
-      createObservation.call(observationFormData, (error) => {
+
+      Observations.insert(observationFormData, function(error, result){
         if (error) {
-          Bert.alert(error.reason, 'danger');
-        } else {
-          Bert.alert('Observation added!', 'success');
-          Session.set('patientFormData', defaultObservation);
-          Session.set('patientDetailState', defaultObservation);
-          Session.set('practitionerPageTabIndex', 1);
+          console.log("error", error);
+          if(process.env.NODE_ENV === "test") console.log("Observations.insert[error]", error);
+        }
+        if (result) {
+          console.log("result", result);
         }
       });
+
+      // createObservation.call(observationFormData, function(error, result) {
+      //   if (error) {
+      //     Bert.alert(error.reason, 'danger');
+      //   } else {
+      //     Bert.alert('Observation added!', 'success');
+      //     Session.set('patientFormData', defaultObservation);
+      //     Session.set('patientDetailState', defaultObservation);
+      //     Session.set('practitionerPageTabIndex', 1);
+      //   }
+      //   if (result) {
+      //     console.log("result", result);
+      //   }
+      // });
     }
   }
 

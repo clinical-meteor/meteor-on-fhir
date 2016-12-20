@@ -17,7 +17,7 @@ describe('Observations methods', function () {
     }
   });
 
-  it('inserts a breathalyzer record into the Observations collection', function () {
+  it('inserts a foo record into the Observations collection', function () {
     let observationId = newFooObservation.call({
       value: 0.08,
       status: 'final',
@@ -48,7 +48,7 @@ describe('Observations methods', function () {
 
     updateObservation.call({
       _id,
-      breathalyzerUpdate: {
+      fooUpdate: {
         observationValue: 0.07,
         observationType: 'BAC',
         observationStatus: 'OK',

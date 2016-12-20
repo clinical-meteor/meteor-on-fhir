@@ -129,10 +129,10 @@ Factory.define('careplan', CarePlans, {
     }
   }],
   goal: [{
-    display: 'Use the breathalyzer once a day.',
+    display: 'Use the foo once a day.',
     reference: 'Goals/'  + Random.id()
   }, {
-    display: 'Use the breathalyzer twice a day.',
+    display: 'Use the foo twice a day.',
     reference: 'Goals/'  + Random.id()
   }, {
     display: 'Take your meds for today.',

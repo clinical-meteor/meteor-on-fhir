@@ -49,7 +49,7 @@ export const updateQuestionnaire = new ValidatedMethod({
   }).validator(),
   run({ _id, update }) {
 
-    // we're going to map the breathalyzer data onto a FHIR Questionnaire resource
+    // we're going to map the foo data onto a FHIR Questionnaire resource
     let updatedQuestionnaire = {
       resourceType: 'Questionnaire',
       version: update.version,
