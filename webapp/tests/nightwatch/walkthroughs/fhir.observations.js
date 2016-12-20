@@ -22,8 +22,10 @@ module.exports = {
       .pause(1000, client);
 
     client
+      .verify.elementPresent("#acceptWelcomePageButton")
+      .click("#acceptWelcomePageButton").pause(1000)
       .verify.elementPresent('#indexPage')
-      .verify.containsText('#authenticatedUsername', 'Gregory House');
+      .verify.containsText('#authenticatedUsername', 'Jane Doe');
   },
   'list observations': function (client) {
     client.page

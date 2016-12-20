@@ -8,7 +8,7 @@ module.exports = {
 
     verifyElements: function() {
       return this
-        .verify.elementPresent('#observationsPage')
+        .waitForElementPresent('#observationsPage', 5000)
         .verify.elementPresent('#observationsTable');
     },
     verifyEmptyList: function() {
@@ -33,11 +33,11 @@ module.exports = {
     verifyNewObservationCard: function() {
       return this
         .verify.elementPresent('#observationsPage .observationDetail')
-        .verify.elementPresent('#observationsPage .observationDetail input[name="observationType"]')
-        .verify.elementPresent('#observationsPage .observationDetail input[name="value"]')
-        .verify.elementPresent('#observationsPage .observationDetail input[name="unit"]')
-        .verify.elementPresent('#observationsPage .observationDetail input[name="name"]')
-        .verify.elementPresent('#observationsPage .observationDetail input[name="userId"]');
+        .verify.elementPresent('#observationsPage .observationDetail input[name="category.text"]')
+        .verify.elementPresent('#observationsPage .observationDetail input[name="valueQuantity.value"]')
+        .verify.elementPresent('#observationsPage .observationDetail input[name="valueQuantity.unit"]')
+        .verify.elementPresent('#observationsPage .observationDetail input[name="subject.display"]')
+        .verify.elementPresent('#observationsPage .observationDetail input[name="subject.reference"]');
     },
     verifyObservationDetails: function(observationType, value, unit, name, userId) {
       this
@@ -45,19 +45,19 @@ module.exports = {
         .waitForElementPresent('#observationDetails input[name="name"]', 5000);
 
       if (observationType) {
-        this.verify.attributeEquals('#observationsPage .observationDetail  input[name="observationType"]', 'value', observationType);
+        this.verify.attributeEquals('#observationsPage .observationDetail  input[name="category.text"]', 'value', observationType);
       }
       if (value) {
-        this.verify.attributeEquals('#observationsPage .observationDetail  input[name="value"]', 'value', value);
+        this.verify.attributeEquals('#observationsPage .observationDetail  input[name="valueQuantity.value"]', 'value', value);
       }
       if (unit) {
-        this.verify.attributeEquals('#observationsPage .observationDetail  input[name="unit"]', 'value', unit);
+        this.verify.attributeEquals('#observationsPage .observationDetail  input[name="valueQuantity.unit"]', 'value', unit);
       }
       if (name) {
-        this.verify.attributeEquals('#observationsPage .observationDetail  input[name="name"]', 'value', name);
+        this.verify.attributeEquals('#observationsPage .observationDetail  input[name="subject.display"]', 'value', name);
       }
       if (userId) {
-        this.verify.attributeEquals('#observationsPage .observationDetail  input[name="userId"]', 'value', userId);
+        this.verify.attributeEquals('#observationsPage .observationDetail  input[name="subject.reference"]', 'value', userId);
       }
       return this;
     },
@@ -103,31 +103,31 @@ module.exports = {
       if (observationType) {
         var observationTypeArray = observationType.split('');
         for (var i = 0; i < observationTypeArray.length; i++) {
-          this.setValue(pageElement + ' input[name="observationType"]', observationTypeArray[i]);
+          this.setValue(pageElement + ' input[name="category.text"]', observationTypeArray[i]);
         }
       }
       if (value) {
         var valueArray = value.split('');
         for (var k = 0; k < valueArray.length; k++) {
-          this.setValue(pageElement + ' input[name="value"]', valueArray[k]);
+          this.setValue(pageElement + ' input[name="valueQuantity.value"]', valueArray[k]);
         }
       }
       if (unit) {
         var unitArray = unit.split('');
         for (var j = 0; j < unitArray.length; j++) {
-          this.setValue(pageElement + ' input[name="unit"]', unitArray[j]);
+          this.setValue(pageElement + ' input[name="valueQuantity.unit"]', unitArray[j]);
         }
       }
       if (name) {
         var nameArray = name.split('');
         for (var l = 0; l < nameArray.length; l++) {
-          this.setValue(pageElement + ' input[name="name"]', nameArray[l]);
+          this.setValue(pageElement + ' input[name="subject.display"]', nameArray[l]);
         }
       }
       if (userId) {
         var userIdArray = userId.split('');
         for (var m = 0; m < userIdArray.length; m++) {
-          this.setValue(pageElement + ' input[name="userId"]', userIdArray[m]);
+          this.setValue(pageElement + ' input[name="subject.reference"]', userIdArray[m]);
         }
       }
 

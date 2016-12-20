@@ -102,9 +102,6 @@ export class AdminDashboard extends React.Component {
   openObservationpage(){
     browserHistory.push('/observations');
   }
-  openBreathalyzerpage(){
-    browserHistory.push('/breathalyzer');
-  }
   openUserManagement(){
     browserHistory.push('/users');
   }

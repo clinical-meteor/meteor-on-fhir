@@ -1,4 +1,3 @@
-//import { QuestionnaireResponses, BreathalyzerSchema } from '/imports/api/questionnaireResponses/questionnaireResponses';
 import { QuestionnaireResponses } from 'meteor/clinical:hl7-resource-questionnaire-response';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
@@ -38,20 +37,20 @@ export const insertQuestionnaireResponse = new ValidatedMethod({
       identifier: {
         use: "usual",
         type: {
-          text: "BreathalyzerQuestionnaireResponse",
+          text: "FooQuestionnaireResponse",
           coding: [{
             system: "dxrxmedical",
             version: "1",
             code: "dxrx",
-            display: "Breathalyzer Survey Questionnaire",
+            display: "Foo Survey Questionnaire",
             userSelected: false
           }]
         }
       },
       status: "completed",
       questionnaire: {
-        display: "BreathalyzerQuestionnaire",
-        reference: "Questionnaires/BreathalyzerQuestionnaire"
+        display: "FooQuestionnaire",
+        reference: "Questionnaires/FooQuestionnaire"
       },
       author: {
         display: '',
@@ -72,7 +71,7 @@ export const insertQuestionnaireResponse = new ValidatedMethod({
       group: {
         linkId: '',
         title: "BREATHALYZER SURVEY",
-        text: "Breathalyzer Survey",
+        text: "Foo Survey",
         required: false,
         repeats: true,
         question: [{
@@ -155,20 +154,20 @@ export const updateQuestionnaireResponse = new ValidatedMethod({
       identifier: {
         use: "usual",
         type: {
-          text: "BreathalyzerQuestionnaireResponse",
+          text: "FooQuestionnaireResponse",
           coding: [{
             system: "dxrxmedical",
             version: "1",
             code: "dxrx",
-            display: "Breathalyzer Survey Questionnaire",
+            display: "Foo Survey Questionnaire",
             userSelected: false
           }]
         }
       },
       status: "completed",
       questionnaire: {
-        display: "BreathalyzerQuestionnaire",
-        reference: "Questionnaires/BreathalyzerQuestionnaire"
+        display: "FooQuestionnaire",
+        reference: "Questionnaires/FooQuestionnaire"
       },
       author: {
         display: '',
@@ -189,7 +188,7 @@ export const updateQuestionnaireResponse = new ValidatedMethod({
       group: {
         linkId: '',
         title: "BREATHALYZER SURVEY",
-        text: "Breathalyzer Survey",
+        text: "Foo Survey",
         required: false,
         repeats: true,
         question: [{

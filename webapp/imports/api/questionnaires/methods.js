@@ -1,4 +1,4 @@
-//import { Questionnaires, BreathalyzerSchema } from '/imports/api/questionnaires/questionnaires';
+//import { Questionnaires, FooSchema } from '/imports/api/questionnaires/questionnaires';
 import { Questionnaires } from 'meteor/clinical:hl7-resource-questionnaire';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { ValidatedMethod } from 'meteor/mdg:validated-method';

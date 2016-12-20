@@ -70,7 +70,7 @@ export default class ObservationDetail extends React.Component {
   render() {
 
     return (
-      <div className="observationDetail">
+      <div id={this.props.id} className="observationDetail">
         <CardText>
           <TextField
             id='categoryTextInput'
@@ -78,7 +78,7 @@ export default class ObservationDetail extends React.Component {
             name='category.text'
             floatingLabelText='Category'
             defaultValue={this.data.observation.category.text}
-            onChange={ this.changeState.bind(this, 'category.text')}
+            onChange={ this.changeCategory.bind(this, 'category.text')}
             fullWidth
             /><br/>
           <TextField
@@ -87,7 +87,7 @@ export default class ObservationDetail extends React.Component {
             name='valueQuantity.value'
             floatingLabelText='Value'
             defaultValue={this.data.observation.valueQuantity.value}
-            onChange={ this.changeState.bind(this, 'valueQuantity.value')}
+            onChange={ this.changeQuantityValue.bind(this, 'valueQuantity.value')}
             fullWidth
             /><br/>
           <TextField
@@ -96,7 +96,7 @@ export default class ObservationDetail extends React.Component {
             name='valueQuantity.unit'
             floatingLabelText='Unit'
             defaultValue={this.data.observation.valueQuantity.unit}
-            onChange={ this.changeState.bind(this, 'valueQuantity.unit')}
+            onChange={ this.changeQuantityUnit.bind(this, 'valueQuantity.unit')}
             fullWidth
             /><br/>
           <TextField
@@ -105,7 +105,7 @@ export default class ObservationDetail extends React.Component {
             name='device.display'
             floatingLabelText='Device Name'
             defaultValue={this.data.observation.device.display}
-            onChange={ this.changeState.bind(this, 'device.display')}
+            onChange={ this.changeDeviceDisplay.bind(this, 'device.display')}
             fullWidth
             /><br/>
           <TextField
@@ -114,16 +114,16 @@ export default class ObservationDetail extends React.Component {
             name='subject.display'
             floatingLabelText='Subject Name'
             defaultValue={this.data.observation.subject.display}
-            onChange={ this.changeState.bind(this, 'subject.display')}
+            onChange={ this.changeSubjectDisplay.bind(this, 'subject.display')}
             fullWidth
             /><br/>
           <TextField
-            id='performerDisplayInput'
-            ref='performer.display'
-            name='performer.display'
-            floatingLabelText='Performer Name'
-            defaultValue={this.data.observation.performer.display}
-            onChange={ this.changeState.bind(this, 'performer.display')}
+            id='subjectIdInput'
+            ref='subject.reference'
+            name='subject.reference'
+            floatingLabelText='Subject ID'
+            defaultValue={this.data.observation.subject.reference}
+            onChange={ this.changeSubjectReference.bind(this, 'subject.reference')}
             fullWidth
             /><br/>
 
@@ -149,27 +149,61 @@ export default class ObservationDetail extends React.Component {
     }
   }
 
-  // this could be a mixin
-  changeState(field, event, value) {
-    console.log("changeState", value);
 
-    // by default, assume there's no other data and we're creating a new observation
-    let observationUpdate = defaultObservation;
 
-    // if there's an existing observation, use them
-    if (Session.get('selectedObservation')) {
-      observationUpdate = this.data.observation;
-    }
-
-    if (typeof Session.get('observationDetailState') === "object") {
-      observationUpdate = Session.get('observationDetailState');
-    }
-
-    observationUpdate[field] = value;
-    console.log("observationUpdate", observationUpdate);
-
+  changeCategory(field, event, value) {
+    let observationUpdate = Session.get('observationDetailState');
+    observationUpdate.category.text = value;
     Session.set('observationDetailState', observationUpdate);
   }
+  changeQuantityValue(field, event, value) {
+    let observationUpdate = Session.get('observationDetailState');
+    observationUpdate.valueQuantity.value = value;
+    Session.set('observationDetailState', observationUpdate);
+  }
+  changeQuantityUnit(field, event, value) {
+    let observationUpdate = Session.get('observationDetailState');
+    observationUpdate.valueQuantity.unit = value;
+    Session.set('observationDetailState', observationUpdate);
+  }
+  changeDeviceDisplay(field, event, value) {
+    let observationUpdate = Session.get('observationDetailState');
+    observationUpdate.device.display = value;
+    Session.set('observationDetailState', observationUpdate);
+  }
+  changeSubjectDisplay(field, event, value) {
+    let observationUpdate = Session.get('observationDetailState');
+    observationUpdate.subject.display = value;
+    Session.set('observationDetailState', observationUpdate);
+  }
+  changeSubjectReference(field, event, value) {
+    let observationUpdate = Session.get('observationDetailState');
+    observationUpdate.subject.reference = value;
+    Session.set('observationDetailState', observationUpdate);
+  }
+
+
+  // // this could be a mixin
+  // changeState(field, event, value) {
+  //   console.log("changeState", value);
+  //
+  //   // by default, assume there's no other data and we're creating a new observation
+  //   let observationUpdate = defaultObservation;
+  //
+  //   // if there's an existing observation, use them
+  //   if (Session.get('selectedObservation')) {
+  //     observationUpdate = this.data.observation;
+  //   }
+  //
+  //   if (typeof Session.get('observationDetailState') === "object") {
+  //     observationUpdate = Session.get('observationDetailState');
+  //   }
+  //
+  //   observationUpdate[field] = value;
+  //   console.log("observationUpdate", observationUpdate);
+  //
+  //   Session.set('observationDetailState', observationUpdate);
+  // }
 
   openTab(index) {
     // set which tab is selected
@@ -197,21 +231,27 @@ export default class ObservationDetail extends React.Component {
           Bert.alert(error.reason, 'danger');
         } else {
           Bert.alert('Observation updated!', 'success');
-          this.openTab(1);
+          Session.set('patientFormData', defaultObservation);
+          Session.set('patientDetailState', defaultObservation);
+          Session.set('practitionerPageTabIndex', 1);
         }
       });
     } else {
 
-      if (process.env.NODE_ENV === "test") console.log("create a new observation",
-        observationFormData);
 
-      //Meteor.users.insert(observationFormData);
+      observationFormData.effectiveDateTime = new Date();
+      observationFormData.valueQuantity.value = Number(observationFormData.valueQuantity.value);
+
+      if (process.env.NODE_ENV === "test") console.log("create a new observation", observationFormData);
+
       createObservation.call(observationFormData, (error) => {
         if (error) {
           Bert.alert(error.reason, 'danger');
         } else {
           Bert.alert('Observation added!', 'success');
-          this.openTab(1);
+          Session.set('patientFormData', defaultObservation);
+          Session.set('patientDetailState', defaultObservation);
+          Session.set('practitionerPageTabIndex', 1);
         }
       });
     }

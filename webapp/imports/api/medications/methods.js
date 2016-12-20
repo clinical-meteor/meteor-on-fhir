@@ -1,4 +1,4 @@
-// import { Medications, BreathalyzerSchema } from '/imports/api/medications/medications';
+// import { Medications, FooSchema } from '/imports/api/medications/medications';
 import { Medications, MedicationSchema } from 'meteor/clinical:hl7-resource-medication';
 
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';

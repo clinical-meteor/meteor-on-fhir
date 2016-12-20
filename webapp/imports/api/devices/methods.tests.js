@@ -29,13 +29,13 @@ describe('Devices methods', function () {
     updateDevice.call({
       _id: _id,
       update: {
-        type: 'BreathalyzerFu',
+        type: 'FooFu',
         identifier: 'xyz-123'
       }
     });
 
     const getDevice = Devices.findOne(_id);
-    assert.equal(getDevice.type.text, 'BreathalyzerFu');
+    assert.equal(getDevice.type.text, 'FooFu');
   });
 
   it('removes a document from the Devices collection', function () {

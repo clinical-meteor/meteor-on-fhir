@@ -33,7 +33,7 @@ export class WelcomePatientPage extends React.Component {
               </p>
             </CardText>
             <CardActions>
-              <FlatButton label="Accept" onTouchTap={this.handleGo} />
+              <FlatButton id='acceptWelcomePageButton' label="Accept" onTouchTap={this.handleGo} />
             </CardActions>
           </GlassCard>
         </VerticalCanvas>

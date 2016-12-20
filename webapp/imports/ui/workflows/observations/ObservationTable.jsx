@@ -7,7 +7,7 @@ import { Meteor } from 'meteor/meteor';
 
 import { Table } from 'react-bootstrap';
 // import Table from 'material-ui/Table';
-import { Observations } from '/imports/api/observations/observations';
+//import { Observations } from '/imports/api/observations/observations';
 //import { moment } from 'meteor/momentjs:moment';
 
 export default class ObservationTable extends React.Component {

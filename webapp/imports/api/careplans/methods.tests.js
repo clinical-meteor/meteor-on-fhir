@@ -152,7 +152,7 @@ Factory.define('careplan', CarePlans, {
   }],
   activity: [{
     reference: {
-      display: 'AM Breathalyzer Observation',
+      display: 'AM Foo Observation',
       reference: 'Observation/'  + Random.id()
     },
     detail: {
@@ -187,7 +187,7 @@ Factory.define('careplan', CarePlans, {
     }
   }, {
     reference: {
-      display: 'PM Breathalyzer Observation',
+      display: 'PM Foo Observation',
       reference: 'Observation/'  + Random.id()
     },
     detail: {

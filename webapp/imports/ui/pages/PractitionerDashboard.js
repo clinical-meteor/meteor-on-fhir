@@ -115,7 +115,7 @@ export class PractitionerDashboard extends React.Component {
   openObservationpage(){
     browserHistory.push('/observations');
   }
-  openBreathalyzerpage(){
+  openFoopage(){
     browserHistory.push('/breathalyzer');
   }
   openUserManagement(){

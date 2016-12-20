@@ -88,7 +88,7 @@ export class ObservationsPage extends React.Component {
 
   render() {
     return (
-      <div id="ObservationsPage">
+      <div id="observationsPage">
         <VerticalCanvas>
           <GlassCard>
 

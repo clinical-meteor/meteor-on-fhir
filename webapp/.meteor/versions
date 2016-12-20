@@ -35,6 +35,7 @@ clinical:hl7-resource-datatypes@0.6.0
 clinical:hl7-resource-encounter@1.1.3
 clinical:hl7-resource-goal@1.2.5
 clinical:hl7-resource-medication@1.1.5
+clinical:hl7-resource-observation@1.2.6
 clinical:hl7-resource-patient@1.5.12
 clinical:hl7-resource-practitioner@1.5.5
 clinical:hl7-resource-questionnaire@1.2.4

@@ -123,7 +123,7 @@ export class MainIndex extends React.Component {
           </GlassCard>
         </div>
 
-        <div id='forumTile' style={this.data.style.inactiveIndexCard} onClick={ this.openObservations.bind(this) } >
+        <div id='observationsTile' style={this.data.style.inactiveIndexCard} onClick={ this.openObservations.bind(this) } >
           <GlassCard style={this.data.style.indexCard} >
             <CardTitle
               title='Observations'
