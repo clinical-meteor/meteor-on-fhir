@@ -81,7 +81,7 @@ export class MainIndex extends React.Component {
 
 
           {this.renderPatientTiles(this.data.user.isPatient)}
-          {this.renderPractitionerTiles(this.data.user.isPractitioner)}
+          {this.renderPractitionerTiles(this.data.user.isPractitioner, this.data.user.isAdmin)}
           {this.renderAdminTiles(this.data.user.isAdmin)}
 
         </VerticalCanvas>
@@ -137,8 +137,8 @@ export class MainIndex extends React.Component {
       );
     }
   }
-  renderPractitionerTiles(isPractitioner){
-    if (isPractitioner) {
+  renderPractitionerTiles(isPractitioner, isAdmin){
+    if (isPractitioner ) {
       return (
         <div>
           <div id='patientsTile' style={this.data.style.indexCardPadding} onClick={ this.openPatients.bind(this) } >

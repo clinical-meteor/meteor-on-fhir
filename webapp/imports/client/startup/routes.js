@@ -33,7 +33,7 @@ import { PractitionerDashboard } from '/imports/ui/pages/PractitionerDashboard';
 import { HexGridPage } from '/imports/ui/pages/HexGridPage';
 import { AppInfoPage } from '/imports/ui/pages/AppInfoPage';
 
-import { InboundHeaderPage } from '/imports/ui/pages/InboundHeaderPage';
+import { InboundMessagesPage } from '/imports/ui/pages/InboundMessagesPage';
 import { OutboundHeaderPage } from '/imports/ui/pages/OutboundHeaderPage';
 import { DataManagementPage } from '/imports/ui/pages/DataManagementPage';
 
@@ -124,7 +124,7 @@ Meteor.startup(() => {
 
         <Route name="appInfoPage" path="/info" component={ AppInfoPage } />
 
-        <Route name="inboundHeaderPage" path="/inbound" component={ InboundHeaderPage } />
+        <Route name="inboundHeaderPage" path="/inbound" component={ InboundMessagesPage } />
         <Route name="outboundHeaderPage" path="/outbound" component={ OutboundHeaderPage } />
         <Route name="dataManagementPage" path="/data-management" component={ DataManagementPage } />
 

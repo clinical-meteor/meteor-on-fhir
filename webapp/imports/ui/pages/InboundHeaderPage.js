@@ -10,7 +10,7 @@ import TextField from 'material-ui/TextField';
 import { Table } from 'react-bootstrap';
 
 
-export class InboundHeaderPage extends React.Component {
+export class InboundMessagesPage extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -19,26 +19,51 @@ export class InboundHeaderPage extends React.Component {
       messages: MessageHeaders.find({},{sort: {timestamp: -1}}).map(function(header){
         let result = {
           _id: header._id,
+          host: '',
           count: 0,
           patientId: '',
           data: '',
           timestamp: ''
         };
+        if (header.source && header.source.endpoint) {
+          result.host = header.source.endpoint;
+        }
         if (header.timestamp) {
-          result.date = header.timestamp.toString();
+          result.date = moment(header.timestamp).format("llll");
         }
         if (header.data) {
           result.count = header.data.length;
 
           header.data.forEach(function(datum){
+            // if this is the first resource, we can just add it
             if (result.data === '') {
-              result.data = datum.resourceType;
+              if (datum.resourceType) {
+                // preference for an actual resource object
+                result.data = datum.resourceType;
+
+                if (datum.resourceType === "Patient") {
+                  result.patientId = datum.name[0].text;
+                }
+              } else{
+                // but we may need to fall back to a reference
+                result.data = datum.reference.split('/')[0];
+              }
+
+            // otherwise, we need to make sure there is a comma
             } else {
-              result.data = result.data + ', ' + datum.resourceType;
+              if (datum.resourceType) {
+                // preference for an actual resource object
+                result.data = result.data + ', ' + datum.resourceType;
+              } else{
+                // but we may need to fall back to a reference
+                result.data = result.data + ', ' + datum.reference.split('/')[0];
+              }
             }
 
-            if (datum.resourceType === "Patient") {
-              result.patientId = '';
+            // if we have a display name that's unique, and not just a repeat of the resource type
+            // then lets display it
+            if (datum.display && (datum.display !== datum.reference.split('/')[0])) {
+              result.patientId = datum.display;
             }
           });
         }
@@ -57,11 +82,11 @@ export class InboundHeaderPage extends React.Component {
       tableRows.push(
         <tr className="messageRow" style={{cursor: "pointer"}} onClick={ this.rowClick.bind('this', this.data.messages[i]._id)} >
 
-          <td className='date'>{this.data.messages[i].date }</td>
-          <td className='count'>{this.data.messages[i].count }</td>
-          <td className='patient'>{this.data.messages[i].patientId }</td>
-          <td className='data'>{this.data.messages[i].data }</td>
           <td className='barcode'><span className="barcode">{ this.data.messages[i]._id }</span></td>
+          <td className='date'>{this.data.messages[i].date }</td>
+          <td className='host'>{this.data.messages[i].host }</td>
+          <td className='data'>{this.data.messages[i].data }</td>
+          <td className='patientId'>{this.data.messages[i].patientId }</td>
         </tr>
       );
     }
@@ -77,11 +102,11 @@ export class InboundHeaderPage extends React.Component {
               <Table id="inboundMessagesTable" responses hover >
                 <thead>
                   <tr>
-                    <th className='timestamp'>timestamp</th>
-                    <th className='count'>count</th>
-                    <th className='patient'>patient._id</th>
-                    <th className='data'>resources</th>
                     <th className='id'>message._id</th>
+                    <th className='timestamp'>timestamp</th>
+                    <th className='host'>host</th>
+                    <th className='data'>resources</th>
+                    <th className='patientId'>patient._id</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -99,4 +124,4 @@ export class InboundHeaderPage extends React.Component {
 }
 
 
-ReactMixin(InboundHeaderPage.prototype, ReactMeteorData);
+ReactMixin(InboundMessagesPage.prototype, ReactMeteorData);
