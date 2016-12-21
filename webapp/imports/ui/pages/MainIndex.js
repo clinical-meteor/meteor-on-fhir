@@ -138,7 +138,7 @@ export class MainIndex extends React.Component {
     }
   }
   renderPractitionerTiles(isPractitioner, isAdmin){
-    if (isPractitioner ) {
+    if (isPractitioner || isAdmin) {
       return (
         <div>
           <div id='patientsTile' style={this.data.style.indexCardPadding} onClick={ this.openPatients.bind(this) } >
