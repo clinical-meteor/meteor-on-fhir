@@ -43,6 +43,13 @@ export class InboundMessagesPage extends React.Component {
 
                 if (datum.resourceType === "Patient") {
                   result.patientId = datum.name[0].text;
+
+                  if(Patients.findOne({'name.0.text': datum.name[0].text})){
+                    // decide what to do if the patient already exists
+                  } else {
+                    // patient doesn't exist; lets add them
+                    Patients.insert(datum);
+                  }
                 }
               } else{
                 // but we may need to fall back to a reference
