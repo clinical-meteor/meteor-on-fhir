@@ -8,12 +8,13 @@
       "backgroundImagePath": "/backgrounds/medical/PlasmidGray.jpg"
     },
     "app":{
-      "barcodes": true
+      "barcodes": true,
+      "disableOauth": true
     },
     "defaults": {
       "displayNavbars": true,
       "disableHeader": false,
-      "disableFooter": true,
+      "disableFooter": false,
       "darkroom": false
     }
   },

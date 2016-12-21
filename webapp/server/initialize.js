@@ -7,9 +7,14 @@ import { Meteor } from 'meteor/meteor';
 
 
 Meteor.startup(function(){
-  console.log("Meteor on FHIR starting up...");
+  console.log("*************************************************************************************");
+  console.log("*************************************************************************************");
+  console.log("Starting up " + Meteor.settings.public.title);
   console.log("Environment: " + process.env.NODE_ENV);
   console.log("");
+
+  if(process.env.DEBUG) console.log("Meteor.settings", Meteor.settings);
+
 
   //var rootUrl = __meteor_runtime_config__.ROOT_URL;
   //console.log('Adding Content Security Policies for ' + rootUrl + ' and meteor-on-fhir.meteorapp.com');
