@@ -27,24 +27,6 @@ export default class PostsDeck extends React.Component {
       posts: []
     };
 
-    if (Session.get('darkroomEnabled')) {
-      data.style.color = 'black';
-      data.style.background = 'white';
-    } else {
-      data.style.color = 'white';
-      data.style.background = 'black';
-    }
-
-    // this could be another mixin
-    if (Session.get('glassBlurEnabled')) {
-      data.style.filter = 'blur(3px)';
-      data.style.webkitFilter = 'blur(3px)';
-    }
-
-    // this could be another mixin
-    if (Session.get('backgroundBlurEnabled')) {
-      data.style.backdropFilter = 'blur(5px)';
-    }
 
     if (this.props.userId) {
       if (Posts.find({'createdBy.reference': this.props.userId}).count() > 0) {
@@ -107,8 +89,6 @@ export default class PostsDeck extends React.Component {
 
 
   handleDeleteButton(index, post){
-    console.log('handleDeleteButton');
-
     removePost.call({
       _id: post._id
     }, (error) => {
@@ -125,7 +105,7 @@ export default class PostsDeck extends React.Component {
       if (item.createdBy.reference === Meteor.userId()) {
         return (
           <CardActions>
-            <RaisedButton className='deleteButton' primary={true} onMouseUp={this.handleDeleteButton.bind(self, i, item)} label='Delete' style={{color: 'lightgray'}} />
+            <RaisedButton className='deleteButton' onMouseUp={this.handleDeleteButton.bind(self, i, item)} label='Delete' backgroundColor='lightgray' />
           </CardActions>
         );
       }
