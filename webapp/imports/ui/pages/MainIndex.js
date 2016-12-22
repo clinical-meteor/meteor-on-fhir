@@ -133,6 +133,25 @@ export class MainIndex extends React.Component {
           </div>
           <Spacer style={this.data.style.spacer} />
 
+          <div id='myGenomeTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/my-genome') } >
+            <GlassCard style={this.data.style.indexCard} >
+              <CardTitle
+                title='My Genome'
+                subtitle='Import/export data.'
+              />
+            </GlassCard>
+          </div>
+
+          <div id='radiographsTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/radiology') } >
+            <GlassCard style={this.data.style.indexCard} >
+              <CardTitle
+                title='Radiographs'
+                subtitle='Medical images and radiographs.'
+              />
+            </GlassCard>
+          </div>
+          <Spacer style={this.data.style.spacer} />
+
         </div>
       );
     }
@@ -154,6 +173,24 @@ export class MainIndex extends React.Component {
               <CardTitle
                 title='Practitioners'
                 subtitle='Browse practitioners in system.'
+              />
+            </GlassCard>
+          </div>
+          <Spacer style={this.data.style.spacer} />
+
+          <div id='checklistsTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/checklists') } >
+            <GlassCard style={this.data.style.indexCard} >
+              <CardTitle
+                title='Checklist Manifesto'
+                subtitle='Checklists lead to better outcomes.'
+              />
+            </GlassCard>
+          </div>
+          <div id="medicationsTile" style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/medications') } >
+            <GlassCard style={this.data.style.indexCard} >
+              <CardTitle
+                title='Medication Inventory'
+                subtitle='Crash carts, first responder kits, and surgical prep.'
               />
             </GlassCard>
           </div>

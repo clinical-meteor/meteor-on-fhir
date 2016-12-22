@@ -37,8 +37,12 @@ import { InboundMessagesPage } from '/imports/ui/pages/InboundMessagesPage';
 import { OutboundHeaderPage } from '/imports/ui/pages/OutboundHeaderPage';
 import { DataManagementPage } from '/imports/ui/pages/DataManagementPage';
 
-import { ObservationsPage } from '/imports/ui/pages/ObservationsPage';
+import { ObservationsPage } from '/imports/ui/workflows/observations/ObservationsPage';
 
+import { GenomePage } from '/imports/ui/workflows/genome/GenomePage';
+import { ImagingStudiesPage } from '/imports/ui/workflows/imaging-studies/ImagingStudiesPage';
+import { MedicationsPage } from '/imports/ui/workflows/medications/MedicationsPage';
+import { ChecklistsPage } from '/imports/ui/workflows/lists/ChecklistsPage';
 
 // we're storing the current route URL in a reactive variable
 // which will be used to update active controls
@@ -129,6 +133,11 @@ Meteor.startup(() => {
         <Route name="dataManagementPage" path="/data-management" component={ DataManagementPage } />
 
         <Route name="observationPage" path="/observations" component={ ObservationsPage } />
+
+        <Route name="medicationsPage" path="/medications" component={ MedicationsPage } />
+        <Route name="checklistsPage" path="/checklists" component={ ChecklistsPage } />
+        <Route name="imagingStudiesPage" path="/radiology" component={ ImagingStudiesPage } />
+        <Route name="genomePage" path="/my-genome" component={ GenomePage } />
 
         <Route path="*" component={ NotFound } />
 
