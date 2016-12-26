@@ -19,13 +19,14 @@ module.exports = {
       .fillOutSignupPage('Jane', 'Doe', 'janedoe@test.org', 'janedoe123', '')
       .saveScreenshot('tests/nightwatch/screenshots/observations/A-Signup-Observation.png', client)
       .signup()
-      .pause(1000, client);
+      .pause(5000, client);
 
     client
       .verify.elementPresent("#acceptWelcomePageButton")
-      .click("#acceptWelcomePageButton").pause(1000)
+      .click("#acceptWelcomePageButton").pause(2000)
       .verify.elementPresent('#indexPage')
-      .verify.containsText('#authenticatedUsername', 'Jane Doe');
+      .verify.containsText('#authenticatedUsername', 'Jane Doe')
+      .pause(3000);
   },
   'list observations': function (client) {
     client.page

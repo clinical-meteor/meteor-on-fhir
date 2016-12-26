@@ -59,7 +59,7 @@ module.exports = {
       .fillOutSignupPage('Gregory', 'House', 'house@test.org', 'house123', 'hippocrates')
       .saveScreenshot('tests/nightwatch/screenshots/practitioners/A-Signup-Practitioner.png', client)
       .signup()
-      .pause(3000, client);
+      .pause(5000, client);
 
     client
       .verify.elementPresent('#indexPage')

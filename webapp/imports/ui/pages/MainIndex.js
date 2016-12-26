@@ -137,7 +137,7 @@ export class MainIndex extends React.Component {
             <GlassCard style={this.data.style.indexCard} >
               <CardTitle
                 title='My Genome'
-                subtitle='Import/export data.'
+                subtitle='A basic 23 and Me genome explorer.'
               />
             </GlassCard>
           </div>
@@ -186,7 +186,7 @@ export class MainIndex extends React.Component {
               />
             </GlassCard>
           </div>
-          <div id="medicationsTile" style={this.data.style.inactiveIndexCard} onClick={ this.openMedications.bind(this) } >
+          <div id="medicationsTile" style={this.data.style.indexCardPadding} onClick={ this.openMedications.bind(this) } >
             <GlassCard style={this.data.style.indexCard} >
               <CardTitle
                 title='Medication Inventory'
@@ -194,8 +194,67 @@ export class MainIndex extends React.Component {
               />
             </GlassCard>
           </div>
-            <Spacer style={this.data.style.spacer} />
+          <Spacer style={this.data.style.spacer} />
+
+          <div id='devicesTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/devices') } >
+            <GlassCard style={this.data.style.indexCard} >
+              <CardTitle
+                title='Devices'
+                subtitle='Equipment and devices.'
+              />
+            </GlassCard>
+          </div>
+          <div id="dermatogramsTile" style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/dermatograms') } >
+            <GlassCard style={this.data.style.indexCard} >
+              <CardTitle
+                title='Dermatograms'
+                subtitle='Mole counts, burn coverage, body sites, etc.'
+              />
+            </GlassCard>
+          </div>
+          <Spacer style={this.data.style.spacer} />
+
+
+          <div id='telemedicineTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/telemd') } >
+            <GlassCard style={this.data.style.indexCard} >
+              <CardTitle
+                title='Telemedicine'
+                subtitle='Point-to-point video conferencing.'
+              />
+            </GlassCard>
+          </div>
+          <div id="questionnairesTile" style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/questionnaires') } >
+            <GlassCard style={this.data.style.indexCard} >
+              <CardTitle
+                title='Locations'
+                subtitle='Locations and geomapping.'
+              />
+            </GlassCard>
+          </div>
+          <Spacer style={this.data.style.spacer} />
+
+          <div id="questionnairesTile" style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/questionnaires') } >
+            <GlassCard style={this.data.style.indexCard} >
+              <CardTitle
+                title='Questionnaires'
+                subtitle='Questionnaires and miscellaneous data collection.'
+              />
+            </GlassCard>
+          </div>
+          <div id='questionnaireResponsesTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/telemd') } >
+            <GlassCard style={this.data.style.indexCard} >
+              <CardTitle
+                title='Questionnaire Responses'
+                subtitle='Patient responses to questionnaires.'
+              />
+            </GlassCard>
+          </div>
+          <Spacer style={this.data.style.spacer} />
+
         </div>
+
+
+
       );
     }
   }
