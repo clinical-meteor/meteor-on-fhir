@@ -11,7 +11,7 @@ import {Tabs, Tab} from 'material-ui/Tabs';
 
 import { Meteor } from 'meteor/meteor';
 
-export class DevicePage extends React.Component {
+export class DevicesPage extends React.Component {
   getMeteorData() {
     let data = {
       style: {},
@@ -53,7 +53,7 @@ export class DevicePage extends React.Component {
 
 
   render() {
-    if(process.env.NODE_ENV === "test") console.log('In DevicePage render');
+    if(process.env.NODE_ENV === "test") console.log('In DevicesPage render');
     return (
       <div id='devicesPage'>
         <VerticalCanvas>
@@ -79,4 +79,4 @@ export class DevicePage extends React.Component {
   }
 }
 
-ReactMixin(DevicePage.prototype, ReactMeteorData);
+ReactMixin(DevicesPage.prototype, ReactMeteorData);

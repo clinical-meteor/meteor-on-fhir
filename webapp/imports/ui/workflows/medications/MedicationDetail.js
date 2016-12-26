@@ -4,8 +4,6 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
-
-//import { insertMedication, updateMedication, removeMedicationById } from '../../../api/medications/methods';
 import { Bert } from 'meteor/themeteorchef:bert';
 
 import { CardText, CardActions } from 'material-ui/Card';

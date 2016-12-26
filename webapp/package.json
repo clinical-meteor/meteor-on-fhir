@@ -54,6 +54,7 @@
     "jquery-validation": "^1.15.1",
     "material-ui": "^0.16.5",
     "normalize.css": "^4.1.1",
+    "object-path": "0.11.3",
     "onecolor": "^3.0.4",
     "react": "^15.4.1",
     "react-addons-css-transition-group": "^15.3.1",

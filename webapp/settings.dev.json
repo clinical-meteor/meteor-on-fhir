@@ -2,24 +2,43 @@
   "public": {
     "title": "Meteor on FHIR Forum",
     "theme": {
-      "showVideoBackground": false,
+      "showVideoBackground": true,
       "darkroomTextEnabled": false,
       "defaultVideo": "/VideoBackgrounds/Circulation.mp4",
       "backgroundImagePath": "/backgrounds/medical/PlasmidGray.jpg"
     },
-    "app":{
+    "app": {
       "barcodes": true,
-      "disableOauth": true
     },
     "defaults": {
       "displayNavbars": true,
       "disableHeader": false,
       "disableFooter": false,
       "darkroom": false
+    },
+    "modules": {
+      "forum": true,
+      "healthlog": true,
+      "data": true,
+      "observations": true,
+      "genome": true,
+      "radiographs": true,
+      "patients": true,
+      "practitioners": true,
+      "checlists": true,
+      "medications": true,
+      "devices": true,
+      "dermatograms": true,
+      "telemedicine": true,
+      "locations": true,
+      "questionnaires": true,
+      "inbound": true,
+      "outbound": true
     }
   },
   "private": {
     "practitionerAccessCode": "hippocrates",
-    "sysadminAccessCode": "rootaccess"
+    "sysadminAccessCode": "rootaccess",
+    "disableOauth": true
   }
 }

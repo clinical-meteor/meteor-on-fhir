@@ -44,6 +44,13 @@ import { ImagingStudiesPage } from '/imports/ui/workflows/imaging-studies/Imagin
 import { MedicationsPage } from '/imports/ui/workflows/medications/MedicationsPage';
 import { ChecklistsPage } from '/imports/ui/workflows/lists/ChecklistsPage';
 
+import { DevicesPage } from '/imports/ui/workflows/devices/DevicesPage';
+import { DermatogramsPage } from '/imports/ui/pages/DermatogramsPage';
+import { TelemedicinePage } from '/imports/ui/pages/TelemedicinePage';
+import { LocationsPage } from '/imports/ui/workflows/locations/LocationsPage';
+import { QuestionnairesPage } from '/imports/ui/workflows/questionnaires/QuestionnairesPage';
+import { QuestionnaireResponsesPage } from '/imports/ui/workflows/questionnaires/QuestionnaireResponsesPage';
+
 // we're storing the current route URL in a reactive variable
 // which will be used to update active controls
 // mostly used to toggle header and footer buttons
@@ -124,20 +131,28 @@ Meteor.startup(() => {
         <Route name="needToBePractitioner" path="/need-to-be-practitioner" component={ NeedToBePractitioner }  />
 
         <Route name="hexGrid" path="/hex" component={ HexGridPage } />
-        <Route name="appInfoPage" path="/info" component={ AppInfoPage } />
+        <Route name="appInfo" path="/info" component={ AppInfoPage } />
 
-        <Route name="appInfoPage" path="/info" component={ AppInfoPage } />
+        <Route name="appInfo" path="/info" component={ AppInfoPage } />
 
-        <Route name="inboundHeaderPage" path="/inbound" component={ InboundMessagesPage } />
-        <Route name="outboundHeaderPage" path="/outbound" component={ OutboundHeaderPage } />
-        <Route name="dataManagementPage" path="/data-management" component={ DataManagementPage } />
+        <Route name="inboundHeader" path="/inbound" component={ InboundMessagesPage } />
+        <Route name="outboundHeader" path="/outbound" component={ OutboundHeaderPage } />
+        <Route name="dataManagement" path="/data-management" component={ DataManagementPage } />
 
-        <Route name="observationPage" path="/observations" component={ ObservationsPage } />
+        <Route name="observation" path="/observations" component={ ObservationsPage } />
 
-        <Route name="medicationsPage" path="/medications" component={ MedicationsPage } />
-        <Route name="checklistsPage" path="/checklists" component={ ChecklistsPage } />
-        <Route name="imagingStudiesPage" path="/radiology" component={ ImagingStudiesPage } />
-        <Route name="genomePage" path="/my-genome" component={ GenomePage } />
+        <Route name="medications" path="/medications" component={ MedicationsPage } />
+        <Route name="checklists" path="/checklists" component={ ChecklistsPage } />
+        <Route name="imagingStudies" path="/radiology" component={ ImagingStudiesPage } />
+        <Route name="genome" path="/my-genome" component={ GenomePage } />
+
+        <Route name="devices" path="/devices" component={ DevicesPage } />
+        <Route name="telemedicine" path="/telemed" component={ TelemedicinePage } />
+        <Route name="locations" path="/locations" component={ LocationsPage } />
+        <Route name="dermatograms" path="/dermatograms" component={ DermatogramsPage } />
+        <Route name="questionnaires" path="/questionnaires" component={ QuestionnairesPage } />
+        <Route name="questionnaireResponses" path="/questionnaire-responses" component={ QuestionnaireResponsesPage } />
+
 
         <Route path="*" component={ NotFound } />
 
