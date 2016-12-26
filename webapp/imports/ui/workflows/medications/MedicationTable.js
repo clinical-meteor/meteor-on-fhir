@@ -72,7 +72,6 @@ export default class MedicationTable extends React.Component {
     }
 
     //console.log("data", data);
-
     return data;
   }
   handleChange(row, key, value) {
@@ -84,26 +83,11 @@ export default class MedicationTable extends React.Component {
   handleSelect(selected) {
     this.setState({selected});
   }
-  getDate(){
-    return 'YYYY/MM/DD';
-  }
-  noChange(){
-    return '';
-  }
+
   rowClick(id){
-    // set the currently selected medications
-    let selectedMedications = Session.get('selectedMedications');
-
-    if (selectedMedications.includes(id)) {
-      selectedMedications.splice(selectedMedications.indexOf(id), 1);
-    } else {
-      selectedMedications.push(id);
-    }
-
-    if(process.env.NODE_ENV === "test") console.log("selectedMedications", selectedMedications);
-
-
-    Session.set('selectedMedications', selectedMedications);
+    Session.set('medicationUpsert', false);
+    Session.set('selectedMedication', id);
+    Session.set('medicationPageTabIndex', 2);
   }
   render () {
     let tableRows = [];

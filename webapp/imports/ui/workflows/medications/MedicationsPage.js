@@ -47,7 +47,8 @@ export class MedicationsPage extends React.Component {
 
   // this could be a mixin
   handleTabChange(index){
-    Session.set('medicationPageTabIndex', index); }
+    Session.set('medicationPageTabIndex', index);
+  }
 
   // this could be a mixin
   onNewTab(){

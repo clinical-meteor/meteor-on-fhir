@@ -31,6 +31,10 @@ Meteor.methods({
         code: {
           text: "Claritin"
         },
+        manufacturer: {
+          display: '',
+          reference: ''
+        },
         product: {
           form: {
             text: 'tablet'
@@ -42,7 +46,10 @@ Meteor.methods({
                 text: 'Loratadine'
               },
               description: 'Antihistimine'
-            }
+            },
+            instance: [{
+              quantity: '1 tablet'
+            }]
           }]
         }
       };
