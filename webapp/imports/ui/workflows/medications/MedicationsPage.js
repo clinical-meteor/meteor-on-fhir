@@ -45,40 +45,13 @@ export class MedicationsPage extends React.Component {
     return data;
   }
 
-  // this could be a mixin
   handleTabChange(index){
     Session.set('medicationPageTabIndex', index);
   }
 
-  // this could be a mixin
   onNewTab(){
-    console.log("onNewTab; we should clear things...");
-
     Session.set('selectedMedication', false);
-    Session.set('medicationDetailState', { resourceType: 'Medication',
-      status: 'preliminary',
-      category: {
-        text: ''
-      },
-      effectiveDateTime: '',
-      subject: {
-        display: '',
-        reference: ''
-      },
-      performer: {
-        display: '',
-        reference: ''
-      },
-      device: {
-        display: '',
-        reference: ''
-      },
-      valueQuantity: {
-        value: '',
-        unit: '',
-        system: 'http://unitsofmeasure.org'
-      }
-    });
+    Session.set('medicationUpsert', false);
   }
 
   render() {
@@ -92,9 +65,12 @@ export class MedicationsPage extends React.Component {
               <Tabs id="medicationsPageTabs" default value={this.data.tabIndex} onChange={this.handleTabChange} initialSelectedIndex={1}> <Tab className="newMedicationTab" label='New' style={this.data.style.tab} onActive={ this.onNewTab } value={0} >
                   <MedicationDetail id='newMedication' />
                 </Tab>
-                <Tab className="medicationListTab" label='Medications' onActive={this.handleActive} style={this.data.style.tab} value={1}> <MedicationTable />
-                 </Tab>
-                 <Tab className="medicationDetailsTab" label='Detail' onActive={this.handleActive} style={this.data.style.tab} value={2}> <MedicationDetail id='medicationDetails' /> </Tab>
+                <Tab className="medicationListTab" label='Medications' onActive={this.handleActive} style={this.data.style.tab} value={1}>
+                  <MedicationTable />
+                </Tab>
+                <Tab className="medicationDetailsTab" label='Detail' onActive={this.handleActive} style={this.data.style.tab} value={2}>
+                  <MedicationDetail id='medicationDetails' />
+                </Tab>
               </Tabs>
             </CardText>
           </GlassCard>

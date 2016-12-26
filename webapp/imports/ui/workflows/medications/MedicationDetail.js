@@ -86,11 +86,18 @@ export default class MedicationDetail extends React.Component {
 
   // this could be a mixin
   changeState(field, event, value){
+    let medicationUpdate;
 
     if(process.env.NODE_ENV === "test") console.log("MedicationDetail.changeState", field, event, value);
 
     // by default, assume there's no other data and we're creating a new medication
-    let medicationUpdate = defaultMedication;
+    if (Session.get('medicationUpsert')) {
+      medicationUpdate = Session.get('medicationUpsert');
+    } else {
+      medicationUpdate = defaultMedication;
+    }
+
+
 
     // if there's an existing medication, use them
     if (Session.get('selectedMedication')) {
@@ -136,7 +143,7 @@ export default class MedicationDetail extends React.Component {
 
   render() {
     return (
-      <div className="medicationDetail">
+      <div id={this.props.id} className="medicationDetail">
         <CardText>
           <TextField
             id='medicationNameInput'

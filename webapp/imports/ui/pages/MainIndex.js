@@ -186,7 +186,7 @@ export class MainIndex extends React.Component {
               />
             </GlassCard>
           </div>
-          <div id="medicationsTile" style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/medications') } >
+          <div id="medicationsTile" style={this.data.style.inactiveIndexCard} onClick={ this.openMedications.bind(this) } >
             <GlassCard style={this.data.style.indexCard} >
               <CardTitle
                 title='Medication Inventory'
@@ -254,6 +254,9 @@ export class MainIndex extends React.Component {
   }
   openOutboundMessages(){
     browserHistory.push('/outbound');
+  }
+  openMedications(){
+    browserHistory.push('/medications');
   }
   openLink(url){
     console.log("openLink", url);

@@ -1,11 +1,6 @@
 module.exports = {
   url: 'http://localhost:3000',
   commands: [{
-    selectObservationsTile: function() {
-      return this
-        .verify.elementPresent('#observationsTile')
-        .click('#observationsTile');
-    },
     selectPatientsTile: function() {
       return this
         .verify.elementPresent('#patientsTile')
@@ -15,6 +10,16 @@ module.exports = {
       return this
         .verify.elementPresent('#practitionersTile')
         .click('#practitionersTile');
+    },
+    selectObservationsTile: function() {
+      return this
+        .verify.elementPresent('#observationsTile')
+        .click('#observationsTile');
+    },
+    selectMedicationsTile: function() {
+      return this
+        .verify.elementPresent('#medicationsTile')
+        .click('#medicationsTile');
     }
   }],
   elements: {
