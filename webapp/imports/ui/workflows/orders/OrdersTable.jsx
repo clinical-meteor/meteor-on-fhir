@@ -6,9 +6,9 @@ import { Card, CardMedia, CardTitle, CardText, CardActions } from 'material-ui/C
 import { Meteor } from 'meteor/meteor';
 
 import { Table } from 'react-bootstrap';
-import { Observations } from 'meteor/clinical:hl7-resource-observation';
+import { Orders } from 'meteor/clinical:hl7-resource-order';
 
-export default class ObservationTable extends React.Component {
+export default class OrderTable extends React.Component {
 
   getMeteorData() {
 
@@ -19,11 +19,11 @@ export default class ObservationTable extends React.Component {
         opacity: Session.get('globalOpacity')
       },
       selected: [],
-      observations: Observations.find().map(function(observation){
+      orders: Orders.find().map(function(order){
         let result = {
           _id: '',
           category: '',
-          observationValue: '',
+          orderValue: '',
           subject: '',
           status: '',
           device: '',
@@ -32,26 +32,26 @@ export default class ObservationTable extends React.Component {
           unit: ''
         };
 
-        result._id =  observation._id;
-        if (observation.category && observation.category.text) {
-          result.category =  observation.category.text;
+        result._id =  order._id;
+        if (order.category && order.category.text) {
+          result.category =  order.category.text;
         }
-        if (observation.valueQuantity && observation.valueQuantity.value) {
-          result.observationValue =  observation.valueQuantity.value;
+        if (order.valueQuantity && order.valueQuantity.value) {
+          result.orderValue =  order.valueQuantity.value;
         }
-        if (observation.valueQuantity && observation.valueQuantity.unit) {
-          result.unit =  observation.valueQuantity.unit;
+        if (order.valueQuantity && order.valueQuantity.unit) {
+          result.unit =  order.valueQuantity.unit;
         }
-        if (observation.subject && observation.subject.display) {
-          result.subject =  observation.subject.display;
+        if (order.subject && order.subject.display) {
+          result.subject =  order.subject.display;
         }
-        if (observation.device && observation.device.reference) {
-          result.device =  observation.device.reference;
+        if (order.device && order.device.reference) {
+          result.device =  order.device.reference;
         }
-        result.status =  observation.status;
+        result.status =  order.status;
 
-        if (observation.effectiveDateTime) {
-          result.effectiveDateTime =  moment(observation.effectiveDateTime).format("YYYY-MM-DD hh:ss a");
+        if (order.effectiveDateTime) {
+          result.effectiveDateTime =  moment(order.effectiveDateTime).format("YYYY-MM-DD hh:ss a");
         }
 
         return result;
@@ -77,7 +77,7 @@ export default class ObservationTable extends React.Component {
       data.style.backdropFilter = "blur(5px)";
     }
 
-    if(process.env.NODE_ENV === "test") console.log("ObservationTable[data]", data);
+    if(process.env.NODE_ENV === "test") console.log("OrderTable[data]", data);
     return data;
   }
   handleChange(row, key, value) {
@@ -96,32 +96,32 @@ export default class ObservationTable extends React.Component {
     return "";
   }
   rowClick(id){
-    Session.set("selectedObservation", id);
-    Session.set('observationPageTabIndex', 2);
-    Session.set('observationDetailState', false);
+    Session.set("selectedOrder", id);
+    Session.set('orderPageTabIndex', 2);
+    Session.set('orderDetailState', false);
   }
   render () {
     let tableRows = [];
-    for (var i = 0; i < this.data.observations.length; i++) {
+    for (var i = 0; i < this.data.orders.length; i++) {
       tableRows.push(
-        <tr className="observationRow" style={{cursor: "pointer"}} onClick={ this.rowClick.bind('this', this.data.observations[i]._id)} >
+        <tr className="orderRow" style={{cursor: "pointer"}} onClick={ this.rowClick.bind('this', this.data.orders[i]._id)} >
 
-          <td className='category'>{this.data.observations[i].category }</td>
-          <td className='value'>{this.data.observations[i].observationValue }</td>
-          <td className='unit'>{this.data.observations[i].unit }</td>
-          <td className='name'>{this.data.observations[i].subject }</td>
-          <td className='subject.reference'>{this.data.observations[i].subjectId }</td>
-          <td className='status'>{this.data.observations[i].status }</td>
-          <td className='device.display'>{this.data.observations[i].device }</td>
-          <td className='date'>{this.data.observations[i].effectiveDateTime }</td>
-          <td className='barcode'><span className="barcode">{ this.data.observations[i]._id }</span></td>
+          <td className='category'>{this.data.orders[i].category }</td>
+          <td className='value'>{this.data.orders[i].orderValue }</td>
+          <td className='unit'>{this.data.orders[i].unit }</td>
+          <td className='name'>{this.data.orders[i].subject }</td>
+          <td className='subject.reference'>{this.data.orders[i].subjectId }</td>
+          <td className='status'>{this.data.orders[i].status }</td>
+          <td className='device.display'>{this.data.orders[i].device }</td>
+          <td className='date'>{this.data.orders[i].effectiveDateTime }</td>
+          <td className='barcode'><span className="barcode">{ this.data.orders[i]._id }</span></td>
         </tr>
       );
     }
 
     return(
       <CardText>
-        <Table id="observationsTable" responses hover >
+        <Table id="ordersTable" responses hover >
           <thead>
             <tr>
               <th className='category'>type</th>
@@ -145,4 +145,4 @@ export default class ObservationTable extends React.Component {
 }
 
 
-ReactMixin(ObservationTable.prototype, ReactMeteorData);
+ReactMixin(OrderTable.prototype, ReactMeteorData);

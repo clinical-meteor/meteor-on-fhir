@@ -5,51 +5,79 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
-import { insertMedication, updateMedication, removeMedicationById } from '../../../api/medications/methods';
+//import { insertMedication, updateMedication, removeMedicationById } from '../../../api/medications/methods';
 import { Bert } from 'meteor/themeteorchef:bert';
 
 import { CardText, CardActions } from 'material-ui/Card';
 
-let defaultState = false;
+let defaultMedication = {
+  resourceType: 'Medication',
+  code: {
+    text: ""
+  },
+  isBrand: true,
+  manufacturer: {
+    display: '',
+    reference: ''
+  },
+  product: {
+    form: {
+      text: 'tablet'
+    },
+    ingredient: [{
+      item: {
+        resourceType: 'Substance',
+        code: {
+          text: ''
+        },
+        description: ''
+      },
+      instance: [{
+        quantity: ''
+      }]
+    }]
+  },
+  package: {
+    container: {
+      text: 'bottle'
+    },
+    content: [{
+      amount: {
+        value: 30,
+        unit: 'tablet'
+      }
+    }]
+  }
+};
 
-Session.setDefault('medicationDetailState', defaultState);
+Session.setDefault('medicationUpsert', false);
+Session.setDefault('selectedMedication', false);
 
 
 export default class MedicationDetail extends React.Component {
   getMeteorData() {
     let data = {
       medicationId: false,
-      medication: {
-        id: "",
-        username: "",
-        gender: "",
-        active: "",
-        email: "",
-        name: "",
-        photo: ""
-      }
+      medication: defaultMedication
     };
 
-    if (Session.get('selectedMedication')) {
-      data.medicationId = Session.get('selectedMedication');
+    if (Session.get('medicationUpsert')) {
+      data.medication = Session.get('medicationUpsert');
+    } else {
+      if (Session.get('selectedMedication')) {
+        data.medicationId = Session.get('selectedMedication');
+        console.log("selectedMedication", Session.get('selectedMedication'));
 
-      let selectedMedication = Medications.findOne({_id: Session.get('selectedMedication')});
-      if (selectedMedication) {
-        data.medication = {
-          id: selectedMedication._id,
-          username: selectedMedication.username,
-          gender: selectedMedication.gender,
-          active: selectedMedication.active.toString(),
-          email: selectedMedication.emails ? selectedMedication.emails[0].address : "",
-          name: selectedMedication.name ? selectedMedication.name.text : "",
-          given: selectedMedication.name ? selectedMedication.name.given : "",
-          family: selectedMedication.name ? selectedMedication.name.family : ""
-        };
+        let selectedMedication = Medications.findOne({_id: Session.get('selectedMedication')});
+        console.log("selectedMedication", selectedMedication);
+
+        if (selectedMedication) {
+          data.medication = selectedMedication;
+        }
+      } else {
+        data.medication = defaultMedication;
       }
-    }
 
-    if (Session.get('medicationDetailState')) {
-      data.medication = Session.get('medicationDetailState');
     }
 
     return data;
@@ -57,34 +85,53 @@ export default class MedicationDetail extends React.Component {
 
 
   // this could be a mixin
-  changeState(field, value){
+  changeState(field, event, value){
+    let medicationUpdate;
 
-    if(process.env.NODE_ENV === "test") console.log("changeState", value);
+    if(process.env.NODE_ENV === "test") console.log("MedicationDetail.changeState", field, event, value);
 
     // by default, assume there's no other data and we're creating a new medication
-    let medicationUpdate = {
-      id: "",
-      username: "",
-      gender: "",
-      active: "",
-      email: "",
-      name: "",
-      photo: ""
-    };
+    if (Session.get('medicationUpsert')) {
+      medicationUpdate = Session.get('medicationUpsert');
+    } else {
+      medicationUpdate = defaultMedication;
+    }
+
+
 
     // if there's an existing medication, use them
     if (Session.get('selectedMedication')) {
       medicationUpdate = this.data.medication;
     }
 
-    if (typeof Session.get('medicationDetailState') === "object") {
-      medicationUpdate = Session.get('medicationDetailState');
+    switch (field) {
+      case "medicationName":
+        medicationUpdate.code.text = value;
+        break;
+      case "manufacturerDisplay":
+        medicationUpdate.manufacturer.display = value;
+        break;
+      case "medicationForm":
+        medicationUpdate.product.form.text = value;
+        break;
+      case "activeIngredient":
+        medicationUpdate.product.ingredient[0].item.code.text = value;
+        break;
+      case "activeIngredientQuantity":
+        medicationUpdate.product.ingredient[0].instance[0].quantity = value;
+        break;
+      case "activeIngredientDescription":
+        medicationUpdate.product.ingredient[0].item.description = value;
+        break;
+      default:
+
     }
 
-    medicationUpdate[field] = value;
+
+    // medicationUpdate[field] = value;
     if(process.env.NODE_ENV === "test") console.log("medicationUpdate", medicationUpdate);
 
-    Session.set('medicationDetailState', medicationUpdate);
+    Session.set('medicationUpsert', medicationUpdate);
   }
   openTab(index){
     // set which tab is selected
@@ -93,50 +140,126 @@ export default class MedicationDetail extends React.Component {
     Session.set('medicationCardState', state);
   }
 
+
+  render() {
+    return (
+      <div id={this.props.id} className="medicationDetail">
+        <CardText>
+          <TextField
+            id='medicationNameInput'
+            ref='medicationName'
+            name='medicationName'
+            floatingLabelText='Medication Name'
+            value={this.data.medication.code.text}
+            onChange={ this.changeState.bind(this, 'medicationName')}
+            fullWidth
+            /><br/>
+          <TextField
+            id='manufacturerDisplayInput'
+            ref='manufacturerDisplay'
+            name='manufacturerDisplay'
+            floatingLabelText='Manufacturer'
+            value={this.data.medication.manufacturer.display ? this.data.medication.manufacturer.display : ''}
+            onChange={ this.changeState.bind(this, 'manufacturerDisplay')}
+            fullWidth
+            /><br/>
+          <TextField
+            id='medicationFormInput'
+            ref='medicationForm'
+            name='medicationForm'
+            floatingLabelText='Substance Form'
+            value={this.data.medication.product.form.text}
+            onChange={ this.changeState.bind(this, 'medicationForm')}
+            fullWidth
+            /><br/>
+          <TextField
+            id='activeIngredientInput'
+            ref='activeIngredient'
+            name='activeIngredient'
+            floatingLabelText='Active Ingredient'
+            value={this.data.medication.product.ingredient[0].item.code.text}
+            onChange={ this.changeState.bind(this, 'activeIngredient')}
+            fullWidth
+            /><br/>
+          <TextField
+            id='activeIngredientQuantityInput'
+            ref='activeIngredientQuantity'
+            name='activeIngredientQuantity'
+            floatingLabelText='Quantity'
+            value={this.data.medication.product.ingredient[0].instance[0].quantity}
+            onChange={ this.changeState.bind(this, 'activeIngredientQuantity')}
+            fullWidth
+            /><br/>
+          <TextField
+            id='activeIngredientDescriptionInput'
+            ref='activeIngredientDescription'
+            name='activeIngredientDescription'
+            floatingLabelText='Active Ingredient Description'
+            value={this.data.medication.product.ingredient[0].item.description}
+            onChange={ this.changeState.bind(this, 'activeIngredientDescription')}
+            fullWidth
+            /><br/>
+        </CardText>
+        <CardActions>
+          { this.determineButtons(this.data.medicationId) }
+        </CardActions>
+      </div>
+    );
+  }
+
+
+  determineButtons(medicationId){
+    if (medicationId) {
+      return (
+        <div>
+          <RaisedButton id="saveMedicationButton" label="Save" primary={true} onClick={this.handleSaveButton.bind(this)} />
+          <RaisedButton id="deleteMedicationButton" label="Delete" onClick={this.handleDeleteButton.bind(this)} />
+        </div>
+      );
+    } else {
+      return(
+        <RaisedButton id="saveMedicationButton" label="Save" primary={true} onClick={this.handleSaveButton.bind(this)} />
+      );
+    }
+  }
+
+
   // this could be a mixin
   handleSaveButton(){
-    let medicationFormData = {
-      'name': {
-        'text': this.refs.name.refs.input.value
-      },
-      'identifier': [],
-      'gender': this.refs.gender.refs.input.value,
-      'photo': [{
-        url: this.refs.photo.refs.input.value
-      }]
-    };
+    let medicationUpdate = Session.get('medicationUpsert', medicationUpdate);
 
-    if (this.refs.active.refs.input.value === "true") {
-      medicationFormData.active = true;
-    } else {
-      medicationFormData.active = false;
-    }
-
-    if(process.env.NODE_ENV === "test") console.log("medicationFormData", medicationFormData);
+    if(process.env.NODE_ENV === "test") console.log("medicationUpdate", medicationUpdate);
 
 
     if (Session.get('selectedMedication')) {
       if(process.env.NODE_ENV === "test") console.log("update practioner");
+      delete medicationUpdate._id;
 
-      updateMedication.call(
-        {_id: Session.get('selectedMedication'), update: medicationFormData }, (error) => {
-        if (error) {
-          Bert.alert(error.reason, 'danger');
-        } else {
-          Bert.alert('Medication updated!', 'success');
-          this.openTab(1);
-        }
-      });
+      Medications.update(
+        {_id: Session.get('selectedMedication')}, {$set: medicationUpdate }, function(error) {
+          if (error) {
+            console.log("error", error);
+
+            Bert.alert(error.reason, 'danger');
+          } else {
+            Bert.alert('Medication updated!', 'success');
+            Session.set('medicationPageTabIndex', 1);
+            Session.set('selectedMedication', false);
+            Session.set('medicationUpsert', false);
+          }
+        });
     } else {
 
-      if(process.env.NODE_ENV === "test") console.log("create a new medication", medicationFormData);
+      if(process.env.NODE_ENV === "test") console.log("create a new medication", medicationUpdate);
 
-      insertMedication.call(medicationFormData, (error) => {
+      Medications.insert(medicationUpdate, function(error) {
         if (error) {
           Bert.alert(error.reason, 'danger');
         } else {
           Bert.alert('Medication added!', 'success');
-          this.openTab(1);
+          Session.set('medicationPageTabIndex', 1);
+          Session.set('selectedMedication', false);
+          Session.set('medicationUpsert', false);
         }
       });
     }
@@ -154,63 +277,11 @@ export default class MedicationDetail extends React.Component {
         Bert.alert(error.reason, 'danger');
       } else {
         Bert.alert('Medication deleted!', 'success');
-        this.openTab(1);
+        Session.set('medicationPageTabIndex', 1);
+        Session.set('selectedMedication', false);
+        Session.set('medicationUpsert', false);
       }
     });
-  }
-
-  determineButtons(medicationId){
-    if (medicationId) {
-      return (
-        <div>
-          <RaisedButton id="saveMedicationButton" label="Save" primary={true} onClick={this.handleSaveButton.bind(this)} />
-          <RaisedButton id="deleteMedicationButton" label="Delete" onClick={this.handleDeleteButton.bind(this)} />
-        </div>
-      );
-    } else {
-      return(
-        <RaisedButton id="saveMedicationButton" label="Save" primary={true} onClick={this.handleSaveButton.bind(this)} />
-      );
-    }
-  }
-
-  render() {
-    return (
-      <div className="medicationDetail">
-        <CardText>
-          <TextField
-            id='nameInput'
-            ref='name'
-            name='name'
-            floatingLabelText='name'
-            defaultValue={this.data.medication.name}
-            onChange={ this.changeState.bind(this, 'name')}
-            fullWidth
-            /><br/>
-          <TextField
-            id='genderInput'
-            ref='gender'
-            name='gender'
-            floatingLabelText='gender'
-            defaultValue={this.data.medication.gender}
-            onChange={ this.changeState.bind(this, 'gender')}
-            fullWidth
-            /><br/>
-          <TextField
-            id='activeInput'
-            ref='active'
-            name='active'
-            floatingLabelText='active'
-            defaultValue={this.data.medication.active}
-            onChange={ this.changeState.bind(this, 'active')}
-            fullWidth
-            /><br/>
-        </CardText>
-        <CardActions>
-          { this.determineButtons(this.data.medicationId) }
-        </CardActions>
-      </div>
-    );
   }
 }
 

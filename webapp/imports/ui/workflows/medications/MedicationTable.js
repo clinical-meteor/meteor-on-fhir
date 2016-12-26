@@ -72,7 +72,6 @@ export default class MedicationTable extends React.Component {
     }
 
     //console.log("data", data);
-
     return data;
   }
   handleChange(row, key, value) {
@@ -84,26 +83,11 @@ export default class MedicationTable extends React.Component {
   handleSelect(selected) {
     this.setState({selected});
   }
-  getDate(){
-    return 'YYYY/MM/DD';
-  }
-  noChange(){
-    return '';
-  }
+
   rowClick(id){
-    // set the currently selected medications
-    let selectedMedications = Session.get('selectedMedications');
-
-    if (selectedMedications.includes(id)) {
-      selectedMedications.splice(selectedMedications.indexOf(id), 1);
-    } else {
-      selectedMedications.push(id);
-    }
-
-    if(process.env.NODE_ENV === "test") console.log("selectedMedications", selectedMedications);
-
-
-    Session.set('selectedMedications', selectedMedications);
+    Session.set('medicationUpsert', false);
+    Session.set('selectedMedication', id);
+    Session.set('medicationPageTabIndex', 2);
   }
   render () {
     let tableRows = [];
@@ -116,10 +100,10 @@ export default class MedicationTable extends React.Component {
             style={this.data.style.checkbox}
           />
         </td>
-        <td className="name hidden-on-phone">{this.data.medications[i].name}</td>
-        <td className="manufacturer hidden-on-phone">{this.data.medications[i].manufacturer}</td>
-        <td className="form">{this.data.medications[i].form}</td>
-        <td className="primaryIngredient">{this.data.medications[i].primaryIngredient}</td>
+        <td className="medicationName hidden-on-phone">{this.data.medications[i].name}</td>
+        <td className="manufacturerDisplay hidden-on-phone">{this.data.medications[i].manufacturer}</td>
+        <td className="medicationForm">{this.data.medications[i].form}</td>
+        <td className="activeIngredient">{this.data.medications[i].primaryIngredient}</td>
         <td className="barcode hidden-on-phone">{this.data.medications[i]._id}</td>
       </tr>);
     }
@@ -130,10 +114,10 @@ export default class MedicationTable extends React.Component {
         <thead>
           <tr>
             <th className="check">prescribed</th>
-            <th className="name hidden-on-phone">name</th>
-            <th className="manufacturer hidden-on-phone">manufacturer</th>
-            <th className="form">form</th>
-            <th className="primaryIngredient">active ingredient</th>
+            <th className="medicationName hidden-on-phone">name</th>
+            <th className="manufacturerDisplay hidden-on-phone">manufacturer</th>
+            <th className="medicationForm">form</th>
+            <th className="activeIngredient">active ingredient</th>
             <th className="id hidden-on-phone">medication._id</th>
           </tr>
         </thead>
@@ -141,7 +125,6 @@ export default class MedicationTable extends React.Component {
           { tableRows }
         </tbody>
       </Table>
-
     );
   }
 }

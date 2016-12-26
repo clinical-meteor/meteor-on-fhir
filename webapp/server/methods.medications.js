@@ -31,6 +31,10 @@ Meteor.methods({
         code: {
           text: "Claritin"
         },
+        manufacturer: {
+          display: '',
+          reference: ''
+        },
         product: {
           form: {
             text: 'tablet'
@@ -42,7 +46,10 @@ Meteor.methods({
                 text: 'Loratadine'
               },
               description: 'Antihistimine'
-            }
+            },
+            instance: [{
+              quantity: '1 tablet'
+            }]
           }]
         }
       };
@@ -57,13 +64,12 @@ Meteor.methods({
     if (process.env.NODE_ENV === 'test') {
       console.log('-----------------------------------------');
       console.log('Dropping medications... ');
-      Medications.find().forEach(function(patient){
-        Medications.remove({_id: patient._id});
+      Medications.find().forEach(function(medication){
+        Medications.remove({_id: medication._id});
       });
     } else {
       console.log('This command can only be run in a test environment.');
       console.log('Try setting NODE_ENV=test');
     }
   }
-
 });

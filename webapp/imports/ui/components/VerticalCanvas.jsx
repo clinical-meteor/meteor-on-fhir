@@ -22,18 +22,22 @@ export class VerticalCanvas extends React.Component {
         transition: 'ease .2s'
       }
     };
+    var canvasWidth = 1024;
 
+    if (this.props.width) {
+      canvasWidth = this.props.width;
+    }
 
-    if (Session.get('appWidth') > 1024) {
+    if (Session.get('appWidth') > canvasWidth) {
       data.style.position = 'relative';
-      data.style.maxWidth = '1024px';
+      data.style.maxWidth = canvasWidth + 'px';
       data.style.width = '100%';
 
       if (Session.get('appSurfaceOffset')) {
-        data.style.left = (Session.get('appWidth') - 1024) * 0.1618;
+        data.style.left = (Session.get('appWidth') - canvasWidth) * 0.1618;
         data.style.marginRight = '100px';
       } else {
-        data.style.left = (Session.get('appWidth') - 1024) * 0.5;
+        data.style.left = (Session.get('appWidth') - canvasWidth) * 0.5;
       }
 
     } else {

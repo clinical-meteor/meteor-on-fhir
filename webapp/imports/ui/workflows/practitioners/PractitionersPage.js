@@ -4,6 +4,7 @@ import ReactMixin  from 'react-mixin';
 
 import { Tabs, Tab } from 'material-ui/Tabs';
 import { GlassCard } from '/imports/ui/components/GlassCard';
+import { CardTitle, CardText } from 'material-ui/Card';
 import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 import PractitionerDetail  from '/imports/ui/workflows/practitioners/PractitionerDetail';
 import PractitionerTable  from '/imports/ui/workflows/practitioners/PractitionerTable';
@@ -64,19 +65,22 @@ export class PractitionersPage extends React.Component {
       <div id="practitionersPage">
         <VerticalCanvas>
           <GlassCard>
-
-            <Tabs id="practitionersPageTabs" default value={this.data.tabIndex} onChange={this.handleTabChange} initialSelectedIndex={1}>
-              <Tab className="newPractitionerTab" label='New' style={this.data.style.tab} onActive={ this.onNewTab } value={0} >
-                <PractitionerDetail id='newPractitioner' />
-              </Tab>
-              <Tab className="practitionerListTab" label='Practitioners' onActive={this.handleActive} style={this.data.style.tab} value={1}>
-                <PractitionerTable />
-               </Tab>
-               <Tab className="practitionerDetailsTab" label='Detail' onActive={this.handleActive} style={this.data.style.tab} value={2}>
-                <PractitionerDetail id='practitionerDetails' />
-              </Tab>
-            </Tabs>
-
+            <CardTitle
+              title="Practitioners"
+            />
+            <CardText>
+              <Tabs id="practitionersPageTabs" default value={this.data.tabIndex} onChange={this.handleTabChange} initialSelectedIndex={1}>
+                <Tab className="newPractitionerTab" label='New' style={this.data.style.tab} onActive={ this.onNewTab } value={0} >
+                  <PractitionerDetail id='newPractitioner' />
+                </Tab>
+                <Tab className="practitionerListTab" label='Practitioners' onActive={this.handleActive} style={this.data.style.tab} value={1}>
+                  <PractitionerTable />
+                 </Tab>
+                 <Tab className="practitionerDetailsTab" label='Detail' onActive={this.handleActive} style={this.data.style.tab} value={2}>
+                  <PractitionerDetail id='practitionerDetails' />
+                </Tab>
+              </Tabs>
+            </CardText>
           </GlassCard>
         </VerticalCanvas>
       </div>

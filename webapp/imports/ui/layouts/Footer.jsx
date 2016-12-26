@@ -128,7 +128,7 @@ export class Footer extends React.Component {
       return (
         <div>
           <ToolbarTitle
-            id='authenticatedUsername'
+            id='connectionStatus'
             text={this.data.status}
             style={{fontSize: '18px', top: '-4px', cursor: 'pointer'}}
             onTouchTap={this.openInfo }
