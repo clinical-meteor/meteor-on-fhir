@@ -29,12 +29,11 @@ let defaultDevice = {
   "manufacturer": "",
   "model": "",
   "lotNumber": "",
-  "contact": [
-    {
-      "system": "phone",
-      "value": ""
-    }
-  ]
+  "contact": [{
+    "resourceType": "ContactPoint",
+    "system": "phone",
+    "value": ""
+  }]
 };
 
 Session.setDefault('deviceUpsert', false);
@@ -188,6 +187,9 @@ export default class DeviceDetail extends React.Component {
     if (Session.get('selectedDevice')) {
       if(process.env.NODE_ENV === "test") console.log("update practioner");
       delete deviceUpdate._id;
+
+      // not sure why we're having to respecify this; fix for a bug elsewhere
+      deviceUpdate.resourceType = 'Device';
 
       Devices.update(
         {_id: Session.get('selectedDevice')}, {$set: deviceUpdate }, function(error) {

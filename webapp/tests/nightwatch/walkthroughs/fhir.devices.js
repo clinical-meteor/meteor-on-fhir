@@ -69,6 +69,7 @@ module.exports = {
         "lotNumber": "",
         "contact": [
           {
+            "resourceType": "ContactPoint",
             "system": "phone",
             "value": ""
           }
@@ -124,6 +125,7 @@ module.exports = {
         "lotNumber": "",
         "contact": [
           {
+            "resourceType": "ContactPoint",
             "system": "phone",
             "value": ""
           }
