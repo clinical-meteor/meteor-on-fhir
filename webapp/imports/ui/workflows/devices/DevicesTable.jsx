@@ -38,10 +38,10 @@ export default class DevicesTable extends React.Component {
       tableRows.push(
         <tr key={i} className="deviceRow" style={{cursor: "pointer"}} onClick={ this.rowClick.bind('this', this.data.devices[i]._id)} >
 
-          <td>{this.data.devices[i].type.text }</td>
-          <td>{this.data.devices[i].manufacturer }</td>
-          <td>{this.data.devices[i].model }</td>
-          <td>{this.data.devices[i].serialNumber }</td>
+          <td className='deviceType'>{this.data.devices[i].type.text }</td>
+          <td className='manufacturer'>{this.data.devices[i].manufacturer }</td>
+          <td className='deviceModel'>{this.data.devices[i].model }</td>
+          <td className='serialNumber'>{this.data.devices[i].identifier[0] ? this.data.devices[i].identifier[0].value :  '' }</td>
           <td><span className="barcode">{ this.data.devices[i]._id }</span></td>
         </tr>
       )
@@ -51,10 +51,10 @@ export default class DevicesTable extends React.Component {
       <Table id='devicesTable' responses hover >
         <thead>
           <tr>
-            <th>type</th>
-            <th>manufacturer</th>
-            <th>model</th>
-            <th>serial number</th>
+            <th className='deviceType'>type</th>
+            <th className='manufacturer'>manufacturer</th>
+            <th className='deviceModel'>model</th>
+            <th className='serialNumber'>serial number</th>
             <th>_id</th>
           </tr>
         </thead>

@@ -74,16 +74,17 @@ module.exports = {
           }
         ]
       });
+    });
 
     client.page
       .devicesPage()
-      .upsertDevice('MRI', 'Philips', 'Gyroscan', '22456', '#newDevice', client)
+      .upsertDevice('MRI', 'Philips', 'Gyroscan', '22456', '#newDevice')
       .saveScreenshot('tests/nightwatch/screenshots/devices.crud/B-DeviceList.png', client);
 
     client
       .click('#newDevice #saveDeviceButton').pause(1000);
   },
-  'list should contain recently created device': function (client) {
+  "list should contain recently created device" : function (client) {
     client.page
       .devicesPage()
       .selectListTab()
@@ -99,7 +100,7 @@ module.exports = {
       .saveScreenshot('tests/nightwatch/screenshots/devices.crud/C-DeviceDetails.png', client);
   },
   'edit device': function (client) {
-    client.executeAsync(function(){
+    client.pause(1000).executeAsync(function(){
       Session.set('deviceUpsert', {
         "resourceType": "Device",
         "identifier": [{
@@ -128,17 +129,19 @@ module.exports = {
           }
         ]
       });
+    });
 
     client.page
       .devicesPage()
-      .upsertDevice('3T MRI', 'Philips Medical', 'Gyroscan Intera', '22456', '#deviceDetails', client)
+      .upsertDevice('3T MRI', 'Philips Medical', 'Gyroscan Intera', '22456', '#deviceDetails')
       .saveScreenshot('tests/nightwatch/screenshots/devices.crud/D-EditedDevice.png', client);
 
     // since we're using the DeviceDetail component twice,
     // there are two #saveDeviceButtons on the page
     // so we need to scope the button accordingly
     client
-      .click('#deviceDetails #saveDeviceButton').pause(1000);
+      .verify.elementPresent('#deviceDetails #saveDeviceButton')
+      .click('#deviceDetails #saveDeviceButton').pause(2000);
   },
   'list edited Devices': function (client) {
     client.page
