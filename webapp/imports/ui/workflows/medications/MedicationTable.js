@@ -74,15 +74,7 @@ export default class MedicationTable extends React.Component {
     //console.log("data", data);
     return data;
   }
-  handleChange(row, key, value) {
-    const source = this.state.source;
-    source[row][key] = value;
-    this.setState({source});
-  }
 
-  handleSelect(selected) {
-    this.setState({selected});
-  }
 
   rowClick(id){
     Session.set('medicationUpsert', false);

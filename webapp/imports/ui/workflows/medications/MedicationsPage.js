@@ -56,13 +56,15 @@ export class MedicationsPage extends React.Component {
 
   render() {
     return (
-      <div id="medicationsPage"> <VerticalCanvas>
+      <div id="medicationsPage">
+      <VerticalCanvas>
           <GlassCard>
             <CardTitle
               title="Medications"
             />
             <CardText>
-              <Tabs id="medicationsPageTabs" default value={this.data.tabIndex} onChange={this.handleTabChange} initialSelectedIndex={1}> <Tab className="newMedicationTab" label='New' style={this.data.style.tab} onActive={ this.onNewTab } value={0} >
+              <Tabs id="medicationsPageTabs" default value={this.data.tabIndex} onChange={this.handleTabChange} initialSelectedIndex={1}>
+                <Tab className="newMedicationTab" label='New' style={this.data.style.tab} onActive={ this.onNewTab } value={0} >
                   <MedicationDetail id='newMedication' />
                 </Tab>
                 <Tab className="medicationListTab" label='Medications' onActive={this.handleActive} style={this.data.style.tab} value={1}>
