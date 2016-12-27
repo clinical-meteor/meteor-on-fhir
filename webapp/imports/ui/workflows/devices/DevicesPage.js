@@ -7,6 +7,7 @@ import { GlassCard } from '/imports/ui/components/GlassCard';
 import { CardTitle, CardText } from 'material-ui/Card';
 
 import DeviceDetail from '/imports/ui/workflows/devices/DeviceDetail';
+import DevicesTable from '/imports/ui/workflows/devices/DevicesTable';
 import {Tabs, Tab} from 'material-ui/Tabs';
 
 import { Meteor } from 'meteor/meteor';
@@ -14,43 +15,40 @@ import { Meteor } from 'meteor/meteor';
 export class DevicesPage extends React.Component {
   getMeteorData() {
     let data = {
-      style: {},
+      style: {
+        opacity: Session.get('globalOpacity'),
+        tab: {
+          borderBottom: '1px solid lightgray',
+          borderRight: 'none'
+        }
+      },
       state: {
         isLoggedIn: false
-      }
+      },
+      tabIndex: Session.get('devicePageTabIndex'),
+      deviceSearchFilter: Session.get('deviceSearchFilter'),
+      currentDevice: Session.get('selectedDevice')
     };
 
     if (Meteor.user()) {
       data.state.isLoggedIn = true;
     }
 
-    // this should all be handled by props
-    // or a mixin!
-    if (Session.get('darkroomEnabled')) {
-      data.style.color = 'black';
-      data.style.background = 'white';
-    } else {
-      data.style.color = 'white';
-      data.style.background = 'black';
-    }
-
-    // this could be another mixin
-    if (Session.get('glassBlurEnabled')) {
-      data.style.filter = 'blur(3px)';
-      data.style.webkitFilter = 'blur(3px)';
-    }
-
-    if (Session.get('appWidth') > 768) {
-      Session.set('hasPageVerticalPadding', true);
-      Session.set('mainPanelIsCard', true);
-    } else {
-      Session.set('hasPageVerticalPadding', false);
-      Session.set('mainPanelIsCard', false);
-    }
+    data.style = Glass.blur(data.style);
+    data.style.appbar = Glass.darkroom(data.style.appbar);
+    data.style.tab = Glass.darkroom(data.style.tab);
 
     return data;
   }
 
+  handleTabChange(index){
+    Session.set('devicePageTabIndex', index);
+  }
+
+  onNewTab(){
+    Session.set('selectedDevice', false);
+    Session.set('deviceUpsert', false);
+  }
 
   render() {
     if(process.env.NODE_ENV === "test") console.log('In DevicesPage render');
@@ -60,15 +58,15 @@ export class DevicesPage extends React.Component {
           <GlassCard>
             <CardTitle title='Devices' />
             <CardText>
-              <Tabs default index={this.data.state.index} onChange={this.handleTabChange}>
-               <Tab className='newDeviceTab' label='New' style={{padded: '20px', backgroundColor: 'white', color: 'black', borderBottom: '1px solid lightgray'}} onActive={ this.onNewTab } >
-                 <DeviceDetail />
+              <Tabs id="devicesPageTabs" default value={this.data.tabIndex} onChange={this.handleTabChange} initialSelectedIndex={1}>
+               <Tab className='newDeviceTab' label='New' style={this.data.style.tab} onActive={ this.onNewTab } value={0}>
+                 <DeviceDetail id='newDevice' />
                </Tab>
-               <Tab label='Devices' onActive={this.handleActive} style={{backgroundColor: 'white', color: 'black', borderBottom: '1px solid lightgray'}}>
-
+               <Tab className="deviceListTab" label='Devices' onActive={this.handleActive} style={this.data.style.tab} value={1}>
+                <DevicesTable />
                </Tab>
-               <Tab label='Detail' onActive={this.handleActive} style={{padded: '20px', backgroundColor: 'white', color: 'black', borderBottom: '1px solid lightgray'}} >
-                 <DeviceDetail />
+               <Tab className="deviceDetailsTab" label='Detail' onActive={this.handleActive} style={this.data.style.tab} value={2}>
+                 <DeviceDetail id='deviceDetails' />
                </Tab>
              </Tabs>
             </CardText>

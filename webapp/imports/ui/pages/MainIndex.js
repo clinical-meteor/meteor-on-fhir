@@ -178,11 +178,11 @@ export class MainIndex extends React.Component {
           </div>
           <Spacer style={this.data.style.spacer} />
 
-          <div id='checklistsTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/checklists') } >
+          <div id='devicesTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/devices') } >
             <GlassCard style={this.data.style.indexCard} >
               <CardTitle
-                title='Checklist Manifesto'
-                subtitle='Checklists lead to better outcomes.'
+                title='Devices'
+                subtitle='Equipment and devices.'
               />
             </GlassCard>
           </div>
@@ -196,11 +196,11 @@ export class MainIndex extends React.Component {
           </div>
           <Spacer style={this.data.style.spacer} />
 
-          <div id='devicesTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/devices') } >
+          <div id='checklistsTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/checklists') } >
             <GlassCard style={this.data.style.indexCard} >
               <CardTitle
-                title='Devices'
-                subtitle='Equipment and devices.'
+                title='Checklist Manifesto'
+                subtitle='Checklists lead to better outcomes.'
               />
             </GlassCard>
           </div>

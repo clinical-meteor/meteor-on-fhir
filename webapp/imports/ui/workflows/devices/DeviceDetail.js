@@ -9,43 +9,32 @@ import { Bert } from 'meteor/themeteorchef:bert';
 import { CardText, CardActions } from 'material-ui/Card';
 
 let defaultDevice = {
-  resourceType: 'Device',
-  code: {
-    text: ""
-  },
-  isBrand: true,
-  manufacturer: {
-    display: '',
-    reference: ''
-  },
-  product: {
-    form: {
-      text: 'tablet'
+  "resourceType": "Device",
+  "identifier": [{
+    "type": {
+      "coding": [
+        {
+          "system": "http://hl7.org/fhir/identifier-type",
+          "code": "SNO"
+        }
+      ],
+      "text": "Serial Number"
     },
-    ingredient: [{
-      item: {
-        resourceType: 'Substance',
-        code: {
-          text: ''
-        },
-        description: ''
-      },
-      instance: [{
-        quantity: ''
-      }]
-    }]
+    "value": ""
+  }],
+  "type": {
+    "text": ""
   },
-  package: {
-    container: {
-      text: 'bottle'
-    },
-    content: [{
-      amount: {
-        value: 30,
-        unit: 'tablet'
-      }
-    }]
-  }
+  "status": "available",
+  "manufacturer": "",
+  "model": "",
+  "lotNumber": "",
+  "contact": [
+    {
+      "system": "phone",
+      "value": ""
+    }
+  ]
 };
 
 Session.setDefault('deviceUpsert', false);
@@ -81,120 +70,44 @@ export default class DeviceDetail extends React.Component {
     return data;
   }
 
-
-  // this could be a mixin
-  changeState(field, event, value){
-    let deviceUpdate;
-
-    if(process.env.NODE_ENV === "test") console.log("DeviceDetail.changeState", field, event, value);
-
-    // by default, assume there's no other data and we're creating a new device
-    if (Session.get('deviceUpsert')) {
-      deviceUpdate = Session.get('deviceUpsert');
-    } else {
-      deviceUpdate = defaultDevice;
-    }
-
-
-
-    // if there's an existing device, use them
-    if (Session.get('selectedDevice')) {
-      deviceUpdate = this.data.device;
-    }
-
-    switch (field) {
-      case "deviceName":
-        deviceUpdate.code.text = value;
-        break;
-      case "manufacturerDisplay":
-        deviceUpdate.manufacturer.display = value;
-        break;
-      case "deviceForm":
-        deviceUpdate.product.form.text = value;
-        break;
-      case "activeIngredient":
-        deviceUpdate.product.ingredient[0].item.code.text = value;
-        break;
-      case "activeIngredientQuantity":
-        deviceUpdate.product.ingredient[0].instance[0].quantity = value;
-        break;
-      case "activeIngredientDescription":
-        deviceUpdate.product.ingredient[0].item.description = value;
-        break;
-      default:
-
-    }
-
-
-    // deviceUpdate[field] = value;
-    if(process.env.NODE_ENV === "test") console.log("deviceUpdate", deviceUpdate);
-
-    Session.set('deviceUpsert', deviceUpdate);
-  }
-  openTab(index){
-    // set which tab is selected
-    let state = Session.get('deviceCardState');
-    state["index"] = index;
-    Session.set('deviceCardState', state);
-  }
-
-
   render() {
     return (
       <div id={this.props.id} className="deviceDetail">
         <CardText>
           <TextField
-            id='deviceNameInput'
-            ref='deviceName'
-            name='deviceName'
-            floatingLabelText='Device Name'
-            value={this.data.device.code.text}
-            onChange={ this.changeState.bind(this, 'deviceName')}
+            id='deviceTypeInput'
+            ref='deviceType'
+            name='deviceType'
+            floatingLabelText='Device Type'
+            value={this.data.device.type ? this.data.device.type.text : ''}
+            onChange={ this.changeState.bind(this, 'deviceType')}
             fullWidth
             /><br/>
           <TextField
-            id='manufacturerDisplayInput'
-            ref='manufacturerDisplay'
-            name='manufacturerDisplay'
+            id='manufacturerInput'
+            ref='manufacturer'
+            name='manufacturer'
             floatingLabelText='Manufacturer'
-            value={this.data.device.manufacturer.display ? this.data.device.manufacturer.display : ''}
-            onChange={ this.changeState.bind(this, 'manufacturerDisplay')}
+            value={this.data.device.manufacturer ? this.data.device.manufacturer : ''}
+            onChange={ this.changeState.bind(this, 'manufacturer')}
             fullWidth
             /><br/>
           <TextField
-            id='deviceFormInput'
-            ref='deviceForm'
-            name='deviceForm'
-            floatingLabelText='Substance Form'
-            value={this.data.device.product.form.text}
-            onChange={ this.changeState.bind(this, 'deviceForm')}
+            id='deviceModelInput'
+            ref='deviceModel'
+            name='deviceModel'
+            floatingLabelText='Model'
+            value={this.data.device.model ? this.data.device.model : ''}
+            onChange={ this.changeState.bind(this, 'deviceModel')}
             fullWidth
             /><br/>
           <TextField
-            id='activeIngredientInput'
-            ref='activeIngredient'
-            name='activeIngredient'
-            floatingLabelText='Active Ingredient'
-            value={this.data.device.product.ingredient[0].item.code.text}
-            onChange={ this.changeState.bind(this, 'activeIngredient')}
-            fullWidth
-            /><br/>
-          <TextField
-            id='activeIngredientQuantityInput'
-            ref='activeIngredientQuantity'
-            name='activeIngredientQuantity'
-            floatingLabelText='Quantity'
-            value={this.data.device.product.ingredient[0].instance[0].quantity}
-            onChange={ this.changeState.bind(this, 'activeIngredientQuantity')}
-            fullWidth
-            /><br/>
-          <TextField
-            id='activeIngredientDescriptionInput'
-            ref='activeIngredientDescription'
-            name='activeIngredientDescription'
-            floatingLabelText='Active Ingredient Description'
-            value={this.data.device.product.ingredient[0].item.description}
-            onChange={ this.changeState.bind(this, 'activeIngredientDescription')}
+            id='serialNumberInput'
+            ref='serialNumber'
+            name='serialNumber'
+            floatingLabelText='Serial Number'
+            value={this.data.device.identifier[0] ? this.data.device.identifier[0].value :  ''}
+            onChange={ this.changeState.bind(this, 'serialNumber')}
             fullWidth
             /><br/>
         </CardText>
@@ -221,6 +134,49 @@ export default class DeviceDetail extends React.Component {
     }
   }
 
+
+
+  // this could be a mixin
+  changeState(field, event, value){
+    let deviceUpdate;
+
+    if(process.env.NODE_ENV === "test") console.log("DeviceDetail.changeState", field, event, value);
+
+    // by default, assume there's no other data and we're creating a new device
+    if (Session.get('deviceUpsert')) {
+      deviceUpdate = Session.get('deviceUpsert');
+    } else {
+      deviceUpdate = defaultDevice;
+    }
+
+
+
+    // if there's an existing device, use them
+    if (Session.get('selectedDevice')) {
+      deviceUpdate = this.data.device;
+    }
+
+    switch (field) {
+      case "deviceType":
+        deviceUpdate.type.text = value;
+        break;
+      case "manufacturer":
+        deviceUpdate.manufacturer = value;
+        break;
+      case "deviceModel":
+        deviceUpdate.model = value;
+        break;
+      case "serialNumber":
+        deviceUpdate.identifier[0].value = value;
+        break;
+      default:
+
+    }
+    // deviceUpdate[field] = value;
+    if(process.env.NODE_ENV === "test") console.log("deviceUpdate", deviceUpdate);
+
+    Session.set('deviceUpsert', deviceUpdate);
+  }
 
   // this could be a mixin
   handleSaveButton(){

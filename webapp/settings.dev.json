@@ -9,6 +9,7 @@
     },
     "app": {
       "barcodes": true,
+      "underConstruction": false
     },
     "defaults": {
       "displayNavbars": true,

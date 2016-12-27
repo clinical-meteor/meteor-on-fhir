@@ -20,7 +20,12 @@ module.exports = {
       return this
         .verify.elementPresent('#medicationsTile')
         .click('#medicationsTile');
-    }
+    },
+    selectDevicesTile: function() {
+      return this
+        .verify.elementPresent('#devicesTile')
+        .click('#devicesTile');
+    }    
   }],
   elements: {
     indexPage: {
