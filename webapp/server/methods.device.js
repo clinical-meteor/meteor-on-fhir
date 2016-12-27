@@ -1,8 +1,8 @@
-import { Devices } from '/imports/api/devices/devices';
-
-Meteor.publish('devices', function(){
-  return Devices.find();
-});
+// import { Devices } from '/imports/api/devices/devices';
+//
+// Meteor.publish('devices', function(){
+//   return Devices.find();
+// });
 
 Meteor.methods({
   createDevice:function(deviceObject){

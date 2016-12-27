@@ -215,7 +215,7 @@ export class MainIndex extends React.Component {
           <Spacer style={this.data.style.spacer} />
 
 
-          <div id='telemedicineTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/telemd') } >
+          <div id='telemedicineTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/telemed') } >
             <GlassCard style={this.data.style.indexCard} >
               <CardTitle
                 title='Telemedicine'
@@ -223,7 +223,7 @@ export class MainIndex extends React.Component {
               />
             </GlassCard>
           </div>
-          <div id="questionnairesTile" style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/questionnaires') } >
+          <div id="locationsTile" style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/locations') } >
             <GlassCard style={this.data.style.indexCard} >
               <CardTitle
                 title='Locations'
@@ -241,7 +241,7 @@ export class MainIndex extends React.Component {
               />
             </GlassCard>
           </div>
-          <div id='questionnaireResponsesTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/telemd') } >
+          <div id='questionnaireResponsesTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/questionnaire-responses') } >
             <GlassCard style={this.data.style.indexCard} >
               <CardTitle
                 title='Questionnaire Responses'
