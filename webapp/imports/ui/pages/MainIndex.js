@@ -88,6 +88,7 @@ export class MainIndex extends React.Component {
           {this.renderAdminTiles(this.data.user.isAdmin)}
           {this.renderPractitionerTiles(this.data.user.isPractitioner, this.data.user.isAdmin)}
           {this.renderPatientTiles(this.data.user.isPatient)}
+          {this.renderClinicalTiles(this.data.user)}
           {this.renderTilesUnderConstruction(this.data.user, this.data.showTilesUnderConstruction)}
 
         </VerticalCanvas>
@@ -143,6 +144,15 @@ export class MainIndex extends React.Component {
             </GlassCard>
           </div>
           <Spacer style={this.data.style.spacer} />
+
+        </div>
+      );
+    }
+  }
+  renderClinicalTiles(user){
+    if (user.isPatient || user.isPractitioner) {
+      return (
+        <div>
 
           <div id='forumTile' style={this.data.style.indexCardPadding} onClick={ this.openDiscussionForum.bind(this) }>
             <GlassCard style={this.data.style.indexCard} >
