@@ -4,6 +4,8 @@ For my Masters of Science in Biomedical Informatics, we are required to create a
 [![CircleCI](https://circleci.com/gh/clinical-meteor/meteor-on-fhir/tree/master.svg?style=svg)](https://circleci.com/gh/clinical-meteor/meteor-on-fhir/tree/master)  
 
 
+![https://github.com/clinical-meteor/meteor-on-fhir/blob/master/media/screenshot-1.png](https://github.com/clinical-meteor/meteor-on-fhir/blob/master/media/screenshot-1.png)
+
 #### A. Installation  
 
 ```sh
@@ -120,9 +122,3 @@ npm run desktop
  meteor npm run-script desktop
 ```    
 
-#### Licensing
-
-Abigail Watson
-Artistic License 2.0
-
-The code is free, but be careful about media assets, some of which are not publicly licensed.  
