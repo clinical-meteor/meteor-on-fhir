@@ -27,9 +27,6 @@ INITIALIZE=true Patients=true Practitioners=true meteor
 
 ## general development
 NODE_ENV=test INITIALIZE=true Patients=true Practitioners=true meteor --settings settings.dev.json
-
-## general development  for desktop app
-npm run desktop
 ```
 
 
@@ -106,8 +103,12 @@ NODE_ENV=dev meteor run ios-device --mobile-server http://meteor-on-fhir.meteora
 
 
 #### F. Desktop Build   
+For more info, see [https://www.npmjs.com/package/meteor-desktop](https://www.npmjs.com/package/meteor-desktop)
 
 ```sh
+# add the .desktop directory, which has files needed by omega:meteor-desktop
+npm run desktop -- init
+
 # run the app locally, as if you were doing a mobile build
 # (you may be able to just use the running mobile build server)
 NODE_ENV=dev meteor --mobile-server http://localhost:3000 --settings settings.dev.json

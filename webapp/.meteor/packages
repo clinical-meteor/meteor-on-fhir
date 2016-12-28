@@ -40,7 +40,6 @@ momentjs:moment
 #practicalmeteor:mocha
 #dispatch:mocha-phantomjs
 
-#nathantreid:css-modules
 react-meteor-data
 
 simple:dev-error-overlay
@@ -74,7 +73,7 @@ percolate:synced-cron
 
 
 anti:gagarin
-#omega:meteor-desktop-watcher@=0.2.1
-#omega:meteor-desktop-bundler@=0.2.1
-#omega:meteor-desktop-localstorage@=0.0.11
+omega:meteor-desktop-watcher@=0.2.6
+omega:meteor-desktop-bundler@=0.2.6
+omega:meteor-desktop-localstorage@=0.0.11
 shell-server
