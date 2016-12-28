@@ -144,6 +144,26 @@ export class MainIndex extends React.Component {
           </div>
           <Spacer style={this.data.style.spacer} />
 
+          <div id='forumTile' style={this.data.style.indexCardPadding} onClick={ this.openDiscussionForum.bind(this) }>
+            <GlassCard style={this.data.style.indexCard} >
+              <CardTitle
+                title='Discussion Forum'
+                subtitle='Get help developing healthcare apps using Meteor.js'
+              />
+            </GlassCard>
+          </div>
+
+          <div id='weblogTile' style={this.data.style.indexCardPadding} onClick={ this.openHealthlog.bind(this) } >
+            <GlassCard style={this.data.style.indexCard} >
+              <CardTitle
+                title='Healthlog'
+                subtitle='Post public thoughts using a Wordpress/Twitter style format.'
+              />
+            </GlassCard>
+          </div>
+
+          <Spacer style={this.data.style.spacer} />          
+
         </div>
       );
     }
@@ -198,25 +218,6 @@ export class MainIndex extends React.Component {
       if (user.isPractitioner || user.isAdmin) {
         return (
           <div>
-            <div id='forumTile' style={this.data.style.indexCardPadding} onClick={ this.openDiscussionForum.bind(this) }>
-              <GlassCard style={this.data.style.indexCard} >
-                <CardTitle
-                  title='Discussion Forum'
-                  subtitle='Get help developing healthcare apps using Meteor.js'
-                />
-              </GlassCard>
-            </div>
-
-            <div id='weblogTile' style={this.data.style.indexCardPadding} onClick={ this.openHealthlog.bind(this) } >
-              <GlassCard style={this.data.style.indexCard} >
-                <CardTitle
-                  title='Healthlog'
-                  subtitle='Post public thoughts using a Wordpress/Twitter style format.'
-                />
-              </GlassCard>
-            </div>
-
-            <Spacer style={this.data.style.spacer} />
 
             <div id='checklistsTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/checklists') } >
               <GlassCard style={this.data.style.indexCard} >
