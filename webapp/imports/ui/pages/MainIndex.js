@@ -22,7 +22,8 @@ export class MainIndex extends React.Component {
           width: '50%',
           display: 'inline-block',
           paddingLeft: '20px',
-          paddingRight: '20px'
+          paddingRight: '20px',
+          paddingBottom: '30px'
         },
         indexCard: {
           cursor: 'pointer'
@@ -31,7 +32,8 @@ export class MainIndex extends React.Component {
           width: '50%',
           display: 'inline-block',
           paddingLeft: '20px',
-          paddingRight: '20px'
+          paddingRight: '20px',
+          paddingBottom: '30px'
         },
         spacer: {
           display: 'block'
@@ -88,10 +90,10 @@ export class MainIndex extends React.Component {
       <div id='indexPage'>
         <VerticalCanvas>
 
-
-          {this.renderAdminTiles(this.data.user.isAdmin)}
-          {this.renderPractitionerTiles(this.data.user.isPractitioner, this.data.user.isAdmin)}
-          {this.renderPatientTiles(this.data.user.isPatient)}
+          {this.renderAdminTiles(this.data.user)}
+          {this.renderPractitionerTiles(this.data.user)}
+          {this.renderClinicalTiles(this.data.user)}
+          {this.renderPatientTiles(this.data.user)}
           {this.renderTilesUnderConstruction(this.data.user, this.data.showUnderConstruction)}
           {this.renderExperimentalTiles(this.data.showExperimental)}
 
@@ -100,10 +102,11 @@ export class MainIndex extends React.Component {
     );
   }
 
-  renderAdminTiles(isAdmin){
-    if (isAdmin) {
+  renderAdminTiles(user){
+    if (user.isAdmin) {
       return (
         <div>
+
           <div id='inboundMessagesTile' style={this.data.style.indexCardPadding} onClick={ this.openInboundMessages.bind(this) } >
             <GlassCard style={this.data.style.indexCard} >
               <CardTitle
@@ -120,14 +123,6 @@ export class MainIndex extends React.Component {
               />
             </GlassCard>
           </div>
-                  </div>
-      );
-    }
-  }
-  renderPatientTiles(isPatient){
-    if (isPatient) {
-      return (
-        <div>
 
           <div id='dataManagementTile' style={this.data.style.indexCardPadding} onClick={ this.openDataManagement.bind(this) } >
             <GlassCard style={this.data.style.indexCard} >
@@ -138,18 +133,63 @@ export class MainIndex extends React.Component {
             </GlassCard>
           </div>
 
-          <div id='observationsTile' style={this.data.style.indexCardPadding} onClick={ this.openObservations.bind(this) } >
+          <div id="hipaaLogTile" style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/hipaa-log') } >
             <GlassCard style={this.data.style.indexCard} >
               <CardTitle
-                title='Observations'
-                subtitle='Observations from devices.'
+                title='Audit Log'
+                subtitle='HIPAA compliance and access logs.'
               />
             </GlassCard>
           </div>
-          <Spacer style={this.data.style.spacer} />
 
         </div>
       );
+    }
+  }
+  renderPatientTiles(user){
+    if (user.isPatient || user.isAdmin) {
+      return (<div></div>);
+    }
+  }
+  renderClinicalTiles(user){
+    if (user.isPatient || user.isPractitioner || user.isAdmin) {
+      return (<div>
+
+        <div id='checklistsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/checklists') } >
+          <GlassCard style={this.data.style.indexCard} >
+            <CardTitle
+              title='Checklist Manifesto'
+              subtitle='Checklists lead to better outcomes.'
+            />
+          </GlassCard>
+        </div>
+
+        <div id='observationsTile' style={this.data.style.indexCardPadding} onClick={ this.openObservations.bind(this) } >
+          <GlassCard style={this.data.style.indexCard} >
+            <CardTitle
+              title='Observations'
+              subtitle='Observations from devices.'
+            />
+          </GlassCard>
+        </div>
+
+        <div id='devicesTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/devices') } >
+          <GlassCard style={this.data.style.indexCard} >
+            <CardTitle
+              title='Devices'
+              subtitle='Equipment and devices.'
+            />
+          </GlassCard>
+        </div>
+        <div id="medicationsTile" style={this.data.style.indexCardPadding} onClick={ this.openMedications.bind(this) } >
+          <GlassCard style={this.data.style.indexCard} >
+            <CardTitle
+              title='Medication Inventory'
+              subtitle='Crash carts, first responder kits, and surgical prep.'
+            />
+          </GlassCard>
+        </div>
+      </div>);
     }
   }
 
@@ -176,17 +216,42 @@ export class MainIndex extends React.Component {
             </GlassCard>
           </div>
 
-          <Spacer style={this.data.style.spacer} />
+          <div id="dermatogramsTile" style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/dermatograms') } >
+            <GlassCard style={this.data.style.indexCard} >
+              <CardTitle
+                title='Dermatograms'
+                subtitle='Mole counts, burn coverage, body sites, etc.'
+              />
+            </GlassCard>
+          </div>
+
+          <div id='telemedicineTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/telemed') } >
+            <GlassCard style={this.data.style.indexCard} >
+              <CardTitle
+                title='Telemedicine'
+                subtitle='Point-to-point video conferencing.'
+              />
+            </GlassCard>
+          </div>
+          <div id='myGenomeTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/my-genome') } >
+            <GlassCard style={this.data.style.indexCard} >
+              <CardTitle
+                title='My Genome'
+                subtitle='A basic 23 and Me genome explorer.'
+              />
+            </GlassCard>
+          </div>
 
         </div>
       );
     }
   }
 
-  renderPractitionerTiles(isPractitioner, isAdmin){
-    if (isPractitioner || isAdmin) {
+  renderPractitionerTiles(user){
+    if (user.isPractitioner || user.isAdmin) {
       return (
         <div>
+
           <div id='patientsTile' style={this.data.style.indexCardPadding} onClick={ this.openPatients.bind(this) } >
             <GlassCard style={this.data.style.indexCard} >
               <CardTitle
@@ -203,25 +268,8 @@ export class MainIndex extends React.Component {
               />
             </GlassCard>
           </div>
-          <Spacer style={this.data.style.spacer} />
 
-          <div id='devicesTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/devices') } >
-            <GlassCard style={this.data.style.indexCard} >
-              <CardTitle
-                title='Devices'
-                subtitle='Equipment and devices.'
-              />
-            </GlassCard>
-          </div>
-          <div id="medicationsTile" style={this.data.style.indexCardPadding} onClick={ this.openMedications.bind(this) } >
-            <GlassCard style={this.data.style.indexCard} >
-              <CardTitle
-                title='Medication Inventory'
-                subtitle='Crash carts, first responder kits, and surgical prep.'
-              />
-            </GlassCard>
-          </div>
-          <Spacer style={this.data.style.spacer} />
+
 
         </div>
       );
@@ -234,22 +282,42 @@ export class MainIndex extends React.Component {
         return (
           <div>
 
-            <div id='checklistsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/checklists') } >
+            <div id='riskAssessmentsTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/risk-assessments') } >
               <GlassCard style={this.data.style.indexCard} >
                 <CardTitle
-                  title='Checklist Manifesto'
-                  subtitle='Checklists lead to better outcomes.'
+                  title='Risk Assessments'
+                  subtitle='Risk assessments for patients pertaining to conditions.'
                 />
               </GlassCard>
             </div>
-            <div id="hipaaLogTile" style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/hipaa-log') } >
+
+            <div id='familyMemberHistoriesTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/family-member-histories') } >
               <GlassCard style={this.data.style.indexCard} >
                 <CardTitle
-                  title='Audit Log'
-                  subtitle='HIPAA compliance and access logs.'
+                  title='Family Member History'
+                  subtitle='Relevant medical histories of family members.'
                 />
               </GlassCard>
             </div>
+
+            <div id='conditionsTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/conditions') } >
+              <GlassCard style={this.data.style.indexCard} >
+                <CardTitle
+                  title='Conditions'
+                  subtitle='Conditions that a patient might have.'
+                />
+              </GlassCard>
+            </div>
+
+            <div id='proceduresTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/procedures') } >
+              <GlassCard style={this.data.style.indexCard} >
+                <CardTitle
+                  title='Procedures'
+                  subtitle='Procedures and treatments performed by practitioners.'
+                />
+              </GlassCard>
+            </div>
+
 
             <div id='allergyIntoleranceTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/allergies') } >
               <GlassCard style={this.data.style.indexCard} >
@@ -260,31 +328,15 @@ export class MainIndex extends React.Component {
               </GlassCard>
             </div>
 
-            <div id='radiographsTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/radiology') } >
+            <div id='immunizationsTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/immunizations') } >
               <GlassCard style={this.data.style.indexCard} >
                 <CardTitle
-                  title='Radiographs'
-                  subtitle='Medical images and radiographs.'
+                  title='Immunizations'
+                  subtitle='Patient immunization records.'
                 />
               </GlassCard>
             </div>
 
-            <div id="dermatogramsTile" style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/dermatograms') } >
-              <GlassCard style={this.data.style.indexCard} >
-                <CardTitle
-                  title='Dermatograms'
-                  subtitle='Mole counts, burn coverage, body sites, etc.'
-                />
-              </GlassCard>
-            </div>
-            <div id="locationsTile" style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/locations') } >
-              <GlassCard style={this.data.style.indexCard} >
-                <CardTitle
-                  title='Locations'
-                  subtitle='Locations and geomapping.'
-                />
-              </GlassCard>
-            </div>
 
             <div id="questionnairesTile" style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/questionnaires') } >
               <GlassCard style={this.data.style.indexCard} >
@@ -303,6 +355,26 @@ export class MainIndex extends React.Component {
               </GlassCard>
             </div>
 
+
+            <div id='imagingStudiesTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/radiology') } >
+              <GlassCard style={this.data.style.indexCard} >
+                <CardTitle
+                  title='Imaging Studies'
+                  subtitle='Medical images and radiographs.'
+                />
+              </GlassCard>
+            </div>
+
+            <div id="locationsTile" style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/locations') } >
+              <GlassCard style={this.data.style.indexCard} >
+                <CardTitle
+                  title='Locations'
+                  subtitle='Locations and geomapping.'
+                />
+              </GlassCard>
+            </div>
+
+
             <div id="carePlansTile" style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/appointments') } >
               <GlassCard style={this.data.style.indexCard} >
                 <CardTitle
@@ -312,11 +384,11 @@ export class MainIndex extends React.Component {
               </GlassCard>
             </div>
 
-            <div id='conditionsTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/questionnaire-responses') } >
+            <div id='goalsTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/goals') } >
               <GlassCard style={this.data.style.indexCard} >
                 <CardTitle
-                  title='Conditions'
-                  subtitle='Conditions that a patient might have.'
+                  title='Goals'
+                  subtitle='Treatment and careplan goals.'
                 />
               </GlassCard>
             </div>
@@ -329,7 +401,17 @@ export class MainIndex extends React.Component {
                 />
               </GlassCard>
             </div>
-            <div id='conditionsTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/questionnaire-responses') } >
+
+            <div id='slotsTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/slots') } >
+              <GlassCard style={this.data.style.indexCard} >
+                <CardTitle
+                  title='Slots'
+                  subtitle='Appointment slots.'
+                />
+              </GlassCard>
+            </div>
+
+            <div id='diagnosticReportsTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/diagnostic-report') } >
               <GlassCard style={this.data.style.indexCard} >
                 <CardTitle
                   title='Diagnostic Report'
@@ -338,22 +420,18 @@ export class MainIndex extends React.Component {
               </GlassCard>
             </div>
 
-            <div id='telemedicineTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/telemed') } >
+
+            <div id='schedulesTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/schedules') } >
               <GlassCard style={this.data.style.indexCard} >
                 <CardTitle
-                  title='Telemedicine'
-                  subtitle='Point-to-point video conferencing.'
+                  title='Schedules'
+                  subtitle='Medication schedules, treatment schedules, office schedules, etc.'
                 />
               </GlassCard>
             </div>
-            <div id='myGenomeTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/my-genome') } >
-              <GlassCard style={this.data.style.indexCard} >
-                <CardTitle
-                  title='My Genome'
-                  subtitle='A basic 23 and Me genome explorer.'
-                />
-              </GlassCard>
-            </div>
+
+
+
 
           </div>);
       }
