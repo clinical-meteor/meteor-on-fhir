@@ -20,7 +20,7 @@ let defaultPractitioner = {
       "resourceType" : "ContactPoint",
       "system" : "phone",
       "value" : "",
-      "use" : "work",
+      "use" : "",
       "rank" : 1
     }],
     "qualification" : [{
@@ -34,9 +34,9 @@ let defaultPractitioner = {
         "reference" : ""
       }
   }]
-}
+};
 
-Session.setDefault('practitionerDetailState', defaultPractitioner);
+Session.setDefault('practitionerUpsert', defaultPractitioner);
 
 
 export default class PractitionerDetail extends React.Component {
@@ -130,8 +130,8 @@ export default class PractitionerDetail extends React.Component {
     //   }
     // }
     //
-    // if (Session.get('practitionerDetailState')) {
-    //   data.practitioner = Session.get('practitionerDetailState');
+    // if (Session.get('practitionerUpsert')) {
+    //   data.practitioner = Session.get('practitionerUpsert');
     // }
 
     if(process.env.NODE_ENV === "test") console.log("PractitionerDetail[data]", data);
@@ -311,7 +311,7 @@ export default class PractitionerDetail extends React.Component {
         } else {
           Bert.alert('Practitioner added!', 'success');
           Session.set('practitionerUpdate', defaultPractitioner);
-          Session.set('practitionerDetailState', defaultPractitioner);
+          Session.set('practitionerUpsert', defaultPractitioner);
           Session.set('practitionerPageTabIndex', 1);
         }
         if (result) {
@@ -349,7 +349,7 @@ export default class PractitionerDetail extends React.Component {
       } else {
         Bert.alert('Practitioner removed!', 'success');
         Session.set('practitionerUpdate', defaultPractitioner);
-        Session.set('practitionerDetailState', defaultPractitioner);
+        Session.set('practitionerUpsert', defaultPractitioner);
         Session.set('practitionerPageTabIndex', 1);
       }
       if (result) {

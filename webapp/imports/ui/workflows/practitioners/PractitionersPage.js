@@ -49,15 +49,7 @@ export class PractitionersPage extends React.Component {
     console.log("onNewTab; we should clear things...");
 
     Session.set('selectedPractitioner', false);
-    Session.set('practitionerDetailState', {
-      name: '',
-      telecomValue: '',
-      telecomUse: '',
-      qualificationId: '',
-      qualificationStart: '',
-      qualificationEnd: '',
-      issuer: ''
-    });
+    Session.set('practitionerUpsert', false);
   }
 
   render() {
