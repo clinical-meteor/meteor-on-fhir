@@ -45,20 +45,9 @@ export default class PatientTable extends React.Component {
     return data;
   }
   rowClick(id){
-    console.log("rowClick", id);
-
-    // clear the patient detail form
-    Session.set('patientDetailState', false);
-
-    // set the user
-    Session.set("selectedPatient", id);
-
-    // set which tab is selected
-    let state = Session.get('patientFormData');
-    state["index"] = 2;
-    Session.set('patientFormData', state);
-
-    //alert('row clicked! ' + id);
+    Session.set('patientsUpsert', false);
+    Session.set('selectedPatient', id);
+    Session.set('patientPageTabIndex', 2);
   }
 
   render () {

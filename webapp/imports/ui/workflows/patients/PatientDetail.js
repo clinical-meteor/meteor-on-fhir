@@ -9,53 +9,45 @@ import { CardText, CardActions } from 'material-ui/Card';
 import { insertPatient, updatePatient, removePatientById } from '/imports/ui/workflows/patients/methods';
 import { Bert } from 'meteor/themeteorchef:bert';
 
-Session.setDefault('patientDetailState', {
-  name: "",
-  gender: "",
-  active: true,
-  birthdate: '',
-  photo: ""
-});
+let defaultPatient = {
+  "resourceType" : "Patient",
+  "name" : [{
+    "text" : "",
+    "resourceType" : "HumanName"
+  }],
+  "active" : true,
+  "gender" : "",
+  "birthDate" : null,
+  "photo" : [ ],
+  "test" : false
+};
 
+Session.setDefault('patientUpsert', false);
+Session.setDefault('selectedPatient', false);
 
 export default class PatientDetail extends React.Component {
   getMeteorData() {
     let data = {
       patientId: false,
-      patient: {
-        id: "",
-        name: "",
-        gender: "",
-        active: true,
-        birthdate: '',
-        photo: ""
-      }
+      patient: defaultPatient
     };
 
-    if (Session.get('selectedPatient')) {
-      data.patientId = Session.get('selectedPatient');
+    if (Session.get('patientUpsert')) {
+      data.patient = Session.get('patientUpsert');
+    } else {
+      if (Session.get('selectedPatient')) {
+        data.patientId = Session.get('selectedPatient');
+        console.log("selectedPatient", Session.get('selectedPatient'));
 
-      let selectedPatient = Patients.findOne({_id: Session.get('selectedPatient')});
-      if (selectedPatient) {
-        data.patient = {
-          id: selectedPatient._id,
-          birthdate: moment(selectedPatient.birthDate).format("YYYY-MM-DD"),
-          gender: selectedPatient.gender,
-          active: selectedPatient.active.toString(),
-          photo: "",
-          name: ""
-        };
-        if (selectedPatient.photo && selectedPatient.photo[0] && selectedPatient.photo[0].url) {
-          data.patient.photo = selectedPatient.photo[0].url;
+        let selectedPatient = Patients.findOne({_id: Session.get('selectedPatient')});
+        console.log("selectedPatient", selectedPatient);
+
+        if (selectedPatient) {
+          data.patient = selectedPatient;
         }
-        if (selectedPatient.name && selectedPatient.name[0] && selectedPatient.name[0].text) {
-          data.patient.name = selectedPatient.name[0].text;
-        }
+      } else {
+        data.patient = defaultPatient;
       }
-    }
-
-    if (Session.get('patientDetailState')) {
-      data.patient = Session.get('patientDetailState');
     }
 
     if(process.env.NODE_ENV === "test") console.log("PatientDetail[data]", data);
@@ -71,7 +63,7 @@ export default class PatientDetail extends React.Component {
             ref='name'
             name='name'
             floatingLabelText='name'
-            value={this.data.patient.name}
+            value={this.data.patient.name[0] ? this.data.patient.name[0].text : ''}
             onChange={ this.changeState.bind(this, 'name')}
             fullWidth
             /><br/>
@@ -89,8 +81,8 @@ export default class PatientDetail extends React.Component {
             ref='birthdate'
             name='birthdate'
             floatingLabelText='birthdate'
-            value={this.data.patient.birthdate}
-            onChange={ this.changeState.bind(this, 'birthdate')}
+            value={this.data.patient.birthDate ? this.data.patient.birthDate.toString() : '' }
+            onChange={ this.changeState.bind(this, 'birthDate')}
             fullWidth
             /><br/>
           <TextField
@@ -98,7 +90,7 @@ export default class PatientDetail extends React.Component {
             ref='photo'
             name='photo'
             floatingLabelText='photo'
-            value={this.data.patient.photo}
+            value={this.data.patient.photo[0] ? this.data.patient.photo[0].url : ''}
             onChange={ this.changeState.bind(this, 'photo')}
             fullWidth
             /><br/>
@@ -124,151 +116,113 @@ export default class PatientDetail extends React.Component {
     }
   }
 
-  // this could be a mixin
   changeState(field, event, value){
+    let patientUpdate;
 
-    //console.log("changeState", field, value);
+    if(process.env.NODE_ENV === "test") console.log("patientDetail.changeState", field, event, value);
 
     // by default, assume there's no other data and we're creating a new patient
-    let patientUpdate = {
-      id: "",
-      birthdate: '',
-      gender: '',
-      active: true,
-      name: "",
-      photo: ''
-    };
+    if (Session.get('patientUpsert')) {
+      patientUpdate = Session.get('patientUpsert');
+    } else {
+      patientUpdate = defaultPatient;
+    }
+
+
 
     // if there's an existing patient, use them
     if (Session.get('selectedPatient')) {
       patientUpdate = this.data.patient;
     }
 
-    if (typeof Session.get('patientDetailState') === "object") {
-      patientUpdate = Session.get('patientDetailState');
+    switch (field) {
+      case "name":
+        patientUpdate.name[0].text = value;
+        break;
+      case "gender":
+        patientUpdate.gender = value;
+        break;
+      case "birthDate":
+        patientUpdate.birthDate = value;
+        break;
+      case "photo":
+        patientUpdate.photo[0].url = value;
+        break;
+      default:
+
     }
+    // patientUpdate[field] = value;
+    if(process.env.NODE_ENV === "test") console.log("patientUpdate", patientUpdate);
 
-    patientUpdate[field] = value;
-
-    //console.log("patientUpdate", patientUpdate);
-    Session.set('patientDetailState', patientUpdate);
+    Session.set('patientUpsert', patientUpdate);
   }
 
-  openTab(index){
-    // set which tab is selected
-    let state = Session.get('patientFormData');
-    state["index"] = index;
-    Session.set('patientFormData', state);
-  }
 
   // this could be a mixin
   handleSaveButton(){
-      console.log("handleSaveButton", this);
+    let patientUpdate = Session.get('patientUpsert', patientUpdate);
 
-      let patientUpdate = Session.get('patientDetailState');
-      console.log("patientUpdate", patientUpdate);
+    if(process.env.NODE_ENV === "test") console.log("patientUpdate", patientUpdate);
 
-      let patientFormData = {
-        'active': true,
-        'name': [{
-          'text': patientUpdate.name
-        }],
-        'birthDate': patientUpdate.birthdate,
-        'gender': patientUpdate.gender,
-        'photo': [{
-          url: patientUpdate.photo
-        }]
-      };
-
-    console.log("patientFormData", patientFormData);
 
     if (Session.get('selectedPatient')) {
-      console.log("Updating patient...");
-      updatePatient.call({
-          _id: Session.get('selectedPatient'),
-          update: patientFormData
-        }, function(error, result) {
-          if (error) {
-            console.log("error", error);
-            Bert.alert(error.reason, 'danger');
-          } else {
-            Bert.alert('Patient updated!', 'success');
-            Session.set('patientFormData', {
-              index: 1,
-              id: '',
-              username: '',
-              email: '',
-              given: '',
-              family: '',
-              gender: ''
-            });
-            Session.set('patientDetailState', {
-              id: "",
-              name: "",
-              gender: "",
-              active: true,
-              birthdate: '',
-              photo: ""
-            });
-          }
+      if(process.env.NODE_ENV === "test") console.log("Updating patient...");
+
+      delete patientUpdate._id;
+
+      // not sure why we're having to respecify this; fix for a bug elsewhere
+      patientUpdate.resourceType = 'Patient';
+
+      Patients.update({_id: Session.get('selectedPatient')}, {$set: patientFormData }, function(error, result){
+        if (error) {
+          if(process.env.NODE_ENV === "test") console.log("Patients.insert[error]", error);
+          Bert.alert(error.reason, 'danger');
+        }
+        if (result) {
+          HipaaLogger.logEvent({eventType: "update", userId: Meteor.userId(), userName: Meteor.user().fullName(), collectionName: "Patients", recordId: Session.get('selectedPatient')});
+          Session.set('patientFormData', defaultPatient);
+          Session.set('patientDetailState', defaultPatient);
+          Session.set('patientPageTabIndex', 1);
+          Bert.alert('Patient added!', 'success');
+        }
       });
     } else {
-      console.log("Creating a new patient...");
-      insertPatient.call(patientFormData, (error) => {
+      if(process.env.NODE_ENV === "test") console.log("Creating a new patient...", patientUpdate);
+
+      Patients.insert(patientUpdate, function(error, result) {
         if (error) {
           Bert.alert(error.reason, 'danger');
-        } else {
+        }
+        if (result) {
+          HipaaLogger.logEvent({eventType: "create", userId: Meteor.userId(), userName: Meteor.user().fullName(), collectionName: "Patients", recordId: result});
+          Session.set('patientPageTabIndex', 1);
+          Session.set('selectedPatient', false);
+          Session.set('patientUpsert', false);
           Bert.alert('Patient added!', 'success');
-          Session.set('patientFormData', {
-            index: 1,
-            id: '',
-            username: '',
-            email: '',
-            given: '',
-            family: '',
-            gender: ''
-          });
-          Session.set('patientDetailState', {
-            id: "",
-            name: "",
-            gender: "",
-            active: true,
-            birthdate: '',
-            photo: ""
-          });
         }
       });
     }
   }
 
-  // this could be a mixin
   handleCancelButton(){
-    console.log("handleCancelButton");
+    Session.set('patientPageTabIndex', 1);
   }
 
   handleDeleteButton(){
-    removePatientById.call(
-      {_id: Session.get('selectedPatient')}, (error) => {
-        if (error) {
-          Bert.alert(error.reason, 'danger');
-        } else {
-          Bert.alert('Patient deleted!', 'success');
-          Session.set('patientFormData', {
-            index: 1,
-            id: '',
-            username: '',
-            email: '',
-            given: '',
-            family: '',
-            gender: ''
-          });
-        }
-      });
+    Patients.remove({_id: Session.get('selectedPatient')}, function(error, result){
+      if (error) {
+        Bert.alert(error.reason, 'danger');
+      }
+      if (result) {
+        HipaaLogger.logEvent({eventType: "delete", userId: Meteor.userId(), userName: Meteor.user().fullName(), collectionName: "Patients", recordId: Session.get('selectedPatient')});
+        Session.set('patientFormData', defaultPatient);
+        Session.set('patientDetailState', defaultPatient);
+        Session.set('patientPageTabIndex', 1);
+        Bert.alert('Patient removed!', 'success');
+      }
+    });
   }
 }
 
 
-PatientDetail.propTypes = {
-  hasUser: React.PropTypes.object
-};
 ReactMixin(PatientDetail.prototype, ReactMeteorData);

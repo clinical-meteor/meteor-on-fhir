@@ -229,7 +229,7 @@ export class MainIndex extends React.Component {
         return (
           <div>
 
-            <div id='checklistsTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/checklists') } >
+            <div id='checklistsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/checklists') } >
               <GlassCard style={this.data.style.indexCard} >
                 <CardTitle
                   title='Checklist Manifesto'
@@ -237,7 +237,7 @@ export class MainIndex extends React.Component {
                 />
               </GlassCard>
             </div>
-            <div id="hipaaLogTile" style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/hipaa-log') } >
+            <div id="hipaaLogTile" style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/hipaa-log') } >
               <GlassCard style={this.data.style.indexCard} >
                 <CardTitle
                   title='Audit Log'
@@ -247,12 +247,11 @@ export class MainIndex extends React.Component {
             </div>
             <Spacer style={this.data.style.spacer} />
 
-
-            <div id='myGenomeTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/my-genome') } >
+            <div id='allergyIntoleranceTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/allergies') } >
               <GlassCard style={this.data.style.indexCard} >
                 <CardTitle
-                  title='My Genome'
-                  subtitle='A basic 23 and Me genome explorer.'
+                  title='Allergy Intolerances'
+                  subtitle='Allergy intolerances.'
                 />
               </GlassCard>
             </div>
@@ -348,11 +347,11 @@ export class MainIndex extends React.Component {
                 />
               </GlassCard>
             </div>
-            <div id='allergyIntoleranceTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/allergies') } >
+            <div id='myGenomeTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/my-genome') } >
               <GlassCard style={this.data.style.indexCard} >
                 <CardTitle
-                  title='Allergy Intolerances'
-                  subtitle='Allergy intolerances.'
+                  title='My Genome'
+                  subtitle='A basic 23 and Me genome explorer.'
                 />
               </GlassCard>
             </div>

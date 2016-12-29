@@ -52,26 +52,7 @@ export default class MedicationTable extends React.Component {
       })
     };
 
-    if (Session.get('darkroomEnabled')) {
-      data.style.color = 'black';
-      data.style.background = 'white';
-    } else {
-      data.style.color = 'white';
-      data.style.background = 'black';
-    }
-
-    // this could be another mixin
-    if (Session.get('glassBlurEnabled')) {
-      data.style.filter = 'blur(3px)';
-      data.style.webkitFilter = 'blur(3px)';
-    }
-
-    // this could be another mixin
-    if (Session.get('backgroundBlurEnabled')) {
-      data.style.backdropFilter = 'blur(5px)';
-    }
-
-    //console.log("data", data);
+  
     return data;
   }
 

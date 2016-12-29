@@ -61,11 +61,9 @@ export default class PractitionerTable extends React.Component {
   }
 
   rowClick(id){
-    //console.log("PractitionerTable.rowClick", id);
-
+    Session.set('practitionerUpsert', false);
     Session.set('selectedPractitioner', id);
     Session.set('practitionerPageTabIndex', 2);
-    Session.set('practitionerDetailState', false);
   }
   render () {
     let tableRows = [];

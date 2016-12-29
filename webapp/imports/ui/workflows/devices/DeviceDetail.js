@@ -171,13 +171,11 @@ export default class DeviceDetail extends React.Component {
       default:
 
     }
-    // deviceUpdate[field] = value;
-    if(process.env.NODE_ENV === "test") console.log("deviceUpdate", deviceUpdate);
 
+    if(process.env.NODE_ENV === "test") console.log("deviceUpdate", deviceUpdate);
     Session.set('deviceUpsert', deviceUpdate);
   }
 
-  // this could be a mixin
   handleSaveButton(){
     let deviceUpdate = Session.get('deviceUpsert', deviceUpdate);
 
@@ -185,57 +183,61 @@ export default class DeviceDetail extends React.Component {
 
 
     if (Session.get('selectedDevice')) {
-      if(process.env.NODE_ENV === "test") console.log("update practioner");
+      if(process.env.NODE_ENV === "test") console.log("Updating device...");
       delete deviceUpdate._id;
 
       // not sure why we're having to respecify this; fix for a bug elsewhere
       deviceUpdate.resourceType = 'Device';
 
       Devices.update(
-        {_id: Session.get('selectedDevice')}, {$set: deviceUpdate }, function(error) {
+        {_id: Session.get('selectedDevice')}, {$set: deviceUpdate }, function(error, result) {
           if (error) {
             console.log("error", error);
 
             Bert.alert(error.reason, 'danger');
-          } else {
-            Bert.alert('Device updated!', 'success');
+          }
+          if (result) {
+            HipaaLogger.logEvent({eventType: "update", userId: Meteor.userId(), userName: Meteor.user().fullName(), collectionName: "Devices", recordId: Session.get('selectedDevice')});
             Session.set('devicePageTabIndex', 1);
             Session.set('selectedDevice', false);
             Session.set('deviceUpsert', false);
+            Bert.alert('Device updated!', 'success');
           }
         });
     } else {
 
       if(process.env.NODE_ENV === "test") console.log("create a new device", deviceUpdate);
 
-      Devices.insert(deviceUpdate, function(error) {
+      Devices.insert(deviceUpdate, function(error, result) {
         if (error) {
           Bert.alert(error.reason, 'danger');
-        } else {
-          Bert.alert('Device added!', 'success');
+        }
+        if (result) {
+          HipaaLogger.logEvent({eventType: "create", userId: Meteor.userId(), userName: Meteor.user().fullName(), collectionName: "Devices", recordId: result});
           Session.set('devicePageTabIndex', 1);
           Session.set('selectedDevice', false);
           Session.set('deviceUpsert', false);
+          Bert.alert('Device added!', 'success');
         }
       });
     }
   }
 
-  // this could be a mixin
   handleCancelButton(){
-    if(process.env.NODE_ENV === "test") console.log("handleCancelButton");
+    Session.set('devicePageTabIndex', 1);
   }
 
   handleDeleteButton(){
-    removeDeviceById.call(
-      {_id: Session.get('selectedDevice')}, (error) => {
+    Device.remove({_id: Session.get('selectedDevice')}, function(error, result){
       if (error) {
         Bert.alert(error.reason, 'danger');
-      } else {
-        Bert.alert('Device deleted!', 'success');
+      }
+      if (result) {
+        HipaaLogger.logEvent({eventType: "delete", userId: Meteor.userId(), userName: Meteor.user().fullName(), collectionName: "Devices", recordId: Session.get('selectedDevice')});
         Session.set('devicePageTabIndex', 1);
         Session.set('selectedDevice', false);
         Session.set('deviceUpsert', false);
+        Bert.alert('Device removed!', 'success');
       }
     });
   }

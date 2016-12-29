@@ -6,19 +6,35 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
 import { CardText, CardActions } from 'material-ui/Card';
-import { insertPractitioner, updatePractitioner, removePractitionerById } from '../../../api/practitioners/methods';
+// import { insertPractitioner, updatePractitioner, removePractitionerById } from '../../../api/practitioners/methods';
 import { Bert } from 'meteor/themeteorchef:bert';
 
 
 let defaultPractitioner = {
-  name: '',
-  telecomValue: '',
-  telecomUse: '',
-  qualificationId: '',
-  qualificationStart: '',
-  qualificationEnd: '',
-  issuer: ''
-};
+  "resourceType" : "Practitioner",
+    "name" : {
+      "resourceType" : "HumanName",
+      "text" : ""
+    },
+    "telecom" : [{
+      "resourceType" : "ContactPoint",
+      "system" : "phone",
+      "value" : "",
+      "use" : "work",
+      "rank" : 1
+    }],
+    "qualification" : [{
+      "identifier" : [{
+        "use" : "certficate",
+        "value" : "",
+        "period" : {}
+      }],
+      "issuer" : {
+        "display" : "",
+        "reference" : ""
+      }
+  }]
+}
 
 Session.setDefault('practitionerDetailState', defaultPractitioner);
 
@@ -30,45 +46,93 @@ export default class PractitionerDetail extends React.Component {
       practitioner: defaultPractitioner
     };
 
-    if (Session.get('selectedPractitioner')) {
-      data.practitionerId = Session.get('selectedPractitioner');
 
-      let selectedPractitioner = Practitioners.findOne({_id: Session.get('selectedPractitioner')});
-      console.log("selectedPractitioner", selectedPractitioner);
+    if (Session.get('practitionerUpsert')) {
+      data.practitioner = Session.get('practitionerUpsert');
+    } else {
+      if (Session.get('selectedPractitioner')) {
+        data.practitionerId = Session.get('selectedPractitioner');
+        console.log("selectedPractitioner", Session.get('selectedPractitioner'));
 
-      if (selectedPractitioner) {
+        let selectedPractitioner = Practitioners.findOne({_id: Session.get('selectedPractitioner')});
+        console.log("selectedPractitioner", selectedPractitioner);
 
-        if (selectedPractitioner._id) {
-          data.practitioner._id = selectedPractitioner._id;
-        }
-        if (selectedPractitioner.name && selectedPractitioner.name && selectedPractitioner.name.text ) {
-          data.practitioner.name = selectedPractitioner.name.text;
-        }
-        if (selectedPractitioner.telecom && selectedPractitioner.telecom[0] && selectedPractitioner.telecom[0].value ) {
-          data.practitioner.telecomValue = selectedPractitioner.telecom[0].value;
-        }
-        if (selectedPractitioner.telecom && selectedPractitioner.telecom[0] && selectedPractitioner.telecom[0].use ) {
-          data.practitioner.telecomUse = selectedPractitioner.telecom[0].use;
-        }
+        if (selectedPractitioner) {
+          data.practitioner = selectedPractitioner;
 
-        if (selectedPractitioner.qualification && selectedPractitioner.qualification[0] && selectedPractitioner.qualification[0].identifier && selectedPractitioner.qualification[0].identifier[0] && selectedPractitioner.qualification[0].identifier[0].value ) {
-          data.practitioner.qualificationId = selectedPractitioner.qualification[0].identifier[0].value;
+          // if (selectedPractitioner._id) {
+          //   data.practitioner._id = selectedPractitioner._id;
+          // }
+          // if (selectedPractitioner.name && selectedPractitioner.name && selectedPractitioner.name.text ) {
+          //   data.practitioner.name = selectedPractitioner.name.text;
+          // }
+          // if (selectedPractitioner.telecom && selectedPractitioner.telecom[0] && selectedPractitioner.telecom[0].value ) {
+          //   data.practitioner.telecomValue = selectedPractitioner.telecom[0].value;
+          // }
+          // if (selectedPractitioner.telecom && selectedPractitioner.telecom[0] && selectedPractitioner.telecom[0].use ) {
+          //   data.practitioner.telecomUse = selectedPractitioner.telecom[0].use;
+          // }
+          //
+          // if (selectedPractitioner.qualification && selectedPractitioner.qualification[0] && selectedPractitioner.qualification[0].identifier && selectedPractitioner.qualification[0].identifier[0] && selectedPractitioner.qualification[0].identifier[0].value ) {
+          //   data.practitioner.qualificationId = selectedPractitioner.qualification[0].identifier[0].value;
+          // }
+          // if (selectedPractitioner.qualification && selectedPractitioner.qualification[0] && selectedPractitioner.qualification[0].identifier && selectedPractitioner.qualification[0].identifier[0] && selectedPractitioner.qualification[0].identifier[0].period && selectedPractitioner.qualification[0].identifier[0].period.start ) {
+          //   data.practitioner.qualificationStart = selectedPractitioner.qualification[0].identifier[0].period.start;
+          // }
+          // if (selectedPractitioner.qualification && selectedPractitioner.qualification[0] && selectedPractitioner.qualification[0].identifier && selectedPractitioner.qualification[0].identifier[0] && selectedPractitioner.qualification[0].identifier[0].period && selectedPractitioner.qualification[0].identifier[0].period.end) {
+          //   data.practitioner.qualificationEnd = selectedPractitioner.qualification[0].identifier[0].period.end;
+          // }
+          // if (selectedPractitioner.qualification && selectedPractitioner.qualification[0] && selectedPractitioner.qualification[0].issuer && selectedPractitioner.qualification[0].issuer.display ) {
+          //   data.practitioner.issuer = selectedPractitioner.qualification[0].issuer.display;
+          // }
+
         }
-        if (selectedPractitioner.qualification && selectedPractitioner.qualification[0] && selectedPractitioner.qualification[0].identifier && selectedPractitioner.qualification[0].identifier[0] && selectedPractitioner.qualification[0].identifier[0].period && selectedPractitioner.qualification[0].identifier[0].period.start ) {
-          data.practitioner.qualificationStart = selectedPractitioner.qualification[0].identifier[0].period.start;
-        }
-        if (selectedPractitioner.qualification && selectedPractitioner.qualification[0] && selectedPractitioner.qualification[0].identifier && selectedPractitioner.qualification[0].identifier[0] && selectedPractitioner.qualification[0].identifier[0].period && selectedPractitioner.qualification[0].identifier[0].period.end) {
-          data.practitioner.qualificationEnd = selectedPractitioner.qualification[0].identifier[0].period.end;
-        }
-        if (selectedPractitioner.qualification && selectedPractitioner.qualification[0] && selectedPractitioner.qualification[0].issuer && selectedPractitioner.qualification[0].issuer.display ) {
-          data.practitioner.issuer = selectedPractitioner.qualification[0].issuer.display;
-        }
+      } else {
+        data.practitioner = defaultPractitioner;
       }
     }
 
-    if (Session.get('practitionerDetailState')) {
-      data.practitioner = Session.get('practitionerDetailState');
-    }
+    // if(process.env.NODE_ENV === "test") console.log("PractitionerDetail[data]", data);
+    // return data;
+    // if (Session.get('selectedPractitioner')) {
+    //   data.practitionerId = Session.get('selectedPractitioner');
+    //
+    //   let selectedPractitioner = Practitioners.findOne({_id: Session.get('selectedPractitioner')});
+    //   console.log("selectedPractitioner", selectedPractitioner);
+    //
+    //   if (selectedPractitioner) {
+    //
+    //     if (selectedPractitioner._id) {
+    //       data.practitioner._id = selectedPractitioner._id;
+    //     }
+    //     if (selectedPractitioner.name && selectedPractitioner.name && selectedPractitioner.name.text ) {
+    //       data.practitioner.name = selectedPractitioner.name.text;
+    //     }
+    //     if (selectedPractitioner.telecom && selectedPractitioner.telecom[0] && selectedPractitioner.telecom[0].value ) {
+    //       data.practitioner.telecomValue = selectedPractitioner.telecom[0].value;
+    //     }
+    //     if (selectedPractitioner.telecom && selectedPractitioner.telecom[0] && selectedPractitioner.telecom[0].use ) {
+    //       data.practitioner.telecomUse = selectedPractitioner.telecom[0].use;
+    //     }
+    //
+    //     if (selectedPractitioner.qualification && selectedPractitioner.qualification[0] && selectedPractitioner.qualification[0].identifier && selectedPractitioner.qualification[0].identifier[0] && selectedPractitioner.qualification[0].identifier[0].value ) {
+    //       data.practitioner.qualificationId = selectedPractitioner.qualification[0].identifier[0].value;
+    //     }
+    //     if (selectedPractitioner.qualification && selectedPractitioner.qualification[0] && selectedPractitioner.qualification[0].identifier && selectedPractitioner.qualification[0].identifier[0] && selectedPractitioner.qualification[0].identifier[0].period && selectedPractitioner.qualification[0].identifier[0].period.start ) {
+    //       data.practitioner.qualificationStart = selectedPractitioner.qualification[0].identifier[0].period.start;
+    //     }
+    //     if (selectedPractitioner.qualification && selectedPractitioner.qualification[0] && selectedPractitioner.qualification[0].identifier && selectedPractitioner.qualification[0].identifier[0] && selectedPractitioner.qualification[0].identifier[0].period && selectedPractitioner.qualification[0].identifier[0].period.end) {
+    //       data.practitioner.qualificationEnd = selectedPractitioner.qualification[0].identifier[0].period.end;
+    //     }
+    //     if (selectedPractitioner.qualification && selectedPractitioner.qualification[0] && selectedPractitioner.qualification[0].issuer && selectedPractitioner.qualification[0].issuer.display ) {
+    //       data.practitioner.issuer = selectedPractitioner.qualification[0].issuer.display;
+    //     }
+    //   }
+    // }
+    //
+    // if (Session.get('practitionerDetailState')) {
+    //   data.practitioner = Session.get('practitionerDetailState');
+    // }
 
     if(process.env.NODE_ENV === "test") console.log("PractitionerDetail[data]", data);
     return data;
@@ -85,7 +149,7 @@ export default class PractitionerDetail extends React.Component {
             name='name'
             type='text'
             floatingLabelText='name'
-            value={this.data.practitioner.name}
+            value={this.data.practitioner.name ? this.data.practitioner.name.text : ''}
             onChange={ this.changeState.bind(this, 'name')}
             fullWidth
             /><br/>
@@ -95,7 +159,7 @@ export default class PractitionerDetail extends React.Component {
             name='telecomValue'
             type='text'
             floatingLabelText='telecom value (701-555-1234)'
-            value={this.data.practitioner.telecomValue}
+            value={this.data.practitioner.telecom[0] ? this.data.practitioner.telecom[0].value : ''}
             onChange={ this.changeState.bind(this, 'telecomValue')}
             fullWidth
             /><br/>
@@ -105,7 +169,7 @@ export default class PractitionerDetail extends React.Component {
             name='telecomUse'
             type='text'
             floatingLabelText='telecom use (work | mobile | home)'
-            value={this.data.practitioner.telecomUse}
+            value={this.data.practitioner.telecom[0] ? this.data.practitioner.telecom[0].use : ''}
             onChange={ this.changeState.bind(this, 'telecomUse')}
             fullWidth
             /><br/>
@@ -115,7 +179,7 @@ export default class PractitionerDetail extends React.Component {
             name='issuer'
             type='text'
             floatingLabelText='issuer'
-            value={this.data.practitioner.issuer}
+            value={this.data.practitioner.qualification[0] ? this.data.practitioner.qualification[0].issuer.display : ''}
             onChange={ this.changeState.bind(this, 'issuer')}
             fullWidth
             /><br/>
@@ -125,7 +189,7 @@ export default class PractitionerDetail extends React.Component {
             name='qualificationId'
             type='text'
             floatingLabelText='qualification ID'
-            value={this.data.practitioner.qualificationId}
+            value={this.data.practitioner.qualification[0].identifier[0] ? this.data.practitioner.qualification[0].identifier[0].value : ''}
             onChange={ this.changeState.bind(this, 'qualificationId')}
             fullWidth
             /><br/>
@@ -135,7 +199,7 @@ export default class PractitionerDetail extends React.Component {
             name='qualificationStart'
             type='text'
             floatingLabelText='start'
-            value={this.data.practitioner.qualificationStart}
+            value={this.data.practitioner.qualification[0].identifier[0] ? this.data.practitioner.qualification[0].identifier[0].period.start : ''}
             onChange={ this.changeState.bind(this, 'qualificationStart')}
             fullWidth
             /><br/>
@@ -145,7 +209,7 @@ export default class PractitionerDetail extends React.Component {
             name='qualificationEnd'
             type='text'
             floatingLabelText='end'
-            value={this.data.practitioner.qualificationEnd}
+            value={this.data.practitioner.qualification[0].identifier[0] ? this.data.practitioner.qualification[0].identifier[0].period.end : ''}
             onChange={ this.changeState.bind(this, 'qualificationEnd')}
             fullWidth
             /><br/>
@@ -174,68 +238,100 @@ export default class PractitionerDetail extends React.Component {
   // this could be a mixin
   changeState(field, event, value){
 
-    console.log("changeState", value);
+    let practitionerUpdate;
+
+    if(process.env.NODE_ENV === "test") console.log("practitionerDetail.changeState", field, event, value);
 
     // by default, assume there's no other data and we're creating a new practitioner
-    let practitionerUpdate = defaultPractitioner;
+    if (Session.get('practitionerUpsert')) {
+      practitionerUpdate = Session.get('practitionerUpsert');
+    } else {
+      practitionerUpdate = defaultPractitioner;
+    }
+
+
 
     // if there's an existing practitioner, use them
     if (Session.get('selectedPractitioner')) {
       practitionerUpdate = this.data.practitioner;
     }
 
-    if (typeof Session.get('practitionerDetailState') === "object") {
-      practitionerUpdate = Session.get('practitionerDetailState');
+    switch (field) {
+      case "name":
+        practitionerUpdate.name.text = value;
+        break;
+      case "telecomValue":
+        practitionerUpdate.telecom[0].value = value;
+        break;
+      case "telecomUse":
+        practitionerUpdate.telecom[0].use = value;
+        break;
+      case "issuer":
+        practitionerUpdate.qualification[0].issuer.display = value;
+        break;
+      case "qualificationId":
+        practitionerUpdate.qualification[0].identifier[0].value = value;
+        break;
+      case "qualificationStart":
+        practitionerUpdate.qualification[0].identifier[0].period.start = value;
+        break;
+      case "qualificationEnd":
+        practitionerUpdate.qualification[0].identifier[0].period.end = value;
+        break;
+      default:
+
     }
+    // practitionerUpdate[field] = value;
+    if(process.env.NODE_ENV === "test") console.log("practitionerUpdate", practitionerUpdate);
 
-    practitionerUpdate[field] = value;
-    console.log("practitionerUpdate", practitionerUpdate);
-
-    Session.set('practitionerDetailState', practitionerUpdate);
+    Session.set('practitionerUpsert', practitionerUpdate);
   }
 
-  openTab(index){
-    // set which tab is selected
-    let state = Session.get('practitionerCardState');
-    state["index"] = index;
-    Session.set('practitionerCardState', state);
-  }
+
 
   // this could be a mixin
   handleSaveButton(){
-    console.log("handleSaveButton", this);
+    let practitionerUpdate = Session.get('practitionerUpsert', practitionerUpdate);
 
-    let practitionerFormData = Session.get('practitionerDetailState');
-    console.log("practitionerFormData", practitionerFormData);
+    if(process.env.NODE_ENV === "test") console.log("practitionerUpdate", practitionerUpdate);
 
 
     if (Session.get('selectedPractitioner')) {
-      console.log("update practioner");
+      if(process.env.NODE_ENV === "test") console.log("Updating practitioner...");
 
-      updatePractitioner.call(
-        {_id: Session.get('selectedPractitioner'), update: practitionerFormData }, (error) => {
+      delete practitionerUpdate._id;
+
+      // not sure why we're having to respecify this; fix for a bug elsewhere
+      practitionerUpdate.resourceType = 'Practitioner';
+
+      Practitioners.update({_id: Session.get('selectedPractitioner')}, {$set: practitionerUpdate }, function(error, result){
         if (error) {
+          if(process.env.NODE_ENV === "test") console.log("Practitioners.insert[error]", error);
           Bert.alert(error.reason, 'danger');
         } else {
-          Bert.alert('Practitioner updated!', 'success');
-          Session.set('patientFormData', defaultPractitioner);
-          Session.set('patientDetailState', defaultPractitioner);
+          Bert.alert('Practitioner added!', 'success');
+          Session.set('practitionerUpdate', defaultPractitioner);
+          Session.set('practitionerDetailState', defaultPractitioner);
           Session.set('practitionerPageTabIndex', 1);
+        }
+        if (result) {
+          HipaaLogger.logEvent({eventType: "update", userId: Meteor.userId(), userName: Meteor.user().fullName(), collectionName: "Practitioners", recordId: Session.get('selectedPractitioner')});
         }
       });
     } else {
+      if(process.env.NODE_ENV === "test") console.log("Creating a new practitioner...", practitionerUpdate);
 
-      console.log("create a new practitioner", practitionerFormData);
-
-      //Meteor.users.insert(practitionerFormData);
-      insertPractitioner.call(practitionerFormData, (error) => {
+      Practitioners.insert(practitionerUpdate, function(error, result) {
         if (error) {
           Bert.alert(error.reason, 'danger');
         } else {
           Bert.alert('Practitioner added!', 'success');
-          Session.set('patientFormData', defaultPractitioner);
-          Session.set('patientDetailState', defaultPractitioner);
           Session.set('practitionerPageTabIndex', 1);
+          Session.set('selectedPractitioner', false);
+          Session.set('practitionerUpsert', false);
+        }
+        if (result) {
+          HipaaLogger.logEvent({eventType: "create", userId: Meteor.userId(), userName: Meteor.user().fullName(), collectionName: "Practitioners", recordId: result});
         }
       });
     }
@@ -243,24 +339,25 @@ export default class PractitionerDetail extends React.Component {
 
   // this could be a mixin
   handleCancelButton(){
-    console.log("handleCancelButton");
+    Session.set('practitionerPageTabIndex', 1);
   }
 
   handleDeleteButton(){
-    removePractitionerById.call(
-      {_id: Session.get('selectedPractitioner')}, (error) => {
-        if (error) {
-          Bert.alert(error.reason, 'danger');
-        } else {
-          Bert.alert('Practitioner deleted!', 'success');
-          this.openTab(1);
-        }
-      });
+    Practitioners.remove({_id: Session.get('selectedPractitioner')}, function(error, result){
+      if (error) {
+        Bert.alert(error.reason, 'danger');
+      } else {
+        Bert.alert('Practitioner removed!', 'success');
+        Session.set('practitionerUpdate', defaultPractitioner);
+        Session.set('practitionerDetailState', defaultPractitioner);
+        Session.set('practitionerPageTabIndex', 1);
+      }
+      if (result) {
+        HipaaLogger.logEvent({eventType: "delete", userId: Meteor.userId(), userName: Meteor.user().fullName(), collectionName: "Practitioners", recordId: Session.get('selectedPractitioner')});
+      }
+    });
   }
 }
 
 
-PractitionerDetail.propTypes = {
-  hasUser: React.PropTypes.object
-};
 ReactMixin(PractitionerDetail.prototype, ReactMeteorData);

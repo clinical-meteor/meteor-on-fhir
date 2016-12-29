@@ -50,6 +50,7 @@ clinical:auto-resizing
 clinical:theming
 clinical:user-model
 clinical:keybindings
+clinical:hipaa-logger
 
 clinical:hl7-resource-patient
 clinical:hl7-resource-practitioner
@@ -64,6 +65,7 @@ clinical:hl7-resource-observation
 clinical:hl7-resource-message-header
 clinical:hl7-resource-device
 clinical:hl7-resource-location
+clinical:hl7-resource-list
 
 clinical:accounts-housemd
 clinical:accounts-famous-dead-people

@@ -38,5 +38,14 @@ Meteor.startup(function(){
     Meteor.call('initializeMedications');
 
     Meteor.call('generateDailyStat');
+
+
+    if (HipaaLog.find().count() === 0 ){
+      HipaaLogger.logEvent({
+        eventType: "init",
+        userId: 'System',
+        userName: 'System'
+      });
+    }
   }
 });
