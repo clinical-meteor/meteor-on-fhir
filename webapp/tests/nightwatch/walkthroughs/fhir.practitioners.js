@@ -88,8 +88,8 @@ module.exports = {
               "display" : "",
               "reference" : ""
             }
-        }]
-      })
+          }]
+      });
     });
 
     client.page

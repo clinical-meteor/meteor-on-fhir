@@ -60,13 +60,12 @@ export class PatientsPage extends React.Component {
   }
 
   handleTabChange(index){
-    Session.set('devicePageTabIndex', index);
+    Session.set('patientPageTabIndex', index);
   }
 
   onNewTab(){
     Session.set('selectedPatient', false);
-    Session.set('patientDetailState', false);
-    Session.set('patientPageTabIndex', 1);
+    Session.set('patientUpsert', false);
   }
 
   render() {

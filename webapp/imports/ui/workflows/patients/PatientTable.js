@@ -22,7 +22,9 @@ export default class PatientTable extends React.Component {
           active: person.active.toString(),
           gender: person.gender,
           name: person.name ? person.name[0].text : "",
-          birthdate: moment(person.birthDate).format("YYYY-MM-DD"),
+          // there's an off-by-1 error between momment() and Date() that we want
+          // to account for when converting back to a string
+          birthdate: moment(person.birthDate).add(1, 'day').format("YYYY-MM-DD"),
           photo: "/thumbnail-blank.png",
           initials: 'abc'
         };

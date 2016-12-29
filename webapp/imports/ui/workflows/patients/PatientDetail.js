@@ -18,7 +18,7 @@ let defaultPatient = {
   "active" : true,
   "gender" : "",
   "birthDate" : null,
-  "photo" : [ ],
+  "photo" : [{}],
   "test" : false
 };
 
@@ -44,6 +44,10 @@ export default class PatientDetail extends React.Component {
 
         if (selectedPatient) {
           data.patient = selectedPatient;
+
+          if (typeof selectedPatient.birthDate === "object") {
+            data.patient.birthDate = moment(selectedPatient.birthDate).add(1, 'day').format("YYYY-MM-DD");
+          }
         }
       } else {
         data.patient = defaultPatient;
@@ -81,7 +85,7 @@ export default class PatientDetail extends React.Component {
             ref='birthdate'
             name='birthdate'
             floatingLabelText='birthdate'
-            value={this.data.patient.birthDate ? this.data.patient.birthDate.toString() : '' }
+            value={this.data.patient.birthDate ? this.data.patient.birthDate : ''}
             onChange={ this.changeState.bind(this, 'birthDate')}
             fullWidth
             /><br/>
@@ -162,8 +166,11 @@ export default class PatientDetail extends React.Component {
   handleSaveButton(){
     let patientUpdate = Session.get('patientUpsert', patientUpdate);
 
-    if(process.env.NODE_ENV === "test") console.log("patientUpdate", patientUpdate);
 
+    if (patientUpdate.birthDate) {
+      patientUpdate.birthDate = new Date(patientUpdate.birthDate);
+    }
+    if(process.env.NODE_ENV === "test") console.log("patientUpdate", patientUpdate);
 
     if (Session.get('selectedPatient')) {
       if(process.env.NODE_ENV === "test") console.log("Updating patient...");
@@ -173,15 +180,15 @@ export default class PatientDetail extends React.Component {
       // not sure why we're having to respecify this; fix for a bug elsewhere
       patientUpdate.resourceType = 'Patient';
 
-      Patients.update({_id: Session.get('selectedPatient')}, {$set: patientFormData }, function(error, result){
+      Patients.update({_id: Session.get('selectedPatient')}, {$set: patientUpdate }, function(error, result){
         if (error) {
           if(process.env.NODE_ENV === "test") console.log("Patients.insert[error]", error);
           Bert.alert(error.reason, 'danger');
         }
         if (result) {
           HipaaLogger.logEvent({eventType: "update", userId: Meteor.userId(), userName: Meteor.user().fullName(), collectionName: "Patients", recordId: Session.get('selectedPatient')});
-          Session.set('patientFormData', defaultPatient);
-          Session.set('patientDetailState', defaultPatient);
+          Session.set('patientUpdate', defaultPatient);
+          Session.set('patientUpsert', defaultPatient);
           Session.set('patientPageTabIndex', 1);
           Bert.alert('Patient added!', 'success');
         }
@@ -215,8 +222,8 @@ export default class PatientDetail extends React.Component {
       }
       if (result) {
         HipaaLogger.logEvent({eventType: "delete", userId: Meteor.userId(), userName: Meteor.user().fullName(), collectionName: "Patients", recordId: Session.get('selectedPatient')});
-        Session.set('patientFormData', defaultPatient);
-        Session.set('patientDetailState', defaultPatient);
+        Session.set('patientUpdate', defaultPatient);
+        Session.set('patientUpsert', defaultPatient);
         Session.set('patientPageTabIndex', 1);
         Bert.alert('Patient removed!', 'success');
       }

@@ -53,7 +53,7 @@ module.exports = {
       .patientsPage()
       .selectListTab()
       .verifyPatientListCard()
-      .listContainsPatient(1, 'Jane Doe')
+      .listContainsPatient(1, 'Jane Doe', 'Female', '1980-11-23')
       .saveScreenshot('tests/nightwatch/screenshots/patients.crud/B-PatientList.png', client);
   },
   'patient detail': function (client) {
@@ -65,13 +65,17 @@ module.exports = {
   },
   'edit patient': function (client) {
     client.executeAsync(function(){
-      Session.set('patientDetailState', {
-        id: "",
-        name: "",
-        gender: "",
-        active: true,
-        birthdate: '',
-        photo: ""
+      Session.set('patientUpsert', {
+        "resourceType" : "Patient",
+        "name" : [{
+          "text" : "",
+          "resourceType" : "HumanName"
+        }],
+        "active" : true,
+        "gender" : "",
+        "birthDate" : null,
+        "photo" : [{}],
+        "test" : false
       });
     });
 
