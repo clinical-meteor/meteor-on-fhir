@@ -6,7 +6,7 @@ For my Masters of Science in Biomedical Informatics, we are required to create a
 
 ![https://github.com/clinical-meteor/meteor-on-fhir/blob/master/media/screenshot-1.png](https://github.com/clinical-meteor/meteor-on-fhir/blob/master/media/screenshot-1.png)
 
-Yes, the above is a live screenshot of the app.  The app has an augmented-reality interface.
+Yes, the above is a live screenshot of the app, which supports a theming engine and an augmented reality interface.
 
 #### A. Installation  
 
