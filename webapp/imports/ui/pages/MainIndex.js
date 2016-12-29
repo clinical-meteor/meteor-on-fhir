@@ -42,7 +42,8 @@ export class MainIndex extends React.Component {
         isPractitioner: false,
         isPatient: true
       },
-      showTilesUnderConstruction: false
+      showUnderConstruction: false,
+      showExperimental: false,
     };
 
     let user = Meteor.user();
@@ -58,8 +59,11 @@ export class MainIndex extends React.Component {
       });
     }
 
-    if (Meteor.settings && Meteor.settings.public && Meteor.settings.public.app && Meteor.settings.public.app.underConstruction) {
-      data.showTilesUnderConstruction = Meteor.settings.public.app.underConstruction;
+    if (Meteor.settings && Meteor.settings.public && Meteor.settings.public.app && Meteor.settings.public.app.showUnderConstruction) {
+      data.showUnderConstruction = Meteor.settings.public.app.showUnderConstruction;
+    }
+    if (Meteor.settings && Meteor.settings.public && Meteor.settings.public.app && Meteor.settings.public.app.showExperimental) {
+      data.showExperimental = Meteor.settings.public.app.showExperimental;
     }
 
 
@@ -88,8 +92,8 @@ export class MainIndex extends React.Component {
           {this.renderAdminTiles(this.data.user.isAdmin)}
           {this.renderPractitionerTiles(this.data.user.isPractitioner, this.data.user.isAdmin)}
           {this.renderPatientTiles(this.data.user.isPatient)}
-          {this.renderClinicalTiles(this.data.user)}
-          {this.renderTilesUnderConstruction(this.data.user, this.data.showTilesUnderConstruction)}
+          {this.renderTilesUnderConstruction(this.data.user, this.data.showUnderConstruction)}
+          {this.renderExperimentalTiles(this.data.showExperimental)}
 
         </VerticalCanvas>
       </div>
@@ -116,8 +120,7 @@ export class MainIndex extends React.Component {
               />
             </GlassCard>
           </div>
-            <Spacer style={this.data.style.spacer} />
-        </div>
+                  </div>
       );
     }
   }
@@ -149,7 +152,8 @@ export class MainIndex extends React.Component {
       );
     }
   }
-  renderClinicalTiles(user){
+
+  renderExperimentalTiles(user){
     if (user.isPatient || user.isPractitioner) {
       return (
         <div>
@@ -178,6 +182,7 @@ export class MainIndex extends React.Component {
       );
     }
   }
+
   renderPractitionerTiles(isPractitioner, isAdmin){
     if (isPractitioner || isAdmin) {
       return (
@@ -223,8 +228,8 @@ export class MainIndex extends React.Component {
     }
   }
 
-  renderTilesUnderConstruction(user, showTilesUnderConstruction){
-    if (showTilesUnderConstruction) {
+  renderTilesUnderConstruction(user, showUnderConstruction){
+    if (showUnderConstruction) {
       if (user.isPractitioner || user.isAdmin) {
         return (
           <div>
@@ -245,7 +250,6 @@ export class MainIndex extends React.Component {
                 />
               </GlassCard>
             </div>
-            <Spacer style={this.data.style.spacer} />
 
             <div id='allergyIntoleranceTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/allergies') } >
               <GlassCard style={this.data.style.indexCard} >
@@ -264,7 +268,6 @@ export class MainIndex extends React.Component {
                 />
               </GlassCard>
             </div>
-            <Spacer style={this.data.style.spacer} />
 
             <div id="dermatogramsTile" style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/dermatograms') } >
               <GlassCard style={this.data.style.indexCard} >
@@ -282,7 +285,6 @@ export class MainIndex extends React.Component {
                 />
               </GlassCard>
             </div>
-            <Spacer style={this.data.style.spacer} />
 
             <div id="questionnairesTile" style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/questionnaires') } >
               <GlassCard style={this.data.style.indexCard} >
@@ -300,7 +302,6 @@ export class MainIndex extends React.Component {
                 />
               </GlassCard>
             </div>
-            <Spacer style={this.data.style.spacer} />
 
             <div id="carePlansTile" style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/appointments') } >
               <GlassCard style={this.data.style.indexCard} >
@@ -319,7 +320,6 @@ export class MainIndex extends React.Component {
                 />
               </GlassCard>
             </div>
-            <Spacer style={this.data.style.spacer} />
 
             <div id="appointmentsTile" style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/appointments') } >
               <GlassCard style={this.data.style.indexCard} >
@@ -337,7 +337,6 @@ export class MainIndex extends React.Component {
                 />
               </GlassCard>
             </div>
-            <Spacer style={this.data.style.spacer} />
 
             <div id='telemedicineTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/telemed') } >
               <GlassCard style={this.data.style.indexCard} >

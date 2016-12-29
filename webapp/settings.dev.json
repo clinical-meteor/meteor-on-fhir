@@ -9,7 +9,8 @@
     },
     "app": {
       "barcodes": true,
-      "underConstruction": false
+      "showUnderConstruction": false,
+      "showExperimental": false
     },
     "defaults": {
       "displayNavbars": true,

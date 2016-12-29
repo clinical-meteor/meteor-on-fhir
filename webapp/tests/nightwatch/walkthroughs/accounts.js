@@ -199,7 +199,7 @@ module.exports = {
     }
 
     client.verify.elementPresent("#confirmDeleteUserButton")
-      .click("#confirmDeleteUserButton").pause(1500)
+      .click("#confirmDeleteUserButton").pause(5000)
 
       .verify.elementPresent("#signinPage")
       .end();
