@@ -35,12 +35,12 @@ export class PractitionerSidebar extends React.Component {
       <div id="practitionerSidebar">
         <List style={{paddingLeft: '20px', position: 'static'}}>
 
-          <IndexLinkContainer to='/dashboard'>
-             <ListItem primaryText='Dashboard' href='/dashboard' />
-          </IndexLinkContainer>
-
           <IndexLinkContainer to='/'>
              <ListItem primaryText='Index' href='/' />
+          </IndexLinkContainer>
+
+          <IndexLinkContainer to='/dashboard'>
+             <ListItem primaryText='Dashboard' href='/dashboard' />
           </IndexLinkContainer>
 
           <IndexLinkContainer to='/patients'>

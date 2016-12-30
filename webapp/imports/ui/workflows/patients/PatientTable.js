@@ -22,7 +22,9 @@ export default class PatientTable extends React.Component {
           active: person.active.toString(),
           gender: person.gender,
           name: person.name ? person.name[0].text : "",
-          birthdate: moment(person.birthDate).format("YYYY-MM-DD"),
+          // there's an off-by-1 error between momment() and Date() that we want
+          // to account for when converting back to a string
+          birthdate: moment(person.birthDate).add(1, 'day').format("YYYY-MM-DD"),
           photo: "/thumbnail-blank.png",
           initials: 'abc'
         };
@@ -45,20 +47,9 @@ export default class PatientTable extends React.Component {
     return data;
   }
   rowClick(id){
-    console.log("rowClick", id);
-
-    // clear the patient detail form
-    Session.set('patientDetailState', false);
-
-    // set the user
-    Session.set("selectedPatient", id);
-
-    // set which tab is selected
-    let state = Session.get('patientFormData');
-    state["index"] = 2;
-    Session.set('patientFormData', state);
-
-    //alert('row clicked! ' + id);
+    Session.set('patientsUpsert', false);
+    Session.set('selectedPatient', id);
+    Session.set('patientPageTabIndex', 2);
   }
 
   render () {

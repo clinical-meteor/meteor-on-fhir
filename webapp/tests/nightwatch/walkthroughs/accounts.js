@@ -167,7 +167,7 @@ module.exports = {
         .setValue('input[name="emailAddress"]', 'alice@test.org')
         .setValue('input[name="password"]', 'alice123')
 
-        .click("#signinButton").pause(1000)
+        .click("#signinButton").pause(3000)
           .verify.elementPresent("#indexPage");
   },
   "User can delete account.": function (client) {
@@ -199,7 +199,7 @@ module.exports = {
     }
 
     client.verify.elementPresent("#confirmDeleteUserButton")
-      .click("#confirmDeleteUserButton").pause(1500)
+      .click("#confirmDeleteUserButton").pause(5000)
 
       .verify.elementPresent("#signinPage")
       .end();

@@ -4,7 +4,7 @@ var postText = 'Sed pretium ipsum a ex gravida, a tristique nunc blandit. Pellen
 var secondPostText = 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Curabitur laoreet massa vitae velit dapibus, vel maximus lectus porta.';
 
 module.exports = {
-  tags: ['forum', 'topics', 'circle'],
+  tags: ['forum', 'topics', 'experimental'],
   before: function(client){
     client
       .url('http://localhost:3000').pause(3000)

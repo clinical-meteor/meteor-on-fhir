@@ -64,15 +64,31 @@ module.exports = {
       .saveScreenshot('tests/nightwatch/screenshots/practitioners.crud/C-PractitionerDetails.png', client);
   },
   'edit practitioner': function (client) {
-    client.executeAsync(function(){
-      Session.set('practitionerDetailState', {
-        name: '',
-        telecomValue: '',
-        telecomUse: '',
-        qualificationId: '',
-        qualificationStart: '',
-        qualificationEnd: '',
-        issuer: ''
+    client.pause(1000).executeAsync(function(){
+      Session.set('practitionerUpsert', {
+        "resourceType" : "Practitioner",
+          "name" : {
+            "resourceType" : "HumanName",
+            "text" : ""
+          },
+          "telecom" : [{
+            "resourceType" : "ContactPoint",
+            "system" : "phone",
+            "value" : "",
+            "use" : "",
+            "rank" : 1
+          }],
+          "qualification" : [{
+            "identifier" : [{
+              "use" : "certficate",
+              "value" : "",
+              "period" : {}
+            }],
+            "issuer" : {
+              "display" : "",
+              "reference" : ""
+            }
+          }]
       });
     });
 

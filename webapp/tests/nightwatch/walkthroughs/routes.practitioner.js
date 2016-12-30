@@ -2,7 +2,7 @@
 // http://nightwatchjs.org/api
 
 module.exports = {
-  tags: ['routes', 'practitioner', 'circle'],
+  tags: ['routes', 'practitioners', 'circle'],
   before: function(client){
     client
       .url("http://localhost:3000").pause(3000)
@@ -31,7 +31,7 @@ module.exports = {
       .navigate()
       .fillOutSignupPage('Gregory', 'House', 'house@test.org', 'house123', 'hippocrates')
       .saveScreenshot('tests/nightwatch/screenshots/accounts/A-signupPage.png', client)
-      .signup()            
+      .signup()
       .pause(1000, client);
   },
   "/ (signed in)": function (client) {

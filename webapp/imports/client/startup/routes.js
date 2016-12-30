@@ -51,6 +51,9 @@ import { LocationsPage } from '/imports/ui/workflows/locations/LocationsPage';
 import { QuestionnairesPage } from '/imports/ui/workflows/questionnaires/QuestionnairesPage';
 import { QuestionnaireResponsesPage } from '/imports/ui/workflows/questionnaires/QuestionnaireResponsesPage';
 
+import { AuditLogPage } from '/imports/ui/pages/AuditLogPage';
+
+
 // we're storing the current route URL in a reactive variable
 // which will be used to update active controls
 // mostly used to toggle header and footer buttons
@@ -153,6 +156,7 @@ Meteor.startup(() => {
         <Route name="questionnaires" path="/questionnaires" component={ QuestionnairesPage } />
         <Route name="questionnaireResponses" path="/questionnaire-responses" component={ QuestionnaireResponsesPage } />
 
+        <Route name="auditLogPage" path="/hipaa-log" component={ AuditLogPage } />
 
         <Route path="*" component={ NotFound } />
 

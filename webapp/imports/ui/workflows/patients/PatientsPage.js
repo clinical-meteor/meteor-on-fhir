@@ -35,6 +35,7 @@ export class PatientsPage extends React.Component {
           borderRight: 'none'
         }
       },
+      tabIndex: Session.get('patientPageTabIndex'),
       patient: defaultPatient,
       patientSearchFilter: '',
       currentPatient: null
@@ -58,23 +59,13 @@ export class PatientsPage extends React.Component {
     return data;
   }
 
-  // this could be a mixin
   handleTabChange(index){
-    let patient = Session.get('patientFormData');
-    patient["index"] = index;
-    Session.set('patientFormData', patient);
-  }
-
-  // this could be a mixin
-  changeState(field, value){
-    let patient = Session.get('patientFormData');
-    patient[field] = value;
-    Session.set('patientFormData', patient);
+    Session.set('patientPageTabIndex', index);
   }
 
   onNewTab(){
     Session.set('selectedPatient', false);
-    Session.set('patientDetailState', false);
+    Session.set('patientUpsert', false);
   }
 
   render() {
@@ -86,7 +77,7 @@ export class PatientsPage extends React.Component {
               title="Patients"
             />
             <CardText>
-              <Tabs id='patientsPageTabs' default value={this.data.patient.index} onChange={this.handleTabChange} initialSelectedIndex={1}>
+              <Tabs id='patientsPageTabs' default value={this.data.tabIndex} onChange={this.handleTabChange} initialSelectedIndex={1}>
                  <Tab className="newPatientTab" label='New' style={this.data.style.tab} onActive={ this.onNewTab } value={0}>
                    <PatientDetail id='newPatient' />
                  </Tab>

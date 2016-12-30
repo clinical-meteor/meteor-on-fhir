@@ -74,5 +74,17 @@ Meteor.methods({
       console.log('This command can only be run in a test environment.');
       console.log('Try setting NODE_ENV=test');
     }
+  },
+  dropPatients: function(){
+    if (process.env.NODE_ENV === 'test') {
+      console.log('-----------------------------------------');
+      console.log('Dropping test patients... ');
+      Patients.find().forEach(function(patient){
+        Patients.remove({_id: patient._id});
+      });
+    } else {
+      console.log('This command can only be run in a test environment.');
+      console.log('Try setting NODE_ENV=test');
+    }
   }
 });

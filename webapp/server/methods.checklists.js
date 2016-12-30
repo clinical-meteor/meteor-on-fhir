@@ -1,6 +1,7 @@
 Meteor.methods({
   initializeChecklists: function (){
-    //console.log('Initializing Lists', Lists.find().fetch());
+    console.log('Initializing Lists', Lists.find().fetch());
+
     var data = [
       {name: "Collect Blood Specimen",
        url: "http://who.int/csr/resources/publications/ebola/blood-collect-en.pdf",
@@ -152,44 +153,78 @@ Meteor.methods({
     var timestamp = (new Date()).getTime();
 
     data.forEach(function (list){
-      var listId = Lists.insert({
-        name: list.name,
-        creator: "System",
-        public: true,
-        incompleteCount: list.items.length
+
+      var newList = {
+        "resourceType": "List",
+        "code": {
+          "text": list.name
+        },
+        "note": list.url,
+        "source": {
+          "reference": "System/system"
+        },
+        "status": "current",
+        "date": new Date(),
+        "mode": "changes",
+        "entry": []
+      };
+
+
+      list.items.forEach(function(item){
+        var newItem = {
+          "flag": {
+            "text": "Pending",
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/ValueSet/order-status",
+                "code": "pending",
+                "display": "Pending"
+              }
+            ]
+          },
+          "item": {
+            "display": item
+          }
+        };
+
+        newList.entry.push(newItem);
       });
+      // var listId = Lists.insert({
+      //   name: list.name,
+      //   creator: "System",
+      //   public: true,
+      //   incompleteCount: list.items.length
+      // });
+
+      var listId = Lists.insert(newList);
       console.log('New List Created: ' + listId);
 
-      if(list.items){
-        list.items.forEach(function(text, index){
-          // add a new task
-          DiagnosticOrders.insert({
-            orderer: {
-              display: "System",
-              reference: "System"
-            },
-            listId: listId,
-            public: true,
-            ordinal: index,
-            event: [{
-              description: text,
-              dateTime: new Date(timestamp)
-            }]
-          });
-
-          // ensure unique timestamp.
-          timestamp += 1;
-        });
-      }
+    //   if(list.items){
+    //     list.items.forEach(function(text, index){
+    //       // add a new task
+    //       DiagnosticOrders.insert({
+    //         orderer: {
+    //           display: "System",
+    //           reference: "System"
+    //         },
+    //         listId: listId,
+    //         public: true,
+    //         ordinal: index,
+    //         event: [{
+    //           description: text,
+    //           dateTime: new Date(timestamp)
+    //         }]
+    //       });
+    //
+    //       // ensure unique timestamp.
+    //       timestamp += 1;
+    //     });
+    //   }
     });
   },
   dropChecklists: function (){
-    //console.log('Dropping Checklists', Lists.find().fetch());
     Lists.find().forEach(function(list){
       Lists.remove({_id: list._id});
     });
-    DiagnosticOrders.find().forEach(function(task){
-      DiagnosticOrders.remove({_id: task._id});
-    })
   }
 });

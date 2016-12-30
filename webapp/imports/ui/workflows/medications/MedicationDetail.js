@@ -234,30 +234,33 @@ export default class MedicationDetail extends React.Component {
       delete medicationUpdate._id;
 
       Medications.update(
-        {_id: Session.get('selectedMedication')}, {$set: medicationUpdate }, function(error) {
+        {_id: Session.get('selectedMedication')}, {$set: medicationUpdate }, function(error, result) {
           if (error) {
             console.log("error", error);
-
             Bert.alert(error.reason, 'danger');
-          } else {
-            Bert.alert('Medication updated!', 'success');
+          }
+          if (result) {
+            HipaaLogger.logEvent({eventType: "update", userId: Meteor.userId(), userName: Meteor.user().fullName(), collectionName: "Medications", recordId: Session.get('selectedMedication')});
             Session.set('medicationPageTabIndex', 1);
             Session.set('selectedMedication', false);
             Session.set('medicationUpsert', false);
+            Bert.alert('Medication updated!', 'success');
           }
         });
     } else {
 
       if(process.env.NODE_ENV === "test") console.log("create a new medication", medicationUpdate);
 
-      Medications.insert(medicationUpdate, function(error) {
+      Medications.insert(medicationUpdate, function(error, result) {
         if (error) {
           Bert.alert(error.reason, 'danger');
-        } else {
-          Bert.alert('Medication added!', 'success');
+        }
+        if (result) {
+          HipaaLogger.logEvent({eventType: "create", userId: Meteor.userId(), userName: Meteor.user().fullName(), collectionName: "Medications", recordId: result});
           Session.set('medicationPageTabIndex', 1);
           Session.set('selectedMedication', false);
           Session.set('medicationUpsert', false);
+          Bert.alert('Medication added!', 'success');
         }
       });
     }
@@ -265,19 +268,21 @@ export default class MedicationDetail extends React.Component {
 
   // this could be a mixin
   handleCancelButton(){
-    if(process.env.NODE_ENV === "test") console.log("handleCancelButton");
+    Session.set('medicationPageTabIndex', 1);
   }
 
   handleDeleteButton(){
     removeMedicationById.call(
-      {_id: Session.get('selectedMedication')}, (error) => {
+      {_id: Session.get('selectedMedication')}, (error, result) => {
       if (error) {
         Bert.alert(error.reason, 'danger');
-      } else {
-        Bert.alert('Medication deleted!', 'success');
+      }
+      if (result) {
+        HipaaLogger.logEvent({eventType: "delete", userId: Meteor.userId(), userName: Meteor.user().fullName(), collectionName: "Medications", recordId: Session.get('selectedMedication')});
         Session.set('medicationPageTabIndex', 1);
         Session.set('selectedMedication', false);
         Session.set('medicationUpsert', false);
+        Bert.alert('Medication deleted!', 'success');
       }
     });
   }

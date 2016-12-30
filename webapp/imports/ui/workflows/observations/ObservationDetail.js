@@ -214,31 +214,15 @@ export default class ObservationDetail extends React.Component {
         if (error) {
           if(process.env.NODE_ENV === "test") console.log("Observations.insert[error]", error);
           Bert.alert(error.reason, 'danger');
-        } else {
-          Bert.alert('Observation added!', 'success');
+        }
+        if (result) {
+          HipaaLogger.logEvent({eventType: "update", userId: Meteor.userId(), userName: Meteor.user().fullName(), collectionName: "Observations", recordId: Session.get('selectedObservation')});
           Session.set('observationFormData', defaultObservation);
           Session.set('observationDetailState', defaultObservation);
           Session.set('observationPageTabIndex', 1);
+          Bert.alert('Observation added!', 'success');
         }
       });
-
-      // updateObservation.call({
-      //   _id: Session.get('selectedObservation'),
-      //   update: observationFormData
-      // }, function(error, result){
-      //   if (error) {
-      //     if (process.env.NODE_ENV === "test") console.log("error", error);
-      //     Bert.alert(error.reason, 'danger');
-      //   } else {
-      //     Bert.alert('Observation updated!', 'success');
-      //     Session.set('observationFormData', defaultObservation);
-      //     Session.set('observationDetailState', defaultObservation);
-      //     Session.set('observationPageTabIndex', 1);
-      //   }
-      //   if (result) {
-      //     console.log("result", result);
-      //   }
-      // });
 
 
     } else {
@@ -250,33 +234,21 @@ export default class ObservationDetail extends React.Component {
         if (error) {
           if(process.env.NODE_ENV === "test") console.log("Observations.insert[error]", error);
           Bert.alert(error.reason, 'danger');
-        } else {
-          Bert.alert('Observation added!', 'success');
+        }
+        if (result) {
+          HipaaLogger.logEvent({eventType: "create", userId: Meteor.userId(), userName: Meteor.user().fullName(), collectionName: "Observations", recordId: result});
           Session.set('observationFormData', defaultObservation);
           Session.set('observationDetailState', defaultObservation);
           Session.set('observationPageTabIndex', 1);
+          Bert.alert('Observation added!', 'success');
         }
       });
-
-      // createObservation.call(observationFormData, function(error, result) {
-      //   if (error) {
-      //     Bert.alert(error.reason, 'danger');
-      //   } else {
-      //     Bert.alert('Observation added!', 'success');
-      //     Session.set('observationFormData', defaultObservation);
-      //     Session.set('observationDetailState', defaultObservation);
-      //     Session.set('observationPageTabIndex', 1);
-      //   }
-      //   if (result) {
-      //     console.log("result", result);
-      //   }
-      // });
     }
   }
 
   // this could be a mixin
   handleCancelButton() {
-    if (process.env.NODE_ENV === "test") console.log("handleCancelButton");
+    Session.set('observationPageTabIndex', 1);
   }
 
   handleDeleteButton() {
@@ -285,9 +257,13 @@ export default class ObservationDetail extends React.Component {
     }, (error) => {
       if (error) {
         Bert.alert(error.reason, 'danger');
-      } else {
+      }
+      if (result) {
+        HipaaLogger.logEvent({eventType: "delete", userId: Meteor.userId(), userName: Meteor.user().fullName(), collectionName: "Observations", recordId: Session.get('selectedObservation')});
+        Session.set('observationFormData', defaultObservation);
+        Session.set('observationDetailState', defaultObservation);
+        Session.set('observationPageTabIndex', 1);
         Bert.alert('Observation deleted!', 'success');
-        this.openTab(1);
       }
     });
   }

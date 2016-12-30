@@ -30,10 +30,6 @@ export class AuthenticatedSidebar extends React.Component {
     return(
       <List style={{paddingLeft: '20px', position: 'static'}}>
 
-        <IndexLinkContainer to='/dashboard'>
-           <ListItem primaryText='Dashboard' href='/dashboard' />
-        </IndexLinkContainer>
-
         <IndexLinkContainer to='/weblog'>
            <ListItem primaryText='Healthlog' href='/weblog' />
         </IndexLinkContainer>

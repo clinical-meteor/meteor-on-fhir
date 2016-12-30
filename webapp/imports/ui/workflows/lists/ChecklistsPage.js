@@ -6,6 +6,7 @@ import { Tabs, Tab } from 'material-ui/Tabs';
 import { GlassCard } from '/imports/ui/components/GlassCard';
 import { CardTitle, CardText } from 'material-ui/Card';
 import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
+import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 
 import { Meteor } from 'meteor/meteor';
 import Glass from '/imports/ui/Glass';
@@ -30,8 +31,27 @@ export class ChecklistsPage extends React.Component {
       },
       tabIndex: Session.get('checklistPageTabIndex'),
       checklistSearchFilter: Session.get('checklistSearchFilter'),
-      currentChecklist: Session.get('selectedChecklist')
+      currentChecklist: Session.get('selectedChecklist'),
+      lists: []
     };
+
+    if (Lists.find().count() > 0) {
+      data.lists = Lists.find().map(function(list){
+        var result = {
+          status: list.status,
+          date: '',
+          code: '',
+          note: list.note
+        }
+        if (list.code && list.code.text) {
+          result.code = list.code.text;
+        }
+        if (list.date) {
+          result.date = list.date.toString();
+        }
+        return result;
+      });
+    }
 
     if (Meteor.user()) {
       data.state.isLoggedIn = true;
@@ -58,6 +78,16 @@ export class ChecklistsPage extends React.Component {
   }
 
   render() {
+    let listRows = [];
+    for (var i = 0; i < this.data.lists.length; i++) {
+      listRows.push(
+        <TableRow key={i}>
+          <TableRowColumn>{this.data.lists[i].status}</TableRowColumn>
+          <TableRowColumn>{this.data.lists[i].date}</TableRowColumn>
+          <TableRowColumn>{this.data.lists[i].code}</TableRowColumn>
+          <TableRowColumn>{this.data.lists[i].note}</TableRowColumn>
+        </TableRow>);
+    }
     return (
       <div id="checklistsPage">
         <VerticalCanvas>
@@ -67,6 +97,19 @@ export class ChecklistsPage extends React.Component {
             />
             <CardText>
 
+              <Table >
+                <TableHeader displaySelectAll={false}>
+                  <TableRow>
+                    <TableHeaderColumn>Status</TableHeaderColumn>
+                    <TableHeaderColumn>Created At</TableHeaderColumn>
+                    <TableHeaderColumn>Name</TableHeaderColumn>
+                    <TableHeaderColumn>Note</TableHeaderColumn>
+                  </TableRow>
+                </TableHeader>
+                <TableBody displayRowCheckbox={false}>
+                  { listRows }
+                </TableBody>
+              </Table>
             </CardText>
           </GlassCard>
         </VerticalCanvas>

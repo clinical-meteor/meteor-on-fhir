@@ -55,7 +55,7 @@ module.exports = {
       }
       return this;
     },
-    listContainsPatient: function (index, name) {
+    listContainsPatient: function (index, name, gender, birthdate) {
       this
         .verify.elementPresent('#patientsTable')
         .verify.elementPresent('#patientsTable .patientRow:nth-child(' + index + ')')
@@ -63,6 +63,12 @@ module.exports = {
 
       if (name) {
         this.verify.containsText('#patientsTable .patientRow:nth-child(' + index + ') .name', name);
+      }
+      if (gender) {
+        this.verify.containsText('#patientsTable .patientRow:nth-child(' + index + ') .gender', gender);
+      }
+      if (birthdate) {
+        this.verify.containsText('#patientsTable .patientRow:nth-child(' + index + ') .birthdate', birthdate);
       }
       return this;
     },
