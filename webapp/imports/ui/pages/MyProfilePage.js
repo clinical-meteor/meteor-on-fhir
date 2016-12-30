@@ -16,6 +16,7 @@ import Spacer from '/imports/ui/components/Spacer';
 import { GlassCard } from '/imports/ui/components/GlassCard';
 import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 import { removeUserById } from '../../api/users/methods';
+import Avatar from 'material-ui/Avatar';
 
 import Glass from '/imports/ui/Glass';
 
@@ -43,7 +44,16 @@ export class MyProfilePage extends React.Component {
         //opacity: Session.get('globalOpacity')
         tab: {
           borderBottom: '1px solid lightgray'
+        },
+        title: {
+          left: '0px'
         }
+      },
+      avatar: {
+        style: {
+          display: 'inline-flex'
+        },
+        size: 40
       },
       state: {
         index: 0,
@@ -66,6 +76,9 @@ export class MyProfilePage extends React.Component {
         latitude: '',
         profileImage: 'noAvatar.png',
         birthdate: ''
+      },
+      header: {
+        avatar: 'noAvatar.png'
       }
     };
 
@@ -88,8 +101,10 @@ export class MyProfilePage extends React.Component {
       };
       if (Meteor.user().profile && Meteor.user().profile.avatar) {
         data.user.profileImage = Meteor.user().profile.avatar;
+        data.header.avatar = Meteor.user().profile.avatar;
       } else {
         data.user.profileImage = 'thumbnail.png';
+        data.header.avatar = 'thumbnail.png';
       }
 
       if (Meteor.user() && Meteor.user().profile && Meteor.user().profile.name) {
@@ -103,6 +118,19 @@ export class MyProfilePage extends React.Component {
       }
     }
 
+    if (Session.get('appWidth') > 768) {
+      data.avatar.size = 120;
+      data.avatar.style.left = '-120px';
+      data.avatar.style.top = '-20px';
+      data.avatar.style.position = 'absolute';
+      data.avatar.style.zIndex = 10;
+      data.style.title.left = '100px';
+      data.header.avatar = null;
+    } else {
+      data.avatar.style.display = 'none';
+
+    }
+
     if(process.env.NODE_ENV === "test") console.log("MyProfilePage[data]" , data);
     return data;
   }
@@ -113,135 +141,137 @@ export class MyProfilePage extends React.Component {
       <div id='myProfilePage'>
         <VerticalCanvas>
           <GlassCard>
-          <CardHeader
-            avatar={this.data.user.profileImage}
-            title={this.data.user.fullName}
-            subtitle={this.data.user.email}
-          />
+              <CardHeader
+                avatar={this.data.header.avatar}
+                title={this.data.user.fullName}
+                subtitle={this.data.user.email}
+                style={this.data.style.title}
+              >
+              <Avatar id='avatarImage' src={this.data.user.profileImage} size={this.data.avatar.size} style={this.data.avatar.style} />
+              </CardHeader>
             <CardText>
-            <Tabs id="profilePageTabs" index={this.data.state.index} onChange={this.handleTabChange} initialSelectedIndex={this.data.state.index} value={this.data.state.index} >
+              <Tabs id="profilePageTabs" index={this.data.state.index} onChange={this.handleTabChange} initialSelectedIndex={this.data.state.index} value={this.data.state.index} >
 
-              <Tab className='demographicsTab' label='Demographics' style={this.data.style.tab} value={0} >
-                <div id='profileDemographicsPane' style={{position: 'relative'}}>
-                  <TextField
-                    id='givenNameInput'
-                    ref='given'
-                    name='given'
-                    type='text'
-                    floatingLabelText='given name'
-                    value={this.data.user.given}
-                    fullWidth
-                    /><br/>
-                  <TextField
-                    id='familyNameInput'
-                    ref='family'
-                    name='family'
-                    type='text'
-                    floatingLabelText='family name'
-                    value={this.data.user.family}
-                    fullWidth
-                    /><br/>
-                  <TextField
-                    id='birthdateInput'
-                    ref='birthdate'
-                    name='birthdate'
-                    type='text'
-                    floatingLabelText='date of birth (yyyy-mm-dd)'
-                    value={this.data.user.birthdate}
-                    fullWidth
-                    /><br/>
-                  <TextField
-                    id='avatarInput'
-                    ref='avatar'
-                    name='avatar'
-                    type='text'
-                    floatingLabelText='avatar'
-                    value={this.data.user.avatar}
-                    onChange={ this.handleChangeAvatar.bind(this) }
-                    fullWidth
-                    /><br/>
-                </div>
-              </Tab>
+                <Tab className='demographicsTab' label='Demographics' style={this.data.style.tab} value={0} >
+                  <div id='profileDemographicsPane' style={{position: 'relative'}}>
+                    <TextField
+                      id='givenNameInput'
+                      ref='given'
+                      name='given'
+                      type='text'
+                      floatingLabelText='given name'
+                      value={this.data.user.given}
+                      fullWidth
+                      /><br/>
+                    <TextField
+                      id='familyNameInput'
+                      ref='family'
+                      name='family'
+                      type='text'
+                      floatingLabelText='family name'
+                      value={this.data.user.family}
+                      fullWidth
+                      /><br/>
+                    <TextField
+                      id='birthdateInput'
+                      ref='birthdate'
+                      name='birthdate'
+                      type='text'
+                      floatingLabelText='date of birth (yyyy-mm-dd)'
+                      value={this.data.user.birthdate}
+                      fullWidth
+                      /><br/>
+                    <TextField
+                      id='avatarInput'
+                      ref='avatar'
+                      name='avatar'
+                      type='text'
+                      floatingLabelText='avatar'
+                      value={this.data.user.avatar}
+                      onChange={ this.handleChangeAvatar.bind(this) }
+                      fullWidth
+                      /><br/>
+                  </div>
+                </Tab>
 
 
 
-              <Tab className='passwordTab' label='Password' style={this.data.style.tab} value={2} >
-                <div id='profilePasswordPane' style={{position: 'relative'}} >
-                  <TextField
-                    id='oldPasswordInput'
-                    ref='oldPassword'
-                    name='oldPassword'
-                    type='text'
-                    floatingLabelText='oldPassword'
-                    floatingLabelFixed={true}
-                    value={this.data.state.oldPassword}
-                    onChange={ this.rememberOldPassword.bind(this) }
-                    fullWidth
-                    /><br/>
-                  <TextField
-                    id='newPasswordInput'
-                    ref='newPassword'
-                    name='newPassword'
-                    type='text'
-                    floatingLabelText='newPassword'
-                    floatingLabelFixed={true}
-                    value={this.data.state.newPassword}
-                    onChange={ this.rememberNewPassword.bind(this) }
-                    fullWidth
-                    /><br/>
-                  <TextField
-                    id='confirmPasswordInput'
-                    ref='confirmPassword'
-                    name='confirmPassword'
-                    type='text'
-                    floatingLabelText='confirmPassword'
-                    floatingLabelFixed={true}
-                    value={this.data.state.confirmPassword}
-                    onChange={ this.rememberConfirmPassword.bind(this) }
-                    fullWidth
-                    /><br/>
+                <Tab className='passwordTab' label='Password' style={this.data.style.tab} value={2} >
+                  <div id='profilePasswordPane' style={{position: 'relative'}} >
+                    <TextField
+                      id='oldPasswordInput'
+                      ref='oldPassword'
+                      name='oldPassword'
+                      type='text'
+                      floatingLabelText='oldPassword'
+                      floatingLabelFixed={true}
+                      value={this.data.state.oldPassword}
+                      onChange={ this.rememberOldPassword.bind(this) }
+                      fullWidth
+                      /><br/>
+                    <TextField
+                      id='newPasswordInput'
+                      ref='newPassword'
+                      name='newPassword'
+                      type='text'
+                      floatingLabelText='newPassword'
+                      floatingLabelFixed={true}
+                      value={this.data.state.newPassword}
+                      onChange={ this.rememberNewPassword.bind(this) }
+                      fullWidth
+                      /><br/>
+                    <TextField
+                      id='confirmPasswordInput'
+                      ref='confirmPassword'
+                      name='confirmPassword'
+                      type='text'
+                      floatingLabelText='confirmPassword'
+                      floatingLabelFixed={true}
+                      value={this.data.state.confirmPassword}
+                      onChange={ this.rememberConfirmPassword.bind(this) }
+                      fullWidth
+                      /><br/>
 
-                  <RaisedButton
-                    id='changePasswordButton'
-                    label='Change Password'
-                    onClick={this.changePassword.bind(this)}
-                    className="muidocs-icon-action-delete"
-                    primary={true}
-                    />
-                </div>
-              </Tab>
+                    <RaisedButton
+                      id='changePasswordButton'
+                      label='Change Password'
+                      onClick={this.changePassword.bind(this)}
+                      className="muidocs-icon-action-delete"
+                      primary={true}
+                      />
+                  </div>
+                </Tab>
 
-              <Tab className="systemTab" label='System' style={this.data.style.tab} value={3}>
-                <div id="profileSystemPane" style={{position: "relative"}}>
-                  <TextField
-                    id='idInput'
-                    ref='_id'
-                    name='_id'
-                    type='text'
-                    floatingLabelText='symptomatic _id'
-                    value={this.data.user._id}
-                    fullWidth
-                    disabled
-                    /><br/>
-                  <TextField
-                    id='emailInput'
-                    ref='email'
-                    name='email'
-                    type='text'
-                    floatingLabelText='symptomatic email'
-                    value={this.data.user.email}
-                    fullWidth
-                    disabled
-                    /><br/>
+                <Tab className="systemTab" label='System' style={this.data.style.tab} value={3}>
+                  <div id="profileSystemPane" style={{position: "relative"}}>
+                    <TextField
+                      id='idInput'
+                      ref='_id'
+                      name='_id'
+                      type='text'
+                      floatingLabelText='symptomatic _id'
+                      value={this.data.user._id}
+                      fullWidth
+                      disabled
+                      /><br/>
+                    <TextField
+                      id='emailInput'
+                      ref='email'
+                      name='email'
+                      type='text'
+                      floatingLabelText='symptomatic email'
+                      value={this.data.user.email}
+                      fullWidth
+                      disabled
+                      /><br/>
 
-                  { this.renderConfirmDelete(this.data.state.wantsToDelete) }
-                </div>
-              </Tab>
+                    { this.renderConfirmDelete(this.data.state.wantsToDelete) }
+                  </div>
+                </Tab>
 
-            </Tabs>
+              </Tabs>
 
             </CardText>
-
           </GlassCard>
         </VerticalCanvas>
       </div>
