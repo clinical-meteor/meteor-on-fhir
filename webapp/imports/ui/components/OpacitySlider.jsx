@@ -7,9 +7,18 @@ Session.setDefault('globalOpacity', 0.95);
 OpacitySlider = React.createClass({
   mixins: [ReactMeteorData],
   getMeteorData() {
-    return {
+    let data = {
+      style: {
+        slider: {
+          width: '300px'
+        }
+      },
       opacity: Session.get('globalOpacity')
     };
+    if (this.props.style.display) {
+      data.style.slider.display = this.props.style.display;
+    }
+    return data;
   },
   onChange (event, value){
     Session.set('globalOpacity', value);
@@ -24,7 +33,7 @@ OpacitySlider = React.createClass({
           ref="opacitySlider"
           value={this.data.opacity}
           onChange={this.onChange }
-          style={{width: "300px"}}
+          style={this.data.style.slider}
           />
       </div>
     );

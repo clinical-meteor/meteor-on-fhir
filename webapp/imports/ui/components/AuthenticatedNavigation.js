@@ -91,7 +91,7 @@ export class AuthenticatedNavigation extends React.Component {
                   id='authenticatedUsername'
                   text={ this.data.user }
                   style={style.username}
-                  onTouchTap={this.toggleNotificationMenu }
+                  onTouchTap={this.showProfile }
                 />
               </div>
             }
@@ -107,7 +107,7 @@ export class AuthenticatedNavigation extends React.Component {
     Meteor.logout(() => browserHistory.push('/signin'));
   }
 
-  handleProfile() {
+  showProfile() {
     browserHistory.push('/myprofile');
   }
 

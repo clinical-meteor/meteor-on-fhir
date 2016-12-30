@@ -1,4 +1,4 @@
-import { CardTitle } from 'material-ui/Card';
+import { CardTitle, CardText, CardHeader } from 'material-ui/Card';
 import { Col, Grid, Row } from 'react-bootstrap';
 import { Tabs, Tab } from 'material-ui/Tabs';
 import { browserHistory } from 'react-router';
@@ -113,158 +113,134 @@ export class MyProfilePage extends React.Component {
       <div id='myProfilePage'>
         <VerticalCanvas>
           <GlassCard>
-            <hr />
-            <Row>
-              <Col xs={6} md={4} lg={2}>
-                <img id='avatarImage' ref='avatarImage' src={this.data.user.profileImage} onError={this.imgError.bind(this)} style={{width: '100%'}} />
-              </Col>
-              <Col xs={12} md={8} md={10}>
-                <CardTitle
-                  title={this.data.user.fullName}
-                  subtitle={this.data.user.email}
-                />
-                <Tabs id="profilePageTabs" index={this.data.state.index} onChange={this.handleTabChange} initialSelectedIndex={this.data.state.index} value={this.data.state.index} >
+          <CardHeader
+            avatar={this.data.user.profileImage}
+            title={this.data.user.fullName}
+            subtitle={this.data.user.email}
+          />
+            <CardText>
+            <Tabs id="profilePageTabs" index={this.data.state.index} onChange={this.handleTabChange} initialSelectedIndex={this.data.state.index} value={this.data.state.index} >
 
-                  <Tab className='demographicsTab' label='Demographics' style={this.data.style.tab} value={0} >
-                    <div id='profileDemographicsPane' style={{position: 'relative'}}>
-                      <TextField
-                        id='givenNameInput'
-                        ref='given'
-                        name='given'
-                        type='text'
-                        floatingLabelText='given name'
-                        defaultValue={this.data.user.given}
-                        /><br/>
-                      <TextField
-                        id='familyNameInput'
-                        ref='family'
-                        name='family'
-                        type='text'
-                        floatingLabelText='family name'
-                        defaultValue={this.data.user.family}
-                        /><br/>
-                      <TextField
-                        id='birthdateInput'
-                        ref='birthdate'
-                        name='birthdate'
-                        type='text'
-                        floatingLabelText='date of birth (yyyy-mm-dd)'
-                        defaultValue={this.data.user.birthdate}
-                        /><br/>
-                      <TextField
-                        id='avatarInput'
-                        ref='avatar'
-                        name='avatar'
-                        type='text'
-                        floatingLabelText='avatar'
-                        defaultValue={this.data.user.avatar}
-                        onChange={ this.handleChangeAvatar.bind(this) }
-                        /><br/>
-                    </div>
-                  </Tab>
+              <Tab className='demographicsTab' label='Demographics' style={this.data.style.tab} value={0} >
+                <div id='profileDemographicsPane' style={{position: 'relative'}}>
+                  <TextField
+                    id='givenNameInput'
+                    ref='given'
+                    name='given'
+                    type='text'
+                    floatingLabelText='given name'
+                    value={this.data.user.given}
+                    fullWidth
+                    /><br/>
+                  <TextField
+                    id='familyNameInput'
+                    ref='family'
+                    name='family'
+                    type='text'
+                    floatingLabelText='family name'
+                    value={this.data.user.family}
+                    fullWidth
+                    /><br/>
+                  <TextField
+                    id='birthdateInput'
+                    ref='birthdate'
+                    name='birthdate'
+                    type='text'
+                    floatingLabelText='date of birth (yyyy-mm-dd)'
+                    value={this.data.user.birthdate}
+                    fullWidth
+                    /><br/>
+                  <TextField
+                    id='avatarInput'
+                    ref='avatar'
+                    name='avatar'
+                    type='text'
+                    floatingLabelText='avatar'
+                    value={this.data.user.avatar}
+                    onChange={ this.handleChangeAvatar.bind(this) }
+                    fullWidth
+                    /><br/>
+                </div>
+              </Tab>
 
-                  <Tab className='environmentalTab' label='Environmental' onActive={this.handleActive} style={this.data.style.tab} value={1}>
-                    <div id='profileEnvironmentalPane' style={{position: 'relative'}} >
-                      <TextField
-                        id='zipcodeInput'
-                        ref='zipcode'
-                        name='zipcode'
-                        type='text'
-                        floatingLabelText='zipcode'
-                        defaultValue={this.data.user.zipcode}
-                        /><br/>
-                      <TextField
-                        id='latitudeInput'
-                        ref='latitude'
-                        name='latitude'
-                        type='text'
-                        floatingLabelText='latitude'
-                        defaultValue={this.data.user.latitude}
-                        /><br/>
-                      <TextField
-                        id='longitudeInput'
-                        ref='longitude'
-                        name='longitude'
-                        type='text'
-                        floatingLabelText='longitude'
-                        defaultValue={this.data.user.longitude}
-                        /><br/>
-                    </div>
-                  </Tab>
 
-                  <Tab className='passwordTab' label='Password' style={this.data.style.tab} value={2} >
-                    <div id='profilePasswordPane' style={{position: 'relative'}} >
-                      <TextField
-                        id='oldPasswordInput'
-                        ref='oldPassword'
-                        name='oldPassword'
-                        type='text'
-                        floatingLabelText='oldPassword'
-                        floatingLabelFixed={true}
-                        value={this.data.state.oldPassword}
-                        onChange={ this.rememberOldPassword.bind(this) }
-                        /><br/>
-                      <TextField
-                        id='newPasswordInput'
-                        ref='newPassword'
-                        name='newPassword'
-                        type='text'
-                        floatingLabelText='newPassword'
-                        floatingLabelFixed={true}
-                        value={this.data.state.newPassword}
-                        onChange={ this.rememberNewPassword.bind(this) }
-                        /><br/>
-                      <TextField
-                        id='confirmPasswordInput'
-                        ref='confirmPassword'
-                        name='confirmPassword'
-                        type='text'
-                        floatingLabelText='confirmPassword'
-                        floatingLabelFixed={true}
-                        value={this.data.state.confirmPassword}
-                        onChange={ this.rememberConfirmPassword.bind(this) }
-                        /><br/>
 
-                      <RaisedButton
-                        id='changePasswordButton'
-                        label='Change Password'
-                        onClick={this.changePassword.bind(this)}
-                        className="muidocs-icon-action-delete"
-                        primary={true}
-                        />
-                    </div>
-                  </Tab>
+              <Tab className='passwordTab' label='Password' style={this.data.style.tab} value={2} >
+                <div id='profilePasswordPane' style={{position: 'relative'}} >
+                  <TextField
+                    id='oldPasswordInput'
+                    ref='oldPassword'
+                    name='oldPassword'
+                    type='text'
+                    floatingLabelText='oldPassword'
+                    floatingLabelFixed={true}
+                    value={this.data.state.oldPassword}
+                    onChange={ this.rememberOldPassword.bind(this) }
+                    fullWidth
+                    /><br/>
+                  <TextField
+                    id='newPasswordInput'
+                    ref='newPassword'
+                    name='newPassword'
+                    type='text'
+                    floatingLabelText='newPassword'
+                    floatingLabelFixed={true}
+                    value={this.data.state.newPassword}
+                    onChange={ this.rememberNewPassword.bind(this) }
+                    fullWidth
+                    /><br/>
+                  <TextField
+                    id='confirmPasswordInput'
+                    ref='confirmPassword'
+                    name='confirmPassword'
+                    type='text'
+                    floatingLabelText='confirmPassword'
+                    floatingLabelFixed={true}
+                    value={this.data.state.confirmPassword}
+                    onChange={ this.rememberConfirmPassword.bind(this) }
+                    fullWidth
+                    /><br/>
 
-                  <Tab className="systemTab" label='System' style={this.data.style.tab} value={3}>
-                    <div id="profileSystemPane" style={{position: "relative"}}>
-                      <TextField
-                        id='idInput'
-                        ref='_id'
-                        name='_id'
-                        type='text'
-                        floatingLabelText='symptomatic _id'
-                        value={this.data.user._id}
-                        disabled
-                        /><br/>
-                      <TextField
-                        id='emailInput'
-                        ref='email'
-                        name='email'
-                        type='text'
-                        floatingLabelText='symptomatic email'
-                        value={this.data.user.email}
-                        disabled
-                        /><br/>
+                  <RaisedButton
+                    id='changePasswordButton'
+                    label='Change Password'
+                    onClick={this.changePassword.bind(this)}
+                    className="muidocs-icon-action-delete"
+                    primary={true}
+                    />
+                </div>
+              </Tab>
 
-                      { this.renderConfirmDelete(this.data.state.wantsToDelete) }
-                    </div>
-                  </Tab>
+              <Tab className="systemTab" label='System' style={this.data.style.tab} value={3}>
+                <div id="profileSystemPane" style={{position: "relative"}}>
+                  <TextField
+                    id='idInput'
+                    ref='_id'
+                    name='_id'
+                    type='text'
+                    floatingLabelText='symptomatic _id'
+                    value={this.data.user._id}
+                    fullWidth
+                    disabled
+                    /><br/>
+                  <TextField
+                    id='emailInput'
+                    ref='email'
+                    name='email'
+                    type='text'
+                    floatingLabelText='symptomatic email'
+                    value={this.data.user.email}
+                    fullWidth
+                    disabled
+                    /><br/>
 
-                </Tabs>
-              </Col>
-            </Row>
-            <Spacer />
+                  { this.renderConfirmDelete(this.data.state.wantsToDelete) }
+                </div>
+              </Tab>
 
+            </Tabs>
+
+            </CardText>
 
           </GlassCard>
         </VerticalCanvas>

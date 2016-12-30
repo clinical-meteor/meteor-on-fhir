@@ -17,6 +17,7 @@ import NavigationClose from 'material-ui/svg-icons/navigation/close';
 
 import Glass from '/imports/ui/Glass';
 
+
 Sidebar = {
   lastUpdate: new Date(),
   toggle: function(){
