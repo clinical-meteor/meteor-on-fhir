@@ -47,13 +47,14 @@ export class MyProfilePage extends React.Component {
         },
         title: {
           left: '0px'
-        }
-      },
-      avatar: {
-        style: {
-          display: 'inline-flex'
         },
-        size: 40
+        avatar: {
+          position: 'absolute',
+          zIndex: 10,
+          display: 'inline-flex',
+          borderRadius: '50%',
+          transition: '1s'
+        }
       },
       state: {
         index: 0,
@@ -119,16 +120,21 @@ export class MyProfilePage extends React.Component {
     }
 
     if (Session.get('appWidth') > 768) {
-      data.avatar.size = 120;
-      data.avatar.style.left = '-120px';
-      data.avatar.style.top = '-20px';
-      data.avatar.style.position = 'absolute';
-      data.avatar.style.zIndex = 10;
+      data.style.avatar.height = '120px';
+      data.style.avatar.width = '120px';
+      data.style.avatar.left = '-120px';
+      data.style.avatar.top = '-20px';
+      data.style.avatar.position = 'absolute';
+      data.style.avatar.zIndex = 10;
       data.style.title.left = '100px';
-      data.header.avatar = null;
+      //data.header.avatar = null;
     } else {
-      data.avatar.style.display = 'none';
-
+      //data.style.avatar.display = 'none';
+      data.style.avatar.height = '50px';
+      data.style.avatar.width = '50px';
+      data.style.avatar.left = '-50px';
+      data.style.avatar.top = '15px';
+      data.style.title.left = '70px';
     }
 
     if(process.env.NODE_ENV === "test") console.log("MyProfilePage[data]" , data);
@@ -142,12 +148,11 @@ export class MyProfilePage extends React.Component {
         <VerticalCanvas>
           <GlassCard>
               <CardHeader
-                avatar={this.data.header.avatar}
                 title={this.data.user.fullName}
                 subtitle={this.data.user.email}
                 style={this.data.style.title}
               >
-              <Avatar id='avatarImage' src={this.data.user.profileImage} size={this.data.avatar.size} style={this.data.avatar.style} />
+              <img id='avatarImage' ref='avatarImage' src={this.data.user.profileImage} onError={this.imgError.bind(this)} style={this.data.style.avatar} />
               </CardHeader>
             <CardText>
               <Tabs id="profilePageTabs" index={this.data.state.index} onChange={this.handleTabChange} initialSelectedIndex={this.data.state.index} value={this.data.state.index} >
