@@ -59,18 +59,6 @@ export class PractitionerSidebar extends React.Component {
              <ListItem primaryText='Users' href='/users' />
           </IndexLinkContainer>
 
-          <IndexLinkContainer to='/observation-history'>
-             <ListItem primaryText='Observation History' href='/observation-history' />
-          </IndexLinkContainer>
-
-          <IndexLinkContainer to='/careplan-designer'>
-             <ListItem primaryText='Careplan Designer' href='/careplan-designer' />
-          </IndexLinkContainer>
-
-          <IndexLinkContainer to='/careplan-history'>
-             <ListItem primaryText='Careplan History' href='/careplan-history' />
-          </IndexLinkContainer>
-
           <IndexLinkContainer to='/signin'>
              <ListItem className='logoutMenuItem' primaryText='Logout' href='/signin' onClick={this.handleLogout} />
           </IndexLinkContainer>

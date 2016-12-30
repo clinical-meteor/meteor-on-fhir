@@ -34,14 +34,17 @@ dburles:factory
 fourseven:scss
 momentjs:moment
 
+# quality control
 #lmieulet:meteor-coverage
 #practicalmeteor:chai
 #practicalmeteor:mocha-console-runner
 #practicalmeteor:mocha
 #dispatch:mocha-phantomjs
+anti:gagarin
+
+percolate:synced-cron
 
 react-meteor-data
-
 simple:dev-error-overlay
 
 clinical:fonts
@@ -52,6 +55,7 @@ clinical:user-model
 clinical:keybindings
 clinical:hipaa-logger
 
+# fhir resources
 clinical:hl7-resource-patient
 clinical:hl7-resource-practitioner
 clinical:hl7-resource-medication
@@ -67,15 +71,17 @@ clinical:hl7-resource-device
 clinical:hl7-resource-location
 clinical:hl7-resource-list
 
+# test data
 clinical:accounts-housemd
 clinical:accounts-famous-dead-people
 awatson1978:accounts-muppets
 
-percolate:synced-cron
-
-
-anti:gagarin
+# desktop
 omega:meteor-desktop-watcher@=0.2.6
 omega:meteor-desktop-bundler@=0.2.6
 omega:meteor-desktop-localstorage@=0.0.11
 shell-server
+
+# oauth server
+prime8consulting:meteor-oauth2-server
+simple:json-routes

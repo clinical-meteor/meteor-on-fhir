@@ -13,10 +13,7 @@ Session.setDefault('glassBlurEnabled', false);
 Session.setDefault('backgroundBlurEnabled', false);
 
 Session.setDefault('showVideoBackground', false);
-if (Meteor.settings && Meteor.settings.public && Meteor.settings.public.theme && Meteor.settings.public.theme.showVideoBackground) {
-  Session.set('showVideoBackground', Meteor.settings.public.theme.showVideoBackground);
-  Session.set('backgroundImagePath', Meteor.settings.public.theme.defaultVideo);
-}
+
 
 export class GlassApp extends React.Component {
   constructor(props) {
@@ -36,7 +33,7 @@ export class GlassApp extends React.Component {
           height: '100%',
           position: 'fixed'
         },
-        showVideoBackground: Session.get('showVideoBackground')
+        showVideoBackground: false
       },
       video: {
         style: {
@@ -56,6 +53,10 @@ export class GlassApp extends React.Component {
 
     if (Session.get('lastVideoRun')) {
       ReactDOM.findDOMNode(this.refs.BackgroundVideo).play();
+    }
+
+    if (Meteor.settings && Meteor.settings.public && Meteor.settings.public.theme && Meteor.settings.public.theme.showVideoBackground) {
+      data.app.showVideoBackground = Meteor.settings.public.theme.showVideoBackground;
     }
 
     if (Meteor.user()) {

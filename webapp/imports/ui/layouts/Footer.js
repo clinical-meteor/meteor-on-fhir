@@ -41,20 +41,20 @@ export class Footer extends React.Component {
         height: '6.4rem'
       },
       eastStyle: {
-        display: 'flex',
-        flexDirection: 'row',
-        position: 'absolute',
-        right: '0px',
-        height: '6.4rem',
-        padding: '0 2.4rem',
-        paddingTop: '1.2rem'
+        // display: 'flex',
+        // flexDirection: 'row',
+        // position: 'absolute',
+        // right: '0px',
+        // height: '6.4rem',
+        // padding: '0 2.4rem',
+        // paddingTop: '1.2rem'
       },
       displayThemeNavbar: false,
       status: ''
     };
 
     if (Meteor.status) {
-      data.status = Meteor.status().status;
+      data.status = Meteor.status().status + " | " + process.env.NODE_ENV;
     }
 
     if (Session.get('showThemingControls')) {
@@ -69,6 +69,7 @@ export class Footer extends React.Component {
     if (Session.get('appWidth') < 768) {
       data.westStyle.visibility = 'hidden';
       data.eastStyle.visibility = 'hidden';
+      data.eastStyle.display = 'none';
     }
 
     if (Meteor.settings && Meteor.settings.public && Meteor.settings.public.defaults && Meteor.settings.public.defaults.disableFooter) {
@@ -92,7 +93,9 @@ export class Footer extends React.Component {
   clickOnBlurButton(){
     Session.toggle('glassBlurEnabled');
   }
-
+  clickOnThemingButton(){
+    browserHistory.push('/theming');
+  }
 
   renderWestNavbar(displayThemeNavbar){
     if (displayThemeNavbar) {
@@ -101,6 +104,7 @@ export class Footer extends React.Component {
         <div style={{marginTop: '-8px'}}>
           <FlatButton label='privacy screen' className='blurButton' ref='blurButton' onClick={this.clickOnBlurButton} style={{marginLeft: '40px'}} ></FlatButton>
           <FlatButton label='darkroom' className='darkroomButton' ref='darkroomButton' onClick={this.clickOnDarkroomButton} style={{marginLeft: '20px'}} ></FlatButton>
+          <FlatButton label='theming' className='themingButton' ref='themingButton' onClick={this.clickOnThemingButton} style={{marginLeft: '20px'}} ></FlatButton>
         </div>
       );
     } else {
@@ -122,7 +126,7 @@ export class Footer extends React.Component {
   renderEastNavbar(displayThemeNavbar){
     if (displayThemeNavbar) {
       return (
-        <OpacitySlider />
+        <OpacitySlider style={this.data.eastStyle} />
       );
     } else {
       return (

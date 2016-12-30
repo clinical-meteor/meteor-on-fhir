@@ -1,15 +1,15 @@
 {
   "public": {
-    "title": "Meteor on FHIR Forum",
+    "title": "Meteor on FHIR",
     "theme": {
-      "showVideoBackground": true,
+      "showVideoBackground": false,
       "darkroomTextEnabled": false,
       "defaultVideo": "/VideoBackgrounds/Circulation.mp4",
       "backgroundImagePath": "/backgrounds/medical/PlasmidGray.jpg"
     },
     "app": {
       "barcodes": true,
-      "showUnderConstruction": false,
+      "showUnderConstruction": true,
       "showExperimental": false
     },
     "defaults": {
