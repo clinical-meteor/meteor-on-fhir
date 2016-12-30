@@ -167,7 +167,7 @@ module.exports = {
         .setValue('input[name="emailAddress"]', 'alice@test.org')
         .setValue('input[name="password"]', 'alice123')
 
-        .click("#signinButton").pause(1000)
+        .click("#signinButton").pause(3000)
           .verify.elementPresent("#indexPage");
   },
   "User can delete account.": function (client) {
