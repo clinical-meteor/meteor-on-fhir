@@ -16,6 +16,9 @@ const ReactHighcharts = require('react-highcharts');
 
 import { Statistics } from '/imports/api/statistics/statistics';
 
+import { CollectionManagement } from '/imports/ui/components/CollectionManagement';
+import { CardTitle, CardText } from 'material-ui/Card';
+
 
 const config = {
   chart: {
@@ -150,12 +153,19 @@ export class DashboardPage extends React.Component {
             <GlassCard>
               <ReactHighcharts title='Welcome back' config = {this.data.config}></ReactHighcharts>
             </GlassCard>
+
+            <Spacer />
+
+            <GlassCard>
+              <CardText>
+                <CollectionManagement />
+              </CardText>
+            </GlassCard>
+
         </VerticalCanvas>
       </div>
     );
   }
 }
 
-DashboardPage.propTypes = {};
-DashboardPage.defaultProps = {};
 ReactMixin(DashboardPage.prototype, ReactMeteorData);
