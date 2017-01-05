@@ -1,43 +1,44 @@
-14:39:18.415 INFO - Selenium build info: version: '3.0.1', revision: '1969d75'
-14:39:18.417 INFO - Launching a standalone Selenium Server
-2016-12-30 14:39:18.505:INFO::main: Logging initialized @894ms
-14:39:18.769 INFO - Driver provider org.openqa.selenium.ie.InternetExplorerDriver registration is skipped:
+11:58:55.917 INFO - Selenium build info: version: '3.0.1', revision: '1969d75'
+11:58:55.918 INFO - Launching a standalone Selenium Server
+2017-01-05 11:58:55.943:INFO::main: Logging initialized @310ms
+11:58:56.002 INFO - Driver provider org.openqa.selenium.ie.InternetExplorerDriver registration is skipped:
  registration capabilities Capabilities [{ensureCleanSession=true, browserName=internet explorer, version=, platform=WINDOWS}] does not match the current platform MAC
-14:39:18.772 INFO - Driver provider org.openqa.selenium.edge.EdgeDriver registration is skipped:
+11:58:56.003 INFO - Driver provider org.openqa.selenium.edge.EdgeDriver registration is skipped:
  registration capabilities Capabilities [{browserName=MicrosoftEdge, version=, platform=WINDOWS}] does not match the current platform MAC
-14:39:18.777 INFO - Driver class not found: com.opera.core.systems.OperaDriver
-14:39:18.778 INFO - Driver provider com.opera.core.systems.OperaDriver registration is skipped:
+11:58:56.003 INFO - Driver class not found: com.opera.core.systems.OperaDriver
+11:58:56.003 INFO - Driver provider com.opera.core.systems.OperaDriver registration is skipped:
 Unable to create new instances on this machine.
-14:39:18.779 INFO - Driver class not found: com.opera.core.systems.OperaDriver
-14:39:18.780 INFO - Driver provider com.opera.core.systems.OperaDriver is not registered
-2016-12-30 14:39:18.887:INFO:osjs.Server:main: jetty-9.2.15.v20160210
-2016-12-30 14:39:19.044:INFO:osjsh.ContextHandler:main: Started o.s.j.s.ServletContextHandler@5d5eef3d{/,null,AVAILABLE}
-2016-12-30 14:39:19.127:INFO:osjs.ServerConnector:main: Started ServerConnector@7774da9f{HTTP/1.1}{0.0.0.0:4444}
-2016-12-30 14:39:19.129:INFO:osjs.Server:main: Started @1518ms
-14:39:19.130 INFO - Selenium Server is up and running
-14:39:19.789 INFO - SessionCleaner initialized with insideBrowserTimeout 0 and clientGoneTimeout 1800000 polling every 180000
-14:39:19.840 INFO - Executing: [new session: Capabilities [{acceptSslCerts=true, loggingPrefs=org.openqa.selenium.logging.LoggingPreferences@6be1bfe0, name=Routes Admin, browserName=chrome, javascriptEnabled=true, platform=ANY}]])
-14:39:19.875 INFO - Creating a new session for Capabilities [{acceptSslCerts=true, loggingPrefs=org.openqa.selenium.logging.LoggingPreferences@6be1bfe0, name=Routes Admin, browserName=chrome, javascriptEnabled=true, platform=ANY}]
-Starting ChromeDriver 2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1) on port 35146
+11:58:56.003 INFO - Driver class not found: com.opera.core.systems.OperaDriver
+11:58:56.003 INFO - Driver provider com.opera.core.systems.OperaDriver is not registered
+2017-01-05 11:58:56.049:INFO:osjs.Server:main: jetty-9.2.15.v20160210
+2017-01-05 11:58:56.077:INFO:osjsh.ContextHandler:main: Started o.s.j.s.ServletContextHandler@7dc7cbad{/,null,AVAILABLE}
+2017-01-05 11:58:56.107:INFO:osjs.ServerConnector:main: Started ServerConnector@1d057a39{HTTP/1.1}{0.0.0.0:4444}
+2017-01-05 11:58:56.107:INFO:osjs.Server:main: Started @475ms
+11:58:56.108 INFO - Selenium Server is up and running
+11:58:56.410 INFO - SessionCleaner initialized with insideBrowserTimeout 0 and clientGoneTimeout 1800000 polling every 180000
+11:58:56.445 INFO - Executing: [new session: Capabilities [{acceptSslCerts=true, loggingPrefs=org.openqa.selenium.logging.LoggingPreferences@336896bf, name=Fhir Risk Assessments, browserName=chrome, javascriptEnabled=true, platform=ANY}]])
+11:58:56.462 INFO - Creating a new session for Capabilities [{acceptSslCerts=true, loggingPrefs=org.openqa.selenium.logging.LoggingPreferences@336896bf, name=Fhir Risk Assessments, browserName=chrome, javascriptEnabled=true, platform=ANY}]
+Starting ChromeDriver 2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1) on port 20058
 Only local connections are allowed.
-14:39:21.981 INFO - Attempting bi-dialect session, assuming Postel's Law holds true on the remote end
-14:39:25.109 INFO - Detected dialect: OSS
-14:39:25.159 INFO - Done: [new session: Capabilities [{acceptSslCerts=true, loggingPrefs=org.openqa.selenium.logging.LoggingPreferences@6be1bfe0, name=Routes Admin, browserName=chrome, javascriptEnabled=true, platform=ANY}]]
-14:39:25.215 INFO - Executing: [get: http://localhost:3000])
-14:39:39.369 INFO - Done: [get: http://localhost:3000]
-14:39:42.551 INFO - Executing: [execute async script: var passedArgs = Array.prototype.slice.call(arguments,0); return function (){
+11:58:56.893 INFO - Attempting bi-dialect session, assuming Postel's Law holds true on the remote end
+11:58:57.662 INFO - Detected dialect: OSS
+11:58:57.682 INFO - Done: [new session: Capabilities [{acceptSslCerts=true, loggingPrefs=org.openqa.selenium.logging.LoggingPreferences@336896bf, name=Fhir Risk Assessments, browserName=chrome, javascriptEnabled=true, platform=ANY}]]
+11:58:57.711 INFO - Executing: [get: http://localhost:3000])
+11:59:00.582 INFO - Done: [get: http://localhost:3000]
+11:59:03.596 INFO - Executing: [execute async script: var passedArgs = Array.prototype.slice.call(arguments,0); return function (){
+        Meteor.call('dropRiskAssessments');
         Meteor.call('dropTestUsers');
       }.apply(window, passedArgs);, []])
-14:39:46.049 WARN - Exception thrown
+11:59:04.651 WARN - Exception thrown
 org.openqa.selenium.ScriptTimeoutException: asynchronous script timeout: result was not received in 0 seconds
   (Session info: chrome=55.0.2883.95)
   (Driver info: chromedriver=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1),platform=Mac OS X 10.11.5 x86_64) (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 136 milliseconds
+Command duration or timeout: 121 milliseconds
 Build info: version: '3.0.1', revision: '1969d75', time: '2016-10-18 09:48:19 -0700'
-System info: host: 'Abigails-MacBook-Air.local', ip: '192.168.1.129', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.5', java.version: '1.8.0_101'
+System info: host: 'Abigails-Mac-mini-3.local', ip: '10.233.156.207', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.5', java.version: '1.8.0_111'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1), userDataDir=/var/folders/2v/81c_62xx2hndkyzvptxqbc2h0000gn/T/.org.chromium.Chromium.H1s8zk}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=55.0.2883.95, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
-Session ID: ead836e48ed5cf3400c36612266ad255
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1), userDataDir=/var/folders/wy/x2wnhsd15rxbcnwr07g161b00000gn/T/.org.chromium.Chromium.s989Om}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=55.0.2883.95, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: efb1b1c1c83783bdf0a81410fbeff50d
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
@@ -59,151 +60,160 @@ Session ID: ead836e48ed5cf3400c36612266ad255
 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
 	at java.lang.Thread.run(Thread.java:745)
-14:39:46.057 WARN - Exception: asynchronous script timeout: result was not received in 0 seconds
+11:59:04.653 WARN - Exception: asynchronous script timeout: result was not received in 0 seconds
   (Session info: chrome=55.0.2883.95)
   (Driver info: chromedriver=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1),platform=Mac OS X 10.11.5 x86_64) (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 136 milliseconds
+Command duration or timeout: 121 milliseconds
 Build info: version: '3.0.1', revision: '1969d75', time: '2016-10-18 09:48:19 -0700'
-System info: host: 'Abigails-MacBook-Air.local', ip: '192.168.1.129', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.5', java.version: '1.8.0_101'
+System info: host: 'Abigails-Mac-mini-3.local', ip: '10.233.156.207', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.5', java.version: '1.8.0_111'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1), userDataDir=/var/folders/2v/81c_62xx2hndkyzvptxqbc2h0000gn/T/.org.chromium.Chromium.H1s8zk}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=55.0.2883.95, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
-Session ID: ead836e48ed5cf3400c36612266ad255
-14:39:48.148 INFO - Executing: [set window size])
-14:39:48.784 INFO - Done: [set window size]
-14:39:48.877 INFO - Executing: [get: http://localhost:3000])
-14:39:59.260 INFO - Done: [get: http://localhost:3000]
-14:40:00.368 INFO - Executing: [find elements: By.cssSelector: body])
-14:40:00.991 INFO - Done: [find elements: By.cssSelector: body]
-14:40:01.039 INFO - Executing: [find elements: By.cssSelector: #publicNavigation])
-14:40:01.152 INFO - Done: [find elements: By.cssSelector: #publicNavigation]
-14:40:01.162 INFO - Executing: [find elements: By.cssSelector: #signupLink])
-14:40:01.392 INFO - Done: [find elements: By.cssSelector: #signupLink]
-14:40:01.400 INFO - Executing: [find elements: By.cssSelector: #signinLink])
-14:40:01.502 INFO - Done: [find elements: By.cssSelector: #signinLink]
-14:40:01.510 INFO - Executing: [take screenshot])
-14:40:03.182 INFO - Done: [take screenshot]
-14:40:04.094 INFO - Executing: [get: http://localhost:3000/signin])
-14:40:11.513 INFO - Done: [get: http://localhost:3000/signin]
-14:40:11.584 INFO - Executing: [find elements: By.cssSelector: #signinPage])
-14:40:11.810 INFO - Done: [find elements: By.cssSelector: #signinPage]
-14:40:11.927 INFO - Executing: [get: http://localhost:3000/signup])
-14:40:32.246 INFO - Done: [get: http://localhost:3000/signup]
-14:40:32.325 INFO - Executing: [find elements: By.cssSelector: #signupPage])
-14:40:32.371 INFO - Done: [find elements: By.cssSelector: #signupPage]
-14:40:32.391 INFO - Executing: [find elements: By.cssSelector: input[name="firstName"]])
-14:40:32.453 INFO - Done: [find elements: By.cssSelector: input[name="firstName"]]
-14:40:32.469 INFO - Executing: [find elements: By.cssSelector: input[name="lastName"]])
-14:40:32.589 INFO - Done: [find elements: By.cssSelector: input[name="lastName"]]
-14:40:32.614 INFO - Executing: [find elements: By.cssSelector: input[name="emailAddress"]])
-14:40:32.654 INFO - Done: [find elements: By.cssSelector: input[name="emailAddress"]]
-14:40:32.680 INFO - Executing: [find elements: By.cssSelector: input[name="password"]])
-14:40:32.721 INFO - Done: [find elements: By.cssSelector: input[name="password"]]
-14:40:32.731 INFO - Executing: [find elements: By.cssSelector: input[name="accessCode"]])
-14:40:32.770 INFO - Done: [find elements: By.cssSelector: input[name="accessCode"]]
-14:40:32.787 INFO - Executing: [find element: By.cssSelector: input[name="firstName"]])
-14:40:32.820 INFO - Done: [find element: By.cssSelector: input[name="firstName"]]
-14:40:32.837 INFO - Executing: [clear: 6 [[ChromeDriver: chrome on MAC (ead836e48ed5cf3400c36612266ad255)] -> css selector: input[name="firstName"]]])
-14:40:32.938 INFO - Done: [clear: 6 [[ChromeDriver: chrome on MAC (ead836e48ed5cf3400c36612266ad255)] -> css selector: input[name="firstName"]]]
-14:40:32.952 INFO - Executing: [find element: By.cssSelector: input[name="lastName"]])
-14:40:32.997 INFO - Done: [find element: By.cssSelector: input[name="lastName"]]
-14:40:33.006 INFO - Executing: [clear: 7 [[ChromeDriver: chrome on MAC (ead836e48ed5cf3400c36612266ad255)] -> css selector: input[name="lastName"]]])
-14:40:33.062 INFO - Done: [clear: 7 [[ChromeDriver: chrome on MAC (ead836e48ed5cf3400c36612266ad255)] -> css selector: input[name="lastName"]]]
-14:40:33.071 INFO - Executing: [find element: By.cssSelector: input[name="emailAddress"]])
-14:40:33.121 INFO - Done: [find element: By.cssSelector: input[name="emailAddress"]]
-14:40:33.127 INFO - Executing: [clear: 8 [[ChromeDriver: chrome on MAC (ead836e48ed5cf3400c36612266ad255)] -> css selector: input[name="emailAddress"]]])
-14:40:33.256 INFO - Done: [clear: 8 [[ChromeDriver: chrome on MAC (ead836e48ed5cf3400c36612266ad255)] -> css selector: input[name="emailAddress"]]]
-14:40:33.266 INFO - Executing: [find element: By.cssSelector: input[name="password"]])
-14:40:33.336 INFO - Done: [find element: By.cssSelector: input[name="password"]]
-14:40:33.344 INFO - Executing: [clear: 9 [[ChromeDriver: chrome on MAC (ead836e48ed5cf3400c36612266ad255)] -> css selector: input[name="password"]]])
-14:40:33.401 INFO - Done: [clear: 9 [[ChromeDriver: chrome on MAC (ead836e48ed5cf3400c36612266ad255)] -> css selector: input[name="password"]]]
-14:40:33.415 INFO - Executing: [find element: By.cssSelector: input[name="accessCode"]])
-14:40:33.490 INFO - Done: [find element: By.cssSelector: input[name="accessCode"]]
-14:40:33.496 INFO - Executing: [clear: 10 [[ChromeDriver: chrome on MAC (ead836e48ed5cf3400c36612266ad255)] -> css selector: input[name="accessCode"]]])
-14:40:33.544 INFO - Done: [clear: 10 [[ChromeDriver: chrome on MAC (ead836e48ed5cf3400c36612266ad255)] -> css selector: input[name="accessCode"]]]
-14:40:33.552 INFO - Executing: [find element: By.cssSelector: input[name="firstName"]])
-14:40:33.564 INFO - Done: [find element: By.cssSelector: input[name="firstName"]]
-14:40:33.574 INFO - Executing: [send keys: 6 [[ChromeDriver: chrome on MAC (ead836e48ed5cf3400c36612266ad255)] -> css selector: input[name="firstName"]], [S, y, s, t, e, m]])
-14:40:33.845 INFO - Done: [send keys: 6 [[ChromeDriver: chrome on MAC (ead836e48ed5cf3400c36612266ad255)] -> css selector: input[name="firstName"]], [S, y, s, t, e, m]]
-14:40:33.854 INFO - Executing: [find element: By.cssSelector: input[name="lastName"]])
-14:40:33.906 INFO - Done: [find element: By.cssSelector: input[name="lastName"]]
-14:40:33.914 INFO - Executing: [send keys: 7 [[ChromeDriver: chrome on MAC (ead836e48ed5cf3400c36612266ad255)] -> css selector: input[name="lastName"]], [A, d, m, i, n]])
-14:40:34.061 INFO - Done: [send keys: 7 [[ChromeDriver: chrome on MAC (ead836e48ed5cf3400c36612266ad255)] -> css selector: input[name="lastName"]], [A, d, m, i, n]]
-14:40:34.069 INFO - Executing: [find element: By.cssSelector: input[name="emailAddress"]])
-14:40:34.090 INFO - Done: [find element: By.cssSelector: input[name="emailAddress"]]
-14:40:34.098 INFO - Executing: [send keys: 8 [[ChromeDriver: chrome on MAC (ead836e48ed5cf3400c36612266ad255)] -> css selector: input[name="emailAddress"]], [s, y, s, a, d, m, i, n, @, t, e, s, t, ., o, r, g]])
-14:40:34.426 INFO - Done: [send keys: 8 [[ChromeDriver: chrome on MAC (ead836e48ed5cf3400c36612266ad255)] -> css selector: input[name="emailAddress"]], [s, y, s, a, d, m, i, n, @, t, e, s, t, ., o, r, g]]
-14:40:34.445 INFO - Executing: [find element: By.cssSelector: input[name="password"]])
-14:40:34.556 INFO - Done: [find element: By.cssSelector: input[name="password"]]
-14:40:34.568 INFO - Executing: [send keys: 9 [[ChromeDriver: chrome on MAC (ead836e48ed5cf3400c36612266ad255)] -> css selector: input[name="password"]], [s, y, s, a, d, m, i, n, 1, 2, 3]])
-14:40:34.917 INFO - Done: [send keys: 9 [[ChromeDriver: chrome on MAC (ead836e48ed5cf3400c36612266ad255)] -> css selector: input[name="password"]], [s, y, s, a, d, m, i, n, 1, 2, 3]]
-14:40:34.925 INFO - Executing: [find element: By.cssSelector: input[name="accessCode"]])
-14:40:34.947 INFO - Done: [find element: By.cssSelector: input[name="accessCode"]]
-14:40:34.959 INFO - Executing: [send keys: 10 [[ChromeDriver: chrome on MAC (ead836e48ed5cf3400c36612266ad255)] -> css selector: input[name="accessCode"]], [r, o, o, t, a, c, c, e, s, s]])
-14:40:35.124 INFO - Done: [send keys: 10 [[ChromeDriver: chrome on MAC (ead836e48ed5cf3400c36612266ad255)] -> css selector: input[name="accessCode"]], [r, o, o, t, a, c, c, e, s, s]]
-14:40:35.152 INFO - Executing: [take screenshot])
-14:40:36.363 INFO - Done: [take screenshot]
-14:40:37.685 INFO - Executing: [find elements: By.cssSelector: #signupButton])
-14:40:37.820 INFO - Done: [find elements: By.cssSelector: #signupButton]
-14:40:37.842 INFO - Executing: [find element: By.cssSelector: #signupButton])
-14:40:37.896 INFO - Done: [find element: By.cssSelector: #signupButton]
-14:40:37.935 INFO - Executing: [click: 11 [[ChromeDriver: chrome on MAC (ead836e48ed5cf3400c36612266ad255)] -> css selector: #signupButton]])
-14:40:38.630 INFO - Done: [click: 11 [[ChromeDriver: chrome on MAC (ead836e48ed5cf3400c36612266ad255)] -> css selector: #signupButton]]
-14:40:40.860 INFO - Executing: [find elements: By.cssSelector: #indexPage])
-14:40:41.081 INFO - Done: [find elements: By.cssSelector: #indexPage]
-14:40:41.648 INFO - Executing: [find elements: By.cssSelector: #indexPage])
-14:40:41.689 INFO - Done: [find elements: By.cssSelector: #indexPage]
-14:40:42.203 INFO - Executing: [find elements: By.cssSelector: #indexPage])
-14:40:42.249 INFO - Done: [find elements: By.cssSelector: #indexPage]
-14:40:42.762 INFO - Executing: [find elements: By.cssSelector: #indexPage])
-14:40:42.817 INFO - Done: [find elements: By.cssSelector: #indexPage]
-14:40:43.383 INFO - Executing: [find elements: By.cssSelector: #indexPage])
-14:40:43.412 INFO - Done: [find elements: By.cssSelector: #indexPage]
-14:40:43.947 INFO - Executing: [find elements: By.cssSelector: #indexPage])
-14:40:45.683 INFO - Done: [find elements: By.cssSelector: #indexPage]
-14:40:45.761 INFO - Executing: [take screenshot])
-14:40:48.875 INFO - Done: [take screenshot]
-14:40:51.055 INFO - Executing: [get: http://localhost:3000/dashboard])
-14:42:12.771 INFO - Done: [get: http://localhost:3000/dashboard]
-14:42:13.298 INFO - Executing: [find elements: By.cssSelector: #dashboardPage])
-14:42:13.859 INFO - Done: [find elements: By.cssSelector: #dashboardPage]
-14:42:13.914 INFO - Executing: [take screenshot])
-14:42:16.428 INFO - Done: [take screenshot]
-14:42:17.817 INFO - Executing: [get: http://localhost:3000/patients])
-14:42:49.468 INFO - Done: [get: http://localhost:3000/patients]
-14:42:49.667 INFO - Executing: [find elements: By.cssSelector: #patientsPage])
-14:42:49.781 INFO - Done: [find elements: By.cssSelector: #patientsPage]
-14:42:49.794 INFO - Executing: [take screenshot])
-14:42:50.558 INFO - Done: [take screenshot]
-14:42:50.793 INFO - Executing: [get: http://localhost:3000/practitioners])
-14:42:56.595 INFO - Done: [get: http://localhost:3000/practitioners]
-14:42:56.664 INFO - Executing: [find elements: By.cssSelector: #practitionersPage])
-14:42:57.000 INFO - Done: [find elements: By.cssSelector: #practitionersPage]
-14:42:57.031 INFO - Executing: [take screenshot])
-14:42:58.055 INFO - Done: [take screenshot]
-14:42:58.894 INFO - Executing: [delete session: b6010efd-56b7-46a7-a4ba-2a1a919ca233])
-14:42:59.404 INFO - Done: [delete session: b6010efd-56b7-46a7-a4ba-2a1a919ca233]
-14:42:59.482 INFO - Executing: [new session: Capabilities [{acceptSslCerts=true, loggingPrefs=org.openqa.selenium.logging.LoggingPreferences@43d45eb4, name=Routes Patients, browserName=chrome, javascriptEnabled=true, platform=ANY}]])
-14:42:59.488 INFO - Creating a new session for Capabilities [{acceptSslCerts=true, loggingPrefs=org.openqa.selenium.logging.LoggingPreferences@43d45eb4, name=Routes Patients, browserName=chrome, javascriptEnabled=true, platform=ANY}]
-Starting ChromeDriver 2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1) on port 33664
-Only local connections are allowed.
-14:43:00.169 INFO - Attempting bi-dialect session, assuming Postel's Law holds true on the remote end
-14:43:03.991 INFO - Detected dialect: OSS
-14:43:04.034 INFO - Done: [new session: Capabilities [{acceptSslCerts=true, loggingPrefs=org.openqa.selenium.logging.LoggingPreferences@43d45eb4, name=Routes Patients, browserName=chrome, javascriptEnabled=true, platform=ANY}]]
-14:43:04.130 INFO - Executing: [get: http://localhost:3000])
-14:43:15.615 INFO - Done: [get: http://localhost:3000]
-14:43:18.731 INFO - Executing: [execute async script: var passedArgs = Array.prototype.slice.call(arguments,0); return function (){
-        Meteor.call('initializeTestUsers');
-      }.apply(window, passedArgs);, []])
-14:43:20.395 WARN - Exception thrown
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1), userDataDir=/var/folders/wy/x2wnhsd15rxbcnwr07g161b00000gn/T/.org.chromium.Chromium.s989Om}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=55.0.2883.95, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: efb1b1c1c83783bdf0a81410fbeff50d
+11:59:04.867 INFO - Executing: [set window size])
+11:59:05.074 INFO - Done: [set window size]
+11:59:05.079 INFO - Executing: [get: http://localhost:3000/signup])
+11:59:07.393 INFO - Done: [get: http://localhost:3000/signup]
+11:59:07.403 INFO - Executing: [find elements: By.cssSelector: #signupPage])
+11:59:07.463 INFO - Done: [find elements: By.cssSelector: #signupPage]
+11:59:07.472 INFO - Executing: [find elements: By.cssSelector: input[name="firstName"]])
+11:59:07.524 INFO - Done: [find elements: By.cssSelector: input[name="firstName"]]
+11:59:07.529 INFO - Executing: [find elements: By.cssSelector: input[name="lastName"]])
+11:59:07.548 INFO - Done: [find elements: By.cssSelector: input[name="lastName"]]
+11:59:07.553 INFO - Executing: [find elements: By.cssSelector: input[name="emailAddress"]])
+11:59:07.574 INFO - Done: [find elements: By.cssSelector: input[name="emailAddress"]]
+11:59:07.579 INFO - Executing: [find elements: By.cssSelector: input[name="password"]])
+11:59:07.599 INFO - Done: [find elements: By.cssSelector: input[name="password"]]
+11:59:07.604 INFO - Executing: [find elements: By.cssSelector: input[name="accessCode"]])
+11:59:07.623 INFO - Done: [find elements: By.cssSelector: input[name="accessCode"]]
+11:59:07.628 INFO - Executing: [find element: By.cssSelector: input[name="firstName"]])
+11:59:07.648 INFO - Done: [find element: By.cssSelector: input[name="firstName"]]
+11:59:07.652 INFO - Executing: [clear: 1 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: input[name="firstName"]]])
+11:59:07.687 INFO - Done: [clear: 1 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: input[name="firstName"]]]
+11:59:07.692 INFO - Executing: [find element: By.cssSelector: input[name="lastName"]])
+11:59:07.711 INFO - Done: [find element: By.cssSelector: input[name="lastName"]]
+11:59:07.714 INFO - Executing: [clear: 2 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: input[name="lastName"]]])
+11:59:07.743 INFO - Done: [clear: 2 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: input[name="lastName"]]]
+11:59:07.746 INFO - Executing: [find element: By.cssSelector: input[name="emailAddress"]])
+11:59:07.764 INFO - Done: [find element: By.cssSelector: input[name="emailAddress"]]
+11:59:07.769 INFO - Executing: [clear: 3 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: input[name="emailAddress"]]])
+11:59:07.797 INFO - Done: [clear: 3 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: input[name="emailAddress"]]]
+11:59:07.801 INFO - Executing: [find element: By.cssSelector: input[name="password"]])
+11:59:07.819 INFO - Done: [find element: By.cssSelector: input[name="password"]]
+11:59:07.822 INFO - Executing: [clear: 4 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: input[name="password"]]])
+11:59:07.850 INFO - Done: [clear: 4 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: input[name="password"]]]
+11:59:07.855 INFO - Executing: [find element: By.cssSelector: input[name="accessCode"]])
+11:59:07.872 INFO - Done: [find element: By.cssSelector: input[name="accessCode"]]
+11:59:07.876 INFO - Executing: [clear: 5 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: input[name="accessCode"]]])
+11:59:07.904 INFO - Done: [clear: 5 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: input[name="accessCode"]]]
+11:59:07.908 INFO - Executing: [find element: By.cssSelector: input[name="firstName"]])
+11:59:07.916 INFO - Done: [find element: By.cssSelector: input[name="firstName"]]
+11:59:07.921 INFO - Executing: [send keys: 1 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: input[name="firstName"]], [G, r, e, g, o, r, y]])
+11:59:08.004 INFO - Done: [send keys: 1 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: input[name="firstName"]], [G, r, e, g, o, r, y]]
+11:59:08.009 INFO - Executing: [find element: By.cssSelector: input[name="lastName"]])
+11:59:08.016 INFO - Done: [find element: By.cssSelector: input[name="lastName"]]
+11:59:08.022 INFO - Executing: [send keys: 2 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: input[name="lastName"]], [H, o, u, s, e]])
+11:59:08.080 INFO - Done: [send keys: 2 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: input[name="lastName"]], [H, o, u, s, e]]
+11:59:08.084 INFO - Executing: [find element: By.cssSelector: input[name="emailAddress"]])
+11:59:08.093 INFO - Done: [find element: By.cssSelector: input[name="emailAddress"]]
+11:59:08.097 INFO - Executing: [send keys: 3 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: input[name="emailAddress"]], [h, o, u, s, e, @, t, e, s, t, ., o, r, g]])
+11:59:08.181 INFO - Done: [send keys: 3 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: input[name="emailAddress"]], [h, o, u, s, e, @, t, e, s, t, ., o, r, g]]
+11:59:08.185 INFO - Executing: [find element: By.cssSelector: input[name="password"]])
+11:59:08.200 INFO - Done: [find element: By.cssSelector: input[name="password"]]
+11:59:08.204 INFO - Executing: [send keys: 4 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: input[name="password"]], [h, o, u, s, e, 1, 2, 3]])
+11:59:08.265 INFO - Done: [send keys: 4 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: input[name="password"]], [h, o, u, s, e, 1, 2, 3]]
+11:59:08.268 INFO - Executing: [find element: By.cssSelector: input[name="accessCode"]])
+11:59:08.276 INFO - Done: [find element: By.cssSelector: input[name="accessCode"]]
+11:59:08.280 INFO - Executing: [send keys: 5 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: input[name="accessCode"]], [h, i, p, p, o, c, r, a, t, e, s]])
+11:59:08.347 INFO - Done: [send keys: 5 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: input[name="accessCode"]], [h, i, p, p, o, c, r, a, t, e, s]]
+11:59:08.351 INFO - Executing: [take screenshot])
+11:59:08.922 INFO - Done: [take screenshot]
+11:59:09.062 INFO - Executing: [find elements: By.cssSelector: #signupButton])
+11:59:09.084 INFO - Done: [find elements: By.cssSelector: #signupButton]
+11:59:09.088 INFO - Executing: [find element: By.cssSelector: #signupButton])
+11:59:09.104 INFO - Done: [find element: By.cssSelector: #signupButton]
+11:59:09.106 INFO - Executing: [click: 6 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #signupButton]])
+11:59:09.174 INFO - Done: [click: 6 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #signupButton]]
+11:59:14.183 INFO - Executing: [find elements: By.cssSelector: #indexPage])
+11:59:14.204 INFO - Done: [find elements: By.cssSelector: #indexPage]
+11:59:14.208 INFO - Executing: [find element: By.cssSelector: #authenticatedUsername])
+11:59:14.225 INFO - Done: [find element: By.cssSelector: #authenticatedUsername]
+11:59:14.228 INFO - Executing: [get text: 8 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #authenticatedUsername]])
+11:59:14.250 INFO - Done: [get text: 8 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #authenticatedUsername]]
+11:59:17.303 INFO - Executing: [find elements: By.cssSelector: #riskAssessmentsTile])
+11:59:17.322 INFO - Done: [find elements: By.cssSelector: #riskAssessmentsTile]
+11:59:17.326 INFO - Executing: [find element: By.cssSelector: #riskAssessmentsTile])
+11:59:17.343 INFO - Done: [find element: By.cssSelector: #riskAssessmentsTile]
+11:59:17.345 INFO - Executing: [click: 9 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsTile]])
+11:59:17.487 INFO - Done: [click: 9 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsTile]]
+11:59:17.492 INFO - Executing: [find elements: By.cssSelector: #riskAssessmentsPage])
+11:59:17.515 INFO - Done: [find elements: By.cssSelector: #riskAssessmentsPage]
+11:59:17.520 INFO - Executing: [find elements: By.cssSelector: #riskAssessmentsTable])
+11:59:17.540 INFO - Done: [find elements: By.cssSelector: #riskAssessmentsTable]
+11:59:17.544 INFO - Executing: [find elements: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1)])
+11:59:17.564 INFO - Done: [find elements: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1)]
+11:59:17.594 INFO - Executing: [find elements: By.cssSelector: #riskAssessmentsPageTabs])
+11:59:17.623 INFO - Done: [find elements: By.cssSelector: #riskAssessmentsPageTabs]
+11:59:17.628 INFO - Executing: [find elements: By.cssSelector: #riskAssessmentsPageTabs .newRiskAssessmentTab])
+11:59:17.647 INFO - Done: [find elements: By.cssSelector: #riskAssessmentsPageTabs .newRiskAssessmentTab]
+11:59:17.657 INFO - Executing: [find element: By.cssSelector: #riskAssessmentsPageTabs .newRiskAssessmentTab])
+11:59:17.677 INFO - Done: [find element: By.cssSelector: #riskAssessmentsPageTabs .newRiskAssessmentTab]
+11:59:17.680 INFO - Executing: [click: 13 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPageTabs .newRiskAssessmentTab]])
+11:59:17.734 INFO - Done: [click: 13 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPageTabs .newRiskAssessmentTab]]
+11:59:17.739 INFO - Executing: [find elements: By.cssSelector: #riskAssessmentsPage .riskAssessmentDetail])
+11:59:17.795 INFO - Done: [find elements: By.cssSelector: #riskAssessmentsPage .riskAssessmentDetail]
+11:59:17.800 INFO - Executing: [find elements: By.cssSelector: #riskAssessmentsPage .riskAssessmentDetail input[name="subjectDisplay"]])
+11:59:17.820 INFO - Done: [find elements: By.cssSelector: #riskAssessmentsPage .riskAssessmentDetail input[name="subjectDisplay"]]
+11:59:17.823 INFO - Executing: [find elements: By.cssSelector: #riskAssessmentsPage .riskAssessmentDetail input[name="conditionDisplay"]])
+11:59:17.844 INFO - Done: [find elements: By.cssSelector: #riskAssessmentsPage .riskAssessmentDetail input[name="conditionDisplay"]]
+11:59:17.849 INFO - Executing: [find elements: By.cssSelector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]])
+11:59:17.869 INFO - Done: [find elements: By.cssSelector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]]
+11:59:17.874 INFO - Executing: [find elements: By.cssSelector: #riskAssessmentsPage .riskAssessmentDetail input[name="predictionOutcome"]])
+11:59:17.895 INFO - Done: [find elements: By.cssSelector: #riskAssessmentsPage .riskAssessmentDetail input[name="predictionOutcome"]]
+11:59:17.900 INFO - Executing: [find elements: By.cssSelector: #riskAssessmentsPage .riskAssessmentDetail input[name="probabilityDecimal"]])
+11:59:17.919 INFO - Done: [find elements: By.cssSelector: #riskAssessmentsPage .riskAssessmentDetail input[name="probabilityDecimal"]]
+11:59:18.928 INFO - Executing: [execute async script: var passedArgs = Array.prototype.slice.call(arguments,0); return function (){
+      Session.set('riskAssessmentUpsert', {
+        resourceType: "RiskAssessment",
+        subject: {
+          display: "",
+          reference: ""
+        },
+        text: "",
+        date: null,
+        "condition": {
+          "reference": "",
+          "display": ""
+        },
+        encounter: {},
+        performer: {
+          display: "",
+          reference: ""
+        },
+        basis:[{
+          display: "",
+          reference: ""
+        }],
+        prediction: [{
+          title: "",
+          outcome: {
+            text: ""
+          },
+          probabilityDecimal: 0,
+          rational: ""
+        }],
+        mitigation: ""
+      });
+    }.apply(window, passedArgs);, []])
+11:59:19.675 WARN - Exception thrown
 org.openqa.selenium.ScriptTimeoutException: asynchronous script timeout: result was not received in 0 seconds
   (Session info: chrome=55.0.2883.95)
   (Driver info: chromedriver=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1),platform=Mac OS X 10.11.5 x86_64) (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 71 milliseconds
+Command duration or timeout: 131 milliseconds
 Build info: version: '3.0.1', revision: '1969d75', time: '2016-10-18 09:48:19 -0700'
-System info: host: 'Abigails-MacBook-Air.local', ip: '192.168.1.129', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.5', java.version: '1.8.0_101'
+System info: host: 'Abigails-Mac-mini-3.local', ip: '10.233.156.207', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.5', java.version: '1.8.0_111'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1), userDataDir=/var/folders/2v/81c_62xx2hndkyzvptxqbc2h0000gn/T/.org.chromium.Chromium.8Oc4NR}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=55.0.2883.95, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
-Session ID: cf57e3537e9400b3dd07ad12d60f8df7
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1), userDataDir=/var/folders/wy/x2wnhsd15rxbcnwr07g161b00000gn/T/.org.chromium.Chromium.s989Om}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=55.0.2883.95, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: efb1b1c1c83783bdf0a81410fbeff50d
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
@@ -225,127 +235,350 @@ Session ID: cf57e3537e9400b3dd07ad12d60f8df7
 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
 	at java.lang.Thread.run(Thread.java:745)
-14:43:20.397 WARN - Exception: asynchronous script timeout: result was not received in 0 seconds
+11:59:19.676 WARN - Exception: asynchronous script timeout: result was not received in 0 seconds
   (Session info: chrome=55.0.2883.95)
   (Driver info: chromedriver=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1),platform=Mac OS X 10.11.5 x86_64) (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 71 milliseconds
+Command duration or timeout: 131 milliseconds
 Build info: version: '3.0.1', revision: '1969d75', time: '2016-10-18 09:48:19 -0700'
-System info: host: 'Abigails-MacBook-Air.local', ip: '192.168.1.129', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.5', java.version: '1.8.0_101'
+System info: host: 'Abigails-Mac-mini-3.local', ip: '10.233.156.207', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.5', java.version: '1.8.0_111'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1), userDataDir=/var/folders/2v/81c_62xx2hndkyzvptxqbc2h0000gn/T/.org.chromium.Chromium.8Oc4NR}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=55.0.2883.95, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
-Session ID: cf57e3537e9400b3dd07ad12d60f8df7
-14:43:22.014 INFO - Executing: [set window size])
-14:43:22.676 INFO - Done: [set window size]
-14:43:22.772 INFO - Executing: [get: http://localhost:3000])
-14:43:31.205 INFO - Done: [get: http://localhost:3000]
-14:43:32.288 INFO - Executing: [find elements: By.cssSelector: body])
-14:43:32.318 INFO - Done: [find elements: By.cssSelector: body]
-14:43:32.342 INFO - Executing: [find elements: By.cssSelector: #publicNavigation])
-14:43:32.377 INFO - Done: [find elements: By.cssSelector: #publicNavigation]
-14:43:32.406 INFO - Executing: [find elements: By.cssSelector: #signupLink])
-14:43:32.565 INFO - Done: [find elements: By.cssSelector: #signupLink]
-14:43:32.580 INFO - Executing: [find elements: By.cssSelector: #signinLink])
-14:43:32.659 INFO - Done: [find elements: By.cssSelector: #signinLink]
-14:43:32.673 INFO - Executing: [take screenshot])
-14:43:34.671 INFO - Done: [take screenshot]
-14:43:35.367 INFO - Executing: [get: http://localhost:3000/signin])
-14:43:40.675 INFO - Done: [get: http://localhost:3000/signin]
-14:43:41.946 INFO - Executing: [find elements: By.cssSelector: #signinPage])
-14:43:41.994 INFO - Done: [find elements: By.cssSelector: #signinPage]
-14:43:42.085 INFO - Executing: [get: http://localhost:3000/signup])
-14:43:47.956 INFO - Done: [get: http://localhost:3000/signup]
-14:43:48.027 INFO - Executing: [find elements: By.cssSelector: #signupPage])
-14:43:48.084 INFO - Done: [find elements: By.cssSelector: #signupPage]
-14:43:48.099 INFO - Executing: [find elements: By.cssSelector: input[name="firstName"]])
-14:43:48.167 INFO - Done: [find elements: By.cssSelector: input[name="firstName"]]
-14:43:48.188 INFO - Executing: [find elements: By.cssSelector: input[name="lastName"]])
-14:43:48.292 INFO - Done: [find elements: By.cssSelector: input[name="lastName"]]
-14:43:48.303 INFO - Executing: [find elements: By.cssSelector: input[name="emailAddress"]])
-14:43:48.380 INFO - Done: [find elements: By.cssSelector: input[name="emailAddress"]]
-14:43:48.387 INFO - Executing: [find elements: By.cssSelector: input[name="password"]])
-14:43:48.514 INFO - Done: [find elements: By.cssSelector: input[name="password"]]
-14:43:48.521 INFO - Executing: [find elements: By.cssSelector: input[name="accessCode"]])
-14:43:48.560 INFO - Done: [find elements: By.cssSelector: input[name="accessCode"]]
-14:43:48.574 INFO - Executing: [find element: By.cssSelector: input[name="firstName"]])
-14:43:48.800 INFO - Done: [find element: By.cssSelector: input[name="firstName"]]
-14:43:48.807 INFO - Executing: [clear: 6 [[ChromeDriver: chrome on MAC (cf57e3537e9400b3dd07ad12d60f8df7)] -> css selector: input[name="firstName"]]])
-14:43:49.897 INFO - Done: [clear: 6 [[ChromeDriver: chrome on MAC (cf57e3537e9400b3dd07ad12d60f8df7)] -> css selector: input[name="firstName"]]]
-14:43:49.906 INFO - Executing: [find element: By.cssSelector: input[name="lastName"]])
-14:43:50.058 INFO - Done: [find element: By.cssSelector: input[name="lastName"]]
-14:43:50.065 INFO - Executing: [clear: 7 [[ChromeDriver: chrome on MAC (cf57e3537e9400b3dd07ad12d60f8df7)] -> css selector: input[name="lastName"]]])
-14:43:50.300 INFO - Done: [clear: 7 [[ChromeDriver: chrome on MAC (cf57e3537e9400b3dd07ad12d60f8df7)] -> css selector: input[name="lastName"]]]
-14:43:50.310 INFO - Executing: [find element: By.cssSelector: input[name="emailAddress"]])
-14:43:50.348 INFO - Done: [find element: By.cssSelector: input[name="emailAddress"]]
-14:43:50.363 INFO - Executing: [clear: 8 [[ChromeDriver: chrome on MAC (cf57e3537e9400b3dd07ad12d60f8df7)] -> css selector: input[name="emailAddress"]]])
-14:43:50.516 INFO - Done: [clear: 8 [[ChromeDriver: chrome on MAC (cf57e3537e9400b3dd07ad12d60f8df7)] -> css selector: input[name="emailAddress"]]]
-14:43:50.527 INFO - Executing: [find element: By.cssSelector: input[name="password"]])
-14:43:50.579 INFO - Done: [find element: By.cssSelector: input[name="password"]]
-14:43:50.588 INFO - Executing: [clear: 9 [[ChromeDriver: chrome on MAC (cf57e3537e9400b3dd07ad12d60f8df7)] -> css selector: input[name="password"]]])
-14:43:50.653 INFO - Done: [clear: 9 [[ChromeDriver: chrome on MAC (cf57e3537e9400b3dd07ad12d60f8df7)] -> css selector: input[name="password"]]]
-14:43:50.665 INFO - Executing: [find element: By.cssSelector: input[name="accessCode"]])
-14:43:50.713 INFO - Done: [find element: By.cssSelector: input[name="accessCode"]]
-14:43:50.724 INFO - Executing: [clear: 10 [[ChromeDriver: chrome on MAC (cf57e3537e9400b3dd07ad12d60f8df7)] -> css selector: input[name="accessCode"]]])
-14:43:50.814 INFO - Done: [clear: 10 [[ChromeDriver: chrome on MAC (cf57e3537e9400b3dd07ad12d60f8df7)] -> css selector: input[name="accessCode"]]]
-14:43:50.825 INFO - Executing: [find element: By.cssSelector: input[name="firstName"]])
-14:43:50.939 INFO - Done: [find element: By.cssSelector: input[name="firstName"]]
-14:43:50.950 INFO - Executing: [send keys: 6 [[ChromeDriver: chrome on MAC (cf57e3537e9400b3dd07ad12d60f8df7)] -> css selector: input[name="firstName"]], [A, l, i, c, e]])
-14:43:51.283 INFO - Done: [send keys: 6 [[ChromeDriver: chrome on MAC (cf57e3537e9400b3dd07ad12d60f8df7)] -> css selector: input[name="firstName"]], [A, l, i, c, e]]
-14:43:51.291 INFO - Executing: [find element: By.cssSelector: input[name="lastName"]])
-14:43:51.342 INFO - Done: [find element: By.cssSelector: input[name="lastName"]]
-14:43:51.352 INFO - Executing: [send keys: 7 [[ChromeDriver: chrome on MAC (cf57e3537e9400b3dd07ad12d60f8df7)] -> css selector: input[name="lastName"]], [D, o, e]])
-14:43:51.922 INFO - Done: [send keys: 7 [[ChromeDriver: chrome on MAC (cf57e3537e9400b3dd07ad12d60f8df7)] -> css selector: input[name="lastName"]], [D, o, e]]
-14:43:51.954 INFO - Executing: [find element: By.cssSelector: input[name="emailAddress"]])
-14:43:52.000 INFO - Done: [find element: By.cssSelector: input[name="emailAddress"]]
-14:43:52.019 INFO - Executing: [send keys: 8 [[ChromeDriver: chrome on MAC (cf57e3537e9400b3dd07ad12d60f8df7)] -> css selector: input[name="emailAddress"]], [a, l, i, c, e, @, t, e, s, t, ., o, r, g]])
-14:43:52.654 INFO - Done: [send keys: 8 [[ChromeDriver: chrome on MAC (cf57e3537e9400b3dd07ad12d60f8df7)] -> css selector: input[name="emailAddress"]], [a, l, i, c, e, @, t, e, s, t, ., o, r, g]]
-14:43:52.663 INFO - Executing: [find element: By.cssSelector: input[name="password"]])
-14:43:52.731 INFO - Done: [find element: By.cssSelector: input[name="password"]]
-14:43:52.740 INFO - Executing: [send keys: 9 [[ChromeDriver: chrome on MAC (cf57e3537e9400b3dd07ad12d60f8df7)] -> css selector: input[name="password"]], [a, l, i, c, e, d, o, e]])
-14:43:53.118 INFO - Done: [send keys: 9 [[ChromeDriver: chrome on MAC (cf57e3537e9400b3dd07ad12d60f8df7)] -> css selector: input[name="password"]], [a, l, i, c, e, d, o, e]]
-14:43:53.125 INFO - Executing: [take screenshot])
-14:43:54.143 INFO - Done: [take screenshot]
-14:43:55.508 INFO - Executing: [find elements: By.cssSelector: #signupButton])
-14:43:55.747 INFO - Done: [find elements: By.cssSelector: #signupButton]
-14:43:55.765 INFO - Executing: [find element: By.cssSelector: #signupButton])
-14:43:55.908 INFO - Done: [find element: By.cssSelector: #signupButton]
-14:43:55.923 INFO - Executing: [click: 11 [[ChromeDriver: chrome on MAC (cf57e3537e9400b3dd07ad12d60f8df7)] -> css selector: #signupButton]])
-14:43:56.277 INFO - Done: [click: 11 [[ChromeDriver: chrome on MAC (cf57e3537e9400b3dd07ad12d60f8df7)] -> css selector: #signupButton]]
-14:43:57.325 INFO - Executing: [get: http://localhost:3000])
-14:44:07.743 INFO - Done: [get: http://localhost:3000]
-14:44:09.894 INFO - Executing: [find elements: By.cssSelector: #indexPage])
-14:44:10.870 INFO - Done: [find elements: By.cssSelector: #indexPage]
-14:44:10.880 INFO - Executing: [take screenshot])
-14:44:11.916 INFO - Done: [take screenshot]
-14:44:12.755 INFO - Executing: [get: http://localhost:3000/weblog])
-14:44:17.622 INFO - Done: [get: http://localhost:3000/weblog]
-14:44:19.684 INFO - Executing: [find elements: By.cssSelector: #weblogPage])
-14:44:19.719 INFO - Done: [find elements: By.cssSelector: #weblogPage]
-14:44:19.731 INFO - Executing: [take screenshot])
-14:44:20.439 INFO - Done: [take screenshot]
-14:44:20.710 INFO - Executing: [delete session: 464e42c1-89ba-43a4-af14-dac6d156c01f])
-14:44:21.065 INFO - Done: [delete session: 464e42c1-89ba-43a4-af14-dac6d156c01f]
-14:44:21.189 INFO - Executing: [new session: Capabilities [{acceptSslCerts=true, loggingPrefs=org.openqa.selenium.logging.LoggingPreferences@5a27fa18, name=Routes Practitioner, browserName=chrome, javascriptEnabled=true, platform=ANY}]])
-14:44:21.199 INFO - Creating a new session for Capabilities [{acceptSslCerts=true, loggingPrefs=org.openqa.selenium.logging.LoggingPreferences@5a27fa18, name=Routes Practitioner, browserName=chrome, javascriptEnabled=true, platform=ANY}]
-Starting ChromeDriver 2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1) on port 34983
-Only local connections are allowed.
-14:44:21.867 INFO - Attempting bi-dialect session, assuming Postel's Law holds true on the remote end
-14:44:25.720 INFO - Detected dialect: OSS
-14:44:25.762 INFO - Done: [new session: Capabilities [{acceptSslCerts=true, loggingPrefs=org.openqa.selenium.logging.LoggingPreferences@5a27fa18, name=Routes Practitioner, browserName=chrome, javascriptEnabled=true, platform=ANY}]]
-14:44:25.845 INFO - Executing: [get: http://localhost:3000])
-14:44:41.321 INFO - Done: [get: http://localhost:3000]
-14:44:44.460 INFO - Executing: [execute async script: var passedArgs = Array.prototype.slice.call(arguments,0); return function (data){
-        Meteor.call('dropTestUsers');
-      }.apply(window, passedArgs);, []])
-14:44:45.631 WARN - Exception thrown
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1), userDataDir=/var/folders/wy/x2wnhsd15rxbcnwr07g161b00000gn/T/.org.chromium.Chromium.s989Om}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=55.0.2883.95, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: efb1b1c1c83783bdf0a81410fbeff50d
+11:59:19.895 INFO - Executing: [find element: By.cssSelector: #newRiskAssessment input[name="subjectDisplay"]])
+11:59:19.913 INFO - Done: [find element: By.cssSelector: #newRiskAssessment input[name="subjectDisplay"]]
+11:59:19.916 INFO - Executing: [send keys: 16 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="subjectDisplay"]], [J]])
+11:59:19.964 INFO - Done: [send keys: 16 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="subjectDisplay"]], [J]]
+11:59:19.968 INFO - Executing: [find element: By.cssSelector: #newRiskAssessment input[name="subjectDisplay"]])
+11:59:19.996 INFO - Done: [find element: By.cssSelector: #newRiskAssessment input[name="subjectDisplay"]]
+11:59:20.001 INFO - Executing: [send keys: 16 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="subjectDisplay"]], [a]])
+11:59:20.025 INFO - Done: [send keys: 16 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="subjectDisplay"]], [a]]
+11:59:20.029 INFO - Executing: [find element: By.cssSelector: #newRiskAssessment input[name="subjectDisplay"]])
+11:59:20.053 INFO - Done: [find element: By.cssSelector: #newRiskAssessment input[name="subjectDisplay"]]
+11:59:20.056 INFO - Executing: [send keys: 16 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="subjectDisplay"]], [n]])
+11:59:20.084 INFO - Done: [send keys: 16 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="subjectDisplay"]], [n]]
+11:59:20.089 INFO - Executing: [find element: By.cssSelector: #newRiskAssessment input[name="subjectDisplay"]])
+11:59:20.112 INFO - Done: [find element: By.cssSelector: #newRiskAssessment input[name="subjectDisplay"]]
+11:59:20.115 INFO - Executing: [send keys: 16 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="subjectDisplay"]], [e]])
+11:59:20.139 INFO - Done: [send keys: 16 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="subjectDisplay"]], [e]]
+11:59:20.145 INFO - Executing: [find element: By.cssSelector: #newRiskAssessment input[name="subjectDisplay"]])
+11:59:20.174 INFO - Done: [find element: By.cssSelector: #newRiskAssessment input[name="subjectDisplay"]]
+11:59:20.177 INFO - Executing: [send keys: 16 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="subjectDisplay"]], [ ]])
+11:59:20.200 INFO - Done: [send keys: 16 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="subjectDisplay"]], [ ]]
+11:59:20.204 INFO - Executing: [find element: By.cssSelector: #newRiskAssessment input[name="subjectDisplay"]])
+11:59:20.232 INFO - Done: [find element: By.cssSelector: #newRiskAssessment input[name="subjectDisplay"]]
+11:59:20.235 INFO - Executing: [send keys: 16 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="subjectDisplay"]], [D]])
+11:59:20.257 INFO - Done: [send keys: 16 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="subjectDisplay"]], [D]]
+11:59:20.260 INFO - Executing: [find element: By.cssSelector: #newRiskAssessment input[name="subjectDisplay"]])
+11:59:20.285 INFO - Done: [find element: By.cssSelector: #newRiskAssessment input[name="subjectDisplay"]]
+11:59:20.288 INFO - Executing: [send keys: 16 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="subjectDisplay"]], [o]])
+11:59:20.309 INFO - Done: [send keys: 16 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="subjectDisplay"]], [o]]
+11:59:20.313 INFO - Executing: [find element: By.cssSelector: #newRiskAssessment input[name="subjectDisplay"]])
+11:59:20.337 INFO - Done: [find element: By.cssSelector: #newRiskAssessment input[name="subjectDisplay"]]
+11:59:20.341 INFO - Executing: [send keys: 16 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="subjectDisplay"]], [e]])
+11:59:20.361 INFO - Done: [send keys: 16 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="subjectDisplay"]], [e]]
+11:59:20.364 INFO - Executing: [find element: By.cssSelector: #newRiskAssessment input[name="conditionDisplay"]])
+11:59:20.400 INFO - Done: [find element: By.cssSelector: #newRiskAssessment input[name="conditionDisplay"]]
+11:59:20.403 INFO - Executing: [send keys: 18 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="conditionDisplay"]], [M]])
+11:59:20.463 INFO - Done: [send keys: 18 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="conditionDisplay"]], [M]]
+11:59:20.467 INFO - Executing: [find element: By.cssSelector: #newRiskAssessment input[name="conditionDisplay"]])
+11:59:20.490 INFO - Done: [find element: By.cssSelector: #newRiskAssessment input[name="conditionDisplay"]]
+11:59:20.493 INFO - Executing: [send keys: 18 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="conditionDisplay"]], [u]])
+11:59:20.520 INFO - Done: [send keys: 18 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="conditionDisplay"]], [u]]
+11:59:20.523 INFO - Executing: [find element: By.cssSelector: #newRiskAssessment input[name="conditionDisplay"]])
+11:59:20.544 INFO - Done: [find element: By.cssSelector: #newRiskAssessment input[name="conditionDisplay"]]
+11:59:20.548 INFO - Executing: [send keys: 18 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="conditionDisplay"]], [l]])
+11:59:20.571 INFO - Done: [send keys: 18 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="conditionDisplay"]], [l]]
+11:59:20.574 INFO - Executing: [find element: By.cssSelector: #newRiskAssessment input[name="conditionDisplay"]])
+11:59:20.602 INFO - Done: [find element: By.cssSelector: #newRiskAssessment input[name="conditionDisplay"]]
+11:59:20.605 INFO - Executing: [send keys: 18 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="conditionDisplay"]], [t]])
+11:59:20.633 INFO - Done: [send keys: 18 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="conditionDisplay"]], [t]]
+11:59:20.637 INFO - Executing: [find element: By.cssSelector: #newRiskAssessment input[name="conditionDisplay"]])
+11:59:20.670 INFO - Done: [find element: By.cssSelector: #newRiskAssessment input[name="conditionDisplay"]]
+11:59:20.674 INFO - Executing: [send keys: 18 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="conditionDisplay"]], [i]])
+11:59:20.701 INFO - Done: [send keys: 18 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="conditionDisplay"]], [i]]
+11:59:20.705 INFO - Executing: [find element: By.cssSelector: #newRiskAssessment input[name="conditionDisplay"]])
+11:59:20.732 INFO - Done: [find element: By.cssSelector: #newRiskAssessment input[name="conditionDisplay"]]
+11:59:20.735 INFO - Executing: [send keys: 18 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="conditionDisplay"]], [p]])
+11:59:20.760 INFO - Done: [send keys: 18 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="conditionDisplay"]], [p]]
+11:59:20.764 INFO - Executing: [find element: By.cssSelector: #newRiskAssessment input[name="conditionDisplay"]])
+11:59:20.795 INFO - Done: [find element: By.cssSelector: #newRiskAssessment input[name="conditionDisplay"]]
+11:59:20.799 INFO - Executing: [send keys: 18 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="conditionDisplay"]], [l]])
+11:59:20.827 INFO - Done: [send keys: 18 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="conditionDisplay"]], [l]]
+11:59:20.831 INFO - Executing: [find element: By.cssSelector: #newRiskAssessment input[name="conditionDisplay"]])
+11:59:20.856 INFO - Done: [find element: By.cssSelector: #newRiskAssessment input[name="conditionDisplay"]]
+11:59:20.860 INFO - Executing: [send keys: 18 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="conditionDisplay"]], [e]])
+11:59:20.883 INFO - Done: [send keys: 18 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="conditionDisplay"]], [e]]
+11:59:20.887 INFO - Executing: [find element: By.cssSelector: #newRiskAssessment input[name="conditionDisplay"]])
+11:59:20.909 INFO - Done: [find element: By.cssSelector: #newRiskAssessment input[name="conditionDisplay"]]
+11:59:20.914 INFO - Executing: [send keys: 18 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="conditionDisplay"]], [ ]])
+11:59:20.935 INFO - Done: [send keys: 18 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="conditionDisplay"]], [ ]]
+11:59:20.938 INFO - Executing: [find element: By.cssSelector: #newRiskAssessment input[name="conditionDisplay"]])
+11:59:20.966 INFO - Done: [find element: By.cssSelector: #newRiskAssessment input[name="conditionDisplay"]]
+11:59:20.969 INFO - Executing: [send keys: 18 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="conditionDisplay"]], [S]])
+11:59:20.988 INFO - Done: [send keys: 18 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="conditionDisplay"]], [S]]
+11:59:20.991 INFO - Executing: [find element: By.cssSelector: #newRiskAssessment input[name="conditionDisplay"]])
+11:59:21.013 INFO - Done: [find element: By.cssSelector: #newRiskAssessment input[name="conditionDisplay"]]
+11:59:21.016 INFO - Executing: [send keys: 18 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="conditionDisplay"]], [c]])
+11:59:21.036 INFO - Done: [send keys: 18 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="conditionDisplay"]], [c]]
+11:59:21.039 INFO - Executing: [find element: By.cssSelector: #newRiskAssessment input[name="conditionDisplay"]])
+11:59:21.062 INFO - Done: [find element: By.cssSelector: #newRiskAssessment input[name="conditionDisplay"]]
+11:59:21.065 INFO - Executing: [send keys: 18 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="conditionDisplay"]], [l]])
+11:59:21.083 INFO - Done: [send keys: 18 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="conditionDisplay"]], [l]]
+11:59:21.087 INFO - Executing: [find element: By.cssSelector: #newRiskAssessment input[name="conditionDisplay"]])
+11:59:21.113 INFO - Done: [find element: By.cssSelector: #newRiskAssessment input[name="conditionDisplay"]]
+11:59:21.116 INFO - Executing: [send keys: 18 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="conditionDisplay"]], [e]])
+11:59:21.137 INFO - Done: [send keys: 18 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="conditionDisplay"]], [e]]
+11:59:21.140 INFO - Executing: [find element: By.cssSelector: #newRiskAssessment input[name="conditionDisplay"]])
+11:59:21.175 INFO - Done: [find element: By.cssSelector: #newRiskAssessment input[name="conditionDisplay"]]
+11:59:21.178 INFO - Executing: [send keys: 18 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="conditionDisplay"]], [r]])
+11:59:21.205 INFO - Done: [send keys: 18 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="conditionDisplay"]], [r]]
+11:59:21.210 INFO - Executing: [find element: By.cssSelector: #newRiskAssessment input[name="conditionDisplay"]])
+11:59:21.232 INFO - Done: [find element: By.cssSelector: #newRiskAssessment input[name="conditionDisplay"]]
+11:59:21.235 INFO - Executing: [send keys: 18 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="conditionDisplay"]], [o]])
+11:59:21.253 INFO - Done: [send keys: 18 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="conditionDisplay"]], [o]]
+11:59:21.257 INFO - Executing: [find element: By.cssSelector: #newRiskAssessment input[name="conditionDisplay"]])
+11:59:21.280 INFO - Done: [find element: By.cssSelector: #newRiskAssessment input[name="conditionDisplay"]]
+11:59:21.283 INFO - Executing: [send keys: 18 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="conditionDisplay"]], [s]])
+11:59:21.300 INFO - Done: [send keys: 18 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="conditionDisplay"]], [s]]
+11:59:21.303 INFO - Executing: [find element: By.cssSelector: #newRiskAssessment input[name="conditionDisplay"]])
+11:59:21.326 INFO - Done: [find element: By.cssSelector: #newRiskAssessment input[name="conditionDisplay"]]
+11:59:21.329 INFO - Executing: [send keys: 18 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="conditionDisplay"]], [i]])
+11:59:21.347 INFO - Done: [send keys: 18 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="conditionDisplay"]], [i]]
+11:59:21.350 INFO - Executing: [find element: By.cssSelector: #newRiskAssessment input[name="conditionDisplay"]])
+11:59:21.372 INFO - Done: [find element: By.cssSelector: #newRiskAssessment input[name="conditionDisplay"]]
+11:59:21.374 INFO - Executing: [send keys: 18 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="conditionDisplay"]], [s]])
+11:59:21.393 INFO - Done: [send keys: 18 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="conditionDisplay"]], [s]]
+11:59:21.397 INFO - Executing: [find element: By.cssSelector: #newRiskAssessment input[name="performerDisplay"]])
+11:59:21.430 INFO - Done: [find element: By.cssSelector: #newRiskAssessment input[name="performerDisplay"]]
+11:59:21.433 INFO - Executing: [send keys: 20 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]], [G]])
+11:59:21.483 INFO - Done: [send keys: 20 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]], [G]]
+11:59:21.486 INFO - Executing: [find element: By.cssSelector: #newRiskAssessment input[name="performerDisplay"]])
+11:59:21.510 INFO - Done: [find element: By.cssSelector: #newRiskAssessment input[name="performerDisplay"]]
+11:59:21.514 INFO - Executing: [send keys: 20 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]], [r]])
+11:59:21.539 INFO - Done: [send keys: 20 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]], [r]]
+11:59:21.541 INFO - Executing: [find element: By.cssSelector: #newRiskAssessment input[name="performerDisplay"]])
+11:59:21.566 INFO - Done: [find element: By.cssSelector: #newRiskAssessment input[name="performerDisplay"]]
+11:59:21.569 INFO - Executing: [send keys: 20 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]], [e]])
+11:59:21.592 INFO - Done: [send keys: 20 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]], [e]]
+11:59:21.594 INFO - Executing: [find element: By.cssSelector: #newRiskAssessment input[name="performerDisplay"]])
+11:59:21.624 INFO - Done: [find element: By.cssSelector: #newRiskAssessment input[name="performerDisplay"]]
+11:59:21.627 INFO - Executing: [send keys: 20 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]], [g]])
+11:59:21.650 INFO - Done: [send keys: 20 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]], [g]]
+11:59:21.654 INFO - Executing: [find element: By.cssSelector: #newRiskAssessment input[name="performerDisplay"]])
+11:59:21.678 INFO - Done: [find element: By.cssSelector: #newRiskAssessment input[name="performerDisplay"]]
+11:59:21.682 INFO - Executing: [send keys: 20 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]], [o]])
+11:59:21.705 INFO - Done: [send keys: 20 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]], [o]]
+11:59:21.707 INFO - Executing: [find element: By.cssSelector: #newRiskAssessment input[name="performerDisplay"]])
+11:59:21.729 INFO - Done: [find element: By.cssSelector: #newRiskAssessment input[name="performerDisplay"]]
+11:59:21.734 INFO - Executing: [send keys: 20 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]], [r]])
+11:59:21.756 INFO - Done: [send keys: 20 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]], [r]]
+11:59:21.759 INFO - Executing: [find element: By.cssSelector: #newRiskAssessment input[name="performerDisplay"]])
+11:59:21.783 INFO - Done: [find element: By.cssSelector: #newRiskAssessment input[name="performerDisplay"]]
+11:59:21.786 INFO - Executing: [send keys: 20 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]], [y]])
+11:59:21.808 INFO - Done: [send keys: 20 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]], [y]]
+11:59:21.811 INFO - Executing: [find element: By.cssSelector: #newRiskAssessment input[name="performerDisplay"]])
+11:59:21.836 INFO - Done: [find element: By.cssSelector: #newRiskAssessment input[name="performerDisplay"]]
+11:59:21.838 INFO - Executing: [send keys: 20 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]], [ ]])
+11:59:21.863 INFO - Done: [send keys: 20 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]], [ ]]
+11:59:21.865 INFO - Executing: [find element: By.cssSelector: #newRiskAssessment input[name="performerDisplay"]])
+11:59:21.889 INFO - Done: [find element: By.cssSelector: #newRiskAssessment input[name="performerDisplay"]]
+11:59:21.892 INFO - Executing: [send keys: 20 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]], [H]])
+11:59:21.914 INFO - Done: [send keys: 20 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]], [H]]
+11:59:21.918 INFO - Executing: [find element: By.cssSelector: #newRiskAssessment input[name="performerDisplay"]])
+11:59:21.943 INFO - Done: [find element: By.cssSelector: #newRiskAssessment input[name="performerDisplay"]]
+11:59:21.947 INFO - Executing: [send keys: 20 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]], [o]])
+11:59:21.970 INFO - Done: [send keys: 20 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]], [o]]
+11:59:21.977 INFO - Executing: [find element: By.cssSelector: #newRiskAssessment input[name="performerDisplay"]])
+11:59:22.000 INFO - Done: [find element: By.cssSelector: #newRiskAssessment input[name="performerDisplay"]]
+11:59:22.004 INFO - Executing: [send keys: 20 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]], [u]])
+11:59:22.024 INFO - Done: [send keys: 20 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]], [u]]
+11:59:22.028 INFO - Executing: [find element: By.cssSelector: #newRiskAssessment input[name="performerDisplay"]])
+11:59:22.049 INFO - Done: [find element: By.cssSelector: #newRiskAssessment input[name="performerDisplay"]]
+11:59:22.052 INFO - Executing: [send keys: 20 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]], [s]])
+11:59:22.070 INFO - Done: [send keys: 20 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]], [s]]
+11:59:22.078 INFO - Executing: [find element: By.cssSelector: #newRiskAssessment input[name="performerDisplay"]])
+11:59:22.100 INFO - Done: [find element: By.cssSelector: #newRiskAssessment input[name="performerDisplay"]]
+11:59:22.108 INFO - Executing: [send keys: 20 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]], [e]])
+11:59:22.131 INFO - Done: [send keys: 20 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]], [e]]
+11:59:22.135 INFO - Executing: [find element: By.cssSelector: #newRiskAssessment input[name="predictionOutcome"]])
+11:59:22.171 INFO - Done: [find element: By.cssSelector: #newRiskAssessment input[name="predictionOutcome"]]
+11:59:22.176 INFO - Executing: [send keys: 22 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="predictionOutcome"]], [P]])
+11:59:22.231 INFO - Done: [send keys: 22 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="predictionOutcome"]], [P]]
+11:59:22.235 INFO - Executing: [find element: By.cssSelector: #newRiskAssessment input[name="predictionOutcome"]])
+11:59:22.268 INFO - Done: [find element: By.cssSelector: #newRiskAssessment input[name="predictionOutcome"]]
+11:59:22.271 INFO - Executing: [send keys: 22 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="predictionOutcome"]], [o]])
+11:59:22.312 INFO - Done: [send keys: 22 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="predictionOutcome"]], [o]]
+11:59:22.316 INFO - Executing: [find element: By.cssSelector: #newRiskAssessment input[name="predictionOutcome"]])
+11:59:22.344 INFO - Done: [find element: By.cssSelector: #newRiskAssessment input[name="predictionOutcome"]]
+11:59:22.347 INFO - Executing: [send keys: 22 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="predictionOutcome"]], [s]])
+11:59:22.371 INFO - Done: [send keys: 22 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="predictionOutcome"]], [s]]
+11:59:22.374 INFO - Executing: [find element: By.cssSelector: #newRiskAssessment input[name="predictionOutcome"]])
+11:59:22.394 INFO - Done: [find element: By.cssSelector: #newRiskAssessment input[name="predictionOutcome"]]
+11:59:22.397 INFO - Executing: [send keys: 22 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="predictionOutcome"]], [i]])
+11:59:22.418 INFO - Done: [send keys: 22 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="predictionOutcome"]], [i]]
+11:59:22.421 INFO - Executing: [find element: By.cssSelector: #newRiskAssessment input[name="predictionOutcome"]])
+11:59:22.449 INFO - Done: [find element: By.cssSelector: #newRiskAssessment input[name="predictionOutcome"]]
+11:59:22.452 INFO - Executing: [send keys: 22 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="predictionOutcome"]], [t]])
+11:59:22.473 INFO - Done: [send keys: 22 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="predictionOutcome"]], [t]]
+11:59:22.475 INFO - Executing: [find element: By.cssSelector: #newRiskAssessment input[name="predictionOutcome"]])
+11:59:22.496 INFO - Done: [find element: By.cssSelector: #newRiskAssessment input[name="predictionOutcome"]]
+11:59:22.499 INFO - Executing: [send keys: 22 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="predictionOutcome"]], [i]])
+11:59:22.519 INFO - Done: [send keys: 22 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="predictionOutcome"]], [i]]
+11:59:22.522 INFO - Executing: [find element: By.cssSelector: #newRiskAssessment input[name="predictionOutcome"]])
+11:59:22.544 INFO - Done: [find element: By.cssSelector: #newRiskAssessment input[name="predictionOutcome"]]
+11:59:22.547 INFO - Executing: [send keys: 22 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="predictionOutcome"]], [v]])
+11:59:22.569 INFO - Done: [send keys: 22 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="predictionOutcome"]], [v]]
+11:59:22.572 INFO - Executing: [find element: By.cssSelector: #newRiskAssessment input[name="predictionOutcome"]])
+11:59:22.600 INFO - Done: [find element: By.cssSelector: #newRiskAssessment input[name="predictionOutcome"]]
+11:59:22.603 INFO - Executing: [send keys: 22 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="predictionOutcome"]], [e]])
+11:59:22.622 INFO - Done: [send keys: 22 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="predictionOutcome"]], [e]]
+11:59:22.625 INFO - Executing: [find element: By.cssSelector: #newRiskAssessment input[name="probabilityDecimal"]])
+11:59:22.661 INFO - Done: [find element: By.cssSelector: #newRiskAssessment input[name="probabilityDecimal"]]
+11:59:22.664 INFO - Executing: [send keys: 24 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="probabilityDecimal"]], [0]])
+11:59:22.714 INFO - Done: [send keys: 24 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="probabilityDecimal"]], [0]]
+11:59:22.717 INFO - Executing: [find element: By.cssSelector: #newRiskAssessment input[name="probabilityDecimal"]])
+11:59:22.739 INFO - Done: [find element: By.cssSelector: #newRiskAssessment input[name="probabilityDecimal"]]
+11:59:22.741 INFO - Executing: [send keys: 24 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="probabilityDecimal"]], [.]])
+11:59:22.765 INFO - Done: [send keys: 24 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="probabilityDecimal"]], [.]]
+11:59:22.769 INFO - Executing: [find element: By.cssSelector: #newRiskAssessment input[name="probabilityDecimal"]])
+11:59:22.794 INFO - Done: [find element: By.cssSelector: #newRiskAssessment input[name="probabilityDecimal"]]
+11:59:22.797 INFO - Executing: [send keys: 24 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="probabilityDecimal"]], [0]])
+11:59:22.817 INFO - Done: [send keys: 24 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="probabilityDecimal"]], [0]]
+11:59:22.820 INFO - Executing: [find element: By.cssSelector: #newRiskAssessment input[name="probabilityDecimal"]])
+11:59:22.842 INFO - Done: [find element: By.cssSelector: #newRiskAssessment input[name="probabilityDecimal"]]
+11:59:22.845 INFO - Executing: [send keys: 24 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="probabilityDecimal"]], [5]])
+11:59:22.868 INFO - Done: [send keys: 24 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="probabilityDecimal"]], [5]]
+11:59:22.871 INFO - Executing: [take screenshot])
+11:59:23.223 INFO - Done: [take screenshot]
+11:59:23.323 INFO - Executing: [find element: By.cssSelector: #newRiskAssessment #saveRiskAssessmentButton])
+11:59:23.339 INFO - Done: [find element: By.cssSelector: #newRiskAssessment #saveRiskAssessmentButton]
+11:59:23.342 INFO - Executing: [click: 26 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #newRiskAssessment #saveRiskAssessmentButton]])
+11:59:23.419 INFO - Done: [click: 26 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #newRiskAssessment #saveRiskAssessmentButton]]
+11:59:24.436 INFO - Executing: [find element: By.cssSelector: #riskAssessmentsPage .riskAssessmentListTab])
+11:59:24.455 INFO - Done: [find element: By.cssSelector: #riskAssessmentsPage .riskAssessmentListTab]
+11:59:24.457 INFO - Executing: [click: 27 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentListTab]])
+11:59:24.513 INFO - Done: [click: 27 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentListTab]]
+11:59:24.517 INFO - Executing: [find elements: By.cssSelector: #riskAssessmentsTable])
+11:59:24.535 INFO - Done: [find elements: By.cssSelector: #riskAssessmentsTable]
+11:59:24.539 INFO - Executing: [find elements: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1)])
+11:59:24.557 INFO - Done: [find elements: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1)]
+11:59:24.561 INFO - Executing: [find elements: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .subjectDisplay])
+11:59:24.580 INFO - Done: [find elements: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .subjectDisplay]
+11:59:24.583 INFO - Executing: [find elements: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .conditionDisplay])
+11:59:24.599 INFO - Done: [find elements: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .conditionDisplay]
+11:59:24.603 INFO - Executing: [find elements: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .performerDisplay])
+11:59:24.621 INFO - Done: [find elements: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .performerDisplay]
+11:59:24.625 INFO - Executing: [find elements: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .predictionOutcome])
+11:59:24.643 INFO - Done: [find elements: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .predictionOutcome]
+11:59:24.647 INFO - Executing: [find elements: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .probabilityDecimal])
+11:59:24.665 INFO - Done: [find elements: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .probabilityDecimal]
+11:59:24.671 INFO - Executing: [find elements: By.cssSelector: #riskAssessmentsTable])
+11:59:24.679 INFO - Done: [find elements: By.cssSelector: #riskAssessmentsTable]
+11:59:24.683 INFO - Executing: [find elements: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1)])
+11:59:24.692 INFO - Done: [find elements: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1)]
+11:59:24.695 INFO - Executing: [find elements: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .subjectDisplay])
+11:59:24.703 INFO - Done: [find elements: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .subjectDisplay]
+11:59:24.706 INFO - Executing: [find elements: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .conditionDisplay])
+11:59:24.713 INFO - Done: [find elements: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .conditionDisplay]
+11:59:24.717 INFO - Executing: [find elements: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .performerDisplay])
+11:59:24.726 INFO - Done: [find elements: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .performerDisplay]
+11:59:24.729 INFO - Executing: [find elements: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .predictionOutcome])
+11:59:24.737 INFO - Done: [find elements: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .predictionOutcome]
+11:59:24.741 INFO - Executing: [find elements: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .probabilityDecimal])
+11:59:24.748 INFO - Done: [find elements: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .probabilityDecimal]
+11:59:24.753 INFO - Executing: [find element: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .subjectDisplay])
+11:59:24.772 INFO - Done: [find element: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .subjectDisplay]
+11:59:24.775 INFO - Executing: [get text: 29 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .subjectDisplay]])
+11:59:24.798 INFO - Done: [get text: 29 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .subjectDisplay]]
+11:59:24.803 INFO - Executing: [find element: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .conditionDisplay])
+11:59:24.819 INFO - Done: [find element: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .conditionDisplay]
+11:59:24.822 INFO - Executing: [get text: 30 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .conditionDisplay]])
+11:59:24.844 INFO - Done: [get text: 30 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .conditionDisplay]]
+11:59:24.849 INFO - Executing: [find element: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .performerDisplay])
+11:59:24.867 INFO - Done: [find element: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .performerDisplay]
+11:59:24.870 INFO - Executing: [get text: 31 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .performerDisplay]])
+11:59:24.894 INFO - Done: [get text: 31 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .performerDisplay]]
+11:59:24.898 INFO - Executing: [find element: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .predictionOutcome])
+11:59:24.915 INFO - Done: [find element: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .predictionOutcome]
+11:59:24.918 INFO - Executing: [get text: 32 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .predictionOutcome]])
+11:59:24.942 INFO - Done: [get text: 32 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .predictionOutcome]]
+11:59:24.946 INFO - Executing: [find element: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .probabilityDecimal])
+11:59:24.965 INFO - Done: [find element: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .probabilityDecimal]
+11:59:24.968 INFO - Executing: [get text: 33 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .probabilityDecimal]])
+11:59:24.992 INFO - Done: [get text: 33 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .probabilityDecimal]]
+11:59:24.995 INFO - Executing: [take screenshot])
+11:59:25.409 INFO - Done: [take screenshot]
+11:59:25.540 INFO - Executing: [find element: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1)])
+11:59:25.558 INFO - Done: [find element: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1)]
+11:59:25.561 INFO - Executing: [click: 28 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1)]])
+11:59:25.608 INFO - Done: [click: 28 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1)]]
+11:59:25.612 INFO - Executing: [find elements: By.cssSelector: #riskAssessmentDetails])
+11:59:25.693 INFO - Done: [find elements: By.cssSelector: #riskAssessmentDetails]
+11:59:25.700 INFO - Executing: [find element: By.cssSelector: #riskAssessmentsPage .riskAssessmentDetail  input[name="subjectDisplay"]])
+11:59:25.720 INFO - Done: [find element: By.cssSelector: #riskAssessmentsPage .riskAssessmentDetail  input[name="subjectDisplay"]]
+11:59:25.724 INFO - Executing: [get element attribute: 16 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="subjectDisplay"]], value])
+11:59:25.738 INFO - Done: [get element attribute: 16 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="subjectDisplay"]], value]
+11:59:25.742 INFO - Executing: [find element: By.cssSelector: #riskAssessmentsPage .riskAssessmentDetail  input[name="conditionDisplay"]])
+11:59:25.764 INFO - Done: [find element: By.cssSelector: #riskAssessmentsPage .riskAssessmentDetail  input[name="conditionDisplay"]]
+11:59:25.766 INFO - Executing: [get element attribute: 18 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="conditionDisplay"]], value])
+11:59:25.778 INFO - Done: [get element attribute: 18 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="conditionDisplay"]], value]
+11:59:25.782 INFO - Executing: [find element: By.cssSelector: #riskAssessmentsPage .riskAssessmentDetail  input[name="performerDisplay"]])
+11:59:25.804 INFO - Done: [find element: By.cssSelector: #riskAssessmentsPage .riskAssessmentDetail  input[name="performerDisplay"]]
+11:59:25.808 INFO - Executing: [get element attribute: 20 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]], value])
+11:59:25.821 INFO - Done: [get element attribute: 20 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]], value]
+11:59:25.825 INFO - Executing: [find element: By.cssSelector: #riskAssessmentsPage .riskAssessmentDetail  input[name="predictionOutcome"]])
+11:59:25.842 INFO - Done: [find element: By.cssSelector: #riskAssessmentsPage .riskAssessmentDetail  input[name="predictionOutcome"]]
+11:59:25.845 INFO - Executing: [get element attribute: 22 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="predictionOutcome"]], value])
+11:59:25.859 INFO - Done: [get element attribute: 22 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="predictionOutcome"]], value]
+11:59:25.864 INFO - Executing: [find element: By.cssSelector: #riskAssessmentsPage .riskAssessmentDetail  input[name="probabilityDecimal"]])
+11:59:25.884 INFO - Done: [find element: By.cssSelector: #riskAssessmentsPage .riskAssessmentDetail  input[name="probabilityDecimal"]]
+11:59:25.886 INFO - Executing: [get element attribute: 24 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="probabilityDecimal"]], value])
+11:59:25.897 INFO - Done: [get element attribute: 24 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="probabilityDecimal"]], value]
+11:59:25.900 INFO - Executing: [take screenshot])
+11:59:26.237 INFO - Done: [take screenshot]
+11:59:27.327 INFO - Executing: [execute async script: var passedArgs = Array.prototype.slice.call(arguments,0); return function (){
+      Session.set('riskAssessmentUpsert', {
+        resourceType: "RiskAssessment",
+        subject: {
+          display: "",
+          reference: ""
+        },
+        text: "",
+        date: null,
+        "condition": {
+          "reference": "",
+          "display": ""
+        },
+        encounter: {},
+        performer: {
+          display: "",
+          reference: ""
+        },
+        basis:[{
+          display: "",
+          reference: ""
+        }],
+        prediction: [{
+          title: "",
+          outcome: {
+            text: ""
+          },
+          probabilityDecimal: 0,
+          rational: ""
+        }],
+        mitigation: ""
+      });
+    }.apply(window, passedArgs);, []])
+11:59:28.052 WARN - Exception thrown
 org.openqa.selenium.ScriptTimeoutException: asynchronous script timeout: result was not received in 0 seconds
   (Session info: chrome=55.0.2883.95)
   (Driver info: chromedriver=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1),platform=Mac OS X 10.11.5 x86_64) (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 69 milliseconds
+Command duration or timeout: 135 milliseconds
 Build info: version: '3.0.1', revision: '1969d75', time: '2016-10-18 09:48:19 -0700'
-System info: host: 'Abigails-MacBook-Air.local', ip: '192.168.1.129', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.5', java.version: '1.8.0_101'
+System info: host: 'Abigails-Mac-mini-3.local', ip: '10.233.156.207', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.5', java.version: '1.8.0_111'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1), userDataDir=/var/folders/2v/81c_62xx2hndkyzvptxqbc2h0000gn/T/.org.chromium.Chromium.bIKkQP}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=55.0.2883.95, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
-Session ID: 34a05736a33e26927db19bcd1c9370d0
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1), userDataDir=/var/folders/wy/x2wnhsd15rxbcnwr07g161b00000gn/T/.org.chromium.Chromium.s989Om}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=55.0.2883.95, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: efb1b1c1c83783bdf0a81410fbeff50d
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
@@ -367,208 +600,210 @@ Session ID: 34a05736a33e26927db19bcd1c9370d0
 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
 	at java.lang.Thread.run(Thread.java:745)
-14:44:45.636 WARN - Exception: asynchronous script timeout: result was not received in 0 seconds
+11:59:28.053 WARN - Exception: asynchronous script timeout: result was not received in 0 seconds
   (Session info: chrome=55.0.2883.95)
   (Driver info: chromedriver=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1),platform=Mac OS X 10.11.5 x86_64) (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 69 milliseconds
+Command duration or timeout: 135 milliseconds
 Build info: version: '3.0.1', revision: '1969d75', time: '2016-10-18 09:48:19 -0700'
-System info: host: 'Abigails-MacBook-Air.local', ip: '192.168.1.129', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.5', java.version: '1.8.0_101'
+System info: host: 'Abigails-Mac-mini-3.local', ip: '10.233.156.207', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.5', java.version: '1.8.0_111'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1), userDataDir=/var/folders/2v/81c_62xx2hndkyzvptxqbc2h0000gn/T/.org.chromium.Chromium.bIKkQP}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=55.0.2883.95, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
-Session ID: 34a05736a33e26927db19bcd1c9370d0
-14:44:47.678 INFO - Executing: [set window size])
-14:44:48.498 INFO - Done: [set window size]
-14:44:48.541 INFO - Executing: [get: http://localhost:3000])
-14:44:59.593 INFO - Done: [get: http://localhost:3000]
-14:45:00.753 INFO - Executing: [find elements: By.cssSelector: body])
-14:45:00.862 INFO - Done: [find elements: By.cssSelector: body]
-14:45:00.878 INFO - Executing: [find elements: By.cssSelector: #publicNavigation])
-14:45:00.916 INFO - Done: [find elements: By.cssSelector: #publicNavigation]
-14:45:00.924 INFO - Executing: [find elements: By.cssSelector: #signupLink])
-14:45:00.966 INFO - Done: [find elements: By.cssSelector: #signupLink]
-14:45:00.981 INFO - Executing: [find elements: By.cssSelector: #signinLink])
-14:45:01.076 INFO - Done: [find elements: By.cssSelector: #signinLink]
-14:45:01.083 INFO - Executing: [take screenshot])
-14:45:05.196 INFO - Done: [take screenshot]
-14:45:06.167 INFO - Executing: [get: http://localhost:3000/signin])
-14:45:26.771 INFO - Done: [get: http://localhost:3000/signin]
-14:45:28.196 INFO - Executing: [find elements: By.cssSelector: #signinPage])
-14:45:28.327 INFO - Done: [find elements: By.cssSelector: #signinPage]
-14:45:28.542 INFO - Executing: [get: http://localhost:3000/signup])
-14:45:59.847 INFO - Done: [get: http://localhost:3000/signup]
-14:46:00.023 INFO - Executing: [find elements: By.cssSelector: #signupPage])
-14:46:00.253 INFO - Done: [find elements: By.cssSelector: #signupPage]
-14:46:00.333 INFO - Executing: [find elements: By.cssSelector: input[name="firstName"]])
-14:46:00.730 INFO - Done: [find elements: By.cssSelector: input[name="firstName"]]
-14:46:00.823 INFO - Executing: [find elements: By.cssSelector: input[name="lastName"]])
-14:46:00.883 INFO - Done: [find elements: By.cssSelector: input[name="lastName"]]
-14:46:00.920 INFO - Executing: [find elements: By.cssSelector: input[name="emailAddress"]])
-14:46:00.967 INFO - Done: [find elements: By.cssSelector: input[name="emailAddress"]]
-14:46:00.994 INFO - Executing: [find elements: By.cssSelector: input[name="password"]])
-14:46:01.074 INFO - Done: [find elements: By.cssSelector: input[name="password"]]
-14:46:01.083 INFO - Executing: [find elements: By.cssSelector: input[name="accessCode"]])
-14:46:01.148 INFO - Done: [find elements: By.cssSelector: input[name="accessCode"]]
-14:46:01.166 INFO - Executing: [find element: By.cssSelector: input[name="firstName"]])
-14:46:01.246 INFO - Done: [find element: By.cssSelector: input[name="firstName"]]
-14:46:01.660 INFO - Executing: [clear: 6 [[ChromeDriver: chrome on MAC (34a05736a33e26927db19bcd1c9370d0)] -> css selector: input[name="firstName"]]])
-14:46:01.766 INFO - Done: [clear: 6 [[ChromeDriver: chrome on MAC (34a05736a33e26927db19bcd1c9370d0)] -> css selector: input[name="firstName"]]]
-14:46:01.788 INFO - Executing: [find element: By.cssSelector: input[name="lastName"]])
-14:46:01.848 INFO - Done: [find element: By.cssSelector: input[name="lastName"]]
-14:46:01.860 INFO - Executing: [clear: 7 [[ChromeDriver: chrome on MAC (34a05736a33e26927db19bcd1c9370d0)] -> css selector: input[name="lastName"]]])
-14:46:01.930 INFO - Done: [clear: 7 [[ChromeDriver: chrome on MAC (34a05736a33e26927db19bcd1c9370d0)] -> css selector: input[name="lastName"]]]
-14:46:02.010 INFO - Executing: [find element: By.cssSelector: input[name="emailAddress"]])
-14:46:02.088 INFO - Done: [find element: By.cssSelector: input[name="emailAddress"]]
-14:46:02.186 INFO - Executing: [clear: 8 [[ChromeDriver: chrome on MAC (34a05736a33e26927db19bcd1c9370d0)] -> css selector: input[name="emailAddress"]]])
-14:46:02.406 INFO - Done: [clear: 8 [[ChromeDriver: chrome on MAC (34a05736a33e26927db19bcd1c9370d0)] -> css selector: input[name="emailAddress"]]]
-14:46:02.448 INFO - Executing: [find element: By.cssSelector: input[name="password"]])
-14:46:02.611 INFO - Done: [find element: By.cssSelector: input[name="password"]]
-14:46:02.627 INFO - Executing: [clear: 9 [[ChromeDriver: chrome on MAC (34a05736a33e26927db19bcd1c9370d0)] -> css selector: input[name="password"]]])
-14:46:02.682 INFO - Done: [clear: 9 [[ChromeDriver: chrome on MAC (34a05736a33e26927db19bcd1c9370d0)] -> css selector: input[name="password"]]]
-14:46:02.693 INFO - Executing: [find element: By.cssSelector: input[name="accessCode"]])
-14:46:02.737 INFO - Done: [find element: By.cssSelector: input[name="accessCode"]]
-14:46:02.744 INFO - Executing: [clear: 10 [[ChromeDriver: chrome on MAC (34a05736a33e26927db19bcd1c9370d0)] -> css selector: input[name="accessCode"]]])
-14:46:02.789 INFO - Done: [clear: 10 [[ChromeDriver: chrome on MAC (34a05736a33e26927db19bcd1c9370d0)] -> css selector: input[name="accessCode"]]]
-14:46:02.797 INFO - Executing: [find element: By.cssSelector: input[name="firstName"]])
-14:46:02.812 INFO - Done: [find element: By.cssSelector: input[name="firstName"]]
-14:46:02.818 INFO - Executing: [send keys: 6 [[ChromeDriver: chrome on MAC (34a05736a33e26927db19bcd1c9370d0)] -> css selector: input[name="firstName"]], [G, r, e, g, o, r, y]])
-14:46:03.569 INFO - Done: [send keys: 6 [[ChromeDriver: chrome on MAC (34a05736a33e26927db19bcd1c9370d0)] -> css selector: input[name="firstName"]], [G, r, e, g, o, r, y]]
-14:46:03.590 INFO - Executing: [find element: By.cssSelector: input[name="lastName"]])
-14:46:03.670 INFO - Done: [find element: By.cssSelector: input[name="lastName"]]
-14:46:03.693 INFO - Executing: [send keys: 7 [[ChromeDriver: chrome on MAC (34a05736a33e26927db19bcd1c9370d0)] -> css selector: input[name="lastName"]], [H, o, u, s, e]])
-14:46:03.899 INFO - Done: [send keys: 7 [[ChromeDriver: chrome on MAC (34a05736a33e26927db19bcd1c9370d0)] -> css selector: input[name="lastName"]], [H, o, u, s, e]]
-14:46:03.910 INFO - Executing: [find element: By.cssSelector: input[name="emailAddress"]])
-14:46:03.946 INFO - Done: [find element: By.cssSelector: input[name="emailAddress"]]
-14:46:03.965 INFO - Executing: [send keys: 8 [[ChromeDriver: chrome on MAC (34a05736a33e26927db19bcd1c9370d0)] -> css selector: input[name="emailAddress"]], [h, o, u, s, e, @, t, e, s, t, ., o, r, g]])
-14:46:04.378 INFO - Done: [send keys: 8 [[ChromeDriver: chrome on MAC (34a05736a33e26927db19bcd1c9370d0)] -> css selector: input[name="emailAddress"]], [h, o, u, s, e, @, t, e, s, t, ., o, r, g]]
-14:46:04.458 INFO - Executing: [find element: By.cssSelector: input[name="password"]])
-14:46:04.515 INFO - Done: [find element: By.cssSelector: input[name="password"]]
-14:46:04.524 INFO - Executing: [send keys: 9 [[ChromeDriver: chrome on MAC (34a05736a33e26927db19bcd1c9370d0)] -> css selector: input[name="password"]], [h, o, u, s, e, 1, 2, 3]])
-14:46:05.008 INFO - Done: [send keys: 9 [[ChromeDriver: chrome on MAC (34a05736a33e26927db19bcd1c9370d0)] -> css selector: input[name="password"]], [h, o, u, s, e, 1, 2, 3]]
-14:46:05.022 INFO - Executing: [find element: By.cssSelector: input[name="accessCode"]])
-14:46:05.040 INFO - Done: [find element: By.cssSelector: input[name="accessCode"]]
-14:46:05.049 INFO - Executing: [send keys: 10 [[ChromeDriver: chrome on MAC (34a05736a33e26927db19bcd1c9370d0)] -> css selector: input[name="accessCode"]], [h, i, p, p, o, c, r, a, t, e, s]])
-14:46:05.345 INFO - Done: [send keys: 10 [[ChromeDriver: chrome on MAC (34a05736a33e26927db19bcd1c9370d0)] -> css selector: input[name="accessCode"]], [h, i, p, p, o, c, r, a, t, e, s]]
-14:46:05.374 INFO - Executing: [take screenshot])
-14:46:08.064 INFO - Done: [take screenshot]
-14:46:08.681 INFO - Executing: [find elements: By.cssSelector: #signupButton])
-14:46:08.766 INFO - Done: [find elements: By.cssSelector: #signupButton]
-14:46:08.779 INFO - Executing: [find element: By.cssSelector: #signupButton])
-14:46:08.820 INFO - Done: [find element: By.cssSelector: #signupButton]
-14:46:08.835 INFO - Executing: [click: 11 [[ChromeDriver: chrome on MAC (34a05736a33e26927db19bcd1c9370d0)] -> css selector: #signupButton]])
-14:46:09.251 INFO - Done: [click: 11 [[ChromeDriver: chrome on MAC (34a05736a33e26927db19bcd1c9370d0)] -> css selector: #signupButton]]
-14:46:10.327 INFO - Executing: [get: http://localhost:3000])
-14:46:22.577 INFO - Done: [get: http://localhost:3000]
-14:46:24.669 INFO - Executing: [find elements: By.cssSelector: #indexPage])
-14:46:24.722 INFO - Done: [find elements: By.cssSelector: #indexPage]
-14:46:24.734 INFO - Executing: [take screenshot])
-14:46:26.212 INFO - Done: [take screenshot]
-14:46:26.861 INFO - Executing: [get: http://localhost:3000/dashboard])
-14:46:33.780 INFO - Done: [get: http://localhost:3000/dashboard]
-14:46:35.838 INFO - Executing: [find elements: By.cssSelector: #dashboardPage])
-14:46:36.567 INFO - Done: [find elements: By.cssSelector: #dashboardPage]
-14:46:36.591 INFO - Executing: [take screenshot])
-14:46:37.678 INFO - Done: [take screenshot]
-14:46:38.236 INFO - Executing: [get: http://localhost:3000/patients])
-14:46:45.435 INFO - Done: [get: http://localhost:3000/patients]
-14:46:47.531 INFO - Executing: [find elements: By.cssSelector: #patientsPage])
-14:46:47.917 INFO - Done: [find elements: By.cssSelector: #patientsPage]
-14:46:47.928 INFO - Executing: [take screenshot])
-14:46:48.671 INFO - Done: [take screenshot]
-14:46:49.109 INFO - Executing: [delete session: 3b655e27-3ad5-45b1-ab60-b24e6f415638])
-14:46:49.629 INFO - Done: [delete session: 3b655e27-3ad5-45b1-ab60-b24e6f415638]
-14:46:49.682 INFO - Executing: [new session: Capabilities [{acceptSslCerts=true, loggingPrefs=org.openqa.selenium.logging.LoggingPreferences@3e2dc59b, name=Routes Public, browserName=chrome, javascriptEnabled=true, platform=ANY}]])
-14:46:49.685 INFO - Creating a new session for Capabilities [{acceptSslCerts=true, loggingPrefs=org.openqa.selenium.logging.LoggingPreferences@3e2dc59b, name=Routes Public, browserName=chrome, javascriptEnabled=true, platform=ANY}]
-Starting ChromeDriver 2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1) on port 21796
-Only local connections are allowed.
-14:46:50.350 INFO - Attempting bi-dialect session, assuming Postel's Law holds true on the remote end
-14:46:53.148 INFO - Detected dialect: OSS
-14:46:53.219 INFO - Done: [new session: Capabilities [{acceptSslCerts=true, loggingPrefs=org.openqa.selenium.logging.LoggingPreferences@3e2dc59b, name=Routes Public, browserName=chrome, javascriptEnabled=true, platform=ANY}]]
-14:46:53.295 INFO - Executing: [get: http://localhost:3000])
-14:47:05.949 INFO - Done: [get: http://localhost:3000]
-14:47:09.029 INFO - Executing: [execute async script: var passedArgs = Array.prototype.slice.call(arguments,0); return function (){
-        Meteor.call('initializeTestUsers');
-      }.apply(window, passedArgs);, []])
-14:47:10.027 WARN - Exception thrown
-org.openqa.selenium.ScriptTimeoutException: asynchronous script timeout: result was not received in 0 seconds
-  (Session info: chrome=55.0.2883.95)
-  (Driver info: chromedriver=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1),platform=Mac OS X 10.11.5 x86_64) (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 46 milliseconds
-Build info: version: '3.0.1', revision: '1969d75', time: '2016-10-18 09:48:19 -0700'
-System info: host: 'Abigails-MacBook-Air.local', ip: '192.168.1.129', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.5', java.version: '1.8.0_101'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1), userDataDir=/var/folders/2v/81c_62xx2hndkyzvptxqbc2h0000gn/T/.org.chromium.Chromium.zHxfYR}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=55.0.2883.95, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
-Session ID: e6cd3ae5a6aba59fafa81a5189350000
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:216)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:168)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:635)
-	at org.openqa.selenium.remote.RemoteWebDriver.executeAsyncScript(RemoteWebDriver.java:555)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.openqa.selenium.support.events.EventFiringWebDriver$2.invoke(EventFiringWebDriver.java:103)
-	at com.sun.proxy.$Proxy4.executeAsyncScript(Unknown Source)
-	at org.openqa.selenium.support.events.EventFiringWebDriver.executeAsyncScript(EventFiringWebDriver.java:228)
-	at org.openqa.selenium.remote.server.handler.ExecuteAsyncScript.call(ExecuteAsyncScript.java:58)
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
-	at org.openqa.selenium.remote.server.DefaultSession$1.run(DefaultSession.java:176)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
-	at java.lang.Thread.run(Thread.java:745)
-14:47:10.035 WARN - Exception: asynchronous script timeout: result was not received in 0 seconds
-  (Session info: chrome=55.0.2883.95)
-  (Driver info: chromedriver=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1),platform=Mac OS X 10.11.5 x86_64) (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 46 milliseconds
-Build info: version: '3.0.1', revision: '1969d75', time: '2016-10-18 09:48:19 -0700'
-System info: host: 'Abigails-MacBook-Air.local', ip: '192.168.1.129', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.11.5', java.version: '1.8.0_101'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1), userDataDir=/var/folders/2v/81c_62xx2hndkyzvptxqbc2h0000gn/T/.org.chromium.Chromium.zHxfYR}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=55.0.2883.95, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
-Session ID: e6cd3ae5a6aba59fafa81a5189350000
-14:47:12.439 INFO - Executing: [set window size])
-14:47:13.194 INFO - Done: [set window size]
-14:47:13.434 INFO - Executing: [get: http://localhost:3000])
-14:47:27.945 INFO - Done: [get: http://localhost:3000]
-14:47:29.082 INFO - Executing: [find elements: By.cssSelector: body])
-14:47:29.185 INFO - Done: [find elements: By.cssSelector: body]
-14:47:29.199 INFO - Executing: [find elements: By.cssSelector: #publicNavigation])
-14:47:29.269 INFO - Done: [find elements: By.cssSelector: #publicNavigation]
-14:47:29.287 INFO - Executing: [find elements: By.cssSelector: #signupLink])
-14:47:29.355 INFO - Done: [find elements: By.cssSelector: #signupLink]
-14:47:29.365 INFO - Executing: [find elements: By.cssSelector: #signinLink])
-14:47:29.449 INFO - Done: [find elements: By.cssSelector: #signinLink]
-14:47:29.569 INFO - Executing: [take screenshot])
-14:47:31.350 INFO - Done: [take screenshot]
-14:47:36.863 INFO - Executing: [get: http://localhost:3000/about])
-14:47:57.598 INFO - Done: [get: http://localhost:3000/about]
-14:47:58.898 INFO - Executing: [find elements: By.cssSelector: #aboutPage])
-14:47:58.959 INFO - Done: [find elements: By.cssSelector: #aboutPage]
-14:47:58.970 INFO - Executing: [take screenshot])
-14:47:59.815 INFO - Done: [take screenshot]
-14:48:00.783 INFO - Executing: [get: http://localhost:3000/privacy])
-14:48:08.545 INFO - Done: [get: http://localhost:3000/privacy]
-14:48:09.838 INFO - Executing: [find elements: By.cssSelector: #privacyPage])
-14:48:10.019 INFO - Done: [find elements: By.cssSelector: #privacyPage]
-14:48:10.031 INFO - Executing: [take screenshot])
-14:48:10.943 INFO - Done: [take screenshot]
-14:48:11.230 INFO - Executing: [get: http://localhost:3000/support])
-14:48:15.973 INFO - Done: [get: http://localhost:3000/support]
-14:48:17.223 INFO - Executing: [find elements: By.cssSelector: #forumPage])
-14:48:17.552 INFO - Done: [find elements: By.cssSelector: #forumPage]
-14:48:17.562 INFO - Executing: [take screenshot])
-14:48:18.536 INFO - Done: [take screenshot]
-14:48:18.888 INFO - Executing: [get: http://localhost:3000/signup])
-14:48:26.536 INFO - Done: [get: http://localhost:3000/signup]
-14:48:27.799 INFO - Executing: [find elements: By.cssSelector: #signupPage])
-14:48:27.840 INFO - Done: [find elements: By.cssSelector: #signupPage]
-14:48:27.860 INFO - Executing: [take screenshot])
-14:48:28.636 INFO - Done: [take screenshot]
-14:48:28.958 INFO - Executing: [get: http://localhost:3000/signin])
-14:48:34.867 INFO - Done: [get: http://localhost:3000/signin]
-14:48:36.220 INFO - Executing: [find elements: By.cssSelector: #signinPage])
-14:48:36.709 INFO - Done: [find elements: By.cssSelector: #signinPage]
-14:48:36.721 INFO - Executing: [take screenshot])
-14:48:37.667 INFO - Done: [take screenshot]
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1), userDataDir=/var/folders/wy/x2wnhsd15rxbcnwr07g161b00000gn/T/.org.chromium.Chromium.s989Om}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=55.0.2883.95, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: efb1b1c1c83783bdf0a81410fbeff50d
+11:59:28.241 INFO - Executing: [find element: By.cssSelector: #riskAssessmentDetails input[name="subjectDisplay"]])
+11:59:28.257 INFO - Done: [find element: By.cssSelector: #riskAssessmentDetails input[name="subjectDisplay"]]
+11:59:28.260 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="subjectDisplay"]], [J]])
+11:59:28.311 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="subjectDisplay"]], [J]]
+11:59:28.314 INFO - Executing: [find element: By.cssSelector: #riskAssessmentDetails input[name="subjectDisplay"]])
+11:59:28.344 INFO - Done: [find element: By.cssSelector: #riskAssessmentDetails input[name="subjectDisplay"]]
+11:59:28.347 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="subjectDisplay"]], [a]])
+11:59:28.370 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="subjectDisplay"]], [a]]
+11:59:28.373 INFO - Executing: [find element: By.cssSelector: #riskAssessmentDetails input[name="subjectDisplay"]])
+11:59:28.397 INFO - Done: [find element: By.cssSelector: #riskAssessmentDetails input[name="subjectDisplay"]]
+11:59:28.400 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="subjectDisplay"]], [n]])
+11:59:28.423 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="subjectDisplay"]], [n]]
+11:59:28.426 INFO - Executing: [find element: By.cssSelector: #riskAssessmentDetails input[name="subjectDisplay"]])
+11:59:28.449 INFO - Done: [find element: By.cssSelector: #riskAssessmentDetails input[name="subjectDisplay"]]
+11:59:28.452 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="subjectDisplay"]], [e]])
+11:59:28.475 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="subjectDisplay"]], [e]]
+11:59:28.502 INFO - Executing: [find element: By.cssSelector: #riskAssessmentDetails input[name="subjectDisplay"]])
+11:59:28.513 INFO - Done: [find element: By.cssSelector: #riskAssessmentDetails input[name="subjectDisplay"]]
+11:59:28.515 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="subjectDisplay"]], [ ]])
+11:59:28.538 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="subjectDisplay"]], [ ]]
+11:59:28.541 INFO - Executing: [find element: By.cssSelector: #riskAssessmentDetails input[name="subjectDisplay"]])
+11:59:28.567 INFO - Done: [find element: By.cssSelector: #riskAssessmentDetails input[name="subjectDisplay"]]
+11:59:28.570 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="subjectDisplay"]], [D]])
+11:59:28.592 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="subjectDisplay"]], [D]]
+11:59:28.595 INFO - Executing: [find element: By.cssSelector: #riskAssessmentDetails input[name="subjectDisplay"]])
+11:59:28.616 INFO - Done: [find element: By.cssSelector: #riskAssessmentDetails input[name="subjectDisplay"]]
+11:59:28.619 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="subjectDisplay"]], [o]])
+11:59:28.641 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="subjectDisplay"]], [o]]
+11:59:28.643 INFO - Executing: [find element: By.cssSelector: #riskAssessmentDetails input[name="subjectDisplay"]])
+11:59:28.671 INFO - Done: [find element: By.cssSelector: #riskAssessmentDetails input[name="subjectDisplay"]]
+11:59:28.675 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="subjectDisplay"]], [e]])
+11:59:28.695 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="subjectDisplay"]], [e]]
+11:59:28.697 INFO - Executing: [find element: By.cssSelector: #riskAssessmentDetails input[name="conditionDisplay"]])
+11:59:28.728 INFO - Done: [find element: By.cssSelector: #riskAssessmentDetails input[name="conditionDisplay"]]
+11:59:28.731 INFO - Executing: [send keys: 19 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="conditionDisplay"]], [L]])
+11:59:28.783 INFO - Done: [send keys: 19 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="conditionDisplay"]], [L]]
+11:59:28.785 INFO - Executing: [find element: By.cssSelector: #riskAssessmentDetails input[name="conditionDisplay"]])
+11:59:28.809 INFO - Done: [find element: By.cssSelector: #riskAssessmentDetails input[name="conditionDisplay"]]
+11:59:28.811 INFO - Executing: [send keys: 19 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="conditionDisplay"]], [u]])
+11:59:28.832 INFO - Done: [send keys: 19 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="conditionDisplay"]], [u]]
+11:59:28.835 INFO - Executing: [find element: By.cssSelector: #riskAssessmentDetails input[name="conditionDisplay"]])
+11:59:28.862 INFO - Done: [find element: By.cssSelector: #riskAssessmentDetails input[name="conditionDisplay"]]
+11:59:28.864 INFO - Executing: [send keys: 19 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="conditionDisplay"]], [p]])
+11:59:28.889 INFO - Done: [send keys: 19 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="conditionDisplay"]], [p]]
+11:59:28.892 INFO - Executing: [find element: By.cssSelector: #riskAssessmentDetails input[name="conditionDisplay"]])
+11:59:28.913 INFO - Done: [find element: By.cssSelector: #riskAssessmentDetails input[name="conditionDisplay"]]
+11:59:28.915 INFO - Executing: [send keys: 19 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="conditionDisplay"]], [u]])
+11:59:28.936 INFO - Done: [send keys: 19 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="conditionDisplay"]], [u]]
+11:59:28.939 INFO - Executing: [find element: By.cssSelector: #riskAssessmentDetails input[name="conditionDisplay"]])
+11:59:28.962 INFO - Done: [find element: By.cssSelector: #riskAssessmentDetails input[name="conditionDisplay"]]
+11:59:28.965 INFO - Executing: [send keys: 19 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="conditionDisplay"]], [s]])
+11:59:28.985 INFO - Done: [send keys: 19 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="conditionDisplay"]], [s]]
+11:59:28.987 INFO - Executing: [find element: By.cssSelector: #riskAssessmentDetails input[name="performerDisplay"]])
+11:59:29.024 INFO - Done: [find element: By.cssSelector: #riskAssessmentDetails input[name="performerDisplay"]]
+11:59:29.027 INFO - Executing: [send keys: 21 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]], [G]])
+11:59:29.082 INFO - Done: [send keys: 21 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]], [G]]
+11:59:29.084 INFO - Executing: [find element: By.cssSelector: #riskAssessmentDetails input[name="performerDisplay"]])
+11:59:29.106 INFO - Done: [find element: By.cssSelector: #riskAssessmentDetails input[name="performerDisplay"]]
+11:59:29.110 INFO - Executing: [send keys: 21 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]], [r]])
+11:59:29.133 INFO - Done: [send keys: 21 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]], [r]]
+11:59:29.135 INFO - Executing: [find element: By.cssSelector: #riskAssessmentDetails input[name="performerDisplay"]])
+11:59:29.161 INFO - Done: [find element: By.cssSelector: #riskAssessmentDetails input[name="performerDisplay"]]
+11:59:29.163 INFO - Executing: [send keys: 21 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]], [e]])
+11:59:29.185 INFO - Done: [send keys: 21 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]], [e]]
+11:59:29.188 INFO - Executing: [find element: By.cssSelector: #riskAssessmentDetails input[name="performerDisplay"]])
+11:59:29.215 INFO - Done: [find element: By.cssSelector: #riskAssessmentDetails input[name="performerDisplay"]]
+11:59:29.218 INFO - Executing: [send keys: 21 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]], [g]])
+11:59:29.241 INFO - Done: [send keys: 21 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]], [g]]
+11:59:29.244 INFO - Executing: [find element: By.cssSelector: #riskAssessmentDetails input[name="performerDisplay"]])
+11:59:29.270 INFO - Done: [find element: By.cssSelector: #riskAssessmentDetails input[name="performerDisplay"]]
+11:59:29.273 INFO - Executing: [send keys: 21 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]], [o]])
+11:59:29.294 INFO - Done: [send keys: 21 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]], [o]]
+11:59:29.296 INFO - Executing: [find element: By.cssSelector: #riskAssessmentDetails input[name="performerDisplay"]])
+11:59:29.316 INFO - Done: [find element: By.cssSelector: #riskAssessmentDetails input[name="performerDisplay"]]
+11:59:29.318 INFO - Executing: [send keys: 21 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]], [r]])
+11:59:29.343 INFO - Done: [send keys: 21 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]], [r]]
+11:59:29.346 INFO - Executing: [find element: By.cssSelector: #riskAssessmentDetails input[name="performerDisplay"]])
+11:59:29.380 INFO - Done: [find element: By.cssSelector: #riskAssessmentDetails input[name="performerDisplay"]]
+11:59:29.383 INFO - Executing: [send keys: 21 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]], [y]])
+11:59:29.409 INFO - Done: [send keys: 21 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]], [y]]
+11:59:29.412 INFO - Executing: [find element: By.cssSelector: #riskAssessmentDetails input[name="performerDisplay"]])
+11:59:29.442 INFO - Done: [find element: By.cssSelector: #riskAssessmentDetails input[name="performerDisplay"]]
+11:59:29.445 INFO - Executing: [send keys: 21 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]], [ ]])
+11:59:29.470 INFO - Done: [send keys: 21 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]], [ ]]
+11:59:29.472 INFO - Executing: [find element: By.cssSelector: #riskAssessmentDetails input[name="performerDisplay"]])
+11:59:29.533 INFO - Done: [find element: By.cssSelector: #riskAssessmentDetails input[name="performerDisplay"]]
+11:59:29.536 INFO - Executing: [send keys: 21 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]], [H]])
+11:59:29.575 INFO - Done: [send keys: 21 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]], [H]]
+11:59:29.579 INFO - Executing: [find element: By.cssSelector: #riskAssessmentDetails input[name="performerDisplay"]])
+11:59:29.606 INFO - Done: [find element: By.cssSelector: #riskAssessmentDetails input[name="performerDisplay"]]
+11:59:29.609 INFO - Executing: [send keys: 21 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]], [o]])
+11:59:29.630 INFO - Done: [send keys: 21 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]], [o]]
+11:59:29.634 INFO - Executing: [find element: By.cssSelector: #riskAssessmentDetails input[name="performerDisplay"]])
+11:59:29.662 INFO - Done: [find element: By.cssSelector: #riskAssessmentDetails input[name="performerDisplay"]]
+11:59:29.664 INFO - Executing: [send keys: 21 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]], [u]])
+11:59:29.690 INFO - Done: [send keys: 21 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]], [u]]
+11:59:29.693 INFO - Executing: [find element: By.cssSelector: #riskAssessmentDetails input[name="performerDisplay"]])
+11:59:29.718 INFO - Done: [find element: By.cssSelector: #riskAssessmentDetails input[name="performerDisplay"]]
+11:59:29.721 INFO - Executing: [send keys: 21 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]], [s]])
+11:59:29.742 INFO - Done: [send keys: 21 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]], [s]]
+11:59:29.745 INFO - Executing: [find element: By.cssSelector: #riskAssessmentDetails input[name="performerDisplay"]])
+11:59:29.767 INFO - Done: [find element: By.cssSelector: #riskAssessmentDetails input[name="performerDisplay"]]
+11:59:29.770 INFO - Executing: [send keys: 21 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]], [e]])
+11:59:29.789 INFO - Done: [send keys: 21 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]], [e]]
+11:59:29.792 INFO - Executing: [find element: By.cssSelector: #riskAssessmentDetails input[name="predictionOutcome"]])
+11:59:29.823 INFO - Done: [find element: By.cssSelector: #riskAssessmentDetails input[name="predictionOutcome"]]
+11:59:29.825 INFO - Executing: [send keys: 23 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="predictionOutcome"]], [P]])
+11:59:29.878 INFO - Done: [send keys: 23 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="predictionOutcome"]], [P]]
+11:59:29.881 INFO - Executing: [find element: By.cssSelector: #riskAssessmentDetails input[name="predictionOutcome"]])
+11:59:29.912 INFO - Done: [find element: By.cssSelector: #riskAssessmentDetails input[name="predictionOutcome"]]
+11:59:29.916 INFO - Executing: [send keys: 23 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="predictionOutcome"]], [o]])
+11:59:29.938 INFO - Done: [send keys: 23 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="predictionOutcome"]], [o]]
+11:59:29.941 INFO - Executing: [find element: By.cssSelector: #riskAssessmentDetails input[name="predictionOutcome"]])
+11:59:29.965 INFO - Done: [find element: By.cssSelector: #riskAssessmentDetails input[name="predictionOutcome"]]
+11:59:29.967 INFO - Executing: [send keys: 23 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="predictionOutcome"]], [s]])
+11:59:29.990 INFO - Done: [send keys: 23 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="predictionOutcome"]], [s]]
+11:59:29.993 INFO - Executing: [find element: By.cssSelector: #riskAssessmentDetails input[name="predictionOutcome"]])
+11:59:30.017 INFO - Done: [find element: By.cssSelector: #riskAssessmentDetails input[name="predictionOutcome"]]
+11:59:30.020 INFO - Executing: [send keys: 23 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="predictionOutcome"]], [i]])
+11:59:30.042 INFO - Done: [send keys: 23 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="predictionOutcome"]], [i]]
+11:59:30.048 INFO - Executing: [find element: By.cssSelector: #riskAssessmentDetails input[name="predictionOutcome"]])
+11:59:30.070 INFO - Done: [find element: By.cssSelector: #riskAssessmentDetails input[name="predictionOutcome"]]
+11:59:30.075 INFO - Executing: [send keys: 23 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="predictionOutcome"]], [t]])
+11:59:30.095 INFO - Done: [send keys: 23 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="predictionOutcome"]], [t]]
+11:59:30.097 INFO - Executing: [find element: By.cssSelector: #riskAssessmentDetails input[name="predictionOutcome"]])
+11:59:30.118 INFO - Done: [find element: By.cssSelector: #riskAssessmentDetails input[name="predictionOutcome"]]
+11:59:30.120 INFO - Executing: [send keys: 23 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="predictionOutcome"]], [i]])
+11:59:30.141 INFO - Done: [send keys: 23 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="predictionOutcome"]], [i]]
+11:59:30.143 INFO - Executing: [find element: By.cssSelector: #riskAssessmentDetails input[name="predictionOutcome"]])
+11:59:30.167 INFO - Done: [find element: By.cssSelector: #riskAssessmentDetails input[name="predictionOutcome"]]
+11:59:30.170 INFO - Executing: [send keys: 23 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="predictionOutcome"]], [v]])
+11:59:30.192 INFO - Done: [send keys: 23 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="predictionOutcome"]], [v]]
+11:59:30.195 INFO - Executing: [find element: By.cssSelector: #riskAssessmentDetails input[name="predictionOutcome"]])
+11:59:30.217 INFO - Done: [find element: By.cssSelector: #riskAssessmentDetails input[name="predictionOutcome"]]
+11:59:30.220 INFO - Executing: [send keys: 23 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="predictionOutcome"]], [e]])
+11:59:30.240 INFO - Done: [send keys: 23 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="predictionOutcome"]], [e]]
+11:59:30.243 INFO - Executing: [find element: By.cssSelector: #riskAssessmentDetails input[name="probabilityDecimal"]])
+11:59:30.274 INFO - Done: [find element: By.cssSelector: #riskAssessmentDetails input[name="probabilityDecimal"]]
+11:59:30.276 INFO - Executing: [send keys: 25 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="probabilityDecimal"]], [0]])
+11:59:30.319 INFO - Done: [send keys: 25 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="probabilityDecimal"]], [0]]
+11:59:30.322 INFO - Executing: [find element: By.cssSelector: #riskAssessmentDetails input[name="probabilityDecimal"]])
+11:59:30.344 INFO - Done: [find element: By.cssSelector: #riskAssessmentDetails input[name="probabilityDecimal"]]
+11:59:30.346 INFO - Executing: [send keys: 25 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="probabilityDecimal"]], [.]])
+11:59:30.369 INFO - Done: [send keys: 25 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="probabilityDecimal"]], [.]]
+11:59:30.372 INFO - Executing: [find element: By.cssSelector: #riskAssessmentDetails input[name="probabilityDecimal"]])
+11:59:30.397 INFO - Done: [find element: By.cssSelector: #riskAssessmentDetails input[name="probabilityDecimal"]]
+11:59:30.399 INFO - Executing: [send keys: 25 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="probabilityDecimal"]], [1]])
+11:59:30.419 INFO - Done: [send keys: 25 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="probabilityDecimal"]], [1]]
+11:59:30.422 INFO - Executing: [find element: By.cssSelector: #riskAssessmentDetails input[name="probabilityDecimal"]])
+11:59:30.443 INFO - Done: [find element: By.cssSelector: #riskAssessmentDetails input[name="probabilityDecimal"]]
+11:59:30.446 INFO - Executing: [send keys: 25 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="probabilityDecimal"]], [0]])
+11:59:30.466 INFO - Done: [send keys: 25 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsPage .riskAssessmentDetail input[name="probabilityDecimal"]], [0]]
+11:59:30.468 INFO - Executing: [take screenshot])
+11:59:30.818 INFO - Done: [take screenshot]
+11:59:30.897 INFO - Executing: [find elements: By.cssSelector: #riskAssessmentDetails #saveRiskAssessmentButton])
+11:59:30.914 INFO - Done: [find elements: By.cssSelector: #riskAssessmentDetails #saveRiskAssessmentButton]
+11:59:30.917 INFO - Executing: [find element: By.cssSelector: #riskAssessmentDetails #saveRiskAssessmentButton])
+11:59:30.932 INFO - Done: [find element: By.cssSelector: #riskAssessmentDetails #saveRiskAssessmentButton]
+11:59:30.934 INFO - Executing: [click: 34 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentDetails #saveRiskAssessmentButton]])
+11:59:31.008 INFO - Done: [click: 34 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentDetails #saveRiskAssessmentButton]]
+11:59:33.022 INFO - Executing: [find elements: By.cssSelector: #riskAssessmentsTable])
+11:59:33.032 INFO - Done: [find elements: By.cssSelector: #riskAssessmentsTable]
+11:59:33.036 INFO - Executing: [find elements: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1)])
+11:59:33.045 INFO - Done: [find elements: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1)]
+11:59:33.050 INFO - Executing: [find elements: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .subjectDisplay])
+11:59:33.057 INFO - Done: [find elements: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .subjectDisplay]
+11:59:33.061 INFO - Executing: [find elements: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .conditionDisplay])
+11:59:33.069 INFO - Done: [find elements: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .conditionDisplay]
+11:59:33.072 INFO - Executing: [find elements: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .performerDisplay])
+11:59:33.079 INFO - Done: [find elements: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .performerDisplay]
+11:59:33.082 INFO - Executing: [find elements: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .predictionOutcome])
+11:59:33.089 INFO - Done: [find elements: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .predictionOutcome]
+11:59:33.092 INFO - Executing: [find elements: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .probabilityDecimal])
+11:59:33.101 INFO - Done: [find elements: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .probabilityDecimal]
+11:59:33.104 INFO - Executing: [find element: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .subjectDisplay])
+11:59:33.113 INFO - Done: [find element: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .subjectDisplay]
+11:59:33.115 INFO - Executing: [get text: 29 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .subjectDisplay]])
+11:59:33.125 INFO - Done: [get text: 29 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .subjectDisplay]]
+11:59:33.128 INFO - Executing: [find element: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .conditionDisplay])
+11:59:33.135 INFO - Done: [find element: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .conditionDisplay]
+11:59:33.137 INFO - Executing: [get text: 30 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .conditionDisplay]])
+11:59:33.148 INFO - Done: [get text: 30 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .conditionDisplay]]
+11:59:33.151 INFO - Executing: [find element: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .performerDisplay])
+11:59:33.159 INFO - Done: [find element: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .performerDisplay]
+11:59:33.162 INFO - Executing: [get text: 31 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .performerDisplay]])
+11:59:33.171 INFO - Done: [get text: 31 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .performerDisplay]]
+11:59:33.174 INFO - Executing: [find element: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .predictionOutcome])
+11:59:33.181 INFO - Done: [find element: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .predictionOutcome]
+11:59:33.183 INFO - Executing: [get text: 32 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .predictionOutcome]])
+11:59:33.194 INFO - Done: [get text: 32 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .predictionOutcome]]
+11:59:33.198 INFO - Executing: [find element: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .probabilityDecimal])
+11:59:33.206 INFO - Done: [find element: By.cssSelector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .probabilityDecimal]
+11:59:33.208 INFO - Executing: [get text: 33 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .probabilityDecimal]])
+11:59:33.217 INFO - Done: [get text: 33 [[ChromeDriver: chrome on MAC (efb1b1c1c83783bdf0a81410fbeff50d)] -> css selector: #riskAssessmentsTable .riskAssessmentRow:nth-child(1) .probabilityDecimal]]
+11:59:33.220 INFO - Executing: [take screenshot])
+11:59:33.606 INFO - Done: [take screenshot]
+11:59:33.741 INFO - Executing: [delete session: 6e5d67c4-6473-4d5c-8f27-0f158dae3698])
+11:59:33.875 INFO - Done: [delete session: 6e5d67c4-6473-4d5c-8f27-0f158dae3698]

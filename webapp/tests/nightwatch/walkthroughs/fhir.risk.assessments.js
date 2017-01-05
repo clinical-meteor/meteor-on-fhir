@@ -81,7 +81,7 @@ module.exports = {
 
     client.page
       .riskAssessmentsPage()
-      .upsertRiskAssessment('MRI', 'Philips', 'Gyroscan', '22456', '#newRiskAssessment')
+      .upsertRiskAssessment('Jane Doe', 'Multiple Sclerosis', 'Gregory House', 'Positive', '0.05', '#newRiskAssessment')
       .saveScreenshot('tests/nightwatch/screenshots/riskAssessments.crud/B-RiskAssessmentList.png', client);
 
     client
@@ -92,14 +92,14 @@ module.exports = {
       .riskAssessmentsPage()
       .selectListTab()
       .verifyRiskAssessmentListCard()
-      .listContainsRiskAssessment(1, 'MRI', 'Philips', 'Gyroscan', '22456')
+      .listContainsRiskAssessment(1, 'Jane Doe', 'Multiple Sclerosis', 'Gregory House', 'Positive', '0.05')
       .saveScreenshot('tests/nightwatch/screenshots/riskAssessments.crud/B-RiskAssessmentList.png', client);
   },
   'riskAssessment detail': function (client) {
     client.page
       .riskAssessmentsPage()
       .selectRiskAssessment(1)
-      .verifyRiskAssessmentDetails('MRI', 'Philips', 'Gyroscan', '22456')
+      .verifyRiskAssessmentDetails('Jane Doe', 'Multiple Sclerosis', 'Gregory House', 'Positive', '0.05')
       .saveScreenshot('tests/nightwatch/screenshots/riskAssessments.crud/C-RiskAssessmentDetails.png', client);
   },
   'edit riskAssessment': function (client) {
@@ -139,7 +139,7 @@ module.exports = {
 
     client.page
       .riskAssessmentsPage()
-      .upsertRiskAssessment('3T MRI', 'Philips Medical', 'Gyroscan Intera', '22456', '#riskAssessmentDetails')
+      .upsertRiskAssessment('Jane Doe', 'Lupus', 'Gregory House', 'Positive', '0.10', '#riskAssessmentDetails')
       .saveScreenshot('tests/nightwatch/screenshots/riskAssessments.crud/D-EditedRiskAssessment.png', client);
 
     // since we're using the RiskAssessmentDetail component twice,
@@ -152,7 +152,7 @@ module.exports = {
   'list edited RiskAssessments': function (client) {
     client.page
       .riskAssessmentsPage()
-      .listContainsRiskAssessment(1, '3T MRI', 'Philips Medical', 'Gyroscan Intera', '22456')
+      .listContainsRiskAssessment(1, 'Jane Doe', 'Lupus', 'Gregory House', 'Positive', '0.1')
       //.pause(40000, client)
       .saveScreenshot('tests/nightwatch/screenshots/riskAssessments.crud/E-EditedRiskAssessmentList.png', client);
   },

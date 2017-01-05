@@ -19,10 +19,11 @@ module.exports = {
       return this
         .verify.elementPresent('#riskAssessmentsTable')
         .verify.elementPresent('#riskAssessmentsTable .riskAssessmentRow:nth-child(1)')
-        .verify.elementPresent('#riskAssessmentsTable .riskAssessmentRow:nth-child(1) .riskAssessmentType')
-        .verify.elementPresent('#riskAssessmentsTable .riskAssessmentRow:nth-child(1) .manufacturer')
-        .verify.elementPresent('#riskAssessmentsTable .riskAssessmentRow:nth-child(1) .riskAssessmentModel')
-        .verify.elementPresent('#riskAssessmentsTable .riskAssessmentRow:nth-child(1) .serialNumber');
+        .verify.elementPresent('#riskAssessmentsTable .riskAssessmentRow:nth-child(1) .subjectDisplay')
+        .verify.elementPresent('#riskAssessmentsTable .riskAssessmentRow:nth-child(1) .conditionDisplay')
+        .verify.elementPresent('#riskAssessmentsTable .riskAssessmentRow:nth-child(1) .performerDisplay')
+        .verify.elementPresent('#riskAssessmentsTable .riskAssessmentRow:nth-child(1) .predictionOutcome')
+        .verify.elementPresent('#riskAssessmentsTable .riskAssessmentRow:nth-child(1) .probabilityDecimal');
     },
     selectNewRiskAssessmentTab: function() {
       return this
@@ -33,49 +34,57 @@ module.exports = {
     verifyNewRiskAssessmentCard: function() {
       return this
         .verify.elementPresent('#riskAssessmentsPage .riskAssessmentDetail')
-        .verify.elementPresent('#riskAssessmentsPage .riskAssessmentDetail input[name="riskAssessmentType"]')
-        .verify.elementPresent('#riskAssessmentsPage .riskAssessmentDetail input[name="manufacturer"]')
-        .verify.elementPresent('#riskAssessmentsPage .riskAssessmentDetail input[name="riskAssessmentModel"]')
-        .verify.elementPresent('#riskAssessmentsPage .riskAssessmentDetail input[name="serialNumber"]');
+        .verify.elementPresent('#riskAssessmentsPage .riskAssessmentDetail input[name="subjectDisplay"]')
+        .verify.elementPresent('#riskAssessmentsPage .riskAssessmentDetail input[name="conditionDisplay"]')
+        .verify.elementPresent('#riskAssessmentsPage .riskAssessmentDetail input[name="performerDisplay"]')
+        .verify.elementPresent('#riskAssessmentsPage .riskAssessmentDetail input[name="predictionOutcome"]')
+        .verify.elementPresent('#riskAssessmentsPage .riskAssessmentDetail input[name="probabilityDecimal"]');
     },
-    verifyRiskAssessmentDetails: function(riskAssessmentType, manufacturer, riskAssessmentModel, serialNumber) {
+    verifyRiskAssessmentDetails: function(subjectDisplay, conditionDisplay, performerDisplay, predictionOutcome, probabilityDecimal) {
       this
         .waitForElementPresent('#riskAssessmentDetails', 5000);
 
-      if (riskAssessmentType) {
-        this.verify.attributeEquals('#riskAssessmentsPage .riskAssessmentDetail  input[name="riskAssessmentType"]', 'value', riskAssessmentType);
+      if (subjectDisplay) {
+        this.verify.attributeEquals('#riskAssessmentsPage .riskAssessmentDetail  input[name="subjectDisplay"]', 'value', subjectDisplay);
       }
-      if (manufacturer) {
-        this.verify.attributeEquals('#riskAssessmentsPage .riskAssessmentDetail  input[name="manufacturer"]', 'value', manufacturer);
+      if (conditionDisplay) {
+        this.verify.attributeEquals('#riskAssessmentsPage .riskAssessmentDetail  input[name="conditionDisplay"]', 'value', conditionDisplay);
       }
-      if (riskAssessmentModel) {
-        this.verify.attributeEquals('#riskAssessmentsPage .riskAssessmentDetail  input[name="riskAssessmentModel"]', 'value', riskAssessmentModel);
+      if (performerDisplay) {
+        this.verify.attributeEquals('#riskAssessmentsPage .riskAssessmentDetail  input[name="performerDisplay"]', 'value', performerDisplay);
       }
-      if (serialNumber) {
-        this.verify.attributeEquals('#riskAssessmentsPage .riskAssessmentDetail  input[name="serialNumber"]', 'value', serialNumber);
+      if (predictionOutcome) {
+        this.verify.attributeEquals('#riskAssessmentsPage .riskAssessmentDetail  input[name="predictionOutcome"]', 'value', predictionOutcome);
+      }
+      if (probabilityDecimal) {
+        this.verify.attributeEquals('#riskAssessmentsPage .riskAssessmentDetail  input[name="probabilityDecimal"]', 'value', probabilityDecimal);
       }
       return this;
     },
-    listContainsRiskAssessment: function (index, riskAssessmentType, manufacturer, riskAssessmentModel, serialNumber){
+    listContainsRiskAssessment: function (index, subjectDisplay, conditionDisplay, performerDisplay, predictionOutcome, probabilityDecimal){
       this
         .verify.elementPresent('#riskAssessmentsTable')
         .verify.elementPresent('#riskAssessmentsTable .riskAssessmentRow:nth-child(' + index + ')')
-        .verify.elementPresent('#riskAssessmentsTable .riskAssessmentRow:nth-child(' + index + ') .riskAssessmentType')
-        .verify.elementPresent('#riskAssessmentsTable .riskAssessmentRow:nth-child(' + index + ') .manufacturer')
-        .verify.elementPresent('#riskAssessmentsTable .riskAssessmentRow:nth-child(' + index + ') .riskAssessmentModel')
-        .verify.elementPresent('#riskAssessmentsTable .riskAssessmentRow:nth-child(' + index + ') .serialNumber');
+        .verify.elementPresent('#riskAssessmentsTable .riskAssessmentRow:nth-child(' + index + ') .subjectDisplay')
+        .verify.elementPresent('#riskAssessmentsTable .riskAssessmentRow:nth-child(' + index + ') .conditionDisplay')
+        .verify.elementPresent('#riskAssessmentsTable .riskAssessmentRow:nth-child(' + index + ') .performerDisplay')
+        .verify.elementPresent('#riskAssessmentsTable .riskAssessmentRow:nth-child(' + index + ') .predictionOutcome')
+        .verify.elementPresent('#riskAssessmentsTable .riskAssessmentRow:nth-child(' + index + ') .probabilityDecimal');
 
-      if (riskAssessmentType) {
-        this.verify.containsText('#riskAssessmentsTable .riskAssessmentRow:nth-child(' + index + ') .riskAssessmentType', riskAssessmentType);
+      if (subjectDisplay) {
+        this.verify.containsText('#riskAssessmentsTable .riskAssessmentRow:nth-child(' + index + ') .subjectDisplay', subjectDisplay);
       }
-      if (manufacturer) {
-        this.verify.containsText('#riskAssessmentsTable .riskAssessmentRow:nth-child(' + index + ') .manufacturer', manufacturer);
+      if (conditionDisplay) {
+        this.verify.containsText('#riskAssessmentsTable .riskAssessmentRow:nth-child(' + index + ') .conditionDisplay', conditionDisplay);
       }
-      if (riskAssessmentModel) {
-        this.verify.containsText('#riskAssessmentsTable .riskAssessmentRow:nth-child(' + index + ') .riskAssessmentModel', riskAssessmentModel);
+      if (performerDisplay) {
+        this.verify.containsText('#riskAssessmentsTable .riskAssessmentRow:nth-child(' + index + ') .performerDisplay', performerDisplay);
       }
-      if (serialNumber) {
-        this.verify.containsText('#riskAssessmentsTable .riskAssessmentRow:nth-child(' + index + ') .serialNumber', serialNumber);
+      if (predictionOutcome) {
+        this.verify.containsText('#riskAssessmentsTable .riskAssessmentRow:nth-child(' + index + ') .predictionOutcome', predictionOutcome);
+      }
+      if (probabilityDecimal) {
+        this.verify.containsText('#riskAssessmentsTable .riskAssessmentRow:nth-child(' + index + ') .probabilityDecimal', probabilityDecimal);
       }
       return this;
     },
@@ -94,29 +103,35 @@ module.exports = {
     selectRiskAssessment: function(index){
       return this.click('#riskAssessmentsTable .riskAssessmentRow:nth-child(' + index + ')');
     },
-    upsertRiskAssessment: function(riskAssessmentType, manufacturer, riskAssessmentModel, serialNumber, pageElement) {
-      if (riskAssessmentType) {
-        var riskAssessmentTypeArray = riskAssessmentType.split('');
-        for (var i = 0; i < riskAssessmentTypeArray.length; i++) {
-          this.setValue(pageElement + ' input[name="riskAssessmentType"]', riskAssessmentTypeArray[i]);
+    upsertRiskAssessment: function(subjectDisplay, conditionDisplay, performerDisplay, predictionOutcome, probabilityDecimal, pageElement) {
+      if (subjectDisplay) {
+        var subjectDisplayArray = subjectDisplay.split('');
+        for (var i = 0; i < subjectDisplayArray.length; i++) {
+          this.setValue(pageElement + ' input[name="subjectDisplay"]', subjectDisplayArray[i]);
         }
       }
-      if (manufacturer) {
-        var manufacturerArray = manufacturer.split('');
-        for (var k = 0; k < manufacturerArray.length; k++) {
-          this.setValue(pageElement + ' input[name="manufacturer"]', manufacturerArray[k]);
+      if (conditionDisplay) {
+        var conditionDisplayArray = conditionDisplay.split('');
+        for (var k = 0; k < conditionDisplayArray.length; k++) {
+          this.setValue(pageElement + ' input[name="conditionDisplay"]', conditionDisplayArray[k]);
         }
       }
-      if (riskAssessmentModel) {
-        var riskAssessmentModelArray = riskAssessmentModel.split('');
-        for (var j = 0; j < riskAssessmentModelArray.length; j++) {
-          this.setValue(pageElement + ' input[name="riskAssessmentModel"]', riskAssessmentModelArray[j]);
+      if (performerDisplay) {
+        var performerDisplayArray = performerDisplay.split('');
+        for (var j = 0; j < performerDisplayArray.length; j++) {
+          this.setValue(pageElement + ' input[name="performerDisplay"]', performerDisplayArray[j]);
         }
       }
-      if (serialNumber) {
-        var serialNumberArray = serialNumber.split('');
-        for (var l = 0; l < serialNumberArray.length; l++) {
-          this.setValue(pageElement + ' input[name="serialNumber"]', serialNumberArray[l]);
+      if (predictionOutcome) {
+        var predictionOutcomeArray = predictionOutcome.split('');
+        for (var l = 0; l < predictionOutcomeArray.length; l++) {
+          this.setValue(pageElement + ' input[name="predictionOutcome"]', predictionOutcomeArray[l]);
+        }
+      }
+      if (probabilityDecimal) {
+        var probabilityDecimalArray = probabilityDecimal.split('');
+        for (var m = 0; m < probabilityDecimalArray.length; m++) {
+          this.setValue(pageElement + ' input[name="probabilityDecimal"]', probabilityDecimalArray[m]);
         }
       }
 

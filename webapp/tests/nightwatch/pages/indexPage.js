@@ -25,7 +25,12 @@ module.exports = {
       return this
         .verify.elementPresent('#devicesTile')
         .click('#devicesTile');
-    }    
+    },
+    selectRiskAssessmentsTile: function() {
+      return this
+        .verify.elementPresent('#riskAssessmentsTile')
+        .click('#riskAssessmentsTile');
+    }
   }],
   elements: {
     indexPage: {
