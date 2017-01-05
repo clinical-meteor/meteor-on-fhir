@@ -51,6 +51,8 @@ import { LocationsPage } from '/imports/ui/workflows/locations/LocationsPage';
 import { QuestionnairesPage } from '/imports/ui/workflows/questionnaires/QuestionnairesPage';
 import { QuestionnaireResponsesPage } from '/imports/ui/workflows/questionnaires/QuestionnaireResponsesPage';
 
+import { RiskAssessmentsPage } from '/imports/ui/workflows/risk-assessments/RiskAssessmentsPage';
+
 import { AuditLogPage } from '/imports/ui/pages/AuditLogPage';
 
 
@@ -155,6 +157,9 @@ Meteor.startup(() => {
         <Route name="dermatograms" path="/dermatograms" component={ DermatogramsPage } />
         <Route name="questionnaires" path="/questionnaires" component={ QuestionnairesPage } />
         <Route name="questionnaireResponses" path="/questionnaire-responses" component={ QuestionnaireResponsesPage } />
+        <Route name="riskAssessments" path="/risk-assessments" component={ RiskAssessmentsPage } />
+
+
 
         <Route name="auditLogPage" path="/hipaa-log" component={ AuditLogPage } />
 

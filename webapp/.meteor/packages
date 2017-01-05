@@ -71,6 +71,8 @@ clinical:hl7-resource-device
 clinical:hl7-resource-location
 clinical:hl7-resource-list
 
+clinical:hl7-resource-risk-assessment
+
 # test data
 clinical:accounts-housemd
 clinical:accounts-famous-dead-people
