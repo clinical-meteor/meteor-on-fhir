@@ -268,8 +268,14 @@ export class MainIndex extends React.Component {
               />
             </GlassCard>
           </div>
-
-
+            <div id='riskAssessmentsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/risk-assessments') } >
+              <GlassCard style={this.data.style.indexCard} >
+                <CardTitle
+                  title='Risk Assessments'
+                  subtitle='Risk assessments for patients pertaining to conditions.'
+                />
+              </GlassCard>
+            </div>
 
         </div>
       );
@@ -281,15 +287,6 @@ export class MainIndex extends React.Component {
       if (user.isPractitioner || user.isAdmin) {
         return (
           <div>
-
-            <div id='riskAssessmentsTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/risk-assessments') } >
-              <GlassCard style={this.data.style.indexCard} >
-                <CardTitle
-                  title='Risk Assessments'
-                  subtitle='Risk assessments for patients pertaining to conditions.'
-                />
-              </GlassCard>
-            </div>
 
             <div id='familyMemberHistoriesTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/family-member-histories') } >
               <GlassCard style={this.data.style.indexCard} >
