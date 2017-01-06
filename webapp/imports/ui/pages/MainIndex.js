@@ -91,9 +91,17 @@ export class MainIndex extends React.Component {
         <VerticalCanvas>
 
           {this.renderAdminTiles(this.data.user)}
-          {this.renderPractitionerTiles(this.data.user)}
-          {this.renderClinicalTiles(this.data.user)}
-          {this.renderPatientTiles(this.data.user)}
+
+          {this.renderPatients(this.data.user)}
+          {this.renderPractitioners(this.data.user)}
+
+          {this.renderObservations(this.data.user)}
+          {this.renderMedications(this.data.user)}
+          {this.renderDevices(this.data.user)}
+          {this.renderChecklists(this.data.user)}
+
+          {this.renderRiskAssessments(this.data.user)}
+
           {this.renderTilesUnderConstruction(this.data.user, this.data.showUnderConstruction)}
           {this.renderExperimentalTiles(this.data.showExperimental)}
 
@@ -144,52 +152,6 @@ export class MainIndex extends React.Component {
 
         </div>
       );
-    }
-  }
-  renderPatientTiles(user){
-    if (user.isPatient || user.isAdmin) {
-      return (<div></div>);
-    }
-  }
-  renderClinicalTiles(user){
-    if (user.isPatient || user.isPractitioner || user.isAdmin) {
-      return (<div>
-
-        <div id='checklistsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/checklists') } >
-          <GlassCard style={this.data.style.indexCard} >
-            <CardTitle
-              title='Checklist Manifesto'
-              subtitle='Checklists lead to better outcomes.'
-            />
-          </GlassCard>
-        </div>
-
-        <div id='observationsTile' style={this.data.style.indexCardPadding} onClick={ this.openObservations.bind(this) } >
-          <GlassCard style={this.data.style.indexCard} >
-            <CardTitle
-              title='Observations'
-              subtitle='Observations from devices.'
-            />
-          </GlassCard>
-        </div>
-
-        <div id='devicesTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/devices') } >
-          <GlassCard style={this.data.style.indexCard} >
-            <CardTitle
-              title='Devices'
-              subtitle='Equipment and devices.'
-            />
-          </GlassCard>
-        </div>
-        <div id="medicationsTile" style={this.data.style.indexCardPadding} onClick={ this.openMedications.bind(this) } >
-          <GlassCard style={this.data.style.indexCard} >
-            <CardTitle
-              title='Medication Inventory'
-              subtitle='Crash carts, first responder kits, and surgical prep.'
-            />
-          </GlassCard>
-        </div>
-      </div>);
     }
   }
 
@@ -247,11 +209,10 @@ export class MainIndex extends React.Component {
     }
   }
 
-  renderPractitionerTiles(user){
-    if (user.isPractitioner || user.isAdmin) {
-      return (
-        <div>
-
+  renderPatients(user){
+    if (Meteor.settings.public.modules.fhir.Patients) {
+      if (user.isPractitioner || user.isAdmin) {
+        return (
           <div id='patientsTile' style={this.data.style.indexCardPadding} onClick={ this.openPatients.bind(this) } >
             <GlassCard style={this.data.style.indexCard} >
               <CardTitle
@@ -260,6 +221,14 @@ export class MainIndex extends React.Component {
               />
             </GlassCard>
           </div>
+        );
+      }
+    }
+  }
+  renderPractitioners(user){
+    if (Meteor.settings.public.modules.fhir.Practitioners) {
+      if (user.isPractitioner || user.isAdmin) {
+        return (
           <div id="practitionersTile" style={this.data.style.indexCardPadding} onClick={ this.openPractitioners.bind(this) } >
             <GlassCard style={this.data.style.indexCard} >
               <CardTitle
@@ -268,17 +237,89 @@ export class MainIndex extends React.Component {
               />
             </GlassCard>
           </div>
-            <div id='riskAssessmentsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/risk-assessments') } >
-              <GlassCard style={this.data.style.indexCard} >
-                <CardTitle
-                  title='Risk Assessments'
-                  subtitle='Risk assessments for patients pertaining to conditions.'
-                />
-              </GlassCard>
-            </div>
+        );
+      }
+    }
+  }
+  renderObservations(user){
+    if (Meteor.settings.public.modules.fhir.Observations) {
+      if (user.isPatient || user.isPractitioner || user.isAdmin) {
+        return (
+          <div id='observationsTile' style={this.data.style.indexCardPadding} onClick={ this.openObservations.bind(this) } >
+            <GlassCard style={this.data.style.indexCard} >
+              <CardTitle
+                title='Observations'
+                subtitle='Observations from devices.'
+              />
+            </GlassCard>
+          </div>
+        );
+      }
+    }
+  }
+  renderMedications(user){
+    if (Meteor.settings.public.modules.fhir.Medications) {
+      if (user.isPatient || user.isPractitioner || user.isAdmin) {
+        return (
+          <div id="medicationsTile" style={this.data.style.indexCardPadding} onClick={ this.openMedications.bind(this) } >
+            <GlassCard style={this.data.style.indexCard} >
+              <CardTitle
+                title='Medication Inventory'
+                subtitle='Crash carts, first responder kits, and surgical prep.'
+              />
+            </GlassCard>
+          </div>
+        );
+      }
+    }
+  }
+  renderDevices(user){
+    if (Meteor.settings.public.modules.fhir.Devices) {
+      if (user.isPatient || user.isPractitioner || user.isAdmin) {
+        return (
+          <div id='devicesTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/devices') } >
+            <GlassCard style={this.data.style.indexCard} >
+              <CardTitle
+                title='Devices'
+                subtitle='Equipment and devices.'
+              />
+            </GlassCard>
+          </div>
+        );
+      }
+    }
+  }
+  renderChecklists(user){
+    if (Meteor.settings.public.modules.fhir.Devices) {
+      if (user.isPatient || user.isPractitioner || user.isAdmin) {
+        return (
+          <div id='checklistsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/checklists') } >
+            <GlassCard style={this.data.style.indexCard} >
+              <CardTitle
+                title='Checklist Manifesto'
+                subtitle='Checklists lead to better outcomes.'
+              />
+            </GlassCard>
+          </div>
+        );
+      }
+    }
+  }
 
-        </div>
-      );
+  renderRiskAssessments(user){
+    if (Meteor.settings.public.modules.fhir.RiskAssessments) {
+      if (user.isPractitioner || user.isAdmin) {
+        return (
+          <div id='riskAssessmentsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/risk-assessments') } >
+            <GlassCard style={this.data.style.indexCard} >
+              <CardTitle
+                title='Risk Assessments'
+                subtitle='Risk assessments for patients pertaining to conditions.'
+              />
+            </GlassCard>
+          </div>
+        );
+      }
     }
   }
 
