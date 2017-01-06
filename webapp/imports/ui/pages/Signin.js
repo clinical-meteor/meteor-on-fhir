@@ -38,7 +38,7 @@ export class Signin extends React.Component {
     Meteor.loginWithPassword(
       this.refs.emailAddress.input.value,
       this.refs.password.input.value,
-    (error) => {
+    function(error) {
       if (error) {
         Bert.alert(error.reason, 'warning');
       } else {
@@ -51,6 +51,11 @@ export class Signin extends React.Component {
         }
       }
     });
+  }
+  handleKeyPress(e) {
+    if (e.key === 'Enter') {
+      this.handleTouchTap(e);
+    }
   }
   render() {
     return (
@@ -70,6 +75,7 @@ export class Signin extends React.Component {
                 underlineFocusStyle={this.data.style.underlineFocusStyle}
                 floatingLabelStyle={this.data.style.floatingLabelStyle}
                 floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
+                onKeyPress={this.handleKeyPress.bind(this)}
               />
               <br/>
               <TextField
@@ -83,6 +89,7 @@ export class Signin extends React.Component {
                 underlineFocusStyle={this.data.style.underlineFocusStyle}
                 floatingLabelStyle={this.data.style.floatingLabelStyle}
                 floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
+                onKeyPress={this.handleKeyPress.bind(this)}
               />
               <br/>
               <br/>

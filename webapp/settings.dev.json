@@ -19,23 +19,26 @@
       "darkroom": false
     },
     "modules": {
-      "forum": true,
-      "healthlog": true,
       "data": true,
-      "observations": true,
+      "forum": true,
       "genome": true,
-      "radiographs": true,
-      "patients": true,
-      "practitioners": true,
-      "checlists": true,
-      "medications": true,
-      "devices": true,
+      "healthlog": true,
       "dermatograms": true,
       "telemedicine": true,
-      "locations": true,
-      "questionnaires": true,
       "inbound": true,
-      "outbound": true
+      "outbound": true,
+      "fhir": {
+        "Patients": true,
+        "Practitioners": true,
+        "Observations": true,
+        "ImagingStudies": true,
+        "Lists": true,
+        "Medications": true,
+        "Devices": true,
+        "Locations": true,
+        "Questionnaires": true,
+        "RiskAssessments": true        
+      }
     }
   },
   "private": {

@@ -45,209 +45,279 @@ ConformanceStatement = {
           }]
         }]
       },
-      "resource": [{
-        "type": "Patient",
-        "interaction": [{
-          "code": "read"
-        }, {
-          "code": "search-type",
-          "documentation": "When a client searches patients with no search criteria, they get a list of all patients they have access too. Servers may elect to offer additional search parameters, but this is not required"
-        }]
-        // "searchParam": [
-        //     {
-        //       "name": "_id",
-        //       "type": "token",
-        //       "documentation": "_id parameter always supported."
-        //     },
-        //     {
-        //       "name": "identifier",
-        //       "type": "token"
-        //     },
-        //     {
-        //       "name": "name",
-        //       "type": "token"
-        //     },
-        //     {
-        //       "name": "family",
-        //       "type": "token"
-        //     },
-        //     {
-        //       "name": "given",
-        //       "type": "token"
-        //     },
-        //     {
-        //       "name": "gender",
-        //       "type": "token"
-        //     },
-        //     {
-        //       "name": "birthday",
-        //       "type": "token"
-        //     },
-        //
-        //   ]
-      }, {
-        "type": "Practitioner",
-        "interaction": [{
-          "code": "read"
-        }, {
-          "code": "search-type",
-          "documentation": "When a client searches practitioners with no search criteria, they get a list of all patients they have access too. Servers may elect to offer additional search parameters, but this is not required"
-        }]
-        // "searchParam": [
-        //     {
-        //       "name": "_id",
-        //       "type": "token",
-        //       "documentation": "_id parameter always supported."
-        //     },
-        //     {
-        //       "name": "identifier",
-        //       "type": "token"
-        //     },
-        //     {
-        //       "name": "name",
-        //       "type": "token"
-        //     },
-        //     {
-        //       "name": "family",
-        //       "type": "token"
-        //     },
-        //     {
-        //       "name": "given",
-        //       "type": "token"
-        //     },
-        //     {
-        //       "name": "gender",
-        //       "type": "token"
-        //     },
-        //     {
-        //       "name": "birthday",
-        //       "type": "token"
-        //     },
-        //
-        //   ]
-      }, {
-        "type": "Observations",
-        "interaction": [{
-          "code": "read"
-        }, {
-          "code": "search-type",
-          "documentation": "When a client searches practitioners with no search criteria, they get a list of all patients they have access too. Servers may elect to offer additional search parameters, but this is not required"
-        }]
-        // "searchParam": [
-        //     {
-        //       "name": "_id",
-        //       "type": "token",
-        //       "documentation": "_id parameter always supported."
-        //     },
-        //     {
-        //       "name": "identifier",
-        //       "type": "token"
-        //     },
-        //     {
-        //       "name": "name",
-        //       "type": "token"
-        //     },
-        //     {
-        //       "name": "family",
-        //       "type": "token"
-        //     },
-        //     {
-        //       "name": "given",
-        //       "type": "token"
-        //     },
-        //     {
-        //       "name": "gender",
-        //       "type": "token"
-        //     },
-        //     {
-        //       "name": "birthday",
-        //       "type": "token"
-        //     },
-        //
-        //   ]
-      }, {
-        "type": "Medications",
-        "interaction": [{
-          "code": "read"
-        }, {
-          "code": "search-type",
-          "documentation": "When a client searches practitioners with no search criteria, they get a list of all patients they have access too. Servers may elect to offer additional search parameters, but this is not required"
-        }]
-        // "searchParam": [
-        //     {
-        //       "name": "_id",
-        //       "type": "token",
-        //       "documentation": "_id parameter always supported."
-        //     },
-        //     {
-        //       "name": "identifier",
-        //       "type": "token"
-        //     },
-        //     {
-        //       "name": "name",
-        //       "type": "token"
-        //     },
-        //     {
-        //       "name": "family",
-        //       "type": "token"
-        //     },
-        //     {
-        //       "name": "given",
-        //       "type": "token"
-        //     },
-        //     {
-        //       "name": "gender",
-        //       "type": "token"
-        //     },
-        //     {
-        //       "name": "birthday",
-        //       "type": "token"
-        //     },
-        //
-        //   ]
-      }, {
-        "type": "Devices",
-        "interaction": [{
-          "code": "read"
-        }, {
-          "code": "search-type",
-          "documentation": "When a client searches practitioners with no search criteria, they get a list of all patients they have access too. Servers may elect to offer additional search parameters, but this is not required"
-        }]
-        // "searchParam": [
-        //     {
-        //       "name": "_id",
-        //       "type": "token",
-        //       "documentation": "_id parameter always supported."
-        //     },
-        //     {
-        //       "name": "identifier",
-        //       "type": "token"
-        //     },
-        //     {
-        //       "name": "name",
-        //       "type": "token"
-        //     },
-        //     {
-        //       "name": "family",
-        //       "type": "token"
-        //     },
-        //     {
-        //       "name": "given",
-        //       "type": "token"
-        //     },
-        //     {
-        //       "name": "gender",
-        //       "type": "token"
-        //     },
-        //     {
-        //       "name": "birthday",
-        //       "type": "token"
-        //     },
-        //
-        //   ]
-      }]
+      "resource": []
   }]
 };
+
+
+
+if (Meteor.settings.public.modules.fhir.Patients) {
+  ConformanceStatement.rest[0].resource.push({
+    "type": "Patient",
+    "interaction": [{
+      "code": "read"
+    }, {
+      "code": "search-type",
+      "documentation": "When a client searches patients with no search criteria, they get a list of all patients they have access too. Servers may elect to offer additional search parameters, but this is not required"
+    }]
+    // "searchParam": [
+    //     {
+    //       "name": "_id",
+    //       "type": "token",
+    //       "documentation": "_id parameter always supported."
+    //     },
+    //     {
+    //       "name": "identifier",
+    //       "type": "token"
+    //     },
+    //     {
+    //       "name": "name",
+    //       "type": "token"
+    //     },
+    //     {
+    //       "name": "family",
+    //       "type": "token"
+    //     },
+    //     {
+    //       "name": "given",
+    //       "type": "token"
+    //     },
+    //     {
+    //       "name": "gender",
+    //       "type": "token"
+    //     },
+    //     {
+    //       "name": "birthday",
+    //       "type": "token"
+    //     },
+    //
+    //   ]
+  });
+}
+
+
+if (Meteor.settings.public.modules.fhir.Practitioners) {
+  ConformanceStatement.rest[0].resource.push({
+    "type": "Practitioner",
+    "interaction": [{
+      "code": "read"
+    }, {
+      "code": "search-type",
+      "documentation": "When a client searches practitioners with no search criteria, they get a list of all patients they have access too. Servers may elect to offer additional search parameters, but this is not required"
+    }]
+    // "searchParam": [
+    //     {
+    //       "name": "_id",
+    //       "type": "token",
+    //       "documentation": "_id parameter always supported."
+    //     },
+    //     {
+    //       "name": "identifier",
+    //       "type": "token"
+    //     },
+    //     {
+    //       "name": "name",
+    //       "type": "token"
+    //     },
+    //     {
+    //       "name": "family",
+    //       "type": "token"
+    //     },
+    //     {
+    //       "name": "given",
+    //       "type": "token"
+    //     },
+    //     {
+    //       "name": "gender",
+    //       "type": "token"
+    //     },
+    //     {
+    //       "name": "birthday",
+    //       "type": "token"
+    //     },
+    //
+    //   ]
+  });
+}
+
+if (Meteor.settings.public.modules.fhir.Observations) {
+  ConformanceStatement.rest[0].resource.push({
+    "type": "Observations",
+    "interaction": [{
+      "code": "read"
+    }, {
+      "code": "search-type",
+      "documentation": "When a client searches practitioners with no search criteria, they get a list of all patients they have access too. Servers may elect to offer additional search parameters, but this is not required"
+    }]
+    // "searchParam": [
+    //     {
+    //       "name": "_id",
+    //       "type": "token",
+    //       "documentation": "_id parameter always supported."
+    //     },
+    //     {
+    //       "name": "identifier",
+    //       "type": "token"
+    //     },
+    //     {
+    //       "name": "name",
+    //       "type": "token"
+    //     },
+    //     {
+    //       "name": "family",
+    //       "type": "token"
+    //     },
+    //     {
+    //       "name": "given",
+    //       "type": "token"
+    //     },
+    //     {
+    //       "name": "gender",
+    //       "type": "token"
+    //     },
+    //     {
+    //       "name": "birthday",
+    //       "type": "token"
+    //     },
+    //
+    //   ]
+  });
+}
+
+if (Meteor.settings.public.modules.fhir.Medications) {
+  ConformanceStatement.rest[0].resource.push({
+    "type": "Medications",
+    "interaction": [{
+      "code": "read"
+    }, {
+      "code": "search-type",
+      "documentation": "When a client searches practitioners with no search criteria, they get a list of all patients they have access too. Servers may elect to offer additional search parameters, but this is not required"
+    }]
+    // "searchParam": [
+    //     {
+    //       "name": "_id",
+    //       "type": "token",
+    //       "documentation": "_id parameter always supported."
+    //     },
+    //     {
+    //       "name": "identifier",
+    //       "type": "token"
+    //     },
+    //     {
+    //       "name": "name",
+    //       "type": "token"
+    //     },
+    //     {
+    //       "name": "family",
+    //       "type": "token"
+    //     },
+    //     {
+    //       "name": "given",
+    //       "type": "token"
+    //     },
+    //     {
+    //       "name": "gender",
+    //       "type": "token"
+    //     },
+    //     {
+    //       "name": "birthday",
+    //       "type": "token"
+    //     },
+    //
+    //   ]
+  });
+}
+
+if (Meteor.settings.public.modules.fhir.Devices) {
+  ConformanceStatement.rest[0].resource.push({
+    "type": "Devices",
+    "interaction": [{
+      "code": "read"
+    }, {
+      "code": "search-type",
+      "documentation": "When a client searches practitioners with no search criteria, they get a list of all patients they have access too. Servers may elect to offer additional search parameters, but this is not required"
+    }]
+    // "searchParam": [
+    //     {
+    //       "name": "_id",
+    //       "type": "token",
+    //       "documentation": "_id parameter always supported."
+    //     },
+    //     {
+    //       "name": "identifier",
+    //       "type": "token"
+    //     },
+    //     {
+    //       "name": "name",
+    //       "type": "token"
+    //     },
+    //     {
+    //       "name": "family",
+    //       "type": "token"
+    //     },
+    //     {
+    //       "name": "given",
+    //       "type": "token"
+    //     },
+    //     {
+    //       "name": "gender",
+    //       "type": "token"
+    //     },
+    //     {
+    //       "name": "birthday",
+    //       "type": "token"
+    //     },
+    //
+    //   ]
+  });
+}
+
+
+if (Meteor.settings.public.modules.fhir.RiskAssessments) {
+  ConformanceStatement.rest[0].resource.push({
+    "type": "RiskAssessments",
+    "interaction": [{
+      "code": "read"
+    }, {
+      "code": "search-type",
+      "documentation": "When a client searches risk asessments with no search criteria, they get a list of all patients they have access too. Servers may elect to offer additional search parameters, but this is not required"
+    }]
+    // "searchParam": [
+    //     {
+    //       "name": "_id",
+    //       "type": "token",
+    //       "documentation": "_id parameter always supported."
+    //     },
+    //     {
+    //       "name": "identifier",
+    //       "type": "token"
+    //     },
+    //     {
+    //       "name": "name",
+    //       "type": "token"
+    //     },
+    //     {
+    //       "name": "family",
+    //       "type": "token"
+    //     },
+    //     {
+    //       "name": "given",
+    //       "type": "token"
+    //     },
+    //     {
+    //       "name": "gender",
+    //       "type": "token"
+    //     },
+    //     {
+    //       "name": "birthday",
+    //       "type": "token"
+    //     },
+    //
+    //   ]
+  });
+}
+
+
 
 
 JsonRoutes.add("get", "fhir/metadata", function (req, res, next) {
@@ -257,4 +327,10 @@ JsonRoutes.add("get", "fhir/metadata", function (req, res, next) {
     code: 200,
     data: ConformanceStatement
   });
+});
+
+Meteor.methods({
+  getMetadata(){
+    return ConformanceStatement;
+  }
 });

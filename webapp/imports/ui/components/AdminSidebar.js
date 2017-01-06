@@ -60,6 +60,10 @@ export class AdminSidebar extends React.Component {
              <ListItem primaryText='Info' href='/info' />
           </IndexLinkContainer>
 
+          <IndexLinkContainer to='/metadata'>
+             <ListItem primaryText='Metadata' href='/metadata' />
+          </IndexLinkContainer>
+
           <IndexLinkContainer to='/signin'>
              <ListItem className='logoutMenuItem' primaryText='Logout' href='/signin' onClick={this.handleLogout} />
           </IndexLinkContainer>
