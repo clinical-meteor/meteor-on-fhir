@@ -112,7 +112,11 @@ export class Signup extends React.Component {
 
     });
   }
-
+  handleKeyPress(e) {
+    if (e.key === 'Enter') {
+      this.handleTouchTap(e);
+    }
+  }
   render() {
     return (
       <div id='signupPage'>
@@ -133,6 +137,7 @@ export class Signup extends React.Component {
                         underlineFocusStyle={this.data.style.underlineFocusStyle}
                         floatingLabelStyle={this.data.style.floatingLabelStyle}
                         floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
+                        onKeyPress={this.handleKeyPress}
                         fullWidth
                         /><br/>
                     </Col>
@@ -149,6 +154,7 @@ export class Signup extends React.Component {
                         underlineFocusStyle={this.data.style.underlineFocusStyle}
                         floatingLabelStyle={this.data.style.floatingLabelStyle}
                         floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
+                        onKeyPress={this.handleKeyPress}
                         fullWidth
                         /><br/>
                     </Col>

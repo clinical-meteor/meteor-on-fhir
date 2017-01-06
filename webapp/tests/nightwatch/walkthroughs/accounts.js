@@ -76,7 +76,7 @@ module.exports = {
 
       .verify.elementPresent('input[name="avatar"]')
         .clearValue('input[name="avatar"]')
-        .setValue('input[name="avatar"]', 'https://foo').pause(500)
+        .setValue('input[name="avatar"]', 'https://foo').pause(1000)
         .verify.attributeEquals('#avatarImage', 'src', 'http://localhost:3000/noAvatar.png')
 
       .verify.elementPresent('input[name="avatar"]')
