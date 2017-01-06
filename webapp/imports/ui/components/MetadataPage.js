@@ -2,12 +2,10 @@ import React from 'react';
 import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
-import { CardTitle, CardText, CardHeader } from 'material-ui/Card';
+import { CardTitle, CardText } from 'material-ui/Card';
 
 import { Meteor } from 'meteor/meteor';
-import { HTTP } from 'meteor/http';
 import { Session } from 'meteor/session';
-import { EJSON } from 'meteor/ejson';
 
 import { GlassCard } from '/imports/ui/components/GlassCard';
 import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
