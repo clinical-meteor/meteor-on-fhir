@@ -2,9 +2,9 @@ ConformanceStatement = {
   "resourceType": "Conformance",
   "url": "http://fhir-server.meteorapp.com/fhir",
   "name": "Sprint 2",
-  "version": "0.2",
+  "version": "0.3",
   "status": "draft",
-  "experimental": "true",
+  "experimental": true,
   "publisher": "Pentasyllabic Studios",
   "kind": "capability",
   "date": new Date(),
@@ -23,7 +23,7 @@ ConformanceStatement = {
     "name" : "Meteor FHIR Repository",
     "releaseDate" : "2017-01-01"
   },
-  "fhirVersion": "DTSU2",
+  "fhirVersion": "1.6.0",
   "acceptUnknown": "no",
   "format": [
     "json"
@@ -59,39 +59,37 @@ if (Meteor.settings.public.modules.fhir.Patients) {
     }, {
       "code": "search-type",
       "documentation": "When a client searches patients with no search criteria, they get a list of all patients they have access too. Servers may elect to offer additional search parameters, but this is not required"
-    }]
-    // "searchParam": [
-    //     {
-    //       "name": "_id",
-    //       "type": "token",
-    //       "documentation": "_id parameter always supported."
-    //     },
-    //     {
-    //       "name": "identifier",
-    //       "type": "token"
-    //     },
-    //     {
-    //       "name": "name",
-    //       "type": "token"
-    //     },
-    //     {
-    //       "name": "family",
-    //       "type": "token"
-    //     },
-    //     {
-    //       "name": "given",
-    //       "type": "token"
-    //     },
-    //     {
-    //       "name": "gender",
-    //       "type": "token"
-    //     },
-    //     {
-    //       "name": "birthday",
-    //       "type": "token"
-    //     },
-    //
-    //   ]
+    }],
+    "searchParam": [
+      {
+        "name": "_id",
+        "type": "token",
+        "documentation": "_id parameter always supported."
+      },
+      {
+        "name": "identifier",
+        "type": "token"
+      },
+      {
+        "name": "name",
+        "type": "token"
+      },
+      {
+        "name": "family",
+        "type": "token"
+      },
+      {
+        "name": "given",
+        "type": "token"
+      },
+      {
+        "name": "gender",
+        "type": "token"
+      },
+      {
+        "name": "birthday",
+        "type": "token"
+      }]
   });
 }
 
@@ -142,7 +140,7 @@ if (Meteor.settings.public.modules.fhir.Practitioners) {
 
 if (Meteor.settings.public.modules.fhir.Observations) {
   ConformanceStatement.rest[0].resource.push({
-    "type": "Observations",
+    "type": "Observation",
     "interaction": [{
       "code": "read"
     }, {
@@ -186,7 +184,7 @@ if (Meteor.settings.public.modules.fhir.Observations) {
 
 if (Meteor.settings.public.modules.fhir.Medications) {
   ConformanceStatement.rest[0].resource.push({
-    "type": "Medications",
+    "type": "Medication",
     "interaction": [{
       "code": "read"
     }, {
@@ -230,7 +228,7 @@ if (Meteor.settings.public.modules.fhir.Medications) {
 
 if (Meteor.settings.public.modules.fhir.Devices) {
   ConformanceStatement.rest[0].resource.push({
-    "type": "Devices",
+    "type": "Device",
     "interaction": [{
       "code": "read"
     }, {
@@ -275,7 +273,7 @@ if (Meteor.settings.public.modules.fhir.Devices) {
 
 if (Meteor.settings.public.modules.fhir.RiskAssessments) {
   ConformanceStatement.rest[0].resource.push({
-    "type": "RiskAssessments",
+    "type": "RiskAssessment",
     "interaction": [{
       "code": "read"
     }, {
