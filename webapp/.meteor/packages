@@ -56,6 +56,7 @@ clinical:keybindings
 clinical:hipaa-logger
 
 # fhir resources
+clinical:hl7-resource-datatypes
 clinical:hl7-resource-patient
 clinical:hl7-resource-practitioner
 clinical:hl7-resource-medication
@@ -79,10 +80,10 @@ clinical:accounts-famous-dead-people
 awatson1978:accounts-muppets
 
 # desktop
-omega:meteor-desktop-watcher@=0.2.6
-omega:meteor-desktop-bundler@=0.2.6
-omega:meteor-desktop-localstorage@=0.0.11
-shell-server
+#omega:meteor-desktop-watcher@=0.2.6
+#omega:meteor-desktop-bundler@=0.2.6
+#omega:meteor-desktop-localstorage@=0.0.11
+#shell-server
 
 # oauth server
 prime8consulting:meteor-oauth2-server

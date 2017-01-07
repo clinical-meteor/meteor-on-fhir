@@ -13,7 +13,7 @@ reports/*
 
 settings.json
 
-packages/*
+packages/hl7-resource-*
 
 version.desktop
 .desktop
