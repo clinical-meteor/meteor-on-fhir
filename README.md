@@ -107,6 +107,13 @@ NODE_ENV=dev meteor run ios-device --mobile-server http://meteor-on-fhir.meteora
 
 
 #### F. Desktop Build   
+To enable desktop builds, uncomment the following files in `.meteor/packages`.
+
+- [ ] omega:meteor-desktop-watcher@=0.2.6
+- [ ] omega:meteor-desktop-bundler@=0.2.6
+- [ ] omega:meteor-desktop-localstorage@=0.0.11
+- [ ] shell-server
+
 For more info, see [https://www.npmjs.com/package/meteor-desktop](https://www.npmjs.com/package/meteor-desktop)
 
 ```sh
@@ -123,4 +130,3 @@ npm run desktop
 # or try the shortcut script
  meteor npm run-script desktop
 ```    
-
