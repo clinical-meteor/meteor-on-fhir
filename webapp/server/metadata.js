@@ -57,6 +57,14 @@ if (Meteor.settings.public.modules.fhir.Patients) {
     "interaction": [{
       "code": "read"
     }, {
+      "code": "create"
+    }, {
+      "code": "update"
+    }, {
+      "code": "delete"
+    }, {
+      "code": "history"
+    }, {
       "code": "search-type",
       "documentation": "When a client searches patients with no search criteria, they get a list of all patients they have access too. Servers may elect to offer additional search parameters, but this is not required"
     }],
