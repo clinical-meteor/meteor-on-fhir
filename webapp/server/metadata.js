@@ -319,8 +319,8 @@ if (Meteor.settings.public.modules.fhir.RiskAssessments) {
 
 
 
-JsonRoutes.add("get", "fhir/metadata", function (req, res, next) {
-  console.log('GET /fhir/metadata');
+JsonRoutes.add("get", "fhir-1.6.0/metadata", function (req, res, next) {
+  console.log('GET /fhir-1.6.0/metadata');
 
   JsonRoutes.sendResult(res, {
     code: 200,
