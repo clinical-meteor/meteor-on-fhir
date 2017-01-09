@@ -1,6 +1,6 @@
 ConformanceStatement = {
   "resourceType": "Conformance",
-  "url": "http://fhir-server.meteorapp.com/fhir",
+  "url": "http://fhir-server.meteorapp.com/fhir-1.6.0",
   "name": "Sprint 2",
   "version": "0.3",
   "status": "draft",
@@ -68,7 +68,8 @@ if (Meteor.settings.public.modules.fhir.Patients) {
       },
       {
         "name": "identifier",
-        "type": "token"
+        "type": "token",
+        "documentation": "this should be the medical record number"
       },
       {
         "name": "name",
