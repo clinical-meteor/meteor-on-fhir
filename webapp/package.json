@@ -52,6 +52,7 @@
     "faker": "^3.1.0",
     "jquery": "^2.2.4",
     "jquery-validation": "^1.15.1",
+    "katex": "^0.6.0",
     "material-ui": "^0.16.5",
     "normalize.css": "^4.1.1",
     "object-path": "0.11.3",
@@ -61,9 +62,11 @@
     "react-addons-pure-render-mixin": "^15.3.1",
     "react-bootstrap": "^0.29.5",
     "react-dom": "^15.4.0",
+    "react-dropzone-component": "1.4.1",
     "react-fontawesome": "^1.4.0",
     "react-hexgrid": "^0.1.5",
     "react-highcharts": "^8.4.2",
+    "react-katex": "^1.0.1",
     "react-komposer": "^1.13.1",
     "react-material-icons": "1.0.1",
     "react-mixin": "^3.0.5",
@@ -72,8 +75,7 @@
     "react-scroll-box": "^0.3.3-beta",
     "react-tap-event-plugin": "^2.0.1",
     "react-tappable": "^0.8.1",
-    "react-toolbox": "^0.16.2",
-    "react-dropzone-component": "1.4.1"
+    "react-toolbox": "^0.16.2"
   },
   "devDependencies": {
     "chromedriver": "2.25.1",
