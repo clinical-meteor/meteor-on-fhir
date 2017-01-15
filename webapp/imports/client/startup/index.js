@@ -14,14 +14,18 @@ if (process.env.NODE_ENV === 'production') {
 
 
 Meteor.startup(function (){
-  // subscriptions that aren't provided via packages
-  Meteor.subscribe('posts');
-  Meteor.subscribe('topics');
-
   // global session variables
   Session.set('showNavbars', true);
   Session.set('hasPagePadding', true);
   Session.set('appSurfaceOffset', true);
+  Session.set('selectedChromosome', 1);
+
+
+  // subscriptions that aren't provided via packages
+  Meteor.subscribe('posts');
+  Meteor.subscribe('topics');
+  Meteor.subscribe('Statistics');
+  Meteor.subscribe('MyGenotype', Session.get('selectedChromosome'));
 });
 
 
@@ -36,3 +40,7 @@ Topics = _Topics;
 // global imports for subscriptions
 import { Statistics as _Statistics } from '/imports/api/statistics/statistics';
 Statistics = _Statistics;
+
+// global imports for subscriptions
+import { MyGenotype as _MyGenotype } from '/imports/api/genotype/MyGenotype';
+MyGenotype = _MyGenotype;

@@ -1,6 +1,7 @@
-import {Posts} from '/imports/api/posts/posts';
-import {Topics} from '/imports/api/topics/topics';
-import {Statistics} from '/imports/api/statistics/statistics';
+import { Posts } from '/imports/api/posts/posts';
+import { Topics } from '/imports/api/topics/topics';
+import { Statistics } from '/imports/api/statistics/statistics';
+import { MyGenotype } from '/imports/api/genotype/MyGenotype';
 
 import { Meteor } from 'meteor/meteor';
 
@@ -14,28 +15,47 @@ let DailyStats = {
       patientsCount: 0,
       practitionersCount: 0,
       observationsCount: 0,
-      questionnaireResponsesCount: 0
+      questionnaireResponsesCount: 0,
+      counts: {
+        devices: 0,
+        conditions: 0,
+        genotype: 0,
+        medications: 0,
+        observations: 0,
+        patients: 0,
+        practitioners: 0,
+        procedures: 0,
+        questionnaires: 0
+      }
     };
 
-    if (Posts) {
-      newDailyStat.postsCount = Posts.find().count();
+    if (Devices) {
+      newDailyStat.counts.devices = Devices.find().count();
     }
-    if (Topics) {
-      newDailyStat.topicsCount = Topics.find().count();
+    if (MyGenotype) {
+      newDailyStat.counts.genotype = MyGenotype.find().count();
+    }
+    if (Medications) {
+      newDailyStat.counts.medications = Medications.find().count();
+    }
+    if (Observations) {
+      newDailyStat.counts.observations = Observations.find().count();
     }
     if (Patients) {
       newDailyStat.patientsCount = Patients.find().count();
+      newDailyStat.counts.patients = Patients.find().count();
     }
     if (Practitioners) {
       newDailyStat.practitionersCount = Practitioners.find().count();
+      newDailyStat.counts.practitioners = Practitioners.find().count();
     }
-    // if (QuestionnaireResponses) {
-    //   newDailyStat.postsCount = QuestionnaireResponses.find().count();
-    // }
-    
+    if (Questionnaires) {
+      newDailyStat.counts.questionnaires = Questionnaires.find().count();
+    }
+
     console.log('newDailyStat', newDailyStat);
 
-    return Statistics.insert(newDailyStat);
+    return newDailyStat;
   }
 };
 
@@ -54,7 +74,11 @@ SyncedCron.add({
 Meteor.methods({
   generateDailyStat:function (){
     if (process.env.NODE_ENV !== 'production') {
-      DailyStats.generate();
+      // DailyStats.generate();
+      return Statistics.insert(DailyStats.generate());
     }
+  },
+  getServerStats: function(){
+    return DailyStats.generate();
   }
 });

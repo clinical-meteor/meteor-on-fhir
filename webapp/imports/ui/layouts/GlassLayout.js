@@ -116,7 +116,7 @@ export class GlassLayout extends React.Component {
   render(){
 
     return (
-      <div>
+      <div id='glassLayout'>
         <Drawer
           open={this.data.state.drawerActive}
           docked={false}
@@ -137,7 +137,7 @@ export class GlassLayout extends React.Component {
           </div>
         </Drawer>
 
-        <div>
+        <div id='mainPanel'>
           <div onClick={this.closeOpenedSidebar} style={{ flex: 1, overflowY: 'auto', width: '100%' }}>
             {this.props.children}
           </div>
