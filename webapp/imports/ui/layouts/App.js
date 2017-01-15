@@ -28,7 +28,16 @@ const muiTheme = getMuiTheme({
   }
 });
 
-Session.setDefault('iFrameLocation', 'https://www.ncbi.nlm.nih.gov');
+Session.setDefault('iFrameLocation', '');
+Meteor.startup(function (){
+  if (Meteor.settings.public.defaults.iFrameUrl) {
+    Session.set('iFrameLocation', Meteor.settings.public.defaults.iFrameUrl);
+  }
+  if (Meteor.settings.public.defaults.iFrameEnabled) {
+    Session.set('secondPanelVisible', Meteor.settings.public.defaults.iFrameEnabled);
+  }
+});
+
 
 export class App extends React.Component {
   constructor(props) {
@@ -74,12 +83,17 @@ export class App extends React.Component {
       data.browserWindowLocation = Session.get('iFrameLocation');
     }
 
-    if (Session.get('appWidth') > 1200) {
-      data.style.secondary.visibility = 'visible';
-      data.style.secondary.left = '1024px';
+    if (Session.get('secondPanelVisible')) {
+      if (Session.get('appWidth') > 1200) {
+        data.style.secondary.visibility = 'visible';
+        data.style.secondary.left = '1024px';
+      } else {
+        data.style.secondary.visibility = 'hidden';
+        data.style.secondary.left = '4048px';
+      }
     } else {
       data.style.secondary.visibility = 'hidden';
-      data.style.secondary.left = '10000px';
+      data.style.secondary.left = '4048px';
     }
 
     if(process.env.NODE_ENV === "test") console.log("GenomePage[data]", data);
@@ -100,7 +114,7 @@ export class App extends React.Component {
                 <GlassCard style={this.data.style.card}>
                   <CardText>
                     <object id="iframe" type="text/html" data={this.data.browserWindowLocation} style={this.data.style.content}>
-                      <p>unable to load content</p>
+                      <p>unable to load </p>
                     </object>
                   </CardText>
                 </GlassCard>
