@@ -1,17 +1,24 @@
 
 import {Meteor} from 'meteor/meteor';
 import {Statistics} from '/imports/api/statistics/statistics';
+import {MyGenotype} from '/imports/api/genotype/MyGenotype';
+
 
 Meteor.publish("Statistics", function (){
   return Statistics.find();
 });
 
 
+Meteor.publish("MyGenotype", function (chromosomeNumber){
+  check(chromosomeNumber, Number);
+  return MyGenotype.find({}, {limit: 1000});
+});
 
 
 
 
-// 
+
+//
 // //==============================================================================
 // // SiteStatistics
 // // Originally developed as part of the fhir-server demo

@@ -18,6 +18,10 @@ import { CollectionManagement } from '/imports/ui/components/CollectionManagemen
 import { GeneticAlgorithms } from '/imports/api/genotype/GeneticAlgorithms';
 import { Statistics } from '/imports/api/statistics/statistics';
 
+import LinearProgress from 'material-ui/LinearProgress';
+import {orange500, blue500} from 'material-ui/styles/colors';
+
+
 var componentConfig = {
   allowedFiletypes: ['.jpg', '.png', '.gif'],
   iconFiletypes: ['.jpg', '.png', '.gif'],
@@ -96,9 +100,7 @@ var eventHandlers = {
   queuecomplete: null
 };
 
-Session.setDefault('showServerCounts', false);
-
-export class DataManagementPage extends React.Component {
+export class DataDropzone extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -107,90 +109,37 @@ export class DataManagementPage extends React.Component {
       user: {
         isAdmin: false
       },
-      collections: {
-        patients: Patients.find().count(),
-        practitioners: Practitioners.find().count(),
-        observations: Observations.find().count(),
-        devices: Devices.find().count(),
-        medications: Medications.find().count(),
-        questionnaires: Questionnaires.find().count(),
-        conditions: Conditions.find().count()
-      },
-      title: "Client Collections"
+      completed: 0,
+      max: 0
     };
 
-    // if (Session.get('showServerCounts')) {
-    //   var stats = Statistics.find({}, {limit: 1, sort: {date: -1}}).fetch();
-    //   data.collections = stats[0].counts;
-    // }
-
-
-    let user = Meteor.user();
-    if (user && user.roles) {
-      user.roles.forEach(function(role){
-        if (role === "sysadmin") {
-          data.user.isAdmin = true;
-        } else if (role === "practitioner") {
-          data.user.isPractitioner = true;
-        } else if (role === "patient") {
-          data.user.isPatient = true;
-        }
-      });
+    var stats = Statistics.find({}, {limit: 1, sort: {date: -1}}).fetch()[0];
+    if (stats) {
+      data.completed = stats.counts.genotype;
+      data.max = stats.progressMax;
     }
 
     return data;
   }
   render(){
     return(
-      <div id="dataManagementPage">
-        <VerticalCanvas >
-          <GlassCard>
-            <CardTitle
-              title="Data Management"
-            />
-            <CardText>
-              <DropzoneComponent
-                config={componentConfig}
-                 eventHandlers={eventHandlers}
-                 djsConfig={djsConfig}
-              />
-
-            </CardText>
-          </GlassCard>
-
-          {this.renderAdminTiles(this.data.user)}
-
-        </VerticalCanvas>
-      </div>
+      <GlassCard>
+        <CardTitle
+          title="Data Management"
+        />
+        <CardText>
+          <DropzoneComponent
+            config={componentConfig}
+             eventHandlers={eventHandlers}
+             djsConfig={djsConfig}
+          />
+          <br />
+          <LinearProgress mode="determinate" value={this.data.completed} max={this.data.max} color={orange500} />
+        </CardText>
+      </GlassCard>
     );
   }
-
-  callMethod(signature){
-    console.log("callMethod", signature);
-
-    Meteor.call(signature);
-  }
-
-    renderAdminTiles(user){
-      if (user.isAdmin || user.isPractitioner || user.isPatient) {
-        return (
-          <div>
-            <Spacer />
-            <GlassCard>
-              <CardTitle
-                title="Collections"
-              />
-              <CardText>
-                <CollectionManagement />
-
-              </CardText>
-            </GlassCard>
-
-          </div>
-        );
-      }
-    }
 }
 
 
-ReactMixin(DataManagementPage.prototype, ReactMeteorData);
+ReactMixin(DataDropzone.prototype, ReactMeteorData);

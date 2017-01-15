@@ -1,4 +1,6 @@
-import React from 'react';
+import React  from 'react';
+import ReactMixin  from 'react-mixin';
+import { ReactMeteorData } from 'meteor/react-meteor-data';
 
 // base layout
 import { GlassApp } from '/imports/ui/layouts/GlassApp';
@@ -13,6 +15,11 @@ import {teal400,teal600} from 'material-ui/styles/colors';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
+import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
+import { GlassCard } from '/imports/ui/components/GlassCard';
+import { CardTitle, CardText } from 'material-ui/Card';
+
+
 const muiTheme = getMuiTheme({
   palette: {
     primary1Color: teal400,
@@ -20,6 +27,8 @@ const muiTheme = getMuiTheme({
     pickerHeaderColor: teal400
   }
 });
+
+Session.setDefault('iFrameLocation', 'https://www.ncbi.nlm.nih.gov');
 
 export class App extends React.Component {
   constructor(props) {
@@ -34,13 +43,69 @@ export class App extends React.Component {
     injectTapEventPlugin();
   }
 
+  getMeteorData() {
+    let data = {
+      style: {
+        secondary: {
+          position: 'absolute',
+          top: ' 0px',
+          width: '1024px',
+          left: '0',
+          transition: '1s'
+        },
+        card: {
+          position: 'relative',
+          minHeight: '768px',
+          width: '1024px',
+          height: Session.get('appHeight') - 240 + 'px'
+        },
+        content: {
+          minHeight: '728px',
+          width: '970px',
+          height: Session.get('appHeight') - 280 + 'px'
+        }
+      },
+      browserWindowLocation: 'https://www.ncbi.nlm.nih.gov'
+    };
+
+
+
+    if (Session.get('iFrameLocation')) {
+      data.browserWindowLocation = Session.get('iFrameLocation');
+    }
+
+    if (Session.get('appWidth') > 1200) {
+      data.style.secondary.visibility = 'visible';
+      data.style.secondary.left = '1024px';
+    } else {
+      data.style.secondary.visibility = 'hidden';
+      data.style.secondary.left = '10000px';
+    }
+
+    if(process.env.NODE_ENV === "test") console.log("GenomePage[data]", data);
+    return data;
+  }
+
   render(){
     return (
      <MuiThemeProvider muiTheme={muiTheme}>
       <GlassApp>
         <GlassLayout>
           <Header />
-          { this.props.children }
+            <div className='primaryFlexPanel' >
+              { this.props.children }
+            </div>
+            <div className='secondaryFlexPanel' style={this.data.style.secondary}>
+              <VerticalCanvas>
+                <GlassCard style={this.data.style.card}>
+                  <CardText>
+                    <object id="iframe" type="text/html" data={this.data.browserWindowLocation} style={this.data.style.content}>
+                      <p>unable to load content</p>
+                    </object>
+                  </CardText>
+                </GlassCard>
+              </VerticalCanvas>
+            </div>
           <Footer />
         </GlassLayout>
       </GlassApp>
@@ -56,3 +121,5 @@ App.childContextTypes = {
   muiTheme: React.PropTypes.object.isRequired
 };
 App.defaultProps = {};
+
+ReactMixin(App.prototype, ReactMeteorData);
