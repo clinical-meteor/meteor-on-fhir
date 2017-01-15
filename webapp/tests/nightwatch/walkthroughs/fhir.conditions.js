@@ -4,12 +4,12 @@
 
 
 module.exports = {
-  tags: ['devices', 'Devices', 'crud', 'fhir', 'circle'],
+  tags: ['conditions', 'Conditions', 'crud', 'fhir', 'circle'],
   before: function(client){
     client
       .url("http://localhost:3000").pause(3000)
       .executeAsync(function(){
-        Meteor.call('dropDevices');
+        Meteor.call('dropConditions');
         Meteor.call('dropTestUsers');
       });
   },
@@ -28,25 +28,25 @@ module.exports = {
       .verify.containsText('#authenticatedUsername', 'Gregory House')
       .pause(3000);
   },
-  'list devices': function (client) {
+  'list conditions': function (client) {
     client.page
       .indexPage()
-      .selectDevicesTile();
+      .selectConditionsTile();
 
     client.page
-      .devicesPage()
+      .conditionsPage()
       .verifyElements()
       .verifyEmptyList();
   },
-  'create new device': function (client) {
+  'create new condition': function (client) {
 
     client.page
-      .devicesPage()
-      .selectNewDeviceTab()
-      .verifyNewDeviceCard();
+      .conditionsPage()
+      .selectNewConditionTab()
+      .verifyNewConditionCard();
 
     client.pause(1000).executeAsync(function(){
-      Session.set('deviceUpsert', {
+      Session.set('conditionUpsert', {
         "resourceType": "Condition",
         "patient": {
           "reference": "",
@@ -90,33 +90,33 @@ module.exports = {
         ]
       });
     });
-
+    
     client.page
-      .devicesPage()
-      .upsertDevice('MRI', 'Philips', 'Gyroscan', '22456', '#newDevice')
-      .saveScreenshot('tests/nightwatch/screenshots/devices.crud/B-DeviceList.png', client);
+      .conditionsPage()
+      .upsertCondition('Jane Doe', 'Gregory House', 'active', '22456', 'Fever', 'Observation/555', '#newCondition')
+      .saveScreenshot('tests/nightwatch/screenshots/conditions.crud/B-ConditionList.png', client);
 
     client
-      .click('#newDevice #saveDeviceButton').pause(1000);
+      .click('#newCondition #saveConditionButton').pause(1000);
   },
-  "list should contain recently created device" : function (client) {
+  "table should contain recently created condition" : function (client) {
     client.page
-      .devicesPage()
+      .conditionsPage()
       .selectListTab()
-      .verifyDeviceListCard()
-      .listContainsDevice(1, 'MRI', 'Philips', 'Gyroscan', '22456')
-      .saveScreenshot('tests/nightwatch/screenshots/devices.crud/B-DeviceList.png', client);
+      .verifyConditionListCard()
+      .listContainsCondition(1, 'Jane Doe', 'Gregory House', 'active', '22456', 'Fever', 'Observation/555')
+      .saveScreenshot('tests/nightwatch/screenshots/conditions.crud/B-ConditionList.png', client);
   },
-  'device detail': function (client) {
+  'condition detail': function (client) {
     client.page
-      .devicesPage()
-      .selectDevice(1)
-      .verifyDeviceDetails('MRI', 'Philips', 'Gyroscan', '22456')
-      .saveScreenshot('tests/nightwatch/screenshots/devices.crud/C-DeviceDetails.png', client);
+      .conditionsPage()
+      .selectCondition(1)
+      .verifyConditionDetails('Jane Doe', 'Gregory House', 'active', '22456', 'Fever', 'Observation/555')
+      .saveScreenshot('tests/nightwatch/screenshots/conditions.crud/C-ConditionDetails.png', client);
   },
-  'edit device': function (client) {
+  'edit condition': function (client) {
     client.pause(1000).executeAsync(function(){
-      Session.set('deviceUpsert', {
+      Session.set('conditionUpsert', {
         "resourceType": "Condition",
         "patient": {
           "reference": "",
@@ -162,23 +162,23 @@ module.exports = {
     });
 
     client.page
-      .devicesPage()
-      .upsertDevice('3T MRI', 'Philips Medical', 'Gyroscan Intera', '22456', '#deviceDetails')
-      .saveScreenshot('tests/nightwatch/screenshots/devices.crud/D-EditedDevice.png', client);
+      .conditionsPage()
+      .upsertCondition('Jane Doe', 'Jane Doe', 'active', '78900', 'Headache', 'Observation/777', '#conditionDetails')
+      .saveScreenshot('tests/nightwatch/screenshots/conditions.crud/D-EditedCondition.png', client);
 
-    // since we're using the DeviceDetail component twice,
-    // there are two #saveDeviceButtons on the page
+    // since we're using the ConditionDetail component twice,
+    // there are two #saveConditionButtons on the page
     // so we need to scope the button accordingly
     client
-      .verify.elementPresent('#deviceDetails #saveDeviceButton')
-      .click('#deviceDetails #saveDeviceButton').pause(2000);
+      .verify.elementPresent('#conditionDetails #saveConditionButton')
+      .click('#conditionDetails #saveConditionButton').pause(2000);
   },
-  'list edited Devices': function (client) {
+  'list edited Conditions': function (client) {
     client.page
-      .devicesPage()
-      .listContainsDevice(1, '3T MRI', 'Philips Medical', 'Gyroscan Intera', '22456')
+      .conditionsPage()
+      .listContainsCondition(1, 'Jane Doe', 'Jane Doe', 'active', '78900', 'Headache', 'Observation/777')
       //.pause(40000, client)
-      .saveScreenshot('tests/nightwatch/screenshots/devices.crud/E-EditedDeviceList.png', client);
+      .saveScreenshot('tests/nightwatch/screenshots/conditions.crud/E-EditedConditionList.png', client);
   },
 
   'fin': function (client) {
