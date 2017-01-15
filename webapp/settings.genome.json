@@ -16,7 +16,9 @@
       "displayNavbars": true,
       "disableHeader": false,
       "disableFooter": false,
-      "darkroom": false
+      "darkroom": false,
+      "iFrameEnabled": true,
+      "iFrameUrl": "https://www.ncbi.nlm.nih.gov"
     },
     "modules": {
       "data": true,
@@ -37,7 +39,7 @@
         "Devices": true,
         "Locations": true,
         "Questionnaires": true,
-        "RiskAssessments": true        
+        "RiskAssessments": true
       }
     }
   },

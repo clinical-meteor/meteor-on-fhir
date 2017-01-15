@@ -30,6 +30,11 @@ module.exports = {
       return this
         .verify.elementPresent('#riskAssessmentsTile')
         .click('#riskAssessmentsTile');
+    },
+    selectConditionsTile: function() {
+      return this
+        .verify.elementPresent('#conditionsTile')
+        .click('#conditionsTile');
     }
   }],
   elements: {
