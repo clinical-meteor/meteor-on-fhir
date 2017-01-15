@@ -44,6 +44,7 @@ import { ImagingStudiesPage } from '/imports/ui/workflows/imaging-studies/Imagin
 import { MedicationsPage } from '/imports/ui/workflows/medications/MedicationsPage';
 import { ChecklistsPage } from '/imports/ui/workflows/lists/ChecklistsPage';
 
+import { ConditionsPage } from '/imports/ui/workflows/conditions/ConditionsPage';
 import { DevicesPage } from '/imports/ui/workflows/devices/DevicesPage';
 import { DermatogramsPage } from '/imports/ui/pages/DermatogramsPage';
 import { TelemedicinePage } from '/imports/ui/pages/TelemedicinePage';
@@ -152,6 +153,7 @@ Meteor.startup(() => {
         <Route name="imagingStudies" path="/radiology" component={ ImagingStudiesPage } />
         <Route name="genome" path="/my-genome" component={ GenomePage } />
 
+        <Route name="conditions" path="/conditions" component={ ConditionsPage } />
         <Route name="devices" path="/devices" component={ DevicesPage } />
         <Route name="telemedicine" path="/telemed" component={ TelemedicinePage } />
         <Route name="locations" path="/locations" component={ LocationsPage } />

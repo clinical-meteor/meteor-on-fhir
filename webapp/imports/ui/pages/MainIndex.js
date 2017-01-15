@@ -199,7 +199,7 @@ export class MainIndex extends React.Component {
           </GlassCard>
         </div>
 
-        <div id='conditionsTile' style={this.data.style.indexCardPadding} onClick={ this.openDataManagement.bind(this) } >
+        <div id='conditionsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/conditions') } >
           <GlassCard style={this.data.style.indexCard} >
             <CardTitle
               title='Conditions'
