@@ -24,6 +24,8 @@ Meteor.startup(function (){
   // subscriptions that aren't provided via packages
   Meteor.subscribe('posts');
   Meteor.subscribe('topics');
+
+  //Meteor.subscribe('Lists');
   Meteor.subscribe('Statistics');
   Meteor.subscribe('MyGenotype', Session.get('selectedChromosome'));
 });

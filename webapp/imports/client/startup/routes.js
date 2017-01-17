@@ -57,6 +57,8 @@ import { RiskAssessmentsPage } from '/imports/ui/workflows/risk-assessments/Risk
 import { AuditLogPage } from '/imports/ui/pages/AuditLogPage';
 import { MetadataPage } from '/imports/ui/components/MetadataPage';
 
+import { MyConditions } from '/imports/ui/workflows/conditions/MyConditions';
+
 
 // we're storing the current route URL in a reactive variable
 // which will be used to update active controls
@@ -142,29 +144,31 @@ Meteor.startup(() => {
 
         <Route name="appInfo" path="/info" component={ AppInfoPage } />
 
-        <Route name="inboundHeader" path="/inbound" component={ InboundMessagesPage } />
-        <Route name="outboundHeader" path="/outbound" component={ OutboundHeaderPage } />
-        <Route name="dataManagement" path="/data-management" component={ DataManagementPage } />
+        <Route name="inboundHeader" path="/inbound" component={ InboundMessagesPage } onEnter={ requireAuth } />
+        <Route name="outboundHeader" path="/outbound" component={ OutboundHeaderPage }  onEnter={ requireAuth }/>
+        <Route name="dataManagement" path="/data-management" component={ DataManagementPage }  onEnter={ requireAuth }/>
 
-        <Route name="observation" path="/observations" component={ ObservationsPage } />
+        <Route name="observation" path="/observations" component={ ObservationsPage }  onEnter={ requireAuth }/>
 
-        <Route name="medications" path="/medications" component={ MedicationsPage } />
-        <Route name="checklists" path="/checklists" component={ ChecklistsPage } />
-        <Route name="imagingStudies" path="/radiology" component={ ImagingStudiesPage } />
-        <Route name="genome" path="/my-genome" component={ GenomePage } />
+        <Route name="medications" path="/medications" component={ MedicationsPage }  onEnter={ requireAuth }/>
+        <Route name="checklists" path="/checklists" component={ ChecklistsPage }  onEnter={ requireAuth }/>
+        <Route name="imagingStudies" path="/radiology" component={ ImagingStudiesPage }  onEnter={ requireAuth }/>
+        <Route name="genome" path="/my-genome" component={ GenomePage }  onEnter={ requireAuth }/>
 
-        <Route name="conditions" path="/conditions" component={ ConditionsPage } />
-        <Route name="devices" path="/devices" component={ DevicesPage } />
-        <Route name="telemedicine" path="/telemed" component={ TelemedicinePage } />
-        <Route name="locations" path="/locations" component={ LocationsPage } />
-        <Route name="dermatograms" path="/dermatograms" component={ DermatogramsPage } />
-        <Route name="questionnaires" path="/questionnaires" component={ QuestionnairesPage } />
-        <Route name="questionnaireResponses" path="/questionnaire-responses" component={ QuestionnaireResponsesPage } />
-        <Route name="riskAssessments" path="/risk-assessments" component={ RiskAssessmentsPage } />
+        <Route name="myConditions" path="/my-conditions" component={ MyConditions }  />
+
+        <Route name="conditions" path="/conditions" component={ ConditionsPage }  onEnter={ requireAuth }/>
+        <Route name="devices" path="/devices" component={ DevicesPage }  onEnter={ requireAuth }/>
+        <Route name="telemedicine" path="/telemed" component={ TelemedicinePage }  onEnter={ requireAuth }/>
+        <Route name="locations" path="/locations" component={ LocationsPage }  onEnter={ requireAuth }/>
+        <Route name="dermatograms" path="/dermatograms" component={ DermatogramsPage }  onEnter={ requireAuth }/>
+        <Route name="questionnaires" path="/questionnaires" component={ QuestionnairesPage }  onEnter={ requireAuth }/>
+        <Route name="questionnaireResponses" path="/questionnaire-responses" component={ QuestionnaireResponsesPage }  onEnter={ requireAuth }/>
+        <Route name="riskAssessments" path="/risk-assessments" component={ RiskAssessmentsPage }  onEnter={ requireAuth } />
 
 
 
-        <Route name="auditLogPage" path="/hipaa-log" component={ AuditLogPage } />
+        <Route name="auditLogPage" path="/hipaa-log" component={ AuditLogPage }  onEnter={ requireAuth }/>
         <Route name="metadataPage" path="/metadata" component={ MetadataPage } />
 
         <Route path="*" component={ NotFound } />

@@ -182,6 +182,8 @@ Meteor.methods({
               }
             ]
           },
+          "deleted": false,
+          "date": new Date(),
           "item": {
             "display": item
           }
