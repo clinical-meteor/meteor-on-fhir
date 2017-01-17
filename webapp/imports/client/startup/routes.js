@@ -57,6 +57,8 @@ import { RiskAssessmentsPage } from '/imports/ui/workflows/risk-assessments/Risk
 import { AuditLogPage } from '/imports/ui/pages/AuditLogPage';
 import { MetadataPage } from '/imports/ui/components/MetadataPage';
 
+import { MyConditions } from '/imports/ui/workflows/conditions/MyConditions';
+
 
 // we're storing the current route URL in a reactive variable
 // which will be used to update active controls
@@ -152,6 +154,8 @@ Meteor.startup(() => {
         <Route name="checklists" path="/checklists" component={ ChecklistsPage }  onEnter={ requireAuth }/>
         <Route name="imagingStudies" path="/radiology" component={ ImagingStudiesPage }  onEnter={ requireAuth }/>
         <Route name="genome" path="/my-genome" component={ GenomePage }  onEnter={ requireAuth }/>
+
+        <Route name="myConditions" path="/my-conditions" component={ MyConditions }  />
 
         <Route name="conditions" path="/conditions" component={ ConditionsPage }  onEnter={ requireAuth }/>
         <Route name="devices" path="/devices" component={ DevicesPage }  onEnter={ requireAuth }/>

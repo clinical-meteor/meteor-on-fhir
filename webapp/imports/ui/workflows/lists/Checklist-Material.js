@@ -97,17 +97,6 @@ export class Checklist extends React.Component {
       });
 
     }
-
-
-    // //console.log("toggleTask", index, this.data.entry[index]);
-    // var queryString = 'entry.' + index + '.flag.text';
-    // //console.log("queryString", queryString);
-    //
-    //
-    //
-    //
-    // console.log("query", query);
-
   }
   render() {
     let listRows = [];
