@@ -6,12 +6,18 @@ import { Tabs, Tab } from 'material-ui/Tabs';
 import { GlassCard } from '/imports/ui/components/GlassCard';
 import { CardTitle, CardText } from 'material-ui/Card';
 import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
-import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
+// import { Table, TableRow, TableBody, TableHeader, TableHeaderColumn, TableRowColumn } from 'material-ui/Table';
+
+import { Table, TableRow, TableBody, TableHeader, TableHeaderColumn, TableRowColumn } from 'material-ui/Table';
+import ChecklistTableRow from '/imports/ui/workflows/lists/ChecklistTableRow';
+import { Checklist } from '/imports/ui/workflows/lists/Checklist';
 
 import { Meteor } from 'meteor/meteor';
 import Glass from '/imports/ui/Glass';
 
-Session.setDefault('checklistPageTabIndex', 1);
+
+
+Session.setDefault('checklistPageTabIndex', 0);
 Session.setDefault('checklistSearchFilter', '');
 Session.setDefault('selectedChecklist', false);
 
@@ -38,6 +44,7 @@ export class ChecklistsPage extends React.Component {
     if (Lists.find().count() > 0) {
       data.lists = Lists.find().map(function(list){
         var result = {
+          _id: list._id,
           status: list.status,
           date: '',
           code: '',
@@ -77,16 +84,25 @@ export class ChecklistsPage extends React.Component {
     Session.set('checklistDetailState', false);
   }
 
+  rowClick(row,column,event, foo){
+    console.log("click", row,column,event);
+  }
+
+  fooClick(i){
+    console.log("foo", i);
+    Session.set('selectedChecklist', i);
+    Session.set('checklistPageTabIndex', 1);
+  }
   render() {
     let listRows = [];
     for (var i = 0; i < this.data.lists.length; i++) {
       listRows.push(
-        <TableRow key={i}>
+        <ChecklistTableRow key={i} style={{cursor: 'pointer'}} onClick={this.fooClick.bind('this', this.data.lists[i]._id)} >
           <TableRowColumn>{this.data.lists[i].status}</TableRowColumn>
           <TableRowColumn>{this.data.lists[i].date}</TableRowColumn>
           <TableRowColumn>{this.data.lists[i].code}</TableRowColumn>
           <TableRowColumn>{this.data.lists[i].note}</TableRowColumn>
-        </TableRow>);
+        </ChecklistTableRow>);
     }
     return (
       <div id="checklistsPage">
@@ -96,20 +112,27 @@ export class ChecklistsPage extends React.Component {
               title="Checklists"
             />
             <CardText>
+              <Tabs id="checklistsPageTabs" default value={this.data.tabIndex} onChange={this.handleTabChange} initialSelectedIndex={0}>
+                <Tab className="checklistListTab" label='Checklists' onActive={this.handleActive} style={this.data.style.tab} value={0}>
+                  <Table onCellClick={this.rowClick.bind(this)}>
+                    <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
+                      <TableRow >
+                        <TableHeaderColumn>Status</TableHeaderColumn>
+                        <TableHeaderColumn>Created At</TableHeaderColumn>
+                        <TableHeaderColumn>Name</TableHeaderColumn>
+                        <TableHeaderColumn>Note</TableHeaderColumn>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody displayRowCheckbox={false} showRowHover={true}>
+                      { listRows }
+                    </TableBody>
+                  </Table>
+                </Tab>
+                <Tab className="checklistDetailsTab" label='Detail' onActive={this.handleActive} style={this.data.style.tab} value={1}>
+                  <Checklist />
+                </Tab>
+              </Tabs>
 
-              <Table >
-                <TableHeader displaySelectAll={false}>
-                  <TableRow>
-                    <TableHeaderColumn>Status</TableHeaderColumn>
-                    <TableHeaderColumn>Created At</TableHeaderColumn>
-                    <TableHeaderColumn>Name</TableHeaderColumn>
-                    <TableHeaderColumn>Note</TableHeaderColumn>
-                  </TableRow>
-                </TableHeader>
-                <TableBody displayRowCheckbox={false}>
-                  { listRows }
-                </TableBody>
-              </Table>
             </CardText>
           </GlassCard>
         </VerticalCanvas>

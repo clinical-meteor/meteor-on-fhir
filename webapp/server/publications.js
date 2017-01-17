@@ -14,7 +14,9 @@ Meteor.publish("MyGenotype", function (chromosomeNumber){
   return MyGenotype.find({}, {limit: 1000});
 });
 
-
+// Meteor.publish("Lists", function (){
+//   return Lists.find();
+// });
 
 
 
