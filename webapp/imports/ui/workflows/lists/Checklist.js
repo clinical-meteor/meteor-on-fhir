@@ -7,12 +7,11 @@ import { GlassCard } from '/imports/ui/components/GlassCard';
 import { CardTitle, CardText } from 'material-ui/Card';
 import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 
-// import { Table, TableRow, TableBody, TableHeader, TableHeaderColumn, TableRowColumn } from 'material-ui/Table';
-
 import { Meteor } from 'meteor/meteor';
 import Glass from '/imports/ui/Glass';
 
 import { Table } from 'react-bootstrap';
+import Checkbox from 'material-ui/Checkbox';
 
 Session.setDefault('checklistPageTabIndex', 0);
 Session.setDefault('checklistSearchFilter', '');
@@ -27,6 +26,9 @@ export class Checklist extends React.Component {
         tab: {
           borderBottom: '1px solid lightgray',
           borderRight: 'none'
+        },
+        cell: {
+          lineHeight: '24px'
         }
       },
       tabIndex: Session.get('checklistPageTabIndex'),
@@ -99,36 +101,29 @@ export class Checklist extends React.Component {
       });
 
     }
-
-
-    // //console.log("toggleTask", index, this.data.entry[index]);
-    // var queryString = 'entry.' + index + '.flag.text';
-    // //console.log("queryString", queryString);
-    //
-    //
-    //
-    //
-    // console.log("query", query);
-
   }
   render() {
     let listRows = [];
     for (var i = 0; i < this.data.entry.length; i++) {
       listRows.push(
         <tr key={i} style={{cursor: 'pointer'}} selected={ this.data.entry[i].selected } selectable={true} onClick={this.rowClick.bind(this)}>
-          <td>{ moment(this.data.entry[i].date).format("YYYY-MM-DD") }</td>
-          <td>{this.data.entry[i].flag.text ? this.data.entry[i].flag.text : ''}</td>
-          <td>{this.data.entry[i].item.display}</td>
+          <td style={this.data.style.cell}>
+            <Checkbox checked={this.data.entry[i].selected} onClick={this.toggleTask.bind('this', i)} />
+          </td>
+          <td style={this.data.style.cell}>{ moment(this.data.entry[i].date).format("YYYY-MM-DD") }</td>
+          <td style={this.data.style.cell}>{this.data.entry[i].flag.text ? this.data.entry[i].flag.text : ''}</td>
+          <td style={this.data.style.cell}>{this.data.entry[i].item.display}</td>
         </tr>
       );
     }
 
     return (
       <div className="checklist">
-        <Table striped bordered condensed hover  onRowSelection={this.toggleTask.bind(this)}>
+        <Table hover onRowSelection={this.toggleTask.bind(this)}>
           <thead>
             <tr >
-              <th>Created At</th>
+              <th>Checkbox</th>
+              <th style={{width: '100px'}}>Created</th>
               <th>Flag</th>
               <th>Task</th>
             </tr>
