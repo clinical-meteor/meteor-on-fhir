@@ -168,15 +168,10 @@ Meteor.startup(() => {
 
 
 
-<<<<<<< HEAD
-        <Route name="auditLogPage" path="/hipaa-log" component={ AuditLogPage }  onEnter={ requireAuth }/>
-        <Route name="metadataPage" path="/metadata" component={ MetadataPage } />
-=======
         <Route name="auditLogPage" path="/hipaa-log" component={ AuditLogPage } />
         <Route name="mathPage" path="/metadata" component={ MetadataPage } />
 
         <Route name="mathPage" path="/math" component={ MathPage } />
->>>>>>> 0172669a8ef6fcd5562ec9c6c60243e2f658453b
 
         <Route path="*" component={ NotFound } />
 
