@@ -58,7 +58,7 @@ import { AuditLogPage } from '/imports/ui/pages/AuditLogPage';
 import { MetadataPage } from '/imports/ui/components/MetadataPage';
 
 import { MyConditions } from '/imports/ui/workflows/conditions/MyConditions';
-
+import { MathPage } from '/imports/ui/pages/experimental/MathPage';
 
 // we're storing the current route URL in a reactive variable
 // which will be used to update active controls
@@ -168,8 +168,15 @@ Meteor.startup(() => {
 
 
 
+<<<<<<< HEAD
         <Route name="auditLogPage" path="/hipaa-log" component={ AuditLogPage }  onEnter={ requireAuth }/>
         <Route name="metadataPage" path="/metadata" component={ MetadataPage } />
+=======
+        <Route name="auditLogPage" path="/hipaa-log" component={ AuditLogPage } />
+        <Route name="mathPage" path="/metadata" component={ MetadataPage } />
+
+        <Route name="mathPage" path="/math" component={ MathPage } />
+>>>>>>> 0172669a8ef6fcd5562ec9c6c60243e2f658453b
 
         <Route path="*" component={ NotFound } />
 
