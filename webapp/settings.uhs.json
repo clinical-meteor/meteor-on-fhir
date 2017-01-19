@@ -1,0 +1,52 @@
+{
+  "public": {
+    "title": "UHS Device Management Demo",
+    "theme": {
+      "showVideoBackground": false,
+      "darkroomTextEnabled": false,
+      "defaultVideo": "/VideoBackgrounds/Circulation.mp4",
+      "backgroundImagePath": "https://www.uhs.com/wp-content/uploads/0404-1.jpg"
+    },
+    "app": {
+      "barcodes": true,
+      "showUnderConstruction": false,
+      "showExperimental": false
+    },
+    "defaults": {
+      "displayNavbars": true,
+      "disableHeader": false,
+      "disableFooter": false,
+      "darkroom": false,
+      "iFrameEnabled": false,
+      "iFrameUrl": "https://www.ncbi.nlm.nih.gov"
+    },
+    "modules": {
+      "data": true,
+      "forum": false,
+      "genome": false,
+      "healthlog": false,
+      "dermatograms": false,
+      "telemedicine": false,
+      "inbound": true,
+      "outbound": true,
+      "fhir": {
+        "Conditions": false,
+        "Patients": true,
+        "Practitioners": false,
+        "Observations": true,
+        "ImagingStudies": false,
+        "Lists": true,
+        "Medications": false,
+        "Devices": true,
+        "Locations": false,
+        "Questionnaires": false,
+        "RiskAssessments": false
+      }
+    }
+  },
+  "private": {
+    "practitionerAccessCode": "hippocrates",
+    "sysadminAccessCode": "rootaccess",
+    "disableOauth": true
+  }
+}
