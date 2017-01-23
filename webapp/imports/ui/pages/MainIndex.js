@@ -1,4 +1,4 @@
-import { CardTitle, CardText } from 'material-ui/Card';
+import { CardTitle } from 'material-ui/Card';
 import React from 'react';
 import ReactMixin from 'react-mixin';
 
@@ -45,7 +45,7 @@ export class MainIndex extends React.Component {
         isPatient: true
       },
       showUnderConstruction: false,
-      showExperimental: false
+      showExperimental: false,
     };
 
     let user = Meteor.user();
@@ -91,11 +91,19 @@ export class MainIndex extends React.Component {
         <VerticalCanvas>
 
           {this.renderAdminTiles(this.data.user)}
-          {this.renderPractitionerTiles(this.data.user)}
-          {this.renderClinicalTiles(this.data.user)}
-          {this.renderPatientTiles(this.data.user)}
+
+          {this.renderPatients(this.data.user)}
+          {this.renderPractitioners(this.data.user)}
+
+          {this.renderDevices(this.data.user)}
+          {this.renderObservations(this.data.user)}
+          {this.renderMedications(this.data.user)}
+          {this.renderChecklists(this.data.user)}
+
+          {this.renderRiskAssessments(this.data.user)}
+
           {this.renderTilesUnderConstruction(this.data.user, this.data.showUnderConstruction)}
-          {this.renderExperimentalTiles(this.data.user, this.data.showExperimental)}
+          {this.renderExperimentalTiles(this.data.showExperimental)}
 
         </VerticalCanvas>
       </div>
@@ -124,6 +132,15 @@ export class MainIndex extends React.Component {
             </GlassCard>
           </div>
 
+          <div id='dataManagementTile' style={this.data.style.indexCardPadding} onClick={ this.openDataManagement.bind(this) } >
+            <GlassCard style={this.data.style.indexCard} >
+              <CardTitle
+                title='Data Management'
+                subtitle='Import/export data.'
+              />
+            </GlassCard>
+          </div>
+
           <div id="hipaaLogTile" style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/hipaa-log') } >
             <GlassCard style={this.data.style.indexCard} >
               <CardTitle
@@ -133,158 +150,69 @@ export class MainIndex extends React.Component {
             </GlassCard>
           </div>
 
-          <div id='systemAdminTile' style={this.data.style.inactiveIndexCard} onClick={ this.openDataManagement.bind(this) } >
-            <GlassCard style={this.data.style.indexCard} >
-              <CardTitle
-                title='System Configuration'
-                subtitle='Import/export data.'
-              />
-            </GlassCard>
-          </div>
         </div>
       );
     }
   }
-  renderPatientTiles(user){
-    if (user.isPatient || user.isAdmin) {
-      return (<div></div>);
-    }
-  }
-  renderClinicalTiles(user){
-    if (user.isPatient || user.isPractitioner || user.isAdmin) {
-      return (<div>
 
-        <div id='dataManagementTile' style={this.data.style.indexCardPadding} onClick={ this.openDataManagement.bind(this) } >
-          <GlassCard style={this.data.style.indexCard} >
-            <CardTitle
-              title='Data Management'
-              subtitle='Import/export data.'
-            />
-          </GlassCard>
-        </div>
-
-        <div id='checklistsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/checklists') } >
-          <GlassCard style={this.data.style.indexCard} >
-            <CardTitle
-              title='Checklist Manifesto'
-              subtitle='Checklists lead to better outcomes.'
-            />
-          </GlassCard>
-        </div>
-
-        <div id='observationsTile' style={this.data.style.indexCardPadding} onClick={ this.openObservations.bind(this) } >
-          <GlassCard style={this.data.style.indexCard} >
-            <CardTitle
-              title='Observations'
-              subtitle='Observations from devices.'
-            />
-          </GlassCard>
-        </div>
-
-        <div id='devicesTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/devices') } >
-          <GlassCard style={this.data.style.indexCard} >
-            <CardTitle
-              title='Devices'
-              subtitle='Equipment and devices.'
-            />
-          </GlassCard>
-        </div>
-
-        <div id="medicationsTile" style={this.data.style.indexCardPadding} onClick={ this.openMedications.bind(this) } >
-          <GlassCard style={this.data.style.indexCard} >
-            <CardTitle
-              title='Medication Inventory'
-              subtitle='Crash carts, first responder kits, and surgical prep.'
-            />
-          </GlassCard>
-        </div>
-
-        <div id='conditionsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/conditions') } >
-          <GlassCard style={this.data.style.indexCard} >
-            <CardTitle
-              title='Conditions'
-              subtitle='Diagnosed conditions a patient may have.'
-            />
-          </GlassCard>
-        </div>
-      </div>);
-    }
-  }
-
-  renderExperimentalTiles(user, showExperimental){
-    if (showExperimental) {
-      if (user.isPatient || user.isPractitioner || user.isAdmin) {
-        return (
-          <div>
-
-            <div id='forumTile' style={this.data.style.indexCardPadding} onClick={ this.openDiscussionForum.bind(this) }>
-              <GlassCard style={this.data.style.indexCard} >
-                <CardTitle
-                  title='Discussion Forum'
-                  subtitle='Get help developing healthcare apps using Meteor.js'
-                />
-              </GlassCard>
-            </div>
-
-            <div id='weblogTile' style={this.data.style.indexCardPadding} onClick={ this.openHealthlog.bind(this) } >
-              <GlassCard style={this.data.style.indexCard} >
-                <CardTitle
-                  title='Healthlog'
-                  subtitle='Post public thoughts using a Wordpress/Twitter style format.'
-                />
-              </GlassCard>
-            </div>
-
-            <div id="dermatogramsTile" style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/dermatograms') } >
-              <GlassCard style={this.data.style.indexCard} >
-                <CardTitle
-                  title='Dermatograms'
-                  subtitle='Mole counts, burn coverage, body sites, etc.'
-                />
-              </GlassCard>
-            </div>
-
-            <div id='telemedicineTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/telemed') } >
-              <GlassCard style={this.data.style.indexCard} >
-                <CardTitle
-                  title='Telemedicine'
-                  subtitle='Point-to-point video conferencing.'
-                />
-              </GlassCard>
-            </div>
-            <div id='myGenomeTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/my-genome') } >
-              <GlassCard style={this.data.style.indexCard} >
-                <CardTitle
-                  title='My Genome'
-                  subtitle='A basic 23 and Me genome explorer.'
-                />
-              </GlassCard>
-            </div>
-
-          </div>
-        );
-      } else {
-        <GlassCard style={this.data.style.indexCard} >
-          <CardText>
-            Not a patient or practitioner or admin
-          </CardText>
-        </GlassCard>
-      }
-
-    } else {
-      <GlassCard style={this.data.style.indexCard} >
-        <CardText>
-          Experimental routes disabled
-        </CardText>
-      </GlassCard>
-    }
-  }
-
-  renderPractitionerTiles(user){
-    if (user.isPractitioner || user.isAdmin) {
+  renderExperimentalTiles(user){
+    if (user.isPatient || user.isPractitioner) {
       return (
         <div>
 
+          <div id='forumTile' style={this.data.style.indexCardPadding} onClick={ this.openDiscussionForum.bind(this) }>
+            <GlassCard style={this.data.style.indexCard} >
+              <CardTitle
+                title='Discussion Forum'
+                subtitle='Get help developing healthcare apps using Meteor.js'
+              />
+            </GlassCard>
+          </div>
+
+          <div id='weblogTile' style={this.data.style.indexCardPadding} onClick={ this.openHealthlog.bind(this) } >
+            <GlassCard style={this.data.style.indexCard} >
+              <CardTitle
+                title='Healthlog'
+                subtitle='Post public thoughts using a Wordpress/Twitter style format.'
+              />
+            </GlassCard>
+          </div>
+
+          <div id="dermatogramsTile" style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/dermatograms') } >
+            <GlassCard style={this.data.style.indexCard} >
+              <CardTitle
+                title='Dermatograms'
+                subtitle='Mole counts, burn coverage, body sites, etc.'
+              />
+            </GlassCard>
+          </div>
+
+          <div id='telemedicineTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/telemed') } >
+            <GlassCard style={this.data.style.indexCard} >
+              <CardTitle
+                title='Telemedicine'
+                subtitle='Point-to-point video conferencing.'
+              />
+            </GlassCard>
+          </div>
+          <div id='myGenomeTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/my-genome') } >
+            <GlassCard style={this.data.style.indexCard} >
+              <CardTitle
+                title='My Genome'
+                subtitle='A basic 23 and Me genome explorer.'
+              />
+            </GlassCard>
+          </div>
+
+        </div>
+      );
+    }
+  }
+
+  renderPatients(user){
+    if (Meteor.settings.public.modules.fhir.Patients) {
+      if (user.isPractitioner || user.isAdmin) {
+        return (
           <div id='patientsTile' style={this.data.style.indexCardPadding} onClick={ this.openPatients.bind(this) } >
             <GlassCard style={this.data.style.indexCard} >
               <CardTitle
@@ -293,6 +221,14 @@ export class MainIndex extends React.Component {
               />
             </GlassCard>
           </div>
+        );
+      }
+    }
+  }
+  renderPractitioners(user){
+    if (Meteor.settings.public.modules.fhir.Practitioners) {
+      if (user.isPractitioner || user.isAdmin) {
+        return (
           <div id="practitionersTile" style={this.data.style.indexCardPadding} onClick={ this.openPractitioners.bind(this) } >
             <GlassCard style={this.data.style.indexCard} >
               <CardTitle
@@ -301,11 +237,89 @@ export class MainIndex extends React.Component {
               />
             </GlassCard>
           </div>
+        );
+      }
+    }
+  }
+  renderObservations(user){
+    if (Meteor.settings.public.modules.fhir.Observations) {
+      if (user.isPatient || user.isPractitioner || user.isAdmin) {
+        return (
+          <div id='observationsTile' style={this.data.style.indexCardPadding} onClick={ this.openObservations.bind(this) } >
+            <GlassCard style={this.data.style.indexCard} >
+              <CardTitle
+                title='Observations'
+                subtitle='Observations from devices.'
+              />
+            </GlassCard>
+          </div>
+        );
+      }
+    }
+  }
+  renderMedications(user){
+    if (Meteor.settings.public.modules.fhir.Medications) {
+      if (user.isPatient || user.isPractitioner || user.isAdmin) {
+        return (
+          <div id="medicationsTile" style={this.data.style.indexCardPadding} onClick={ this.openMedications.bind(this) } >
+            <GlassCard style={this.data.style.indexCard} >
+              <CardTitle
+                title='Medication Inventory'
+                subtitle='Crash carts, first responder kits, and surgical prep.'
+              />
+            </GlassCard>
+          </div>
+        );
+      }
+    }
+  }
+  renderDevices(user){
+    if (Meteor.settings.public.modules.fhir.Devices) {
+      if (user.isPatient || user.isPractitioner || user.isAdmin) {
+        return (
+          <div id='devicesTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/devices') } >
+            <GlassCard style={this.data.style.indexCard} >
+              <CardTitle
+                title='Devices'
+                subtitle='Equipment and devices.'
+              />
+            </GlassCard>
+          </div>
+        );
+      }
+    }
+  }
+  renderChecklists(user){
+    if (Meteor.settings.public.modules.fhir.Devices) {
+      if (user.isPatient || user.isPractitioner || user.isAdmin) {
+        return (
+          <div id='checklistsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/checklists') } >
+            <GlassCard style={this.data.style.indexCard} >
+              <CardTitle
+                title='Checklist Manifesto'
+                subtitle='Checklists lead to better outcomes.'
+              />
+            </GlassCard>
+          </div>
+        );
+      }
+    }
+  }
 
-
-
-        </div>
-      );
+  renderRiskAssessments(user){
+    if (Meteor.settings.public.modules.fhir.RiskAssessments) {
+      if (user.isPractitioner || user.isAdmin) {
+        return (
+          <div id='riskAssessmentsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/risk-assessments') } >
+            <GlassCard style={this.data.style.indexCard} >
+              <CardTitle
+                title='Risk Assessments'
+                subtitle='Risk assessments for patients pertaining to conditions.'
+              />
+            </GlassCard>
+          </div>
+        );
+      }
     }
   }
 
@@ -315,20 +329,20 @@ export class MainIndex extends React.Component {
         return (
           <div>
 
-            <div id='riskAssessmentsTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/risk-assessments') } >
-              <GlassCard style={this.data.style.indexCard} >
-                <CardTitle
-                  title='Risk Assessments'
-                  subtitle='Risk assessments for patients pertaining to conditions.'
-                />
-              </GlassCard>
-            </div>
-
             <div id='familyMemberHistoriesTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/family-member-histories') } >
               <GlassCard style={this.data.style.indexCard} >
                 <CardTitle
                   title='Family Member History'
                   subtitle='Relevant medical histories of family members.'
+                />
+              </GlassCard>
+            </div>
+
+            <div id='conditionsTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/conditions') } >
+              <GlassCard style={this.data.style.indexCard} >
+                <CardTitle
+                  title='Conditions'
+                  subtitle='Conditions that a patient might have.'
                 />
               </GlassCard>
             </div>
