@@ -78,7 +78,6 @@ scripts/remove_restricted_media_assets.sh
 TIMEOUT_SCALE_FACTOR=10 DEPLOY_HOSTNAME=galaxy.meteor.com meteor deploy meteor-on-fhir.meteorapp.com --settings settings.dev.json
 ```   
 
-
 #### F. Mobile Build   
 
 ```sh

@@ -58,6 +58,8 @@ import { AuditLogPage } from '/imports/ui/pages/AuditLogPage';
 import { MetadataPage } from '/imports/ui/components/MetadataPage';
 
 import { MyConditions } from '/imports/ui/workflows/conditions/MyConditions';
+import { NotificationsPage } from '/imports/ui/pages/NotificationsPage';
+
 
 
 // we're storing the current route URL in a reactive variable
@@ -166,6 +168,7 @@ Meteor.startup(() => {
         <Route name="questionnaireResponses" path="/questionnaire-responses" component={ QuestionnaireResponsesPage }  onEnter={ requireAuth }/>
         <Route name="riskAssessments" path="/risk-assessments" component={ RiskAssessmentsPage }  onEnter={ requireAuth } />
 
+        <Route name="notifications" path="/notifications" component={ NotificationsPage }  onEnter={ requireAuth }/>
 
 
         <Route name="auditLogPage" path="/hipaa-log" component={ AuditLogPage }  onEnter={ requireAuth }/>
