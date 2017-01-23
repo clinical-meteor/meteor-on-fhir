@@ -60,6 +60,8 @@ import { MetadataPage } from '/imports/ui/components/MetadataPage';
 import { MyConditions } from '/imports/ui/workflows/conditions/MyConditions';
 import { MathPage } from '/imports/ui/pages/experimental/MathPage';
 
+import { SpecificitySensitivityCard } from '/imports/ui/components/SpecificitySensitivityCard';
+
 // we're storing the current route URL in a reactive variable
 // which will be used to update active controls
 // mostly used to toggle header and footer buttons
@@ -167,11 +169,15 @@ Meteor.startup(() => {
         <Route name="riskAssessments" path="/risk-assessments" component={ RiskAssessmentsPage }  onEnter={ requireAuth } />
 
 
+        <Route name="specificitySensitivityCard" path="/sensitivity" component={ SpecificitySensitivityCard } />
+        <Route name="specificitySensitivityCard" path="/specificity" component={ SpecificitySensitivityCard } />
 
         <Route name="auditLogPage" path="/hipaa-log" component={ AuditLogPage } />
         <Route name="mathPage" path="/metadata" component={ MetadataPage } />
 
         <Route name="mathPage" path="/math" component={ MathPage } />
+
+
 
         <Route path="*" component={ NotFound } />
 
