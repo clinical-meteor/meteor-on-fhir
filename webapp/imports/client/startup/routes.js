@@ -63,6 +63,8 @@ import { NotificationsPage } from '/imports/ui/pages/NotificationsPage';
 import { MathPage } from '/imports/ui/pages/experimental/MathPage';
 
 import { SpecificitySensitivityCard } from '/imports/ui/components/SpecificitySensitivityCard';
+import { DecisionTree } from '/imports/ui/components/DecisionTree';
+
 
 // we're storing the current route URL in a reactive variable
 // which will be used to update active controls
@@ -176,9 +178,10 @@ Meteor.startup(() => {
         <Route name="specificitySensitivityCard" path="/specificity" component={ SpecificitySensitivityCard } />
 
         <Route name="auditLogPage" path="/hipaa-log" component={ AuditLogPage } />
-        <Route name="mathPage" path="/metadata" component={ MetadataPage } />
+        <Route name="metaData" path="/metadata" component={ MetadataPage } />
 
         <Route name="mathPage" path="/math" component={ MathPage } />
+        <Route name="decisionTree" path="/decision-tree" component={ DecisionTree } />
 
 
 

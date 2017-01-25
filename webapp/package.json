@@ -57,6 +57,7 @@
     "normalize.css": "^4.1.1",
     "object-path": "0.11.3",
     "onecolor": "^3.0.4",
+    "radium": "0.18.1",
     "react": "^15.4.1",
     "react-addons-css-transition-group": "^15.3.1",
     "react-addons-pure-render-mixin": "^15.3.1",
