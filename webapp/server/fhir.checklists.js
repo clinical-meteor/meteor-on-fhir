@@ -191,37 +191,11 @@ Meteor.methods({
 
         newList.entry.push(newItem);
       });
-      // var listId = Lists.insert({
-      //   name: list.name,
-      //   creator: "System",
-      //   public: true,
-      //   incompleteCount: list.items.length
-      // });
 
-      var listId = Lists.insert(newList);
-      console.log('New List Created: ' + listId);
-
-    //   if(list.items){
-    //     list.items.forEach(function(text, index){
-    //       // add a new task
-    //       DiagnosticOrders.insert({
-    //         orderer: {
-    //           display: "System",
-    //           reference: "System"
-    //         },
-    //         listId: listId,
-    //         public: true,
-    //         ordinal: index,
-    //         event: [{
-    //           description: text,
-    //           dateTime: new Date(timestamp)
-    //         }]
-    //       });
-    //
-    //       // ensure unique timestamp.
-    //       timestamp += 1;
-    //     });
-    //   }
+      if (Lists.find({'code.text': newList.code.text}).count() === 0) {
+        var listId = Lists.insert(newList);
+        console.log('New List Created: ' + listId);
+      }
     });
   },
   dropChecklists: function (){

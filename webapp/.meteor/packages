@@ -88,3 +88,6 @@ awatson1978:accounts-muppets
 # oauth server
 prime8consulting:meteor-oauth2-server
 simple:json-routes
+
+# data visualization
+d3js:d3

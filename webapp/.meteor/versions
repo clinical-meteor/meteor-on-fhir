@@ -49,6 +49,7 @@ clinical:keybindings@1.4.1
 clinical:theming@0.4.10
 clinical:user-model@1.6.0
 coffeescript@1.11.1_4
+d3js:d3@3.5.8
 dburles:factory@0.4.2
 ddp@1.2.5
 ddp-client@1.2.9
