@@ -1,0 +1,66 @@
+{
+  "public": {
+    "title": "Meteor on FHIR",
+    "theme": {
+      "showVideoBackground": false,
+      "darkroomTextEnabled": false,
+      "defaultVideo": "/VideoBackgrounds/Circulation.mp4",
+      "backgroundImagePath": "/backgrounds/global.jpg"
+    },
+    "app": {
+      "showUnderConstruction": false,
+      "showExperimental": false
+    },
+    "defaults": {
+      "avatars": false,
+      "barcodes": true,
+      "displayNavbars": true,
+      "disableHeader": false,
+      "disableFooter": false,
+      "darkroom": false,
+      "iFrameEnabled": false,
+      "iFrameUrl": "https://www.wikipedia.org",
+      "paginationLimit": 100,
+      "subscriptionLimit": 1000,
+      "cards": {
+        "height": "auto",
+        "opacity": 0.95
+      }
+    },
+    "interfaces": {
+      "default": {
+        "status": "active",
+        "channel": {
+          "endpoint": "http://192.9.200.32:6001"
+        }
+      }
+    },
+    "modules": {
+      "data": true,
+      "forum": true,
+      "genome": true,
+      "healthlog": true,
+      "dermatograms": true,
+      "telemedicine": true,
+      "inbound": true,
+      "outbound": true,
+      "fhir": {
+        "Patients": true,
+        "Practitioners": true,
+        "Observations": false,
+        "ImagingStudies": false,
+        "Lists": true,
+        "Medications": false,
+        "Devices": false,
+        "Locations": false,
+        "Questionnaires": false,
+        "RiskAssessments": false
+      }
+    }
+  },
+  "private": {
+    "practitionerAccessCode": "hippocrates",
+    "sysadminAccessCode": "rootaccess",
+    "disableOauth": true
+  }
+}
