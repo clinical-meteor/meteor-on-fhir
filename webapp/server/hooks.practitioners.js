@@ -1,5 +1,5 @@
 
-
+import { HTTP } from 'meteor/http';
 
 
 Practitioners.after.insert(function (userId, doc) {

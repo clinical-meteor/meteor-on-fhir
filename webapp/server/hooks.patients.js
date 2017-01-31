@@ -1,6 +1,8 @@
 
 
 
+import { HTTP } from 'meteor/http';
+
 
 Patients.after.insert(function (userId, doc) {
   HTTP.put(Meteor.settings.public.interfaces.default.channel.endpoint + '/Patient', {

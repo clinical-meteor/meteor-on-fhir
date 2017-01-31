@@ -6,6 +6,9 @@ import Avatar from 'material-ui/Avatar';
 import { Table } from 'react-bootstrap';
 import { HTTP } from 'meteor/http';
 
+import FlatButton from 'material-ui/FlatButton';
+
+
 export default class PatientTable extends React.Component {
   getMeteorData() {
     let data = {
@@ -114,7 +117,7 @@ export default class PatientTable extends React.Component {
           <td className='name' onClick={ this.rowClick.bind('this', this.data.patients[i]._id)}>{this.data.patients[i].name }</td>
           <td className='gender' onClick={ this.rowClick.bind('this', this.data.patients[i]._id)}>{this.data.patients[i].gender}</td>
           <td className='birthdate' onClick={ this.rowClick.bind('this', this.data.patients[i]._id)} style={{minWidth: '100px'}}>{this.data.patients[i].birthdate }</td>
-          <td className='active' onClick={ this.rowClick.bind('this', this.data.patients[i]._id)} style={this.data.style.hideOnPhone}>{this.data.patients[i].active}</td>
+          <td className='isActive' onClick={ this.rowClick.bind('this', this.data.patients[i]._id)} style={this.data.style.hideOnPhone}>{this.data.patients[i].active}</td>
           <td className='id' onClick={ this.rowClick.bind('this', this.data.patients[i]._id)} style={this.data.style.hideOnPhone}><span className="barcode">{this.data.patients[i]._id}</span></td>
           <td className='mrn' style={this.data.style.hideOnPhone}>{this.data.patients[i].mrn}</td>
           <td className='sendButton'><FlatButton label="send" onClick={this.onSend.bind('this', this.data.patients[i]._id)}/></td>
@@ -133,7 +136,7 @@ export default class PatientTable extends React.Component {
             <th className='name'>name</th>
             <th className='gender'>gender</th>
             <th className='birthdate' style={{minWidth: '100px'}}>birthdate</th>
-            <th className='active' style={this.data.style.hideOnPhone}>active</th>
+            <th className='isActive' style={this.data.style.hideOnPhone}>active</th>
             <th className='id' style={this.data.style.hideOnPhone}>_id</th>
             <th className='mrn' style={this.data.style.hideOnPhone}>mrn</th>
             <th className='sendButton'></th>
