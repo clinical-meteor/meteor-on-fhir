@@ -15,8 +15,17 @@ export class InboundMessagesPage extends React.Component {
     super(props);
   }
   getMeteorData() {
+
+    let query = {};
+    let options = {
+      sort: {timestamp: -1}
+    };
+    if (Meteor.settings && Meteor.settings.public && Meteor.settings.public.defaults && Meteor.settings.public.defaults.paginationLimit) {
+      options.limit = Meteor.settings.public.defaults.paginationLimit;
+    }
+
     let data = {
-      messages: MessageHeaders.find({},{sort: {timestamp: -1}}).map(function(header){
+      messages: MessageHeaders.find(query, options).map(function(header){
         let result = {
           _id: header._id,
           host: '',

@@ -18,9 +18,24 @@ let defaultPatient = {
   "active" : true,
   "gender" : "",
   "birthDate" : null,
-  "photo" : [{}],
+  "photo" : [{
+    url: ""
+  }],
+  identifier: [{
+    "use": "usual",
+    "type": {
+      "coding": [
+        {
+          "system": "http://hl7.org/fhir/v2/0203",
+          "code": "MR"
+        }
+      ]
+    },
+    "value": ""
+  }],
   "test" : false
 };
+
 
 Session.setDefault('patientUpsert', false);
 Session.setDefault('selectedPatient', false);
@@ -96,6 +111,16 @@ export default class PatientDetail extends React.Component {
             floatingLabelText='photo'
             value={this.data.patient.photo[0] ? this.data.patient.photo[0].url : ''}
             onChange={ this.changeState.bind(this, 'photo')}
+            floatingLabelFixed={false}
+            fullWidth
+            /><br/>
+          <TextField
+            id='mrnInput'
+            ref='mrn'
+            name='mrn'
+            floatingLabelText='medical record number'
+            value={this.data.patient.identifier ? this.data.patient.identifier[0].value : ''}
+            onChange={ this.changeState.bind(this, 'mrn')}
             fullWidth
             /><br/>
         </CardText>
@@ -151,6 +176,9 @@ export default class PatientDetail extends React.Component {
         break;
       case "photo":
         patientUpdate.photo[0].url = value;
+        break;
+      case "mrn":
+        patientUpdate.identifier[0].value = value;
         break;
       default:
 

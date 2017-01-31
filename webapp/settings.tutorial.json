@@ -29,9 +29,9 @@
     },
     "interfaces": {
       "default": {
-        "status": "active",
+        "status": "inactive",
         "channel": {
-          "endpoint": "http://192.9.200.32:6001"
+          "endpoint": "http://localhost:3000"
         }
       }
     },
