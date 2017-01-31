@@ -46,8 +46,8 @@ export class VerticalCanvas extends React.Component {
     }
 
     if (Session.get('hasPagePadding')) {
-      data.style.paddingTop = '6.4em';
-      data.style.paddingBottom = '6.4em';
+      data.style.paddingTop = '80px';
+      data.style.paddingBottom = '80px';
     } else {
       if (Session.get('mainPanelIsCard')) {
         data.style.paddingTop = '20px';
