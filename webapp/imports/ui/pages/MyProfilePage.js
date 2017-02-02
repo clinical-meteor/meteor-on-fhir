@@ -207,7 +207,7 @@ export class MyProfilePage extends React.Component {
                       id='oldPasswordInput'
                       ref='oldPassword'
                       name='oldPassword'
-                      type='text'
+                      type='password'
                       floatingLabelText='oldPassword'
                       floatingLabelFixed={true}
                       value={this.data.state.oldPassword}
@@ -218,7 +218,7 @@ export class MyProfilePage extends React.Component {
                       id='newPasswordInput'
                       ref='newPassword'
                       name='newPassword'
-                      type='text'
+                      type='password'
                       floatingLabelText='newPassword'
                       floatingLabelFixed={true}
                       value={this.data.state.newPassword}
@@ -229,7 +229,7 @@ export class MyProfilePage extends React.Component {
                       id='confirmPasswordInput'
                       ref='confirmPassword'
                       name='confirmPassword'
-                      type='text'
+                      type='password'
                       floatingLabelText='confirmPassword'
                       floatingLabelFixed={true}
                       value={this.data.state.confirmPassword}
