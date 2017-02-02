@@ -103,12 +103,16 @@ export default class PatientTable extends React.Component {
     }
   }
    onSend(id){
-      let riskAssessment = RiskAssessments.findOne({_id: id});
+      let patient = Patients.findOne({_id: id});
 
-      console.log("PatientTable.onSend()", riskAssessment);
+      console.log("PatientTable.onSend()", patient);
 
-      HTTP.post('http://localhost:80/Patient', {
-        data: riskAssessment
+      var httpEndpoint = "http://localhost:8080";
+      if (Meteor.settings && Meteor.settings.public && Meteor.settings.public.interfaces && Meteor.settings.public.interfaces.default && Meteor.settings.public.interfaces.default.channel && Meteor.settings.public.interfaces.default.channel.endpoint) {
+        httpEndpoint = Meteor.settings.public.interfaces.default.channel.endpoint;
+      }
+      HTTP.post(httpEndpoint + '/Patient', {
+        data: patient
       }, function(error, result){
         if (error) {
           console.log("error", error);
