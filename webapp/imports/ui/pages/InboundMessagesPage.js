@@ -61,8 +61,10 @@ export class InboundMessagesPage extends React.Component {
                   }
                 }
               } else{
-                // but we may need to fall back to a reference
-                result.data = datum.reference.split('/')[0];
+                if (datum.reference) {
+                  // but we may need to fall back to a reference
+                  result.data = datum.reference.split('/')[0];
+                }
               }
 
             // otherwise, we need to make sure there is a comma
@@ -71,14 +73,16 @@ export class InboundMessagesPage extends React.Component {
                 // preference for an actual resource object
                 result.data = result.data + ', ' + datum.resourceType;
               } else{
-                // but we may need to fall back to a reference
-                result.data = result.data + ', ' + datum.reference.split('/')[0];
+                if (datum.reference) {
+                  // but we may need to fall back to a reference
+                  result.data = result.data + ', ' + datum.reference.split('/')[0];
+                }
               }
             }
 
             // if we have a display name that's unique, and not just a repeat of the resource type
             // then lets display it
-            if (datum.display && (datum.display !== datum.reference.split('/')[0])) {
+            if (datum.display && datum.reference && (datum.display !== datum.reference.split('/')[0])) {
               result.patientId = datum.display;
             }
           });
