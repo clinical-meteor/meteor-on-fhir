@@ -17,6 +17,14 @@ export default class PatientTable extends React.Component {
           visibility: 'visible',
           display: 'table'
         },
+        cellHideOnPhone: {
+          visibility: 'visible',
+          display: 'table',
+          paddingTop: '16px'
+        },
+        cell: {
+          paddingTop: '16px'
+        },
         avatar: {
           // color: rgb(255, 255, 255);
           backgroundColor: 'rgb(188, 188, 188)',
@@ -61,9 +69,13 @@ export default class PatientTable extends React.Component {
     if (Session.get('appWidth') < 768) {
       data.style.hideOnPhone.visibility = 'hidden';
       data.style.hideOnPhone.display = 'none';
+      data.style.cellHideOnPhone.visibility = 'hidden';
+      data.style.cellHideOnPhone.display = 'none';
     } else {
       data.style.hideOnPhone.visibility = 'visible';
       data.style.hideOnPhone.display = 'table-cell';
+      data.style.cellHideOnPhone.visibility = 'visible';
+      data.style.cellHideOnPhone.display = 'table-cell';
     }
 
     // console.log("PatientTable[data]", data);
@@ -93,7 +105,7 @@ export default class PatientTable extends React.Component {
    onSend(id){
       let riskAssessment = RiskAssessments.findOne({_id: id});
 
-      console.log("onSend", riskAssessment);
+      console.log("PatientTable.onSend()", riskAssessment);
 
       HTTP.post('http://localhost:80/Patient', {
         data: riskAssessment
@@ -114,13 +126,13 @@ export default class PatientTable extends React.Component {
 
           { this.renderRowAvatar(this.data.patients[i], this.data.style.avatar) }
 
-          <td className='name' onClick={ this.rowClick.bind('this', this.data.patients[i]._id)}>{this.data.patients[i].name }</td>
-          <td className='gender' onClick={ this.rowClick.bind('this', this.data.patients[i]._id)}>{this.data.patients[i].gender}</td>
-          <td className='birthdate' onClick={ this.rowClick.bind('this', this.data.patients[i]._id)} style={{minWidth: '100px'}}>{this.data.patients[i].birthdate }</td>
-          <td className='isActive' onClick={ this.rowClick.bind('this', this.data.patients[i]._id)} style={this.data.style.hideOnPhone}>{this.data.patients[i].active}</td>
-          <td className='id' onClick={ this.rowClick.bind('this', this.data.patients[i]._id)} style={this.data.style.hideOnPhone}><span className="barcode">{this.data.patients[i]._id}</span></td>
-          <td className='mrn' style={this.data.style.hideOnPhone}>{this.data.patients[i].mrn}</td>
-          <td className='sendButton'><FlatButton label="send" onClick={this.onSend.bind('this', this.data.patients[i]._id)}/></td>
+          <td className='name' onClick={ this.rowClick.bind('this', this.data.patients[i]._id)} style={this.data.style.cell}>{this.data.patients[i].name }</td>
+          <td className='gender' onClick={ this.rowClick.bind('this', this.data.patients[i]._id)} style={this.data.style.cell}>{this.data.patients[i].gender}</td>
+          <td className='birthdate' onClick={ this.rowClick.bind('this', this.data.patients[i]._id)} style={{minWidth: '100px', paddingTop: '16px'}}>{this.data.patients[i].birthdate }</td>
+          <td className='isActive' onClick={ this.rowClick.bind('this', this.data.patients[i]._id)} style={this.data.style.cellHideOnPhone}>{this.data.patients[i].active}</td>
+          <td className='id' onClick={ this.rowClick.bind('this', this.data.patients[i]._id)} style={this.data.style.cellHideOnPhone}><span className="barcode">{this.data.patients[i]._id}</span></td>
+          <td className='mrn' style={this.data.style.cellHideOnPhone}>{this.data.patients[i].mrn}</td>
+          <td className='sendButton' style={this.data.style.hideOnPhone}><FlatButton label="send" onClick={this.onSend.bind('this', this.data.patients[i]._id)}/></td>
         </tr>
       );
     }
@@ -139,7 +151,7 @@ export default class PatientTable extends React.Component {
             <th className='isActive' style={this.data.style.hideOnPhone}>active</th>
             <th className='id' style={this.data.style.hideOnPhone}>_id</th>
             <th className='mrn' style={this.data.style.hideOnPhone}>mrn</th>
-            <th className='sendButton'></th>
+            <th className='sendButton' style={this.data.style.hideOnPhone}></th>
           </tr>
         </thead>
         <tbody>
