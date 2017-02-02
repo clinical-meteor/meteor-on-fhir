@@ -177,7 +177,7 @@ export class Signup extends React.Component {
                       id='passwordInput'
                       ref='password'
                       name='password'
-                      type='text'
+                      type='password'
                       floatingLabelText='Password'
                       inputStyle={this.data.style.inputStyle}
                       errorStyle={this.data.style.errorStyle}
