@@ -57,7 +57,7 @@ export class ThemePage extends React.Component {
 
   render(){
     var backgroundThumbnail = {
-      width: '180px',
+      width: '191px',
       display: 'inline-block',
       marginRight: '5px',
       marginBottom: '5px',
@@ -77,6 +77,9 @@ export class ThemePage extends React.Component {
     var greenTile = JSON.parse(JSON.stringify(backgroundThumbnail));
     greenTile.background = '#AEC9A8';
 
+    var whiteTile = JSON.parse(JSON.stringify(backgroundThumbnail));
+    whiteTile.background = '#FFFFFF';
+
     return(
       <div id='aboutPage'>
         <VerticalCanvas>
@@ -90,7 +93,7 @@ export class ThemePage extends React.Component {
               <Tab label='Backgrounds' onActive={this.handleActive} style={{backgroundColor: 'white', color: 'black', borderBottom: '1px solid lightgray'}}>
                 <div style={{position: 'relative'}}>
 
-                  <div id='backgroundImageGallary' style={{display: 'inline-block'}}>
+                  <div id='backgroundImageGallary' style={{display: 'inline-block', paddingLeft: '4px', paddingTop: '4px'}}>
                     <Image src='/backgrounds/medical/BambooIllustration.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
                     <Image src='/backgrounds/medical/Zen.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
                     <Image src='/backgrounds/medical/Zen-Rocks.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
@@ -113,12 +116,12 @@ export class ThemePage extends React.Component {
 
                     <Image src='/backgrounds/medical/Radiograph-Chest-Portable.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
                     <Image src='/backgrounds/medical/EmergencyRoom.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
-                    <Image src='/backgrounds/medical/EMT.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
 
                     <Image src='/backgrounds/medical/StarTrek-Medbay.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
                     <Image src='/backgrounds/medical/MedBay.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
                     <Image src='/backgrounds/medical/Genetic-Engineering.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
 
+                    <Image responsive style={whiteTile} onClick={this.onColorClick} />
                     <Image responsive style={grayTile} onClick={this.onColorClick} />
                     <Image responsive style={redTile} onClick={this.onColorClick} />
                     <Image responsive style={greenTile} onClick={this.onColorClick} />
@@ -174,6 +177,7 @@ export class ThemePage extends React.Component {
                 </CardText>
 
               </Tab>
+              {/*
               <Tab label='Settings' style={{backgroundColor: 'white', color: 'black', borderBottom: '1px solid lightgray'}}>
                 <div style={{position: 'relative'}}>
                   <label>Opacity</label>
@@ -188,6 +192,8 @@ export class ThemePage extends React.Component {
                 </div>
 
               </Tab>
+              */}
+
             </Tabs>
 
           </GlassCard>

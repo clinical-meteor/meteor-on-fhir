@@ -83,7 +83,7 @@ export class App extends React.Component {
       data.browserWindowLocation = Session.get('iFrameLocation');
     }
 
-    if (Session.get('secondPanelVisible')) {
+    if (Session.get('secondPanelVisible') && Meteor.userId()) {
       if (Session.get('appWidth') > 1200) {
         data.style.secondary.visibility = 'visible';
         data.style.secondary.left = '1024px';

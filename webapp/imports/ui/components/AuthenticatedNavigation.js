@@ -54,13 +54,7 @@ export class AuthenticatedNavigation extends React.Component {
 
 
     if (Meteor.user()) {
-      const user = Meteor.user();
-      const name = user && user.profile ? user.profile.name : '';
-      if (name.text) {
-        data.user = name.text;
-      } else {
-        data.user = name.given + ' ' + name.family;
-      }
+      data.user = Meteor.user().fullName();
     } else {
       data.user = '';
     }

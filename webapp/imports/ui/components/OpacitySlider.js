@@ -15,7 +15,7 @@ OpacitySlider = React.createClass({
       },
       opacity: Session.get('globalOpacity')
     };
-    if (this.props.style.display) {
+    if (this.props.style && this.props.style.display) {
       data.style.slider.display = this.props.style.display;
     }
     return data;

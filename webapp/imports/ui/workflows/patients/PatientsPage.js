@@ -72,7 +72,7 @@ export class PatientsPage extends React.Component {
     return (
       <div id="patientsPage">
         <VerticalCanvas>
-          <GlassCard>
+          <GlassCard height="auto">
             <CardTitle
               title="Patients"
             />

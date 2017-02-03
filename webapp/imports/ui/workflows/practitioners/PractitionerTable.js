@@ -17,44 +17,52 @@ export default class PractitionerTable extends React.Component {
         opacity: Session.get('globalOpacity')
       },
       selected: [],
-      practitioners: Practitioners.find().map(function(practitioner){
-        let result = {
-          _id: practitioner._id,
-          name: '',
-          telecomValue: '',
-          telecomUse: '',
-          qualificationId: '',
-          qualificationStart: '',
-          qualificationEnd: '',
-          issuer: ''
-        };
-
-        if (practitioner.name && practitioner.name && practitioner.name.text ) {
-          result.name = practitioner.name.text;
-        }
-        if (practitioner.telecom && practitioner.telecom[0] && practitioner.telecom[0].value ) {
-          result.telecomValue = practitioner.telecom[0].value;
-        }
-        if (practitioner.telecom && practitioner.telecom[0] && practitioner.telecom[0].use ) {
-          result.telecomUse = practitioner.telecom[0].use;
-        }
-
-        if (practitioner.qualification && practitioner.qualification[0] && practitioner.qualification[0].identifier && practitioner.qualification[0].identifier[0] && practitioner.qualification[0].identifier[0].value ) {
-          result.qualificationId = practitioner.qualification[0].identifier[0].value;
-        }
-        if (practitioner.qualification && practitioner.qualification[0] && practitioner.qualification[0].identifier && practitioner.qualification[0].identifier[0] && practitioner.qualification[0].identifier[0].period && practitioner.qualification[0].identifier[0].period.start ) {
-          result.qualificationStart = practitioner.qualification[0].identifier[0].period.start;
-        }
-        if (practitioner.qualification && practitioner.qualification[0] && practitioner.qualification[0].identifier && practitioner.qualification[0].identifier[0] && practitioner.qualification[0].identifier[0].period && practitioner.qualification[0].identifier[0].period.end) {
-          result.qualificationEnd = practitioner.qualification[0].identifier[0].period.end;
-        }
-        if (practitioner.qualification && practitioner.qualification[0] && practitioner.qualification[0].issuer && practitioner.qualification[0].issuer.display ) {
-          result.issuer = practitioner.qualification[0].issuer.display;
-        }
-
-        return result;
-      })
+      practitioners: []
     };
+
+    let query = {};
+    let options = {};
+    if (Meteor.settings && Meteor.settings.public && Meteor.settings.public.defaults && Meteor.settings.public.defaults.paginationLimit) {
+      options.limit = Meteor.settings.public.defaults.paginationLimit;
+    }
+
+    data.practitioners = Practitioners.find(query, options).map(function(practitioner){
+      let result = {
+        _id: practitioner._id,
+        name: '',
+        telecomValue: '',
+        telecomUse: '',
+        qualificationId: '',
+        qualificationStart: '',
+        qualificationEnd: '',
+        issuer: ''
+      };
+
+      if (practitioner.name && practitioner.name && practitioner.name.text ) {
+        result.name = practitioner.name.text;
+      }
+      if (practitioner.telecom && practitioner.telecom[0] && practitioner.telecom[0].value ) {
+        result.telecomValue = practitioner.telecom[0].value;
+      }
+      if (practitioner.telecom && practitioner.telecom[0] && practitioner.telecom[0].use ) {
+        result.telecomUse = practitioner.telecom[0].use;
+      }
+
+      if (practitioner.qualification && practitioner.qualification[0] && practitioner.qualification[0].identifier && practitioner.qualification[0].identifier[0] && practitioner.qualification[0].identifier[0].value ) {
+        result.qualificationId = practitioner.qualification[0].identifier[0].value;
+      }
+      if (practitioner.qualification && practitioner.qualification[0] && practitioner.qualification[0].identifier && practitioner.qualification[0].identifier[0] && practitioner.qualification[0].identifier[0].period && practitioner.qualification[0].identifier[0].period.start ) {
+        result.qualificationStart = practitioner.qualification[0].identifier[0].period.start;
+      }
+      if (practitioner.qualification && practitioner.qualification[0] && practitioner.qualification[0].identifier && practitioner.qualification[0].identifier[0] && practitioner.qualification[0].identifier[0].period && practitioner.qualification[0].identifier[0].period.end) {
+        result.qualificationEnd = practitioner.qualification[0].identifier[0].period.end;
+      }
+      if (practitioner.qualification && practitioner.qualification[0] && practitioner.qualification[0].issuer && practitioner.qualification[0].issuer.display ) {
+        result.issuer = practitioner.qualification[0].issuer.display;
+      }
+
+      return result;
+    });
 
     console.log("PractitionerTable[data]", data);
     return data;

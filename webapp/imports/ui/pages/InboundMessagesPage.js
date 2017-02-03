@@ -15,8 +15,17 @@ export class InboundMessagesPage extends React.Component {
     super(props);
   }
   getMeteorData() {
+
+    let query = {};
+    let options = {
+      sort: {timestamp: -1}
+    };
+    if (Meteor.settings && Meteor.settings.public && Meteor.settings.public.defaults && Meteor.settings.public.defaults.paginationLimit) {
+      options.limit = Meteor.settings.public.defaults.paginationLimit;
+    }
+
     let data = {
-      messages: MessageHeaders.find({},{sort: {timestamp: -1}}).map(function(header){
+      messages: MessageHeaders.find(query, options).map(function(header){
         let result = {
           _id: header._id,
           host: '',
@@ -52,8 +61,10 @@ export class InboundMessagesPage extends React.Component {
                   }
                 }
               } else{
-                // but we may need to fall back to a reference
-                result.data = datum.reference.split('/')[0];
+                if (datum.reference) {
+                  // but we may need to fall back to a reference
+                  result.data = datum.reference.split('/')[0];
+                }
               }
 
             // otherwise, we need to make sure there is a comma
@@ -62,14 +73,16 @@ export class InboundMessagesPage extends React.Component {
                 // preference for an actual resource object
                 result.data = result.data + ', ' + datum.resourceType;
               } else{
-                // but we may need to fall back to a reference
-                result.data = result.data + ', ' + datum.reference.split('/')[0];
+                if (datum.reference) {
+                  // but we may need to fall back to a reference
+                  result.data = result.data + ', ' + datum.reference.split('/')[0];
+                }
               }
             }
 
             // if we have a display name that's unique, and not just a repeat of the resource type
             // then lets display it
-            if (datum.display && (datum.display !== datum.reference.split('/')[0])) {
+            if (datum.display && datum.reference && (datum.display !== datum.reference.split('/')[0])) {
               result.patientId = datum.display;
             }
           });
@@ -101,7 +114,7 @@ export class InboundMessagesPage extends React.Component {
     return(
       <div id="inboundHeaderPage">
         <VerticalCanvas >
-          <GlassCard>
+          <GlassCard height="auto">
             <CardTitle
               title="Inbound HL7 Messages"
             />
