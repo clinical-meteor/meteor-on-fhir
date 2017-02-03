@@ -132,4 +132,6 @@ npm run desktop
 
 
 ### References    
-[https://www.nlm.nih.gov/hit_interoperability.html](https://www.nlm.nih.gov/hit_interoperability.html)  
+[Supporting Interoperability – Terminology, Subsets and Other Resources from Natl. Library of Medicine](https://www.nlm.nih.gov/hit_interoperability.html)  
+[Health IT Standards for Health Information Management Practices](http://ihe.net/uploadedFiles/Documents/ITI/IHE_ITI_WP_HITStdsforHIMPratices_Rev1.1_2015-09-18.pdf)  
+
