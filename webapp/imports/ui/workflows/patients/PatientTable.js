@@ -58,7 +58,7 @@ export default class PatientTable extends React.Component {
         initials: 'abc'
       };
       if (person.birthDate) {
-        result.birthDate = moment(person.birthDate).format("YYYY-MM-DD")
+        result.birthDate = moment(person.birthDate).add(1, 'days').format("YYYY-MM-DD")
       }
       if (person.name && person.name[0] && person.name[0].text) {
         result.name = person.name[0].text;
