@@ -39,9 +39,9 @@ clinical:hl7-resource-goal@1.2.5
 clinical:hl7-resource-list@1.2.0
 clinical:hl7-resource-location@1.1.1
 clinical:hl7-resource-medication@1.1.8
-clinical:hl7-resource-message-header@1.2.2
+clinical:hl7-resource-message-header@1.2.5
 clinical:hl7-resource-observation@1.2.6
-clinical:hl7-resource-patient@1.6.47
+clinical:hl7-resource-patient@1.6.48
 clinical:hl7-resource-practitioner@1.5.6
 clinical:hl7-resource-questionnaire@1.2.4
 clinical:hl7-resource-questionnaire-response@1.1.4

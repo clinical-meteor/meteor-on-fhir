@@ -100,7 +100,7 @@ export default class PatientDetail extends React.Component {
             ref='birthdate'
             name='birthdate'
             floatingLabelText='birthdate'
-            value={this.data.patient.birthDate ? this.data.patient.birthDate : ''}
+            value={this.data.patient.birthDate ? moment(this.data.patient.birthDate).format("YYYY-MM-DD") : ''}
             onChange={ this.changeState.bind(this, 'birthDate')}
             fullWidth
             /><br/>
@@ -109,7 +109,7 @@ export default class PatientDetail extends React.Component {
             ref='photo'
             name='photo'
             floatingLabelText='photo'
-            value={this.data.patient.photo[0] ? this.data.patient.photo[0].url : ''}
+            value={ (this.data.patient.photo && this.data.patient.photo[0]) ? this.data.patient.photo[0].url : ''}
             onChange={ this.changeState.bind(this, 'photo')}
             floatingLabelFixed={false}
             fullWidth

@@ -49,14 +49,20 @@ export default class PatientTable extends React.Component {
         _id: person._id,
         active: person.active.toString(),
         gender: person.gender,
-        name: person.name ? person.name[0].text : "",
+        name: '',
         mrn: '',
         // there's an off-by-1 error between momment() and Date() that we want
         // to account for when converting back to a string
-        birthdate: moment(person.birthDate).add(1, 'day').format("YYYY-MM-DD"),
+        birthDate: '',
         photo: "/thumbnail-blank.png",
         initials: 'abc'
       };
+      if (person.birthDate) {
+        result.birthDate = moment(person.birthDate).format("YYYY-MM-DD")
+      }
+      if (person.name && person.name[0] && person.name[0].text) {
+        result.name = person.name[0].text;
+      }
       if (person.photo && person.photo[0] && person.photo[0].url) {
         result.photo = person.photo[0].url;
       }
@@ -132,7 +138,7 @@ export default class PatientTable extends React.Component {
 
           <td className='name' onClick={ this.rowClick.bind('this', this.data.patients[i]._id)} style={this.data.style.cell}>{this.data.patients[i].name }</td>
           <td className='gender' onClick={ this.rowClick.bind('this', this.data.patients[i]._id)} style={this.data.style.cell}>{this.data.patients[i].gender}</td>
-          <td className='birthdate' onClick={ this.rowClick.bind('this', this.data.patients[i]._id)} style={{minWidth: '100px', paddingTop: '16px'}}>{this.data.patients[i].birthdate }</td>
+          <td className='birthDate' onClick={ this.rowClick.bind('this', this.data.patients[i]._id)} style={{minWidth: '100px', paddingTop: '16px'}}>{this.data.patients[i].birthDate }</td>
           <td className='isActive' onClick={ this.rowClick.bind('this', this.data.patients[i]._id)} style={this.data.style.cellHideOnPhone}>{this.data.patients[i].active}</td>
           <td className='id' onClick={ this.rowClick.bind('this', this.data.patients[i]._id)} style={this.data.style.cellHideOnPhone}><span className="barcode">{this.data.patients[i]._id}</span></td>
           <td className='mrn' style={this.data.style.cellHideOnPhone}>{this.data.patients[i].mrn}</td>

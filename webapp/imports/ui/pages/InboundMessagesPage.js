@@ -114,7 +114,7 @@ export class InboundMessagesPage extends React.Component {
     return(
       <div id="inboundHeaderPage">
         <VerticalCanvas >
-          <GlassCard>
+          <GlassCard height="auto">
             <CardTitle
               title="Inbound HL7 Messages"
             />
