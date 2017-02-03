@@ -68,7 +68,7 @@ module.exports = {
         this.verify.containsText('#patientsTable .patientRow:nth-child(' + index + ') .gender', gender);
       }
       if (birthdate) {
-        this.verify.containsText('#patientsTable .patientRow:nth-child(' + index + ') .birthdate', birthdate);
+        this.verify.containsText('#patientsTable .patientRow:nth-child(' + index + ') .birthDate', birthdate);
       }
       return this;
     },

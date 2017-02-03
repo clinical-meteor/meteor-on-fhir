@@ -132,7 +132,7 @@ export default class PatientTable extends React.Component {
     let tableRows = [];
     for (var i = 0; i < this.data.patients.length; i++) {
       tableRows.push(
-        <tr key={i} className="patientTableRow" style={{cursor: "pointer"}}>
+        <tr key={i} className="patientRow" style={{cursor: "pointer"}}>
 
           { this.renderRowAvatar(this.data.patients[i], this.data.style.avatar) }
 

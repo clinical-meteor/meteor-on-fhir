@@ -12,7 +12,7 @@
       "showExperimental": false
     },
     "defaults": {
-      "avatars": false,
+      "avatars": true,
       "barcodes": true,
       "displayNavbars": true,
       "disableHeader": false,
