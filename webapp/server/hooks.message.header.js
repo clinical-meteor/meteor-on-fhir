@@ -9,7 +9,7 @@ MessageHeaders.after.insert(function (userId, doc) {
     if (resource.resourceType === "Patient") {
       if (resource.birthDate) {
         var date = resource.birthDate.split('-');
-        resource.birthDate = new Date(date[0], date[1] - 1, date[2]);
+        resource.birthDate = new Date(date[0], date[1], date[2]);
       }
 
       process.env.DEBUG && console.log("Patient", resource);
