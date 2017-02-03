@@ -100,7 +100,7 @@ export default class PatientDetail extends React.Component {
             ref='birthdate'
             name='birthdate'
             floatingLabelText='birthdate'
-            value={this.data.patient.birthDate ? moment(this.data.patient.birthDate).format("YYYY-MM-DD") : ''}
+            value={this.data.patient.birthDate ? this.data.patient.birthDate : ''}
             onChange={ this.changeState.bind(this, 'birthDate')}
             fullWidth
             /><br/>
