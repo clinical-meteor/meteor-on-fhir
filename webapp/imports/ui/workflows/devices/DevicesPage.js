@@ -55,7 +55,7 @@ export class DevicesPage extends React.Component {
     return (
       <div id='devicesPage'>
         <VerticalCanvas>
-          <GlassCard>
+          <GlassCard height='auto'>
             <CardTitle title='Devices' />
             <CardText>
               <Tabs id="devicesPageTabs" default value={this.data.tabIndex} onChange={this.handleTabChange} initialSelectedIndex={1}>
