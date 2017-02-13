@@ -13,48 +13,135 @@ export class AboutAppCard extends React.Component {
   }
 
   render(){
+    var marketingImage = {
+      width: '80%',
+      position: 'relative',
+      left: '10%'
+    };
+
     return (
       <div>
         <CardTitle
-          title="About This App"
+          title="Features"
         />
          <CardText>
-         For my Masters of Science in Biomedical Informatics, one of my electives is Healthcare Interoperability. So I decided to write a FHIR Interface Engine using the Meteor javascript framework.
-         <br /><br />
-
-         The technical infrastructure uses MongoDB (a modern hierarchical database, similar to the MUMPS/Cache database what Epic uses), a full-stack isomorphic javascript framework called Meteor, and Facebook's user interface layer React.
-         <br /><br />
 
 
-          FHIR (pronounced as 'fire') refers to the Fast Healthcare Interoperability Resourse standard devopled by Health Level Seven International (HL7), a 35 year old organization that promotes interoperability between healthcare systems.
-          <br /><br />
-
-           <h5 style={{borderTop: '1px solid lightgray', width: '100%'}}>Progress</h5><br />
-
-           We've implemented SimpleSchemas for 40 of the 100 defined FHIR Resources, including complete coverage of the ~20 resources that are supported by both Epic and Cerner.  Additionally, we have user interface implemented for 6 of those 17 commonly shared resources.  And we've completed Sprint 2 of the Argonaut Project.  We're also excited to announce that we are currently going into production at one facility, and are working on interoperability testing with the major EMR vendors.
-
+           <h5 style={{borderTop: '1px solid lightgray', width: '100%'}}>Aesthetics and Minimalist Design</h5><br />
+           Experience a new paradigm of minimalist and aesthetic healthcare software, using Material Design, Paper, and Cards.  Streamline workflow with material metaphors, card layout, origami animations, and iconographic visual language.  The following are in-app screenshots of the actual software.
            <br /><br />
+           <img src="/marketing/AestheticDesign.png" style={marketingImage} />
+           <br /><br />
+
+
+           <h5 style={{borderTop: '1px solid lightgray', width: '100%'}}>Patient Privacy Screens</h5><br />
+           Ensure a higher level of patient privacy with glass blur, which keeps casual overlookers from reading a patient chart.  Supports encrypted data at rest and over the wire, for industrial grade HIPAA compliance.
+           <br /><br />
+           <img src="/marketing/PrivacySettings.png" style={marketingImage} />
+           <br /><br />
+
+           <h5 style={{borderTop: '1px solid lightgray', width: '100%'}}>Evidence Based Medicine</h5><br />
+           Contextual research cards allow users to access the deep web for practicing evidence based medicine.  Practice evidence based medicine using decision trees, clinical guidelines, and best practices defined by the Department of Health and Human Services.
+           <br /><br />
+           <img src="/marketing/EvidenceBasedMedicine.png" style={marketingImage} />
+           <br /><br />
+           <img src="/marketing/DecisionTrees-ClinicalGuideLines.png" style={marketingImage} />
+           <br /><br />
+
+
+           <h5 style={{borderTop: '1px solid lightgray', width: '100%'}}>User Control and Freedom</h5><br />
+           Allow users the freedom and control to theme their work environment to match their surroundings.  Eliminate wasted time spent resizing windows with origami card layout.  The following is an in-app screenshot with the privacy screen enabled.
+           <br /><br />
+           <img src="/marketing/Theming.png" style={marketingImage} />
+           <br /><br />
+           <img src="/marketing/PersonalPreferences.png" style={marketingImage} />
+           <br /><br />
+
+
+           <h5 style={{borderTop: '1px solid lightgray', width: '100%'}}>Centalized Notifications</h5><br />
+           Prevent alert fatigue by consolidating alerts in a dedicated feed.
+           <br /><br />
+           <img src="/marketing/Notifications.png" style={marketingImage} />
+           <br /><br />
+
+
+           <h5 style={{borderTop: '1px solid lightgray', width: '100%'}}>App Info & Environment Visibility</h5><br />
+           Ensure that users always know which environment they’re in and what the status of the system.  Progress indicators, status indicators, and diagnostic info pages help staff and practitioners to diagnose
+           <br /><br />
+           <img src="/marketing/AppInfo.png" style={marketingImage} />
+           <br /><br />
+
+
+
+           <h5 style={{borderTop: '1px solid lightgray', width: '100%'}}>Order Sets</h5><br />
+           Improve departmental quality control by using order sets, protocols, and checklists.  Inspired by the Checklist Manifesto.
+           <br /><br />
+           <img src="/marketing/OrderSets.png" style={marketingImage} />
+           <br /><br />
+
+
+
+
+
+
+
+           <h5 style={{borderTop: '1px solid lightgray', width: '100%'}}>Specificity & Sensitivity Analysis</h5><br />
+           Lorem ipsum dolar set et...
+           <br /><br />
+           <img src="/marketing/SensitivitySpecificityAnalysis.png" style={marketingImage} />
+           <br /><br />
+
+
+           <h5 style={{borderTop: '1px solid lightgray', width: '100%'}}>Evolution Algorithms</h5><br />
+           Lorem ipsum dolar set et...
+           <br /><br />
+           <img src="/marketing/Evolver.png" style={marketingImage} />
+           <br /><br />
+
+           <h5 style={{borderTop: '1px solid lightgray', width: '100%'}}>Neural Nets</h5><br />
+           Lorem ipsum dolar set et...
+           <br /><br />
+           <img src="/marketing/BasicNeuralNet.png" style={marketingImage} />
+           <br /><br />
+
+           <h5 style={{borderTop: '1px solid lightgray', width: '100%'}}>Error Prevention</h5><br />
+           Prevent input errors with data input components such as DatePicker; and practice evidence based medicine by using peer-reviewed PickList.
+           <br /><br />
+           <img src="/marketing/PatientPickLists.png" style={marketingImage} />
+           <br /><br />
+           <img src="/marketing/ErrorRecoveryAlerts.png" style={marketingImage} />
+           <br /><br />
+
+
+           <h5 style={{borderTop: '1px solid lightgray', width: '100%'}}>Standards & Compatibility</h5><br />
+           We've implemented SimpleSchemas for 40 of the 100 defined FHIR Resources, including complete coverage of the ~20 resources that are supported by both Epic and Cerner.  Additionally, we have user interface implemented for 6 of those 17 commonly shared resources.  And we've completed Sprint 2 of the Argonaut Project.  We're also excited to announce that we are currently going into production at one facility, and are working on interoperability testing with the major EMR vendors.
+           <br /><br />
+
 
            <b>FHIR Resource Schemas</b>
-           <LinearProgress mode="determinate" value={40} max={100} color={orange500} />
+           <LinearProgress mode="determinate" value={40} max={100} color={blue500} />
            <br /><br />
+
 
            <b>Epic/Cerner Compatibility</b>
-           <LinearProgress mode="determinate" value={20} max={20} color={orange500} />
+           <LinearProgress mode="determinate" value={20} max={20} color={blue500} />
            <br /><br />
+
 
            <b>Epic/Cerner User Interface</b>
-           <LinearProgress mode="determinate" value={6} max={20} color={orange500} />
+           <LinearProgress mode="determinate" value={6} max={20} color={blue500} />
            <br /><br />
 
+
            <b>Argonaut</b>
-           <LinearProgress mode="determinate" value={2} max={6} color={orange500} />
+           <LinearProgress mode="determinate" value={2} max={6} color={blue500} />
            <br /><br />
+
+
 
 
 
            <h5 style={{borderTop: '1px solid lightgray', width: '100%'}}>Keybindings</h5><br />
-
            The following keybindings are supported (with many more to come).
            <Table responses hover >
              <tbody>

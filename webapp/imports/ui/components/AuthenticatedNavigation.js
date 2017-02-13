@@ -54,7 +54,13 @@ export class AuthenticatedNavigation extends React.Component {
 
 
     if (Meteor.user()) {
-      data.user = Meteor.user().fullName();
+      const user = Meteor.user();
+      const name = user && user.profile ? user.profile.name : '';
+      if (name.text) {
+        data.user = name.text;
+      } else {
+        data.user = name.given + ' ' + name.family;
+      }
     } else {
       data.user = '';
     }
@@ -66,6 +72,9 @@ export class AuthenticatedNavigation extends React.Component {
     return this.data.user;
   }
 
+  openNotifications(){
+    browserHistory.push('/notifications');
+  }
   render () {
     return(
       <div id='authenticatedUserMenuToggle' onTouchTap={this.toggleNotificationMenu } style={style.username}>
@@ -79,7 +88,7 @@ export class AuthenticatedNavigation extends React.Component {
             iconButtonElement={
               <div>
                 <IconButton touch={true}>
-                  <ActionAccountCircle />
+                  <ActionAccountCircle onClick={this.openNotifications} />
                 </IconButton>
                 <ToolbarTitle
                   id='authenticatedUsername'

@@ -26,7 +26,7 @@ export class Footer extends React.Component {
         position: 'fixed',
         bottom: '0px',
         width: '100%',
-        height: '6.4rem',
+        // height: '6.4rem',
         alignItems: 'center',
         WebkitTransition: 'ease .2s',
         transition: 'ease .2s',
@@ -38,16 +38,7 @@ export class Footer extends React.Component {
         flexDirection: 'row',
         position: 'absolute',
         left: '0px',
-        height: '6.4rem'
-      },
-      eastStyle: {
-        // display: 'flex',
-        // flexDirection: 'row',
-        // position: 'absolute',
-        // right: '0px',
-        // height: '6.4rem',
-        // padding: '0 2.4rem',
-        // paddingTop: '1.2rem'
+        // height: '6.4rem'
       },
       displayThemeNavbar: false,
       status: ''
@@ -68,8 +59,6 @@ export class Footer extends React.Component {
     //phone layout
     if (Session.get('appWidth') < 768) {
       data.westStyle.visibility = 'hidden';
-      data.eastStyle.visibility = 'hidden';
-      data.eastStyle.display = 'none';
     }
 
     if (Meteor.settings && Meteor.settings.public && Meteor.settings.public.defaults && Meteor.settings.public.defaults.disableFooter) {
