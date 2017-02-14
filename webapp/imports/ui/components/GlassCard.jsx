@@ -44,6 +44,29 @@ export class GlassCard extends React.Component {
       data.style.backdropFilter = 'blur(5px)';
     }
 
+
+    // this could be a mixin/extracted to a helper function
+    // Glass.autoHeight()
+    if (this.props.height === "auto") {
+      console.log("is autoheight");
+
+      if (Session.get('hasPagePadding')) {
+        data.style.height = Session.get('appHeight') - 160 + 'px';
+        data.style.overflowY = "scroll";
+      } else {
+        if (Session.get('mainPanelIsCard')) {
+          data.style.height = Session.get('appHeight') - 40 + 'px';
+          data.style.overflowY = "scroll";
+        } else {
+          data.style.height = Session.get('appHeight') + 'px';
+          data.style.overflowY = "scroll";
+        }
+      }
+    }
+
+    if (this.props.width) {
+      data.style.width = this.props.width;
+    }
     // GlassFactory.addStyling(data);
 
     return data;

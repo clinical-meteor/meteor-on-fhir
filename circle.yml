@@ -62,7 +62,7 @@ test:
     #- meteor npm install --save jquery bootstrap react react-dom react-router react-bootstrap react-komposer react-router-bootstrap faker jquery-validation react-addons-css-transition-group react-addons-pure-render-mixin react-mixin faker react-highcharts eslint-plugin-react eslint-plugin-meteor eslint-config-eslint
     # - meteor npm install --production
 
-    - "cd webapp && meteor run --settings settings.dev.json":
+    - "cd webapp && meteor run --settings settings.circle.json":
           background: true
     - sleep 120
   override:

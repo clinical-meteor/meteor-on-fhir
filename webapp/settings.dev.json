@@ -21,6 +21,18 @@
       "iFrameEnabled": false,
       "iFrameUrl": "https://www.wikipedia.org"
     },
+    "interfaces": {
+      "default": {
+        "status": "active",
+        "channel": {
+          "endpoint": "http://localhost:80"
+        },
+        "auth": {
+          "username": "foo",
+          "password": "bar"
+        }
+      }
+    },    
     "modules": {
       "data": true,
       "forum": true,
@@ -48,5 +60,11 @@
     "practitionerAccessCode": "hippocrates",
     "sysadminAccessCode": "rootaccess",
     "disableOauth": true
+  },
+  "galaxy.meteor.com": {
+    "env": {
+      "MONGO_URL": "mongodb://phoenix:phoenix13579@ds025389.mlab.com:25389/meteor-on-fhir",
+      "NODE_ENV": "production"
+    }
   }
 }

@@ -42,9 +42,10 @@ export default class DevicesTable extends React.Component {
           <td className='manufacturer'>{this.data.devices[i].manufacturer }</td>
           <td className='deviceModel'>{this.data.devices[i].model }</td>
           <td className='serialNumber'>{this.data.devices[i].identifier[0] ? this.data.devices[i].identifier[0].value :  '' }</td>
+          <td className="costOfOwnership">{ this.data.devices[i].note[0] ? this.data.devices[i].note[0].text : '' }</td>
           <td><span className="barcode">{ this.data.devices[i]._id }</span></td>
         </tr>
-      )
+      );
     }
 
     return(
@@ -55,6 +56,7 @@ export default class DevicesTable extends React.Component {
             <th className='manufacturer'>manufacturer</th>
             <th className='deviceModel'>model</th>
             <th className='serialNumber'>serial number</th>
+            <th className='costOfOwnership'>cost ($/year)</th>
             <th>_id</th>
           </tr>
         </thead>

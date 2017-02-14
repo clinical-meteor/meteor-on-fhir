@@ -29,6 +29,7 @@ Meteor.startup(function(){
     console.log("Initializing records...");
 
     Meteor.call('initializeCarePlan');
+    Meteor.call('initializeChecklists');
     Meteor.call('initializeCondition');
     Meteor.call('initializeDevice');
     Meteor.call('initializeObservation', 70.0, '');

@@ -72,6 +72,9 @@ export class AuthenticatedNavigation extends React.Component {
     return this.data.user;
   }
 
+  openNotifications(){
+    browserHistory.push('/notifications');
+  }
   render () {
     return(
       <div id='authenticatedUserMenuToggle' onTouchTap={this.toggleNotificationMenu } style={style.username}>
@@ -85,7 +88,7 @@ export class AuthenticatedNavigation extends React.Component {
             iconButtonElement={
               <div>
                 <IconButton touch={true}>
-                  <ActionAccountCircle />
+                  <ActionAccountCircle onClick={this.openNotifications} />
                 </IconButton>
                 <ToolbarTitle
                   id='authenticatedUsername'

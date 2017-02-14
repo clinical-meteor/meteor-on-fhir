@@ -129,3 +129,9 @@ npm run desktop
 # or try the shortcut script
  meteor npm run-script desktop
 ```    
+
+
+### References    
+[Supporting Interoperability – Terminology, Subsets and Other Resources from Natl. Library of Medicine](https://www.nlm.nih.gov/hit_interoperability.html)  
+[Health IT Standards for Health Information Management Practices](http://ihe.net/uploadedFiles/Documents/ITI/IHE_ITI_WP_HITStdsforHIMPratices_Rev1.1_2015-09-18.pdf)  
+
