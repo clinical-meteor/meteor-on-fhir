@@ -50,7 +50,6 @@ export default class DevicesTable extends React.Component {
 
     return(
       <Table id='devicesTable' responses hover >
-        F
         <thead>
           <tr>
             <th className='deviceType'>type</th>

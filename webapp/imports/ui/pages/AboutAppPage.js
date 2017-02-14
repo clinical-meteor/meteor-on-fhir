@@ -44,14 +44,14 @@ export default class AboutAppPage extends React.Component {
       <div id="aboutAppPage">
 
         <VerticalCanvas >
-          <GlassCard>
+          <GlassCard height='auto'>
             <CardTitle
               title="About this Application"
             />
             <CardText>
               Copyright (c) 2016, Symptomatic.io<br />
               All rights reserved.
-              </div><br/>
+              <br/>
             </CardText>
           </GlassCard>
         </VerticalCanvas>

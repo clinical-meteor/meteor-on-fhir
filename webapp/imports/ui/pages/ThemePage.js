@@ -119,7 +119,7 @@ export class ThemePage extends React.Component {
 
                     <Image src='/backgrounds/medical/StarTrek-Medbay.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
                     <Image src='/backgrounds/medical/MedBay.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
-                    <Image src='/backgrounds/medical/Genetic-Engineering.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
+                    <Image src='/backgrounds/medical/Gradient.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
 
                     <Image responsive style={whiteTile} onClick={this.onColorClick} />
                     <Image responsive style={grayTile} onClick={this.onColorClick} />

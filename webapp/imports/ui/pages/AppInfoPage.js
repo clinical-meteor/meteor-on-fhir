@@ -53,7 +53,7 @@ export class AppInfoPage extends React.Component {
     return(
       <div id="aboutPage">
         <VerticalCanvas >
-          <GlassCard>
+          <GlassCard height='auto'>
             <Row>
               <Col md={4}>
                 <CardText style={this.data.environmentData}>

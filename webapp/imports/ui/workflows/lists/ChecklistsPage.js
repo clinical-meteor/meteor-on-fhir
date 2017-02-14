@@ -107,7 +107,7 @@ export class ChecklistsPage extends React.Component {
     return (
       <div id="checklistsPage">
         <VerticalCanvas>
-          <GlassCard>
+          <GlassCard height='auto'>
             <CardTitle
               title="Checklists"
             />
