@@ -5,14 +5,15 @@
       "showVideoBackground": false,
       "darkroomTextEnabled": false,
       "defaultVideo": "/VideoBackgrounds/Circulation.mp4",
-      "backgroundImagePath": "/backgrounds/global.jpg"
+      "backgroundImagePath": "/backgrounds/medical/Gradient.jpg"
     },
     "app": {
-      "barcodes": true,
       "showUnderConstruction": true,
       "showExperimental": false
     },
     "defaults": {
+      "avatars": true,
+      "barcodes": true,
       "displayNavbars": true,
       "disableHeader": false,
       "disableFooter": false,
