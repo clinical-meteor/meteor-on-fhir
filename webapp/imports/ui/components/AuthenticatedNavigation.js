@@ -16,6 +16,7 @@ import MenuItem from 'material-ui/MenuItem';
 import ActionAccountCircle from 'material-ui/svg-icons/action/account-circle';
 
 import ActionExitToApp from 'material-ui/svg-icons/action/exit-to-app';
+import Glass from '/imports/ui/Glass';
 
 Session.get('showNotificationMenu', true);
 
@@ -49,21 +50,26 @@ export class AuthenticatedNavigation extends React.Component {
       },
       state: {
         showNotificationMenu: Session.get('showNotificationMenu')
-      }
+      },
+      glassText : Glass.darkroom({
+        userSelect: 'none',
+        WebkitUserSelect: 'none',
+        MozUserSelect: 'none',
+        msUserSelect: 'none',
+        top: '-5px',
+        cursor: 'pointer'
+      })
     };
 
 
     if (Meteor.user()) {
-      const user = Meteor.user();
-      const name = user && user.profile ? user.profile.name : '';
-      if (name.text) {
-        data.user = name.text;
-      } else {
-        data.user = name.given + ' ' + name.family;
-      }
+      data.user = Meteor.user().fullName();
     } else {
       data.user = '';
     }
+
+    console.log("AuthenticatedNavigation[data]", data);
+
 
     return data;
   }
@@ -77,7 +83,7 @@ export class AuthenticatedNavigation extends React.Component {
   }
   render () {
     return(
-      <div id='authenticatedUserMenuToggle' onTouchTap={this.toggleNotificationMenu } style={style.username}>
+      <div id='authenticatedUserMenuToggle' onTouchTap={this.toggleNotificationMenu } style={this.data.glassText}>
         <ToolbarGroup >
 
           <IconMenu
@@ -87,13 +93,13 @@ export class AuthenticatedNavigation extends React.Component {
             open={false}
             iconButtonElement={
               <div>
-                <IconButton touch={true}>
-                  <ActionAccountCircle onClick={this.openNotifications} />
+                <IconButton touch={true} style={this.data.glassText}>
+                  <ActionAccountCircle onClick={this.openNotifications} style={this.data.glassText} />
                 </IconButton>
                 <ToolbarTitle
                   id='authenticatedUsername'
                   text={ this.data.user }
-                  style={style.username}
+                  style={this.data.glassText}
                   onTouchTap={this.showProfile }
                 />
               </div>

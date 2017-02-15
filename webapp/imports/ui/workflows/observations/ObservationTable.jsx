@@ -7,6 +7,7 @@ import { Meteor } from 'meteor/meteor';
 
 import { Table } from 'react-bootstrap';
 import { Observations } from 'meteor/clinical:hl7-resource-observation';
+import Glass from '/imports/ui/Glass';
 
 export default class ObservationTable extends React.Component {
 
@@ -16,7 +17,7 @@ export default class ObservationTable extends React.Component {
     // or a mixin!
     let data = {
       style: {
-        opacity: Session.get('globalOpacity')
+        text: Glass.darkroom()
       },
       selected: [],
       observations: Observations.find().map(function(observation){
@@ -58,13 +59,13 @@ export default class ObservationTable extends React.Component {
       })
     };
 
-    if (Session.get('darkroomEnabled')) {
-      data.style.color = "black";
-      data.style.background = "white";
-    } else {
-      data.style.color = "white";
-      data.style.background = "black";
-    }
+    // if (Session.get('darkroomEnabled')) {
+    //   data.style.color = "black";
+    //   data.style.background = "white";
+    // } else {
+    //   data.style.color = "white";
+    //   data.style.background = "black";
+    // }
 
     // this could be another mixin
     if (Session.get('glassBlurEnabled')) {
@@ -104,7 +105,7 @@ export default class ObservationTable extends React.Component {
     let tableRows = [];
     for (var i = 0; i < this.data.observations.length; i++) {
       tableRows.push(
-        <tr className="observationRow" style={{cursor: "pointer"}} onClick={ this.rowClick.bind('this', this.data.observations[i]._id)} >
+        <tr className="observationRow" style={this.data.style.text} onClick={ this.rowClick.bind('this', this.data.observations[i]._id)} >
 
           <td className='category'>{this.data.observations[i].category }</td>
           <td className='value'>{this.data.observations[i].observationValue }</td>
