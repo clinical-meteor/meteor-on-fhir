@@ -3,6 +3,7 @@ import { Col, Grid, Row } from 'react-bootstrap';
 import { Tabs, Tab } from 'material-ui/Tabs';
 import { browserHistory } from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
 import { FontIcon } from 'material-ui/FontIcon';
 import TextField from 'material-ui/TextField';
 import React from 'react';
@@ -17,8 +18,10 @@ import { GlassCard } from '/imports/ui/components/GlassCard';
 import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 import { removeUserById } from '../../api/users/methods';
 import Avatar from 'material-ui/Avatar';
+import Divider from 'material-ui/Divider';
 
 import Glass from '/imports/ui/Glass';
+import { Table, TableRow, TableBody, TableHeader, TableHeaderColumn, TableRowColumn } from 'material-ui/Table';
 
 let defaultState = {
   index: 0,
@@ -159,43 +162,70 @@ export class MyProfilePage extends React.Component {
 
                 <Tab className='demographicsTab' label='Demographics' style={this.data.style.tab} value={0} >
                   <div id='profileDemographicsPane' style={{position: 'relative'}}>
-                    <TextField
-                      id='givenNameInput'
-                      ref='given'
-                      name='given'
-                      type='text'
-                      floatingLabelText='given name'
-                      value={this.data.user.given}
-                      fullWidth
-                      /><br/>
-                    <TextField
-                      id='familyNameInput'
-                      ref='family'
-                      name='family'
-                      type='text'
-                      floatingLabelText='family name'
-                      value={this.data.user.family}
-                      fullWidth
-                      /><br/>
-                    <TextField
-                      id='birthdateInput'
-                      ref='birthdate'
-                      name='birthdate'
-                      type='text'
-                      floatingLabelText='date of birth (yyyy-mm-dd)'
-                      value={this.data.user.birthdate}
-                      fullWidth
-                      /><br/>
-                    <TextField
-                      id='avatarInput'
-                      ref='avatar'
-                      name='avatar'
-                      type='text'
-                      floatingLabelText='avatar'
-                      value={this.data.user.avatar}
-                      onChange={ this.handleChangeAvatar.bind(this) }
-                      fullWidth
-                      /><br/>
+                    <Row>
+                      <Col md={6}>
+                        <TextField
+                          id='givenNameInput'
+                          ref='given'
+                          name='given'
+                          type='text'
+                          floatingLabelText='given name'
+                          value={this.data.user.given}
+                          fullWidth
+                          /><br/>
+                      </Col>
+                      <Col md={6}>
+                        <TextField
+                          id='familyNameInput'
+                          ref='family'
+                          name='family'
+                          type='text'
+                          floatingLabelText='family name'
+                          value={this.data.user.family}
+                          fullWidth
+                          /><br/>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col md={3}>
+                        <TextField
+                          id='birthdateInput'
+                          ref='birthdate'
+                          name='birthdate'
+                          type='date'
+                          floatingLabelText='date of birth (yyyy-mm-dd)'
+                          floatingLabelFixed={true}
+                          value={this.data.user.birthdate}
+                          fullWidth
+                          /><br/>
+                      </Col>
+                      <Col md={3}>
+                        <TextField
+                          id='genderInput'
+                          ref='gender'
+                          name='gender'
+                          type='text'
+                          floatingLabelText='gender'
+                          value={this.data.user.gender}
+                          // onChange={ this.handleChangeAvatar.bind(this) }
+                          fullWidth
+                          /><br/>
+
+                      </Col>
+                      <Col md={6}>
+                        <TextField
+                          id='avatarInput'
+                          ref='avatar'
+                          name='avatar'
+                          type='text'
+                          floatingLabelText='avatar'
+                          value={this.data.user.avatar}
+                          onChange={ this.handleChangeAvatar.bind(this) }
+                          fullWidth
+                          /><br/>
+
+                      </Col>
+                    </Row>
                   </div>
                 </Tab>
 
@@ -207,7 +237,7 @@ export class MyProfilePage extends React.Component {
                       id='oldPasswordInput'
                       ref='oldPassword'
                       name='oldPassword'
-                      type='password'
+                      type='text'
                       floatingLabelText='oldPassword'
                       floatingLabelFixed={true}
                       value={this.data.state.oldPassword}
@@ -218,7 +248,7 @@ export class MyProfilePage extends React.Component {
                       id='newPasswordInput'
                       ref='newPassword'
                       name='newPassword'
-                      type='password'
+                      type='text'
                       floatingLabelText='newPassword'
                       floatingLabelFixed={true}
                       value={this.data.state.newPassword}
@@ -229,7 +259,7 @@ export class MyProfilePage extends React.Component {
                       id='confirmPasswordInput'
                       ref='confirmPassword'
                       name='confirmPassword'
-                      type='password'
+                      type='text'
                       floatingLabelText='confirmPassword'
                       floatingLabelFixed={true}
                       value={this.data.state.confirmPassword}
@@ -247,29 +277,64 @@ export class MyProfilePage extends React.Component {
                   </div>
                 </Tab>
 
-                <Tab className="systemTab" label='System' style={this.data.style.tab} value={3}>
+                <Tab className="systemTab" label='Preferences' style={this.data.style.tab} value={3}>
                   <div id="profileSystemPane" style={{position: "relative"}}>
-                    <TextField
-                      id='idInput'
-                      ref='_id'
-                      name='_id'
-                      type='text'
-                      floatingLabelText='symptomatic _id'
-                      value={this.data.user._id}
-                      fullWidth
-                      disabled
-                      /><br/>
-                    <TextField
-                      id='emailInput'
-                      ref='email'
-                      name='email'
-                      type='text'
-                      floatingLabelText='symptomatic email'
-                      value={this.data.user.email}
-                      fullWidth
-                      disabled
-                      /><br/>
+                    <Table>
+                    <TableBody displayRowCheckbox={false} showRowHover={true}>>
+                      <TableRow>
+                        <TableRowColumn style={{width: '200px'}}>
+                          <FlatButton label='Show Navbars' />
+                        </TableRowColumn>
+                        <TableRowColumn>Display the header and footer navbars.</TableRowColumn>
+                      </TableRow>
+                      <TableRow>
+                        <TableRowColumn>
+                          <FlatButton label='Show Search' />
+                        </TableRowColumn>
+                        <TableRowColumn>Display the search ribbon.</TableRowColumn>
+                      </TableRow>
+                      <TableRow>
+                        <TableRowColumn>
+                          <FlatButton label='Autoheight' />
+                        </TableRowColumn>
+                        <TableRowColumn>Fit to use the available spaec.  Otherwise, use veritical scroll.</TableRowColumn>
+                      </TableRow>
+                      <TableRow>
+                        <TableRowColumn>
+                          <FlatButton label='Margins' />
+                        </TableRowColumn>
+                        <TableRowColumn>Layout with or without border margins.</TableRowColumn>
+                      </TableRow>
 
+                      <TableRow>
+                        <TableRowColumn>
+                          <FlatButton label='Card/Panel' />
+                        </TableRowColumn>
+                        <TableRowColumn>Card layout or Panel layout</TableRowColumn>
+                      </TableRow>
+                      <TableRow>
+                        <TableRowColumn>
+                          <FlatButton label='Secondary' />
+                        </TableRowColumn>
+                        <TableRowColumn>Display the secondary iframe panel</TableRowColumn>
+                      </TableRow>
+                      <TableRow>
+                        <TableRowColumn>
+                          <FlatButton label='Docks' />
+                        </TableRowColumn>
+                        <TableRowColumn>Display inbox dock</TableRowColumn>
+                      </TableRow>
+                      <TableRow>
+                        <TableRowColumn>
+                          <FlatButton label='Narrow Navs' />
+                        </TableRowColumn>
+                        <TableRowColumn>Use narrow navbars</TableRowColumn>
+                      </TableRow>
+                    </TableBody>
+                    </Table>
+
+                    <br />
+                    <br />
                     { this.renderConfirmDelete(this.data.state.wantsToDelete) }
                   </div>
                 </Tab>
@@ -313,11 +378,18 @@ export class MyProfilePage extends React.Component {
       );
     } else {
       return(
-        <RaisedButton id='deleteUserButton' className="muidocs-icon-action-delete" label='Delete User' onClick={this.handleDelete } primary={true} />
+        <div>
+          <Divider />
+          <br />
+          <RaisedButton id='resetPreferencesButton' label='Reset Preferences' onClick={this.resetPreferences } primary={true} style={{marginRight: '20px'}} />
+          <RaisedButton id='deleteUserButton' className="muidocs-icon-action-delete" label='Delete User' onClick={this.handleDelete } primary={true} />
+        </div>
       );
     }
   }
-
+  resetPreferences(){
+    //alert('reset!')
+  }
   rememberOldPassword(event, value){
     let state = Session.get('myProfileState');
     state['oldPassword'] = value;

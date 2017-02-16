@@ -48,10 +48,14 @@ export class Header extends React.Component {
           transition: 'ease .2s',
           background: 'white'
         },
-        title: {
-          color: 'black',
+        title: Glass.darkroom({
+          userSelect: 'none',
+          WebkitUserSelect: 'none',
+          MozUserSelect: 'none',
+          msUserSelect: 'none',
+          top: '-5px',
           cursor: 'pointer'
-        }
+        })
       },
       westStyle: {
         display: 'flex',

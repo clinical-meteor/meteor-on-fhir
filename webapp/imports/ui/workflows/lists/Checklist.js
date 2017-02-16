@@ -13,6 +13,7 @@ import Glass from '/imports/ui/Glass';
 import { Table } from 'react-bootstrap';
 import Checkbox from 'material-ui/Checkbox';
 
+
 Session.setDefault('checklistPageTabIndex', 0);
 Session.setDefault('checklistSearchFilter', '');
 Session.setDefault('selectedChecklist', false);
@@ -29,7 +30,8 @@ export class Checklist extends React.Component {
         },
         cell: {
           lineHeight: '24px'
-        }
+        },
+        rowText: Glass.darkroom({cursor: 'pointer'})
       },
       tabIndex: Session.get('checklistPageTabIndex'),
       checklistSearchFilter: Session.get('checklistSearchFilter'),
@@ -106,7 +108,7 @@ export class Checklist extends React.Component {
     let listRows = [];
     for (var i = 0; i < this.data.entry.length; i++) {
       listRows.push(
-        <tr key={i} style={{cursor: 'pointer'}} selected={ this.data.entry[i].selected } selectable={true} onClick={this.rowClick.bind(this)}>
+        <tr key={i} style={this.data.style.rowText} selected={ this.data.entry[i].selected } selectable={true} onClick={this.rowClick.bind(this)}>
           <td style={this.data.style.cell}>
             <Checkbox checked={this.data.entry[i].selected} onClick={this.toggleTask.bind('this', i)} />
           </td>

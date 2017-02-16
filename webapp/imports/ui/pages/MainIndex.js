@@ -9,6 +9,7 @@ import { GlassCard } from '/imports/ui/components/GlassCard';
 import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 
 import { browserHistory } from 'react-router';
+import Glass from '/imports/ui/Glass';
 
 export class MainIndex extends React.Component {
   constructor(props) {
@@ -21,9 +22,9 @@ export class MainIndex extends React.Component {
           opacity: .5,
           width: '50%',
           display: 'inline-block',
-          paddingLeft: '20px',
-          paddingRight: '20px',
-          paddingBottom: '30px'
+          paddingLeft: '10px',
+          paddingRight: '10px',
+          paddingBottom: '20px'
         },
         indexCard: {
           cursor: 'pointer'
@@ -31,13 +32,15 @@ export class MainIndex extends React.Component {
         indexCardPadding: {
           width: '50%',
           display: 'inline-block',
-          paddingLeft: '20px',
-          paddingRight: '20px',
-          paddingBottom: '30px'
+          paddingLeft: '10px',
+          paddingRight: '10px',
+          paddingBottom: '20px'
         },
         spacer: {
           display: 'block'
-        }
+        },
+        title: Glass.darkroom(),
+        subtitle: Glass.darkroom()
       },
       user: {
         isAdmin: false,
@@ -45,8 +48,10 @@ export class MainIndex extends React.Component {
         isPatient: true
       },
       showUnderConstruction: false,
-      showExperimental: false,
+      showExperimental: false
     };
+
+    data.style.indexCard = Glass.darkroom(data.style.indexCard);
 
     let user = Meteor.user();
     if (user && user.roles) {
@@ -120,6 +125,8 @@ export class MainIndex extends React.Component {
               <CardTitle
                 title='Inbound Messages'
                 subtitle='Inbound HL7 FHIR message log.'
+                titleStyle={this.data.style.title}
+                  subtitleStyle={this.data.style.subtitle}
               />
             </GlassCard>
           </div>
@@ -128,6 +135,8 @@ export class MainIndex extends React.Component {
               <CardTitle
                 title='Outbound Messages'
                 subtitle='Outbound HL7 log.'
+                titleStyle={this.data.style.title}
+                  subtitleStyle={this.data.style.subtitle}
               />
             </GlassCard>
           </div>
@@ -137,6 +146,8 @@ export class MainIndex extends React.Component {
               <CardTitle
                 title='Data Management'
                 subtitle='Import/export data.'
+                titleStyle={this.data.style.title}
+                  subtitleStyle={this.data.style.subtitle}
               />
             </GlassCard>
           </div>
@@ -146,6 +157,8 @@ export class MainIndex extends React.Component {
               <CardTitle
                 title='Audit Log'
                 subtitle='HIPAA compliance and access logs.'
+                titleStyle={this.data.style.title}
+                  subtitleStyle={this.data.style.subtitle}
               />
             </GlassCard>
           </div>
@@ -165,6 +178,8 @@ export class MainIndex extends React.Component {
               <CardTitle
                 title='Discussion Forum'
                 subtitle='Get help developing healthcare apps using Meteor.js'
+                titleStyle={this.data.style.title}
+                  subtitleStyle={this.data.style.subtitle}
               />
             </GlassCard>
           </div>
@@ -174,6 +189,8 @@ export class MainIndex extends React.Component {
               <CardTitle
                 title='Healthlog'
                 subtitle='Post public thoughts using a Wordpress/Twitter style format.'
+                titleStyle={this.data.style.title}
+                  subtitleStyle={this.data.style.subtitle}
               />
             </GlassCard>
           </div>
@@ -183,6 +200,8 @@ export class MainIndex extends React.Component {
               <CardTitle
                 title='Dermatograms'
                 subtitle='Mole counts, burn coverage, body sites, etc.'
+                titleStyle={this.data.style.title}
+                  subtitleStyle={this.data.style.subtitle}
               />
             </GlassCard>
           </div>
@@ -192,6 +211,8 @@ export class MainIndex extends React.Component {
               <CardTitle
                 title='Telemedicine'
                 subtitle='Point-to-point video conferencing.'
+                titleStyle={this.data.style.title}
+                  subtitleStyle={this.data.style.subtitle}
               />
             </GlassCard>
           </div>
@@ -200,6 +221,8 @@ export class MainIndex extends React.Component {
               <CardTitle
                 title='My Genome'
                 subtitle='A basic 23 and Me genome explorer.'
+                titleStyle={this.data.style.title}
+                  subtitleStyle={this.data.style.subtitle}
               />
             </GlassCard>
           </div>
@@ -218,6 +241,8 @@ export class MainIndex extends React.Component {
               <CardTitle
                 title='Patients'
                 subtitle='Browse patient in system.'
+                titleStyle={this.data.style.title}
+                  subtitleStyle={this.data.style.subtitle}
               />
             </GlassCard>
           </div>
@@ -234,6 +259,8 @@ export class MainIndex extends React.Component {
               <CardTitle
                 title='Practitioners'
                 subtitle='Browse practitioners in system.'
+                titleStyle={this.data.style.title}
+                  subtitleStyle={this.data.style.subtitle}
               />
             </GlassCard>
           </div>
@@ -250,6 +277,8 @@ export class MainIndex extends React.Component {
               <CardTitle
                 title='Observations'
                 subtitle='Observations from devices.'
+                titleStyle={this.data.style.title}
+                  subtitleStyle={this.data.style.subtitle}
               />
             </GlassCard>
           </div>
@@ -266,6 +295,8 @@ export class MainIndex extends React.Component {
               <CardTitle
                 title='Medication Inventory'
                 subtitle='Crash carts, first responder kits, and surgical prep.'
+                titleStyle={this.data.style.title}
+                  subtitleStyle={this.data.style.subtitle}
               />
             </GlassCard>
           </div>
@@ -282,6 +313,8 @@ export class MainIndex extends React.Component {
               <CardTitle
                 title='Devices'
                 subtitle='Equipment and devices.'
+                titleStyle={this.data.style.title}
+                  subtitleStyle={this.data.style.subtitle}
               />
             </GlassCard>
           </div>
@@ -298,6 +331,8 @@ export class MainIndex extends React.Component {
               <CardTitle
                 title='Checklist Manifesto'
                 subtitle='Checklists lead to better outcomes.'
+                titleStyle={this.data.style.title}
+                  subtitleStyle={this.data.style.subtitle}
               />
             </GlassCard>
           </div>
@@ -315,6 +350,8 @@ export class MainIndex extends React.Component {
               <CardTitle
                 title='Risk Assessments'
                 subtitle='Risk assessments for patients pertaining to conditions.'
+                titleStyle={this.data.style.title}
+                  subtitleStyle={this.data.style.subtitle}
               />
             </GlassCard>
           </div>
@@ -334,6 +371,8 @@ export class MainIndex extends React.Component {
                 <CardTitle
                   title='Family Member History'
                   subtitle='Relevant medical histories of family members.'
+                  titleStyle={this.data.style.title}
+                  subtitleStyle={this.data.style.subtitle}
                 />
               </GlassCard>
             </div>
@@ -343,6 +382,8 @@ export class MainIndex extends React.Component {
                 <CardTitle
                   title='Conditions'
                   subtitle='Conditions that a patient might have.'
+                  titleStyle={this.data.style.title}
+                  subtitleStyle={this.data.style.subtitle}
                 />
               </GlassCard>
             </div>
@@ -352,6 +393,8 @@ export class MainIndex extends React.Component {
                 <CardTitle
                   title='Procedures'
                   subtitle='Procedures and treatments performed by practitioners.'
+                  titleStyle={this.data.style.title}
+                  subtitleStyle={this.data.style.subtitle}
                 />
               </GlassCard>
             </div>
@@ -362,6 +405,8 @@ export class MainIndex extends React.Component {
                 <CardTitle
                   title='Allergy Intolerances'
                   subtitle='Allergy intolerances.'
+                  titleStyle={this.data.style.title}
+                  subtitleStyle={this.data.style.subtitle}
                 />
               </GlassCard>
             </div>
@@ -371,6 +416,8 @@ export class MainIndex extends React.Component {
                 <CardTitle
                   title='Immunizations'
                   subtitle='Patient immunization records.'
+                  titleStyle={this.data.style.title}
+                  subtitleStyle={this.data.style.subtitle}
                 />
               </GlassCard>
             </div>
@@ -381,6 +428,8 @@ export class MainIndex extends React.Component {
                 <CardTitle
                   title='Questionnaires'
                   subtitle='Questionnaires and miscellaneous data collection.'
+                  titleStyle={this.data.style.title}
+                  subtitleStyle={this.data.style.subtitle}
                 />
               </GlassCard>
             </div>
@@ -389,6 +438,8 @@ export class MainIndex extends React.Component {
                 <CardTitle
                   title='Questionnaire Responses'
                   subtitle='Patient responses to questionnaires.'
+                  titleStyle={this.data.style.title}
+                  subtitleStyle={this.data.style.subtitle}
                 />
               </GlassCard>
             </div>
@@ -399,6 +450,8 @@ export class MainIndex extends React.Component {
                 <CardTitle
                   title='Imaging Studies'
                   subtitle='Medical images and radiographs.'
+                  titleStyle={this.data.style.title}
+                  subtitleStyle={this.data.style.subtitle}
                 />
               </GlassCard>
             </div>
@@ -408,6 +461,8 @@ export class MainIndex extends React.Component {
                 <CardTitle
                   title='Locations'
                   subtitle='Locations and geomapping.'
+                  titleStyle={this.data.style.title}
+                  subtitleStyle={this.data.style.subtitle}
                 />
               </GlassCard>
             </div>
@@ -418,6 +473,8 @@ export class MainIndex extends React.Component {
                 <CardTitle
                   title='CarePlans'
                   subtitle='Treatment careplans.'
+                  titleStyle={this.data.style.title}
+                  subtitleStyle={this.data.style.subtitle}
                 />
               </GlassCard>
             </div>
@@ -427,6 +484,8 @@ export class MainIndex extends React.Component {
                 <CardTitle
                   title='Goals'
                   subtitle='Treatment and careplan goals.'
+                  titleStyle={this.data.style.title}
+                  subtitleStyle={this.data.style.subtitle}
                 />
               </GlassCard>
             </div>
@@ -436,6 +495,8 @@ export class MainIndex extends React.Component {
                 <CardTitle
                   title='Appointments'
                   subtitle='Appointments, slots, schedules, and calendars.'
+                  titleStyle={this.data.style.title}
+                  subtitleStyle={this.data.style.subtitle}
                 />
               </GlassCard>
             </div>
@@ -445,6 +506,8 @@ export class MainIndex extends React.Component {
                 <CardTitle
                   title='Slots'
                   subtitle='Appointment slots.'
+                  titleStyle={this.data.style.title}
+                  subtitleStyle={this.data.style.subtitle}
                 />
               </GlassCard>
             </div>
@@ -454,6 +517,8 @@ export class MainIndex extends React.Component {
                 <CardTitle
                   title='Diagnostic Report'
                   subtitle='Findings associated with a diagnostic laboratory procedure.'
+                  titleStyle={this.data.style.title}
+                  subtitleStyle={this.data.style.subtitle}
                 />
               </GlassCard>
             </div>
@@ -464,6 +529,8 @@ export class MainIndex extends React.Component {
                 <CardTitle
                   title='Schedules'
                   subtitle='Medication schedules, treatment schedules, office schedules, etc.'
+                  titleStyle={this.data.style.title}
+                  subtitleStyle={this.data.style.subtitle}
                 />
               </GlassCard>
             </div>

@@ -58,7 +58,7 @@ export class MedicationsPage extends React.Component {
     return (
       <div id="medicationsPage">
       <VerticalCanvas>
-          <GlassCard>
+          <GlassCard height='auto'>
             <CardTitle
               title="Medications"
             />

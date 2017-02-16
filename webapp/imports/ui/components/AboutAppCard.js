@@ -65,7 +65,7 @@ getMeteorData() {
 
            <div style={this.data.style.page}>
              <h5 style={{borderTop: '1px solid lightgray', width: '100%'}}>Aesthetics and Minimalist Design</h5><br />
-             Experience a new paradigm of minimalist and aesthetic healthcare software, using Material Design, Paper, and Cards.  Streamline workflow with material metaphors, card layout, origami animations, and iconographic visual language.  The following are in-app screenshots of the actual software.
+             Experience a new paradigm of minimalist and aesthetic healthcare software, using Material Design, Paper, and Cards.  Streamline workflow with material metaphors, card layout, origami animations, and iconographic visual language.
              <br /><br />
              <img src="/marketing/AestheticDesign.png" style={style.marketingImage} />
              <br /><br />
@@ -73,7 +73,7 @@ getMeteorData() {
 
            <div style={this.data.style.page}>
              <h5 style={style.sectionHeader}>Patient Privacy Screens</h5><br />
-             Ensure a higher level of patient privacy with glass blur, which keeps casual overlookers from reading a patient chart.  Supports encrypted data at rest and over the wire, for industrial grade HIPAA compliance.
+             Ensure a higher level of patient privacy with glass blur, which keeps casual overlookers from reading a patient chart; and keeps you HIPAA compliant.  Supports SSL certificates for encryption over the wire.  Enterprise licenses of MongoDB support data-at-rest, for complete turnkey HIPAA solutions.
              <br /><br />
              <img src="/marketing/PrivacySettings.png" style={style.marketingImage} />
              <br /><br />
@@ -91,7 +91,7 @@ getMeteorData() {
 
            <div style={this.data.style.page}>
              <h5 style={style.sectionHeader}>User Control and Freedom</h5><br />
-             Allow users the freedom and control to theme their work environment to match their surroundings.  Eliminate wasted time spent resizing windows with origami card layout.  The following is an in-app screenshot with the privacy screen enabled.
+             Allow users the freedom and control to theme their work environment to match their surroundings.  Eliminate wasted time spent resizing windows with origami card layout.
              <br /><br />
              <img src="/marketing/Theming.png" style={style.marketingImage} />
              <br /><br />
@@ -101,7 +101,7 @@ getMeteorData() {
 
            <div style={this.data.style.page}>
              <h5 style={style.sectionHeader}>Centalized Notifications</h5><br />
-             Prevent alert fatigue by consolidating alerts in a dedicated feed.
+             Prevent alert fatigue by consolidating alerts in a dedicated feed.  Review your notification history, and work through notifications as an ad-hoc dynamic task list.
              <br /><br />
              <img src="/marketing/Notifications.png" style={style.marketingImage} />
              <br /><br />
@@ -116,8 +116,8 @@ getMeteorData() {
            </div>
 
            <div style={this.data.style.page}>
-             <h5 style={style.sectionHeader}>Order Sets</h5><br />
-             Improve departmental quality control by using order sets, protocols, and checklists.  Inspired by the Checklist Manifesto.
+             <h5 style={style.sectionHeader}>Clinical Quality Control through Checklists</h5><br />
+             Improve departmental quality control by using order sets, protocols, and checklists.  Embrace the Checklist Manifesto, and bring process engineering techniques from the aviation and nuclear energy industries to clinical engineering.
              <br /><br />
              <img src="/marketing/OrderSets.png" style={style.marketingImage} />
              <br /><br />
@@ -125,7 +125,7 @@ getMeteorData() {
 
            <div style={this.data.style.page}>
              <h5 style={style.sectionHeader}>Specificity & Sensitivity Analysis</h5><br />
-             Lorem ipsum dolar set et...
+             Analyze the specificity and sensitivty of clinical treatments and research studies using population health analysis tools.  Cross reference with PubMed articles, and generate epidemiology data through FHIR interface feeds.
              <br /><br />
              <img src="/marketing/SensitivitySpecificityAnalysis.png" style={style.marketingImage} />
              <br /><br />
@@ -144,6 +144,13 @@ getMeteorData() {
 
            <div style={this.data.style.page}>
              <h5 style={style.sectionHeader}>Standards & Compatibility</h5><br />
+
+            Make a commitment to interoperability compliance using community testing frameworks such as Touchstone and Crucible.  Avoid reinventing the wheel when it comes to core healthcare schemas, and leverage the work of international working groups such as HL7.
+            <br />
+            <br />
+            <img src="/marketing/TouchstoneTests.png" style={style.marketingImage} />
+            <br /><br />
+
              We've implemented SimpleSchemas for 40 of the 100 defined FHIR Resources, including complete coverage of the ~20 resources that are supported by both Epic and Cerner.  Additionally, we have user interface implemented for 6 of those 17 commonly shared resources.  And we've completed Sprint 2 of the Argonaut Project.  We're also excited to announce that we are currently going into production at one facility, and are working on interoperability testing with the major EMR vendors.
              <br /><br />
 
@@ -165,11 +172,19 @@ getMeteorData() {
              <b>Argonaut</b>
              <LinearProgress mode="determinate" value={2} max={6} color={blue500} />
              <br /><br />
+
+
+            Lastly, our commitment to standards includes using Meteor, the mostly widely used and popularized web application framework on GitHub.
+            <br />
+            <img src="/marketing/GitHubTopRanked.png" style={style.marketingImage} />
+            <br /><br />
+
            </div>
 
            <div style={this.data.style.page}>
-             <h5 style={style.sectionHeader}>Keybindings</h5><br />
-             The following keybindings are supported (with many more to come).
+             <h5 style={style.sectionHeader}>Keybindings & Accessibility</h5><br />
+             There is a moral mandate to make healthcare accessible to everybody.  As such, accessibility features have been a part of Clinical Meteor since it's very first release.  Of particular importance is support for keybindings, which enable haptic interoperability.  While we have a completely library for programatic keybinding, we find the following keyboard shortcuts are particularly popular and often requested.
+             <br /><br />
              <Table responses hover >
                <tbody>
                  <tr className='keybindingRow' style={{cursor: 'pointer'}} >
@@ -197,7 +212,7 @@ getMeteorData() {
                    <td>Display as Card</td>
                  </tr>
                  <tr className='keybindingRow' style={{cursor: 'pointer'}} >
-                   <td>ctrl+cmd+4</td>
+                   <td>ctrl+cmd+2</td>
                    <td>Meta/Context Sidebar</td>
                  </tr>
                </tbody>

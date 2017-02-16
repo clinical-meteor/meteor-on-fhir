@@ -5,7 +5,7 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 import { Card, CardMedia, CardTitle, CardText, CardActions } from 'material-ui/Card';
 
 import { Table } from 'react-bootstrap';
-
+import Glass from '/imports/ui/Glass';
 
 export default class DevicesTable extends React.Component {
 
@@ -15,7 +15,7 @@ export default class DevicesTable extends React.Component {
     // or a mixin!
     let data = {
       style: {
-        opacity: Session.get('globalOpacity')
+        text: Glass.darkroom()
       },
       selected: [],
       devices: Devices.find().fetch()
@@ -36,7 +36,7 @@ export default class DevicesTable extends React.Component {
     let tableRows = [];
     for (var i = 0; i < this.data.devices.length; i++) {
       tableRows.push(
-        <tr key={i} className="deviceRow" style={{cursor: "pointer"}} onClick={ this.rowClick.bind('this', this.data.devices[i]._id)} >
+        <tr key={i} className="deviceRow" style={this.data.style.text} onClick={ this.rowClick.bind('this', this.data.devices[i]._id)} >
 
           <td className='deviceType'>{this.data.devices[i].type.text }</td>
           <td className='manufacturer'>{this.data.devices[i].manufacturer }</td>

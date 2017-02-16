@@ -48,14 +48,6 @@ export class PatientSidebar extends React.Component {
             <ListItem className="indexItem" href='/' primaryText='Index' />
           </IndexLinkContainer>
 
-          <IndexLinkContainer to='/myprofile'>
-            <ListItem className="profileMenuItem" href='/myprofile' primaryText='Profile' />
-          </IndexLinkContainer>
-
-          <IndexLinkContainer to='/observations'>
-             <ListItem primaryText='Observations' href='/observations' />
-          </IndexLinkContainer>
-
           <IndexLinkContainer to='/weblog'>
              <ListItem primaryText='Healthlog' href='/weblog' />
           </IndexLinkContainer>

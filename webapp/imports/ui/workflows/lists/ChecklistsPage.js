@@ -30,7 +30,8 @@ export class ChecklistsPage extends React.Component {
         tab: {
           borderBottom: '1px solid lightgray',
           borderRight: 'none'
-        }
+        },
+        rowText: Glass.darkroom({cursor: 'pointer'})
       },
       state: {
         isLoggedIn: false
@@ -97,7 +98,7 @@ export class ChecklistsPage extends React.Component {
     let listRows = [];
     for (var i = 0; i < this.data.lists.length; i++) {
       listRows.push(
-        <ChecklistTableRow key={i} style={{cursor: 'pointer'}} onClick={this.fooClick.bind('this', this.data.lists[i]._id)} >
+        <ChecklistTableRow key={i} style={this.data.style.rowText} onClick={this.fooClick.bind('this', this.data.lists[i]._id)} >
           <TableRowColumn>{this.data.lists[i].status}</TableRowColumn>
           <TableRowColumn>{this.data.lists[i].date}</TableRowColumn>
           <TableRowColumn>{this.data.lists[i].code}</TableRowColumn>
@@ -110,12 +111,13 @@ export class ChecklistsPage extends React.Component {
           <GlassCard height='auto'>
             <CardTitle
               title="Checklists"
+              titleStyle={this.data.style.rowText}
             />
             <CardText>
               <Tabs id="checklistsPageTabs" default value={this.data.tabIndex} onChange={this.handleTabChange} initialSelectedIndex={0}>
                 <Tab className="checklistListTab" label='Checklists' onActive={this.handleActive} style={this.data.style.tab} value={0}>
                   <Table onCellClick={this.rowClick.bind(this)}>
-                    <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
+                    <TableHeader displaySelectAll={false} adjustForCheckbox={false} style={this.data.style.rowText} >
                       <TableRow >
                         <TableHeaderColumn>Status</TableHeaderColumn>
                         <TableHeaderColumn>Created At</TableHeaderColumn>
