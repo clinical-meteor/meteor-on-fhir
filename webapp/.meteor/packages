@@ -68,6 +68,7 @@ clinical:hl7-resource-encounter
 clinical:hl7-resource-goal
 clinical:hl7-resource-questionnaire
 clinical:hl7-resource-questionnaire-response
+clinical:hl7-resource-organization
 clinical:hl7-resource-observation
 clinical:hl7-resource-message-header
 clinical:hl7-resource-device

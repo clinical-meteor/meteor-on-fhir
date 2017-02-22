@@ -9,7 +9,7 @@
     },
     "app": {
       "showUnderConstruction": true,
-      "showExperimental": false
+      "showExperimental": true
     },
     "defaults": {
       "avatars": true,
@@ -43,14 +43,15 @@
       "inbound": true,
       "outbound": true,
       "fhir": {
-        "Patients": true,
-        "Practitioners": true,
-        "Observations": true,
+        "Devices": true,
         "ImagingStudies": true,
         "Lists": true,
-        "Medications": true,
-        "Devices": true,
         "Locations": true,
+        "Medications": true,
+        "Observations": true,
+        "Organizations": true,
+        "Patients": true,
+        "Practitioners": true,
         "Questionnaires": true,
         "RiskAssessments": true
       }
@@ -66,5 +67,5 @@
       "MONGO_URL": "mongodb://phoenix:phoenix13579@ds025389.mlab.com:25389/meteor-on-fhir",
       "NODE_ENV": "production"
     }
-  }  
+  }
 }
