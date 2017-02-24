@@ -5,6 +5,7 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 import Avatar from 'material-ui/Avatar';
 import { Table } from 'react-bootstrap';
 
+//import { moment } from 'meteor/moment:momentjs';
 
 
 
@@ -52,10 +53,10 @@ export default class PractitionerTable extends React.Component {
         result.qualificationId = practitioner.qualification[0].identifier[0].value;
       }
       if (practitioner.qualification && practitioner.qualification[0] && practitioner.qualification[0].identifier && practitioner.qualification[0].identifier[0] && practitioner.qualification[0].identifier[0].period && practitioner.qualification[0].identifier[0].period.start ) {
-        result.qualificationStart = practitioner.qualification[0].identifier[0].period.start;
+        result.qualificationStart = moment(practitioner.qualification[0].identifier[0].period.start).format("MMM YYYYY");
       }
       if (practitioner.qualification && practitioner.qualification[0] && practitioner.qualification[0].identifier && practitioner.qualification[0].identifier[0] && practitioner.qualification[0].identifier[0].period && practitioner.qualification[0].identifier[0].period.end) {
-        result.qualificationEnd = practitioner.qualification[0].identifier[0].period.end;
+        result.qualificationEnd = moment(practitioner.qualification[0].identifier[0].period.end).format("MMM YYYY");
       }
       if (practitioner.qualification && practitioner.qualification[0] && practitioner.qualification[0].issuer && practitioner.qualification[0].issuer.display ) {
         result.issuer = practitioner.qualification[0].issuer.display;

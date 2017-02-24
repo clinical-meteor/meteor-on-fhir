@@ -27,7 +27,7 @@ export default class OrganizationTable extends React.Component {
         let result = {
           _id: '',
           name: '',
-          manufacturer: '',
+          identifier: [],
           form: '',
           primaryIngredient: ''
         };
@@ -35,11 +35,11 @@ export default class OrganizationTable extends React.Component {
         if (organization._id ) {
           result._id = organization._id;
         }
-        if (organization.code && organization.code.text ) {
-          result.name = organization.code.text ;
+        if (organization.name ) {
+          result.name = organization.name ;
         }
-        if (organization.manufacturer && organization.manufacturer.display ) {
-          result.manufacturer = organization.manufacturer.display ;
+        if (organization.identifier && organization.identifier[0] && organization.identifier[0].value ) {
+          result.identifier = organization.identifier;
         }
         if (organization.product && organization.product.form && organization.product.form.text ) {
           result.form = organization.product.form.text ;
@@ -94,14 +94,8 @@ export default class OrganizationTable extends React.Component {
     for (var i = 0; i < this.data.organizations.length; i++) {
       tableRows.push(
       <tr className='organizationRow' ref='med-{i}' key={i} style={{cursor: 'pointer'}} onClick={ this.rowClick.bind('this', this.data.organizations[i]._id) }>
-        <td className="check">
-          <Toggle
-            ref='med-{i}'
-            style={this.data.style.checkbox}
-          />
-        </td>
         <td className="organizationName hidden-on-phone">{this.data.organizations[i].name}</td>
-        <td className="manufacturerDisplay hidden-on-phone">{this.data.organizations[i].manufacturer}</td>
+        <td className="organizationIdentifier hidden-on-phone">{this.data.organizations[i].identifier[0].value }</td>
         <td className="organizationForm">{this.data.organizations[i].form}</td>
         <td className="activeIngredient">{this.data.organizations[i].primaryIngredient}</td>
         <td className="barcode hidden-on-phone">{this.data.organizations[i]._id}</td>
@@ -113,9 +107,8 @@ export default class OrganizationTable extends React.Component {
       <Table id="organizationsTable" ref='organizationsTable' responses hover >
         <thead>
           <tr>
-            <th className="check">prescribed</th>
             <th className="organizationName hidden-on-phone">name</th>
-            <th className="manufacturerDisplay hidden-on-phone">manufacturer</th>
+            <th className="organizationIdentifier hidden-on-phone">identifier</th>
             <th className="organizationForm">form</th>
             <th className="activeIngredient">active ingredient</th>
             <th className="id hidden-on-phone">organization._id</th>
