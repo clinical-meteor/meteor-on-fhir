@@ -55,7 +55,7 @@ import { QuestionnaireResponsesPage } from '/imports/ui/workflows/questionnaires
 import { RiskAssessmentsPage } from '/imports/ui/workflows/risk-assessments/RiskAssessmentsPage';
 
 import { AuditLogPage } from '/imports/ui/pages/AuditLogPage';
-import { MetadataPage } from '/imports/ui/components/MetadataPage';
+import { MetadataPage } from '/imports/ui/pages/MetadataPage';
 
 import { MyConditions } from '/imports/ui/workflows/conditions/MyConditions';
 import { NotificationsPage } from '/imports/ui/pages/NotificationsPage';
@@ -66,6 +66,9 @@ import { SpecificitySensitivityCard } from '/imports/ui/components/SpecificitySe
 import { DecisionTree } from '/imports/ui/components/DecisionTree';
 
 import { OrganizationsPage } from '/imports/ui/workflows/organizations/OrganizationsPage';
+
+
+import { OAuthScrapYardPage } from '/imports/ui/workflows/oauth/OAuthScrapYardPage';
 
 // we're storing the current route URL in a reactive variable
 // which will be used to update active controls
@@ -185,6 +188,8 @@ Meteor.startup(() => {
         <Route name="decisionTree" path="/decision-tree" component={ DecisionTree } />
 
         <Route name="organizationsPage" path="/organizations" component={ OrganizationsPage } />
+
+        <Route name="oAuthScrapYardPage" path="/oauth-ui" component={ OAuthScrapYardPage } />
 
 
         <Route path="*" component={ NotFound } />

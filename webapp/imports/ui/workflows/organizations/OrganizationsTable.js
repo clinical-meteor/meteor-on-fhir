@@ -28,8 +28,8 @@ export default class OrganizationTable extends React.Component {
           _id: '',
           name: '',
           identifier: [],
-          form: '',
-          primaryIngredient: ''
+          phone: '',
+          email: ''
         };
 
         if (organization._id ) {
@@ -41,11 +41,11 @@ export default class OrganizationTable extends React.Component {
         if (organization.identifier && organization.identifier[0] && organization.identifier[0].value ) {
           result.identifier = organization.identifier;
         }
-        if (organization.product && organization.product.form && organization.product.form.text ) {
-          result.form = organization.product.form.text ;
+        if (organization.telecom && organization.telecom[0] && organization.telecom[0].value ) {
+          result.phone = organization.telecom[0].value ;
         }
-        if (organization.product && organization.product.ingredient && organization.product.ingredient[0] && organization.product.ingredient[0].item && organization.product.ingredient[0].item.code && organization.product.ingredient[0].item.code.text) {
-          result.primaryIngredient = organization.product.ingredient[0].item.code.text;
+        if (organization.telecom && organization.telecom[0] && organization.telecom[1].value ) {
+          result.email = organization.telecom[1].value;
         }
 
         return result;
@@ -96,8 +96,8 @@ export default class OrganizationTable extends React.Component {
       <tr className='organizationRow' ref='med-{i}' key={i} style={{cursor: 'pointer'}} onClick={ this.rowClick.bind('this', this.data.organizations[i]._id) }>
         <td className="organizationName hidden-on-phone">{this.data.organizations[i].name}</td>
         <td className="organizationIdentifier hidden-on-phone">{this.data.organizations[i].identifier[0].value }</td>
-        <td className="organizationForm">{this.data.organizations[i].form}</td>
-        <td className="activeIngredient">{this.data.organizations[i].primaryIngredient}</td>
+        <td className="phone">{this.data.organizations[i].phone}</td>
+        <td className="email">{this.data.organizations[i].email}</td>
         <td className="barcode hidden-on-phone">{this.data.organizations[i]._id}</td>
       </tr>);
     }
@@ -109,8 +109,8 @@ export default class OrganizationTable extends React.Component {
           <tr>
             <th className="organizationName hidden-on-phone">name</th>
             <th className="organizationIdentifier hidden-on-phone">identifier</th>
-            <th className="organizationForm">form</th>
-            <th className="activeIngredient">active ingredient</th>
+            <th className="phone">phone</th>
+            <th className="email">email</th>
             <th className="id hidden-on-phone">organization._id</th>
           </tr>
         </thead>

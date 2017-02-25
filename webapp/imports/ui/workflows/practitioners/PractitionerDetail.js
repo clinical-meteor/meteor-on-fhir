@@ -8,7 +8,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import { CardText, CardActions } from 'material-ui/Card';
 // import { insertPractitioner, updatePractitioner, removePractitionerById } from '../../../api/practitioners/methods';
 import { Bert } from 'meteor/themeteorchef:bert';
-
+import { Col, Grid, Row } from 'react-bootstrap';
 
 let defaultPractitioner = {
   "resourceType" : "Practitioner",
@@ -143,76 +143,96 @@ export default class PractitionerDetail extends React.Component {
     return (
       <div id={this.props.id} className="practitionerDetail">
         <CardText>
-          <TextField
-            id='practitionerNameInput'
-            ref='name'
-            name='name'
-            type='text'
-            floatingLabelText='name'
-            value={this.data.practitioner.name ? this.data.practitioner.name.text : ''}
-            onChange={ this.changeState.bind(this, 'name')}
-            fullWidth
-            /><br/>
-          <TextField
-            id='telecomValueInput'
-            ref='telecomValue'
-            name='telecomValue'
-            type='text'
-            floatingLabelText='telecom value (701-555-1234)'
-            value={this.data.practitioner.telecom[0] ? this.data.practitioner.telecom[0].value : ''}
-            onChange={ this.changeState.bind(this, 'telecomValue')}
-            fullWidth
-            /><br/>
-          <TextField
-            id='telecomUseInput'
-            ref='telecomUse'
-            name='telecomUse'
-            type='text'
-            floatingLabelText='telecom use (work | mobile | home)'
-            value={this.data.practitioner.telecom[0] ? this.data.practitioner.telecom[0].use : ''}
-            onChange={ this.changeState.bind(this, 'telecomUse')}
-            fullWidth
-            /><br/>
-          <TextField
-            id='issuerInput'
-            ref='issuer'
-            name='issuer'
-            type='text'
-            floatingLabelText='issuer'
-            value={this.data.practitioner.qualification[0] ? this.data.practitioner.qualification[0].issuer.display : ''}
-            onChange={ this.changeState.bind(this, 'issuer')}
-            fullWidth
-            /><br/>
-          <TextField
-            id='qualificationIdInput'
-            ref='qualificationId'
-            name='qualificationId'
-            type='text'
-            floatingLabelText='qualification ID'
-            value={this.data.practitioner.qualification[0].identifier[0] ? this.data.practitioner.qualification[0].identifier[0].value : ''}
-            onChange={ this.changeState.bind(this, 'qualificationId')}
-            fullWidth
-            /><br/>
-          <TextField
-            id='qualificationStartInput'
-            ref='qualificationStart'
-            name='qualificationStart'
-            type='text'
-            floatingLabelText='start'
-            value={this.data.practitioner.qualification[0].identifier[0] ? this.data.practitioner.qualification[0].identifier[0].period.start : ''}
-            onChange={ this.changeState.bind(this, 'qualificationStart')}
-            fullWidth
-            /><br/>
-          <TextField
-            id='qualificationEndInput'
-            ref='qualificationEnd'
-            name='qualificationEnd'
-            type='text'
-            floatingLabelText='end'
-            value={this.data.practitioner.qualification[0].identifier[0] ? this.data.practitioner.qualification[0].identifier[0].period.end : ''}
-            onChange={ this.changeState.bind(this, 'qualificationEnd')}
-            fullWidth
-            /><br/>
+          <Row>
+            <Col md={6}>
+              <TextField
+                id='practitionerNameInput'
+                ref='name'
+                name='name'
+                type='text'
+                floatingLabelText='name'
+                value={this.data.practitioner.name ? this.data.practitioner.name.text : ''}
+                onChange={ this.changeState.bind(this, 'name')}
+                fullWidth
+                /><br/>
+            </Col>
+            <Col md={3}>
+              <TextField
+                id='telecomValueInput'
+                ref='telecomValue'
+                name='telecomValue'
+                type='text'
+                floatingLabelText='telecom value'
+                hintText='701-555-1234'
+                value={this.data.practitioner.telecom[0] ? this.data.practitioner.telecom[0].value : ''}
+                onChange={ this.changeState.bind(this, 'telecomValue')}
+                fullWidth
+                /><br/>
+            </Col>
+            <Col md={3}>
+              <TextField
+                id='telecomUseInput'
+                ref='telecomUse'
+                name='telecomUse'
+                type='text'
+                floatingLabelText='telecom use'
+                hintText='work | mobile | home'
+                value={this.data.practitioner.telecom[0] ? this.data.practitioner.telecom[0].use : ''}
+                onChange={ this.changeState.bind(this, 'telecomUse')}
+                fullWidth
+                /><br/>
+            </Col>
+          </Row>
+          <Row>
+            <Col md={4}>
+              <TextField
+                id='issuerInput'
+                ref='issuer'
+                name='issuer'
+                type='text'
+                floatingLabelText='issuer'
+                value={this.data.practitioner.qualification[0] ? this.data.practitioner.qualification[0].issuer.display : ''}
+                onChange={ this.changeState.bind(this, 'issuer')}
+                fullWidth
+                /><br/>
+            </Col>
+            <Col md={2}>
+              <TextField
+                id='qualificationIdInput'
+                ref='qualificationId'
+                name='qualificationId'
+                type='text'
+                floatingLabelText='qualification ID'
+                value={this.data.practitioner.qualification[0].identifier[0] ? this.data.practitioner.qualification[0].identifier[0].value : ''}
+                onChange={ this.changeState.bind(this, 'qualificationId')}
+                fullWidth
+                /><br/>
+            </Col>
+            <Col md={3}>
+              <TextField
+                id='qualificationStartInput'
+                ref='qualificationStart'
+                name='qualificationStart'
+                type='date'
+                floatingLabelText='start'
+                value={this.data.practitioner.qualification[0].identifier[0] ? this.data.practitioner.qualification[0].identifier[0].period.start : ''}
+                onChange={ this.changeState.bind(this, 'qualificationStart')}
+                fullWidth
+                /><br/>
+            </Col>
+            <Col md={3}>
+              <TextField
+                id='qualificationEndInput'
+                ref='qualificationEnd'
+                name='qualificationEnd'
+                type='date'
+                floatingLabelText='end'
+                value={this.data.practitioner.qualification[0].identifier[0] ? this.data.practitioner.qualification[0].identifier[0].period.end : ''}
+                onChange={ this.changeState.bind(this, 'qualificationEnd')}
+                fullWidth
+                /><br/>
+            </Col>
+          </Row>
         </CardText>
         <CardActions>
           { this.determineButtons(this.data.practitionerId) }
@@ -224,7 +244,7 @@ export default class PractitionerDetail extends React.Component {
     if (practitionerId) {
       return (
         <div>
-          <RaisedButton id="savePractitionerButton" className="savePractitionerButton" primary={true} label="Save" onClick={this.handleSaveButton.bind(this)} />
+          <RaisedButton id="savePractitionerButton" className="savePractitionerButton" primary={true} label="Save" onClick={this.handleSaveButton.bind(this)} style={{marginRight: '20px'}} />
           <RaisedButton id="deletePractitionerButton" label="Delete" onClick={this.handleDeleteButton.bind(this)} />
         </div>
       );

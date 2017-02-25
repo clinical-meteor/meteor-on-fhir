@@ -76,10 +76,16 @@ export class MainIndex extends React.Component {
 
     if (Session.get('appWidth') < 768) {
       data.style.indexCardPadding.width = '100%';
-      data.style.indexCardPadding.marginBottom = '20px';
+      data.style.indexCardPadding.marginBottom = '10px';
+      data.style.indexCardPadding.paddingBottom = '10px';
+      data.style.indexCardPadding.paddingLeft = '0px';
+      data.style.indexCardPadding.paddingRight = '0px';
 
       data.style.inactiveIndexCard.width = '100%';
-      data.style.inactiveIndexCard.marginBottom = '20px';
+      data.style.inactiveIndexCard.marginBottom = '10px';
+      data.style.inactiveIndexCard.paddingBottom = '10px';
+      data.style.inactiveIndexCard.paddingLeft = '0px';
+      data.style.inactiveIndexCard.paddingRight = '0px';
 
       data.style.spacer.display = 'none';
     }
