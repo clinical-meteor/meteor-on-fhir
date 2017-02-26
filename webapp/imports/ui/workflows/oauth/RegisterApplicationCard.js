@@ -17,19 +17,33 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import { Col, Grid, Row } from 'react-bootstrap';
 
-Session.setDefault('newApplication', {
+import { ReactiveVar } from 'meteor/reactive-var'
+
+
+let defaultConfig = {
   clientName: '',
   clientId: '',
-  redirectUri: '',
-  clientSecret: ''
+  redirectUri: 'http://localhost:3100/_oauth/OAuth2Server',
+  clientSecret: Meteor.uuid()
+}
+Session.setDefault('newApplication', defaultConfig);
+Session.setDefault('oAuthClientAppConfigured', false);
+Meteor.startup(function (){
+  Meteor.call('getClientForAccount', function (err, defaultConfig) {
+    Session.set('newApplication', defaultConfig);
+    Session.set('oAuthClientAppConfigured', true);
+  });
 });
 
+
+var clientCount = new ReactiveVar(null);
 export class RegisterApplicationCard extends React.Component {
   getMeteorData() {
     let data = {
       style: {
       },
-      client: Session.get('newApplication')
+      client: Session.get('newApplication'),
+      clientConfigured: Session.get('oAuthClientAppConfigured')
     };
 
     data.style = Glass.blur(data.style);
@@ -47,12 +61,7 @@ export class RegisterApplicationCard extends React.Component {
     if (Session.get('newApplication')) {
       clientUpdate = Session.get('newApplication');
     } else {
-      clientUpdate = {
-        clientName: '',
-        clientId: '',
-        redirectUri: '',
-        clientSecret: ''
-      };
+      clientUpdate = defaultConfig;
     }
 
     switch (field) {
@@ -79,13 +88,58 @@ export class RegisterApplicationCard extends React.Component {
   saveClient(){
     if(process.env.NODE_ENV === "test"){
       console.log("saveClient");
+
+      var newClient;
+
+      if (Session.get('newApplication')) {
+        newClient = Session.get('newApplication');
+      } else {
+        newClient = defaultConfig;
+      }
+
+      newClient.active = true;
+      newClient.owner = {
+        display: Meteor.user().profile.fullName,
+        reference: Meteor.userId()
+      }
+
+    Meteor.call('addClient', newClient, function () {
+      Session.set('oAuthClientAppConfigured', true);
+      Meteor.call('clientCount', function (err, cnt) {
+        clientCount.set(cnt);
+      });
+    });
     }
+  }
+  deleteClient(){
+    console.log('deleteClientApplication');
+    Meteor.call('deleteClientApplication', function () {
+      Meteor.call('clientCount', function (err, cnt) {
+        clientCount.set(cnt);
+        Session.set('newApplication', defaultConfig);
+        Session.set('oAuthClientAppConfigured', false)
+      });
+    });
+  }
+  generateSecret(){
+    console.log("generateSecret", Meteor.uuid());
+
+    let config;
+    if (Session.get('newApplication')) {
+      config = Session.get('newApplication');
+    } else {
+      config = defaultConfig;
+    }
+
+    config.clientSecret = Meteor.uuid();
+    Session.set('newApplication', config);
   }
   render() {
     return (
       <GlassCard>
         <CardTitle
           title="Register Application with OAuth Server"
+          subtitle="Limit of one server per account."
         />
         <CardText>
           <Row>
@@ -131,10 +185,13 @@ export class RegisterApplicationCard extends React.Component {
                 value={this.data.client.clientSecret}
                 onChange={ this.changeClient.bind(this, 'clientSecret')}
                 fullWidth
-                /><br/><br/>
+                />
+                <RaisedButton id="generateSecret" label='Generate'  onClick={this.generateSecret.bind(this)} style={{float: 'right', marginTop: '-50px', backgroundColor: 'gray'}} />
+                <br/><br/>
             </Col>
           </Row>
-          <RaisedButton id="addClientButton" label="Add Client" primary={true} onClick={this.saveClient.bind(this)} />
+          <RaisedButton id="addOauthClientButton" label="Add Client" primary={ !this.data.clientConfigured } onClick={this.saveClient.bind(this)} style={{marginRight: '20px'}} />
+          <RaisedButton id="deleteClientButton" className="deleteClient" label="Delete" primary={ this.data.clientConfigured } onClick={this.deleteClient.bind(this)} />
         </CardText>
       </GlassCard>
     );
