@@ -69,6 +69,12 @@ import { OrganizationsPage } from '/imports/ui/workflows/organizations/Organizat
 
 
 import { OAuthScrapYardPage } from '/imports/ui/workflows/oauth/OAuthScrapYardPage';
+import { AuthorizePage } from '/imports/ui/workflows/oauth/AuthorizePage';
+
+
+import { ServerConfigurationPage } from '/imports/ui/workflows/oauth/ServerConfigurationPage';
+import { ClientConfigurationPage } from '/imports/ui/workflows/oauth/ClientConfigurationPage';
+
 
 // we're storing the current route URL in a reactive variable
 // which will be used to update active controls
@@ -190,6 +196,10 @@ Meteor.startup(() => {
         <Route name="organizationsPage" path="/organizations" component={ OrganizationsPage } />
 
         <Route name="oAuthScrapYardPage" path="/oauth-ui" component={ OAuthScrapYardPage } />
+        <Route name="authorizePage" path="/oauth" component={ AuthorizePage } onEnter={ requireAuth } />
+
+        <Route name="serverConfigurationPage" path="/oauth-server" component={ ServerConfigurationPage } />
+        <Route name="clientConfigurationPage" path="/oauth-client" component={ ClientConfigurationPage } />
 
 
         <Route path="*" component={ NotFound } />

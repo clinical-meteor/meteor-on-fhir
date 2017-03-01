@@ -29,9 +29,7 @@ Session.setDefault('newClient', {
   secret: ''
 });
 
-Session.setDefault('jsonData', {});
-
-export class OAuthScrapYardPage extends React.Component {
+export class ServerConfigurationPage extends React.Component {
   getMeteorData() {
     let data = {
       style: {
@@ -44,7 +42,7 @@ export class OAuthScrapYardPage extends React.Component {
     data.style.appbar = Glass.darkroom(data.style.appbar);
     data.style.tab = Glass.darkroom(data.style.tab);
 
-    if(process.env.NODE_ENV === "test") console.log("OAuthScrapYardPage[data]", data);
+    if(process.env.NODE_ENV === "test") console.log("ServerConfigurationPage[data]", data);
     return data;
   }
   // this could be a mixin
@@ -103,35 +101,6 @@ export class OAuthScrapYardPage extends React.Component {
           <OAuthAdminCard />
           <DynamicSpacer />
 
-          <hr />
-          <br />
-
-          <ConfigureClientCard />
-          <DynamicSpacer />
-
-          <GlassCard>
-            <CardText>
-              <RaisedButton id="oAuthSignInButton" label="Sign in with Meteor on FHIR" primary={true} onClick={this.signInWith.bind(this)}  />
-            </CardText>
-          </GlassCard>
-          <DynamicSpacer />
-
-
-          <SearchPatientsCard />
-          <DynamicSpacer />
-
-          <GlassCard>
-            <CardTitle
-              title="Results"
-            />
-            <CardText>
-              <Well>{ JSON.stringify(this.data.result, null, 2)}</Well>
-            </CardText>
-          </GlassCard>
-
-          <DynamicSpacer />
-          <DynamicSpacer />
-
         </VerticalCanvas>
       </div>
     );
@@ -140,4 +109,4 @@ export class OAuthScrapYardPage extends React.Component {
 
 
 
-ReactMixin(OAuthScrapYardPage.prototype, ReactMeteorData);
+ReactMixin(ServerConfigurationPage.prototype, ReactMeteorData);

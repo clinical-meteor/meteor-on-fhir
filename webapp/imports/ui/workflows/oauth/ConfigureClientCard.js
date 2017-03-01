@@ -12,12 +12,22 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import { Col, Grid, Row } from 'react-bootstrap';
 
+import { HTTP } from 'meteor/http';
+import { Bert } from 'meteor/themeteorchef:bert';
+
+
+
 Session.setDefault('newClient', {
   clientName: '',
   clientId: '',
-  redirectUri: 'http://localhost:3100/_oauth/OAuth2Server',
-  clientSecret: ''
+  redirectUri: 'http://localhost:3100/_oauth/FhirVault',
+  secret: '',
+  autoscanServerUrl: '',
+  baseUrl: '',
+  loginUrl: ''
 });
+
+
 
 export class ConfigureClientCard extends React.Component {
   getMeteorData() {
@@ -45,10 +55,14 @@ export class ConfigureClientCard extends React.Component {
       clientUpdate = {
         clientName: '',
         clientId: '',
-        redirectUri: 'http://localhost:3100/_oauth/OAuth2Server',
-        clientSecret: ''
+        redirectUri: 'http://localhost:3100/_oauth/FhirVault',
+        secret: '',
+        autoscanServerUrl: '',
+        baseUrl: '',
+        loginUrl: ''
       };
     }
+
 
     switch (field) {
       case "clientName":
@@ -57,14 +71,24 @@ export class ConfigureClientCard extends React.Component {
       case "clientId":
         clientUpdate.clientId = value;
         break;
+      case "loginUrl":
+        clientUpdate.loginUrl = value;
+        break;
+      case "baseUrl":
+        clientUpdate.baseUrl = value;
+        break;
       case "redirectUri":
         clientUpdate.redirectUri = value;
         break;
-      case "clientSecret":
-        clientUpdate.clientSecret = value;
+      case "secret":
+        clientUpdate.secret = value;
+        break;
+      case "autoscanServerUrl":
+        clientUpdate.autoscanServerUrl = value;
         break;
       default:
     }
+
 
     // clientUpdate[field] = value;
     if(process.env.NODE_ENV === "test") console.log("configureClient", clientUpdate);
@@ -72,93 +96,119 @@ export class ConfigureClientCard extends React.Component {
     Session.set('newClient', clientUpdate);
   }
   saveClient(){
-    if(process.env.NODE_ENV === "test"){
-      console.log("saveClient");
+    console.log("saveClient");
+
+    let newConfiguration = Session.get('newClient');
+    if (newConfiguration) {
+      Meteor.call("addServiceConfiguration", newConfiguration, function (error, result){
+        if (error){
+          console.log("error", error);
+          Bert.alert(error, 'error');
+        }
+        if (result){
+          console.log("result", result);
+          Bert.alert(result, 'success');
+        }
+      });
     }
+
+
   }
-  autoscanUrl(){
-    if(process.env.NODE_ENV === "test"){
-      console.log("autoscanUrl");
-    }
+  resetConfiguration(){
+    console.log("resetConfiguration");
+    Meteor.call('resetServiceConfiguration');
   }
+
   render() {
     return (
       <GlassCard>
         <CardTitle
-          title="Configure OAuth Client Application"
+          title="Configure This Health Record as a Client App"
+          subtitle="After you register an account with the external service, you should receive a "
         />
         <CardText>
-        <Row>
-          <Col md={6}>
-            <TextField
-              id='clientIdInput'
-              ref='clientId'
-              name='clientId'
-              floatingLabelText='Client ID'
-              value={this.data.client.clientId}
-              onChange={ this.configureClient.bind(this, 'clientId')}
-              fullWidth
-              /><br/>
-          </Col>
-          <Col md={6}>
-            <TextField
-              id='clientSecretInput'
-              ref='clientSecret'
-              name='clientSecret'
-              floatingLabelText='Client Secret'
-              value={this.data.client.clientSecret}
-              onChange={ this.configureClient.bind(this, 'clientSecret')}
-              fullWidth
-              /><br/>
-          </Col>
-        </Row>
-        
-          <TextField
-            id='autoscanServerUrlInput'
-            ref='autoscanServerUrl'
-            name='autoscanServerUrl'
-            floatingLabelText='Autoscan Server URL'
-            value={this.data.client.autoscanServerUrl}
-            onChange={ this.autoscanUrl.bind(this, 'autoscanServerUrl')}
-            fullWidth
-            />
-          <br/>
-          <br />
-          <RaisedButton id="autoscanServerButton" label="Autoscan Server" primary={true}  />
-          <br />
-          <br />
-
-          <TextField
-            id='redirectUriInput'
-            ref='redirectUri'
-            name='redirectUri'
-            floatingLabelText='Redirect URI'
-            defaultValue='http://localhost:3100/_oauth/OAuth2Server'
-            value={this.data.client.redirectUri}
-            onChange={ this.configureClient.bind(this, 'redirectUri')}
-            fullWidth
-            /><br/>
 
           <Row>
             <Col md={6}>
               <TextField
-                id='targetBaseUrlInput'
-                ref='targetBaseUrl'
-                name='targetBaseUrl'
-                floatingLabelText='Target Base URL'
-                value={this.data.client.targetBaseUrl}
-                onChange={ this.configureClient.bind(this, 'targetBaseUrl')}
+                id='clientNameInput'
+                ref='clientName'
+                name='clientName'
+                floatingLabelText='Client Name'
+                defaultValue='Meteor on FHIR'
+                value={this.data.client.clientName}
+                onChange={ this.configureClient.bind(this, 'clientName')}
                 fullWidth
                 /><br/>
             </Col>
             <Col md={6}>
               <TextField
-                id='targetLoginUrlInput'
-                ref='targetLoginUrl'
-                name='targetLoginUrl'
-                floatingLabelText='Target Login URL'
-                value={this.data.client.targetLoginUrl}
-                onChange={ this.configureClient.bind(this, 'targetLoginUrl')}
+                id='redirectUriInput'
+                ref='redirectUri'
+                name='redirectUri'
+                floatingLabelText='Redirect URI'
+                defaultValue='http://localhost:3100/_oauth/FhirVault'
+                hintText='http://localhost:3100/_oauth/FhirVault'
+                value={this.data.client.redirectUri}
+                onChange={ this.configureClient.bind(this, 'redirectUri')}
+                fullWidth
+                /><br/>
+            </Col>
+          </Row>
+
+          <Row>
+            <Col md={6}>
+              <TextField
+                id='clientIdInput'
+                ref='clientId'
+                name='clientId'
+                floatingLabelText='Client ID'
+                hintText='meteor-on-fhir'
+                value={this.data.client.clientId}
+                onChange={ this.configureClient.bind(this, 'clientId')}
+                fullWidth
+                /><br/>
+            </Col>
+            <Col md={6}>
+              <TextField
+                id='secretInput'
+                ref='secret'
+                name='secret'
+                floatingLabelText='Client Secret'
+                hintText={ Meteor.uuid() }
+                value={this.data.client.secret}
+                onChange={ this.configureClient.bind(this, 'secret')}
+                fullWidth
+                /><br/>
+            </Col>
+          </Row>
+
+
+
+
+
+          <Row>
+            <Col md={6}>
+              <TextField
+                id='BaseUrlInput'
+                ref='baseUrl'
+                name='baseUrl'
+                floatingLabelText='Server URL'
+                hintText='http://localhost:3100/'
+                value={this.data.client.baseUrl}
+                onChange={ this.configureClient.bind(this, 'baseUrl')}
+                fullWidth
+                /><br/>
+            </Col>
+            <Col md={6}>
+              <TextField
+                id='loginUrlInput'
+                ref='loginUrl'
+                name='loginUrl'
+                floatingLabelText='Server OAuth URL'
+                hintText='http://localhost:3100/oauth'
+                value={this.data.client.loginUrl}
+                onChange={ this.configureClient.bind(this, 'loginUrl')}
                 fullWidth
                 /><br/>
             </Col>
@@ -167,9 +217,10 @@ export class ConfigureClientCard extends React.Component {
           <br/>
           <div>
             <RaisedButton id="cancelSaveConfigurationButton" label="Cancel" primary={true} style={{marginRight: '20px'}} />
-            <RaisedButton id="saveConfigurationButton" label="Save Configuration" />
-            <RaisedButton id="resetServiceConfiguration" label="Reset service configuration" primary={true} style={{float: 'right'}}/>
+            <RaisedButton id="saveConfigurationButton" label="Save Configuration" onClick={ this.saveClient } />
+            <RaisedButton id="resetServiceConfiguration" label="Reset service configuration" primary={true} onClick={this.resetConfiguration } style={{float: 'right'}}/>
           </div>
+
 
         </CardText>
       </GlassCard>
@@ -180,3 +231,22 @@ export class ConfigureClientCard extends React.Component {
 
 
 ReactMixin(ConfigureClientCard.prototype, ReactMeteorData);
+
+
+
+
+
+
+function prePopulateValues (e, id, value) {
+  var el = $(e.target).find('#' + id);
+  if (!el.length) {
+    return false;
+  }
+
+  if (!el.val()) {
+    el.val(value);
+    return true;
+  }
+
+  return false;
+}

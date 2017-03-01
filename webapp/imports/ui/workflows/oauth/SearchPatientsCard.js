@@ -6,6 +6,7 @@ import { GlassCard } from '/imports/ui/components/GlassCard';
 import { CardTitle, CardText } from 'material-ui/Card';
 
 import { Meteor } from 'meteor/meteor';
+import { Session } from 'meteor/session';
 import Glass from '/imports/ui/Glass';
 
 import TextField from 'material-ui/TextField';
@@ -14,10 +15,12 @@ import { Col, Grid, Row } from 'react-bootstrap';
 
 
 Session.setDefault('patientSearchQuery', {
-  clientName: '',
-  clientId: '',
-  redirectUri: '',
-  clientSecret: ''
+  patientName: '',
+  patientGiven: '',
+  patientFamily: '',
+  patientGender: '',
+  patientIdentifier: '',
+  patientBirthdate: ''
 });
 
 export class SearchPatientsCard extends React.Component {
@@ -37,7 +40,7 @@ export class SearchPatientsCard extends React.Component {
     return data;
   }
   // this could be a mixin
-  changeClient(field, event, value){
+  changeSearchParameters(field, event, value){
     let clientUpdate;
 
     // by default, assume there's no other data and we're creating a new organization
@@ -45,38 +48,54 @@ export class SearchPatientsCard extends React.Component {
       clientUpdate = Session.get('patientSearchQuery');
     } else {
       clientUpdate = {
-        clientName: '',
-        clientId: '',
-        redirectUri: '',
-        clientSecret: ''
+        patientName: '',
+        patientGiven: '',
+        patientFamily: '',
+        patientGender: '',
+        patientIdentifier: '',
+        patientBirthdate: ''
       };
     }
 
     switch (field) {
-      case "clientName":
-        clientUpdate.clientName = value;
+      case "patientName":
+        clientUpdate.patientName = value;
         break;
-      case "clientId":
-        clientUpdate.clientId = value;
+      case "patientGiven":
+        clientUpdate.patientGiven = value;
         break;
-      case "redirectUri":
-        clientUpdate.redirectUri = value;
+      case "patientFamily":
+        clientUpdate.patientFamily = value;
         break;
-      case "clientSecret":
-        clientUpdate.clientSecret = value;
+      case "patientGender":
+        clientUpdate.patientGender = value;
+        break;
+      case "patientIdentifier":
+        clientUpdate.patientIdentifier = value;
+        break;
+      case "patientBirthdate":
+        clientUpdate.patientBirthdate = value;
         break;
       default:
     }
 
     // clientUpdate[field] = value;
-    if(process.env.NODE_ENV === "test") console.log("changeClient", clientUpdate);
+    process.env.TRACE && console.log("changeSearchParameters", clientUpdate);
 
     Session.set('patientSearchQuery', clientUpdate);
   }
   searchPatients(){
-    if(process.env.NODE_ENV === "test"){
-      console.log("searchPatients");
-    }
+    process.env.DEBUG && console.log("searchPatients", Session.get('patientSearchQuery'));
+
+    Meteor.call("getPatientData", Session.get('patientSearchQuery'), function (error, result){
+      if (error){
+        console.log("error", error);
+      }
+      if (result){
+        process.env.DEBUG && console.log("getPatientData", result);
+        Session.set('jsonData', result);
+      }
+    });
   }
   render() {
     return (
@@ -93,7 +112,7 @@ export class SearchPatientsCard extends React.Component {
                 name='patientName'
                 floatingLabelText='Full Name (exact match)'
                 value={this.data.client.patientName}
-                onChange={ this.changeClient.bind(this, 'patientName')}
+                onChange={ this.changeSearchParameters.bind(this, 'patientName')}
                 fullWidth
                 /><br/>
             </Col>
@@ -104,7 +123,7 @@ export class SearchPatientsCard extends React.Component {
                 name='patientGiven'
                 floatingLabelText='Given'
                 value={this.data.client.patientGiven}
-                onChange={ this.changeClient.bind(this, 'patientGiven')}
+                onChange={ this.changeSearchParameters.bind(this, 'patientGiven')}
                 fullWidth
                 /><br/>
             </Col>
@@ -115,7 +134,7 @@ export class SearchPatientsCard extends React.Component {
                 name='patientFamily'
                 floatingLabelText='Family'
                 value={this.data.client.patientFamily}
-                onChange={ this.changeClient.bind(this, 'patientFamily')}
+                onChange={ this.changeSearchParameters.bind(this, 'patientFamily')}
                 fullWidth
                 /><br/>
             </Col>
@@ -128,7 +147,7 @@ export class SearchPatientsCard extends React.Component {
                 name='patientGender'
                 floatingLabelText='Gender'
                 value={this.data.client.patientGender}
-                onChange={ this.changeClient.bind(this, 'patientGender')}
+                onChange={ this.changeSearchParameters.bind(this, 'patientGender')}
                 fullWidth
                 /><br/>
             </Col>
@@ -139,7 +158,7 @@ export class SearchPatientsCard extends React.Component {
                 name='patientIdentifier'
                 floatingLabelText='Identifier'
                 value={this.data.client.patientIdentifier}
-                onChange={ this.changeClient.bind(this, 'patientIdentifier')}
+                onChange={ this.changeSearchParameters.bind(this, 'patientIdentifier')}
                 fullWidth
                 /><br/>
             </Col>
@@ -150,7 +169,7 @@ export class SearchPatientsCard extends React.Component {
                 name='patientBirthdate'
                 floatingLabelText='Birthdate'
                 value={this.data.client.patientBirthdate}
-                onChange={ this.changeClient.bind(this, 'patientBirthdate')}
+                onChange={ this.changeSearchParameters.bind(this, 'patientBirthdate')}
                 fullWidth
                 /><br/>
             </Col>

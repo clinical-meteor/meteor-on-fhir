@@ -17,14 +17,14 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import { Col, Grid, Row } from 'react-bootstrap';
 
-import { ReactiveVar } from 'meteor/reactive-var'
+import { ReactiveVar } from 'meteor/reactive-var';
 
 
 let defaultConfig = {
   clientName: '',
   clientId: '',
-  redirectUri: 'http://localhost:3100/_oauth/OAuth2Server',
-  clientSecret: Meteor.uuid()
+  redirectUri: 'http://localhost:3100/_oauth/FhirVault',
+  secret: Meteor.uuid()
 }
 Session.setDefault('newApplication', defaultConfig);
 Session.setDefault('oAuthClientAppConfigured', false);
@@ -74,8 +74,8 @@ export class RegisterApplicationCard extends React.Component {
       case "redirectUri":
         clientUpdate.redirectUri = value;
         break;
-      case "clientSecret":
-        clientUpdate.clientSecret = value;
+      case "secret":
+        clientUpdate.secret = value;
         break;
       default:
     }
@@ -131,15 +131,15 @@ export class RegisterApplicationCard extends React.Component {
       config = defaultConfig;
     }
 
-    config.clientSecret = Meteor.uuid();
+    config.secret = Meteor.uuid();
     Session.set('newApplication', config);
   }
   render() {
     return (
       <GlassCard>
         <CardTitle
-          title="Register Application with OAuth Server"
-          subtitle="Limit of one server per account."
+          title="Register Application with This Health Record"
+          subtitle="Each account may have one application associated with it."
         />
         <CardText>
           <Row>
@@ -171,19 +171,19 @@ export class RegisterApplicationCard extends React.Component {
                 ref='redirectUri'
                 name='redirectUri'
                 floatingLabelText='Redirect URI'
-                hintText="http://localhost:3100/_oauth/OAuth2Server"
+                hintText="http://localhost:3100/_oauth/FhirVault"
                 value={this.data.client.redirectUri}
                 onChange={ this.changeClient.bind(this, 'redirectUri')}
                 fullWidth
                 /><br/>
               <TextField
-                id='clientSecretInput'
-                ref='clientSecret'
-                name='clientSecret'
+                id='secretInput'
+                ref='secret'
+                name='secret'
                 floatingLabelText='Client Secret'
                 hintText="slXlHvA-pGl6FbcCO8VuaKZnXemVc9fw1A0BFUjdrFc"
-                value={this.data.client.clientSecret}
-                onChange={ this.changeClient.bind(this, 'clientSecret')}
+                value={this.data.client.secret}
+                onChange={ this.changeClient.bind(this, 'secret')}
                 fullWidth
                 />
                 <RaisedButton id="generateSecret" label='Generate'  onClick={this.generateSecret.bind(this)} style={{float: 'right', marginTop: '-50px', backgroundColor: 'gray'}} />

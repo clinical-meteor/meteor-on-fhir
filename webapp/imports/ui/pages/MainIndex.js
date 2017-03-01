@@ -173,6 +173,17 @@ export class MainIndex extends React.Component {
             </GlassCard>
           </div>
 
+
+          <div id="oAuthTile" style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/oauth-ui') } >
+            <GlassCard style={this.data.style.indexCard} >
+              <CardTitle
+                title='Authorization & Trust'
+                subtitle='OAuth Server/Client Configuration'
+                titleStyle={this.data.style.title}
+                subtitleStyle={this.data.style.subtitle}
+              />
+            </GlassCard>
+          </div>
         </div>
       );
     }

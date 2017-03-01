@@ -36,7 +36,7 @@ Meteor.methods({
             },
             {
                 $set: {
-                  'clientSecret': newSecret
+                  'secret': newSecret
                 }
             }
         );
