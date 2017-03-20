@@ -23,9 +23,6 @@ export class CornerstonePage extends React.Component {
       <div id="CornerstonePage">
         <VerticalCanvas>
           <GlassCard>
-            <CardHeader
-              title="DICOM"
-            />
             <CardText>
               <Image />
             </CardText>

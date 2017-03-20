@@ -11,14 +11,19 @@ export const Image = React.createClass({
     };
   },
   render() {
+    var viewportStyle = {
+      height: 984
+    }
     return (
       <div className='viewportContainer'
            unselectable='on'
            onContextMenu={this.returnFalse}
            onSelectStart={this.returnFalse}
-           onMouseDown={this.returnFalse}>
+           onMouseDown={this.returnFalse}
+           style={viewportStyle}           
+           >
           <div className="viewportElement"></div>
-          <div className="topLeft dicomTag">
+          {/*<div className="topLeft dicomTag">
               Patient Name
           </div>
           <div className="topRight dicomTag">
@@ -29,7 +34,7 @@ export const Image = React.createClass({
           </div>
           <div className="bottomLeft dicomTag">
               WW/WC: {this.state.wwwc}
-          </div>
+          </div>*/}
       </div>
       );
   },
@@ -56,27 +61,27 @@ export const Image = React.createClass({
     e.preventDefault();
   },
 
-  handleResize() {
-    this.updateHeight();
-    // var domNode = this.getDOMNode();
-    var domNode = ReactDom.findDOMNode(this);
-    var element = $(domNode).find('.viewportElement').get(0);
-    cornerstone.resize(element, true);
-  },
+  // handleResize() {
+  //   this.updateHeight();
+  //   // var domNode = this.getDOMNode();
+  //   var domNode = ReactDom.findDOMNode(this);
+  //   var element = $(domNode).find('.viewportElement').get(0);
+  //   cornerstone.resize(element, true);
+  // },
 
-  updateHeight() {
-    // var domNode = this.getDOMNode();
-    var domNode = ReactDom.findDOMNode(this);
-    var container = $(domNode);
-    // Subtract the header height and some padding
-    var windowHeight = $(window).height() - $("#header").height() - 10 ;
-    container.css({
-      height: windowHeight
-    });
-  },
+  // updateHeight() {
+  //   // var domNode = this.getDOMNode();
+  //   var domNode = ReactDom.findDOMNode(this);
+  //   var container = $(domNode);
+  //   // Subtract the header height and some padding
+  //   var windowHeight = $(window).height() - $("#header").height() - 10 ;
+  //   container.css({
+  //     height: windowHeight
+  //   });
+  // },
 
   componentDidMount() {
-    this.updateHeight();
+    //this.updateHeight();
     // var domNode = this.getDOMNode();
     var domNode = ReactDom.findDOMNode(this);
     var element = $(domNode).find('.viewportElement').get(0);
@@ -108,6 +113,7 @@ export const Image = React.createClass({
   },
 
   componentWillUnmount() {
+    var domNode = ReactDom.findDOMNode(this);
     var element = $(domNode).find('.viewportElement').get(0);
     $(element).off("CornerstoneImageRendered", this.onImageRendered);
     window.removeEventListener('resize', this.handleResize);
