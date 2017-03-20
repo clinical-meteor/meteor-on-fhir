@@ -5,7 +5,7 @@
       "showVideoBackground": false,
       "darkroomTextEnabled": false,
       "defaultVideo": "/VideoBackgrounds/Circulation.mp4",
-      "backgroundImagePath": "/backgrounds/medical/PlasmidGray.jpg"
+      "backgroundImagePath": "/backgrounds/medical/Gradient.jpg"
     },
     "app": {
       "barcodes": true,
