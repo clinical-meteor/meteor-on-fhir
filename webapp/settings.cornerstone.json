@@ -1,0 +1,51 @@
+{
+  "public": {
+    "title": "Meteor on FHIR",
+    "theme": {
+      "showVideoBackground": false,
+      "darkroomTextEnabled": false,
+      "defaultVideo": "/VideoBackgrounds/Circulation.mp4",
+      "backgroundImagePath": "/backgrounds/medical/PlasmidGray.jpg"
+    },
+    "app": {
+      "barcodes": true,
+      "showUnderConstruction": true,
+      "showExperimental": false
+    },
+    "defaults": {
+      "displayNavbars": true,
+      "disableHeader": false,
+      "disableFooter": false,
+      "darkroom": false,
+      "iFrameEnabled": true,
+      "iFrameUrl": "https://www.ncbi.nlm.nih.gov"
+    },
+    "modules": {
+      "data": true,
+      "forum": true,
+      "genome": true,
+      "healthlog": true,
+      "dermatograms": true,
+      "telemedicine": true,
+      "inbound": true,
+      "outbound": true,
+      "fhir": {
+        "Patients": true,
+        "Practitioners": true,
+        "Observations": true,
+        "ImagingStudies": true,
+        "Lists": true,
+        "Medications": true,
+        "Devices": true,
+        "Locations": true,
+        "Questionnaires": true,
+        "RiskAssessments": true
+      }
+    }
+  },
+  "private": {
+    "practitionerAccessCode": "hippocrates",
+    "sysadminAccessCode": "rootaccess",
+    "disableOauth": true
+  }
+}
