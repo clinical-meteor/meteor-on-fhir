@@ -59,8 +59,6 @@ clinical:user-model
 clinical:keybindings
 clinical:hipaa-logger
 
-clinical:fhir-vault-client
-
 # fhir resources
 clinical:hl7-resource-datatypes
 clinical:hl7-resource-patient
@@ -78,7 +76,6 @@ clinical:hl7-resource-message-header
 clinical:hl7-resource-device
 clinical:hl7-resource-location
 clinical:hl7-resource-list
-
 clinical:hl7-resource-risk-assessment
 
 # test data
@@ -93,7 +90,8 @@ awatson1978:accounts-muppets
 #shell-server
 
 # oauth server
-prime8consulting:meteor-oauth2-server
+clinical:fhir-vault-client
+clinical:fhir-vault-server
 simple:json-routes
 
 # data visualization

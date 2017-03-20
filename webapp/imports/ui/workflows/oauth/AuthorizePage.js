@@ -51,12 +51,8 @@ export class AuthorizePage extends React.Component {
       function (err, result) {
         console.log('grantResult', result);
 
-        // give the UI something to display.
-        if (process.env.DEBUG) {
-          //Session.set('grantResult', result)
-          grantResult.set(result);
-        } else {
-           window.location.replace(result.redirectToUri);
+        if (result) {
+          window.location.replace(result.redirectToUri);
         }
       }
     );

@@ -1,0 +1,39 @@
+.viewportContainer{
+  position: relative;
+  height: 100%;
+  width: 100%;
+
+  .viewportElement{
+    top: 0px;
+    left: 0px;
+    position:absolute;
+    height: 100%;
+    width: 100%;
+  }
+}
+  
+    
+.dicomTag{
+  position: absolute;
+  color: #A9A9A9;
+}
+  
+.topLeft{
+  top: 3px;
+  left: 5px;
+}
+  
+.topRight{
+  top: 3px;
+  right: 5px;
+}
+  
+.bottomRight{
+  bottom: 5px;
+  right: 5px;
+}
+  
+.bottomLeft{
+  bottom: 5px;
+  left: 5px;
+}

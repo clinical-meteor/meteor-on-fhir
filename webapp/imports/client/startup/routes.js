@@ -196,7 +196,7 @@ Meteor.startup(() => {
         <Route name="organizationsPage" path="/organizations" component={ OrganizationsPage } />
 
         <Route name="oAuthScrapYardPage" path="/oauth-ui" component={ OAuthScrapYardPage } />
-        <Route name="authorizePage" path="/oauth" component={ AuthorizePage } onEnter={ requireAuth } />
+        <Route name="authorizePage" path="/oauth" component={ AuthorizePage } />
 
         <Route name="serverConfigurationPage" path="/oauth-server" component={ ServerConfigurationPage } />
         <Route name="clientConfigurationPage" path="/oauth-client" component={ ClientConfigurationPage } />

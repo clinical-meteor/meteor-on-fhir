@@ -21,6 +21,9 @@ OAuth.registerService(OAuth2.serviceName, 2, null, function(query) {
     }
 
     var response = getTokenResponse(query, config);
+
+    console.log("response", response);
+
     var accessToken = response.accessToken;
     var identity = getIdentity(accessToken, config);
 

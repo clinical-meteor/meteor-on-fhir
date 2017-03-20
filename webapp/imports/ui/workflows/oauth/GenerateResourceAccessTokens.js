@@ -50,9 +50,9 @@ export class GenerateResourceAccessTokens extends React.Component {
 
         // give the UI something to display.
         // if (process.env.DEBUG) {
-          grantResult.set(result);
+        //  grantResult.set(result);
         // } else {
-        //   window.location.replace(result.redirectToUri);
+           window.location.replace(result.redirectToUri);
         // }
       }
     );

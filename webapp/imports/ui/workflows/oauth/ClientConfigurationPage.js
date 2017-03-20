@@ -30,18 +30,7 @@ Session.setDefault('newClient', {
   redirectUri: '',
   secret: '',
   autoscanServerUrl: ''
-});
-
-// Accounts.ui.config({
-//   requestPermissions: {
-//     facebook: ['user_likes'],
-//     github: ['user', 'repo']
-//   },
-//   requestOfflineToken: {
-//     google: true
-//   },
-//   passwordSignupFields: 'USERNAME_AND_OPTIONAL_EMAIL'
-// });
+}); 
 
 Meteor.call("getBearerTokenOnUserAccount", function(error, result){
   if (error) {

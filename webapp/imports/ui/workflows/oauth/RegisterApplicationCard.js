@@ -24,14 +24,16 @@ let defaultConfig = {
   clientName: '',
   clientId: '',
   redirectUri: 'http://localhost:3100/_oauth/FhirVault',
-  secret: Meteor.uuid()
+  clientSecret: Meteor.uuid()
 }
 Session.setDefault('newApplication', defaultConfig);
 Session.setDefault('oAuthClientAppConfigured', false);
 Meteor.startup(function (){
   Meteor.call('getClientForAccount', function (err, defaultConfig) {
-    Session.set('newApplication', defaultConfig);
-    Session.set('oAuthClientAppConfigured', true);
+    if (defaultConfig) {
+      Session.set('newApplication', defaultConfig);
+      Session.set('oAuthClientAppConfigured', true);
+    }
   });
 });
 
@@ -74,8 +76,8 @@ export class RegisterApplicationCard extends React.Component {
       case "redirectUri":
         clientUpdate.redirectUri = value;
         break;
-      case "secret":
-        clientUpdate.secret = value;
+      case "clientSecret":
+        clientUpdate.clientSecret = value;
         break;
       default:
     }
@@ -131,7 +133,7 @@ export class RegisterApplicationCard extends React.Component {
       config = defaultConfig;
     }
 
-    config.secret = Meteor.uuid();
+    config.clientSecret = Meteor.uuid();
     Session.set('newApplication', config);
   }
   render() {
@@ -177,13 +179,13 @@ export class RegisterApplicationCard extends React.Component {
                 fullWidth
                 /><br/>
               <TextField
-                id='secretInput'
-                ref='secret'
-                name='secret'
+                id='clientSecretInput'
+                ref='clientSecret'
+                name='clientSecret'
                 floatingLabelText='Client Secret'
                 hintText="slXlHvA-pGl6FbcCO8VuaKZnXemVc9fw1A0BFUjdrFc"
-                value={this.data.client.secret}
-                onChange={ this.changeClient.bind(this, 'secret')}
+                value={this.data.client.clientSecret}
+                onChange={ this.changeClient.bind(this, 'clientSecret')}
                 fullWidth
                 />
                 <RaisedButton id="generateSecret" label='Generate'  onClick={this.generateSecret.bind(this)} style={{float: 'right', marginTop: '-50px', backgroundColor: 'gray'}} />

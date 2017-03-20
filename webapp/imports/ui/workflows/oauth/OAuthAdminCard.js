@@ -13,7 +13,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import { Col, Grid, Row } from 'react-bootstrap';
 import { Table } from 'react-bootstrap';
 
-import { oAuth2Server } from 'meteor/prime8consulting:meteor-oauth2-server';
+import { oAuth2Server } from 'meteor/clinical:fhir-vault-server';
 
 
 export class OAuthAdminCard extends React.Component {
@@ -36,14 +36,17 @@ export class OAuthAdminCard extends React.Component {
     }
 
     if(oAuth2Server && oAuth2Server.collections && oAuth2Server.collections.authCodes){
-      data.refreshTokens = oAuth2Server.collections.authCodes.find().map(function(record){
+      data.authCodes = oAuth2Server.collections.authCodes.find().map(function(record){
         record.value = record._id;
         return record;
       });
     }
 
     if(oAuth2Server && oAuth2Server.collections && oAuth2Server.collections.refreshToken){
-      data.refreshTokens = oAuth2Server.collections.refreshToken.find().fetch();
+      data.refreshTokens = oAuth2Server.collections.refreshToken.find().map(function(record){
+        record.value = record._id;
+        return record;
+      });
     }
 
     data.style = Glass.blur(data.style);
@@ -59,7 +62,7 @@ export class OAuthAdminCard extends React.Component {
     for (var i = 0; i < this.data.clients.length; i++) {
       tableRows.push(
       <tr className='practitionerRow' key={i} style={{cursor: 'pointer'}} >
-        <td className="isActive">{this.data.clients[i].active}</td>
+        <td className="isActive">{this.data.clients[i].active.toString()}</td>
         <td className="clientName">{this.data.clients[i].clientName}</td>
         <td className="clientId">{this.data.clients[i].clientId}</td>
         <td className="redirectUri">{this.data.clients[i].redirectUri}</td>
@@ -71,7 +74,9 @@ export class OAuthAdminCard extends React.Component {
     for (var i = 0; i < this.data.authCodes.length; i++) {
       authCodeRows.push(
       <tr className='authCodeRows' key={i} style={{cursor: 'pointer'}} >
-        <td className="value">{this.data.authCodes[i].value}</td>
+        <td className="value">{this.data.authCodes[i].authCode}</td>
+        <td className="value">{this.data.authCodes[i].clientId}</td>
+        <td className="value">{this.data.authCodes[i].userId}</td>
       </tr>);
     }
 
@@ -79,7 +84,10 @@ export class OAuthAdminCard extends React.Component {
     for (var i = 0; i < this.data.refreshTokens.length; i++) {
       refreshTokenRows.push(
       <tr className='refreshTokenRows' key={i} style={{cursor: 'pointer'}} >
-        <td className="value">{this.data.refreshTokens[i].value}</td>
+        <td className="value">{this.data.refreshTokens[i].authCode}</td>
+        <td className="value">{this.data.refreshTokens[i].clientId}</td>
+        <td className="value">{this.data.refreshTokens[i].userId}</td>
+        <td className="value">{this.data.refreshTokens[i].expres.toString()}</td>
       </tr>);
     }
 
@@ -110,6 +118,8 @@ export class OAuthAdminCard extends React.Component {
               <thead>
                 <tr>
                   <th className="name">auth codes</th>
+                  <th className="name">client ID</th>
+                  <th className="name">user ID</th>
                 </tr>
               </thead>
               <tbody>
@@ -122,11 +132,14 @@ export class OAuthAdminCard extends React.Component {
             <Table id="practitionersTable" responses hover >
               <thead>
                 <tr>
-                  <th className="name">refresh tokens</th>
+                  <th className="name">auth codes</th>
+                  <th className="name">client ID</th>
+                  <th className="name">user ID</th>
+                  <th className="expres">expires</th>
                 </tr>
               </thead>
               <tbody>
-                { tableRows }
+                { refreshTokenRows }
               </tbody>
             </Table>
           </Row>
