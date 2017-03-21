@@ -12,9 +12,10 @@ reports
 reports/*
 
 settings.json
-
+settings.galaxy.json
 
 version.desktop
 .desktop
 
 marketing.jpg
+
