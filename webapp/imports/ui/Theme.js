@@ -1,6 +1,14 @@
+import { darkBaseTheme, lightBaseTheme } from 'material-ui/styles';
+
 import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session';
-import { lightBaseTheme, darkBaseTheme } from 'material-ui/styles';
+
+// In order of precedence:
+
+// 1. Theme stored in a user's profile
+// 2. Meteor.settings.theme.darkroomTextEnabled
+// 3. Meteor.settings.theme.palette
+// 4. System defaults
 
 export default Theme = {
   palette: function(style){
@@ -20,16 +28,16 @@ export default Theme = {
         color : lightBaseTheme.palette.accent1Color
       };
       style.hintStyle = {
-        color : lightBaseTheme.palette.secondaryTextColor
+        color : lightBaseTheme.palette.textColor
       };
       style.underlineStyle = {
         color : lightBaseTheme.palette.secondaryTextColor
       };
       style.floatingLabelStyle = {
-        color : lightBaseTheme.palette.secondaryTextColor
+        color : lightBaseTheme.palette.textColor
       };
       style.floatingLabelFocusStyle = {
-        color : lightBaseTheme.palette.secondaryTextColor
+        color : lightBaseTheme.palette.textColor
       };
     } else {
       style.textColor = {
@@ -42,16 +50,16 @@ export default Theme = {
         color : darkBaseTheme.palette.accent1Color
       };
       style.hintStyle = {
-        color : darkBaseTheme.palette.secondaryTextColor
+        color : darkBaseTheme.palette.textColor
       };
       style.underlineStyle = {
         borderColor : darkBaseTheme.palette.secondaryTextColor
       };
       style.floatingLabelStyle = {
-        color : darkBaseTheme.palette.secondaryTextColor
+        color : darkBaseTheme.palette.textColor
       };
       style.floatingLabelFocusStyle = {
-        color : darkBaseTheme.palette.secondaryTextColor
+        color : darkBaseTheme.palette.textColor
       };
     }
 
