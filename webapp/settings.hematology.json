@@ -58,13 +58,5 @@
     "practitionerAccessCode": "hippocrates",
     "sysadminAccessCode": "rootaccess",
     "disableOauth": true
-  },
-  "galaxy.meteor.com": {
-    "env": {
-      "MONGO_URL": "mongodb://phoenix:phoenix13579@ds025389.mlab.com:25389/meteor-on-fhir",
-      "NODE_ENV": "production",
-      "DEBUG": 1,
-      "TRACE": 1
-    }
-  }  
+  }
 }
