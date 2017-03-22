@@ -1,16 +1,14 @@
-import { ReactMeteorData } from 'meteor/react-meteor-data';
-import React  from 'react';
-import ReactMixin  from 'react-mixin';
-
-import { Tabs, Tab } from 'material-ui/Tabs';
-import { GlassCard } from '/imports/ui/components/GlassCard';
-import { CardTitle, CardText } from 'material-ui/Card';
-import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
-import PractitionerDetail  from '/imports/ui/workflows/practitioners/PractitionerDetail';
-import PractitionerTable  from '/imports/ui/workflows/practitioners/PractitionerTable';
+import { CardText, CardTitle } from 'material-ui/Card';
+import { Tab, Tabs } from 'material-ui/Tabs';
 
 import Glass from '/imports/ui/Glass';
-
+import { GlassCard } from '/imports/ui/components/GlassCard';
+import PractitionerDetail  from '/imports/ui/workflows/practitioners/PractitionerDetail';
+import PractitionerTable  from '/imports/ui/workflows/practitioners/PractitionerTable';
+import React  from 'react';
+import { ReactMeteorData } from 'meteor/react-meteor-data';
+import ReactMixin  from 'react-mixin';
+import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 
 Session.setDefault('practitionerPageTabIndex', 1);
 Session.setDefault('practitionerSearchFilter', '');
@@ -66,7 +64,7 @@ export class PractitionersPage extends React.Component {
                   <PractitionerDetail id='newPractitioner' />
                 </Tab>
                 <Tab className="practitionerListTab" label='Practitioners' onActive={this.handleActive} style={this.data.style.tab} value={1}>
-                  <PractitionerTable />
+                  <PractitionerTable showBarcodes={false} />
                  </Tab>
                  <Tab className="practitionerDetailsTab" label='Detail' onActive={this.handleActive} style={this.data.style.tab} value={2}>
                   <PractitionerDetail id='practitionerDetails' />

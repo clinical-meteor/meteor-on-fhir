@@ -1,8 +1,7 @@
-import React from 'react';
-import ReactMixin from 'react-mixin';
-import { ReactMeteorData } from 'meteor/react-meteor-data';
-
 import Avatar from 'material-ui/Avatar';
+import React from 'react';
+import { ReactMeteorData } from 'meteor/react-meteor-data';
+import ReactMixin from 'react-mixin';
 import { Table } from 'react-bootstrap';
 
 //import { moment } from 'meteor/moment:momentjs';
@@ -39,9 +38,18 @@ export default class PractitionerTable extends React.Component {
         issuer: ''
       };
 
-      if (practitioner.name && practitioner.name && practitioner.name.text ) {
-        result.name = practitioner.name.text;
+      // fhir-1.6.0
+      if (practitioner.name && practitioner.name[0]) {
+        if(practitioner.name[0].text){
+          result.name = practitioner.name[0].text;
+        } else {
+          result.name = practitioner.name[0].given[0] + ' ' + practitioner.name[0].family[0];
+        } 
+      } else {
+      // fhir-1.0.2
+        result.name = practitioner.name.text;        
       }
+
       if (practitioner.telecom && practitioner.telecom[0] && practitioner.telecom[0].value ) {
         result.telecomValue = practitioner.telecom[0].value;
       }

@@ -1,13 +1,10 @@
-import React from 'react';
-import ReactMixin from 'react-mixin';
-import { ReactMeteorData } from 'meteor/react-meteor-data';
-
 import Avatar from 'material-ui/Avatar';
-import { Table } from 'react-bootstrap';
-import { HTTP } from 'meteor/http';
-
 import FlatButton from 'material-ui/FlatButton';
-
+import { HTTP } from 'meteor/http';
+import React from 'react';
+import { ReactMeteorData } from 'meteor/react-meteor-data';
+import ReactMixin from 'react-mixin';
+import { Table } from 'react-bootstrap';
 
 export default class PatientTable extends React.Component {
   getMeteorData() {
