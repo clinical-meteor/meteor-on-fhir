@@ -1,29 +1,27 @@
 {
   "public": {
-    "title": "Meteor on FHIR",
+    "title": "Hemotology on FHIR",
     "theme": {
-      "showVideoBackground": false,
+      "showVideoBackground": true,
       "darkroomTextEnabled": false,
-      "defaultVideo": "/VideoBackgrounds/Circulation.mp4",
-      "backgroundImagePath": "/backgrounds/medical/Gradient.jpg"
+      "defaultVideo": "/VideoBackgrounds/Circulation.mp4"
     },
     "app": {
-      "showUnderConstruction": true,
-      "showExperimental": true
+      "barcodes": true,
+      "showUnderConstruction": false,
+      "showExperimental": false
     },
     "defaults": {
-      "avatars": true,
-      "barcodes": true,
       "displayNavbars": true,
       "disableHeader": false,
       "disableFooter": false,
       "darkroom": false,
       "iFrameEnabled": false,
-      "iFrameUrl": "https://www.wikipedia.org"
+      "iFrameUrl": "https://en.wikipedia.org/wiki/Venipuncture"
     },
     "interfaces": {
       "default": {
-        "status": "active",
+        "status": "inactive",
         "channel": {
           "endpoint": "http://localhost:80"
         },
@@ -43,17 +41,16 @@
       "inbound": true,
       "outbound": true,
       "fhir": {
-        "Devices": true,
-        "ImagingStudies": true,
-        "Lists": true,
-        "Locations": true,
-        "Medications": true,
-        "Observations": true,
-        "Organizations": true,
         "Patients": true,
         "Practitioners": true,
+        "Observations": true,
+        "ImagingStudies": true,
+        "Lists": true,
+        "Medications": true,
+        "Devices": true,
+        "Locations": true,
         "Questionnaires": true,
-        "RiskAssessments": true
+        "RiskAssessments": false
       }
     }
   },

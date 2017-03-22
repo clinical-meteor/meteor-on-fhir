@@ -1,15 +1,12 @@
 import { CardTitle } from 'material-ui/Card';
-import React from 'react';
-import ReactMixin from 'react-mixin';
-
-import { ReactMeteorData } from 'meteor/react-meteor-data';
-import Spacer from '/imports/ui/components/Spacer';
-
-import { GlassCard } from '/imports/ui/components/GlassCard';
-import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
-
-import { browserHistory } from 'react-router';
 import Glass from '/imports/ui/Glass';
+import { GlassCard } from '/imports/ui/components/GlassCard';
+import React from 'react';
+import { ReactMeteorData } from 'meteor/react-meteor-data';
+import ReactMixin from 'react-mixin';
+import Spacer from '/imports/ui/components/Spacer';
+import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
+import { browserHistory } from 'react-router';
 
 export class MainIndex extends React.Component {
   constructor(props) {
@@ -20,7 +17,7 @@ export class MainIndex extends React.Component {
       style: {
         inactiveIndexCard: {
           opacity: .5,
-          width: '50%',
+          width: '100%',
           display: 'inline-block',
           paddingLeft: '10px',
           paddingRight: '10px',
@@ -30,11 +27,12 @@ export class MainIndex extends React.Component {
           cursor: 'pointer'
         },
         indexCardPadding: {
-          width: '50%',
+          width: '100%',
           display: 'inline-block',
           paddingLeft: '10px',
           paddingRight: '10px',
-          paddingBottom: '20px'
+          paddingBottom: '20px',
+          maxWidth: '512px'
         },
         spacer: {
           display: 'block'
@@ -101,19 +99,19 @@ export class MainIndex extends React.Component {
       <div id='indexPage'>
         <VerticalCanvas>
 
-          {this.renderAdminTiles(this.data.user)}
 
           {this.renderPatients(this.data.user)}
           {this.renderPractitioners(this.data.user)}
 
           {this.renderDevices(this.data.user)}
           {this.renderObservations(this.data.user)}
-          {this.renderMedications(this.data.user)}
           {this.renderChecklists(this.data.user)}
+          {this.renderMedications(this.data.user)}
 
           {this.renderOrganizations(this.data.user)}
           {this.renderLocations(this.data.user)}
 
+          {this.renderAdminTiles(this.data.user)}
 
           {this.renderRiskAssessments(this.data.user)}
 
@@ -172,18 +170,7 @@ export class MainIndex extends React.Component {
               />
             </GlassCard>
           </div>
-
-
-          <div id="oAuthTile" style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/oauth-ui') } >
-            <GlassCard style={this.data.style.indexCard} >
-              <CardTitle
-                title='Authorization & Trust'
-                subtitle='OAuth Server/Client Configuration'
-                titleStyle={this.data.style.title}
-                subtitleStyle={this.data.style.subtitle}
-              />
-            </GlassCard>
-          </div>
+          
         </div>
       );
     }
@@ -247,7 +234,16 @@ export class MainIndex extends React.Component {
               />
             </GlassCard>
           </div>
-
+          <div id="oAuthTile" style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/oauth-ui') } >
+            <GlassCard style={this.data.style.indexCard} >
+              <CardTitle
+                title='Authorization & Trust'
+                subtitle='OAuth Server/Client Configuration'
+                titleStyle={this.data.style.title}
+                subtitleStyle={this.data.style.subtitle}
+              />
+            </GlassCard>
+          </div>
         </div>
       );
     }
