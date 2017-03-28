@@ -1,21 +1,17 @@
-import React from 'react';
-import ReactMixin from 'react-mixin';
-import { ReactMeteorData } from 'meteor/react-meteor-data';
-
-import FloatingActionButton from 'material-ui/FloatingActionButton';
-import ImageBlurOn from 'material-ui/svg-icons/image/blur-on';
-import ImageExposure from 'material-ui/svg-icons/image/exposure';
-import FlatButton from 'material-ui/FlatButton';
-
-import {Session} from 'meteor/session';
-
-import OpacitySlider from '../components/OpacitySlider';
-
 // footer
 import AppBar from 'material-ui/AppBar';
+import FlatButton from 'material-ui/FlatButton';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
 import Glass from '/imports/ui/Glass';
-import { browserHistory } from 'react-router';
+import ImageBlurOn from 'material-ui/svg-icons/image/blur-on';
+import ImageExposure from 'material-ui/svg-icons/image/exposure';
+import OpacitySlider from '../components/OpacitySlider';
+import React from 'react';
+import { ReactMeteorData } from 'meteor/react-meteor-data';
+import ReactMixin from 'react-mixin';
+import {Session} from 'meteor/session';
 import { ToolbarTitle } from 'material-ui/Toolbar';
+import { browserHistory } from 'react-router';
 
 Session.setDefault('showThemingControls', false);
 
@@ -26,7 +22,7 @@ export class Footer extends React.Component {
         position: 'fixed',
         bottom: '0px',
         width: '100%',
-        height: '6.4rem',
+        // height: '6.4rem',
         alignItems: 'center',
         WebkitTransition: 'ease .2s',
         transition: 'ease .2s',
@@ -38,16 +34,7 @@ export class Footer extends React.Component {
         flexDirection: 'row',
         position: 'absolute',
         left: '0px',
-        height: '6.4rem'
-      },
-      eastStyle: {
-        // display: 'flex',
-        // flexDirection: 'row',
-        // position: 'absolute',
-        // right: '0px',
-        // height: '6.4rem',
-        // padding: '0 2.4rem',
-        // paddingTop: '1.2rem'
+        // height: '6.4rem'
       },
       displayThemeNavbar: false,
       status: ''
@@ -68,8 +55,6 @@ export class Footer extends React.Component {
     //phone layout
     if (Session.get('appWidth') < 768) {
       data.westStyle.visibility = 'hidden';
-      data.eastStyle.visibility = 'hidden';
-      data.eastStyle.display = 'none';
     }
 
     if (Meteor.settings && Meteor.settings.public && Meteor.settings.public.defaults && Meteor.settings.public.defaults.disableFooter) {
@@ -153,6 +138,7 @@ export class Footer extends React.Component {
           style={this.data.footerStyle}
           titleStyle={{color: 'black'}}
         />
+
       </div>
    );
   }
