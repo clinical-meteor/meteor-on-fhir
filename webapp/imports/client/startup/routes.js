@@ -66,6 +66,8 @@ import { SpecificitySensitivityCard } from '/imports/ui/components/SpecificitySe
 import { DecisionTree } from '/imports/ui/components/DecisionTree';
 
 
+import { GoogleMapsPage } from '/imports/ui/pages/experimental/GoogleMapsPage';
+
 // we're storing the current route URL in a reactive variable
 // which will be used to update active controls
 // mostly used to toggle header and footer buttons
@@ -183,6 +185,7 @@ Meteor.startup(() => {
         <Route name="mathPage" path="/math" component={ MathPage } />
         <Route name="decisionTree" path="/decision-tree" component={ DecisionTree } />
 
+        <Route name="GoogleMapsPage" path="/maps" component={ GoogleMapsPage } />
 
 
         <Route path="*" component={ NotFound } />

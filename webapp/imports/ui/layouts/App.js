@@ -1,24 +1,19 @@
-import React  from 'react';
-import ReactMixin  from 'react-mixin';
-import { ReactMeteorData } from 'meteor/react-meteor-data';
+import { CardHeader, CardText, CardTitle } from 'material-ui/Card';
+import {teal400, teal600} from 'material-ui/styles/colors';
 
-// base layout
+import { Footer } from '/imports/ui/layouts/Footer';
 import { GlassApp } from '/imports/ui/layouts/GlassApp';
+import { GlassCard } from '/imports/ui/components/GlassCard';
 import { GlassLayout } from '/imports/ui/layouts/GlassLayout';
 import { Header } from '/imports/ui/layouts/Header';
-import { Footer } from '/imports/ui/layouts/Footer';
-
-// Material UI Theming
-import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import {teal400,teal600} from 'material-ui/styles/colors';
+import React  from 'react';
+import { ReactMeteorData } from 'meteor/react-meteor-data';
+import ReactMixin  from 'react-mixin';
+import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
+import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-
-import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
-import { GlassCard } from '/imports/ui/components/GlassCard';
-import { CardTitle, CardText } from 'material-ui/Card';
-
 
 const muiTheme = getMuiTheme({
   palette: {
@@ -64,9 +59,9 @@ export class App extends React.Component {
         },
         card: {
           position: 'relative',
-          minHeight: '768px',
-          width: '1024px',
-          height: Session.get('appHeight') - 240 + 'px'
+          //minHeight: '768px',
+          width: '1024px'
+          //height: Session.get('appHeight') - 240 + 'px'
         },
         content: {
           minHeight: '728px',
@@ -83,7 +78,7 @@ export class App extends React.Component {
       data.browserWindowLocation = Session.get('iFrameLocation');
     }
 
-    if (Session.get('secondPanelVisible') && Meteor.userId()) {
+    if (Session.get('secondPanelVisible')) {
       if (Session.get('appWidth') > 1200) {
         data.style.secondary.visibility = 'visible';
         data.style.secondary.left = '1024px';
@@ -111,7 +106,7 @@ export class App extends React.Component {
             </div>
             <div className='secondaryFlexPanel' style={this.data.style.secondary}>
               <VerticalCanvas>
-                <GlassCard style={this.data.style.card}>
+                <GlassCard style={this.data.style.card} height='auto'>
                   <CardText>
                     <object id="iframe" type="text/html" data={this.data.browserWindowLocation} style={this.data.style.content}>
                       <p>unable to load </p>
