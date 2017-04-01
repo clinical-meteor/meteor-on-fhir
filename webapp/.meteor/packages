@@ -58,8 +58,10 @@ clinical:theming
 clinical:user-model
 clinical:keybindings
 clinical:hipaa-logger
+#clinical:autopublish
 
 # fhir resources
+clinical:hl7-resource-audit-event
 clinical:hl7-resource-datatypes
 clinical:hl7-resource-patient
 clinical:hl7-resource-practitioner
