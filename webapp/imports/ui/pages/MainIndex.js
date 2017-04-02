@@ -116,8 +116,8 @@ export class MainIndex extends React.Component {
           {this.renderRiskAssessments(this.data.user)}
 
           {this.renderDiagnosticReport(this.data.user)}
-          {this.renderImagingStudy(this.data.user)}
           {this.renderConditions(this.data.user)}
+          {this.renderImagingStudy(this.data.user)}
           {this.renderAllergyIntolerance(this.data.user)}
 
           {this.renderTilesUnderConstruction(this.data.user, this.data.showUnderConstruction)}
@@ -422,7 +422,7 @@ export class MainIndex extends React.Component {
     if (Meteor.settings.public.modules.fhir.Conditions) {
       if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
-          <div id='conditionsTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/conditions') } >
+          <div id='conditionsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/conditions') } >
             <GlassCard style={this.data.style.indexCard} >
               <CardTitle
                 title='Conditions'

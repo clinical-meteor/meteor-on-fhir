@@ -15,7 +15,7 @@
 //       });
 //   },
 //   'user can log in/out' : function (client) {
-//     client.resizeWindow(1200, 1024);
+//     client.resizeWindow(1920, 1200);
 
 //     client.page.signinPage()
 //       .fillOutSigninPage('janedoe@test.org', 'janedoe')
