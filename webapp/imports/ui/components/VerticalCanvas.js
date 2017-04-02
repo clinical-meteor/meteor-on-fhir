@@ -73,7 +73,7 @@ export class VerticalCanvas extends React.Component {
 
 
 
-    data.style.overflowY = 'scroll';
+    //data.style.overflowY = 'scroll';
     data.style.WebkitOverflowScrolling = 'touch';
     data.style.WebkitTransform = 'translateZ(0px)';
     data.style.WebkitTransform = 'translate3d(0, 0, 0)';

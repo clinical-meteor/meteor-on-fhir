@@ -1,5 +1,3 @@
-import { Posts } from '/imports/api/posts/posts';
-import { Topics } from '/imports/api/topics/topics';
 import { Statistics } from '/imports/api/statistics/statistics';
 import { MyGenotype } from '/imports/api/genotype/MyGenotype';
 

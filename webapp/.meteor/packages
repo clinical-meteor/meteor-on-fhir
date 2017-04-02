@@ -25,6 +25,10 @@ accounts-base@1.2.14
 accounts-password@1.3.3
 audit-argument-checks@1.0.7
 
+service-configuration@1.0.11
+oauth@1.1.12
+http
+
 #aldeed:collection2
 alanning:roles
 themeteorchef:bert
@@ -54,8 +58,10 @@ clinical:theming
 clinical:user-model
 clinical:keybindings
 clinical:hipaa-logger
+clinical:autopublish
 
 # fhir resources
+clinical:hl7-resource-audit-event
 clinical:hl7-resource-datatypes
 clinical:hl7-resource-patient
 clinical:hl7-resource-practitioner
@@ -66,12 +72,12 @@ clinical:hl7-resource-encounter
 clinical:hl7-resource-goal
 clinical:hl7-resource-questionnaire
 clinical:hl7-resource-questionnaire-response
+clinical:hl7-resource-organization
 clinical:hl7-resource-observation
 clinical:hl7-resource-message-header
 clinical:hl7-resource-device
 clinical:hl7-resource-location
 clinical:hl7-resource-list
-
 clinical:hl7-resource-risk-assessment
 
 # test data
@@ -86,8 +92,11 @@ awatson1978:accounts-muppets
 #shell-server
 
 # oauth server
-prime8consulting:meteor-oauth2-server
+clinical:fhir-vault-client
+clinical:fhir-vault-server
 simple:json-routes
 
 # data visualization
 d3js:d3
+
+#zetoff:accounts-material-ui

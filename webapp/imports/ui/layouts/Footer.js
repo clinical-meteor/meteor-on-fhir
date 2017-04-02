@@ -37,7 +37,10 @@ export class Footer extends React.Component {
         // height: '6.4rem'
       },
       displayThemeNavbar: false,
-      status: ''
+      status: '',
+      style: {
+        buttonText: Glass.darkroom({marginLeft: '20px'})
+      }
     };
 
     if (Meteor.status) {
@@ -87,9 +90,9 @@ export class Footer extends React.Component {
       // the user has pressed ctrl-cmd-t and is looking at theming controls
       return (
         <div style={{marginTop: '-8px'}}>
-          <FlatButton label='privacy screen' className='blurButton' ref='blurButton' onClick={this.clickOnBlurButton} style={{marginLeft: '40px'}} ></FlatButton>
-          <FlatButton label='darkroom' className='darkroomButton' ref='darkroomButton' onClick={this.clickOnDarkroomButton} style={{marginLeft: '20px'}} ></FlatButton>
-          <FlatButton label='theming' className='themingButton' ref='themingButton' onClick={this.clickOnThemingButton} style={{marginLeft: '20px'}} ></FlatButton>
+          <FlatButton label='privacy screen' className='blurButton' ref='blurButton' onClick={this.clickOnBlurButton} style={this.data.style.buttonText} ></FlatButton>
+          <FlatButton label='darkroom' className='darkroomButton' ref='darkroomButton' onClick={this.clickOnDarkroomButton} style={this.data.style.buttonText} ></FlatButton>
+          <FlatButton label='theming' className='themingButton' ref='themingButton' onClick={this.clickOnThemingButton} style={this.data.style.buttonText} ></FlatButton>
         </div>
       );
     } else {

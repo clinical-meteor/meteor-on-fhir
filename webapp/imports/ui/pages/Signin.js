@@ -1,20 +1,16 @@
-import React  from 'react';
-import ReactMixin  from 'react-mixin';
-import { ReactMeteorData } from 'meteor/react-meteor-data';
+import { darkBaseTheme, lightBaseTheme } from 'material-ui/styles';
 
-import TextField from 'material-ui/TextField';
-import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
-import { MobilePadding } from '/imports/ui/components/MobilePadding';
-
-import { browserHistory } from 'react-router';
-
-import { Meteor } from 'meteor/meteor';
 import { Bert } from 'meteor/themeteorchef:bert';
-
+import { Meteor } from 'meteor/meteor';
+import { MobilePadding } from '/imports/ui/components/MobilePadding';
 import RaisedButton from 'material-ui/RaisedButton';
-import { lightBaseTheme, darkBaseTheme } from 'material-ui/styles';
-
+import React  from 'react';
+import { ReactMeteorData } from 'meteor/react-meteor-data';
+import ReactMixin  from 'react-mixin';
+import TextField from 'material-ui/TextField';
 import Theme from '/imports/ui/Theme';
+import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
+import { browserHistory } from 'react-router';
 
 export class Signin extends React.Component {
   getMeteorData() {
@@ -63,33 +59,26 @@ export class Signin extends React.Component {
         <MobilePadding>
           <VerticalCanvas>
             <h4 className="page-header" style={this.data.style.textColor}>Sign In</h4>
-            <form ref="signin" className="signin">
+            <form ref="signin" className="signin" >
               <TextField
                 type="email"
                 ref="emailAddress"
                 name="emailAddress"
-                placeholder="Email Address"
-                inputStyle={this.data.style.inputStyle}
+                hintText="Email Address"
                 hintStyle={this.data.style.hintStyle}
-                errorStyle={this.data.style.errorStyle}
-                underlineFocusStyle={this.data.style.underlineFocusStyle}
-                floatingLabelStyle={this.data.style.floatingLabelStyle}
-                floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
                 onKeyPress={this.handleKeyPress.bind(this)}
+                inputStyle={this.data.style.textColor}
               />
               <br/>
               <TextField
                 type="password"
                 ref="password"
                 name="password"
-                placeholder="Password"
-                inputStyle={this.data.style.inputStyle}
+                hintText="Password"
                 hintStyle={this.data.style.hintStyle}
-                errorStyle={this.data.style.errorStyle}
-                underlineFocusStyle={this.data.style.underlineFocusStyle}
-                floatingLabelStyle={this.data.style.floatingLabelStyle}
-                floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
                 onKeyPress={this.handleKeyPress.bind(this)}
+                style={this.data.style.textColor}
+                inputStyle={this.data.style.textColor}
               />
               <br/>
               <br/>

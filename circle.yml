@@ -12,10 +12,6 @@ machine:
     CXX: g++-4.8
     DISPLAY: :99.0
     NPM_PREFIX: /home/ubuntu/nvm/v0.10.33
-    INITIALIZE: false
-    Patients: true
-    Practitioners: true
-    METEOR_SETTINGS: '{"public": {"title": "Meteor on FHIR"},"private": {"practitionerAccessCode": "hippocrates", "sysadminAccessCode": "rootaccess"}}'
 
 
 ## Customize checkout
@@ -29,6 +25,8 @@ general:
   artifacts:
     - "./tests/nightwatch/screenshots" # relative to the build directory
     - "./tests/nightwatch/logs" # relative to the build directory
+    - "./webapp/tests/nightwatch/screenshots" # relative to the build directory
+    - "./webapp/tests/nightwatch/logs" # relative to the build directory
 
 ## Customize dependencies
 dependencies:
@@ -64,7 +62,7 @@ test:
 
     - "cd webapp && meteor run --settings settings.circle.json":
           background: true
-    - sleep 120
+    - sleep 240
   override:
     - cd webapp && meteor npm run-script circle-nightwatch
 

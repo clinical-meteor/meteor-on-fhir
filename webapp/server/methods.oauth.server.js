@@ -1,5 +1,12 @@
 Meteor.methods({
-    /**
+    'getClientForAccount': function (){
+
+      console.log('this.userId', this.userId);
+      return oAuth2Server.collections.client.findOne({
+        'owner.reference': this.userId
+      });
+    },
+        /**
      * OAUTH FLOW - Step C1.1
      * While you are not required to implement client addition in the same way, clients will have
      * to be available for the oauth2 process to work properly. That may mean running code on
@@ -7,6 +14,8 @@ Meteor.methods({
      * @param client
      */
     'addClient': function (client){
+      check(client, Object);
+
         console.log('addClient', client);
         oAuth2Server.collections.client.upsert(
             {
@@ -27,7 +36,7 @@ Meteor.methods({
             },
             {
                 $set: {
-                  'clientSecret': newSecret
+                  'secret': newSecret
                 }
             }
         );
@@ -52,14 +61,17 @@ Meteor.methods({
      * Exists purely for testing purposes.
      */
     'deleteAllClients': function() {
-        oAuth2Server.collections.client.remove({});
+      oAuth2Server.collections.client.remove({});
     },
 
     /**
      * Allows user to delete their account
      */
-    'deleteClient': function(accountId) {
-        oAuth2Server.collections.client.remove({_id: accountId});
+    'deleteClientApplication': function() {
+      console.log('deleteClientApplication');
+      return oAuth2Server.collections.client.remove({
+        'owner.reference': this.userId
+      });
     },
 
     'getNewClientId': function(){

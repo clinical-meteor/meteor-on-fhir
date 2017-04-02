@@ -1,3 +1,4 @@
+// base layout
 import { CardHeader, CardText, CardTitle } from 'material-ui/Card';
 import {teal400, teal600} from 'material-ui/styles/colors';
 
@@ -11,6 +12,7 @@ import React  from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin  from 'react-mixin';
 import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
+// Material UI Theming
 import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import injectTapEventPlugin from 'react-tap-event-plugin';

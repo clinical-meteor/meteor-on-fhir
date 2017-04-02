@@ -5,20 +5,39 @@
       "showVideoBackground": false,
       "darkroomTextEnabled": false,
       "defaultVideo": "/VideoBackgrounds/Circulation.mp4",
-      "backgroundImagePath": "/backgrounds/global.jpg"
+      "backgroundImagePath": "/backgrounds/medical/Gradient.jpg"
     },
     "app": {
-      "barcodes": true,
-      "showUnderConstruction": true,
+      "showUnderConstruction": false,
       "showExperimental": false
     },
     "defaults": {
+      "avatars": true,
+      "barcodes": true,
       "displayNavbars": true,
       "disableHeader": false,
       "disableFooter": false,
       "darkroom": false,
       "iFrameEnabled": false,
-      "iFrameUrl": "https://www.wikipedia.org"
+      "iFrameUrl": "https://www.wikipedia.org",
+      "paginationLimit": 100,
+      "subscriptionLimit": 1000,
+      "cards": {
+        "height": "auto",
+        "opacity": 0.95
+      }      
+    },
+    "interfaces": {
+      "default": {
+        "status": "inactive",
+        "channel": {
+          "endpoint": "http://localhost:80"
+        },
+        "auth": {
+          "username": "foo",
+          "password": "bar"
+        }
+      }
     },
     "modules": {
       "data": true,
@@ -30,14 +49,17 @@
       "inbound": true,
       "outbound": true,
       "fhir": {
+        "AuditEvents": true,
+        "Conditions": true,
+        "Devices": true,
         "Patients": true,
         "Practitioners": true,
+        "Organizations": true,
         "Observations": true,
         "ImagingStudies": true,
+        "Locations": true,
         "Lists": true,
         "Medications": true,
-        "Devices": true,
-        "Locations": true,
         "Questionnaires": true,
         "RiskAssessments": true
       }

@@ -20,7 +20,8 @@ export default class MedicationTable extends React.Component {
         },
         checkbox: {
           //marginBottom: 16
-        }
+        },
+        rowText: Glass.darkroom({cursor: 'pointer'})
       },
       selected: [],
       medications: Medications.find().map(function(medication){
@@ -52,7 +53,7 @@ export default class MedicationTable extends React.Component {
       })
     };
 
-  
+
     return data;
   }
 
@@ -66,7 +67,7 @@ export default class MedicationTable extends React.Component {
     let tableRows = [];
     for (var i = 0; i < this.data.medications.length; i++) {
       tableRows.push(
-      <tr className='medicationRow' ref='med-{i}' key={i} style={{cursor: 'pointer'}} onClick={ this.rowClick.bind('this', this.data.medications[i]._id) }>
+      <tr className='medicationRow' ref='med-{i}' key={i} style={this.data.style.rowText} onClick={ this.rowClick.bind('this', this.data.medications[i]._id) }>
         <td className="check">
           <Toggle
             ref='med-{i}'

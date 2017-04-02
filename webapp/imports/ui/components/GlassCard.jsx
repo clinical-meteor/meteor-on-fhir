@@ -44,6 +44,9 @@ export class GlassCard extends React.Component {
       data.style.backdropFilter = 'blur(5px)';
     }
 
+
+    // this could be a mixin/extracted to a helper function
+    // Glass.autoHeight()
     if (this.props.height === "auto") {
       console.log("is autoheight");
 
@@ -60,6 +63,10 @@ export class GlassCard extends React.Component {
         }
       }
     }
+
+    if (this.props.width) {
+      data.style.width = this.props.width;
+    }
     // GlassFactory.addStyling(data);
 
     return data;
@@ -67,7 +74,7 @@ export class GlassCard extends React.Component {
 
   render(){
     return (
-       <Card id={this.props.id} className="glassCard" style={this.data.style}>
+       <Card id={this.props.id} style={this.data.style}>
         { this.props.children }
        </Card>
     );

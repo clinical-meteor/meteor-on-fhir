@@ -1,10 +1,18 @@
-import { Bert } from 'meteor/themeteorchef:bert';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import './routes.js';
 import './globals.js';
 
+import { Bert } from 'meteor/themeteorchef:bert';
 import { Meteor } from 'meteor/meteor';
+// global imports for subscriptions
+import { MyGenotype as _MyGenotype } from '/imports/api/genotype/MyGenotype';
+// global imports for subscriptions
+import { Posts as _Posts } from '/imports/api/posts/posts';
+// global imports for subscriptions
+import { Statistics as _Statistics } from '/imports/api/statistics/statistics';
+// global imports for subscriptions
+import { Topics as _Topics } from '/imports/api/topics/topics';
 
 if (process.env.NODE_ENV === 'production') {
   Bert.defaults.style = 'fixed-top';
@@ -28,21 +36,16 @@ Meteor.startup(function (){
   //Meteor.subscribe('Lists');
   Meteor.subscribe('Statistics');
   Meteor.subscribe('MyGenotype', Session.get('selectedChromosome'));
+
+  Meteor.subscribe('Observations');
+  Meteor.subscribe('Patients');
 });
 
 
-// global imports for subscriptions
-import { Posts as _Posts } from '/imports/api/posts/posts';
 Posts = _Posts;
 
-// global imports for subscriptions
-import { Topics as _Topics } from '/imports/api/topics/topics';
 Topics = _Topics;
 
-// global imports for subscriptions
-import { Statistics as _Statistics } from '/imports/api/statistics/statistics';
 Statistics = _Statistics;
 
-// global imports for subscriptions
-import { MyGenotype as _MyGenotype } from '/imports/api/genotype/MyGenotype';
 MyGenotype = _MyGenotype;

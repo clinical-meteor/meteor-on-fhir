@@ -32,6 +32,10 @@
         "status": "active",
         "channel": {
           "endpoint": "http://localhost:80"
+        },
+        "auth": {
+          "username": "foo",
+          "password": "bar"
         }
       }
     },

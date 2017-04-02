@@ -90,7 +90,7 @@ export class ObservationsPage extends React.Component {
     return (
       <div id="observationsPage">
         <VerticalCanvas>
-          <GlassCard>
+          <GlassCard height='auto'>
 
             <Tabs id="observationsPageTabs" default value={this.data.tabIndex} onChange={this.handleTabChange} initialSelectedIndex={1}>
               <Tab className="newObservationTab" label='New' style={this.data.style.tab} onActive={ this.onNewTab } value={0} >

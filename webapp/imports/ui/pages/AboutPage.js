@@ -14,7 +14,7 @@ export class AboutPage extends React.Component {
     return(
       <div id="aboutPage">
         <VerticalCanvas >
-          <GlassCard>
+          <GlassCard height='auto' width='768px'>
             <AboutAppCard />
           </GlassCard>
         </VerticalCanvas>

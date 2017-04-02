@@ -1,8 +1,8 @@
 ConformanceStatement = {
   "resourceType": "Conformance",
-  "url": "http://fhir-server.meteorapp.com/fhir-1.6.0",
-  "name": "Sprint 2",
-  "version": "0.3",
+  "url": "http://fhir-server.meteorapp.com/fhir-3.0.0",
+  "name": "ProviderDirectory",
+  "version": "0.4",
   "status": "draft",
   "experimental": true,
   "publisher": "Pentasyllabic Studios",
@@ -23,7 +23,7 @@ ConformanceStatement = {
     "name" : "Meteor FHIR Repository",
     "releaseDate" : "2017-01-01"
   },
-  "fhirVersion": "1.6.0",
+  "fhirVersion": "3.0.0",
   "acceptUnknown": "no",
   "format": [
     "json"
@@ -109,41 +109,39 @@ if (Meteor.settings.public.modules.fhir.Practitioners) {
     "interaction": [{
       "code": "read"
     }, {
-      "code": "search-type",
-      "documentation": "When a client searches practitioners with no search criteria, they get a list of all patients they have access too. Servers may elect to offer additional search parameters, but this is not required"
-    }]
-    // "searchParam": [
-    //     {
-    //       "name": "_id",
-    //       "type": "token",
-    //       "documentation": "_id parameter always supported."
-    //     },
-    //     {
-    //       "name": "identifier",
-    //       "type": "token"
-    //     },
-    //     {
-    //       "name": "name",
-    //       "type": "token"
-    //     },
-    //     {
-    //       "name": "family",
-    //       "type": "token"
-    //     },
-    //     {
-    //       "name": "given",
-    //       "type": "token"
-    //     },
-    //     {
-    //       "name": "gender",
-    //       "type": "token"
-    //     },
-    //     {
-    //       "name": "birthday",
-    //       "type": "token"
-    //     },
-    //
-    //   ]
+      "code": "create"
+    }, {
+      "code": "update"
+    }, {
+      "code": "delete"
+    }, {
+      "code": "history"
+    }, {
+      "code": "search-type"
+    }],
+    "searchParam": [
+        {
+          "name": "_id",
+          "type": "token",
+          "documentation": "_id parameter always supported."
+        },
+        {
+          "name": "identifier",
+          "type": "token"
+        },
+        {
+          "name": "name",
+          "type": "token"
+        },
+        {
+          "name": "family",
+          "type": "token"
+        },
+        {
+          "name": "given",
+          "type": "token"
+        }    
+      ]
   });
 }
 
@@ -234,6 +232,103 @@ if (Meteor.settings.public.modules.fhir.Medications) {
     //   ]
   });
 }
+
+if (Meteor.settings.public.modules.fhir.Organizations) {
+  ConformanceStatement.rest[0].resource.push({
+    "type": "Organization",
+    "interaction": [{
+      "code": "read"
+    }, {
+      "code": "create"
+    }, {
+      "code": "update"
+    }, {
+      "code": "delete"
+    }, {
+      "code": "history"
+    }, {
+      "code": "search-type"
+    }],
+    "searchParam": [
+        {
+          "name": "_id",
+          "type": "token",
+          "documentation": "_id parameter always supported."
+        },
+        {
+          "name": "identifier",
+          "type": "token"
+        },
+        {
+          "name": "name",
+          "type": "token"
+        }    
+      ]
+  });
+}
+
+
+if (Meteor.settings.public.modules.fhir.Locations) {
+  ConformanceStatement.rest[0].resource.push({
+    "type": "Location",
+    "interaction": [{
+      "code": "read"
+    }, {
+      "code": "create"
+    }, {
+      "code": "update"
+    }, {
+      "code": "delete"
+    }, {
+      "code": "history"
+    }, {
+      "code": "search-type"
+    }],
+    "searchParam": [
+        {
+          "name": "_id",
+          "type": "token",
+          "documentation": "_id parameter always supported."
+        },
+        {
+          "name": "identifier",
+          "type": "token"
+        },
+        {
+          "name": "name",
+          "type": "token"
+        }    
+      ]
+  });
+}
+
+if (Meteor.settings.public.modules.fhir.AuditEvents) {
+  ConformanceStatement.rest[0].resource.push({
+    "type": "AuditEvent",
+    "interaction": [{
+      "code": "read"
+    }, {
+      "code": "create"
+    }, {
+      "code": "update"
+    }, {
+      "code": "delete"
+    }, {
+      "code": "history"
+    }, {
+      "code": "search-type"
+    }],
+    "searchParam": [
+        {
+          "name": "_id",
+          "type": "token",
+          "documentation": "_id parameter always supported."
+        }  
+      ]
+  });
+}
+
+
 
 if (Meteor.settings.public.modules.fhir.Devices) {
   ConformanceStatement.rest[0].resource.push({
@@ -327,8 +422,8 @@ if (Meteor.settings.public.modules.fhir.RiskAssessments) {
 
 
 
-JsonRoutes.add("get", "fhir-1.6.0/metadata", function (req, res, next) {
-  console.log('GET /fhir-1.6.0/metadata');
+JsonRoutes.add("get", "fhir-3.0.0/metadata", function (req, res, next) {
+  console.log('GET /fhir-3.0.0/metadata');
 
   JsonRoutes.sendResult(res, {
     code: 200,

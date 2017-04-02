@@ -66,10 +66,10 @@ Meteor.startup(function (){
   if (process.env.INITIALIZE && (RiskAssessments.find().count() === 0)) {
     RiskAssessments.insert(riskAssessment, function(error, result){
       if(error){
-        HipaaLogger.logEvent("error", 'System', 'System', "RiskAssessments", null, null, null, error);
+        HipaaLogger.logEvent({eventType: "error", userId: 'System', userName: 'System', collectionName: "RiskAssessments"});
       }
       if(result){
-        HipaaLogger.logEvent("create", 'System', 'System', "RiskAssessments", null, null, null, null);
+        HipaaLogger.logEvent({eventType: "create", userId: 'System', userName: 'System', collectionName: "RiskAssessments"});
       }
     });
   }
