@@ -55,7 +55,7 @@
         "Lists": true,
         "Medications": true,
         "Questionnaires": true,
-        "RiskAssessments": false
+        "RiskAssessments": true
       }
     }
   },
