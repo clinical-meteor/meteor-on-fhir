@@ -17,7 +17,7 @@ export class MainIndex extends React.Component {
       style: {
         inactiveIndexCard: {
           opacity: .5,
-          width: '100%',
+          width: '50%',
           display: 'inline-block',
           paddingLeft: '10px',
           paddingRight: '10px',
@@ -27,7 +27,7 @@ export class MainIndex extends React.Component {
           cursor: 'pointer'
         },
         indexCardPadding: {
-          width: '100%',
+          width: '50%',
           display: 'inline-block',
           paddingLeft: '10px',
           paddingRight: '10px',
@@ -114,6 +114,11 @@ export class MainIndex extends React.Component {
           {this.renderAdminTiles(this.data.user)}
 
           {this.renderRiskAssessments(this.data.user)}
+
+          {this.renderDiagnosticReport(this.data.user)}
+          {this.renderImagingStudy(this.data.user)}
+          {this.renderConditions(this.data.user)}
+          {this.renderAllergyIntolerance(this.data.user)}
 
           {this.renderTilesUnderConstruction(this.data.user, this.data.showUnderConstruction)}
           {this.renderExperimentalTiles(this.data.showExperimental)}
@@ -396,7 +401,7 @@ export class MainIndex extends React.Component {
 
   renderRiskAssessments(user){
     if (Meteor.settings.public.modules.fhir.RiskAssessments) {
-      if (user.isPractitioner || user.isAdmin) {
+      if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
           <div id='riskAssessmentsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/risk-assessments') } >
             <GlassCard style={this.data.style.indexCard} >
@@ -412,6 +417,91 @@ export class MainIndex extends React.Component {
       }
     }
   }
+
+  renderConditions(user){
+    if (Meteor.settings.public.modules.fhir.Conditions) {
+      if (user.isPatient || user.isPractitioner || user.isAdmin) {
+        return (
+          <div id='conditionsTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/conditions') } >
+            <GlassCard style={this.data.style.indexCard} >
+              <CardTitle
+                title='Conditions'
+                subtitle='Conditions that a patient might have.'
+                titleStyle={this.data.style.title}
+                subtitleStyle={this.data.style.subtitle}
+              />
+            </GlassCard>
+          </div>
+        );
+      }
+    }
+  }  
+
+  renderAllergyIntolerance(user){
+    if (Meteor.settings.public.modules.fhir.AllergyIntolerances) {
+      if (user.isPatient || user.isPractitioner || user.isAdmin) {
+        return (
+            <div id='allergyIntoleranceTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/allergies') } >
+              <GlassCard style={this.data.style.indexCard} >
+                <CardTitle
+                  title='Allergy Intolerances'
+                  subtitle='Allergy intolerances.'
+                  titleStyle={this.data.style.title}
+                  subtitleStyle={this.data.style.subtitle}
+                />
+              </GlassCard>
+            </div>
+        );
+      }
+    }
+  }   
+
+
+  renderImagingStudy(user){
+    if (Meteor.settings.public.modules.fhir.ImagingStudies) {
+      if (user.isPatient || user.isPractitioner || user.isAdmin) {
+        return (
+            <div id='imagingStudiesTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/radiology') } >
+              <GlassCard style={this.data.style.indexCard} >
+                <CardTitle
+                  title='Imaging Studies'
+                  subtitle='Medical images and radiographs.'
+                  titleStyle={this.data.style.title}
+                  subtitleStyle={this.data.style.subtitle}
+                />
+              </GlassCard>
+            </div>
+        );
+      }
+    }
+  }   
+
+
+  renderDiagnosticReport(user){
+    if (Meteor.settings.public.modules.fhir.DiagnosticReports) {
+      if (user.isPractitioner || user.isAdmin) {
+        return (
+            <div id='diagnosticReportsTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/diagnostic-report') } >
+              <GlassCard style={this.data.style.indexCard} >
+                <CardTitle
+                  title='Diagnostic Report'
+                  subtitle='Findings associated with a diagnostic laboratory procedure.'
+                  titleStyle={this.data.style.title}
+                  subtitleStyle={this.data.style.subtitle}
+                />
+              </GlassCard>
+            </div>
+        );
+      }
+    }
+  }     
+
+
+
+
+
+
+
 
   renderTilesUnderConstruction(user, showUnderConstruction){
     if (showUnderConstruction) {
@@ -430,16 +520,7 @@ export class MainIndex extends React.Component {
               </GlassCard>
             </div>
 
-            <div id='conditionsTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/conditions') } >
-              <GlassCard style={this.data.style.indexCard} >
-                <CardTitle
-                  title='Conditions'
-                  subtitle='Conditions that a patient might have.'
-                  titleStyle={this.data.style.title}
-                  subtitleStyle={this.data.style.subtitle}
-                />
-              </GlassCard>
-            </div>
+
 
             <div id='proceduresTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/procedures') } >
               <GlassCard style={this.data.style.indexCard} >
@@ -453,16 +534,7 @@ export class MainIndex extends React.Component {
             </div>
 
 
-            <div id='allergyIntoleranceTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/allergies') } >
-              <GlassCard style={this.data.style.indexCard} >
-                <CardTitle
-                  title='Allergy Intolerances'
-                  subtitle='Allergy intolerances.'
-                  titleStyle={this.data.style.title}
-                  subtitleStyle={this.data.style.subtitle}
-                />
-              </GlassCard>
-            </div>
+
 
             <div id='immunizationsTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/immunizations') } >
               <GlassCard style={this.data.style.indexCard} >
@@ -498,16 +570,7 @@ export class MainIndex extends React.Component {
             </div>
 
 
-            <div id='imagingStudiesTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/radiology') } >
-              <GlassCard style={this.data.style.indexCard} >
-                <CardTitle
-                  title='Imaging Studies'
-                  subtitle='Medical images and radiographs.'
-                  titleStyle={this.data.style.title}
-                  subtitleStyle={this.data.style.subtitle}
-                />
-              </GlassCard>
-            </div>
+
 
 
             <div id="carePlansTile" style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/appointments') } >
@@ -554,16 +617,7 @@ export class MainIndex extends React.Component {
               </GlassCard>
             </div>
 
-            <div id='diagnosticReportsTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/diagnostic-report') } >
-              <GlassCard style={this.data.style.indexCard} >
-                <CardTitle
-                  title='Diagnostic Report'
-                  subtitle='Findings associated with a diagnostic laboratory procedure.'
-                  titleStyle={this.data.style.title}
-                  subtitleStyle={this.data.style.subtitle}
-                />
-              </GlassCard>
-            </div>
+
 
 
             <div id='schedulesTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/schedules') } >

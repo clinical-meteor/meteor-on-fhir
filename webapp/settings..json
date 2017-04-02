@@ -44,7 +44,6 @@
       "outbound": true,
       "fhir": {
         "AuditEvents": true,
-        "Conditions": true,
         "Patients": true,
         "Practitioners": true,
         "Organizations": true,
