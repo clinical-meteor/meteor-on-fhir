@@ -25,6 +25,8 @@ general:
   artifacts:
     - "./tests/nightwatch/screenshots" # relative to the build directory
     - "./tests/nightwatch/logs" # relative to the build directory
+    - "./webapp/tests/nightwatch/screenshots" # relative to the build directory
+    - "./webapp/tests/nightwatch/logs" # relative to the build directory
 
 ## Customize dependencies
 dependencies:
