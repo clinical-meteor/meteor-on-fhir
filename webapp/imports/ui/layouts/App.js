@@ -1,8 +1,8 @@
-import { CardText, CardTitle } from 'material-ui/Card';
+// base layout
+import { CardHeader, CardText, CardTitle } from 'material-ui/Card';
 import {teal400, teal600} from 'material-ui/styles/colors';
 
 import { Footer } from '/imports/ui/layouts/Footer';
-// base layout
 import { GlassApp } from '/imports/ui/layouts/GlassApp';
 import { GlassCard } from '/imports/ui/components/GlassCard';
 import { GlassLayout } from '/imports/ui/layouts/GlassLayout';
@@ -61,9 +61,9 @@ export class App extends React.Component {
         },
         card: {
           position: 'relative',
-          minHeight: '768px',
-          width: '1024px',
-          height: Session.get('appHeight') - 240 + 'px'
+          //minHeight: '768px',
+          width: '1024px'
+          //height: Session.get('appHeight') - 240 + 'px'
         },
         content: {
           minHeight: '728px',
@@ -80,7 +80,7 @@ export class App extends React.Component {
       data.browserWindowLocation = Session.get('iFrameLocation');
     }
 
-    if (Session.get('secondPanelVisible') && Meteor.userId()) {
+    if (Session.get('secondPanelVisible')) {
       if (Session.get('appWidth') > 1200) {
         data.style.secondary.visibility = 'visible';
         data.style.secondary.left = '1024px';

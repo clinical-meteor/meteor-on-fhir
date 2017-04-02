@@ -18,6 +18,7 @@ import { DermatogramsPage } from '/imports/ui/pages/DermatogramsPage';
 import { DevicesPage } from '/imports/ui/workflows/devices/DevicesPage';
 import { ForumPage } from '/imports/ui/pages/ForumPage';
 import { GenomePage } from '/imports/ui/workflows/genome/GenomePage';
+import { GoogleMapsPage } from '/imports/ui/pages/experimental/GoogleMapsPage';
 import { Healthlog } from '/imports/ui/pages/Healthlog';
 import { HexGridPage } from '/imports/ui/pages/HexGridPage';
 import { ImagingStudiesPage } from '/imports/ui/workflows/imaging-studies/ImagingStudiesPage';
@@ -185,6 +186,7 @@ Meteor.startup(() => {
         <Route name="clientConfigurationPage" path="/oauth-client" component={ ClientConfigurationPage } />
 
         <Route name="CornerstonePage" path="/cornerstone" component={ CornerstonePage } />
+        <Route name="GoogleMapsPage" path="/maps" component={ GoogleMapsPage } />
 
 
         <Route path="*" component={ NotFound } />

@@ -1,21 +1,17 @@
-import React from 'react';
-import ReactMixin from 'react-mixin';
-import { ReactMeteorData } from 'meteor/react-meteor-data';
-
-import FloatingActionButton from 'material-ui/FloatingActionButton';
-import ImageBlurOn from 'material-ui/svg-icons/image/blur-on';
-import ImageExposure from 'material-ui/svg-icons/image/exposure';
-import FlatButton from 'material-ui/FlatButton';
-
-import {Session} from 'meteor/session';
-
-import OpacitySlider from '../components/OpacitySlider';
-
 // footer
 import AppBar from 'material-ui/AppBar';
+import FlatButton from 'material-ui/FlatButton';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
 import Glass from '/imports/ui/Glass';
-import { browserHistory } from 'react-router';
+import ImageBlurOn from 'material-ui/svg-icons/image/blur-on';
+import ImageExposure from 'material-ui/svg-icons/image/exposure';
+import OpacitySlider from '../components/OpacitySlider';
+import React from 'react';
+import { ReactMeteorData } from 'meteor/react-meteor-data';
+import ReactMixin from 'react-mixin';
+import {Session} from 'meteor/session';
 import { ToolbarTitle } from 'material-ui/Toolbar';
+import { browserHistory } from 'react-router';
 
 Session.setDefault('showThemingControls', false);
 
@@ -145,6 +141,7 @@ export class Footer extends React.Component {
           style={this.data.footerStyle}
           titleStyle={{color: 'black'}}
         />
+
       </div>
    );
   }
