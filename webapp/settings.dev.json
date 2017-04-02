@@ -19,7 +19,13 @@
       "disableFooter": false,
       "darkroom": false,
       "iFrameEnabled": false,
-      "iFrameUrl": "https://www.wikipedia.org"
+      "iFrameUrl": "https://www.wikipedia.org",
+      "paginationLimit": 100,
+      "subscriptionLimit": 1000,
+      "cards": {
+        "height": "auto",
+        "opacity": 0.95
+      }      
     },
     "interfaces": {
       "default": {
