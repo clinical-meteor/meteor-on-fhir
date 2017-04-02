@@ -6,6 +6,8 @@
   "description": "Application description.",
   "scripts": {
     "start": "NODE_ENV=test meteor --settings settings.dev.json",
+    "debug": "DEBUG=true meteor --settings settings.dev.json",
+    "trace": "DEBUG=true TRACe=true meteor --settings settings.dev.json",
     "test": "meteor test --driver-package dispatch:mocha-phantomjs --port 5000",
     "test-app": "meteor test --full-app --driver-package dispatch:mocha-phantomjs --port 5000 --once",
     "package-verification": "starrynight run-tests --type package-verification",

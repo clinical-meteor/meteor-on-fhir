@@ -38,6 +38,7 @@ Meteor.startup(function (){
   Meteor.subscribe('MyGenotype', Session.get('selectedChromosome'));
 
   Meteor.subscribe('Observations');
+  Meteor.subscribe('Patients');
 });
 
 

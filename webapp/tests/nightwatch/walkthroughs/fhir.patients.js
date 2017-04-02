@@ -42,7 +42,7 @@ module.exports = {
       .patientsPage()
       .selectNewPatientTab()
       .verifyNewPatientCard()
-      .upsertPatient('Jane Doe', 'Female', '1980-11-23', '', '#newPatient', client)
+      .upsertPatient('Jane Doe', 'female', '1980-11-23', '', '#newPatient', client)
       .saveScreenshot('tests/nightwatch/screenshots/patients.crud/B-PatientList.png', client);
 
     client
@@ -53,14 +53,14 @@ module.exports = {
       .patientsPage()
       .selectListTab()
       .verifyPatientListCard()
-      .listContainsPatient(1, 'Jane Doe', 'Female', '1980-11-23')
+      .listContainsPatient(1, 'Jane Doe', 'female', '1980-11-23')
       .saveScreenshot('tests/nightwatch/screenshots/patients.crud/B-PatientList.png', client);
   },
   'patient detail': function (client) {
     client.page
       .patientsPage()
       .selectPatient(1)
-      .verifyPatientDetails('Jane Doe', 'Female', '1980-11-23')
+      .verifyPatientDetails('Jane Doe', 'female', '1980-11-23')
       .saveScreenshot('tests/nightwatch/screenshots/patients.crud/C-PatientDetails.png', client);
   },
   'edit patient': function (client) {
@@ -81,7 +81,7 @@ module.exports = {
 
     client.page
       .patientsPage()
-      .upsertPatient('Sally Doe', 'Female', '1980-11-23', '', '#patientDetails', client)
+      .upsertPatient('Sally Doe', 'female', '1980-11-23', '', '#patientDetails', client)
       .saveScreenshot('tests/nightwatch/screenshots/patients.crud/D-EditedPatient.png', client);
 
     // since we're using the PatientDetail component twice,
