@@ -189,8 +189,6 @@ module.exports = {
       .click('#deleteUserButton').pause(500)
 
 
-      .verify.elementPresent("input[name='_id']")
-      .verify.elementPresent("input[name='email']")
       .verify.elementPresent("input[name='confirm']")
       .clearValue('input[name="confirm"]');
 

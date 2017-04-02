@@ -8,8 +8,8 @@
       "backgroundImagePath": "/backgrounds/medical/Gradient.jpg"
     },
     "app": {
-      "showUnderConstruction": true,
-      "showExperimental": true
+      "showUnderConstruction": false,
+      "showExperimental": false
     },
     "defaults": {
       "avatars": true,
@@ -23,7 +23,7 @@
     },
     "interfaces": {
       "default": {
-        "status": "active",
+        "status": "inactive",
         "channel": {
           "endpoint": "http://localhost:80"
         },
@@ -43,17 +43,18 @@
       "inbound": true,
       "outbound": true,
       "fhir": {
-        "Devices": true,
-        "ImagingStudies": true,
-        "Lists": true,
-        "Locations": true,
-        "Medications": true,
-        "Observations": true,
-        "Organizations": true,
+        "AuditEvents": true,
         "Patients": true,
         "Practitioners": true,
+        "Organizations": true,
+        "Observations": true,
+        "ImagingStudies": true,
+        "Locations": true,
+        "Lists": true,
+        "Medications": true,
+        "Devices": true,
         "Questionnaires": true,
-        "RiskAssessments": true
+        "RiskAssessments": false
       }
     }
   },

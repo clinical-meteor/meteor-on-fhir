@@ -1,24 +1,17 @@
-
-import React  from 'react';
-import ReactMixin from 'react-mixin';
-
-import { Meteor } from 'meteor/meteor';
-import { ReactMeteorData } from 'meteor/react-meteor-data';
-import { Session } from 'meteor/session';
-
-import { AuthenticatedNavigation } from '../components/AuthenticatedNavigation';
-import { PublicNavigation } from '../components/PublicNavigation';
-
-import AppBar from '/imports/ui/layouts/AppBar';
-
-// header
-import IconButton from 'material-ui/IconButton';
-import NavigationClose from 'material-ui/svg-icons/navigation/close';
-
-import Glass from '/imports/ui/Glass';
 import ActionAccountCircle from 'material-ui/svg-icons/action/account-circle';
 import ActionReorder from 'material-ui/svg-icons/action/reorder';
-
+import AppBar from '/imports/ui/layouts/AppBar';
+import { AuthenticatedNavigation } from '../components/AuthenticatedNavigation';
+import Glass from '/imports/ui/Glass';
+// header
+import IconButton from 'material-ui/IconButton';
+import { Meteor } from 'meteor/meteor';
+import NavigationClose from 'material-ui/svg-icons/navigation/close';
+import { PublicNavigation } from '../components/PublicNavigation';
+import React  from 'react';
+import { ReactMeteorData } from 'meteor/react-meteor-data';
+import ReactMixin from 'react-mixin';
+import { Session } from 'meteor/session';
 import { browserHistory } from 'react-router';
 
 Sidebar = {
@@ -143,10 +136,17 @@ export class Header extends React.Component {
         iconElementRight={ this.renderNavigation(this.data.hasUser) }
         style={this.data.style.appbar}
         titleStyle={this.data.style.title}
-        titleId='sidebarToggleButton'
-        iconElementLeft={<ActionReorder style={{marginTop: '10px', marginLeft: '20px', marginRight: '10px'}}/>}
-        onLeftIconButtonTouchTap={this.toggleDrawerActive}
-      />
+        //titleId='sidebarToggleButton'
+        //iconElementLeft={<ActionReorder style={{marginTop: '10px', marginLeft: '20px', marginRight: '10px'}}/>}
+        //onLeftIconButtonTouchTap={this.toggleDrawerActive}
+      >
+        <ActionReorder 
+          id='sidebarToggleButton'
+          style={{marginTop: '20px', marginLeft: '25px', marginRight: '10px', left: '0px', position: 'absolute', cursor: 'pointer'}}
+          onTouchTap={this.toggleDrawerActive}
+          onClick={this.toggleDrawerActive}
+          />
+      </AppBar>
     );
   }
 }
