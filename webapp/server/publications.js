@@ -1,8 +1,6 @@
-
 import {Meteor} from 'meteor/meteor';
-import {Statistics} from '/imports/api/statistics/statistics';
 import {MyGenotype} from '/imports/api/genotype/MyGenotype';
-
+import {Statistics} from '/imports/api/statistics/statistics';
 
 Meteor.publish("Statistics", function (){
   return Statistics.find();
@@ -13,6 +11,13 @@ Meteor.publish("MyGenotype", function (chromosomeNumber){
   check(chromosomeNumber, Number);
   return MyGenotype.find({}, {limit: 1000});
 });
+
+
+Meteor.publish("Observations", function (){
+  return Observations.find();
+});
+
+
 
 // Meteor.publish("Lists", function (){
 //   return Lists.find();
