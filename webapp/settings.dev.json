@@ -45,6 +45,7 @@
       "fhir": {
         "AuditEvents": true,
         "Conditions": true,
+        "Devices": true,
         "Patients": true,
         "Practitioners": true,
         "Organizations": true,
@@ -53,7 +54,6 @@
         "Locations": true,
         "Lists": true,
         "Medications": true,
-        "Devices": true,
         "Questionnaires": true,
         "RiskAssessments": false
       }
