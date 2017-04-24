@@ -33,7 +33,8 @@ export class GoogleMapsPage extends React.Component {
         }
       },
       center: {lat: 39.66, lng: -104.95},
-      zoom: 9
+      zoom: 9,
+      layers: ShapeFiles.find().fetch()
     };
 
     data.style = Glass.blur(data.style);
@@ -42,6 +43,7 @@ export class GoogleMapsPage extends React.Component {
     return data;
   }
   render(){
+    var self = this;
     var mapOverlays = <GlassCard id='pinpointCard' lat={39.66} lng={-104.95}>
       <CardText>
        Foo
@@ -54,6 +56,11 @@ export class GoogleMapsPage extends React.Component {
            id="googleMap"
            defaultCenter={this.data.center}
            defaultZoom={this.data.zoom}
+           onGoogleApiLoaded={function({map, maps}){
+
+             //map.data.loadGeoJson(self.data.layer[0]);
+             //console.log(map, maps)
+          }}
          >
          </GoogleMapReact>
       </div>

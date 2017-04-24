@@ -1,6 +1,8 @@
 import { Statistics } from '/imports/api/statistics/statistics';
 import { Meteor } from 'meteor/meteor';
 
+ShapeFiles = new Mongo.Collection('shapefiles');
+
 // INSECURE; DELETE ME
 if (Meteor.isClient){
   Meteor.subscribe('allPractitioners');
@@ -16,3 +18,4 @@ if (Meteor.isServer){
     Statistics.find({},{limit: 90});
   });
 }
+
