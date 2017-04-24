@@ -23,36 +23,73 @@ Meteor.methods({
     if (Practitioners.find().count() === 0) {
       console.log("No records found in Practitioners collection.  Lets create some...");
 
-      var defaultPractitioner = {
-        name: {
-          given: ["Benjamin"],
-          family: ["Spock"],
-          text: "Dr. Benjamin McLane Spock, MD"
-        },
-        telecom: [{
-          system: 'phone',
-          value: '415-555-1234',
-          use: 'work',
-          rank: '1'
-        }],
-        qualification: [{
-          identifier: [{
-            use: 'certficate',
-            value: '123456',
-            period: {
-              start: new Date(2010, 1, 1),
-              end: new Date(2019, 12, 31)
+      if(!Practitioners.find({'name.text': "Dr. Benjamin McLane Spock, MD"})){
+        var defaultPractitioner = {
+          name: [{
+            given: ["Benjamin"],
+            family: "Spock",
+            text: "Dr. Benjamin McLane Spock, MD"
+          }],
+          telecom: [{
+            system: 'phone',
+            value: '415-555-1234',
+            use: 'work',
+            rank: '1'
+          }],
+          qualification: [{
+            identifier: [{
+              use: 'certficate',
+              value: '123456',
+              period: {
+                start: new Date(2010, 1, 1),
+                end: new Date(2019, 12, 31)
+              }
+            }],
+            issuer: {
+              display: "American Board of Pediatrics",
+              reference: "Organizations/12345"
             }
           }],
-          issuer: {
-            display: "American Board of Pediatrics",
-            reference: "Organizations/12345"
-          }
-        }],
-        test: true
-      };
+          test: true
+        };
+        Meteor.call('createPractitioner', defaultPractitioner);
+      }
+      
+      if(!Practitioners.find({'name.text': "GREGORY MULA, MD"})){
+        var providerDirectoryDefaultPractitioner = {
+          name: [{
+            given: ["GREGORY"],
+            family: "MULA",
+            text: "GREGORY MULA, MD"
+          }],
+          telecom: [{
+            system: 'phone',
+            value: '415-555-1234',
+            use: 'work',
+            rank: '1'
+          }],
+          qualification: [{
+            identifier: [{
+              system: 'http://hl7.org/fhir/sid/us-npi',
+              use: 'certficate',
+              value: '1265437362',
+              period: {
+                start: new Date(2010, 1, 1),
+                end: new Date(2019, 12, 31)
+              }
+            }],
+            issuer: {
+              display: "American Board of Pathology",
+              reference: "Organizations/22888-91s"
+            }
+          }],
+          test: true
+        };
+        Meteor.call('createPractitioner', providerDirectoryDefaultPractitioner);
+      }
 
-      Meteor.call('createPractitioner', defaultPractitioner);
+    
+
     } else {
       console.log('Practitioners already exist.  Skipping.');
     }

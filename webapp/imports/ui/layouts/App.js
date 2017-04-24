@@ -5,12 +5,12 @@ import {teal400, teal600} from 'material-ui/styles/colors';
 import { Footer } from '/imports/ui/layouts/Footer';
 import { GlassApp } from '/imports/ui/layouts/GlassApp';
 import { GlassCard } from '/imports/ui/components/GlassCard';
-import { GlassLayout } from '/imports/ui/layouts/GlassLayout';
 import { Header } from '/imports/ui/layouts/Header';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import React  from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin  from 'react-mixin';
+import { SinglePanelLayout } from '/imports/ui/layouts/SinglePanelLayout';
 import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 // Material UI Theming
 import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
@@ -101,7 +101,7 @@ export class App extends React.Component {
     return (
      <MuiThemeProvider muiTheme={muiTheme}>
       <GlassApp>
-        <GlassLayout>
+        <SinglePanelLayout>
           <Header />
             <div className='primaryFlexPanel' >
               { this.props.children }
@@ -118,7 +118,7 @@ export class App extends React.Component {
               </VerticalCanvas>
             </div>
           <Footer />
-        </GlassLayout>
+        </SinglePanelLayout>
       </GlassApp>
      </MuiThemeProvider>
     );

@@ -1,50 +1,21 @@
-import React from 'react';
-import ReactMixin from 'react-mixin';
-import { ReactMeteorData } from 'meteor/react-meteor-data';
+import { CardActions, CardText } from 'material-ui/Card';
 
-import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
 import { Bert } from 'meteor/themeteorchef:bert';
-
-import { CardText, CardActions } from 'material-ui/Card';
+import RaisedButton from 'material-ui/RaisedButton';
+import React from 'react';
+import { ReactMeteorData } from 'meteor/react-meteor-data';
+import ReactMixin from 'react-mixin';
+import TextField from 'material-ui/TextField';
 
 let defaultLocation = {
-  resourceType: 'Location',
-  code: {
-    text: ""
-  },
-  isBrand: true,
-  manufacturer: {
-    display: '',
-    reference: ''
-  },
-  product: {
-    form: {
-      text: 'tablet'
-    },
-    ingredient: [{
-      item: {
-        resourceType: 'Substance',
-        code: {
-          text: ''
-        },
-        description: ''
-      },
-      instance: [{
-        quantity: ''
-      }]
-    }]
-  },
-  package: {
-    container: {
-      text: 'bottle'
-    },
-    content: [{
-      amount: {
-        value: 30,
-        unit: 'tablet'
-      }
-    }]
+  "resourceType": "Location",
+  "id": "3",
+  "status": "active",
+  "name": "USSS Enterprise-D Sickbay",
+  "mode": "instance",
+  "partOf": {
+    "reference": "Location/2",
+    "display": "USS Enterprise"
   }
 };
 
@@ -148,7 +119,7 @@ export default class LocationDetail extends React.Component {
             ref='locationName'
             name='locationName'
             floatingLabelText='Location Name'
-            value={this.data.location.code.text}
+            value=''
             onChange={ this.changeState.bind(this, 'locationName')}
             fullWidth
             /><br/>
@@ -157,7 +128,7 @@ export default class LocationDetail extends React.Component {
             ref='manufacturerDisplay'
             name='manufacturerDisplay'
             floatingLabelText='Manufacturer'
-            value={this.data.location.manufacturer.display ? this.data.location.manufacturer.display : ''}
+            value=''
             onChange={ this.changeState.bind(this, 'manufacturerDisplay')}
             fullWidth
             /><br/>
@@ -166,7 +137,7 @@ export default class LocationDetail extends React.Component {
             ref='locationForm'
             name='locationForm'
             floatingLabelText='Substance Form'
-            value={this.data.location.product.form.text}
+            value=''
             onChange={ this.changeState.bind(this, 'locationForm')}
             fullWidth
             /><br/>
@@ -175,26 +146,26 @@ export default class LocationDetail extends React.Component {
             ref='activeIngredient'
             name='activeIngredient'
             floatingLabelText='Active Ingredient'
-            value={this.data.location.product.ingredient[0].item.code.text}
+            value=''
             onChange={ this.changeState.bind(this, 'activeIngredient')}
             fullWidth
             /><br/>
           <TextField
-            id='activeIngredientQuantityInput'
-            ref='activeIngredientQuantity'
-            name='activeIngredientQuantity'
-            floatingLabelText='Quantity'
-            value={this.data.location.product.ingredient[0].instance[0].quantity}
-            onChange={ this.changeState.bind(this, 'activeIngredientQuantity')}
+            id='latitudeInput'
+            ref='latitude'
+            name='latitude'
+            floatingLabelText='Latitude'
+            value=''
+            onChange={ this.changeState.bind(this, 'latitude')}
             fullWidth
             /><br/>
           <TextField
-            id='activeIngredientDescriptionInput'
-            ref='activeIngredientDescription'
-            name='activeIngredientDescription'
-            floatingLabelText='Active Ingredient Description'
-            value={this.data.location.product.ingredient[0].item.description}
-            onChange={ this.changeState.bind(this, 'activeIngredientDescription')}
+            id='longitudeInput'
+            ref='longitude'
+            name='longitude'
+            floatingLabelText='Longitude'
+            value=''
+            onChange={ this.changeState.bind(this, 'longitude')}
             fullWidth
             /><br/>
         </CardText>

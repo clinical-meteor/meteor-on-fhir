@@ -1,5 +1,5 @@
 ConformanceStatement = {
-  "resourceType": "Conformance",
+  "resourceType": "CapabilityStatement",
   "url": "http://fhir-server.meteorapp.com/fhir-3.0.0",
   "name": "ProviderDirectory",
   "version": "0.4",

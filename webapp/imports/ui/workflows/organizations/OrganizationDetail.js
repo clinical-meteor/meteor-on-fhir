@@ -1,12 +1,11 @@
-import React from 'react';
-import ReactMixin from 'react-mixin';
-import { ReactMeteorData } from 'meteor/react-meteor-data';
+import { CardActions, CardText } from 'material-ui/Card';
 
-import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
 import { Bert } from 'meteor/themeteorchef:bert';
-
-import { CardText, CardActions } from 'material-ui/Card';
+import RaisedButton from 'material-ui/RaisedButton';
+import React from 'react';
+import { ReactMeteorData } from 'meteor/react-meteor-data';
+import ReactMixin from 'react-mixin';
+import TextField from 'material-ui/TextField';
 
 let defaultOrganization = {
   resourceType: 'Organization',
@@ -148,7 +147,7 @@ export default class OrganizationDetail extends React.Component {
             ref='organizationName'
             name='organizationName'
             floatingLabelText='Organization Name'
-            value={this.data.organization.code.text}
+            value={ (this.data.organization.code) ? this.data.organization.code.text : ''}
             onChange={ this.changeState.bind(this, 'organizationName')}
             fullWidth
             /><br/>
@@ -157,7 +156,7 @@ export default class OrganizationDetail extends React.Component {
             ref='manufacturerDisplay'
             name='manufacturerDisplay'
             floatingLabelText='Manufacturer'
-            value={this.data.organization.manufacturer.display ? this.data.organization.manufacturer.display : ''}
+            value={this.data.organization.manufacturer ? this.data.organization.manufacturer.display : ''}
             onChange={ this.changeState.bind(this, 'manufacturerDisplay')}
             fullWidth
             /><br/>
@@ -166,7 +165,7 @@ export default class OrganizationDetail extends React.Component {
             ref='organizationForm'
             name='organizationForm'
             floatingLabelText='Substance Form'
-            value={this.data.organization.product.form.text}
+            value={(this.data.organization.product) ? this.data.organization.product.form.text : ''}
             onChange={ this.changeState.bind(this, 'organizationForm')}
             fullWidth
             /><br/>
@@ -175,7 +174,7 @@ export default class OrganizationDetail extends React.Component {
             ref='activeIngredient'
             name='activeIngredient'
             floatingLabelText='Active Ingredient'
-            value={this.data.organization.product.ingredient[0].item.code.text}
+            value={(this.data.organization.product) ? this.data.organization.product.ingredient[0].item.code.text : ''}
             onChange={ this.changeState.bind(this, 'activeIngredient')}
             fullWidth
             /><br/>
@@ -184,7 +183,7 @@ export default class OrganizationDetail extends React.Component {
             ref='activeIngredientQuantity'
             name='activeIngredientQuantity'
             floatingLabelText='Quantity'
-            value={this.data.organization.product.ingredient[0].instance[0].quantity}
+            value={(this.data.organization.product) ? this.data.organization.product.ingredient[0].instance[0].quantity : ''}
             onChange={ this.changeState.bind(this, 'activeIngredientQuantity')}
             fullWidth
             /><br/>
@@ -193,7 +192,7 @@ export default class OrganizationDetail extends React.Component {
             ref='activeIngredientDescription'
             name='activeIngredientDescription'
             floatingLabelText='Active Ingredient Description'
-            value={this.data.organization.product.ingredient[0].item.description}
+            value={(this.data.organization.product) ? this.data.organization.product.ingredient[0].item.description : ''}
             onChange={ this.changeState.bind(this, 'activeIngredientDescription')}
             fullWidth
             /><br/>

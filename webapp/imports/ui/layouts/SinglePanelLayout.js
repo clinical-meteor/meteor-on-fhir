@@ -1,21 +1,16 @@
-import React  from 'react';
-import ReactMixin  from 'react-mixin';
-import { ReactMeteorData } from 'meteor/react-meteor-data';
-
-import { Meteor } from 'meteor/meteor';
-import { Session } from 'meteor/session';
+import { AdminSidebar }  from '/imports/ui/components/AdminSidebar';
 import { CardHeader } from 'material-ui/Card';
-import User from '/imports/api/User';
+import Drawer from 'material-ui/Drawer';
 import { IndexLinkContainer } from 'react-router-bootstrap';
-
-import { PublicSidebar }  from '/imports/ui/components/PublicSidebar';
+import { Meteor } from 'meteor/meteor';
 import { PatientSidebar }  from '/imports/ui/components/PatientSidebar';
 import { PractitionerSidebar }  from '/imports/ui/components/PractitionerSidebar';
-import { AdminSidebar }  from '/imports/ui/components/AdminSidebar';
-
-import Drawer from 'material-ui/Drawer';
-
-
+import { PublicSidebar }  from '/imports/ui/components/PublicSidebar';
+import React  from 'react';
+import { ReactMeteorData } from 'meteor/react-meteor-data';
+import ReactMixin  from 'react-mixin';
+import { Session } from 'meteor/session';
+import User from '/imports/api/User';
 
 Session.setDefault('backgroundImagePath', 'url(\"images\/ForestInMist.jpg\")');
 Session.setDefault('backgroundColor', '#eeeeee');
@@ -27,7 +22,7 @@ Session.setDefault('drawerActive', false);
 Session.setDefault('drawerActive', false);
 
 
-export class GlassLayout extends React.Component {
+export class SinglePanelLayout extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -116,7 +111,7 @@ export class GlassLayout extends React.Component {
   render(){
 
     return (
-      <div id='glassLayout'>
+      <div id='SinglePanelLayout'>
         <Drawer
           open={this.data.state.drawerActive}
           docked={false}
@@ -149,4 +144,4 @@ export class GlassLayout extends React.Component {
 
 
 
-ReactMixin(GlassLayout.prototype, ReactMeteorData);
+ReactMixin(SinglePanelLayout.prototype, ReactMeteorData);
