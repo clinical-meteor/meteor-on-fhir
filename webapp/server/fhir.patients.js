@@ -1,6 +1,48 @@
 
+import { HTTP } from 'meteor/http';
+import { parseString } from 'xml2js';
+
+import FHIR from 'fhir';
+
+import { Promise } from 'meteor/promise';
+
+
+
+var fhir = new FHIR(FHIR.DSTU1);
 
 Meteor.methods({
+  queryEpic: function(){
+    console.log('-----------------------------------------');
+    console.log('Querying open.epic.com...');
+
+    var httpResult = HTTP.get('https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB');
+
+    const patientJson = Promise.await(fhir.XmlToObject(httpResult.content));
+
+        console.log('parseEpicXml[result]', patientJson)
+        var patientStu3 = Patients.toStu3(patientJson);
+
+        PatientSchema.clean(patientStu3);
+
+        console.log('savePatient', patientStu3);
+            
+        if(patientStu3.resourceType === "Patient"){
+          Patients.insert(patientStu3, function(error, result){
+            if (error) {
+              console.log('Patients.insert[error]', error);
+              HipaaLogger.logEvent({eventType: "error", userId: Meteor.userId(), userName: Meteor.user().getPrimaryEmail(), collectionName: "Patients"});
+            }
+            if (result) {
+              console.log('Patient created: ' + result);
+              HipaaLogger.logEvent({eventType: "create", userId: Meteor.userId(), userName: Meteor.user().getPrimaryEmail(), collectionName: "Patients"});
+            }
+          });        
+
+        } else {
+          console.log('Not a patient...')
+        }
+    
+  },
   createPatient:function(patientObject){
     check(patientObject, Object);
 
@@ -10,12 +52,11 @@ Meteor.methods({
       Patients.insert(patientObject, function(error, result){
         if (error) {
           console.log(error);
-          HipaaLogger.logEvent('error', Meteor.userId(), Meteor.user().getPrimaryEmail(), 'Patients', null, null, null, error);
-
+          HipaaLogger.logEvent({eventType: "error", userId: Meteor.userId(), userName: Meteor.user().getPrimaryEmail(), collectionName: "Patients"});
         }
         if (result) {
           console.log('Patient created: ' + result);
-          HipaaLogger.logEvent('create', Meteor.userId(), Meteor.user().getPrimaryEmail(), 'Patients', null, null, null, null);
+          HipaaLogger.logEvent({eventType: "create", userId: Meteor.userId(), userName: Meteor.user().getPrimaryEmail(), collectionName: "Patients"});
         }
       });
     } else {
@@ -88,3 +129,4 @@ Meteor.methods({
     }
   }
 });
+

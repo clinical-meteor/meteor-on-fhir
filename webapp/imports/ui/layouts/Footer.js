@@ -84,7 +84,18 @@ export class Footer extends React.Component {
   clickOnThemingButton(){
     browserHistory.push('/theming');
   }
+  querySystemButton(){
+    console.log("querying open.epic.com");
+    Meteor.call("queryEpic", function(error, result){
+      if(error){
+        console.log("error", error);
+      }
+      if(result){
+         console.log("queryEpic[epic]", result);         
+      }
+    });
 
+  }
   renderWestNavbar(displayThemeNavbar){
     if (displayThemeNavbar) {
       // the user has pressed ctrl-cmd-t and is looking at theming controls
@@ -97,10 +108,12 @@ export class Footer extends React.Component {
       );
     } else {
 
-      if (Meteor.userId() && (Session.equals('pathname', '/'))) {
+      if (Meteor.userId() && (Session.equals('pathname', '/patients'))) {
         // the user is logged in as a normal user
         return (
-          <div></div>
+          <div>
+            <FlatButton label='query open.epic.com' className='querySystemButton' ref='querySystemButton' onClick={this.querySystemButton} style={this.data.style.buttonText} ></FlatButton>
+          </div>
         );
       } else {
         // anything else
