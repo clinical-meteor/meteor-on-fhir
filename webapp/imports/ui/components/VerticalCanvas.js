@@ -1,9 +1,8 @@
-import React from 'react';
-import ReactMixin from 'react-mixin';
-import { ReactMeteorData } from 'meteor/react-meteor-data';
-
-import { Session } from 'meteor/session';
 import { Meteor } from 'meteor/meteor';
+import React from 'react';
+import { ReactMeteorData } from 'meteor/react-meteor-data';
+import ReactMixin from 'react-mixin';
+import { Session } from 'meteor/session';
 
 Meteor.startup(function (){
   Session.set('appSurfaceOffset', false);
@@ -22,10 +21,17 @@ export class VerticalCanvas extends React.Component {
         transition: 'ease .2s'
       }
     };
-    var canvasWidth = 1024;
+
 
     if (this.props.width) {
       canvasWidth = this.props.width;
+    }
+
+    var canvasWidth;
+    if(Session.get('isWideHorizontally')){
+      canvasWidth = Session.get('appWidth') - 1;
+    } else {
+      canvasWidth = 1024;
     }
 
     if (Session.get('appWidth') > canvasWidth) {
@@ -33,10 +39,14 @@ export class VerticalCanvas extends React.Component {
       data.style.maxWidth = canvasWidth + 'px';
       data.style.width = '100%';
 
+
+
       if (Session.get('appSurfaceOffset')) {
+        // golden ratio
         data.style.left = (Session.get('appWidth') - canvasWidth) * 0.1618;
         data.style.marginRight = '100px';
       } else {
+        // centered
         data.style.left = (Session.get('appWidth') - canvasWidth) * 0.5;
       }
 
@@ -73,7 +83,7 @@ export class VerticalCanvas extends React.Component {
 
 
 
-    //data.style.overflowY = 'scroll';
+    data.style.overflowY = 'scroll';
     data.style.WebkitOverflowScrolling = 'touch';
     data.style.WebkitTransform = 'translateZ(0px)';
     data.style.WebkitTransform = 'translate3d(0, 0, 0)';

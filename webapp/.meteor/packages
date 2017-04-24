@@ -62,22 +62,24 @@ clinical:autopublish
 
 # fhir resources
 clinical:hl7-resource-audit-event
-clinical:hl7-resource-datatypes
-clinical:hl7-resource-patient
-clinical:hl7-resource-practitioner
-clinical:hl7-resource-medication
 clinical:hl7-resource-careplan
 clinical:hl7-resource-condition
-clinical:hl7-resource-encounter
-clinical:hl7-resource-goal
-clinical:hl7-resource-questionnaire
-clinical:hl7-resource-questionnaire-response
-clinical:hl7-resource-organization
-clinical:hl7-resource-observation
-clinical:hl7-resource-message-header
+clinical:hl7-resource-datatypes
 clinical:hl7-resource-device
+clinical:hl7-resource-encounter
+clinical:hl7-resource-endpoint
+clinical:hl7-resource-goal
 clinical:hl7-resource-location
 clinical:hl7-resource-list
+clinical:hl7-resource-medication
+clinical:hl7-resource-message-header
+clinical:hl7-resource-organization
+clinical:hl7-resource-observation
+clinical:hl7-resource-patient
+clinical:hl7-resource-practitioner
+clinical:hl7-resource-practitioner-role
+clinical:hl7-resource-questionnaire
+clinical:hl7-resource-questionnaire-response
 clinical:hl7-resource-risk-assessment
 
 # test data
