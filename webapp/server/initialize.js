@@ -1,10 +1,7 @@
-
 // https://www.hl7.org/fhir/riskassessment-example-prognosis.json.html
 // https://www.hl7.org/fhir/riskassessment-example-cardiac.json.html
 import { Accounts } from 'meteor/accounts-base';
 import { Meteor } from 'meteor/meteor';
-
-
 
 Meteor.startup(function(){
   console.log("*************************************************************************************");
@@ -28,15 +25,17 @@ Meteor.startup(function(){
 
     console.log("Initializing records...");
 
+    Meteor.call('initializeBlockchain');  // creates Organizations
     Meteor.call('initializeCarePlan');
     Meteor.call('initializeChecklists');
     Meteor.call('initializeCondition');
     Meteor.call('initializeDevice');
+    Meteor.call('initializeLocations');
+    Meteor.call('initializeMedications');
     Meteor.call('initializeObservation', 70.0, '');
     Meteor.call('initializePatient');
     Meteor.call('initializePractitioner');
     Meteor.call('initializeQuestionnaire');
-    Meteor.call('initializeMedications');
 
     Meteor.call('generateDailyStat');
 

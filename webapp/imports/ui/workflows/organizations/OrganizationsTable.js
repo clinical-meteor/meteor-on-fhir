@@ -1,7 +1,6 @@
 import React from 'react';
-import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
-
+import ReactMixin from 'react-mixin';
 import { Table } from 'react-bootstrap';
 import Toggle from 'material-ui/Toggle';
 
@@ -44,7 +43,7 @@ export default class OrganizationTable extends React.Component {
         if (organization.telecom && organization.telecom[0] && organization.telecom[0].value ) {
           result.phone = organization.telecom[0].value ;
         }
-        if (organization.telecom && organization.telecom[0] && organization.telecom[1].value ) {
+        if (organization.telecom && organization.telecom[1] && organization.telecom[1].value ) {
           result.email = organization.telecom[1].value;
         }
 
@@ -95,10 +94,9 @@ export default class OrganizationTable extends React.Component {
       tableRows.push(
       <tr className='organizationRow' ref='med-{i}' key={i} style={{cursor: 'pointer'}} onClick={ this.rowClick.bind('this', this.data.organizations[i]._id) }>
         <td className="organizationName hidden-on-phone">{this.data.organizations[i].name}</td>
-        <td className="organizationIdentifier hidden-on-phone">{this.data.organizations[i].identifier[0].value }</td>
+        <td className="organizationIdentifier hidden-on-phone">{ ( this.data.organizations[i].identifier && this.data.organizations[i].identifier[0]) ? this.data.organizations[i].identifier[0].value : '' }</td>
         <td className="phone">{this.data.organizations[i].phone}</td>
         <td className="email">{this.data.organizations[i].email}</td>
-        <td className="barcode hidden-on-phone">{this.data.organizations[i]._id}</td>
       </tr>);
     }
 
@@ -111,7 +109,6 @@ export default class OrganizationTable extends React.Component {
             <th className="organizationIdentifier hidden-on-phone">identifier</th>
             <th className="phone">phone</th>
             <th className="email">email</th>
-            <th className="id hidden-on-phone">organization._id</th>
           </tr>
         </thead>
         <tbody>
