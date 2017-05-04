@@ -1,13 +1,10 @@
-
-
-
 import { HTTP } from 'meteor/http';
-
+import { Meteor } from 'meteor/meteor';
 
 Patients.after.insert(function (userId, doc) {
 
   // HIPAA Audit Log
-  HipaaLogger.logEvent({eventType: "create", userId: Meteor.userId(), userName: Meteor.user().getPrimaryEmail(), collectionName: "Patients"});
+  HipaaLogger.logEvent({eventType: "create", userId: userId, userName: '', collectionName: "Patients"});
 
   // RELAY/SEND FUNCTIONALITY
   // interface needs to be active in order to send the messages
@@ -25,6 +22,9 @@ Patients.after.insert(function (userId, doc) {
   }
 });
 Patients.after.update(function (userId, doc) {
+
+  // HIPAA Audit Log
+  HipaaLogger.logEvent({eventType: "update", userId: userId, userName: '', collectionName: "Patients"});
 
   // interface needs to be active in order to send the messages
   if (Meteor.settings && Meteor.settings.public && Meteor.settings.public.interfaces && Meteor.settings.public.interfaces.default && Meteor.settings.public.interfaces.default.status && (Meteor.settings.public.interfaces.default.status === "active")) {

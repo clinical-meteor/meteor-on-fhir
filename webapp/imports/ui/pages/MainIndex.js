@@ -274,7 +274,7 @@ export class MainIndex extends React.Component {
   }
   renderPractitioners(user){
     if (Meteor.settings.public.modules.fhir.Practitioners) {
-      if (user.isPractitioner || user.isAdmin) {
+      if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
           <div id="practitionersTile" style={this.data.style.indexCardPadding} onClick={ this.openPractitioners.bind(this) } >
             <GlassCard style={this.data.style.indexCard} >

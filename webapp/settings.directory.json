@@ -1,6 +1,6 @@
 {
   "public": {
-    "title": "Meteor on FHIR",
+    "title": "Symptomatic ProviderDirectory",
     "theme": {
       "showVideoBackground": false,
       "darkroomTextEnabled": false,
@@ -51,18 +51,18 @@
       "epic": true,
       "fhir": {
         "AuditEvents": true,
-        "Conditions": true,
-        "Devices": true,
+        "Conditions": false,
+        "Devices": false,
         "Patients": true,
         "Practitioners": true,
         "Organizations": true,
-        "Observations": true,
-        "ImagingStudies": true,
+        "Observations": false,
+        "ImagingStudies": false,
         "Locations": true,
-        "Lists": true,
-        "Medications": true,
+        "Lists": false,
+        "Medications": false,
         "Questionnaires": true,
-        "RiskAssessments": true
+        "RiskAssessments": false
       }
     }
   },

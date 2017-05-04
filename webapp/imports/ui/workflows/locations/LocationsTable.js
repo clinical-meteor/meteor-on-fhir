@@ -89,7 +89,6 @@ export default class LocationTable extends React.Component {
     for (var i = 0; i < this.data.locations.length; i++) {
       tableRows.push(
       <tr className='locationRow' ref='med-{i}' key={i} style={{cursor: 'pointer'}} onClick={ this.rowClick.bind('this', this.data.locations[i]._id) }>
-        <td className="locationName hidden-on-phone">{this.data.locations[i]._id}</td>
         <td className="locationName hidden-on-phone">{this.data.locations[i].name}</td>
         <td className="latitutude">{(this.data.locations[i].position) ? this.data.locations[i].position.latitude : ''}</td>
         <td className="longitude">{(this.data.locations[i].position) ? this.data.locations[i].position.longitude : ''}</td>
@@ -102,7 +101,6 @@ export default class LocationTable extends React.Component {
       <Table id="locationsTable" ref='locationsTable' responses hover >
         <thead>
           <tr>
-            <th className="locationName hidden-on-phone">id</th>
             <th className="locationName hidden-on-phone">name</th>
             <th className="latitutude">latitutude</th>
             <th className="longitude">longitude</th>

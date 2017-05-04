@@ -84,9 +84,9 @@ export class Footer extends React.Component {
   clickOnThemingButton(){
     browserHistory.push('/theming');
   }
-  querySystemButton(){
-    console.log("querying open.epic.com");
-    Meteor.call("queryEpic", function(error, result){
+  querySystemButton(resourceType){
+    console.log("querying open.epic.com", resourceType);
+    Meteor.call("queryEpic", resourceType, function(error, result){
       if(error){
         console.log("error", error);
       }
@@ -107,14 +107,24 @@ export class Footer extends React.Component {
         </div>
       );
     } else {
-
-      if (Meteor.userId() && (Session.equals('pathname', '/patients'))) {
+      // PATIENTS
+      if (Meteor.userId() && (Session.equals('pathname', '/patients')) && Meteor.settings.public && Meteor.settings.public.modules && Meteor.settings.public.modules.epic) {
         // the user is logged in as a normal user
         return (
           <div>
-            <FlatButton label='query open.epic.com' className='querySystemButton' ref='querySystemButton' onClick={this.querySystemButton} style={this.data.style.buttonText} ></FlatButton>
+            <FlatButton label='query open.epic.com' className='querySystemButton' ref='querySystemButton' onClick={this.queryPatients.bind(this, 'Patients')} style={this.data.style.buttonText} ></FlatButton>
           </div>
         );
+
+      // ORGANIZATIONS
+      } else if (Meteor.userId() && (Session.equals('pathname', '/organizations')) && Meteor.settings.public && Meteor.settings.public.modules && Meteor.settings.public.modules.epic) {
+        // the user is logged in as a normal user
+        return (
+          <div>
+            <FlatButton label='GET open.epic.com/Organization' className='querySystemButton' ref='querySystemButton' onClick={this.querySystemButton.bind(this, 'Organization')} style={this.data.style.buttonText} ></FlatButton>
+          </div>
+        );
+
       } else {
         // anything else
         return (

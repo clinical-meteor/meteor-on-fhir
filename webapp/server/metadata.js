@@ -57,6 +57,8 @@ if (Meteor.settings.public.modules.fhir.Patients) {
     "interaction": [{
       "code": "read"
     }, {
+      "code": "vread"
+    }, {
       "code": "create"
     }, {
       "code": "update"
@@ -65,9 +67,17 @@ if (Meteor.settings.public.modules.fhir.Patients) {
     }, {
       "code": "history"
     }, {
-      "code": "search-type",
-      "documentation": "When a client searches patients with no search criteria, they get a list of all patients they have access too. Servers may elect to offer additional search parameters, but this is not required"
+      "code": "history-type"
+    }, {
+      "code": "history-instance"
+    }, {
+      "code": "search-type"
     }],
+    "readHistory": false,
+    "updateCreate": true,
+    "conditionalCreate": false,
+    "conditionalUpdate": false,
+    "conditionalDelete": "not-supported",
     "searchParam": [
       {
         "name": "_id",
@@ -109,6 +119,8 @@ if (Meteor.settings.public.modules.fhir.Practitioners) {
     "interaction": [{
       "code": "read"
     }, {
+      "code": "vread"
+    }, {
       "code": "create"
     }, {
       "code": "update"
@@ -117,8 +129,17 @@ if (Meteor.settings.public.modules.fhir.Practitioners) {
     }, {
       "code": "history"
     }, {
+      "code": "history-type"
+    }, {
+      "code": "history-instance"
+    }, {
       "code": "search-type"
     }],
+    "readHistory": false,
+    "updateCreate": true,
+    "conditionalCreate": false,
+    "conditionalUpdate": false,
+    "conditionalDelete": "not-supported",
     "searchParam": [
         {
           "name": "_id",
@@ -239,6 +260,8 @@ if (Meteor.settings.public.modules.fhir.Organizations) {
     "interaction": [{
       "code": "read"
     }, {
+      "code": "vread"
+    }, {
       "code": "create"
     }, {
       "code": "update"
@@ -247,8 +270,17 @@ if (Meteor.settings.public.modules.fhir.Organizations) {
     }, {
       "code": "history"
     }, {
+      "code": "history-type"
+    }, {
+      "code": "history-instance"
+    }, {
       "code": "search-type"
     }],
+    "readHistory": false,
+    "updateCreate": true,
+    "conditionalCreate": false,
+    "conditionalUpdate": false,
+    "conditionalDelete": "not-supported",
     "searchParam": [
         {
           "name": "_id",
@@ -274,6 +306,8 @@ if (Meteor.settings.public.modules.fhir.Locations) {
     "interaction": [{
       "code": "read"
     }, {
+      "code": "vread"
+    }, {
       "code": "create"
     }, {
       "code": "update"
@@ -282,8 +316,17 @@ if (Meteor.settings.public.modules.fhir.Locations) {
     }, {
       "code": "history"
     }, {
+      "code": "history-type"
+    }, {
+      "code": "history-instance"
+    }, {
       "code": "search-type"
     }],
+    "readHistory": false,
+    "updateCreate": true,
+    "conditionalCreate": false,
+    "conditionalUpdate": false,
+    "conditionalDelete": "not-supported",
     "searchParam": [
         {
           "name": "_id",
@@ -308,6 +351,8 @@ if (Meteor.settings.public.modules.fhir.AuditEvents) {
     "interaction": [{
       "code": "read"
     }, {
+      "code": "vread"
+    }, {
       "code": "create"
     }, {
       "code": "update"
@@ -316,8 +361,17 @@ if (Meteor.settings.public.modules.fhir.AuditEvents) {
     }, {
       "code": "history"
     }, {
+      "code": "history-type"
+    }, {
+      "code": "history-instance"
+    }, {
       "code": "search-type"
     }],
+    "readHistory": false,
+    "updateCreate": true,
+    "conditionalCreate": false,
+    "conditionalUpdate": false,
+    "conditionalDelete": "not-supported",
     "searchParam": [
         {
           "name": "_id",
