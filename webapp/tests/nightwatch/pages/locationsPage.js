@@ -11,59 +11,53 @@ module.exports = {
       return this
         .verify.elementNotPresent('#locationsTable .locationRow:nth-child(1)');
     },
-    verifyOrganizationListCard: function() {
+    verifyLocationListCard: function() {
       return this
         .verify.elementPresent('#locationsTable')
         .verify.elementPresent('#locationsTable .locationRow:nth-child(1)')
-        .verify.elementPresent('#locationsTable .locationRow:nth-child(1) .name');
+        .verify.elementPresent('#locationsTable .locationRow:nth-child(1) .locationName');
     },
-    selectNewOrganizationTab: function() {
+    selectNewLocationTab: function() {
       return this
         .verify.elementPresent('#locationsPageTabs')
-        .verify.elementPresent('#locationsPageTabs .newOrganizationTab')
-        .click("#locationsPageTabs .newOrganizationTab");
+        .verify.elementPresent('#locationsPageTabs .newLocationTab')
+        .click("#locationsPageTabs .newLocationTab");
     },
-    verifyNewOrganizationCard: function() {
+    verifyNewLocationCard: function() {
       return this
         .verify.elementPresent('#locationsPage .locationDetail')
-        .verify.elementPresent('#locationsPage .locationDetail input[name="name"]')
-        .verify.elementPresent('#locationsPage .locationDetail input[name="telecomValue"]')
-        .verify.elementPresent('#locationsPage .locationDetail input[name="telecomUse"]')
-        .verify.elementPresent('#locationsPage .locationDetail input[name="issuer"]')
-        .verify.elementPresent('#locationsPage .locationDetail input[name="qualificationId"]')
-        .verify.elementPresent('#locationsPage .locationDetail input[name="qualificationStart"]')
-        .verify.elementPresent('#locationsPage .locationDetail input[name="qualificationEnd"]');
+        .verify.elementPresent('#locationsPage .locationDetail input[name="locationName"]')
+        .verify.elementPresent('#locationsPage .locationDetail input[name="latitude"]')
+        .verify.elementPresent('#locationsPage .locationDetail input[name="longitude"]')
+        .verify.elementPresent('#locationsPage .locationDetail input[name="altitude"]')
     },
-    verifyOrganizationDetails: function(name, telecomValue, telecomUse, issuer, qualificationId) {
+    verifyLocationDetails: function(name, latitude, longitude, altitude, qualificationId) {
       this
         .waitForElementPresent('#locationDetails', 5000)
-        .waitForElementPresent('#locationDetails input[name="name"]', 5000);
+        .waitForElementPresent('#locationDetails input[name="locationName"]', 5000);
 
       if (name) {
-        this.verify.attributeEquals('#locationsPage .locationDetail  input[name="name"]', 'value', name);
+        this.verify.attributeEquals('#locationsPage .locationDetail  input[name="locationName"]', 'value', name.toString());
       }
-      if (telecomValue) {
-        this.verify.attributeEquals('#locationsPage .locationDetail  input[name="telecomValue"]', 'value', telecomValue);
+      if (latitude) {
+        this.verify.attributeEquals('#locationsPage .locationDetail  input[name="latitude"]', 'value', latitude.toString());
       }
-      if (telecomUse) {
-        this.verify.attributeEquals('#locationsPage .locationDetail  input[name="telecomUse"]', 'value', telecomUse);
+      if (longitude) {
+        this.verify.attributeEquals('#locationsPage .locationDetail  input[name="longitude"]', 'value', longitude.toString());
       }
-      if (issuer) {
-        this.verify.attributeEquals('#locationsPage .locationDetail  input[name="issuer"]', 'value', issuer);
-      }
-      if (qualificationId) {
-        this.verify.attributeEquals('#locationsPage .locationDetail  input[name="qualificationId"]', 'value', qualificationId);
+      if (altitude) {
+        this.verify.attributeEquals('#locationsPage .locationDetail  input[name="altitude"]', 'value', altitude.toString());
       }
       return this;
     },
-    listContainsOrganization: function (index, name) {
+    listContainsLocation: function (index, name) {
       this
         .verify.elementPresent('#locationsTable')
         .verify.elementPresent('#locationsTable .locationRow:nth-child(' + index + ')')
-        .verify.elementPresent('#locationsTable .locationRow:nth-child(' + index + ') .name');
+        .verify.elementPresent('#locationsTable .locationRow:nth-child(' + index + ') .locationName');
 
       if (name) {
-        this.verify.containsText('#locationsTable .locationRow:nth-child(' + index + ') .name', name);
+        this.verify.containsText('#locationsTable .locationRow:nth-child(' + index + ') .locationName', name);
       }
       return this;
     },
@@ -73,50 +67,47 @@ module.exports = {
     displayListCard: function(){
       return this.click('#locationsPage .locationListTab');
     },
-    displayNewOrganizationCard: function(){
-      return this.click('#locationsPage .newOrganizationTab');
+    displayNewLocationCard: function(){
+      return this.click('#locationsPage .newLocationTab');
     },
-    displayOrganizationDetails: function(){
+    displayLocationDetails: function(){
       return this.click('#locationsPage .locationDetailsTab');
     },
-    selectOrganization: function(index){
+    selectLocation: function(index){
       return this.click('#locationsTable .locationRow:nth-child(' + index + ')');
     },
-    upsertOrganization: function(name, telecomValue, telecomUse, issuer, qualificationId, pageElement) {
+    upsertLocation: function(name, latitude, longitude, altitude, pageElement) {
       if (name) {
         var nameArray = name.split('');
         for (var i = 0; i < nameArray.length; i++) {
-          this.setValue(pageElement + ' input[name="name"]', nameArray[i]);
+          this.setValue(pageElement + ' input[name="locationName"]', nameArray[i]);
         }
       }
-      if (telecomValue) {
-        var telecomValueArray = telecomValue.split('');
-        for (var l = 0; l < telecomValueArray.length; l++) {
-          this.setValue(pageElement + ' input[name="telecomValue"]', telecomValueArray[l]);
-        }
+      if (latitude) {
+        // var latitudeArray = latitude.split('');
+        // for (var l = 0; l < latitudeArray.length; l++) {
+        //   this.setValue(pageElement + ' input[name="latitude"]', latitudeArray[l]);
+        // }
+        this.setValue(pageElement + ' input[name="latitude"]', latitude);
       }
-      if (telecomUse) {
-        var telecomUseArray = telecomUse.split('');
-        for (var m = 0; m < telecomUseArray.length; m++) {
-          this.setValue(pageElement + ' input[name="telecomUse"]', telecomUseArray[m]);
-        }
+      if (longitude) {
+        // var longitudeArray = longitude.split('');
+        // for (var m = 0; m < longitudeArray.length; m++) {
+        //   this.setValue(pageElement + ' input[name="longitude"]', longitudeArray[m]);
+        // }
+        this.setValue(pageElement + ' input[name="longitude"]', longitude);
       }
-      if (issuer) {
-        var issuerArray = issuer.split('');
-        for (var j = 0; j < issuerArray.length; j++) {
-          this.setValue(pageElement + ' input[name="issuer"]', issuerArray[j]);
-        }
-      }
-      if (qualificationId) {
-        var qualificationIdArray = qualificationId.split('');
-        for (var k = 0; k < qualificationIdArray.length; k++) {
-          this.setValue(pageElement + ' input[name="qualificationId"]', qualificationIdArray[k]);
-        }
+      if (altitude) {
+        // var altitudeArray = altitude.split('');
+        // for (var j = 0; j < altitudeArray.length; j++) {
+        //   this.setValue(pageElement + ' input[name="altitude"]', altitudeArray[j]);
+        // }
+        this.setValue(pageElement + ' input[name="altitude"]', altitude);
       }
       return this;
     },
-    saveOrganization: function(){
-      return this.verify.elementPresent('#saveOrganizationButton').click('#saveOrganizationButton');
+    saveLocation: function(){
+      return this.verify.elementPresent('#saveLocationButton').click('#saveLocationButton');
     },
 
     pause: function(time, client) {

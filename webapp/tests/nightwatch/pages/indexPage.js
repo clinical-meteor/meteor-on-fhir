@@ -35,6 +35,16 @@ module.exports = {
       return this
         .verify.elementPresent('#conditionsTile')
         .click('#conditionsTile');
+    },
+    selectLocationsTile: function() {
+      return this
+        .verify.elementPresent('#locationsTile')
+        .click('#locationsTile');
+    },
+    selectOrganizationsTile: function() {
+      return this
+        .verify.elementPresent('#organizationsTile')
+        .click('#organizationsTile');
     }
   }],
   elements: {

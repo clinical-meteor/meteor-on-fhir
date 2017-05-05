@@ -46,7 +46,7 @@ module.exports = {
       .saveScreenshot('tests/nightwatch/screenshots/organizations.crud/B-OrganizationList.png', client);
 
     client
-      .click('#newOrganization .saveOrganizationButton').pause(1000);
+      .click('#newOrganization #saveOrganizationButton').pause(1000);
   },
   'list should contain recently created organization': function (client) {
     client.page
@@ -101,7 +101,7 @@ module.exports = {
     // there are two #saveOrganizationButtons on the page
     // so we need to scope the button accordingly
     client
-      .click('#organizationDetails .saveOrganizationButton').pause(1000);
+      .click('#organizationDetails #saveOrganizationButton').pause(1000);
   },
   'list edited Organizations': function (client) {
     client.page

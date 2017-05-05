@@ -42,71 +42,56 @@ module.exports = {
       .locationsPage()
       .selectNewLocationTab()
       .verifyNewLocationCard()
-      .upsertLocation('Dr. Benjamin McLane Spock', '702-555-2345', 'work', 'Pediatrician', '781912', '#newLocation', client)
+      .upsertLocation('Center for Disease Control', 33.7993, 84.3280, 200, '#newLocation', client)
       .saveScreenshot('tests/nightwatch/screenshots/locations.crud/B-LocationList.png', client);
 
     client
-      .click('#newLocation .saveLocationButton').pause(1000);
+      .click('#newLocation #saveLocationButton').pause(1000);
   },
   'list should contain recently created location': function (client) {
     client.page
       .locationsPage()
       .selectListTab()
       .verifyLocationListCard()
-      .listContainsLocation(1, 'Dr. Benjamin McLane Spock')
+      .listContainsLocation(1, 'Center for Disease Control')
       .saveScreenshot('tests/nightwatch/screenshots/locations.crud/B-LocationList.png', client);
   },
   'location detail': function (client) {
     client.page
       .locationsPage()
       .selectLocation(1)
-      .verifyLocationDetails('Dr. Benjamin McLane Spock', '702-555-2345', 'work', 'Pediatrician', '781912')
+      .verifyLocationDetails('Center for Disease Control', 33.7993, 84.3280, 200)
       .saveScreenshot('tests/nightwatch/screenshots/locations.crud/C-LocationDetails.png', client);
   },
   'edit location': function (client) {
     client.pause(1000).executeAsync(function(){
       Session.set('locationUpsert', {
-        "resourceType" : "Location",
-          "name" : {
-            "resourceType" : "HumanName",
-            "text" : ""
-          },
-          "telecom" : [{
-            "resourceType" : "ContactPoint",
-            "system" : "phone",
-            "value" : "",
-            "use" : "",
-            "rank" : 1
-          }],
-          "qualification" : [{
-            "identifier" : [{
-              "use" : "certficate",
-              "value" : "",
-              "period" : {}
-            }],
-            "issuer" : {
-              "display" : "",
-              "reference" : ""
-            }
-          }]
+        "resourceType": "Location",
+        "status": "active",
+        "name": "",
+        "position": {
+          'latitude': 0,
+          'longitude': 0,
+          'altitude': 0
+        }
       });
     });
 
     client.page
       .locationsPage()
-      .upsertLocation('Dr. Benjamin Spock, MD', '702-555-2345', 'mobile', 'Pediatrician', '781912', '#locationDetails', client)
+      .upsertLocation('CDC', 33.7993, 84.3280, 200, '#locationDetails', client)
       .saveScreenshot('tests/nightwatch/screenshots/locations.crud/D-EditedLocation.png', client);
 
     // since we're using the LocationDetail component twice,
     // there are two #saveLocationButtons on the page
     // so we need to scope the button accordingly
     client
-      .click('#locationDetails .saveLocationButton').pause(1000);
+      .click('#locationDetails #saveLocationButton').pause(1000);
   },
   'list edited Locations': function (client) {
     client.page
       .locationsPage()
-      .listContainsLocation(1, 'Dr. Benjamin Spock, MD')
+      .listContainsLocation(1, 'CDC')
       //.pause(40000, client)
       .saveScreenshot('tests/nightwatch/screenshots/locations.crud/E-EditedLocationList.png', client);
   },
