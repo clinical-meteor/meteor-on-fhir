@@ -27,14 +27,11 @@ module.exports = {
       return this
         .verify.elementPresent('#organizationsPage .organizationDetail')
         .verify.elementPresent('#organizationsPage .organizationDetail input[name="name"]')
-        .verify.elementPresent('#organizationsPage .organizationDetail input[name="telecomValue"]')
-        .verify.elementPresent('#organizationsPage .organizationDetail input[name="telecomUse"]')
-        .verify.elementPresent('#organizationsPage .organizationDetail input[name="issuer"]')
-        .verify.elementPresent('#organizationsPage .organizationDetail input[name="qualificationId"]')
-        .verify.elementPresent('#organizationsPage .organizationDetail input[name="qualificationStart"]')
-        .verify.elementPresent('#organizationsPage .organizationDetail input[name="qualificationEnd"]');
+        .verify.elementPresent('#organizationsPage .organizationDetail input[name="phone"]')
+        .verify.elementPresent('#organizationsPage .organizationDetail input[name="email"]')
+        .verify.elementPresent('#organizationsPage .organizationDetail input[name="identifier"]')
     },
-    verifyOrganizationDetails: function(name, telecomValue, telecomUse, issuer, qualificationId) {
+    verifyOrganizationDetails: function(name, phone, email, identifier) {
       this
         .waitForElementPresent('#organizationDetails', 5000)
         .waitForElementPresent('#organizationDetails input[name="name"]', 5000);
@@ -42,17 +39,14 @@ module.exports = {
       if (name) {
         this.verify.attributeEquals('#organizationsPage .organizationDetail  input[name="name"]', 'value', name);
       }
-      if (telecomValue) {
-        this.verify.attributeEquals('#organizationsPage .organizationDetail  input[name="telecomValue"]', 'value', telecomValue);
+      if (phone) {
+        this.verify.attributeEquals('#organizationsPage .organizationDetail  input[name="phone"]', 'value', phone);
       }
-      if (telecomUse) {
-        this.verify.attributeEquals('#organizationsPage .organizationDetail  input[name="telecomUse"]', 'value', telecomUse);
+      if (email) {
+        this.verify.attributeEquals('#organizationsPage .organizationDetail  input[name="email"]', 'value', email);
       }
-      if (issuer) {
-        this.verify.attributeEquals('#organizationsPage .organizationDetail  input[name="issuer"]', 'value', issuer);
-      }
-      if (qualificationId) {
-        this.verify.attributeEquals('#organizationsPage .organizationDetail  input[name="qualificationId"]', 'value', qualificationId);
+      if (identifier) {
+        this.verify.attributeEquals('#organizationsPage .organizationDetail  input[name="identifier"]', 'value', identifier);
       }
       return this;
     },
@@ -82,36 +76,34 @@ module.exports = {
     selectOrganization: function(index){
       return this.click('#organizationsTable .organizationRow:nth-child(' + index + ')');
     },
-    upsertOrganization: function(name, telecomValue, telecomUse, issuer, qualificationId, pageElement) {
+    upsertOrganization: function(name, phone, email, identifier, pageElement) {
       if (name) {
         var nameArray = name.split('');
         for (var i = 0; i < nameArray.length; i++) {
           this.setValue(pageElement + ' input[name="name"]', nameArray[i]);
         }
+          // this.setValue(pageElement + ' input[name="name"]', name);
       }
-      if (telecomValue) {
-        var telecomValueArray = telecomValue.split('');
-        for (var l = 0; l < telecomValueArray.length; l++) {
-          this.setValue(pageElement + ' input[name="telecomValue"]', telecomValueArray[l]);
-        }
+      if (phone) {
+        // var phoneArray = phone.split('');
+        // for (var l = 0; l < phoneArray.length; l++) {
+        //   this.setValue(pageElement + ' input[name="phone"]', phoneArray[l]);
+        // }
+          this.setValue(pageElement + ' input[name="phone"]', phone);
       }
-      if (telecomUse) {
-        var telecomUseArray = telecomUse.split('');
-        for (var m = 0; m < telecomUseArray.length; m++) {
-          this.setValue(pageElement + ' input[name="telecomUse"]', telecomUseArray[m]);
-        }
+      if (email) {
+        // var emailArray = email.split('');
+        // for (var m = 0; m < emailArray.length; m++) {
+        //   this.setValue(pageElement + ' input[name="email"]', emailArray[m]);
+        // }
+          this.setValue(pageElement + ' input[name="email"]', email);
       }
-      if (issuer) {
-        var issuerArray = issuer.split('');
-        for (var j = 0; j < issuerArray.length; j++) {
-          this.setValue(pageElement + ' input[name="issuer"]', issuerArray[j]);
-        }
-      }
-      if (qualificationId) {
-        var qualificationIdArray = qualificationId.split('');
-        for (var k = 0; k < qualificationIdArray.length; k++) {
-          this.setValue(pageElement + ' input[name="qualificationId"]', qualificationIdArray[k]);
-        }
+      if (identifier) {
+        // var identifierArray = identifier.split('');
+        // for (var j = 0; j < identifierArray.length; j++) {
+        //   this.setValue(pageElement + ' input[name="identifier"]', identifierArray[j]);
+        // }
+          this.setValue(pageElement + ' input[name="identifier"]', identifier);
       }
       return this;
     },

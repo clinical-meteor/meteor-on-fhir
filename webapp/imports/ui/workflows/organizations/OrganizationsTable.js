@@ -93,8 +93,8 @@ export default class OrganizationTable extends React.Component {
     for (var i = 0; i < this.data.organizations.length; i++) {
       tableRows.push(
       <tr className='organizationRow' ref='med-{i}' key={i} style={{cursor: 'pointer'}} onClick={ this.rowClick.bind('this', this.data.organizations[i]._id) }>
-        <td className="organizationName hidden-on-phone">{this.data.organizations[i].name}</td>
-        <td className="organizationIdentifier hidden-on-phone">{ ( this.data.organizations[i].identifier && this.data.organizations[i].identifier[0]) ? this.data.organizations[i].identifier[0].value : '' }</td>
+        <td className="name hidden-on-phone">{this.data.organizations[i].name}</td>
+        <td className="identifier hidden-on-phone">{ ( this.data.organizations[i].identifier && this.data.organizations[i].identifier[0]) ? this.data.organizations[i].identifier[0].value : '' }</td>
         <td className="phone">{this.data.organizations[i].phone}</td>
         <td className="email">{this.data.organizations[i].email}</td>
       </tr>);
@@ -105,8 +105,8 @@ export default class OrganizationTable extends React.Component {
       <Table id="organizationsTable" ref='organizationsTable' responses hover >
         <thead>
           <tr>
-            <th className="organizationName hidden-on-phone">name</th>
-            <th className="organizationIdentifier hidden-on-phone">identifier</th>
+            <th className="name hidden-on-phone">name</th>
+            <th className="identifier hidden-on-phone">identifier</th>
             <th className="phone">phone</th>
             <th className="email">email</th>
           </tr>

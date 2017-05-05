@@ -42,7 +42,7 @@ module.exports = {
       .organizationsPage()
       .selectNewOrganizationTab()
       .verifyNewOrganizationCard()
-      .upsertOrganization('Dr. Benjamin McLane Spock', '702-555-2345', 'work', 'Pediatrician', '781912', '#newOrganization', client)
+      .upsertOrganization("Rainbow's End", '702-555-2345', 'someone@somewhere.com', 'rainbow-702', '#newOrganization', client)
       .saveScreenshot('tests/nightwatch/screenshots/organizations.crud/B-OrganizationList.png', client);
 
     client
@@ -53,48 +53,29 @@ module.exports = {
       .organizationsPage()
       .selectListTab()
       .verifyOrganizationListCard()
-      .listContainsOrganization(1, 'Dr. Benjamin McLane Spock')
+      .listContainsOrganization(1, "Rainbow's End")
       .saveScreenshot('tests/nightwatch/screenshots/organizations.crud/B-OrganizationList.png', client);
   },
   'organization detail': function (client) {
     client.page
       .organizationsPage()
       .selectOrganization(1)
-      .verifyOrganizationDetails('Dr. Benjamin McLane Spock', '702-555-2345', 'work', 'Pediatrician', '781912')
+      .verifyOrganizationDetails("Rainbow's End", '702-555-2345', 'someone@somewhere.com', 'rainbow-702')
       .saveScreenshot('tests/nightwatch/screenshots/organizations.crud/C-OrganizationDetails.png', client);
   },
   'edit organization': function (client) {
     client.pause(1000).executeAsync(function(){
       Session.set('organizationUpsert', {
-        "resourceType" : "Organization",
-          "name" : {
-            "resourceType" : "HumanName",
-            "text" : ""
-          },
-          "telecom" : [{
-            "resourceType" : "ContactPoint",
-            "system" : "phone",
-            "value" : "",
-            "use" : "",
-            "rank" : 1
-          }],
-          "qualification" : [{
-            "identifier" : [{
-              "use" : "certficate",
-              "value" : "",
-              "period" : {}
-            }],
-            "issuer" : {
-              "display" : "",
-              "reference" : ""
-            }
-          }]
+        name: '',
+        phone: '',
+        email: '',
+        identifier: ''
       });
     });
 
     client.page
       .organizationsPage()
-      .upsertOrganization('Dr. Benjamin Spock, MD', '702-555-2345', 'mobile', 'Pediatrician', '781912', '#organizationDetails', client)
+      .upsertOrganization("Rainbow's End Nursing Home", '702-404-2345', 'someone@somewhere.com', 'rainbow-404', '#organizationDetails', client)
       .saveScreenshot('tests/nightwatch/screenshots/organizations.crud/D-EditedOrganization.png', client);
 
     // since we're using the OrganizationDetail component twice,
@@ -106,7 +87,7 @@ module.exports = {
   'list edited Organizations': function (client) {
     client.page
       .organizationsPage()
-      .listContainsOrganization(1, 'Dr. Benjamin Spock, MD')
+      .listContainsOrganization(1, "Rainbow's End Nursing Home")
       //.pause(40000, client)
       .saveScreenshot('tests/nightwatch/screenshots/organizations.crud/E-EditedOrganizationList.png', client);
   },

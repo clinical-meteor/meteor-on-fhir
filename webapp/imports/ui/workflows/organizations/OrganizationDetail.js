@@ -9,42 +9,21 @@ import TextField from 'material-ui/TextField';
 
 let defaultOrganization = {
   resourceType: 'Organization',
-  code: {
-    text: ""
-  },
-  isBrand: true,
-  manufacturer: {
-    display: '',
-    reference: ''
-  },
-  product: {
-    form: {
-      text: 'tablet'
-    },
-    ingredient: [{
-      item: {
-        resourceType: 'Substance',
-        code: {
-          text: ''
-        },
-        description: ''
-      },
-      instance: [{
-        quantity: ''
-      }]
-    }]
-  },
-  package: {
-    container: {
-      text: 'bottle'
-    },
-    content: [{
-      amount: {
-        value: 30,
-        unit: 'tablet'
-      }
-    }]
-  }
+  active: true,
+  name: "",
+  identifier: [{
+    use: 'usual',
+    value: ''
+  }],
+  telecom: [{
+    system: "phone",
+    value: '',
+    use: ''
+  }, {
+    system: "email",
+    value: '',
+    use: ''
+  }]
 };
 
 Session.setDefault('organizationUpsert', false);
@@ -55,7 +34,12 @@ export default class OrganizationDetail extends React.Component {
   getMeteorData() {
     let data = {
       organizationId: false,
-      organization: defaultOrganization
+      organization: {
+        name: '',
+        phone: '',
+        email: '',
+        identifier: ''
+      }
     };
 
     if (Session.get('organizationUpsert')) {
@@ -69,14 +53,32 @@ export default class OrganizationDetail extends React.Component {
         console.log("selectedOrganization", selectedOrganization);
 
         if (selectedOrganization) {
-          data.organization = selectedOrganization;
+          data.organization.name = selectedOrganization.name;
+          data.organization.identifier = selectedOrganization.identifier[0].value;
+
+          if(selectedOrganization.telecom){
+            selectedOrganization.telecom.forEach(function(telecom){
+              if(telecom.system === "phone"){
+                data.organization.phone = telecom.value;
+              }
+              if(telecom.system === "email"){
+                data.organization.email = telecom.value;
+              }
+            });
+          }
         }
       } else {
-        data.organization = defaultOrganization;
+        data.organization = {
+          name: '',
+          phone: '',
+          email: '',
+          identifier: ''
+        };
       }
 
     }
 
+    console.log('OrganizationDetail', data);
     return data;
   }
 
@@ -87,41 +89,37 @@ export default class OrganizationDetail extends React.Component {
 
     if(process.env.NODE_ENV === "test") console.log("OrganizationDetail.changeState", field, event, value);
 
-    // by default, assume there's no other data and we're creating a new organization
-    if (Session.get('organizationUpsert')) {
-      organizationUpdate = Session.get('organizationUpsert');
-    } else {
-      organizationUpdate = defaultOrganization;
-    }
-
-
-
     // if there's an existing organization, use them
     if (Session.get('selectedOrganization')) {
       organizationUpdate = this.data.organization;
+    } else {
+      // by default, assume there's no other data and we're creating a new organization
+      if (Session.get('organizationUpsert')) {
+        organizationUpdate = Session.get('organizationUpsert');
+      } else {
+        organizationUpdate = {
+          name: '',
+          phone: '',
+          email: '',
+          identifier: ''
+        };
+      }
     }
 
     switch (field) {
       case "organizationName":
-        organizationUpdate.code.text = value;
+        organizationUpdate.name = value;
         break;
-      case "manufacturerDisplay":
-        organizationUpdate.manufacturer.display = value;
+      case "identifier":
+        organizationUpdate.identifier = value;
         break;
-      case "organizationForm":
-        organizationUpdate.product.form.text = value;
+      case "phone":
+        organizationUpdate.phone = value;
         break;
-      case "activeIngredient":
-        organizationUpdate.product.ingredient[0].item.code.text = value;
-        break;
-      case "activeIngredientQuantity":
-        organizationUpdate.product.ingredient[0].instance[0].quantity = value;
-        break;
-      case "activeIngredientDescription":
-        organizationUpdate.product.ingredient[0].item.description = value;
+      case "email":
+        organizationUpdate.email = value;
         break;
       default:
-
     }
 
 
@@ -145,55 +143,37 @@ export default class OrganizationDetail extends React.Component {
           <TextField
             id='organizationNameInput'
             ref='organizationName'
-            name='organizationName'
+            name='name'
             floatingLabelText='Organization Name'
-            value={ (this.data.organization.code) ? this.data.organization.code.text : ''}
+            value={ (this.data.organization.name) ? this.data.organization.name : ''}
             onChange={ this.changeState.bind(this, 'organizationName')}
             fullWidth
             /><br/>
           <TextField
-            id='manufacturerDisplayInput'
-            ref='manufacturerDisplay'
-            name='manufacturerDisplay'
-            floatingLabelText='Manufacturer'
-            value={this.data.organization.manufacturer ? this.data.organization.manufacturer.display : ''}
-            onChange={ this.changeState.bind(this, 'manufacturerDisplay')}
+            id='identifierInput'
+            ref='identifier'
+            name='identifier'
+            floatingLabelText='Identifier'
+            value={this.data.organization.identifier ? this.data.organization.identifier : ''}
+            onChange={ this.changeState.bind(this, 'identifier')}
             fullWidth
             /><br/>
           <TextField
-            id='organizationFormInput'
-            ref='organizationForm'
-            name='organizationForm'
-            floatingLabelText='Substance Form'
-            value={(this.data.organization.product) ? this.data.organization.product.form.text : ''}
-            onChange={ this.changeState.bind(this, 'organizationForm')}
+            id='phoneInput'
+            ref='phone'
+            name='phone'
+            floatingLabelText='Phone'
+            value={(this.data.organization.phone) ? this.data.organization.phone : ''}
+            onChange={ this.changeState.bind(this, 'phone')}
             fullWidth
             /><br/>
           <TextField
-            id='activeIngredientInput'
-            ref='activeIngredient'
-            name='activeIngredient'
-            floatingLabelText='Active Ingredient'
-            value={(this.data.organization.product) ? this.data.organization.product.ingredient[0].item.code.text : ''}
-            onChange={ this.changeState.bind(this, 'activeIngredient')}
-            fullWidth
-            /><br/>
-          <TextField
-            id='activeIngredientQuantityInput'
-            ref='activeIngredientQuantity'
-            name='activeIngredientQuantity'
-            floatingLabelText='Quantity'
-            value={(this.data.organization.product) ? this.data.organization.product.ingredient[0].instance[0].quantity : ''}
-            onChange={ this.changeState.bind(this, 'activeIngredientQuantity')}
-            fullWidth
-            /><br/>
-          <TextField
-            id='activeIngredientDescriptionInput'
-            ref='activeIngredientDescription'
-            name='activeIngredientDescription'
-            floatingLabelText='Active Ingredient Description'
-            value={(this.data.organization.product) ? this.data.organization.product.ingredient[0].item.description : ''}
-            onChange={ this.changeState.bind(this, 'activeIngredientDescription')}
+            id='emailInput'
+            ref='email'
+            name='email'
+            floatingLabelText='Email'
+            value={(this.data.organization.email) ? this.data.organization.email : ''}
+            onChange={ this.changeState.bind(this, 'email')}
             fullWidth
             /><br/>
         </CardText>
@@ -223,7 +203,7 @@ export default class OrganizationDetail extends React.Component {
 
   // this could be a mixin
   handleSaveButton(){
-    let organizationUpdate = Session.get('organizationUpsert', organizationUpdate);
+    let organizationUpdate = Session.get('organizationUpsert');
 
     if(process.env.NODE_ENV === "test") console.log("organizationUpdate", organizationUpdate);
 
@@ -232,8 +212,30 @@ export default class OrganizationDetail extends React.Component {
       if(process.env.NODE_ENV === "test") console.log("update practioner");
       delete organizationUpdate._id;
 
+      var updatedOrg = defaultOrganization;
+      updatedOrg.resourceType = "Organization";
+      updatedOrg.name = organizationUpdate.name;
+      updatedOrg.telecom = [{
+        resourceType: 'ContactPoint',
+        system: "phone",
+        value: organizationUpdate.phone,
+        use: ''
+      }, {
+        resourceType: 'ContactPoint',
+        system: "email",
+        value: organizationUpdate.email,
+        use: ''
+      }]
+      updatedOrg.identifier = [{
+        resourceType: 'Identifier',
+        use: 'usual',
+        value: organizationUpdate.identifier,
+      }];
+
+      if(process.env.NODE_ENV === "test") console.log("updatedOrg", updatedOrg);
+
       Organizations.update(
-        {_id: Session.get('selectedOrganization')}, {$set: organizationUpdate }, function(error) {
+        {_id: Session.get('selectedOrganization')}, {$set: updatedOrg }, function(error) {
           if (error) {
             console.log("error", error);
 
@@ -249,8 +251,25 @@ export default class OrganizationDetail extends React.Component {
 
       if(process.env.NODE_ENV === "test") console.log("create a new organization", organizationUpdate);
 
-      Organizations.insert(organizationUpdate, function(error) {
+      var newOrganization = defaultOrganization;
+      newOrganization.name = organizationUpdate.name;
+      newOrganization.telecom = [{
+        system: "phone",
+        value: organizationUpdate.phone,
+        use: ''
+      }, {
+        system: "email",
+        value: organizationUpdate.email,
+        use: ''
+      }]
+      newOrganization.identifier = [{
+        use: 'usual',
+        value: organizationUpdate.identifier,
+      }];
+
+      Organizations.insert(newOrganization, function(error) {
         if (error) {
+          console.log('Organizations.insert[error]', error)
           Bert.alert(error.reason, 'danger');
         } else {
           Bert.alert('Organization added!', 'success');

@@ -51,6 +51,7 @@
   "dependencies": {
     "bootstrap": "^3.3.7",
     "classnames": "^2.2.5",
+    "faker": "^3.1.0",
     "fhir": "3.0.0",
     "google-map-react": "^0.23.0",
     "jquery": "^3.1.1",
@@ -90,7 +91,6 @@
     "eslint-plugin-jsx-a11y": "^0.6.2",
     "eslint-plugin-meteor": "^3.5.2",
     "eslint-plugin-react": "^4.3.0",
-    "faker": "^3.1.0",
     "meteor-desktop": "^0.2.6",
     "nightwatch": "0.9.8",
     "phantomjs-prebuilt": "2.1.12",
