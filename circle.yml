@@ -62,7 +62,7 @@ test:
 
     - "cd webapp && meteor run --settings settings.circle.json":
           background: true
-    - sleep 240
+    - sleep 300
   override:
     - cd webapp && meteor npm run-script circle-nightwatch
 

@@ -1,18 +1,21 @@
-//  documentation
-//  https://www.npmjs.com/package/react-katex
+import { Card, CardText, CardTitle } from 'material-ui/Card';
 
 import { AboutAppCard } from '/imports/ui/components/AboutAppCard';
 import { GlassCard } from '/imports/ui/components/GlassCard';
-import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
-import { Card, CardTitle, CardText } from 'material-ui/Card';
-
-
 import React from 'react';
-import ReactMixin from 'react-mixin';
-
 import { ReactMeteorData } from 'meteor/react-meteor-data';
+import ReactMixin from 'react-mixin';
+import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 
-import GoogleMapReact from 'google-map-react';
+//  documentation
+//  https://www.npmjs.com/package/react-katex
+
+if(process.env.NODE_ENV !== 'test'){
+  import GoogleMapReact from 'google-map-react';
+}
+
+
+
 
 
 const AnyReactComponent = ({ text }) => <GlassCard><CardText>{text}</CardText></GlassCard>;
@@ -33,7 +36,8 @@ export class GoogleMapsPage extends React.Component {
         }
       },
       center: {lat: 39.66, lng: -104.95},
-      zoom: 9
+      zoom: 9,
+      layers: ShapeFiles.find().fetch()
     };
 
     data.style = Glass.blur(data.style);
@@ -42,20 +46,26 @@ export class GoogleMapsPage extends React.Component {
     return data;
   }
   render(){
+    var self = this;
     var mapOverlays = <GlassCard id='pinpointCard' lat={39.66} lng={-104.95}>
       <CardText>
        Foo
       </CardText>
     </GlassCard>;
 
-    return(
-      <div id="mapsPage" style={this.data.style.page}>
-        <GoogleMapReact
+    var map;
+    if(process.env.NODE_ENV !== "test"){
+      map = <GoogleMapReact
            id="googleMap"
            defaultCenter={this.data.center}
            defaultZoom={this.data.zoom}
-         >
-         </GoogleMapReact>
+           onGoogleApiLoaded={function({map, maps}){
+          }}
+         ></GoogleMapReact>;
+    }
+    return(
+      <div id="mapsPage" style={this.data.style.page}>
+        {map}
       </div>
     );
   }

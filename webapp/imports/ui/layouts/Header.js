@@ -2,6 +2,7 @@ import ActionAccountCircle from 'material-ui/svg-icons/action/account-circle';
 import ActionReorder from 'material-ui/svg-icons/action/reorder';
 import AppBar from '/imports/ui/layouts/AppBar';
 import { AuthenticatedNavigation } from '../components/AuthenticatedNavigation';
+import FlatButton from 'material-ui/FlatButton';
 import Glass from '/imports/ui/Glass';
 // header
 import IconButton from 'material-ui/IconButton';
@@ -12,6 +13,7 @@ import React  from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
 import { Session } from 'meteor/session';
+import TextField from 'material-ui/TextField';
 import { browserHistory } from 'react-router';
 
 Sidebar = {
@@ -28,10 +30,47 @@ Sidebar = {
   }
 }
 
+
+// Styling of the search bar in previous incarnations
+// #globalInput{
+//   width: 60%;
+//   min-width: 500px;
+//   position: absolute;
+//   z-index: 5;
+//   left: 0px;
+//   input{
+//     padding-left: 20px;
+//     height: 50px;
+//     background-color: rgba(0,0,0,0);
+//     width: 100%;
+//   }
+// }
+
+
 export class Header extends React.Component {
   getMeteorData() {
     let data = {
       style: {
+        searchbar: Glass.darkroom({
+          position: 'fixed',
+          top: '0px',
+          width: '66%',
+          opacity: Session.get('globalOpacity'),
+          WebkitTransition: 'ease .2s',
+          transition: 'ease .2s',
+          background: 'white',
+          borderWidth: '3px 0px 0px 2px',
+          borderBottomRightRadius: '65px',
+          transformOrigin: 'right bottom',
+          paddingRight: '200px',
+          height: '0px'
+          //transform: 'skewY(-45deg)'
+        }) ,
+        searchbarInput: Glass.darkroom({
+          left: '0px', 
+          width: '80%',
+          visibility: 'hidden'
+        }),
         appbar: {
           position: 'fixed',
           top: '0px',
@@ -50,27 +89,26 @@ export class Header extends React.Component {
           cursor: 'pointer'
         })
       },
-      westStyle: {
-        display: 'flex',
-        flexDirection: 'row',
-        position: 'absolute',
-        left: '0px'
-      },
-      // eastStyle: {
-      //   display: 'flex',
-      //   flexDirection: 'row',
-      //   position: 'absolute',
-      //   right: '0px',
-      //   height: '6.4rem',
-      //   paddingLeft: '1.2rem',
-      //   paddingRight: '1.2rem',
-      //   paddingTop: '0.6rem'
-      // },
       app: {
         title: ''
       },
       isLogged: false
     };
+
+    if(Session.get('showSearchbar')){
+      data.style.searchbar.height = '64px';
+      data.style.searchbar.display = 'flex';
+      data.style.searchbarInput.visibility = 'visible';
+    } else {
+      data.style.searchbar.height = 0;      
+      data.style.searchbar.display = 'none';
+      data.style.searchbarInput.visibility = 'hidden';
+    }
+    if(Session.get('showNavbars')){
+      data.style.searchbar.top = '65px';      
+    } else {
+      data.style.searchbar.top = '0px';
+    }
 
     if (Meteor.settings && Meteor.settings.public && Meteor.settings.public.title) {
       data.app.title = Meteor.settings.public.title;
@@ -128,25 +166,43 @@ export class Header extends React.Component {
 
   render () {
     return(
-      <AppBar
-        id="appHeader"
-        title={this.data.app.title}
-        onTitleTouchTap={this.goHome}
-        iconStyleLeft={this.data.style.title}
-        iconElementRight={ this.renderNavigation(this.data.hasUser) }
-        style={this.data.style.appbar}
-        titleStyle={this.data.style.title}
-        //titleId='sidebarToggleButton'
-        //iconElementLeft={<ActionReorder style={{marginTop: '10px', marginLeft: '20px', marginRight: '10px'}}/>}
-        //onLeftIconButtonTouchTap={this.toggleDrawerActive}
-      >
-        <ActionReorder 
-          id='sidebarToggleButton'
-          style={{marginTop: '20px', marginLeft: '25px', marginRight: '10px', left: '0px', position: 'absolute', cursor: 'pointer'}}
-          onTouchTap={this.toggleDrawerActive}
-          onClick={this.toggleDrawerActive}
-          />
-      </AppBar>
+      <div>
+        <AppBar
+          id="appHeader"
+          title={this.data.app.title}
+          onTitleTouchTap={this.goHome}
+          iconStyleLeft={this.data.style.title}
+          iconElementRight={ this.renderNavigation(this.data.hasUser) }
+          style={this.data.style.appbar}
+          titleStyle={this.data.style.title}
+        >
+          <ActionReorder 
+            id='sidebarToggleButton'
+            style={{marginTop: '20px', marginLeft: '25px', marginRight: '10px', left: '0px', position: 'absolute', cursor: 'pointer'}}
+            onTouchTap={this.toggleDrawerActive}
+            onClick={this.toggleDrawerActive}
+            />
+        </AppBar>
+
+        <AppBar
+          id="appSearchBar"
+          title={<div>
+              <TextField
+              hintText="Search"
+              style={this.data.style.searchbarInput}
+              fullWidth
+            />
+            {/*<FlatButton label="Search" />*/}
+          </div>}
+          style={this.data.style.searchbar}
+          showMenuIconButton={false}
+        >
+          
+        </AppBar>      
+
+      </div>
+
+      
     );
   }
 }

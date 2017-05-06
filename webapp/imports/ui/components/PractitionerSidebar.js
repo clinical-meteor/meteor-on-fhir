@@ -1,9 +1,9 @@
-import { IndexLinkContainer } from 'react-router-bootstrap';
 import { List, ListItem } from 'material-ui/List';
-import React from 'react';
-import ReactMixin from 'react-mixin';
 
+import { IndexLinkContainer } from 'react-router-bootstrap';
+import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
+import ReactMixin from 'react-mixin';
 
 export class PractitionerSidebar extends React.Component {
   getMeteorData() {
@@ -37,6 +37,10 @@ export class PractitionerSidebar extends React.Component {
 
           <IndexLinkContainer to='/'>
              <ListItem primaryText='Index' href='/' />
+          </IndexLinkContainer>
+
+          <IndexLinkContainer to='/provider-directory'>
+             <ListItem primaryText='Provider Directory' href='/provider-directory' />
           </IndexLinkContainer>
 
           <IndexLinkContainer to='/dashboard'>

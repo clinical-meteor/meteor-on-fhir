@@ -5,7 +5,7 @@
 // All right, you mutinous, computerized, disloyal half-breed - we'll see about you deserting my ship.
 
 module.exports = {
-  tags: ['accounts', 'passwords', 'users', 'entry', 'circle'],
+  tags: ['accounts', 'passwords', 'users', 'entry', 'circle', 'directory'],
   before: function(client){
     client
       .url("http://localhost:3000").pause(3000)

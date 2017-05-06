@@ -1,24 +1,21 @@
-import { Statistics } from '/imports/api/statistics/statistics';
-import { MyGenotype } from '/imports/api/genotype/MyGenotype';
-
 import { Meteor } from 'meteor/meteor';
+import { MyGenotype } from '/imports/api/genotype/MyGenotype';
+import { Statistics } from '/imports/api/statistics/statistics';
 
 let DailyStats = {
   generate: function(){
     let newDailyStat = {
       date: new Date(),
-      usersCount: Meteor.users.find().count(),
-      postsCount: 0,
-      topicsCount: 0,
+      usersCount: 0,
       patientsCount: 0,
       practitionersCount: 0,
-      observationsCount: 0,
-      questionnaireResponsesCount: 0,
       counts: {
         devices: 0,
         conditions: 0,
         genotype: 0,
+        locations: 0,
         medications: 0,
+        organizations: 0,
         observations: 0,
         patients: 0,
         practitioners: 0,
@@ -26,6 +23,10 @@ let DailyStats = {
         questionnaires: 0
       }
     };
+
+    if(Meteor.users){
+      newDailyStat.usersCount = Meteor.users.find().count();
+    }
 
     if (Devices) {
       newDailyStat.counts.devices = Devices.find().count();
@@ -35,6 +36,12 @@ let DailyStats = {
     }
     if (Medications) {
       newDailyStat.counts.medications = Medications.find().count();
+    }
+    if (Organizations) {
+      newDailyStat.counts.organizations = Organizations.find().count();
+    }
+    if (Locations) {
+      newDailyStat.counts.locations = Locations.find().count();
     }
     if (Observations) {
       newDailyStat.counts.observations = Observations.find().count();
@@ -71,8 +78,7 @@ SyncedCron.add({
 
 Meteor.methods({
   generateDailyStat:function (){
-    if (process.env.NODE_ENV !== 'production') {
-      // DailyStats.generate();
+    if (Meteor.settings && Meteor.settings.public && Meteor.settings.public.modules && Meteor.settings.public.modules.statisticsLogging) {
       return Statistics.insert(DailyStats.generate());
     }
   },
