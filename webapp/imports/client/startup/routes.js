@@ -44,6 +44,7 @@ import { PatientsPage } from '/imports/ui/workflows/patients/PatientsPage';
 import { PractitionerDashboard } from '/imports/ui/pages/PractitionerDashboard';
 import { PractitionersPage } from '/imports/ui/workflows/practitioners/PractitionersPage';
 import { PrivacyPage } from '/imports/ui/pages/PrivacyPage';
+import { ProviderDirectoryPage } from '/imports/ui/pages/ProviderDirectoryPage';
 import { QuestionnaireResponsesPage } from '/imports/ui/workflows/questionnaires/QuestionnaireResponsesPage';
 import { QuestionnairesPage } from '/imports/ui/workflows/questionnaires/QuestionnairesPage';
 import React from 'react';
@@ -188,6 +189,7 @@ Meteor.startup(() => {
         <Route name="CornerstonePage" path="/cornerstone" component={ CornerstonePage } />
         <Route name="GoogleMapsPage" path="/maps" component={ GoogleMapsPage } />
 
+        <Route name="ProviderDirectoryPage" path="/provider-directory" component={ ProviderDirectoryPage } />
 
         <Route path="*" component={ NotFound } />
 

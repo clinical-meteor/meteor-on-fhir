@@ -14,6 +14,7 @@
     "defaults": {
       "avatars": true,
       "barcodes": true,
+      "searchbarVisible": true,
       "displayNavbars": true,
       "disableHeader": false,
       "disableFooter": false,
@@ -49,6 +50,7 @@
       "inbound": true,
       "outbound": true,
       "epic": true,
+      "statisticsLogging": true,
       "fhir": {
         "AuditEvents": true,
         "Conditions": true,
@@ -69,6 +71,9 @@
   "private": {
     "practitionerAccessCode": "hippocrates",
     "sysadminAccessCode": "rootaccess",
-    "disableOauth": true
+    "disableOauth": true,
+    "demo": {
+      "nightlyDatabaseDrop": true
+    }
   }
 }

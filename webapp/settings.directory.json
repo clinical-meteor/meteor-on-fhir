@@ -48,7 +48,8 @@
       "telemedicine": true,
       "inbound": true,
       "outbound": true,
-      "epic": true,
+      "epic": false,
+      "statisticsLogging": true,
       "fhir": {
         "AuditEvents": true,
         "Conditions": false,
@@ -69,6 +70,9 @@
   "private": {
     "practitionerAccessCode": "hippocrates",
     "sysadminAccessCode": "rootaccess",
-    "disableOauth": true
+    "disableOauth": true,
+    "demo": {
+      "nightlyDatabaseDrop": true
+    }    
   }
 }
