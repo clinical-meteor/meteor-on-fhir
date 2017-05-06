@@ -1,9 +1,9 @@
-import { IndexLinkContainer } from 'react-router-bootstrap';
 import { List, ListItem } from 'material-ui/List';
-import React from 'react';
-import ReactMixin from 'react-mixin';
 
+import { IndexLinkContainer } from 'react-router-bootstrap';
+import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
+import ReactMixin from 'react-mixin';
 
 export class PublicSidebar extends React.Component {
   getMeteorData() {
@@ -30,6 +30,11 @@ export class PublicSidebar extends React.Component {
   render () {
     return(
       <List style={{paddingLeft: '20px', position: 'static'}}>
+
+        <IndexLinkContainer to='/provider-directory'>
+            <ListItem primaryText='Provider Directory' href='/provider-directory' />
+        </IndexLinkContainer>
+
         <IndexLinkContainer to='/signin'>
            <ListItem primaryText='Sign In' href='/signin' />
         </IndexLinkContainer>
