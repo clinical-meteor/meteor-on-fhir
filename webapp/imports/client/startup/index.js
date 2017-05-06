@@ -24,6 +24,7 @@ if (process.env.NODE_ENV === 'production') {
 Meteor.startup(function (){
   // global session variables
   Session.set('showNavbars', true);
+  Session.set('showSearchbar', false);
   Session.set('hasPagePadding', true);
   Session.set('appSurfaceOffset', true);
   Session.set('selectedChromosome', 1);

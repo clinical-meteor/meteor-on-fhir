@@ -41,8 +41,6 @@ export class VerticalCanvas extends React.Component {
       data.style.maxWidth = canvasWidth + 'px';
       data.style.width = '100%';
 
-
-
       if (Session.get('appSurfaceOffset')) {
         // golden ratio
         data.style.left = (Session.get('appWidth') - canvasWidth) * 0.1618;
@@ -64,11 +62,11 @@ export class VerticalCanvas extends React.Component {
       paddingTop = paddingTop + 60;
       paddingBottom = paddingBottom + 60;
     }
-    if(!Session.get('showSearchbar')){
+    if(Session.get('showSearchbar')){
       paddingTop = paddingTop + 60;
       paddingBottom = paddingBottom + 60;
     }
-    if(!Session.get('mainPanelIsCard')){
+    if(Session.get('mainPanelIsCard')){
       paddingTop = paddingTop + 20;
       paddingBottom = paddingBottom + 20;
     }

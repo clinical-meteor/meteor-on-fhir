@@ -51,7 +51,7 @@ export class Header extends React.Component {
   getMeteorData() {
     let data = {
       style: {
-        searchbar: {
+        searchbar: Glass.darkroom({
           position: 'fixed',
           top: '0px',
           width: '66%',
@@ -65,12 +65,12 @@ export class Header extends React.Component {
           paddingRight: '200px',
           height: '0px'
           //transform: 'skewY(-45deg)'
-        },
-        searchbarInput: {
+        }) ,
+        searchbarInput: Glass.darkroom({
           left: '0px', 
           width: '80%',
           visibility: 'hidden'
-        },
+        }),
         appbar: {
           position: 'fixed',
           top: '0px',
@@ -96,21 +96,18 @@ export class Header extends React.Component {
     };
 
     if(Session.get('showSearchbar')){
-      data.style.searchbar.height = 0;      
-      data.style.searchbarInput.visibility = 'hidden';
-      if(Session.get('showNavbars')){
-        data.style.searchbar.top = '65px';      
-      } else {
-        data.style.searchbar.top = '0px';
-      }
-    } else {
       data.style.searchbar.height = '64px';
+      data.style.searchbar.display = 'flex';
       data.style.searchbarInput.visibility = 'visible';
-      if(Session.get('showNavbars')){
-        data.style.searchbar.top = '65px';      
-      } else {
-        data.style.searchbar.top = '0px';
-      }
+    } else {
+      data.style.searchbar.height = 0;      
+      data.style.searchbar.display = 'none';
+      data.style.searchbarInput.visibility = 'hidden';
+    }
+    if(Session.get('showNavbars')){
+      data.style.searchbar.top = '65px';      
+    } else {
+      data.style.searchbar.top = '0px';
     }
 
     if (Meteor.settings && Meteor.settings.public && Meteor.settings.public.title) {
