@@ -1,27 +1,25 @@
-import { CardTitle, CardText, CardHeader } from 'material-ui/Card';
+import { CardHeader, CardText, CardTitle } from 'material-ui/Card';
 import { Col, Grid, Row } from 'react-bootstrap';
-import { Tabs, Tab } from 'material-ui/Tabs';
-import { browserHistory } from 'react-router';
-import RaisedButton from 'material-ui/RaisedButton';
-import FlatButton from 'material-ui/FlatButton';
-import { FontIcon } from 'material-ui/FontIcon';
-import TextField from 'material-ui/TextField';
-import React from 'react';
-import ReactMixin from 'react-mixin';
+import { Tab, Tabs } from 'material-ui/Tabs';
+import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
 
 import { Accounts } from 'meteor/accounts-base';
-import { Meteor } from 'meteor/meteor';
-import { ReactMeteorData } from 'meteor/react-meteor-data';
-import Spacer from '/imports/ui/components/Spacer';
-
-import { GlassCard } from '/imports/ui/components/GlassCard';
-import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
-import { removeUserById } from '../../api/users/methods';
 import Avatar from 'material-ui/Avatar';
 import Divider from 'material-ui/Divider';
-
+import FlatButton from 'material-ui/FlatButton';
+import { FontIcon } from 'material-ui/FontIcon';
 import Glass from '/imports/ui/Glass';
-import { Table, TableRow, TableBody, TableHeader, TableHeaderColumn, TableRowColumn } from 'material-ui/Table';
+import { GlassCard } from '/imports/ui/components/GlassCard';
+import { Meteor } from 'meteor/meteor';
+import RaisedButton from 'material-ui/RaisedButton';
+import React from 'react';
+import { ReactMeteorData } from 'meteor/react-meteor-data';
+import ReactMixin from 'react-mixin';
+import Spacer from '/imports/ui/components/Spacer';
+import TextField from 'material-ui/TextField';
+import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
+import { browserHistory } from 'react-router';
+import { removeUserById } from '../../api/users/methods';
 
 let defaultState = {
   index: 0,
@@ -341,6 +339,14 @@ export class MyProfilePage extends React.Component {
 
               </Tabs>
 
+            </CardText>
+          </GlassCard>
+
+          <Spacer />
+          <GlassCard>
+            <CardTitle title="Profile Resources" />
+            <CardText>
+              ...
             </CardText>
           </GlassCard>
         </VerticalCanvas>

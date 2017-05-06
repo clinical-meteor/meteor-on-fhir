@@ -59,7 +59,7 @@ export class PractitionersPage extends React.Component {
               title="Practitioners"
             />
             <CardText>
-              <Tabs id="practitionersPageTabs" default value={this.data.tabIndex} onChange={this.handleTabChange} initialSelectedIndex={1}>
+              <Tabs id="practitionersPageTabs" default value={this.data.tabIndex} onChange={this.handleTabChange} initialSelectedIndex={1} style={{borderRight: 'none'}} >
                 <Tab className="newPractitionerTab" label='New' style={this.data.style.tab} onActive={ this.onNewTab } value={0} >
                   <PractitionerDetail id='newPractitioner' />
                 </Tab>

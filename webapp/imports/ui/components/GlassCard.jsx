@@ -1,8 +1,8 @@
-import React from 'react';
-import ReactMixin from 'react-mixin';
-import { ReactMeteorData } from 'meteor/react-meteor-data';
-import { Session } from 'meteor/session';
 import { Card } from 'material-ui/Card';
+import React from 'react';
+import { ReactMeteorData } from 'meteor/react-meteor-data';
+import ReactMixin from 'react-mixin';
+import { Session } from 'meteor/session';
 
 export class GlassCard extends React.Component {
   constructor(props) {
@@ -12,7 +12,9 @@ export class GlassCard extends React.Component {
   getMeteorData() {
 
     let data = {
-      style: {}
+      style: {
+        overflowY: 'scroll'
+      }
     };
 
     if (this.props && this.props.style) {
@@ -50,19 +52,30 @@ export class GlassCard extends React.Component {
     if (this.props.height === "auto") {
       console.log("is autoheight");
 
-      if (Session.get('hasPagePadding')) {
-        data.style.height = Session.get('appHeight') - 160 + 'px';
-        data.style.overflowY = "scroll";
-      } else {
-        if (Session.get('mainPanelIsCard')) {
-          data.style.height = Session.get('appHeight') - 40 + 'px';
-          data.style.overflowY = "scroll";
-        } else {
-          data.style.height = Session.get('appHeight') + 'px';
-          data.style.overflowY = "scroll";
-        }
+      var autoHeight = Session.get('appHeight');
+
+      if(Session.get('showNavbars')){
+        autoHeight = autoHeight - 128;
       }
+      if(!Session.get('showSearchbar')){
+        autoHeight = autoHeight - 64;
+      }
+      if(!Session.get('mainPanelIsCard')){
+        autoHeight = autoHeight - 40;
+      }
+
+      // if (Session.get('hasPagePadding')) {
+      //   data.style.height = Session.get('appHeight') - 160 + 'px';
+      // } else {
+      //   if (Session.get('mainPanelIsCard')) {
+      //     data.style.height = Session.get('appHeight') - 40 + 'px';
+      //   } else {
+      //     data.style.height = Session.get('appHeight') + 'px';
+      //   }
+      // }
+      data.style.height = autoHeight + 'px';
     }
+
 
     if (this.props.width) {
       data.style.width = this.props.width;

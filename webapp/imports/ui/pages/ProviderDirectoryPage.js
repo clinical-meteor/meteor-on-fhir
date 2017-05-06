@@ -18,22 +18,18 @@ export class ProviderDirectoryPage extends React.Component {
       style: {
         cards: {
           media: {
-            // minHeight: '340px',
             maxHeight: '340px'
           },
           practitioners: {
             cursor: 'pointer',
-            // minHeight: '340px',
             maxHeight: '340px'
           },
           organizations: {
             cursor: 'pointer',
-            // minHeight: '340px',
             maxHeight: '340px'
           },
           locations: {
             cursor: 'pointer',
-            // minHeight: '340px',
             maxHeight: '340px'
           }
         },

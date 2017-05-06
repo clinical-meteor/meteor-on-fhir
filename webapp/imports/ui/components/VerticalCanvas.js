@@ -57,18 +57,37 @@ export class VerticalCanvas extends React.Component {
       data.style.width = '100%';
     }
 
-    if (Session.get('hasPagePadding')) {
-      data.style.paddingTop = '80px';
-      data.style.paddingBottom = '80px';
-    } else {
-      if (Session.get('mainPanelIsCard')) {
-        data.style.paddingTop = '20px';
-        data.style.paddingBottom = '20px';
-      } else {
-        data.style.paddingTop = '0px';
-        data.style.paddingBottom = '0px';
-      }
+    var paddingTop = 0;
+    var paddingBottom = 0;
+
+    if(Session.get('showNavbars')){
+      paddingTop = paddingTop + 60;
+      paddingBottom = paddingBottom + 60;
     }
+    if(!Session.get('showSearchbar')){
+      paddingTop = paddingTop + 60;
+      paddingBottom = paddingBottom + 60;
+    }
+    if(!Session.get('mainPanelIsCard')){
+      paddingTop = paddingTop + 20;
+      paddingBottom = paddingBottom + 20;
+    }
+
+    // if (Session.get('hasPagePadding')) {
+    //   data.style.paddingTop = 80;
+    //   data.style.paddingBottom = 80;
+    // } else {
+    //   if (Session.get('mainPanelIsCard')) {
+    //     data.style.paddingTop = 20;
+    //     data.style.paddingBottom = 20;
+    //   } else {
+    //     data.style.paddingTop = 0;
+    //     data.style.paddingBottom = 0;
+    //   }
+    // }
+    data.style.paddingTop = paddingTop + 'px';
+    data.style.paddingBottom = paddingBottom + 'px';
+
 
     if (Session.get('hasPagePadding')) {
       data.style.paddingLeft = '20px';
