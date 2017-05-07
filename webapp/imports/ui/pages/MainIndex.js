@@ -15,6 +15,9 @@ export class MainIndex extends React.Component {
   getMeteorData() {
     let data = {
       style: {
+        sectionTitle: {
+          display: 'none'
+        },
         inactiveIndexCard: {
           opacity: .5,
           width: '50%',
@@ -56,6 +59,7 @@ export class MainIndex extends React.Component {
       user.roles.forEach(function(role){
         if (role === "sysadmin") {
           data.user.isAdmin = true;
+          data.style.sectionTitle.display = 'inline-block';
         } else if (role === "practitioner") {
           data.user.isPractitioner = true;
         } else if (role === "patient") {
@@ -99,6 +103,11 @@ export class MainIndex extends React.Component {
       <div id='indexPage'>
         <VerticalCanvas>
 
+          <CardTitle title="Admin Functionality" style={this.data.style.sectionTitle} />  
+          {this.renderAdminTiles(this.data.user)}
+
+          <br/>
+          <CardTitle title="Fast Healthcare Interoperability Resources" style={this.data.style.sectionTitle} /><br/>  
 
           {this.renderPatients(this.data.user)}
           {this.renderPractitioners(this.data.user)}
@@ -111,16 +120,21 @@ export class MainIndex extends React.Component {
           {this.renderOrganizations(this.data.user)}
           {this.renderLocations(this.data.user)}
 
-          {this.renderAdminTiles(this.data.user)}
-
           {this.renderRiskAssessments(this.data.user)}
 
           {this.renderDiagnosticReport(this.data.user)}
           {this.renderConditions(this.data.user)}
-          {this.renderImagingStudy(this.data.user)}
           {this.renderAllergyIntolerance(this.data.user)}
 
+          <br/>
+
+          <CardTitle title="Under Construction" style={this.data.style.sectionTitle} /> <br/> 
           {this.renderTilesUnderConstruction(this.data.user, this.data.showUnderConstruction)}
+          {this.renderImagingStudy(this.data.user)}
+
+          <br/>
+          <CardTitle title="Experimental" style={this.data.style.sectionTitle} />  
+          <br/>
           {this.renderExperimentalTiles(this.data.showExperimental)}
 
         </VerticalCanvas>

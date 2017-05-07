@@ -16,6 +16,7 @@ export class ProviderDirectoryPage extends React.Component {
   getMeteorData() {
     let data = {
       style: {
+        page: {},
         cards: {
           media: {
             maxHeight: '340px'
@@ -114,6 +115,14 @@ export class ProviderDirectoryPage extends React.Component {
       data.style.spacer.display = 'none';
     }
 
+    if(Session.get('appHeight') > 1200){
+      data.style.page = {
+        top: '50%',
+        transform: 'translateY(-50%)',
+        position: 'relative'
+      }
+    }
+
     data.style = Glass.blur(data.style);
     data.style.appbar = Glass.darkroom(data.style.appbar);
 
@@ -126,9 +135,11 @@ export class ProviderDirectoryPage extends React.Component {
         <VerticalCanvas>
 
 
-          {this.renderPractitioners(this.data.user)}
-          {this.renderOrganizations(this.data.user)}
-          {this.renderLocations(this.data.user)}
+          <div style={this.data.style.page}>
+            {this.renderPractitioners(this.data.user)}
+            {this.renderOrganizations(this.data.user)}
+            {this.renderLocations(this.data.user)}
+          </div>
 
         </VerticalCanvas>
       </div>

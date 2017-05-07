@@ -3,6 +3,7 @@ import { Tab, Tabs } from 'material-ui/Tabs';
 
 import Glass from '/imports/ui/Glass';
 import { GlassCard } from '/imports/ui/components/GlassCard';
+import GoogleMapReact from 'google-map-react';
 import LocationDetail from '/imports/ui/workflows/locations/LocationDetail';
 import LocationTable from '/imports/ui/workflows/locations/LocationsTable';
 import { Meteor } from 'meteor/meteor';
@@ -11,9 +12,9 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin  from 'react-mixin';
 import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 
-if(process.env.NODE_ENV !== 'test'){
-  import GoogleMapReact from 'google-map-react';
-}
+// if(process.env.NODE_ENV !== 'test'){
+//   import GoogleMapReact from 'google-map-react';
+// }
 
 
 Session.setDefault('locationPageTabIndex', 1); Session.setDefault('locationSearchFilter', ''); Session.setDefault('selectedLocation', false);
@@ -102,7 +103,7 @@ export class LocationsPage extends React.Component {
     var pageContent;
     // we only want to render the google map in certain environments
     // specifically, we don't want to render it while running QA tests
-    if(process.env.NODE_ENV !== 'test'){
+    //if(process.env.NODE_ENV !== 'test'){
       // okay, we're not running QA tests,
       // so lets create a bunch of markers to draw on the map, and load them into a variable
       this.data.markers.forEach(function(location){
@@ -126,10 +127,10 @@ export class LocationsPage extends React.Component {
           {markers}
           {canvas}
         </GoogleMapReact>
-    } else {
-      // but if we're in a test environment, we're just going to render the locations CRUD user interface
-      pageContent = canvas;
-    }
+    // } else {
+    //   // but if we're in a test environment, we're just going to render the locations CRUD user interface
+    //   pageContent = canvas;
+    // }
           
     return (
       <div id="locationsPage" style={this.data.style.page}> 
