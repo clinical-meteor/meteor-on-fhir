@@ -57,13 +57,31 @@ Edit the `settings.dev.json` file, and update:
   "public": {
     "title": "Rainbow's End Nursing Home Health Exchange",
     "theme": {
-      "showVideoBackground": false
-    }
+      "backgroundImagePath": "/backgrounds/medical/Gradient.jpg",
+      "backgroundColor": "#34B6C2",
+      "palette": {
+        "colorA": "#34B6C2",
+        "colorB": "#177AB9",
+        "colorC": "#31323C",
+        "colorD": "#710A4A",
+        "colorE": "#FFFFFF"
+      }
+    },
+    "meshNetwork": {
+      "upstreamSync": "http://meteor-on-fhir.meteorapp.com/fhir-3.0.0", 
+      "autosync": false
+    }    
   },
   "private": {
-    "practitionerAccessCode": "hippocrates",
-    "sysadminAccessCode": "rootaccess"
-  }
+    "practitionerAccessCode": "practitionerAccessCode",
+    "sysadminAccessCode": "sysadminAccessCode"
+  },
+  "galaxy.meteor.com": {
+    "env": {
+      "MONGO_URL": "mongodb://username:password@mlab.com:25389/my-org-exchange-db",
+      "NODE_ENV": "produciton"
+    }
+  }  
 }
 ```
 
@@ -75,7 +93,7 @@ scripts/remove_restricted_media_assets.sh
 #### E. Deploy to Production  
 
 ```sh
-TIMEOUT_SCALE_FACTOR=10 DEPLOY_HOSTNAME=galaxy.meteor.com meteor deploy meteor-on-fhir.meteorapp.com --settings settings.dev.json
+TIMEOUT_SCALE_FACTOR=10 DEPLOY_HOSTNAME=galaxy.meteor.com meteor deploy my-org-exchange.meteorapp.com --settings settings.dev.json
 ```   
 
 #### F. Mobile Build   
