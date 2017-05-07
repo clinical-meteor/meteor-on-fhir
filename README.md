@@ -119,9 +119,30 @@ npm run desktop
 ```    
 
 
-### Interoperability References    
+#### H. Synchronizing With Other Datalakes  
+
+To enable network synchronizing, you'll need to specify an upstream sync partner in your `settings.json` file.  Afterwards, you can enable manual synchronization in the **Data Management* page.  
+
+```javascript
+{
+  "public": {
+    "meshNetwork": {
+      "upstreamSync": "http://meteor-on-fhir.meteorapp.com/fhir-3.0.0", 
+      "autosync": false
+    },
+  }
+}
+```
+
+#### I. Connect to an External EMR   
+[HL7 v2 to FHIR Interface Mapping](https://medium.com/@awatson1978/hl7-v2-to-fhir-interface-mapping-f83c6ecf6bee)  
+
+
+#### Miscellaneous References    
 [Supporting Interoperability – Terminology, Subsets and Other Resources from Natl. Library of Medicine](https://www.nlm.nih.gov/hit_interoperability.html)  
 [Health IT Standards for Health Information Management Practices](http://ihe.net/uploadedFiles/Documents/ITI/IHE_ITI_WP_HITStdsforHIMPratices_Rev1.1_2015-09-18.pdf)  
+
+
 
 
 
