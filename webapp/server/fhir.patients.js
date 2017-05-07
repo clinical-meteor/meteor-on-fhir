@@ -1,5 +1,6 @@
 import FHIR from 'fhir';
 import { HTTP } from 'meteor/http';
+import { Meteor } from 'meteor/meteor';
 import { Promise } from 'meteor/promise';
 import { parseString } from 'xml2js';
 
@@ -126,5 +127,39 @@ Meteor.methods({
       console.log('Try setting NODE_ENV=test');
     }
   }
+
+  // NEED TO THINK ABOUT THE LEGAL IMPLICATIONS OF THE FOLLOWING 
+  // HOW COULD THIS BE ABUSED?
+
+  // syncPatients: function(){
+  //   if(Meteor.settings && Meteor.settings.public && Meteor.settings.public.meshNetwork && Meteor.settings.public.meshNetwork.upstreamSync){
+  //     console.log('-----------------------------------------');
+  //     console.log('Syncing patients... ');
+  //     var queryString = Meteor.settings.public.meshNetwork.upstreamSync + "/Patient";
+  //     console.log(queryString);
+      
+  //     var result =  HTTP.get(queryString);
+
+  //     var bundle = JSON.parse(result.content);
+
+  //     console.log('result', bundle);
+  //     bundle.entry.forEach(function(record){
+  //       console.log('record', record);
+  //       if(record.resource.resourceType === "Patient"){
+  //         // if(!Patients.findOne({id:id})){
+  //           Patients.insert(record);
+  //         // }
+  //       }
+  //     });
+  //     Meteor.call('generateDailyStat');
+  //     var stats = DailyStats.generate();
+  //     Statistics.insert(stats);
+  //     return stats;
+  //   }else {
+  //   console.log('-----------------------------------------');
+  //   console.log('Syncing disabled... ');      
+  //   }
+
+  // }  
 });
 

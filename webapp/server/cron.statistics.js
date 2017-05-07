@@ -27,35 +27,70 @@ let DailyStats = {
     if(Meteor.users){
       newDailyStat.usersCount = Meteor.users.find().count();
     }
-
-    if (Devices) {
+    if (typeof AllergyIntolerances === 'object') {
+      newDailyStat.counts.allergyIntolerances = AllergyIntolerances.find().count();
+    }
+    if (typeof Appointments === 'object') {
+      newDailyStat.counts.appointments = Appointments.find().count();
+    }
+    if (typeof CarePlans === 'object') {
+      newDailyStat.counts.carePlans = CarePlans.find().count();
+    }
+    if (typeof Conditions === 'object') {
+      newDailyStat.counts.conditions = Conditions.find().count();
+    }
+    if (typeof Devices === 'object') {
       newDailyStat.counts.devices = Devices.find().count();
     }
-    if (MyGenotype) {
-      newDailyStat.counts.genotype = MyGenotype.find().count();
+    if (typeof DiagnosticReports === 'object') {
+      newDailyStat.counts.diagnosticReports = DiagnosticReports.find().count();
     }
-    if (Medications) {
-      newDailyStat.counts.medications = Medications.find().count();
+    if (typeof FamilyMemberHistories === 'object') {
+      newDailyStat.counts.familyMemberHistories = FamilyMemberHistories.find().count();
     }
-    if (Organizations) {
-      newDailyStat.counts.organizations = Organizations.find().count();
+    if (typeof Goals === 'object') {
+      newDailyStat.counts.goals = Goals.find().count();
     }
-    if (Locations) {
+    if (typeof Immunications === 'object') {
+      newDailyStat.counts.immunications = Immunications.find().count();
+    }
+    if (typeof Locations === 'object') {
       newDailyStat.counts.locations = Locations.find().count();
     }
-    if (Observations) {
+    if (typeof MyGenotype === 'object') {
+      newDailyStat.counts.genotype = MyGenotype.find().count();
+    }
+    if (typeof Medications === 'object') {
+      newDailyStat.counts.medications = Medications.find().count();
+    }
+    if (typeof MessageHeaders === 'object') {
+      newDailyStat.counts.messageHeaders = MessageHeaders.find().count();
+    }
+    if (typeof Organizations === 'object') {
+      newDailyStat.counts.organizations = Organizations.find().count();
+    }
+    if (typeof Observations === 'object') {
       newDailyStat.counts.observations = Observations.find().count();
     }
-    if (Patients) {
+    if (typeof Patients === 'object') {
       newDailyStat.patientsCount = Patients.find().count();
       newDailyStat.counts.patients = Patients.find().count();
     }
-    if (Practitioners) {
+    if (typeof Practitioners === 'object') {
       newDailyStat.practitionersCount = Practitioners.find().count();
       newDailyStat.counts.practitioners = Practitioners.find().count();
     }
-    if (Questionnaires) {
+    if (typeof Questionnaires === 'object') {
       newDailyStat.counts.questionnaires = Questionnaires.find().count();
+    }
+    if (typeof QuestionnaireResponses === 'object') {
+      newDailyStat.counts.questionnaireResponses = QuestionnaireResponses.find().count();
+    }
+    if (typeof RiskAssessments === 'object') {
+      newDailyStat.counts.riskAssessments = RiskAssessments.find().count();
+    }
+    if (typeof Schedules === 'object') {
+      newDailyStat.counts.schedules = Schedules.find().count();
     }
 
     console.log('newDailyStat', newDailyStat);

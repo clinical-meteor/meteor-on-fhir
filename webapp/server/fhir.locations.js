@@ -20,17 +20,9 @@ Meteor.methods({
       console.log('Try setting NODE_ENV=test');
     }
   },  
-  removeLocationById: function(){
-    if (process.env.NODE_ENV === 'test') {
-      console.log('-----------------------------------------');
-      console.log('Removing Location... ');
-      Locations.find().forEach(function(location){
-        Locations.remove({_id: location._id});
-      });
-    } else {
-      console.log('This command can only be run in a test environment.');
-      console.log('Try setting NODE_ENV=test');
-    }
+  removeLocationById: function(locationId){
+    check(locationId, String);
+    Locations.remove({_id: locationId});
   },
   dropLocations: function(){
     if (process.env.NODE_ENV === 'test') {
@@ -44,6 +36,35 @@ Meteor.methods({
       console.log('Try setting NODE_ENV=test');
     }
   },
+  syncLocations: function(){
+    if(Meteor.settings && Meteor.settings.public && Meteor.settings.public.meshNetwork && Meteor.settings.public.meshNetwork.upstreamSync){
+      console.log('-----------------------------------------');
+      console.log('Syncing Locations... ');
+      var queryString = Meteor.settings.public.meshNetwork.upstreamSync + "/Location";
+      console.log(queryString);
+      
+      var result =  HTTP.get(queryString);
+
+      var bundle = JSON.parse(result.content);
+
+      console.log('result', bundle);
+      bundle.entry.forEach(function(record){
+        console.log('record', record);
+        if(record.resource.resourceType === "Location"){
+          if(!Locations.findOne({name:record.resource.name})){
+            Locations.insert(record.resource);
+          }
+        }
+      });
+      Meteor.call('generateDailyStat');
+      return true;
+    }else {
+    console.log('-----------------------------------------');
+    console.log('Syncing disabled... ');      
+    }
+
+  }, 
+
   // These are Chicago area hospitals
   initializeHospitals: function(){
 

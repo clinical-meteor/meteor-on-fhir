@@ -94,6 +94,10 @@ Meteor.methods({
       console.log('Practitioners already exist.  Skipping.');
     }
   },
+  removePractitionerById: function(practitionerId){
+    check(practitionerId, String);
+    Practitioners.remove({_id: practitionerId});
+  },
   dropTestPractitioners: function(){
     if (process.env.NODE_ENV === 'test') {
       console.log('-----------------------------------------');
@@ -117,5 +121,33 @@ Meteor.methods({
       console.log('This command can only be run in a test environment.');
       console.log('Try setting NODE_ENV=test');
     }
-  }
+  },
+  syncPractitioners: function(){
+    if(Meteor.settings && Meteor.settings.public && Meteor.settings.public.meshNetwork && Meteor.settings.public.meshNetwork.upstreamSync){
+      console.log('-----------------------------------------');
+      console.log('Syncing practitioners... ');
+      var queryString = Meteor.settings.public.meshNetwork.upstreamSync + "/Practitioner";
+      console.log(queryString);
+      
+      var result =  HTTP.get(queryString);
+
+      var bundle = JSON.parse(result.content);
+
+      console.log('result', bundle);
+      bundle.entry.forEach(function(record){
+        console.log('record', record);
+        if(record.resource.resourceType === "Practitioner"){
+          if(!Practitioners.findOne({'name.text': record.resource.name.text})){
+            Practitioners.insert(record.resource);
+          }
+        }
+      });
+      Meteor.call('generateDailyStat');
+      return true;
+    }else {
+    console.log('-----------------------------------------');
+    console.log('Syncing disabled... ');      
+    }
+
+  },   
 });

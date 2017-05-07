@@ -58,17 +58,9 @@ Meteor.methods({
       console.log('Organizations already exist.  Skipping.');
     }
   },
-  removeOrganizationById: function(){
-    if (process.env.NODE_ENV === 'test') {
-      console.log('-----------------------------------------');
-      console.log('Removing Organization... ');
-      Organizations.find().forEach(function(Organization){
-        Organizations.remove({_id: Organization._id});
-      });
-    } else {
-      console.log('This command can only be run in a test environment.');
-      console.log('Try setting NODE_ENV=test');
-    }
+  removeOrganizationById: function(organizationId){
+    check(organizationId, String);
+    Organizations.remove({_id: organizationId});
   },
   dropOrganizations: function(){
     if (process.env.NODE_ENV === 'test') {
@@ -82,6 +74,34 @@ Meteor.methods({
       console.log('Try setting NODE_ENV=test');
     }
   },
+  syncOrganizations: function(){
+    if(Meteor.settings && Meteor.settings.public && Meteor.settings.public.meshNetwork && Meteor.settings.public.meshNetwork.upstreamSync){
+      console.log('-----------------------------------------');
+      console.log('Syncing organizations... ');
+      var queryString = Meteor.settings.public.meshNetwork.upstreamSync + "/Organization";
+      console.log(queryString);
+      
+      var result =  HTTP.get(queryString);
+
+      var bundle = JSON.parse(result.content);
+
+      console.log('result', bundle);
+      bundle.entry.forEach(function(record){
+        console.log('record', record);
+        if(record.resource.resourceType === "Organization"){
+          if(!Organizations.findOne({name:record.resource.name})){
+            Organizations.insert(record.resource);
+          }
+        }
+      });
+      Meteor.call('generateDailyStat');
+      return true;
+    }else {
+    console.log('-----------------------------------------');
+    console.log('Syncing disabled... ');      
+    }
+
+  }, 
   initializeBlockchain: function(){
     if(!Organizations.findOne({id: 'stlukes'})){
       Organizations.insert({

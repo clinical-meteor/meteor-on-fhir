@@ -17,7 +17,7 @@ import { Topics as _Topics } from '/imports/api/topics/topics';
 if (process.env.NODE_ENV === 'production') {
   Bert.defaults.style = 'fixed-top';
 } else {
-  Bert.defaults.style = 'fixed-bottom';
+  Bert.defaults.style = 'growl-top-right';
 }
 
 

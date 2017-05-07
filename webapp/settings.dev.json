@@ -40,6 +40,10 @@
         }
       }
     },
+    "meshNetwork": {
+      "upstreamSync": "http://meteor-on-fhir.meteorapp.com/fhir-3.0.0", 
+      "autosync": false
+    },
     "modules": {
       "data": true,
       "forum": true,
@@ -59,7 +63,7 @@
         "Practitioners": true,
         "Organizations": true,
         "Observations": true,
-        "ImagingStudies": true,
+        "ImagingStudies": false,
         "Locations": true,
         "Lists": true,
         "Medications": true,

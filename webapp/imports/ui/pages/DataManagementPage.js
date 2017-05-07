@@ -1,22 +1,21 @@
 // https://www.npmjs.com/package/react-dropzone-component
 // http://www.dropzonejs.com/
 
-
-import React from 'react';
-import ReactMixin from 'react-mixin';
-import { ReactMeteorData } from 'meteor/react-meteor-data';
-
-import { GlassCard } from '/imports/ui/components/GlassCard';
-import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
-import DropzoneComponent from 'react-dropzone-component';
-import { Table } from 'react-bootstrap';
-import Spacer from '/imports/ui/components/Spacer';
-import { CardTitle, CardText } from 'material-ui/Card';
+import { CardText, CardTitle } from 'material-ui/Card';
 
 import { CollectionManagement } from '/imports/ui/components/CollectionManagement';
-
+import DropzoneComponent from 'react-dropzone-component';
 import { GeneticAlgorithms } from '/imports/api/genotype/GeneticAlgorithms';
+import { GlassCard } from '/imports/ui/components/GlassCard';
+import { Meteor } from 'meteor/meteor';
+import React from 'react';
+import { ReactMeteorData } from 'meteor/react-meteor-data';
+import ReactMixin from 'react-mixin';
+import { Session } from 'meteor/session';
+import Spacer from '/imports/ui/components/Spacer';
 import { Statistics } from '/imports/api/statistics/statistics';
+import { Table } from 'react-bootstrap';
+import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 
 var componentConfig = {
   allowedFiletypes: ['.jpg', '.png', '.gif'],
@@ -116,13 +115,14 @@ export class DataManagementPage extends React.Component {
         questionnaires: Questionnaires.find().count(),
         conditions: Conditions.find().count()
       },
-      title: "Client Collections"
+      title: "Client Collections",
+      upstreamSync: false
     };
 
-    // if (Session.get('showServerCounts')) {
-    //   var stats = Statistics.find({}, {limit: 1, sort: {date: -1}}).fetch();
-    //   data.collections = stats[0].counts;
-    // }
+    if(Meteor.settings && Meteor.settings.public && Meteor.settings.public.meshNetwork && Meteor.settings.public.meshNetwork.upstreamSync){
+      console.log('Meteor.settings.public.meshNetwork.upstreamSync');
+      data.upstreamSync = Meteor.settings.public.meshNetwork.upstreamSync;
+    }
 
 
     let user = Meteor.user();
@@ -138,6 +138,7 @@ export class DataManagementPage extends React.Component {
       });
     }
 
+    console.log('DataManagementPage', data);
     return data;
   }
   render(){
@@ -158,7 +159,7 @@ export class DataManagementPage extends React.Component {
             </CardText>
           </GlassCard>
 
-          {this.renderAdminTiles(this.data.user)}
+          {this.renderAdminTiles(this.data.user, this.data.upstreamSync)}
 
         </VerticalCanvas>
       </div>
@@ -171,14 +172,29 @@ export class DataManagementPage extends React.Component {
     Meteor.call(signature);
   }
 
-    renderAdminTiles(user){
+    renderAdminTiles(user, upstreamSync){
+      var upstreamSyncCard;
+      if(upstreamSync){
+        upstreamSyncCard = <div>
+          <Spacer />
+            <GlassCard>
+              <CardTitle
+                title="Upstream Sync"
+                subtitle={upstreamSync}
+              />
+            </GlassCard>
+        </div>;
+      }
+
       if (user.isAdmin || user.isPractitioner || user.isPatient) {
         return (
           <div>
+            {upstreamSyncCard}
+            
             <Spacer />
             <GlassCard>
               <CardTitle
-                title="Collections"
+                title="Datalake"
               />
               <CardText>
                 <CollectionManagement />

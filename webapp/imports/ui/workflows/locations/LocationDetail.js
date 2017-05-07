@@ -212,8 +212,7 @@ export default class LocationDetail extends React.Component {
   }
 
   handleDeleteButton(){
-    removeLocationById.call(
-      {_id: Session.get('selectedLocation')}, (error) => {
+    Meteor.call('removeLocationById', Session.get('selectedLocation'), function(error, result){
       if (error) {
         Bert.alert(error.reason, 'danger');
       } else {
@@ -221,6 +220,9 @@ export default class LocationDetail extends React.Component {
         Session.set('locationPageTabIndex', 1);
         Session.set('selectedLocation', false);
         Session.set('locationUpsert', false);
+      }
+      if (result) {
+        HipaaLogger.logEvent({eventType: "delete", userId: Meteor.userId(), userName: Meteor.user().fullName(), collectionName: "Organizations", recordId: Session.get('selectedOrganization')});
       }
     });
   }

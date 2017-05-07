@@ -92,20 +92,8 @@ NODE_ENV=dev meteor run ios-device --mobile-server http://localhost:3000 --setti
 NODE_ENV=dev meteor run ios-device --mobile-server http://meteor-on-fhir.meteorapp.com --settings settings.dev.json
 ```    
 
-#### G. Publish to Testflight  
 
-- [ ] Update version/build numbers
-- [ ] Set Deployment Target to iOS v10.0
-- [ ] Set Team Signing Certificate
-- [ ] Build to local device
-- [ ] Product > Clean
-- [ ] Set Provision Profile
-- [ ] Set Signing Profile
-- [ ] Product > Archive > Validate
-- [ ] Product > Archive > Upload to App Store
-
-
-#### F. Desktop Build   
+#### G. Desktop Build   
 To enable desktop builds, uncomment the following files in `.meteor/packages`.
 
 - [ ] omega:meteor-desktop-watcher@=0.2.6
@@ -131,7 +119,12 @@ npm run desktop
 ```    
 
 
-### References    
+### Interoperability References    
 [Supporting Interoperability – Terminology, Subsets and Other Resources from Natl. Library of Medicine](https://www.nlm.nih.gov/hit_interoperability.html)  
 [Health IT Standards for Health Information Management Practices](http://ihe.net/uploadedFiles/Documents/ITI/IHE_ITI_WP_HITStdsforHIMPratices_Rev1.1_2015-09-18.pdf)  
+
+
+
+
+
 

@@ -190,7 +190,7 @@ export default class OrganizationDetail extends React.Component {
       return (
         <div>
           <RaisedButton id="saveOrganizationButton" label="Save" primary={true} onClick={this.handleSaveButton.bind(this)} />
-          <RaisedButton id="deleteOrganizationButton" label="Delete" onClick={this.handleDeleteButton.bind(this)} />
+          <RaisedButton id="deleteOrganizationButton" label="Delete" onClick={this.handleDeleteButton.bind(this)} style={{marginLeft: '20px'}} />
         </div>
       );
     } else {
@@ -287,8 +287,7 @@ export default class OrganizationDetail extends React.Component {
   }
 
   handleDeleteButton(){
-    removeOrganizationById.call(
-      {_id: Session.get('selectedOrganization')}, (error) => {
+    Meteor.call('removeOrganizationById', Session.get('selectedOrganization'), function(error, result){
       if (error) {
         Bert.alert(error.reason, 'danger');
       } else {
@@ -296,6 +295,9 @@ export default class OrganizationDetail extends React.Component {
         Session.set('organizationPageTabIndex', 1);
         Session.set('selectedOrganization', false);
         Session.set('organizationUpsert', false);
+      }
+      if (result) {
+        HipaaLogger.logEvent({eventType: "delete", userId: Meteor.userId(), userName: Meteor.user().fullName(), collectionName: "Organizations", recordId: Session.get('selectedOrganization')});
       }
     });
   }
