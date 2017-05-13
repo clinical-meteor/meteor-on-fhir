@@ -140,7 +140,6 @@ export class SciFiPage extends React.Component {
     };
 
     return(
-      <div className="SciFiPage">
         <View 
           id='orbital'
           flex={true}
@@ -204,10 +203,7 @@ export class SciFiPage extends React.Component {
               </TrackingTiltPlane>
             </div>
           </View>
-        </View>
-
-      
-      </div>
+        </View>      
     );
   }
 }

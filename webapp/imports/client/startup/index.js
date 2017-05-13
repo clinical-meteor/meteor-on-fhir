@@ -6,6 +6,7 @@ import './globals.js';
 import { Bert } from 'meteor/themeteorchef:bert';
 import { Meteor } from 'meteor/meteor';
 import { Mousetrap } from 'meteor:clinica:keybindings';
+import { Session } from 'meteor/session';
 // global imports for subscriptions
 import { MyGenotype as _MyGenotype } from '/imports/api/genotype/MyGenotype';
 // global imports for subscriptions
@@ -21,7 +22,7 @@ if (process.env.NODE_ENV === 'production') {
   Bert.defaults.style = 'growl-top-right';
 }
 
-
+Session.setDefault('showOrbital', false);
 
 Meteor.startup(function (){
   // global session variables

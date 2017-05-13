@@ -10,6 +10,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import React  from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin  from 'react-mixin';
+import { SciFiPage } from '/imports/ui/pages/SciFiPage';
+import { Session } from 'meteor/session';
 import { SinglePanelLayout } from '/imports/ui/layouts/SinglePanelLayout';
 import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 // Material UI Theming
@@ -102,6 +104,7 @@ export class App extends React.Component {
      <MuiThemeProvider muiTheme={muiTheme}>
       <GlassApp>
         <SinglePanelLayout>
+          <SciFiPage />
           <Header />
             <div className='primaryFlexPanel' >
               { this.props.children }
