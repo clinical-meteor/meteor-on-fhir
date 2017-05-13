@@ -5,7 +5,7 @@ import './globals.js';
 
 import { Bert } from 'meteor/themeteorchef:bert';
 import { Meteor } from 'meteor/meteor';
-import { Mousetrap } from 'meteor:clinica:keybindings';
+import { Mousetrap } from 'meteor/clinical:keybindings';
 import { Session } from 'meteor/session';
 // global imports for subscriptions
 import { MyGenotype as _MyGenotype } from '/imports/api/genotype/MyGenotype';
