@@ -1,7 +1,6 @@
 import { Accounts } from 'meteor/accounts-base';
 import { Meteor } from 'meteor/meteor';
 
-
 Meteor.startup(function (){
   if (process.env.INITIALIZE && (Meteor.users.find().count() === 0)) {
     console.log('No users found.');

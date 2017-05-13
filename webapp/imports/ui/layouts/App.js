@@ -100,11 +100,16 @@ export class App extends React.Component {
   }
 
   render(){
+    var orbital;
+    if(Meteor.settings && Meteor.settings.public && Meteor.settings.public.defaults && Meteor.settings.public.defaults.nfcOrbital){
+      orbital = <SciFiPage />;
+    }
+
     return (
      <MuiThemeProvider muiTheme={muiTheme}>
       <GlassApp>
         <SinglePanelLayout>
-          <SciFiPage />
+          {orbital}
           <Header />
             <div className='primaryFlexPanel' >
               { this.props.children }
