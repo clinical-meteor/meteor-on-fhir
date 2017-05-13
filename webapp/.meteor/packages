@@ -102,3 +102,4 @@ simple:json-routes
 d3js:d3
 
 #zetoff:accounts-material-ui
+mousetrap:mousetrap@1.4.6

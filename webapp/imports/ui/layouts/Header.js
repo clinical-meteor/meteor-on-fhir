@@ -161,7 +161,7 @@ export class Header extends React.Component {
   }
 
   goHome(){
-    browserHistory.push('/');
+    browserHistory.push('/hexgrid');
   }
 
   render () {

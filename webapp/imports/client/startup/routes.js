@@ -51,6 +51,7 @@ import React from 'react';
 import { RecoverPassword } from '/imports/ui/pages/RecoverPassword';
 import { ResetPassword } from '/imports/ui/pages/ResetPassword';
 import { RiskAssessmentsPage } from '/imports/ui/workflows/risk-assessments/RiskAssessmentsPage';
+import { SciFiPage } from '/imports/ui/pages/SciFiPage';
 import { ServerConfigurationPage } from '/imports/ui/workflows/oauth/ServerConfigurationPage';
 import { Signin } from '/imports/ui/pages/Signin';
 import { Signup } from '/imports/ui/pages/Signup';
@@ -140,7 +141,7 @@ Meteor.startup(() => {
         <Route name="needToBeSysadmin" path="/need-to-be-sysadmin" component={ NeedToBeSysadmin } />
         <Route name="needToBePractitioner" path="/need-to-be-practitioner" component={ NeedToBePractitioner }  />
 
-        <Route name="hexGrid" path="/hex" component={ HexGridPage } />
+        <Route name="hexGrid" path="/hexgrid" component={ HexGridPage } />
         <Route name="appInfo" path="/info" component={ AppInfoPage } />
 
         <Route name="appInfo" path="/info" component={ AppInfoPage } />
@@ -190,6 +191,12 @@ Meteor.startup(() => {
         <Route name="GoogleMapsPage" path="/maps" component={ GoogleMapsPage } />
 
         <Route name="ProviderDirectoryPage" path="/provider-directory" component={ ProviderDirectoryPage } />
+
+        <Route name="SciFiPage" path="/scifi" component={ SciFiPage } />
+
+
+
+
 
         <Route path="*" component={ NotFound } />
 
