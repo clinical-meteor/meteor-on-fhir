@@ -161,7 +161,12 @@ export class Header extends React.Component {
   }
 
   goHome(){
-    browserHistory.push('/hexgrid');
+    // not every wants the hexgrid menu, so we make sure it's configurable in the Meteor.settings file
+    if(Meteor.settings && Meteor.settings.public && Meteor.settings.public.defaults && Meteor.settings.public.defaults.hexgridMenu){
+      browserHistory.push('/hexgrid');
+    } else {
+      browserHistory.push('/');      
+    }
   }
 
   render () {
