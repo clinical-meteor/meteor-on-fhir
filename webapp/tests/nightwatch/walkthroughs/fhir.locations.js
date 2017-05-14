@@ -6,6 +6,7 @@ module.exports = {
   before: function(client){
     client
       .url("http://localhost:3000").pause(3000)
+      .resizeWindow(1920, 1200)
       .executeAsync(function(){
         Meteor.call('dropLocations');
         Meteor.call('dropTestUsers');
@@ -19,9 +20,6 @@ module.exports = {
       .saveScreenshot('tests/nightwatch/screenshots/locations/A-Signup-Location.png', client)
       .signup()
       .pause(5000, client);
-
-    client.resizeWindow(1920, 1200);
-    client.windowSize(1920, 1200);
 
     client
       .verify.elementPresent('#indexPage')
