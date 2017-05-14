@@ -1,44 +1,44 @@
-03:53:37.986 INFO - Selenium build info: version: '3.0.1', revision: '1969d75'
-03:53:37.987 INFO - Launching a standalone Selenium Server
-2017-05-05 03:53:38.008:INFO::main: Logging initialized @290ms
-03:53:38.068 INFO - Driver provider org.openqa.selenium.ie.InternetExplorerDriver registration is skipped:
+10:56:11.399 INFO - Selenium build info: version: '3.0.1', revision: '1969d75'
+10:56:11.401 INFO - Launching a standalone Selenium Server
+2017-05-13 10:56:11.438:INFO::main: Logging initialized @366ms
+10:56:11.534 INFO - Driver provider org.openqa.selenium.ie.InternetExplorerDriver registration is skipped:
  registration capabilities Capabilities [{ensureCleanSession=true, browserName=internet explorer, version=, platform=WINDOWS}] does not match the current platform MAC
-03:53:38.068 INFO - Driver provider org.openqa.selenium.edge.EdgeDriver registration is skipped:
+10:56:11.535 INFO - Driver provider org.openqa.selenium.edge.EdgeDriver registration is skipped:
  registration capabilities Capabilities [{browserName=MicrosoftEdge, version=, platform=WINDOWS}] does not match the current platform MAC
-03:53:38.068 INFO - Driver class not found: com.opera.core.systems.OperaDriver
-03:53:38.068 INFO - Driver provider com.opera.core.systems.OperaDriver registration is skipped:
+10:56:11.535 INFO - Driver class not found: com.opera.core.systems.OperaDriver
+10:56:11.535 INFO - Driver provider com.opera.core.systems.OperaDriver registration is skipped:
 Unable to create new instances on this machine.
-03:53:38.069 INFO - Driver class not found: com.opera.core.systems.OperaDriver
-03:53:38.069 INFO - Driver provider com.opera.core.systems.OperaDriver is not registered
-2017-05-05 03:53:38.108:INFO:osjs.Server:main: jetty-9.2.15.v20160210
-2017-05-05 03:53:38.136:INFO:osjsh.ContextHandler:main: Started o.s.j.s.ServletContextHandler@6cc4c815{/,null,AVAILABLE}
-2017-05-05 03:53:38.170:INFO:osjs.ServerConnector:main: Started ServerConnector@7823a2f9{HTTP/1.1}{0.0.0.0:4444}
-2017-05-05 03:53:38.170:INFO:osjs.Server:main: Started @452ms
-03:53:38.170 INFO - Selenium Server is up and running
-03:53:38.534 INFO - SessionCleaner initialized with insideBrowserTimeout 0 and clientGoneTimeout 1800000 polling every 180000
-03:53:38.568 INFO - Executing: [new session: Capabilities [{acceptSslCerts=true, loggingPrefs=org.openqa.selenium.logging.LoggingPreferences@152ae9c3, name=Fhir Organizations, browserName=chrome, javascriptEnabled=true, platform=ANY}]])
-03:53:38.583 INFO - Creating a new session for Capabilities [{acceptSslCerts=true, loggingPrefs=org.openqa.selenium.logging.LoggingPreferences@152ae9c3, name=Fhir Organizations, browserName=chrome, javascriptEnabled=true, platform=ANY}]
-Starting ChromeDriver 2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1) on port 12033
+10:56:11.535 INFO - Driver class not found: com.opera.core.systems.OperaDriver
+10:56:11.535 INFO - Driver provider com.opera.core.systems.OperaDriver is not registered
+2017-05-13 10:56:11.601:INFO:osjs.Server:main: jetty-9.2.15.v20160210
+2017-05-13 10:56:11.635:INFO:osjsh.ContextHandler:main: Started o.s.j.s.ServletContextHandler@6cc4c815{/,null,AVAILABLE}
+2017-05-13 10:56:11.672:INFO:osjs.ServerConnector:main: Started ServerConnector@7823a2f9{HTTP/1.1}{0.0.0.0:4444}
+2017-05-13 10:56:11.673:INFO:osjs.Server:main: Started @601ms
+10:56:11.673 INFO - Selenium Server is up and running
+10:56:12.347 INFO - SessionCleaner initialized with insideBrowserTimeout 0 and clientGoneTimeout 1800000 polling every 180000
+10:56:12.419 INFO - Executing: [new session: Capabilities [{acceptSslCerts=true, loggingPrefs=org.openqa.selenium.logging.LoggingPreferences@41ce7e93, name=Fhir Locations, browserName=chrome, javascriptEnabled=true, platform=ANY}]])
+10:56:12.439 INFO - Creating a new session for Capabilities [{acceptSslCerts=true, loggingPrefs=org.openqa.selenium.logging.LoggingPreferences@41ce7e93, name=Fhir Locations, browserName=chrome, javascriptEnabled=true, platform=ANY}]
+Starting ChromeDriver 2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1) on port 27188
 Only local connections are allowed.
-03:53:39.051 INFO - Attempting bi-dialect session, assuming Postel's Law holds true on the remote end
-03:53:39.934 INFO - Detected dialect: OSS
-03:53:39.954 INFO - Done: [new session: Capabilities [{acceptSslCerts=true, loggingPrefs=org.openqa.selenium.logging.LoggingPreferences@152ae9c3, name=Fhir Organizations, browserName=chrome, javascriptEnabled=true, platform=ANY}]]
-03:53:39.971 INFO - Executing: [get: http://localhost:3000])
-03:53:44.483 INFO - Done: [get: http://localhost:3000]
-03:53:47.498 INFO - Executing: [execute async script: var passedArgs = Array.prototype.slice.call(arguments,0); return function (){
-        Meteor.call('dropOrganizations');
+10:56:13.056 INFO - Attempting bi-dialect session, assuming Postel's Law holds true on the remote end
+10:56:15.024 INFO - Detected dialect: OSS
+10:56:15.052 INFO - Done: [new session: Capabilities [{acceptSslCerts=true, loggingPrefs=org.openqa.selenium.logging.LoggingPreferences@41ce7e93, name=Fhir Locations, browserName=chrome, javascriptEnabled=true, platform=ANY}]]
+10:56:15.072 INFO - Executing: [get: http://localhost:3000])
+10:56:20.622 INFO - Done: [get: http://localhost:3000]
+10:56:23.636 INFO - Executing: [execute async script: var passedArgs = Array.prototype.slice.call(arguments,0); return function (){
+        Meteor.call('dropLocations');
         Meteor.call('dropTestUsers');
       }.apply(window, passedArgs);, []])
-03:53:58.852 WARN - Exception thrown
+10:56:35.166 WARN - Exception thrown
 org.openqa.selenium.ScriptTimeoutException: asynchronous script timeout: result was not received in 0 seconds
-  (Session info: chrome=58.0.3029.96)
+  (Session info: chrome=58.0.3029.110)
   (Driver info: chromedriver=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1),platform=Mac OS X 10.12.4 x86_64) (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 126 milliseconds
+Command duration or timeout: 153 milliseconds
 Build info: version: '3.0.1', revision: '1969d75', time: '2016-10-18 09:48:19 -0700'
 System info: host: 'Abigails-Mac-mini-3.local', ip: '10.0.0.53', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.12.4', java.version: '1.8.0_111'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1), userDataDir=/var/folders/wy/x2wnhsd15rxbcnwr07g161b00000gn/T/.org.chromium.Chromium.tUQues}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=58.0.3029.96, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
-Session ID: 7a49208836e36eb597ce6f998ca8f96b
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1), userDataDir=/var/folders/wy/x2wnhsd15rxbcnwr07g161b00000gn/T/.org.chromium.Chromium.qPlWcs}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=58.0.3029.110, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 0f66f91b5cc013c2f2c10993737c8785
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
@@ -60,27 +60,27 @@ Session ID: 7a49208836e36eb597ce6f998ca8f96b
 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
 	at java.lang.Thread.run(Thread.java:745)
-03:54:18.875 WARN - Exception: asynchronous script timeout: result was not received in 0 seconds
-  (Session info: chrome=58.0.3029.96)
+10:56:55.183 WARN - Exception: asynchronous script timeout: result was not received in 0 seconds
+  (Session info: chrome=58.0.3029.110)
   (Driver info: chromedriver=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1),platform=Mac OS X 10.12.4 x86_64) (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 126 milliseconds
+Command duration or timeout: 153 milliseconds
 Build info: version: '3.0.1', revision: '1969d75', time: '2016-10-18 09:48:19 -0700'
 System info: host: 'Abigails-Mac-mini-3.local', ip: '10.0.0.53', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.12.4', java.version: '1.8.0_111'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1), userDataDir=/var/folders/wy/x2wnhsd15rxbcnwr07g161b00000gn/T/.org.chromium.Chromium.tUQues}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=58.0.3029.96, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
-Session ID: 7a49208836e36eb597ce6f998ca8f96b
-03:54:47.503 INFO - Executing: [set window size])
-03:55:07.558 WARN - Exception thrown
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1), userDataDir=/var/folders/wy/x2wnhsd15rxbcnwr07g161b00000gn/T/.org.chromium.Chromium.qPlWcs}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=58.0.3029.110, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 0f66f91b5cc013c2f2c10993737c8785
+10:57:23.652 INFO - Executing: [set window size])
+10:57:43.703 WARN - Exception thrown
 org.openqa.selenium.WebDriverException: unknown error: cannot get automation extension
 from unknown error: page could not be found: chrome-extension://aapnijgdinlhnhlmodcfapnahmbfebeb/_generated_background_page.html
-  (Session info: chrome=58.0.3029.96)
+  (Session info: chrome=58.0.3029.110)
   (Driver info: chromedriver=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1),platform=Mac OS X 10.12.4 x86_64) (WARNING: The server did not provide any stacktrace information)
 Command duration or timeout: 10.04 seconds
 Build info: version: '3.0.1', revision: '1969d75', time: '2016-10-18 09:48:19 -0700'
 System info: host: 'Abigails-Mac-mini-3.local', ip: '10.0.0.53', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.12.4', java.version: '1.8.0_111'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1), userDataDir=/var/folders/wy/x2wnhsd15rxbcnwr07g161b00000gn/T/.org.chromium.Chromium.tUQues}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=58.0.3029.96, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
-Session ID: 7a49208836e36eb597ce6f998ca8f96b
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1), userDataDir=/var/folders/wy/x2wnhsd15rxbcnwr07g161b00000gn/T/.org.chromium.Chromium.qPlWcs}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=58.0.3029.110, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 0f66f91b5cc013c2f2c10993737c8785
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
@@ -97,82 +97,82 @@ Session ID: 7a49208836e36eb597ce6f998ca8f96b
 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
 	at java.lang.Thread.run(Thread.java:745)
-03:55:27.572 WARN - Exception: unknown error: cannot get automation extension
+10:58:03.716 WARN - Exception: unknown error: cannot get automation extension
 from unknown error: page could not be found: chrome-extension://aapnijgdinlhnhlmodcfapnahmbfebeb/_generated_background_page.html
-  (Session info: chrome=58.0.3029.96)
+  (Session info: chrome=58.0.3029.110)
   (Driver info: chromedriver=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1),platform=Mac OS X 10.12.4 x86_64) (WARNING: The server did not provide any stacktrace information)
 Command duration or timeout: 10.04 seconds
 Build info: version: '3.0.1', revision: '1969d75', time: '2016-10-18 09:48:19 -0700'
 System info: host: 'Abigails-Mac-mini-3.local', ip: '10.0.0.53', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.12.4', java.version: '1.8.0_111'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1), userDataDir=/var/folders/wy/x2wnhsd15rxbcnwr07g161b00000gn/T/.org.chromium.Chromium.tUQues}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=58.0.3029.96, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
-Session ID: 7a49208836e36eb597ce6f998ca8f96b
-03:55:47.503 INFO - Executing: [get: http://localhost:3000/signup])
-03:55:49.889 INFO - Done: [get: http://localhost:3000/signup]
-03:55:49.896 INFO - Executing: [find elements: By.cssSelector: #signupPage])
-03:55:49.927 INFO - Done: [find elements: By.cssSelector: #signupPage]
-03:55:49.933 INFO - Executing: [find elements: By.cssSelector: input[name="firstName"]])
-03:55:49.951 INFO - Done: [find elements: By.cssSelector: input[name="firstName"]]
-03:55:49.955 INFO - Executing: [find elements: By.cssSelector: input[name="lastName"]])
-03:55:49.972 INFO - Done: [find elements: By.cssSelector: input[name="lastName"]]
-03:55:49.977 INFO - Executing: [find elements: By.cssSelector: input[name="emailAddress"]])
-03:55:49.996 INFO - Done: [find elements: By.cssSelector: input[name="emailAddress"]]
-03:55:50.001 INFO - Executing: [find elements: By.cssSelector: input[name="password"]])
-03:55:50.018 INFO - Done: [find elements: By.cssSelector: input[name="password"]]
-03:55:50.022 INFO - Executing: [find elements: By.cssSelector: input[name="accessCode"]])
-03:55:50.038 INFO - Done: [find elements: By.cssSelector: input[name="accessCode"]]
-03:55:50.043 INFO - Executing: [find element: By.cssSelector: input[name="firstName"]])
-03:55:50.059 INFO - Done: [find element: By.cssSelector: input[name="firstName"]]
-03:55:50.063 INFO - Executing: [clear: 1 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: input[name="firstName"]]])
-03:55:50.094 INFO - Done: [clear: 1 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: input[name="firstName"]]]
-03:55:50.098 INFO - Executing: [find element: By.cssSelector: input[name="lastName"]])
-03:55:50.114 INFO - Done: [find element: By.cssSelector: input[name="lastName"]]
-03:55:50.119 INFO - Executing: [clear: 2 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: input[name="lastName"]]])
-03:55:50.147 INFO - Done: [clear: 2 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: input[name="lastName"]]]
-03:55:50.152 INFO - Executing: [find element: By.cssSelector: input[name="emailAddress"]])
-03:55:50.168 INFO - Done: [find element: By.cssSelector: input[name="emailAddress"]]
-03:55:50.171 INFO - Executing: [clear: 3 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: input[name="emailAddress"]]])
-03:55:50.199 INFO - Done: [clear: 3 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: input[name="emailAddress"]]]
-03:55:50.204 INFO - Executing: [find element: By.cssSelector: input[name="password"]])
-03:55:50.219 INFO - Done: [find element: By.cssSelector: input[name="password"]]
-03:55:50.222 INFO - Executing: [clear: 4 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: input[name="password"]]])
-03:55:50.249 INFO - Done: [clear: 4 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: input[name="password"]]]
-03:55:50.252 INFO - Executing: [find element: By.cssSelector: input[name="accessCode"]])
-03:55:50.269 INFO - Done: [find element: By.cssSelector: input[name="accessCode"]]
-03:55:50.272 INFO - Executing: [clear: 5 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: input[name="accessCode"]]])
-03:55:50.308 INFO - Done: [clear: 5 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: input[name="accessCode"]]]
-03:55:50.313 INFO - Executing: [find element: By.cssSelector: input[name="firstName"]])
-03:55:50.323 INFO - Done: [find element: By.cssSelector: input[name="firstName"]]
-03:55:50.329 INFO - Executing: [send keys: 1 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: input[name="firstName"]], [G, r, e, g, o, r, y]])
-03:55:50.487 INFO - Done: [send keys: 1 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: input[name="firstName"]], [G, r, e, g, o, r, y]]
-03:55:50.492 INFO - Executing: [find element: By.cssSelector: input[name="lastName"]])
-03:55:50.501 INFO - Done: [find element: By.cssSelector: input[name="lastName"]]
-03:55:50.505 INFO - Executing: [send keys: 2 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: input[name="lastName"]], [H, o, u, s, e]])
-03:55:50.573 INFO - Done: [send keys: 2 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: input[name="lastName"]], [H, o, u, s, e]]
-03:55:50.577 INFO - Executing: [find element: By.cssSelector: input[name="emailAddress"]])
-03:55:50.585 INFO - Done: [find element: By.cssSelector: input[name="emailAddress"]]
-03:55:50.588 INFO - Executing: [send keys: 3 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: input[name="emailAddress"]], [h, o, u, s, e, @, t, e, s, t, ., o, r, g]])
-03:55:50.734 INFO - Done: [send keys: 3 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: input[name="emailAddress"]], [h, o, u, s, e, @, t, e, s, t, ., o, r, g]]
-03:55:50.739 INFO - Executing: [find element: By.cssSelector: input[name="password"]])
-03:55:50.748 INFO - Done: [find element: By.cssSelector: input[name="password"]]
-03:55:50.752 INFO - Executing: [send keys: 4 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: input[name="password"]], [h, o, u, s, e, 1, 2, 3]])
-03:55:50.838 INFO - Done: [send keys: 4 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: input[name="password"]], [h, o, u, s, e, 1, 2, 3]]
-03:55:50.842 INFO - Executing: [find element: By.cssSelector: input[name="accessCode"]])
-03:55:50.853 INFO - Done: [find element: By.cssSelector: input[name="accessCode"]]
-03:55:50.856 INFO - Executing: [send keys: 5 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: input[name="accessCode"]], [h, i, p, p, o, c, r, a, t, e, s]])
-03:55:50.957 INFO - Done: [send keys: 5 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: input[name="accessCode"]], [h, i, p, p, o, c, r, a, t, e, s]]
-03:55:50.961 INFO - Executing: [take screenshot])
-03:56:11.040 WARN - Exception thrown
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1), userDataDir=/var/folders/wy/x2wnhsd15rxbcnwr07g161b00000gn/T/.org.chromium.Chromium.qPlWcs}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=58.0.3029.110, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 0f66f91b5cc013c2f2c10993737c8785
+10:58:23.641 INFO - Executing: [get: http://localhost:3000/signup])
+10:58:26.512 INFO - Done: [get: http://localhost:3000/signup]
+10:58:26.527 INFO - Executing: [find elements: By.cssSelector: #signupPage])
+10:58:26.632 INFO - Done: [find elements: By.cssSelector: #signupPage]
+10:58:26.640 INFO - Executing: [find elements: By.cssSelector: input[name="firstName"]])
+10:58:26.775 INFO - Done: [find elements: By.cssSelector: input[name="firstName"]]
+10:58:26.783 INFO - Executing: [find elements: By.cssSelector: input[name="lastName"]])
+10:58:26.824 INFO - Done: [find elements: By.cssSelector: input[name="lastName"]]
+10:58:26.829 INFO - Executing: [find elements: By.cssSelector: input[name="emailAddress"]])
+10:58:26.860 INFO - Done: [find elements: By.cssSelector: input[name="emailAddress"]]
+10:58:26.865 INFO - Executing: [find elements: By.cssSelector: input[name="password"]])
+10:58:26.891 INFO - Done: [find elements: By.cssSelector: input[name="password"]]
+10:58:26.896 INFO - Executing: [find elements: By.cssSelector: input[name="accessCode"]])
+10:58:26.923 INFO - Done: [find elements: By.cssSelector: input[name="accessCode"]]
+10:58:26.929 INFO - Executing: [find element: By.cssSelector: input[name="firstName"]])
+10:58:26.963 INFO - Done: [find element: By.cssSelector: input[name="firstName"]]
+10:58:26.968 INFO - Executing: [clear: 1 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: input[name="firstName"]]])
+10:58:27.028 INFO - Done: [clear: 1 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: input[name="firstName"]]]
+10:58:27.036 INFO - Executing: [find element: By.cssSelector: input[name="lastName"]])
+10:58:27.095 INFO - Done: [find element: By.cssSelector: input[name="lastName"]]
+10:58:27.101 INFO - Executing: [clear: 2 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: input[name="lastName"]]])
+10:58:27.166 INFO - Done: [clear: 2 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: input[name="lastName"]]]
+10:58:27.172 INFO - Executing: [find element: By.cssSelector: input[name="emailAddress"]])
+10:58:27.204 INFO - Done: [find element: By.cssSelector: input[name="emailAddress"]]
+10:58:27.209 INFO - Executing: [clear: 3 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: input[name="emailAddress"]]])
+10:58:27.260 INFO - Done: [clear: 3 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: input[name="emailAddress"]]]
+10:58:27.266 INFO - Executing: [find element: By.cssSelector: input[name="password"]])
+10:58:27.302 INFO - Done: [find element: By.cssSelector: input[name="password"]]
+10:58:27.307 INFO - Executing: [clear: 4 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: input[name="password"]]])
+10:58:27.352 INFO - Done: [clear: 4 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: input[name="password"]]]
+10:58:27.359 INFO - Executing: [find element: By.cssSelector: input[name="accessCode"]])
+10:58:27.410 INFO - Done: [find element: By.cssSelector: input[name="accessCode"]]
+10:58:27.415 INFO - Executing: [clear: 5 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: input[name="accessCode"]]])
+10:58:27.462 INFO - Done: [clear: 5 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: input[name="accessCode"]]]
+10:58:27.469 INFO - Executing: [find element: By.cssSelector: input[name="firstName"]])
+10:58:27.517 INFO - Done: [find element: By.cssSelector: input[name="firstName"]]
+10:58:27.525 INFO - Executing: [send keys: 1 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: input[name="firstName"]], [G, r, e, g, o, r, y]])
+10:58:27.758 INFO - Done: [send keys: 1 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: input[name="firstName"]], [G, r, e, g, o, r, y]]
+10:58:27.768 INFO - Executing: [find element: By.cssSelector: input[name="lastName"]])
+10:58:27.797 INFO - Done: [find element: By.cssSelector: input[name="lastName"]]
+10:58:27.802 INFO - Executing: [send keys: 2 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: input[name="lastName"]], [H, o, u, s, e]])
+10:58:27.933 INFO - Done: [send keys: 2 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: input[name="lastName"]], [H, o, u, s, e]]
+10:58:27.936 INFO - Executing: [find element: By.cssSelector: input[name="emailAddress"]])
+10:58:27.945 INFO - Done: [find element: By.cssSelector: input[name="emailAddress"]]
+10:58:27.949 INFO - Executing: [send keys: 3 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: input[name="emailAddress"]], [h, o, u, s, e, @, t, e, s, t, ., o, r, g]])
+10:58:28.193 INFO - Done: [send keys: 3 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: input[name="emailAddress"]], [h, o, u, s, e, @, t, e, s, t, ., o, r, g]]
+10:58:28.198 INFO - Executing: [find element: By.cssSelector: input[name="password"]])
+10:58:28.212 INFO - Done: [find element: By.cssSelector: input[name="password"]]
+10:58:28.215 INFO - Executing: [send keys: 4 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: input[name="password"]], [h, o, u, s, e, 1, 2, 3]])
+10:58:28.357 INFO - Done: [send keys: 4 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: input[name="password"]], [h, o, u, s, e, 1, 2, 3]]
+10:58:28.360 INFO - Executing: [find element: By.cssSelector: input[name="accessCode"]])
+10:58:28.370 INFO - Done: [find element: By.cssSelector: input[name="accessCode"]]
+10:58:28.374 INFO - Executing: [send keys: 5 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: input[name="accessCode"]], [h, i, p, p, o, c, r, a, t, e, s]])
+10:58:28.536 INFO - Done: [send keys: 5 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: input[name="accessCode"]], [h, i, p, p, o, c, r, a, t, e, s]]
+10:58:28.540 INFO - Executing: [take screenshot])
+10:58:48.590 WARN - Exception thrown
 org.openqa.selenium.WebDriverException: unknown error: cannot get automation extension
 from unknown error: page could not be found: chrome-extension://aapnijgdinlhnhlmodcfapnahmbfebeb/_generated_background_page.html
-  (Session info: chrome=58.0.3029.96)
+  (Session info: chrome=58.0.3029.110)
   (Driver info: chromedriver=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1),platform=Mac OS X 10.12.4 x86_64) (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 10.07 seconds
+Command duration or timeout: 10.04 seconds
 Build info: version: '3.0.1', revision: '1969d75', time: '2016-10-18 09:48:19 -0700'
 System info: host: 'Abigails-Mac-mini-3.local', ip: '10.0.0.53', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.12.4', java.version: '1.8.0_111'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1), userDataDir=/var/folders/wy/x2wnhsd15rxbcnwr07g161b00000gn/T/.org.chromium.Chromium.tUQues}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=58.0.3029.96, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
-Session ID: 7a49208836e36eb597ce6f998ca8f96b
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1), userDataDir=/var/folders/wy/x2wnhsd15rxbcnwr07g161b00000gn/T/.org.chromium.Chromium.qPlWcs}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=58.0.3029.110, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 0f66f91b5cc013c2f2c10993737c8785
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
@@ -189,196 +189,186 @@ Session ID: 7a49208836e36eb597ce6f998ca8f96b
 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
 	at java.lang.Thread.run(Thread.java:745)
-03:56:31.057 WARN - Exception: unknown error: cannot get automation extension
+10:59:08.602 WARN - Exception: unknown error: cannot get automation extension
 from unknown error: page could not be found: chrome-extension://aapnijgdinlhnhlmodcfapnahmbfebeb/_generated_background_page.html
-  (Session info: chrome=58.0.3029.96)
-  (Driver info: chromedriver=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1),platform=Mac OS X 10.12.4 x86_64) (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 10.07 seconds
-Build info: version: '3.0.1', revision: '1969d75', time: '2016-10-18 09:48:19 -0700'
-System info: host: 'Abigails-Mac-mini-3.local', ip: '10.0.0.53', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.12.4', java.version: '1.8.0_111'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1), userDataDir=/var/folders/wy/x2wnhsd15rxbcnwr07g161b00000gn/T/.org.chromium.Chromium.tUQues}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=58.0.3029.96, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
-Session ID: 7a49208836e36eb597ce6f998ca8f96b
-03:56:50.967 INFO - Executing: [find elements: By.cssSelector: #signupButton])
-03:56:50.984 INFO - Done: [find elements: By.cssSelector: #signupButton]
-03:56:50.988 INFO - Executing: [find element: By.cssSelector: #signupButton])
-03:56:51.003 INFO - Done: [find element: By.cssSelector: #signupButton]
-03:56:51.006 INFO - Executing: [click: 6 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #signupButton]])
-03:56:51.094 INFO - Done: [click: 6 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #signupButton]]
-03:56:56.102 INFO - Executing: [find elements: By.cssSelector: #indexPage])
-03:56:56.128 INFO - Done: [find elements: By.cssSelector: #indexPage]
-03:56:56.133 INFO - Executing: [find element: By.cssSelector: #authenticatedUsername])
-03:56:56.149 INFO - Done: [find element: By.cssSelector: #authenticatedUsername]
-03:56:56.152 INFO - Executing: [get text: 8 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #authenticatedUsername]])
-03:56:56.172 INFO - Done: [get text: 8 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #authenticatedUsername]]
-03:56:59.198 INFO - Executing: [find elements: By.cssSelector: #organizationsTile])
-03:56:59.214 INFO - Done: [find elements: By.cssSelector: #organizationsTile]
-03:56:59.218 INFO - Executing: [find element: By.cssSelector: #organizationsTile])
-03:56:59.235 INFO - Done: [find element: By.cssSelector: #organizationsTile]
-03:56:59.237 INFO - Executing: [click: 9 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsTile]])
-03:56:59.372 INFO - Done: [click: 9 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsTile]]
-03:56:59.376 INFO - Executing: [find elements: By.cssSelector: #organizationsPage])
-03:56:59.405 INFO - Done: [find elements: By.cssSelector: #organizationsPage]
-03:56:59.410 INFO - Executing: [find elements: By.cssSelector: #organizationsTable])
-03:56:59.428 INFO - Done: [find elements: By.cssSelector: #organizationsTable]
-03:56:59.431 INFO - Executing: [find elements: By.cssSelector: #organizationsTable .organizationRow:nth-child(1)])
-03:56:59.447 INFO - Done: [find elements: By.cssSelector: #organizationsTable .organizationRow:nth-child(1)]
-03:56:59.468 INFO - Executing: [find elements: By.cssSelector: #organizationsPageTabs])
-03:56:59.486 INFO - Done: [find elements: By.cssSelector: #organizationsPageTabs]
-03:56:59.490 INFO - Executing: [find elements: By.cssSelector: #organizationsPageTabs .newOrganizationTab])
-03:56:59.508 INFO - Done: [find elements: By.cssSelector: #organizationsPageTabs .newOrganizationTab]
-03:56:59.512 INFO - Executing: [find element: By.cssSelector: #organizationsPageTabs .newOrganizationTab])
-03:56:59.529 INFO - Done: [find element: By.cssSelector: #organizationsPageTabs .newOrganizationTab]
-03:56:59.532 INFO - Executing: [click: 13 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPageTabs .newOrganizationTab]])
-03:56:59.591 INFO - Done: [click: 13 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPageTabs .newOrganizationTab]]
-03:56:59.597 INFO - Executing: [find elements: By.cssSelector: #organizationsPage .organizationDetail])
-03:56:59.645 INFO - Done: [find elements: By.cssSelector: #organizationsPage .organizationDetail]
-03:56:59.651 INFO - Executing: [find elements: By.cssSelector: #organizationsPage .organizationDetail input[name="name"]])
-03:56:59.709 INFO - Done: [find elements: By.cssSelector: #organizationsPage .organizationDetail input[name="name"]]
-03:56:59.717 INFO - Executing: [find elements: By.cssSelector: #organizationsPage .organizationDetail input[name="phone"]])
-03:56:59.751 INFO - Done: [find elements: By.cssSelector: #organizationsPage .organizationDetail input[name="phone"]]
-03:56:59.758 INFO - Executing: [find elements: By.cssSelector: #organizationsPage .organizationDetail input[name="email"]])
-03:56:59.797 INFO - Done: [find elements: By.cssSelector: #organizationsPage .organizationDetail input[name="email"]]
-03:56:59.804 INFO - Executing: [find elements: By.cssSelector: #organizationsPage .organizationDetail input[name="identifier"]])
-03:56:59.826 INFO - Done: [find elements: By.cssSelector: #organizationsPage .organizationDetail input[name="identifier"]]
-03:56:59.831 INFO - Executing: [find element: By.cssSelector: #newOrganization input[name="name"]])
-03:56:59.858 INFO - Done: [find element: By.cssSelector: #newOrganization input[name="name"]]
-03:56:59.864 INFO - Executing: [send keys: 16 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [R]])
-03:56:59.991 INFO - Done: [send keys: 16 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [R]]
-03:56:59.998 INFO - Executing: [find element: By.cssSelector: #newOrganization input[name="name"]])
-03:57:00.013 INFO - Done: [find element: By.cssSelector: #newOrganization input[name="name"]]
-03:57:00.016 INFO - Executing: [send keys: 16 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [a]])
-03:57:00.065 INFO - Done: [send keys: 16 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [a]]
-03:57:00.075 INFO - Executing: [find element: By.cssSelector: #newOrganization input[name="name"]])
-03:57:00.083 INFO - Done: [find element: By.cssSelector: #newOrganization input[name="name"]]
-03:57:00.087 INFO - Executing: [send keys: 16 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [i]])
-03:57:00.131 INFO - Done: [send keys: 16 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [i]]
-03:57:00.138 INFO - Executing: [find element: By.cssSelector: #newOrganization input[name="name"]])
-03:57:00.147 INFO - Done: [find element: By.cssSelector: #newOrganization input[name="name"]]
-03:57:00.155 INFO - Executing: [send keys: 16 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [n]])
-03:57:00.196 INFO - Done: [send keys: 16 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [n]]
-03:57:00.199 INFO - Executing: [find element: By.cssSelector: #newOrganization input[name="name"]])
-03:57:00.211 INFO - Done: [find element: By.cssSelector: #newOrganization input[name="name"]]
-03:57:00.214 INFO - Executing: [send keys: 16 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [b]])
-03:57:00.264 INFO - Done: [send keys: 16 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [b]]
-03:57:00.271 INFO - Executing: [find element: By.cssSelector: #newOrganization input[name="name"]])
-03:57:00.281 INFO - Done: [find element: By.cssSelector: #newOrganization input[name="name"]]
-03:57:00.285 INFO - Executing: [send keys: 16 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [o]])
-03:57:00.330 INFO - Done: [send keys: 16 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [o]]
-03:57:00.337 INFO - Executing: [find element: By.cssSelector: #newOrganization input[name="name"]])
-03:57:00.347 INFO - Done: [find element: By.cssSelector: #newOrganization input[name="name"]]
-03:57:00.353 INFO - Executing: [send keys: 16 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [w]])
-03:57:00.406 INFO - Done: [send keys: 16 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [w]]
-03:57:00.411 INFO - Executing: [find element: By.cssSelector: #newOrganization input[name="name"]])
-03:57:00.424 INFO - Done: [find element: By.cssSelector: #newOrganization input[name="name"]]
-03:57:00.429 INFO - Executing: [send keys: 16 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [']])
-03:57:00.477 INFO - Done: [send keys: 16 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [']]
-03:57:00.480 INFO - Executing: [find element: By.cssSelector: #newOrganization input[name="name"]])
-03:57:00.491 INFO - Done: [find element: By.cssSelector: #newOrganization input[name="name"]]
-03:57:00.496 INFO - Executing: [send keys: 16 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [s]])
-03:57:00.542 INFO - Done: [send keys: 16 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [s]]
-03:57:00.548 INFO - Executing: [find element: By.cssSelector: #newOrganization input[name="name"]])
-03:57:00.559 INFO - Done: [find element: By.cssSelector: #newOrganization input[name="name"]]
-03:57:00.562 INFO - Executing: [send keys: 16 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [ ]])
-03:57:00.607 INFO - Done: [send keys: 16 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [ ]]
-03:57:00.613 INFO - Executing: [find element: By.cssSelector: #newOrganization input[name="name"]])
-03:57:00.625 INFO - Done: [find element: By.cssSelector: #newOrganization input[name="name"]]
-03:57:00.630 INFO - Executing: [send keys: 16 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [E]])
-03:57:00.675 INFO - Done: [send keys: 16 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [E]]
-03:57:00.679 INFO - Executing: [find element: By.cssSelector: #newOrganization input[name="name"]])
-03:57:00.687 INFO - Done: [find element: By.cssSelector: #newOrganization input[name="name"]]
-03:57:00.693 INFO - Executing: [send keys: 16 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [n]])
-03:57:00.729 INFO - Done: [send keys: 16 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [n]]
-03:57:00.735 INFO - Executing: [find element: By.cssSelector: #newOrganization input[name="name"]])
-03:57:00.746 INFO - Done: [find element: By.cssSelector: #newOrganization input[name="name"]]
-03:57:00.749 INFO - Executing: [send keys: 16 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [d]])
-03:57:00.785 INFO - Done: [send keys: 16 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [d]]
-03:57:00.792 INFO - Executing: [find element: By.cssSelector: #newOrganization input[name="phone"]])
-03:57:00.812 INFO - Done: [find element: By.cssSelector: #newOrganization input[name="phone"]]
-03:57:00.814 INFO - Executing: [send keys: 18 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="phone"]], [7, 0, 2, -, 5, 5, 5, -, 2, 3, 4, 5]])
-03:57:01.248 INFO - Done: [send keys: 18 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="phone"]], [7, 0, 2, -, 5, 5, 5, -, 2, 3, 4, 5]]
-03:57:01.252 INFO - Executing: [find element: By.cssSelector: #newOrganization input[name="email"]])
-03:57:01.275 INFO - Done: [find element: By.cssSelector: #newOrganization input[name="email"]]
-03:57:01.280 INFO - Executing: [send keys: 20 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="email"]], [s, o, m, e, o, n, e, @, s, o, m, e, w, h, e, r, e, ., c, o, m]])
-03:57:01.894 INFO - Done: [send keys: 20 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="email"]], [s, o, m, e, o, n, e, @, s, o, m, e, w, h, e, r, e, ., c, o, m]]
-03:57:01.897 INFO - Executing: [find element: By.cssSelector: #newOrganization input[name="identifier"]])
-03:57:01.913 INFO - Done: [find element: By.cssSelector: #newOrganization input[name="identifier"]]
-03:57:01.916 INFO - Executing: [send keys: 22 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="identifier"]], [r, a, i, n, b, o, w, -, 7, 0, 2]])
-03:57:02.214 INFO - Done: [send keys: 22 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="identifier"]], [r, a, i, n, b, o, w, -, 7, 0, 2]]
-03:57:02.218 INFO - Executing: [take screenshot])
-03:57:22.266 WARN - Exception thrown
-org.openqa.selenium.WebDriverException: unknown error: cannot get automation extension
-from unknown error: page could not be found: chrome-extension://aapnijgdinlhnhlmodcfapnahmbfebeb/_generated_background_page.html
-  (Session info: chrome=58.0.3029.96)
+  (Session info: chrome=58.0.3029.110)
   (Driver info: chromedriver=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1),platform=Mac OS X 10.12.4 x86_64) (WARNING: The server did not provide any stacktrace information)
 Command duration or timeout: 10.04 seconds
 Build info: version: '3.0.1', revision: '1969d75', time: '2016-10-18 09:48:19 -0700'
 System info: host: 'Abigails-Mac-mini-3.local', ip: '10.0.0.53', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.12.4', java.version: '1.8.0_111'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1), userDataDir=/var/folders/wy/x2wnhsd15rxbcnwr07g161b00000gn/T/.org.chromium.Chromium.tUQues}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=58.0.3029.96, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
-Session ID: 7a49208836e36eb597ce6f998ca8f96b
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:216)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:168)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:635)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:658)
-	at org.openqa.selenium.remote.RemoteWebDriver.getScreenshotAs(RemoteWebDriver.java:340)
-	at org.openqa.selenium.remote.server.handler.CaptureScreenshot.call(CaptureScreenshot.java:36)
-	at org.openqa.selenium.remote.server.handler.CaptureScreenshot.call(CaptureScreenshot.java:26)
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
-	at org.openqa.selenium.remote.server.DefaultSession$1.run(DefaultSession.java:176)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
-	at java.lang.Thread.run(Thread.java:745)
-03:57:42.281 WARN - Exception: unknown error: cannot get automation extension
-from unknown error: page could not be found: chrome-extension://aapnijgdinlhnhlmodcfapnahmbfebeb/_generated_background_page.html
-  (Session info: chrome=58.0.3029.96)
-  (Driver info: chromedriver=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1),platform=Mac OS X 10.12.4 x86_64) (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 10.04 seconds
-Build info: version: '3.0.1', revision: '1969d75', time: '2016-10-18 09:48:19 -0700'
-System info: host: 'Abigails-Mac-mini-3.local', ip: '10.0.0.53', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.12.4', java.version: '1.8.0_111'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1), userDataDir=/var/folders/wy/x2wnhsd15rxbcnwr07g161b00000gn/T/.org.chromium.Chromium.tUQues}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=58.0.3029.96, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
-Session ID: 7a49208836e36eb597ce6f998ca8f96b
-03:58:02.224 INFO - Executing: [find element: By.cssSelector: #newOrganization #saveOrganizationButton])
-03:58:02.241 INFO - Done: [find element: By.cssSelector: #newOrganization #saveOrganizationButton]
-03:58:02.243 INFO - Executing: [click: 24 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #newOrganization #saveOrganizationButton]])
-03:58:02.329 INFO - Done: [click: 24 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #newOrganization #saveOrganizationButton]]
-03:58:03.349 INFO - Executing: [find element: By.cssSelector: #organizationsPage .organizationListTab])
-03:58:03.371 INFO - Done: [find element: By.cssSelector: #organizationsPage .organizationListTab]
-03:58:03.374 INFO - Executing: [click: 25 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationListTab]])
-03:58:03.439 INFO - Done: [click: 25 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationListTab]]
-03:58:03.445 INFO - Executing: [find elements: By.cssSelector: #organizationsTable])
-03:58:03.456 INFO - Done: [find elements: By.cssSelector: #organizationsTable]
-03:58:03.463 INFO - Executing: [find elements: By.cssSelector: #organizationsTable .organizationRow:nth-child(1)])
-03:58:03.475 INFO - Done: [find elements: By.cssSelector: #organizationsTable .organizationRow:nth-child(1)]
-03:58:03.480 INFO - Executing: [find elements: By.cssSelector: #organizationsTable .organizationRow:nth-child(1) .name])
-03:58:03.499 INFO - Done: [find elements: By.cssSelector: #organizationsTable .organizationRow:nth-child(1) .name]
-03:58:03.503 INFO - Executing: [find elements: By.cssSelector: #organizationsTable])
-03:58:03.514 INFO - Done: [find elements: By.cssSelector: #organizationsTable]
-03:58:03.520 INFO - Executing: [find elements: By.cssSelector: #organizationsTable .organizationRow:nth-child(1)])
-03:58:03.529 INFO - Done: [find elements: By.cssSelector: #organizationsTable .organizationRow:nth-child(1)]
-03:58:03.533 INFO - Executing: [find elements: By.cssSelector: #organizationsTable .organizationRow:nth-child(1) .name])
-03:58:03.543 INFO - Done: [find elements: By.cssSelector: #organizationsTable .organizationRow:nth-child(1) .name]
-03:58:03.548 INFO - Executing: [find element: By.cssSelector: #organizationsTable .organizationRow:nth-child(1) .name])
-03:58:03.568 INFO - Done: [find element: By.cssSelector: #organizationsTable .organizationRow:nth-child(1) .name]
-03:58:03.571 INFO - Executing: [get text: 27 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsTable .organizationRow:nth-child(1) .name]])
-03:58:03.593 INFO - Done: [get text: 27 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsTable .organizationRow:nth-child(1) .name]]
-03:58:03.596 INFO - Executing: [take screenshot])
-03:58:23.635 WARN - Exception thrown
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1), userDataDir=/var/folders/wy/x2wnhsd15rxbcnwr07g161b00000gn/T/.org.chromium.Chromium.qPlWcs}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=58.0.3029.110, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 0f66f91b5cc013c2f2c10993737c8785
+10:59:28.543 INFO - Executing: [find elements: By.cssSelector: #signupButton])
+10:59:28.568 INFO - Done: [find elements: By.cssSelector: #signupButton]
+10:59:28.574 INFO - Executing: [find element: By.cssSelector: #signupButton])
+10:59:28.594 INFO - Done: [find element: By.cssSelector: #signupButton]
+10:59:28.596 INFO - Executing: [click: 6 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #signupButton]])
+10:59:28.700 INFO - Done: [click: 6 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #signupButton]]
+10:59:33.708 INFO - Executing: [find elements: By.cssSelector: #indexPage])
+10:59:33.740 INFO - Done: [find elements: By.cssSelector: #indexPage]
+10:59:33.744 INFO - Executing: [find element: By.cssSelector: #authenticatedUsername])
+10:59:33.780 INFO - Done: [find element: By.cssSelector: #authenticatedUsername]
+10:59:33.785 INFO - Executing: [get text: 8 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #authenticatedUsername]])
+10:59:33.817 INFO - Done: [get text: 8 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #authenticatedUsername]]
+10:59:36.846 INFO - Executing: [find elements: By.cssSelector: #locationsTile])
+10:59:36.867 INFO - Done: [find elements: By.cssSelector: #locationsTile]
+10:59:36.873 INFO - Executing: [find element: By.cssSelector: #locationsTile])
+10:59:36.911 INFO - Done: [find element: By.cssSelector: #locationsTile]
+10:59:36.915 INFO - Executing: [click: 9 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsTile]])
+10:59:37.079 INFO - Done: [click: 9 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsTile]]
+10:59:37.083 INFO - Executing: [find elements: By.cssSelector: #locationsPage])
+10:59:37.122 INFO - Done: [find elements: By.cssSelector: #locationsPage]
+10:59:37.128 INFO - Executing: [find elements: By.cssSelector: #locationsTable])
+10:59:37.157 INFO - Done: [find elements: By.cssSelector: #locationsTable]
+10:59:37.162 INFO - Executing: [find elements: By.cssSelector: #locationsTable .locationRow:nth-child(1)])
+10:59:37.187 INFO - Done: [find elements: By.cssSelector: #locationsTable .locationRow:nth-child(1)]
+10:59:37.215 INFO - Executing: [find elements: By.cssSelector: #locationsPageTabs])
+10:59:37.273 INFO - Done: [find elements: By.cssSelector: #locationsPageTabs]
+10:59:37.280 INFO - Executing: [find elements: By.cssSelector: #locationsPageTabs .newLocationTab])
+10:59:37.498 INFO - Done: [find elements: By.cssSelector: #locationsPageTabs .newLocationTab]
+10:59:37.503 INFO - Executing: [find element: By.cssSelector: #locationsPageTabs .newLocationTab])
+10:59:37.741 INFO - Done: [find element: By.cssSelector: #locationsPageTabs .newLocationTab]
+10:59:37.745 INFO - Executing: [click: 14 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPageTabs .newLocationTab]])
+10:59:38.087 INFO - Done: [click: 14 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPageTabs .newLocationTab]]
+10:59:38.096 INFO - Executing: [find elements: By.cssSelector: #locationsPage .locationDetail])
+10:59:38.187 INFO - Done: [find elements: By.cssSelector: #locationsPage .locationDetail]
+10:59:38.194 INFO - Executing: [find elements: By.cssSelector: #locationsPage .locationDetail input[name="locationName"]])
+10:59:38.302 INFO - Done: [find elements: By.cssSelector: #locationsPage .locationDetail input[name="locationName"]]
+10:59:38.312 INFO - Executing: [find elements: By.cssSelector: #locationsPage .locationDetail input[name="latitude"]])
+10:59:38.439 INFO - Done: [find elements: By.cssSelector: #locationsPage .locationDetail input[name="latitude"]]
+10:59:38.445 INFO - Executing: [find elements: By.cssSelector: #locationsPage .locationDetail input[name="longitude"]])
+10:59:38.565 INFO - Done: [find elements: By.cssSelector: #locationsPage .locationDetail input[name="longitude"]]
+10:59:38.572 INFO - Executing: [find elements: By.cssSelector: #locationsPage .locationDetail input[name="altitude"]])
+10:59:38.720 INFO - Done: [find elements: By.cssSelector: #locationsPage .locationDetail input[name="altitude"]]
+10:59:38.728 INFO - Executing: [find element: By.cssSelector: #newLocation input[name="locationName"]])
+10:59:38.863 INFO - Done: [find element: By.cssSelector: #newLocation input[name="locationName"]]
+10:59:38.869 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [C]])
+10:59:39.165 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [C]]
+10:59:39.170 INFO - Executing: [find element: By.cssSelector: #newLocation input[name="locationName"]])
+10:59:39.190 INFO - Done: [find element: By.cssSelector: #newLocation input[name="locationName"]]
+10:59:39.194 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [e]])
+10:59:39.268 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [e]]
+10:59:39.275 INFO - Executing: [find element: By.cssSelector: #newLocation input[name="locationName"]])
+10:59:39.289 INFO - Done: [find element: By.cssSelector: #newLocation input[name="locationName"]]
+10:59:39.292 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [n]])
+10:59:39.406 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [n]]
+10:59:39.409 INFO - Executing: [find element: By.cssSelector: #newLocation input[name="locationName"]])
+10:59:39.448 INFO - Done: [find element: By.cssSelector: #newLocation input[name="locationName"]]
+10:59:39.452 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [t]])
+10:59:39.525 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [t]]
+10:59:39.529 INFO - Executing: [find element: By.cssSelector: #newLocation input[name="locationName"]])
+10:59:39.554 INFO - Done: [find element: By.cssSelector: #newLocation input[name="locationName"]]
+10:59:39.557 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [e]])
+10:59:39.626 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [e]]
+10:59:39.632 INFO - Executing: [find element: By.cssSelector: #newLocation input[name="locationName"]])
+10:59:39.645 INFO - Done: [find element: By.cssSelector: #newLocation input[name="locationName"]]
+10:59:39.649 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [r]])
+10:59:39.710 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [r]]
+10:59:39.715 INFO - Executing: [find element: By.cssSelector: #newLocation input[name="locationName"]])
+10:59:39.735 INFO - Done: [find element: By.cssSelector: #newLocation input[name="locationName"]]
+10:59:39.739 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [ ]])
+10:59:39.838 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [ ]]
+10:59:39.841 INFO - Executing: [find element: By.cssSelector: #newLocation input[name="locationName"]])
+10:59:39.856 INFO - Done: [find element: By.cssSelector: #newLocation input[name="locationName"]]
+10:59:39.859 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [f]])
+10:59:39.941 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [f]]
+10:59:39.945 INFO - Executing: [find element: By.cssSelector: #newLocation input[name="locationName"]])
+10:59:39.959 INFO - Done: [find element: By.cssSelector: #newLocation input[name="locationName"]]
+10:59:39.963 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [o]])
+10:59:40.025 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [o]]
+10:59:40.030 INFO - Executing: [find element: By.cssSelector: #newLocation input[name="locationName"]])
+10:59:40.043 INFO - Done: [find element: By.cssSelector: #newLocation input[name="locationName"]]
+10:59:40.048 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [r]])
+10:59:40.125 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [r]]
+10:59:40.129 INFO - Executing: [find element: By.cssSelector: #newLocation input[name="locationName"]])
+10:59:40.142 INFO - Done: [find element: By.cssSelector: #newLocation input[name="locationName"]]
+10:59:40.147 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [ ]])
+10:59:40.198 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [ ]]
+10:59:40.201 INFO - Executing: [find element: By.cssSelector: #newLocation input[name="locationName"]])
+10:59:40.211 INFO - Done: [find element: By.cssSelector: #newLocation input[name="locationName"]]
+10:59:40.218 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [D]])
+10:59:40.280 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [D]]
+10:59:40.283 INFO - Executing: [find element: By.cssSelector: #newLocation input[name="locationName"]])
+10:59:40.291 INFO - Done: [find element: By.cssSelector: #newLocation input[name="locationName"]]
+10:59:40.294 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [i]])
+10:59:40.342 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [i]]
+10:59:40.345 INFO - Executing: [find element: By.cssSelector: #newLocation input[name="locationName"]])
+10:59:40.361 INFO - Done: [find element: By.cssSelector: #newLocation input[name="locationName"]]
+10:59:40.365 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [s]])
+10:59:40.421 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [s]]
+10:59:40.425 INFO - Executing: [find element: By.cssSelector: #newLocation input[name="locationName"]])
+10:59:40.438 INFO - Done: [find element: By.cssSelector: #newLocation input[name="locationName"]]
+10:59:40.441 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [e]])
+10:59:40.508 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [e]]
+10:59:40.510 INFO - Executing: [find element: By.cssSelector: #newLocation input[name="locationName"]])
+10:59:40.520 INFO - Done: [find element: By.cssSelector: #newLocation input[name="locationName"]]
+10:59:40.523 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [a]])
+10:59:40.570 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [a]]
+10:59:40.573 INFO - Executing: [find element: By.cssSelector: #newLocation input[name="locationName"]])
+10:59:40.586 INFO - Done: [find element: By.cssSelector: #newLocation input[name="locationName"]]
+10:59:40.589 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [s]])
+10:59:40.640 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [s]]
+10:59:40.643 INFO - Executing: [find element: By.cssSelector: #newLocation input[name="locationName"]])
+10:59:40.659 INFO - Done: [find element: By.cssSelector: #newLocation input[name="locationName"]]
+10:59:40.662 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [e]])
+10:59:40.712 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [e]]
+10:59:40.716 INFO - Executing: [find element: By.cssSelector: #newLocation input[name="locationName"]])
+10:59:40.728 INFO - Done: [find element: By.cssSelector: #newLocation input[name="locationName"]]
+10:59:40.732 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [ ]])
+10:59:40.798 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [ ]]
+10:59:40.803 INFO - Executing: [find element: By.cssSelector: #newLocation input[name="locationName"]])
+10:59:40.811 INFO - Done: [find element: By.cssSelector: #newLocation input[name="locationName"]]
+10:59:40.815 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [C]])
+10:59:40.882 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [C]]
+10:59:40.886 INFO - Executing: [find element: By.cssSelector: #newLocation input[name="locationName"]])
+10:59:40.896 INFO - Done: [find element: By.cssSelector: #newLocation input[name="locationName"]]
+10:59:40.900 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [o]])
+10:59:40.961 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [o]]
+10:59:40.964 INFO - Executing: [find element: By.cssSelector: #newLocation input[name="locationName"]])
+10:59:40.978 INFO - Done: [find element: By.cssSelector: #newLocation input[name="locationName"]]
+10:59:40.982 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [n]])
+10:59:41.026 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [n]]
+10:59:41.029 INFO - Executing: [find element: By.cssSelector: #newLocation input[name="locationName"]])
+10:59:41.041 INFO - Done: [find element: By.cssSelector: #newLocation input[name="locationName"]]
+10:59:41.045 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [t]])
+10:59:41.094 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [t]]
+10:59:41.098 INFO - Executing: [find element: By.cssSelector: #newLocation input[name="locationName"]])
+10:59:41.108 INFO - Done: [find element: By.cssSelector: #newLocation input[name="locationName"]]
+10:59:41.111 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [r]])
+10:59:41.165 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [r]]
+10:59:41.169 INFO - Executing: [find element: By.cssSelector: #newLocation input[name="locationName"]])
+10:59:41.188 INFO - Done: [find element: By.cssSelector: #newLocation input[name="locationName"]]
+10:59:41.191 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [o]])
+10:59:41.260 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [o]]
+10:59:41.263 INFO - Executing: [find element: By.cssSelector: #newLocation input[name="locationName"]])
+10:59:41.281 INFO - Done: [find element: By.cssSelector: #newLocation input[name="locationName"]]
+10:59:41.285 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [l]])
+10:59:41.341 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [l]]
+10:59:41.344 INFO - Executing: [find element: By.cssSelector: #newLocation input[name="latitude"]])
+10:59:41.373 INFO - Done: [find element: By.cssSelector: #newLocation input[name="latitude"]]
+10:59:41.376 INFO - Executing: [send keys: 19 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="latitude"]], [3, 3, ., 7, 9, 9, 3]])
+10:59:41.843 INFO - Done: [send keys: 19 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="latitude"]], [3, 3, ., 7, 9, 9, 3]]
+10:59:41.845 INFO - Executing: [find element: By.cssSelector: #newLocation input[name="longitude"]])
+10:59:41.884 INFO - Done: [find element: By.cssSelector: #newLocation input[name="longitude"]]
+10:59:41.887 INFO - Executing: [send keys: 21 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="longitude"]], [8, 4, ., 3, 2, 8]])
+10:59:42.217 INFO - Done: [send keys: 21 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="longitude"]], [8, 4, ., 3, 2, 8]]
+10:59:42.221 INFO - Executing: [find element: By.cssSelector: #newLocation input[name="altitude"]])
+10:59:42.259 INFO - Done: [find element: By.cssSelector: #newLocation input[name="altitude"]]
+10:59:42.263 INFO - Executing: [send keys: 23 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="altitude"]], [2, 0, 0]])
+10:59:42.490 INFO - Done: [send keys: 23 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="altitude"]], [2, 0, 0]]
+10:59:42.493 INFO - Executing: [take screenshot])
+11:00:02.533 WARN - Exception thrown
 org.openqa.selenium.WebDriverException: unknown error: cannot get automation extension
 from unknown error: page could not be found: chrome-extension://aapnijgdinlhnhlmodcfapnahmbfebeb/_generated_background_page.html
-  (Session info: chrome=58.0.3029.96)
+  (Session info: chrome=58.0.3029.110)
   (Driver info: chromedriver=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1),platform=Mac OS X 10.12.4 x86_64) (WARNING: The server did not provide any stacktrace information)
 Command duration or timeout: 10.03 seconds
 Build info: version: '3.0.1', revision: '1969d75', time: '2016-10-18 09:48:19 -0700'
 System info: host: 'Abigails-Mac-mini-3.local', ip: '10.0.0.53', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.12.4', java.version: '1.8.0_111'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1), userDataDir=/var/folders/wy/x2wnhsd15rxbcnwr07g161b00000gn/T/.org.chromium.Chromium.tUQues}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=58.0.3029.96, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
-Session ID: 7a49208836e36eb597ce6f998ca8f96b
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1), userDataDir=/var/folders/wy/x2wnhsd15rxbcnwr07g161b00000gn/T/.org.chromium.Chromium.qPlWcs}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=58.0.3029.110, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 0f66f91b5cc013c2f2c10993737c8785
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
@@ -395,52 +385,52 @@ Session ID: 7a49208836e36eb597ce6f998ca8f96b
 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
 	at java.lang.Thread.run(Thread.java:745)
-03:58:43.661 WARN - Exception: unknown error: cannot get automation extension
+11:00:22.543 WARN - Exception: unknown error: cannot get automation extension
 from unknown error: page could not be found: chrome-extension://aapnijgdinlhnhlmodcfapnahmbfebeb/_generated_background_page.html
-  (Session info: chrome=58.0.3029.96)
+  (Session info: chrome=58.0.3029.110)
   (Driver info: chromedriver=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1),platform=Mac OS X 10.12.4 x86_64) (WARNING: The server did not provide any stacktrace information)
 Command duration or timeout: 10.03 seconds
 Build info: version: '3.0.1', revision: '1969d75', time: '2016-10-18 09:48:19 -0700'
 System info: host: 'Abigails-Mac-mini-3.local', ip: '10.0.0.53', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.12.4', java.version: '1.8.0_111'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1), userDataDir=/var/folders/wy/x2wnhsd15rxbcnwr07g161b00000gn/T/.org.chromium.Chromium.tUQues}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=58.0.3029.96, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
-Session ID: 7a49208836e36eb597ce6f998ca8f96b
-03:59:03.611 INFO - Executing: [find element: By.cssSelector: #organizationsTable .organizationRow:nth-child(1)])
-03:59:03.634 INFO - Done: [find element: By.cssSelector: #organizationsTable .organizationRow:nth-child(1)]
-03:59:03.637 INFO - Executing: [click: 26 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsTable .organizationRow:nth-child(1)]])
-03:59:03.675 INFO - Done: [click: 26 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsTable .organizationRow:nth-child(1)]]
-03:59:03.682 INFO - Executing: [find elements: By.cssSelector: #organizationDetails])
-03:59:03.748 INFO - Done: [find elements: By.cssSelector: #organizationDetails]
-03:59:03.754 INFO - Executing: [find elements: By.cssSelector: #organizationDetails input[name="name"]])
-03:59:03.776 INFO - Done: [find elements: By.cssSelector: #organizationDetails input[name="name"]]
-03:59:03.783 INFO - Executing: [find element: By.cssSelector: #organizationsPage .organizationDetail  input[name="name"]])
-03:59:03.809 INFO - Done: [find element: By.cssSelector: #organizationsPage .organizationDetail  input[name="name"]]
-03:59:03.814 INFO - Executing: [get element attribute: 16 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], value])
-03:59:03.830 INFO - Done: [get element attribute: 16 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], value]
-03:59:03.835 INFO - Executing: [find element: By.cssSelector: #organizationsPage .organizationDetail  input[name="phone"]])
-03:59:03.859 INFO - Done: [find element: By.cssSelector: #organizationsPage .organizationDetail  input[name="phone"]]
-03:59:03.865 INFO - Executing: [get element attribute: 18 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="phone"]], value])
-03:59:03.885 INFO - Done: [get element attribute: 18 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="phone"]], value]
-03:59:03.891 INFO - Executing: [find element: By.cssSelector: #organizationsPage .organizationDetail  input[name="email"]])
-03:59:03.914 INFO - Done: [find element: By.cssSelector: #organizationsPage .organizationDetail  input[name="email"]]
-03:59:03.919 INFO - Executing: [get element attribute: 20 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="email"]], value])
-03:59:03.936 INFO - Done: [get element attribute: 20 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="email"]], value]
-03:59:03.943 INFO - Executing: [find element: By.cssSelector: #organizationsPage .organizationDetail  input[name="identifier"]])
-03:59:03.971 INFO - Done: [find element: By.cssSelector: #organizationsPage .organizationDetail  input[name="identifier"]]
-03:59:03.975 INFO - Executing: [get element attribute: 22 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="identifier"]], value])
-03:59:03.991 INFO - Done: [get element attribute: 22 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="identifier"]], value]
-03:59:03.996 INFO - Executing: [take screenshot])
-03:59:24.060 WARN - Exception thrown
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1), userDataDir=/var/folders/wy/x2wnhsd15rxbcnwr07g161b00000gn/T/.org.chromium.Chromium.qPlWcs}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=58.0.3029.110, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 0f66f91b5cc013c2f2c10993737c8785
+11:00:42.497 INFO - Executing: [find element: By.cssSelector: #newLocation #saveLocationButton])
+11:00:42.520 INFO - Done: [find element: By.cssSelector: #newLocation #saveLocationButton]
+11:00:42.522 INFO - Executing: [click: 25 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #newLocation #saveLocationButton]])
+11:00:42.686 INFO - Done: [click: 25 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #newLocation #saveLocationButton]]
+11:00:43.710 INFO - Executing: [find element: By.cssSelector: #locationsPage .locationListTab])
+11:00:43.779 INFO - Done: [find element: By.cssSelector: #locationsPage .locationListTab]
+11:00:43.783 INFO - Executing: [click: 26 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationListTab]])
+11:00:44.083 INFO - Done: [click: 26 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationListTab]]
+11:00:44.089 INFO - Executing: [find elements: By.cssSelector: #locationsTable])
+11:00:44.295 INFO - Done: [find elements: By.cssSelector: #locationsTable]
+11:00:44.303 INFO - Executing: [find elements: By.cssSelector: #locationsTable .locationRow:nth-child(1)])
+11:00:44.406 INFO - Done: [find elements: By.cssSelector: #locationsTable .locationRow:nth-child(1)]
+11:00:44.412 INFO - Executing: [find elements: By.cssSelector: #locationsTable .locationRow:nth-child(1) .locationName])
+11:00:44.466 INFO - Done: [find elements: By.cssSelector: #locationsTable .locationRow:nth-child(1) .locationName]
+11:00:44.471 INFO - Executing: [find elements: By.cssSelector: #locationsTable])
+11:00:44.518 INFO - Done: [find elements: By.cssSelector: #locationsTable]
+11:00:44.524 INFO - Executing: [find elements: By.cssSelector: #locationsTable .locationRow:nth-child(1)])
+11:00:44.566 INFO - Done: [find elements: By.cssSelector: #locationsTable .locationRow:nth-child(1)]
+11:00:44.572 INFO - Executing: [find elements: By.cssSelector: #locationsTable .locationRow:nth-child(1) .locationName])
+11:00:44.617 INFO - Done: [find elements: By.cssSelector: #locationsTable .locationRow:nth-child(1) .locationName]
+11:00:44.623 INFO - Executing: [find element: By.cssSelector: #locationsTable .locationRow:nth-child(1) .locationName])
+11:00:44.730 INFO - Done: [find element: By.cssSelector: #locationsTable .locationRow:nth-child(1) .locationName]
+11:00:44.740 INFO - Executing: [get text: 29 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsTable .locationRow:nth-child(1) .locationName]])
+11:00:44.877 INFO - Done: [get text: 29 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsTable .locationRow:nth-child(1) .locationName]]
+11:00:44.884 INFO - Executing: [take screenshot])
+11:01:04.924 WARN - Exception thrown
 org.openqa.selenium.WebDriverException: unknown error: cannot get automation extension
 from unknown error: page could not be found: chrome-extension://aapnijgdinlhnhlmodcfapnahmbfebeb/_generated_background_page.html
-  (Session info: chrome=58.0.3029.96)
+  (Session info: chrome=58.0.3029.110)
   (Driver info: chromedriver=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1),platform=Mac OS X 10.12.4 x86_64) (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 10.05 seconds
+Command duration or timeout: 10.03 seconds
 Build info: version: '3.0.1', revision: '1969d75', time: '2016-10-18 09:48:19 -0700'
 System info: host: 'Abigails-Mac-mini-3.local', ip: '10.0.0.53', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.12.4', java.version: '1.8.0_111'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1), userDataDir=/var/folders/wy/x2wnhsd15rxbcnwr07g161b00000gn/T/.org.chromium.Chromium.tUQues}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=58.0.3029.96, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
-Session ID: 7a49208836e36eb597ce6f998ca8f96b
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1), userDataDir=/var/folders/wy/x2wnhsd15rxbcnwr07g161b00000gn/T/.org.chromium.Chromium.qPlWcs}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=58.0.3029.110, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 0f66f91b5cc013c2f2c10993737c8785
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
@@ -457,34 +447,100 @@ Session ID: 7a49208836e36eb597ce6f998ca8f96b
 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
 	at java.lang.Thread.run(Thread.java:745)
-03:59:44.094 WARN - Exception: unknown error: cannot get automation extension
+11:01:24.938 WARN - Exception: unknown error: cannot get automation extension
 from unknown error: page could not be found: chrome-extension://aapnijgdinlhnhlmodcfapnahmbfebeb/_generated_background_page.html
-  (Session info: chrome=58.0.3029.96)
+  (Session info: chrome=58.0.3029.110)
   (Driver info: chromedriver=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1),platform=Mac OS X 10.12.4 x86_64) (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 10.05 seconds
+Command duration or timeout: 10.03 seconds
 Build info: version: '3.0.1', revision: '1969d75', time: '2016-10-18 09:48:19 -0700'
 System info: host: 'Abigails-Mac-mini-3.local', ip: '10.0.0.53', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.12.4', java.version: '1.8.0_111'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1), userDataDir=/var/folders/wy/x2wnhsd15rxbcnwr07g161b00000gn/T/.org.chromium.Chromium.tUQues}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=58.0.3029.96, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
-Session ID: 7a49208836e36eb597ce6f998ca8f96b
-04:00:05.028 INFO - Executing: [execute async script: var passedArgs = Array.prototype.slice.call(arguments,0); return function (){
-      Session.set('organizationUpsert', {
-        name: '',
-        phone: '',
-        email: '',
-        identifier: ''
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1), userDataDir=/var/folders/wy/x2wnhsd15rxbcnwr07g161b00000gn/T/.org.chromium.Chromium.qPlWcs}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=58.0.3029.110, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 0f66f91b5cc013c2f2c10993737c8785
+11:01:44.899 INFO - Executing: [find element: By.cssSelector: #locationsTable .locationRow:nth-child(1)])
+11:01:44.921 INFO - Done: [find element: By.cssSelector: #locationsTable .locationRow:nth-child(1)]
+11:01:44.924 INFO - Executing: [click: 28 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsTable .locationRow:nth-child(1)]])
+11:01:45.032 INFO - Done: [click: 28 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsTable .locationRow:nth-child(1)]]
+11:01:45.039 INFO - Executing: [find elements: By.cssSelector: #locationDetails])
+11:01:45.145 INFO - Done: [find elements: By.cssSelector: #locationDetails]
+11:01:45.152 INFO - Executing: [find elements: By.cssSelector: #locationDetails input[name="locationName"]])
+11:01:45.187 INFO - Done: [find elements: By.cssSelector: #locationDetails input[name="locationName"]]
+11:01:45.191 INFO - Executing: [find element: By.cssSelector: #locationsPage .locationDetail  input[name="locationName"]])
+11:01:45.216 INFO - Done: [find element: By.cssSelector: #locationsPage .locationDetail  input[name="locationName"]]
+11:01:45.219 INFO - Executing: [get element attribute: 17 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], value])
+11:01:45.243 INFO - Done: [get element attribute: 17 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], value]
+11:01:45.256 INFO - Executing: [find element: By.cssSelector: #locationsPage .locationDetail  input[name="latitude"]])
+11:01:45.283 INFO - Done: [find element: By.cssSelector: #locationsPage .locationDetail  input[name="latitude"]]
+11:01:45.287 INFO - Executing: [get element attribute: 19 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="latitude"]], value])
+11:01:45.308 INFO - Done: [get element attribute: 19 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="latitude"]], value]
+11:01:45.311 INFO - Executing: [find element: By.cssSelector: #locationsPage .locationDetail  input[name="longitude"]])
+11:01:45.336 INFO - Done: [find element: By.cssSelector: #locationsPage .locationDetail  input[name="longitude"]]
+11:01:45.339 INFO - Executing: [get element attribute: 21 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="longitude"]], value])
+11:01:45.355 INFO - Done: [get element attribute: 21 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="longitude"]], value]
+11:01:45.359 INFO - Executing: [find element: By.cssSelector: #locationsPage .locationDetail  input[name="altitude"]])
+11:01:45.384 INFO - Done: [find element: By.cssSelector: #locationsPage .locationDetail  input[name="altitude"]]
+11:01:45.387 INFO - Executing: [get element attribute: 23 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="altitude"]], value])
+11:01:45.407 INFO - Done: [get element attribute: 23 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="altitude"]], value]
+11:01:45.415 INFO - Executing: [take screenshot])
+11:02:05.466 WARN - Exception thrown
+org.openqa.selenium.WebDriverException: unknown error: cannot get automation extension
+from unknown error: page could not be found: chrome-extension://aapnijgdinlhnhlmodcfapnahmbfebeb/_generated_background_page.html
+  (Session info: chrome=58.0.3029.110)
+  (Driver info: chromedriver=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1),platform=Mac OS X 10.12.4 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 10.04 seconds
+Build info: version: '3.0.1', revision: '1969d75', time: '2016-10-18 09:48:19 -0700'
+System info: host: 'Abigails-Mac-mini-3.local', ip: '10.0.0.53', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.12.4', java.version: '1.8.0_111'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1), userDataDir=/var/folders/wy/x2wnhsd15rxbcnwr07g161b00000gn/T/.org.chromium.Chromium.qPlWcs}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=58.0.3029.110, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 0f66f91b5cc013c2f2c10993737c8785
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:216)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:168)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:635)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:658)
+	at org.openqa.selenium.remote.RemoteWebDriver.getScreenshotAs(RemoteWebDriver.java:340)
+	at org.openqa.selenium.remote.server.handler.CaptureScreenshot.call(CaptureScreenshot.java:36)
+	at org.openqa.selenium.remote.server.handler.CaptureScreenshot.call(CaptureScreenshot.java:26)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.openqa.selenium.remote.server.DefaultSession$1.run(DefaultSession.java:176)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+11:02:25.506 WARN - Exception: unknown error: cannot get automation extension
+from unknown error: page could not be found: chrome-extension://aapnijgdinlhnhlmodcfapnahmbfebeb/_generated_background_page.html
+  (Session info: chrome=58.0.3029.110)
+  (Driver info: chromedriver=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1),platform=Mac OS X 10.12.4 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 10.04 seconds
+Build info: version: '3.0.1', revision: '1969d75', time: '2016-10-18 09:48:19 -0700'
+System info: host: 'Abigails-Mac-mini-3.local', ip: '10.0.0.53', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.12.4', java.version: '1.8.0_111'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1), userDataDir=/var/folders/wy/x2wnhsd15rxbcnwr07g161b00000gn/T/.org.chromium.Chromium.qPlWcs}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=58.0.3029.110, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 0f66f91b5cc013c2f2c10993737c8785
+11:02:46.444 INFO - Executing: [execute async script: var passedArgs = Array.prototype.slice.call(arguments,0); return function (){
+      Session.set('locationUpsert', {
+        "resourceType": "Location",
+        "status": "active",
+        "name": "",
+        "position": {
+          'latitude': 0,
+          'longitude': 0,
+          'altitude': 0
+        }
       });
     }.apply(window, passedArgs);, []])
-04:00:19.155 WARN - Exception thrown
+11:03:05.552 WARN - Exception thrown
 org.openqa.selenium.ScriptTimeoutException: asynchronous script timeout: result was not received in 0 seconds
-  (Session info: chrome=58.0.3029.96)
+  (Session info: chrome=58.0.3029.110)
   (Driver info: chromedriver=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1),platform=Mac OS X 10.12.4 x86_64) (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 129 milliseconds
+Command duration or timeout: 150 milliseconds
 Build info: version: '3.0.1', revision: '1969d75', time: '2016-10-18 09:48:19 -0700'
 System info: host: 'Abigails-Mac-mini-3.local', ip: '10.0.0.53', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.12.4', java.version: '1.8.0_111'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1), userDataDir=/var/folders/wy/x2wnhsd15rxbcnwr07g161b00000gn/T/.org.chromium.Chromium.tUQues}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=58.0.3029.96, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
-Session ID: 7a49208836e36eb597ce6f998ca8f96b
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1), userDataDir=/var/folders/wy/x2wnhsd15rxbcnwr07g161b00000gn/T/.org.chromium.Chromium.qPlWcs}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=58.0.3029.110, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 0f66f91b5cc013c2f2c10993737c8785
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
@@ -506,143 +562,51 @@ Session ID: 7a49208836e36eb597ce6f998ca8f96b
 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
 	at java.lang.Thread.run(Thread.java:745)
-04:00:44.197 WARN - Exception: asynchronous script timeout: result was not received in 0 seconds
-  (Session info: chrome=58.0.3029.96)
+11:03:25.576 WARN - Exception: asynchronous script timeout: result was not received in 0 seconds
+  (Session info: chrome=58.0.3029.110)
   (Driver info: chromedriver=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1),platform=Mac OS X 10.12.4 x86_64) (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 129 milliseconds
+Command duration or timeout: 150 milliseconds
 Build info: version: '3.0.1', revision: '1969d75', time: '2016-10-18 09:48:19 -0700'
 System info: host: 'Abigails-Mac-mini-3.local', ip: '10.0.0.53', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.12.4', java.version: '1.8.0_111'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1), userDataDir=/var/folders/wy/x2wnhsd15rxbcnwr07g161b00000gn/T/.org.chromium.Chromium.tUQues}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=58.0.3029.96, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
-Session ID: 7a49208836e36eb597ce6f998ca8f96b
-04:01:05.031 INFO - Executing: [find element: By.cssSelector: #organizationDetails input[name="name"]])
-04:01:05.047 INFO - Done: [find element: By.cssSelector: #organizationDetails input[name="name"]]
-04:01:05.049 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [R]])
-04:01:05.139 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [R]]
-04:01:05.142 INFO - Executing: [find element: By.cssSelector: #organizationDetails input[name="name"]])
-04:01:05.152 INFO - Done: [find element: By.cssSelector: #organizationDetails input[name="name"]]
-04:01:05.157 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [a]])
-04:01:05.200 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [a]]
-04:01:05.203 INFO - Executing: [find element: By.cssSelector: #organizationDetails input[name="name"]])
-04:01:05.214 INFO - Done: [find element: By.cssSelector: #organizationDetails input[name="name"]]
-04:01:05.218 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [i]])
-04:01:05.257 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [i]]
-04:01:05.265 INFO - Executing: [find element: By.cssSelector: #organizationDetails input[name="name"]])
-04:01:05.274 INFO - Done: [find element: By.cssSelector: #organizationDetails input[name="name"]]
-04:01:05.278 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [n]])
-04:01:05.327 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [n]]
-04:01:05.333 INFO - Executing: [find element: By.cssSelector: #organizationDetails input[name="name"]])
-04:01:05.344 INFO - Done: [find element: By.cssSelector: #organizationDetails input[name="name"]]
-04:01:05.349 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [b]])
-04:01:05.399 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [b]]
-04:01:05.404 INFO - Executing: [find element: By.cssSelector: #organizationDetails input[name="name"]])
-04:01:05.414 INFO - Done: [find element: By.cssSelector: #organizationDetails input[name="name"]]
-04:01:05.418 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [o]])
-04:01:05.456 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [o]]
-04:01:05.463 INFO - Executing: [find element: By.cssSelector: #organizationDetails input[name="name"]])
-04:01:05.471 INFO - Done: [find element: By.cssSelector: #organizationDetails input[name="name"]]
-04:01:05.475 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [w]])
-04:01:05.515 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [w]]
-04:01:05.521 INFO - Executing: [find element: By.cssSelector: #organizationDetails input[name="name"]])
-04:01:05.532 INFO - Done: [find element: By.cssSelector: #organizationDetails input[name="name"]]
-04:01:05.536 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [']])
-04:01:05.577 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [']]
-04:01:05.581 INFO - Executing: [find element: By.cssSelector: #organizationDetails input[name="name"]])
-04:01:05.588 INFO - Done: [find element: By.cssSelector: #organizationDetails input[name="name"]]
-04:01:05.591 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [s]])
-04:01:05.635 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [s]]
-04:01:05.643 INFO - Executing: [find element: By.cssSelector: #organizationDetails input[name="name"]])
-04:01:05.651 INFO - Done: [find element: By.cssSelector: #organizationDetails input[name="name"]]
-04:01:05.655 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [ ]])
-04:01:05.691 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [ ]]
-04:01:05.695 INFO - Executing: [find element: By.cssSelector: #organizationDetails input[name="name"]])
-04:01:05.703 INFO - Done: [find element: By.cssSelector: #organizationDetails input[name="name"]]
-04:01:05.714 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [E]])
-04:01:05.755 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [E]]
-04:01:05.759 INFO - Executing: [find element: By.cssSelector: #organizationDetails input[name="name"]])
-04:01:05.768 INFO - Done: [find element: By.cssSelector: #organizationDetails input[name="name"]]
-04:01:05.771 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [n]])
-04:01:05.813 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [n]]
-04:01:05.815 INFO - Executing: [find element: By.cssSelector: #organizationDetails input[name="name"]])
-04:01:05.833 INFO - Done: [find element: By.cssSelector: #organizationDetails input[name="name"]]
-04:01:05.836 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [d]])
-04:01:05.871 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [d]]
-04:01:05.879 INFO - Executing: [find element: By.cssSelector: #organizationDetails input[name="name"]])
-04:01:05.887 INFO - Done: [find element: By.cssSelector: #organizationDetails input[name="name"]]
-04:01:05.890 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [ ]])
-04:01:05.925 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [ ]]
-04:01:05.928 INFO - Executing: [find element: By.cssSelector: #organizationDetails input[name="name"]])
-04:01:05.936 INFO - Done: [find element: By.cssSelector: #organizationDetails input[name="name"]]
-04:01:05.939 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [N]])
-04:01:05.979 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [N]]
-04:01:05.981 INFO - Executing: [find element: By.cssSelector: #organizationDetails input[name="name"]])
-04:01:05.990 INFO - Done: [find element: By.cssSelector: #organizationDetails input[name="name"]]
-04:01:05.993 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [u]])
-04:01:06.028 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [u]]
-04:01:06.032 INFO - Executing: [find element: By.cssSelector: #organizationDetails input[name="name"]])
-04:01:06.039 INFO - Done: [find element: By.cssSelector: #organizationDetails input[name="name"]]
-04:01:06.043 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [r]])
-04:01:06.077 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [r]]
-04:01:06.079 INFO - Executing: [find element: By.cssSelector: #organizationDetails input[name="name"]])
-04:01:06.086 INFO - Done: [find element: By.cssSelector: #organizationDetails input[name="name"]]
-04:01:06.089 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [s]])
-04:01:06.122 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [s]]
-04:01:06.124 INFO - Executing: [find element: By.cssSelector: #organizationDetails input[name="name"]])
-04:01:06.133 INFO - Done: [find element: By.cssSelector: #organizationDetails input[name="name"]]
-04:01:06.136 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [i]])
-04:01:06.171 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [i]]
-04:01:06.173 INFO - Executing: [find element: By.cssSelector: #organizationDetails input[name="name"]])
-04:01:06.182 INFO - Done: [find element: By.cssSelector: #organizationDetails input[name="name"]]
-04:01:06.185 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [n]])
-04:01:06.220 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [n]]
-04:01:06.222 INFO - Executing: [find element: By.cssSelector: #organizationDetails input[name="name"]])
-04:01:06.230 INFO - Done: [find element: By.cssSelector: #organizationDetails input[name="name"]]
-04:01:06.232 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [g]])
-04:01:06.270 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [g]]
-04:01:06.274 INFO - Executing: [find element: By.cssSelector: #organizationDetails input[name="name"]])
-04:01:06.283 INFO - Done: [find element: By.cssSelector: #organizationDetails input[name="name"]]
-04:01:06.286 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [ ]])
-04:01:06.331 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [ ]]
-04:01:06.335 INFO - Executing: [find element: By.cssSelector: #organizationDetails input[name="name"]])
-04:01:06.344 INFO - Done: [find element: By.cssSelector: #organizationDetails input[name="name"]]
-04:01:06.347 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [H]])
-04:01:06.390 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [H]]
-04:01:06.393 INFO - Executing: [find element: By.cssSelector: #organizationDetails input[name="name"]])
-04:01:06.402 INFO - Done: [find element: By.cssSelector: #organizationDetails input[name="name"]]
-04:01:06.405 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [o]])
-04:01:06.439 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [o]]
-04:01:06.442 INFO - Executing: [find element: By.cssSelector: #organizationDetails input[name="name"]])
-04:01:06.450 INFO - Done: [find element: By.cssSelector: #organizationDetails input[name="name"]]
-04:01:06.452 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [m]])
-04:01:06.484 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [m]]
-04:01:06.488 INFO - Executing: [find element: By.cssSelector: #organizationDetails input[name="name"]])
-04:01:06.495 INFO - Done: [find element: By.cssSelector: #organizationDetails input[name="name"]]
-04:01:06.497 INFO - Executing: [send keys: 17 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [e]])
-04:01:06.531 INFO - Done: [send keys: 17 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="name"]], [e]]
-04:01:06.534 INFO - Executing: [find element: By.cssSelector: #organizationDetails input[name="phone"]])
-04:01:06.549 INFO - Done: [find element: By.cssSelector: #organizationDetails input[name="phone"]]
-04:01:06.552 INFO - Executing: [send keys: 19 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="phone"]], [7, 0, 2, -, 4, 0, 4, -, 2, 3, 4, 5]])
-04:01:06.886 INFO - Done: [send keys: 19 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="phone"]], [7, 0, 2, -, 4, 0, 4, -, 2, 3, 4, 5]]
-04:01:06.889 INFO - Executing: [find element: By.cssSelector: #organizationDetails input[name="email"]])
-04:01:06.912 INFO - Done: [find element: By.cssSelector: #organizationDetails input[name="email"]]
-04:01:06.916 INFO - Executing: [send keys: 21 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="email"]], [s, o, m, e, o, n, e, @, s, o, m, e, w, h, e, r, e, ., c, o, m]])
-04:01:07.479 INFO - Done: [send keys: 21 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="email"]], [s, o, m, e, o, n, e, @, s, o, m, e, w, h, e, r, e, ., c, o, m]]
-04:01:07.483 INFO - Executing: [find element: By.cssSelector: #organizationDetails input[name="identifier"]])
-04:01:07.501 INFO - Done: [find element: By.cssSelector: #organizationDetails input[name="identifier"]]
-04:01:07.503 INFO - Executing: [send keys: 23 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="identifier"]], [r, a, i, n, b, o, w, -, 4, 0, 4]])
-04:01:07.854 INFO - Done: [send keys: 23 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsPage .organizationDetail input[name="identifier"]], [r, a, i, n, b, o, w, -, 4, 0, 4]]
-04:01:07.857 INFO - Executing: [take screenshot])
-04:01:27.923 WARN - Exception thrown
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1), userDataDir=/var/folders/wy/x2wnhsd15rxbcnwr07g161b00000gn/T/.org.chromium.Chromium.qPlWcs}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=58.0.3029.110, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 0f66f91b5cc013c2f2c10993737c8785
+11:03:46.449 INFO - Executing: [find element: By.cssSelector: #locationDetails input[name="locationName"]])
+11:03:46.470 INFO - Done: [find element: By.cssSelector: #locationDetails input[name="locationName"]]
+11:03:46.473 INFO - Executing: [send keys: 18 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [C]])
+11:03:46.635 INFO - Done: [send keys: 18 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [C]]
+11:03:46.640 INFO - Executing: [find element: By.cssSelector: #locationDetails input[name="locationName"]])
+11:03:46.662 INFO - Done: [find element: By.cssSelector: #locationDetails input[name="locationName"]]
+11:03:46.667 INFO - Executing: [send keys: 18 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [D]])
+11:03:46.777 INFO - Done: [send keys: 18 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [D]]
+11:03:46.782 INFO - Executing: [find element: By.cssSelector: #locationDetails input[name="locationName"]])
+11:03:46.793 INFO - Done: [find element: By.cssSelector: #locationDetails input[name="locationName"]]
+11:03:46.796 INFO - Executing: [send keys: 18 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [C]])
+11:03:46.871 INFO - Done: [send keys: 18 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="locationName"]], [C]]
+11:03:46.875 INFO - Executing: [find element: By.cssSelector: #locationDetails input[name="latitude"]])
+11:03:46.904 INFO - Done: [find element: By.cssSelector: #locationDetails input[name="latitude"]]
+11:03:46.907 INFO - Executing: [send keys: 20 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="latitude"]], [3, 3, ., 7, 9, 9, 3]])
+11:03:47.294 INFO - Done: [send keys: 20 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="latitude"]], [3, 3, ., 7, 9, 9, 3]]
+11:03:47.298 INFO - Executing: [find element: By.cssSelector: #locationDetails input[name="longitude"]])
+11:03:47.330 INFO - Done: [find element: By.cssSelector: #locationDetails input[name="longitude"]]
+11:03:47.334 INFO - Executing: [send keys: 22 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="longitude"]], [8, 4, ., 3, 2, 8]])
+11:03:47.627 INFO - Done: [send keys: 22 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="longitude"]], [8, 4, ., 3, 2, 8]]
+11:03:47.631 INFO - Executing: [find element: By.cssSelector: #locationDetails input[name="altitude"]])
+11:03:47.670 INFO - Done: [find element: By.cssSelector: #locationDetails input[name="altitude"]]
+11:03:47.673 INFO - Executing: [send keys: 24 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="altitude"]], [2, 0, 0]])
+11:03:47.901 INFO - Done: [send keys: 24 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsPage .locationDetail input[name="altitude"]], [2, 0, 0]]
+11:03:47.906 INFO - Executing: [take screenshot])
+11:04:07.975 WARN - Exception thrown
 org.openqa.selenium.WebDriverException: unknown error: cannot get automation extension
 from unknown error: page could not be found: chrome-extension://aapnijgdinlhnhlmodcfapnahmbfebeb/_generated_background_page.html
-  (Session info: chrome=58.0.3029.96)
+  (Session info: chrome=58.0.3029.110)
   (Driver info: chromedriver=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1),platform=Mac OS X 10.12.4 x86_64) (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 10.05 seconds
+Command duration or timeout: 10.06 seconds
 Build info: version: '3.0.1', revision: '1969d75', time: '2016-10-18 09:48:19 -0700'
 System info: host: 'Abigails-Mac-mini-3.local', ip: '10.0.0.53', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.12.4', java.version: '1.8.0_111'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1), userDataDir=/var/folders/wy/x2wnhsd15rxbcnwr07g161b00000gn/T/.org.chromium.Chromium.tUQues}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=58.0.3029.96, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
-Session ID: 7a49208836e36eb597ce6f998ca8f96b
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1), userDataDir=/var/folders/wy/x2wnhsd15rxbcnwr07g161b00000gn/T/.org.chromium.Chromium.qPlWcs}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=58.0.3029.110, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 0f66f91b5cc013c2f2c10993737c8785
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
@@ -659,42 +623,42 @@ Session ID: 7a49208836e36eb597ce6f998ca8f96b
 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
 	at java.lang.Thread.run(Thread.java:745)
-04:01:47.952 WARN - Exception: unknown error: cannot get automation extension
+11:04:28.009 WARN - Exception: unknown error: cannot get automation extension
 from unknown error: page could not be found: chrome-extension://aapnijgdinlhnhlmodcfapnahmbfebeb/_generated_background_page.html
-  (Session info: chrome=58.0.3029.96)
+  (Session info: chrome=58.0.3029.110)
   (Driver info: chromedriver=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1),platform=Mac OS X 10.12.4 x86_64) (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 10.05 seconds
+Command duration or timeout: 10.06 seconds
 Build info: version: '3.0.1', revision: '1969d75', time: '2016-10-18 09:48:19 -0700'
 System info: host: 'Abigails-Mac-mini-3.local', ip: '10.0.0.53', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.12.4', java.version: '1.8.0_111'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1), userDataDir=/var/folders/wy/x2wnhsd15rxbcnwr07g161b00000gn/T/.org.chromium.Chromium.tUQues}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=58.0.3029.96, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
-Session ID: 7a49208836e36eb597ce6f998ca8f96b
-04:02:07.864 INFO - Executing: [find element: By.cssSelector: #organizationDetails #saveOrganizationButton])
-04:02:07.881 INFO - Done: [find element: By.cssSelector: #organizationDetails #saveOrganizationButton]
-04:02:07.883 INFO - Executing: [click: 28 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationDetails #saveOrganizationButton]])
-04:02:07.989 INFO - Done: [click: 28 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationDetails #saveOrganizationButton]]
-04:02:09.008 INFO - Executing: [find elements: By.cssSelector: #organizationsTable])
-04:02:09.028 INFO - Done: [find elements: By.cssSelector: #organizationsTable]
-04:02:09.031 INFO - Executing: [find elements: By.cssSelector: #organizationsTable .organizationRow:nth-child(1)])
-04:02:09.047 INFO - Done: [find elements: By.cssSelector: #organizationsTable .organizationRow:nth-child(1)]
-04:02:09.051 INFO - Executing: [find elements: By.cssSelector: #organizationsTable .organizationRow:nth-child(1) .name])
-04:02:09.068 INFO - Done: [find elements: By.cssSelector: #organizationsTable .organizationRow:nth-child(1) .name]
-04:02:09.071 INFO - Executing: [find element: By.cssSelector: #organizationsTable .organizationRow:nth-child(1) .name])
-04:02:09.092 INFO - Done: [find element: By.cssSelector: #organizationsTable .organizationRow:nth-child(1) .name]
-04:02:09.095 INFO - Executing: [get text: 27 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsTable .organizationRow:nth-child(1) .name]])
-04:02:09.116 INFO - Done: [get text: 27 [[ChromeDriver: chrome on MAC (7a49208836e36eb597ce6f998ca8f96b)] -> css selector: #organizationsTable .organizationRow:nth-child(1) .name]]
-04:02:09.121 INFO - Executing: [take screenshot])
-04:02:29.191 WARN - Exception thrown
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1), userDataDir=/var/folders/wy/x2wnhsd15rxbcnwr07g161b00000gn/T/.org.chromium.Chromium.qPlWcs}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=58.0.3029.110, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 0f66f91b5cc013c2f2c10993737c8785
+11:04:47.914 INFO - Executing: [find element: By.cssSelector: #locationDetails #saveLocationButton])
+11:04:47.942 INFO - Done: [find element: By.cssSelector: #locationDetails #saveLocationButton]
+11:04:47.944 INFO - Executing: [click: 30 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationDetails #saveLocationButton]])
+11:04:48.134 INFO - Done: [click: 30 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationDetails #saveLocationButton]]
+11:04:49.158 INFO - Executing: [find elements: By.cssSelector: #locationsTable])
+11:04:49.198 INFO - Done: [find elements: By.cssSelector: #locationsTable]
+11:04:49.204 INFO - Executing: [find elements: By.cssSelector: #locationsTable .locationRow:nth-child(1)])
+11:04:49.247 INFO - Done: [find elements: By.cssSelector: #locationsTable .locationRow:nth-child(1)]
+11:04:49.252 INFO - Executing: [find elements: By.cssSelector: #locationsTable .locationRow:nth-child(1) .locationName])
+11:04:49.289 INFO - Done: [find elements: By.cssSelector: #locationsTable .locationRow:nth-child(1) .locationName]
+11:04:49.293 INFO - Executing: [find element: By.cssSelector: #locationsTable .locationRow:nth-child(1) .locationName])
+11:04:49.335 INFO - Done: [find element: By.cssSelector: #locationsTable .locationRow:nth-child(1) .locationName]
+11:04:49.338 INFO - Executing: [get text: 29 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsTable .locationRow:nth-child(1) .locationName]])
+11:04:49.376 INFO - Done: [get text: 29 [[ChromeDriver: chrome on MAC (0f66f91b5cc013c2f2c10993737c8785)] -> css selector: #locationsTable .locationRow:nth-child(1) .locationName]]
+11:04:49.379 INFO - Executing: [take screenshot])
+11:05:09.437 WARN - Exception thrown
 org.openqa.selenium.WebDriverException: unknown error: cannot get automation extension
 from unknown error: page could not be found: chrome-extension://aapnijgdinlhnhlmodcfapnahmbfebeb/_generated_background_page.html
-  (Session info: chrome=58.0.3029.96)
+  (Session info: chrome=58.0.3029.110)
   (Driver info: chromedriver=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1),platform=Mac OS X 10.12.4 x86_64) (WARNING: The server did not provide any stacktrace information)
 Command duration or timeout: 10.05 seconds
 Build info: version: '3.0.1', revision: '1969d75', time: '2016-10-18 09:48:19 -0700'
 System info: host: 'Abigails-Mac-mini-3.local', ip: '10.0.0.53', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.12.4', java.version: '1.8.0_111'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1), userDataDir=/var/folders/wy/x2wnhsd15rxbcnwr07g161b00000gn/T/.org.chromium.Chromium.tUQues}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=58.0.3029.96, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
-Session ID: 7a49208836e36eb597ce6f998ca8f96b
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1), userDataDir=/var/folders/wy/x2wnhsd15rxbcnwr07g161b00000gn/T/.org.chromium.Chromium.qPlWcs}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=58.0.3029.110, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 0f66f91b5cc013c2f2c10993737c8785
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
@@ -711,15 +675,15 @@ Session ID: 7a49208836e36eb597ce6f998ca8f96b
 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
 	at java.lang.Thread.run(Thread.java:745)
-04:02:49.227 WARN - Exception: unknown error: cannot get automation extension
+11:05:29.446 WARN - Exception: unknown error: cannot get automation extension
 from unknown error: page could not be found: chrome-extension://aapnijgdinlhnhlmodcfapnahmbfebeb/_generated_background_page.html
-  (Session info: chrome=58.0.3029.96)
+  (Session info: chrome=58.0.3029.110)
   (Driver info: chromedriver=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1),platform=Mac OS X 10.12.4 x86_64) (WARNING: The server did not provide any stacktrace information)
 Command duration or timeout: 10.05 seconds
 Build info: version: '3.0.1', revision: '1969d75', time: '2016-10-18 09:48:19 -0700'
 System info: host: 'Abigails-Mac-mini-3.local', ip: '10.0.0.53', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.12.4', java.version: '1.8.0_111'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1), userDataDir=/var/folders/wy/x2wnhsd15rxbcnwr07g161b00000gn/T/.org.chromium.Chromium.tUQues}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=58.0.3029.96, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
-Session ID: 7a49208836e36eb597ce6f998ca8f96b
-04:03:09.129 INFO - Executing: [delete session: e20f397d-2d9a-43b0-a555-1596b5a64528])
-04:03:09.241 INFO - Done: [delete session: e20f397d-2d9a-43b0-a555-1596b5a64528]
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426935 (820a95b0b81d33e42712f9198c215f703412e1a1), userDataDir=/var/folders/wy/x2wnhsd15rxbcnwr07g161b00000gn/T/.org.chromium.Chromium.qPlWcs}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=58.0.3029.110, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 0f66f91b5cc013c2f2c10993737c8785
+11:05:49.386 INFO - Executing: [delete session: eff1c4fb-18df-41bd-a85b-fe2a5ac17a64])
+11:05:49.589 INFO - Done: [delete session: eff1c4fb-18df-41bd-a85b-fe2a5ac17a64]

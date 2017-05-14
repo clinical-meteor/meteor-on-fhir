@@ -6,13 +6,13 @@ module.exports = {
   before: function(client){
     client
       .url("http://localhost:3000").pause(3000)
+      .resizeWindow(1920, 1200)
       .executeAsync(function(){
         Meteor.call('dropLocations');
         Meteor.call('dropTestUsers');
       });
   },
   'Sign up.': function (client) {
-    client.resizeWindow(1920, 1200);
 
     client.page.signupPage()
       .navigate()
@@ -42,6 +42,7 @@ module.exports = {
       .locationsPage()
       .selectNewLocationTab()
       .verifyNewLocationCard()
+      .pause(2000, client)
       .upsertLocation('Center for Disease Control', 33.7993, 84.3280, 200, '#newLocation', client)
       .saveScreenshot('tests/nightwatch/screenshots/locations.crud/B-LocationList.png', client);
 

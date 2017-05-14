@@ -1,81 +1,60 @@
-// body {
-//   margin: 0;
-//   padding: 1em;
-//   font-family: sans-serif;
-//   background: #f0f0f0;
-// }
+/*svg {
 
-#hexGridPage{
-  [draggable] {
-    -moz-user-select: none;
-    -khtml-user-select: none;
-    -webkit-user-select: none;
-    user-select: none;
-    -moz-user-drag: element;
-    -webkit-user-drag: element;
-    -khtml-user-drag: element;
-    user-drag: element;
-  }
-
-  svg {
-
-  }
+}*/
+/*
+Russian blue pattern:
+#7be3f6
+#4499a9
+#276a76
+#133b43
+#03090a
+*/
+.hexGridPage{
   svg g {
-    // fill: #3F51B5;
-    fill: #cccccc;
+    fill: #4499a9;
     fill-opacity: 0.6;
   }
   svg g:hover {
-    fill-opacity: 1;
+    fill: #7be3f6;
+    fill-opacity: 0.7;
+    cursor: pointer;
   }
   svg g:hover text {
     fill-opacity: 1;
   }
-
+  svg g.q .hexagon {
+    fill: Red;
+    fill-opacity: 0.4;
+  }
+  svg g.r .hexagon {
+    fill: Green;
+    fill-opacity: 0.4;
+  }
+  svg g.s .hexagon {
+    fill: Blue;
+    fill-opacity: 0.4;
+  }
+  svg g.active  .hexagon {
+    fill: Coral;
+    fill-opacity: 0.9;
+  }
   svg g polygon {
-    // stroke: #3F51B5;
-    stroke: #aaaaaa;
+    stroke: #7be3f6;
     stroke-width: 0.2;
-    transition: fill-opacity .2s;
+    transition: fill-opacity .5s;
   }
   svg g text {
-    font-size: 0.2em;
-    fill: #FFFFFF;
-    fill-opacity: 0.4;
-    transition: fill-opacity .2s;
+    font-size: 0.17em;
+    fill: white;
+    fill-opacity: 0.7;
+    transition: fill-opacity .5s;
   }
   svg path {
     fill: none;
-    stroke: hsl(60, 20%, 70%);
-    stroke-width: 0.4em;
-    stroke-opacity: 0.3;
+    stroke: #03090a;
+    stroke-width: 0.2em;
+    stroke-opacity: 0.9;
     stroke-linecap: round;
     stroke-linejoin: round;
   }
-
-  .App {
-    text-align: center;
-  }
-
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-    height: 80px;
-  }
-
-  .App-header {
-    background-color: #222;
-    height: 150px;
-    padding: 20px;
-    color: white;
-  }
-
-  .App-intro {
-    font-size: large;
-  }
-
-  @keyframes App-logo-spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-
 }

@@ -1,24 +1,18 @@
-import React  from 'react';
-import ReactMixin  from 'react-mixin';
-import { ReactMeteorData } from 'meteor/react-meteor-data';
-
-import { Tabs, Tab } from 'material-ui/Tabs';
-import { GlassCard } from '/imports/ui/components/GlassCard';
-import { CardTitle, CardText } from 'material-ui/Card';
-import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
-// import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
-import {List, ListItem} from 'material-ui/List';
-
-import { Meteor } from 'meteor/meteor';
-import Glass from '/imports/ui/Glass';
-
-import Avatar from 'material-ui/Avatar';
-import ActionAssignment from 'material-ui/svg-icons/action/assignment';
-
+import { CardText, CardTitle } from 'material-ui/Card';
+import { List, ListItem } from 'material-ui/List';
+import { Tab, Tabs } from 'material-ui/Tabs';
 import { blue500, yellow600 } from 'material-ui/styles/colors';
 
+import ActionAssignment from 'material-ui/svg-icons/action/assignment';
+import Avatar from 'material-ui/Avatar';
+import Glass from '/imports/ui/Glass';
+import { GlassCard } from '/imports/ui/components/GlassCard';
+import { Meteor } from 'meteor/meteor';
+import React  from 'react';
+import { ReactMeteorData } from 'meteor/react-meteor-data';
+import ReactMixin  from 'react-mixin';
+import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 
-Session.setDefault('checklistPageTabIndex', 1);
 Session.setDefault('checklistSearchFilter', '');
 Session.setDefault('selectedChecklist', false);
 

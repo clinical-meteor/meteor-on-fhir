@@ -1,10 +1,19 @@
 // https://www.npmjs.com/package/react-dropzone-component
 // http://www.dropzonejs.com/
 
-import { CardText, CardTitle } from 'material-ui/Card';
+import { CardActions, CardHeader, CardText, CardTitle } from 'material-ui/Card';
+import {blue500, orange500} from 'material-ui/styles/colors';
+import {blue600, gray600, green600, orange600, red600, yellow600} from 'material-ui/styles/colors';
 
+import ActionAlarm from 'material-ui/svg-icons/action/alarm';
+import ActionAndroid from 'material-ui/svg-icons/action/android';
+import ActionFavorite from 'material-ui/svg-icons/action/favorite';
+import ActionFavoriteBorder from 'material-ui/svg-icons/action/favorite-border';
 import { CollectionManagement } from '/imports/ui/components/CollectionManagement';
+import Dialog from 'material-ui/Dialog';
+import Divider from 'material-ui/Divider';
 import DropzoneComponent from 'react-dropzone-component';
+import FlatButton from 'material-ui/FlatButton';
 import { GeneticAlgorithms } from '/imports/api/genotype/GeneticAlgorithms';
 import { GlassCard } from '/imports/ui/components/GlassCard';
 import { Meteor } from 'meteor/meteor';
@@ -96,6 +105,8 @@ var eventHandlers = {
 };
 
 Session.setDefault('showServerCounts', false);
+Session.setDefault('patientDialogOpen', false);
+Session.setDefault('open', false);
 
 export class DataManagementPage extends React.Component {
   constructor(props) {
@@ -103,6 +114,9 @@ export class DataManagementPage extends React.Component {
   }
   getMeteorData() {
     let data = {
+      dialog: {
+        open: Session.get('open')
+      },      
       user: {
         isAdmin: false
       },
@@ -141,7 +155,56 @@ export class DataManagementPage extends React.Component {
     console.log('DataManagementPage', data);
     return data;
   }
+  openTutorialOverlay(){
+    Session.set('patientDialogOpen', true);
+  }
+  handleOpen(){
+    Session.set('open', true);
+  }
+  handleClose(){
+    Session.set('open', false);
+  }    
+  changeInput(variable, event, value){
+    Session.set(variable, value);
+  }  
   render(){
+    const actions = [
+      <FlatButton
+        label="Contact 911"
+        primary={true}
+        onTouchTap={this.handleClose}
+      />,
+      <FlatButton
+        label="Medical Chart"
+        primary={true}
+        onTouchTap={this.handleClose}
+      />,
+      <FlatButton
+        label="Location"
+        primary={true}
+        onTouchTap={this.handleClose}
+      />,
+      <FlatButton
+        label="Acknowledge"
+        primary={true}
+        keyboardFocused={true}
+        onTouchTap={this.handleClose}
+      />
+    ];
+    const patientActions = [
+      <FlatButton
+        label="Clear"
+        primary={true}
+        onTouchTap={this.handleClosePatients}
+      />,
+      <FlatButton
+        label="Select"
+        primary={true}
+        keyboardFocused={true}
+        onTouchTap={this.handleClosePatients}
+      />
+    ];
+
     return(
       <div id="dataManagementPage">
         <VerticalCanvas >
@@ -154,7 +217,28 @@ export class DataManagementPage extends React.Component {
                 config={componentConfig}
                  eventHandlers={eventHandlers}
                  djsConfig={djsConfig}
+                 onTouchTap={this.openTutorialOverlay}
               />
+
+              <Dialog
+                icon={ <ActionAndroid /> }
+                actions={actions}
+                modal={false}
+                open={this.data.dialog.open}
+                onRequestClose={this.handleClose}
+              >
+                <CardHeader
+                  title='Vital Signs Alert'
+                  subtitle="Jane Doe / F / 45 years"
+                  avatar={<ActionFavoriteBorder style={{height: '64px', width: '64px', color: red600}}/>}
+                  titleStyle={{fontSize: '120%', color: red600}}
+                  subtitleStyle={{fontSize: '120%'}}
+                />
+
+                <Divider style={{marginTop: '10px', marginBottom: '10px'}}/>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eget ornare ipsum. Quisque id varius neque. Proin sit amet justo vitae quam iaculis euismod. Aenean ut congue tellus, at rutrum augue. Vivamus interdum, turpis ac ullamcorper pulvinar, dolor ante placerat enim, non tincidunt metus justo quis sapien. Ut eu odio ornare, varius urna sed, interdum diam. Duis luctus, odio eget pellentesque bibendum, elit magna euismod neque, a mattis sem augue ut erat.
+
+              </Dialog>
 
             </CardText>
           </GlassCard>

@@ -81,7 +81,10 @@ export class AuthenticatedNavigation extends React.Component {
   }
 
   openNotifications(){
-    browserHistory.push('/notifications');
+    // not every wants the notification menu, so we make sure it's configurable in the Meteor.settings file
+    if(Meteor.settings && Meteor.settings.public && Meteor.settings.public.defaults && Meteor.settings.public.defaults.notificationMenu){
+      browserHistory.push('/notifications');
+    }    
   }
   render () {
     return(

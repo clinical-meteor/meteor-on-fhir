@@ -4,8 +4,8 @@
     "theme": {
       "showVideoBackground": false,
       "darkroomTextEnabled": false,
-      "defaultVideo": "/VideoBackgrounds/Circulation.mp4",
-      "backgroundImagePath": "/backgrounds/medical/Gradient.jpg"
+      "defaultVideo": "/VideoBackgrounds/GrayWaves4.mp4",
+      "backgroundImagePath": "/backgrounds/medical/Gradient.jpg"      
     },
     "app": {
       "showUnderConstruction": false,
@@ -14,6 +14,9 @@
     "defaults": {
       "avatars": true,
       "barcodes": true,
+      "hexgridMenu": false,
+      "nfcOrbital": true,
+      "notificationMenu": false,
       "searchbarVisible": true,
       "displayNavbars": true,
       "disableHeader": false,

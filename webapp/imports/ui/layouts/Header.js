@@ -58,7 +58,6 @@ export class Header extends React.Component {
           opacity: Session.get('globalOpacity'),
           WebkitTransition: 'ease .2s',
           transition: 'ease .2s',
-          background: 'white',
           borderWidth: '3px 0px 0px 2px',
           borderBottomRightRadius: '65px',
           transformOrigin: 'right bottom',
@@ -99,6 +98,7 @@ export class Header extends React.Component {
       data.style.searchbar.height = '64px';
       data.style.searchbar.display = 'flex';
       data.style.searchbarInput.visibility = 'visible';
+
     } else {
       data.style.searchbar.height = 0;      
       data.style.searchbar.display = 'none';
@@ -161,7 +161,12 @@ export class Header extends React.Component {
   }
 
   goHome(){
-    browserHistory.push('/');
+    // not every wants the hexgrid menu, so we make sure it's configurable in the Meteor.settings file
+    if(Meteor.settings && Meteor.settings.public && Meteor.settings.public.defaults && Meteor.settings.public.defaults.hexgridMenu){
+      browserHistory.push('/hexgrid');
+    } else {
+      browserHistory.push('/');      
+    }
   }
 
   render () {
