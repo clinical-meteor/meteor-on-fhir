@@ -12,7 +12,6 @@ module.exports = {
       });
   },
   'Sign up.': function (client) {
-    client.resizeWindow(1920, 1200);
 
     client.page.signupPage()
       .navigate()
@@ -20,6 +19,8 @@ module.exports = {
       .saveScreenshot('tests/nightwatch/screenshots/locations/A-Signup-Location.png', client)
       .signup()
       .pause(5000, client);
+
+    client.resizeWindow(1920, 1200);
 
     client
       .verify.elementPresent('#indexPage')
