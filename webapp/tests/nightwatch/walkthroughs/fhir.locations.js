@@ -43,6 +43,7 @@ module.exports = {
       .locationsPage()
       .selectNewLocationTab()
       .verifyNewLocationCard()
+      .pause(2000, client)
       .upsertLocation('Center for Disease Control', 33.7993, 84.3280, 200, '#newLocation', client)
       .saveScreenshot('tests/nightwatch/screenshots/locations.crud/B-LocationList.png', client);
 
