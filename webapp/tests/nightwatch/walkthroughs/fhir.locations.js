@@ -21,6 +21,7 @@ module.exports = {
       .pause(5000, client);
 
     client.resizeWindow(1920, 1200);
+    client.windowSize(1920, 1200);
 
     client
       .verify.elementPresent('#indexPage')
