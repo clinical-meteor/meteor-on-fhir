@@ -43,7 +43,8 @@ export class VerticalCanvas extends React.Component {
 
       if (Session.get('appSurfaceOffset')) {
         // golden ratio
-        data.style.left = (Session.get('appWidth') - canvasWidth) * 0.1618;
+        // data.style.left = (Session.get('appWidth') - canvasWidth) + 40;
+        data.style.left = 80;
         data.style.marginRight = '100px';
       } else {
         // centered
@@ -59,16 +60,16 @@ export class VerticalCanvas extends React.Component {
     var paddingBottom = 0;
 
     if(Session.get('showNavbars')){
-      paddingTop = paddingTop + 60;
-      paddingBottom = paddingBottom + 60;
+      paddingTop = paddingTop + 64;
+      paddingBottom = paddingBottom + 64;
     }
     if(Session.get('showSearchbar')){
       paddingTop = paddingTop + 60;
-      paddingBottom = paddingBottom + 60;
+      //paddingBottom = paddingBottom + 60;
     }
     if(Session.get('mainPanelIsCard')){
       paddingTop = paddingTop + 20;
-      paddingBottom = paddingBottom + 20;
+      //paddingBottom = paddingBottom + 20;
     }
 
     // if (Session.get('hasPagePadding')) {
@@ -115,7 +116,7 @@ export class VerticalCanvas extends React.Component {
 
   render(){
     return (
-      <section className="pageContainer" style={this.data.style}>
+      <section className="pageContainer verticalContainer" style={this.data.style}>
           { this.props.children }
       </section>
     );

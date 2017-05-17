@@ -57,10 +57,10 @@ export class GlassCard extends React.Component {
       if(Session.get('showNavbars')){
         autoHeight = autoHeight - 128;
       }
-      if(!Session.get('showSearchbar')){
+      if(Session.get('showSearchbar')){
         autoHeight = autoHeight - 64;
       }
-      if(!Session.get('mainPanelIsCard')){
+      if(Session.get('mainPanelIsCard')){
         autoHeight = autoHeight - 40;
       }
 
