@@ -5,9 +5,25 @@ import { Topics } from '/imports/api/topics/topics';
 
 import { MyGenotype } from '/imports/api/genotype/MyGenotype';
 import { GeneticAlgorithms } from '/imports/api/genotype/GeneticAlgorithms';
+import { NodeGeocoder } from 'node-geocoder';
 
+var options = {
+  provider: 'google'
+  // // Optional depending on the providers
+  // httpAdapter: 'https', // Default
+  // apiKey: 'YOUR_API_KEY', // for Mapquest, OpenCage, Google Premier
+  // formatter: null         // 'gpx', 'string', ...
+};
+var geocoder = NodeGeocoder(options);
 
 Meteor.methods({
+  geocode: function(){
+    var address = "Chicago, IL";
+    console.log('lets try geocoding something...', address);
+    geocoder.geocode(address, function ( err, data ) {
+      console.log('geocoded data:', data);
+    });
+  },
   dropTopics: function(){
     if (process.env.NODE_ENV === 'test') {
       console.log('-----------------------------------------');

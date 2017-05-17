@@ -21,6 +21,7 @@ import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 import { browserHistory } from 'react-router';
 import { removeUserById } from '../../api/users/methods';
 
+
 let defaultState = {
   index: 0,
   hasConfirmedDelete: false,
@@ -142,7 +143,10 @@ export class MyProfilePage extends React.Component {
     return data;
   }
 
-
+  geocode(){
+    console.log('lets try geocoding something...');
+    Meteor.call('geocode');
+  }
   render(){
     return(
       <div id='myProfilePage'>
@@ -341,6 +345,80 @@ export class MyProfilePage extends React.Component {
 
             </CardText>
           </GlassCard>
+
+          <Spacer />
+          <GlassCard>
+            <CardTitle title="Home Address" />
+            <CardText>
+              
+              <Row>
+                <Col md={12}>
+                  <TextField
+                    id='streetAddressInput'
+                    ref='streetAddress'
+                    name='streetAddress'
+                    type='text'
+                    floatingLabelText='Street Address'
+                    floatingLabelFixed={true}
+                    fullWidth
+                    />
+                </Col>
+              </Row>
+              <Row>
+                <Col md={3}>
+                  <TextField
+                    id='cityInput'
+                    ref='city'
+                    name='city'
+                    type='text'
+                    floatingLabelText='City'
+                    floatingLabelFixed={true}
+                    fullWidth
+                    />
+                </Col>
+                <Col md={3}>
+                  <TextField
+                    id='stateInput'
+                    ref='state'
+                    name='state'
+                    type='text'
+                    floatingLabelText='State'
+                    floatingLabelFixed={true}
+                    fullWidth
+                    />
+                </Col>
+                <Col md={3}>
+                  <TextField
+                    id='zipInput'
+                    ref='zip'
+                    name='zip'
+                    type='text'
+                    floatingLabelText='Zip'
+                    floatingLabelFixed={true}
+                    fullWidth
+                    />
+                </Col>
+                <Col md={3}>
+                  <TextField
+                    id='countryInput'
+                    ref='country'
+                    name='country'
+                    type='text'
+                    floatingLabelText='Country'
+                    floatingLabelFixed={true}
+                    fullWidth
+                    />
+                </Col>
+              </Row>
+              <FlatButton 
+                label='Geocode' 
+                onClick={this.geocode.bind(this)}
+                />
+
+            </CardText>
+          </GlassCard>
+
+
 
           <Spacer />
           <GlassCard>
