@@ -288,7 +288,9 @@ export class LocationsPage extends React.Component {
            defaultZoom={this.data.zoom}           
            options={this.data.options}
            onGoogleApiLoaded={function({map, maps}){
-          }}
+             console.log('onGoogleApiLoaded', map)
+             map.data.loadGeoJson(Meteor.absoluteUrl() + '/geodata/illinois-epa-toxic-inventory-sites.geojson');
+           }}
          >          
           {markers}
           {canvas}

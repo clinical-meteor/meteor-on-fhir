@@ -156,6 +156,9 @@ To enable network synchronizing, you'll need to specify an upstream sync partner
 [HL7 v2 to FHIR Interface Mapping](https://medium.com/@awatson1978/hl7-v2-to-fhir-interface-mapping-f83c6ecf6bee)  
 
 
+
+### References
+
 #### Miscellaneous References    
 [Supporting Interoperability – Terminology, Subsets and Other Resources from Natl. Library of Medicine](https://www.nlm.nih.gov/hit_interoperability.html)  
 [Health IT Standards for Health Information Management Practices](http://ihe.net/uploadedFiles/Documents/ITI/IHE_ITI_WP_HITStdsforHIMPratices_Rev1.1_2015-09-18.pdf)  
@@ -166,4 +169,5 @@ To enable network synchronizing, you'll need to specify an upstream sync partner
 
 
 
-
+#### Mapping  
+[Snazzy Maps](https://snazzymaps.com/style/13/neutral-blue)  

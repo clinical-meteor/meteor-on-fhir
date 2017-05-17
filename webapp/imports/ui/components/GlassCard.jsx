@@ -64,15 +64,6 @@ export class GlassCard extends React.Component {
         autoHeight = autoHeight - 40;
       }
 
-      // if (Session.get('hasPagePadding')) {
-      //   data.style.height = Session.get('appHeight') - 160 + 'px';
-      // } else {
-      //   if (Session.get('mainPanelIsCard')) {
-      //     data.style.height = Session.get('appHeight') - 40 + 'px';
-      //   } else {
-      //     data.style.height = Session.get('appHeight') + 'px';
-      //   }
-      // }
       data.style.height = autoHeight + 'px';
     }
 
@@ -80,8 +71,6 @@ export class GlassCard extends React.Component {
     if (this.props.width) {
       data.style.width = this.props.width;
     }
-    // GlassFactory.addStyling(data);
-
     return data;
   }
 
