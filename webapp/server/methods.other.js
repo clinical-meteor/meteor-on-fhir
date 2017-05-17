@@ -14,12 +14,44 @@ var options = {
 var geocoder = NodeGeocoder(options);
 
 Meteor.methods({
-  geocode: function(){
-    var address = "3928 W. Cornelia Ave, Chicago, IL";
-    console.log('lets try geocoding something...', address);
-    geocoder.geocode(address, function ( err, data ) {
+  geocode: function(address){
+    check(address, Object);
+    
+    process.env.DEBUG &&console.log('received a new address to geocode', address, this.userId)
+    // var assembledAddress = "3928 W. Cornelia Ave, Chicago, IL";
+    var assembledAddress = '';
+    if(address.line){
+      assembledAddress = address.line;
+    }
+    if(address.city){
+      assembledAddress = assembledAddress + ', ' + address.city;
+    }
+    if(address.state){
+      assembledAddress = assembledAddress + ', ' + address.state;
+    }
+    if(address.postalCode){
+      assembledAddress = assembledAddress + ', ' + address.postalCode;
+    }
+    if(address.country){
+      assembledAddress = assembledAddress + ', ' + address.country;
+    }
+
+    process.env.DEBUG && console.log('lets try geocoding something...', assembledAddress);
+    geocoder.geocode(assembledAddress, Meteor.bindEnvironment(function ( err, data ) {
       console.log('geocoded data:', data);
-    });
+      if(data){
+        if(data[0] && data[0].latitude){
+          Meteor.users.update({  _id: Meteor.userId()}, {$set:{
+            'profile.locations.home.position.latitude': data[0].latitude
+          }});
+        }
+        if(data[0] && data[0].longitude){
+          Meteor.users.update({  _id: Meteor.userId()}, {$set:{
+            'profile.locations.home.position.longitude': data[0].longitude
+          }});
+        }
+      }
+    }));
   },
   dropTopics: function(){
     if (process.env.NODE_ENV === 'test') {
