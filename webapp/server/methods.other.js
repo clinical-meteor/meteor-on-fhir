@@ -1,11 +1,8 @@
-
-
 import { Documents } from '/imports/api/documents/documents';
-import { Topics } from '/imports/api/topics/topics';
-
-import { MyGenotype } from '/imports/api/genotype/MyGenotype';
 import { GeneticAlgorithms } from '/imports/api/genotype/GeneticAlgorithms';
-import { NodeGeocoder } from 'node-geocoder';
+import { MyGenotype } from '/imports/api/genotype/MyGenotype';
+import NodeGeocoder from 'node-geocoder';
+import { Topics } from '/imports/api/topics/topics';
 
 var options = {
   provider: 'google'
@@ -18,7 +15,7 @@ var geocoder = NodeGeocoder(options);
 
 Meteor.methods({
   geocode: function(){
-    var address = "Chicago, IL";
+    var address = "3928 W. Cornelia Ave, Chicago, IL";
     console.log('lets try geocoding something...', address);
     geocoder.geocode(address, function ( err, data ) {
       console.log('geocoded data:', data);
