@@ -289,20 +289,32 @@ export class LocationsPage extends React.Component {
           options={this.data.options}
           onGoogleApiLoaded={function({map, maps}){
             console.log('onGoogleApiLoaded', map)
-            //map.MarkerImage('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAAi0lEQVR42mNgQIAoIF4NxGegdCCSHAMzEC+NMov6vzp99f8zVWfAdKBh4H+g+EyYorQ027T//2f+x8CxFrEghbEgRQcOFB/Aqmhv4V6Qor0gRQ8ftj/Equh2822QottEmxQLshubohCjEJCiEJjj54N8tzFrI9h36zLWwXw3jQENgMJpIzSc1iGHEwBt95qDejjnKAAAAABJRU5ErkJggg==');
-            //map.data.loadGeoJson(Meteor.absoluteUrl() + '/geodata/illinois-epa-toxic-inventory-sites.geojson');
+  
             map.data.setStyle({
-              icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAAiklEQVR42mNgQIAoIF4NxGegdCCSHAMzEC+NUlH5v9rF5f+ZoCAwHaig8B8oPhOmKC1NU/P//7Q0DByrqgpSGAtSdOCAry9WRXt9fECK9oIUPXwYFYVV0e2ICJCi20SbFAuyG5uiECUlkKIQmOPng3y30d0d7Lt1bm4w301jQAOgcNoIDad1yOEEAFm9fSv/VqtJAAAAAElFTkSuQmCC'
+              // raw binary data (extremely fast!)
+              //icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAAiklEQVR42mNgQIAoIF4NxGegdCCSHAMzEC+NUlH5v9rF5f+ZoCAwHaig8B8oPhOmKC1NU/P//7Q0DByrqgpSGAtSdOCAry9WRXt9fECK9oIUPXwYFYVV0e2ICJCi20SbFAuyG5uiECUlkKIQmOPng3y30d0d7Lt1bm4w301jQAOgcNoIDad1yOEEAFm9fSv/VqtJAAAAAElFTkSuQmCC'
+  
+              // load from a content delivery network
               //icon: 'http://maps.google.com/mapfiles/ms/icons/purple-dot.png'
+
+              // load from Meteor server
+              //icon: Meteor.absoluteUrl() + 'geodata/icons/purple-dot.png'
+
+              // load from googleapis
               //icon: 'https://mts.googleapis.com/vt/icon/name=icons/spotlight/spotlight-waypoint-a.png&text=A&psize=16&font=fonts/Roboto-Regular.ttf&color=ff333333&ax=44&ay=48&scale=1'
-              //icon: {
-              //  path: 'M 0,0 C -2,-20 -10,-22 -10,-30 A 10,10 0 1,1 10,-30 C 10,-22 2,-20 0,0 z M -2,-30 a 2,2 0 1,1 4,0 2,2 0 1,1 -4,0',
-              //  fillColor: '#bb5599',
-              //  fillOpacity: 1,
-              //  strokeColor: '#000',
-              //  strokeWeight: 2,
-              //  scale: 1
-              //}
+
+              // load a Symbol
+              icon: {
+                // a custom designed path (must be less than 22x22 pixels)
+                //path: 'M 0,0 C -2,-20 -10,-22 -10,-30 A 10,10 0 1,1 10,-30 C 10,-22 2,-20 0,0 z M -2,-30 a 2,2 0 1,1 4,0 2,2 0 1,1 -4,0',
+
+                path: maps.SymbolPath.CIRCLE,
+                fillColor: '#bb5599',
+                fillOpacity: 0.5,
+                strokeColor: '#bb5599',
+                strokeWeight: 2,
+                scale: 5
+              }
               //icon: new maps.MarkerImage(
               //  'http://www.gettyicons.com/free-icons/108/gis-gps/png/24/needle_left_yellow_2_24.png',
               //  new maps.Size(24, 24),
@@ -313,7 +325,7 @@ export class LocationsPage extends React.Component {
             var dataLayer = map.data.loadGeoJson(Meteor.absoluteUrl() + '/geodata/illinois-epa-toxic-inventory-sites.geojson');
 
             heatmap = new maps.visualization.HeatmapLayer({
-              data: dataLayer,
+              data: map.data,
               map: map
             });
             var gradient = [
