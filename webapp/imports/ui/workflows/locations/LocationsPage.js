@@ -274,7 +274,7 @@ export class LocationsPage extends React.Component {
       this.data.markers.forEach(function(location){
         markers.push(
           <div lat={location.position.latitude} lng={ location.position.longitude} style={{width: '200px'}}>
-            <div style={{backgroundColor: 'red', opacity: '.8', height: '20px', width: '20px', borderRadius: '80%'}}></div>
+            <div style={{backgroundColor: 'orange', opacity: '.8', height: '20px', width: '20px', borderRadius: '80%'}}></div>
             {location.name}
           </div>)
       });
@@ -283,18 +283,62 @@ export class LocationsPage extends React.Component {
       // add the canvas with our locations CRUD user interface
       // and our map markers
       pageContent = <GoogleMapReact
-           id="googleMap"
-           defaultCenter={this.data.center}
-           defaultZoom={this.data.zoom}           
-           options={this.data.options}
-           onGoogleApiLoaded={function({map, maps}){
-             console.log('onGoogleApiLoaded', map)
-             map.data.loadGeoJson(Meteor.absoluteUrl() + '/geodata/illinois-epa-toxic-inventory-sites.geojson');
-           }}
-         >          
-          {markers}
-          {canvas}
-        </GoogleMapReact>
+          id="googleMap"
+          defaultCenter={this.data.center}
+          defaultZoom={this.data.zoom}           
+          options={this.data.options}
+          onGoogleApiLoaded={function({map, maps}){
+            console.log('onGoogleApiLoaded', map)
+            //map.MarkerImage('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAAi0lEQVR42mNgQIAoIF4NxGegdCCSHAMzEC+NMov6vzp99f8zVWfAdKBh4H+g+EyYorQ027T//2f+x8CxFrEghbEgRQcOFB/Aqmhv4V6Qor0gRQ8ftj/Equh2822QottEmxQLshubohCjEJCiEJjj54N8tzFrI9h36zLWwXw3jQENgMJpIzSc1iGHEwBt95qDejjnKAAAAABJRU5ErkJggg==');
+            //map.data.loadGeoJson(Meteor.absoluteUrl() + '/geodata/illinois-epa-toxic-inventory-sites.geojson');
+            map.data.setStyle({
+              icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAAiklEQVR42mNgQIAoIF4NxGegdCCSHAMzEC+NUlH5v9rF5f+ZoCAwHaig8B8oPhOmKC1NU/P//7Q0DByrqgpSGAtSdOCAry9WRXt9fECK9oIUPXwYFYVV0e2ICJCi20SbFAuyG5uiECUlkKIQmOPng3y30d0d7Lt1bm4w301jQAOgcNoIDad1yOEEAFm9fSv/VqtJAAAAAElFTkSuQmCC'
+              //icon: 'http://maps.google.com/mapfiles/ms/icons/purple-dot.png'
+              //icon: 'https://mts.googleapis.com/vt/icon/name=icons/spotlight/spotlight-waypoint-a.png&text=A&psize=16&font=fonts/Roboto-Regular.ttf&color=ff333333&ax=44&ay=48&scale=1'
+              //icon: {
+              //  path: 'M 0,0 C -2,-20 -10,-22 -10,-30 A 10,10 0 1,1 10,-30 C 10,-22 2,-20 0,0 z M -2,-30 a 2,2 0 1,1 4,0 2,2 0 1,1 -4,0',
+              //  fillColor: '#bb5599',
+              //  fillOpacity: 1,
+              //  strokeColor: '#000',
+              //  strokeWeight: 2,
+              //  scale: 1
+              //}
+              //icon: new maps.MarkerImage(
+              //  'http://www.gettyicons.com/free-icons/108/gis-gps/png/24/needle_left_yellow_2_24.png',
+              //  new maps.Size(24, 24),
+              //  new maps.Point(0, 0),
+              //  new maps.Point(0, 24)
+              //)
+            });
+            var dataLayer = map.data.loadGeoJson(Meteor.absoluteUrl() + '/geodata/illinois-epa-toxic-inventory-sites.geojson');
+
+            heatmap = new maps.visualization.HeatmapLayer({
+              data: dataLayer,
+              map: map
+            });
+            var gradient = [
+              'rgba(0, 255, 255, 0)',
+              'rgba(0, 255, 255, 1)',
+              'rgba(0, 191, 255, 1)',
+              'rgba(0, 127, 255, 1)',
+              'rgba(0, 63, 255, 1)',
+              'rgba(0, 0, 255, 1)',
+              'rgba(0, 0, 223, 1)',
+              'rgba(0, 0, 191, 1)',
+              'rgba(0, 0, 159, 1)',
+              'rgba(0, 0, 127, 1)',
+              'rgba(63, 0, 91, 1)',
+              'rgba(127, 0, 63, 1)',
+              'rgba(191, 0, 31, 1)',
+              'rgba(255, 0, 0, 1)'
+            ]
+            heatmap.setMap(map);
+            heatmap.set('gradient', heatmap.get('gradient') ? null : gradient);
+          }}
+        >          
+        {markers}
+        {canvas}
+      </GoogleMapReact>
     // } else {
     //   // but if we're in a test environment, we're just going to render the locations CRUD user interface
     //   pageContent = canvas;
