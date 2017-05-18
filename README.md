@@ -173,4 +173,5 @@ To enable network synchronizing, you'll need to specify an upstream sync partner
 [Snazzy Maps](https://snazzymaps.com/style/13/neutral-blue)  
 [Google Maps Utility Library](https://code.google.com/archive/p/google-maps-utility-library-v3/wikis/Libraries.wiki)  
 [Map Icons](http://map-icons.com/)  
+[Styling Wizard](https://mapstyle.withgoogle.com/)  
 

@@ -1,6 +1,7 @@
 import { CardText, CardTitle } from 'material-ui/Card';
 import { Tab, Tabs } from 'material-ui/Tabs';
 
+import { EJSON } from 'meteor/ejson';
 import Glass from '/imports/ui/Glass';
 import { GlassCard } from '/imports/ui/components/GlassCard';
 import GoogleMapReact from 'google-map-react';
@@ -287,6 +288,9 @@ export class LocationsPage extends React.Component {
           defaultCenter={this.data.center}
           defaultZoom={this.data.zoom}           
           options={this.data.options}
+          bootstrapURLKeys={{
+            libraries: 'visualization'
+          }}
           onGoogleApiLoaded={function({map, maps}){
             console.log('onGoogleApiLoaded', map)
   
@@ -321,31 +325,56 @@ export class LocationsPage extends React.Component {
               //  new maps.Point(0, 0),
               //  new maps.Point(0, 24)
               //)
-            });
-            var dataLayer = map.data.loadGeoJson(Meteor.absoluteUrl() + '/geodata/illinois-epa-toxic-inventory-sites.geojson');
 
-            heatmap = new maps.visualization.HeatmapLayer({
-              data: map.data,
-              map: map
+              // and some labels 
+              //label: {
+              //  color: "blue",
+              //  fontFamily: "Courier",
+              //  fontSize: "24px",
+              //  fontWeight: "bold",
+              //  text: 'foo'
+              //}
             });
-            var gradient = [
-              'rgba(0, 255, 255, 0)',
-              'rgba(0, 255, 255, 1)',
-              'rgba(0, 191, 255, 1)',
-              'rgba(0, 127, 255, 1)',
-              'rgba(0, 63, 255, 1)',
-              'rgba(0, 0, 255, 1)',
-              'rgba(0, 0, 223, 1)',
-              'rgba(0, 0, 191, 1)',
-              'rgba(0, 0, 159, 1)',
-              'rgba(0, 0, 127, 1)',
-              'rgba(63, 0, 91, 1)',
-              'rgba(127, 0, 63, 1)',
-              'rgba(191, 0, 31, 1)',
-              'rgba(255, 0, 0, 1)'
-            ]
-            heatmap.setMap(map);
-            heatmap.set('gradient', heatmap.get('gradient') ? null : gradient);
+
+            var dataLayer = [];
+            HTTP.get(Meteor.absoluteUrl() + '/geodata/illinois-epa-toxic-inventory-sites.geojson', function(error, data){
+              var geojson = EJSON.parse(data.content);
+              console.log('loadGeoJson', geojson);
+              geojson.features.forEach(function(datum){
+                if(datum.geometry && datum.geometry.coordinates && datum.geometry.coordinates[0] && datum.geometry.coordinates[1]){
+                  dataLayer.push(new maps.LatLng(datum.geometry.coordinates[1], datum.geometry.coordinates[0]));
+                }
+              })
+              console.log('dataLayer', dataLayer);
+
+              map.data.loadGeoJson(Meteor.absoluteUrl() + '/geodata/illinois-epa-toxic-inventory-sites.geojson');
+              console.log('map.data', map.data);
+
+              var heatmap = new maps.visualization.HeatmapLayer({
+                //data: [new maps.LatLng(41.9447852, -87.7260551999999)],
+                data: dataLayer,
+                map: map
+              });
+              var gradient = [
+                'rgba(0, 255, 255, 0)',
+                'rgba(0, 255, 255, 1)',
+                'rgba(0, 191, 255, 1)',
+                'rgba(0, 127, 255, 1)',
+                'rgba(0, 63, 255, 1)',
+                'rgba(0, 0, 255, 1)',
+                'rgba(0, 0, 223, 1)',
+                'rgba(0, 0, 191, 1)',
+                'rgba(0, 0, 159, 1)',
+                'rgba(0, 0, 127, 1)',
+                'rgba(63, 0, 91, 1)',
+                'rgba(255, 0, 0, 1)'
+              ]
+              heatmap.set('gradient', gradient);
+              heatmap.set('radius', 50);
+              heatmap.set('opacity', 0.5);
+              heatmap.setMap(map);
+
+            });
           }}
         >          
         {markers}
