@@ -49,7 +49,9 @@ export class LocationsPage extends React.Component {
         lng: -87.8317244
       },
       zoom: 12, 
-      layers: ShapeFiles.find().fetch(),
+      layers: {
+        heatmap: true
+      },
       markers: Locations.find({}, {sort: {name: 1}}).fetch(),
       options: {
         panControl: false,
@@ -336,45 +338,49 @@ export class LocationsPage extends React.Component {
               //}
             });
 
-            var dataLayer = [];
-            HTTP.get(Meteor.absoluteUrl() + '/geodata/illinois-epa-toxic-inventory-sites.geojson', function(error, data){
-              var geojson = EJSON.parse(data.content);
-              console.log('loadGeoJson', geojson);
-              geojson.features.forEach(function(datum){
-                if(datum.geometry && datum.geometry.coordinates && datum.geometry.coordinates[0] && datum.geometry.coordinates[1]){
-                  dataLayer.push(new maps.LatLng(datum.geometry.coordinates[1], datum.geometry.coordinates[0]));
-                }
-              })
-              console.log('dataLayer', dataLayer);
+            if(self.data.layers.heatmap){
+              var dataLayer = [];
+              HTTP.get(Meteor.absoluteUrl() + '/geodata/illinois-epa-toxic-inventory-sites.geojson', function(error, data){
+                var geojson = EJSON.parse(data.content);
+                console.log('loadGeoJson', geojson);
+                geojson.features.forEach(function(datum){
+                  if(datum.geometry && datum.geometry.coordinates && datum.geometry.coordinates[0] && datum.geometry.coordinates[1]){
+                    dataLayer.push(new maps.LatLng(datum.geometry.coordinates[1], datum.geometry.coordinates[0]));
+                  }
+                })
+                console.log('dataLayer', dataLayer);
 
+                {/*map.data.loadGeoJson(Meteor.absoluteUrl() + '/geodata/illinois-epa-toxic-inventory-sites.geojson');
+                console.log('map.data', map.data);*/}
+
+                var heatmap = new maps.visualization.HeatmapLayer({
+                  data: dataLayer,
+                  map: map
+                });
+                var gradient = [
+                  'rgba(0, 255, 255, 0)',
+                  'rgba(0, 255, 255, 1)',
+                  'rgba(0, 191, 255, 1)',
+                  'rgba(0, 127, 255, 1)',
+                  'rgba(0, 63, 255, 1)',
+                  'rgba(0, 0, 255, 1)',
+                  'rgba(0, 0, 223, 1)',
+                  'rgba(0, 0, 191, 1)',
+                  'rgba(0, 0, 159, 1)',
+                  'rgba(0, 0, 127, 1)',
+                  'rgba(63, 0, 91, 1)',
+                  'rgba(255, 0, 0, 1)'
+                ]
+                heatmap.set('gradient', gradient);
+                heatmap.set('radius', 40);
+                heatmap.set('opacity', 0.4);
+                heatmap.setMap(map);
+
+              });
+            } else {
               map.data.loadGeoJson(Meteor.absoluteUrl() + '/geodata/illinois-epa-toxic-inventory-sites.geojson');
               console.log('map.data', map.data);
-
-              var heatmap = new maps.visualization.HeatmapLayer({
-                //data: [new maps.LatLng(41.9447852, -87.7260551999999)],
-                data: dataLayer,
-                map: map
-              });
-              var gradient = [
-                'rgba(0, 255, 255, 0)',
-                'rgba(0, 255, 255, 1)',
-                'rgba(0, 191, 255, 1)',
-                'rgba(0, 127, 255, 1)',
-                'rgba(0, 63, 255, 1)',
-                'rgba(0, 0, 255, 1)',
-                'rgba(0, 0, 223, 1)',
-                'rgba(0, 0, 191, 1)',
-                'rgba(0, 0, 159, 1)',
-                'rgba(0, 0, 127, 1)',
-                'rgba(63, 0, 91, 1)',
-                'rgba(255, 0, 0, 1)'
-              ]
-              heatmap.set('gradient', gradient);
-              heatmap.set('radius', 50);
-              heatmap.set('opacity', 0.5);
-              heatmap.setMap(map);
-
-            });
+            }
           }}
         >          
         {markers}

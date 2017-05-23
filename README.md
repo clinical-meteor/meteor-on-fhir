@@ -174,4 +174,8 @@ To enable network synchronizing, you'll need to specify an upstream sync partner
 [Google Maps Utility Library](https://code.google.com/archive/p/google-maps-utility-library-v3/wikis/Libraries.wiki)  
 [Map Icons](http://map-icons.com/)  
 [Styling Wizard](https://mapstyle.withgoogle.com/)  
+[GoogleMapReact Documentation](https://github.com/istarkov/google-map-react)  
+[GoogleMapReact API](https://github.com/istarkov/google-map-react/blob/master/API.md)  
+[Google Transit Layer](https://developers.google.com/maps/documentation/javascript/examples/layer-transit)  
+[Google Traffic Layer](https://developers.google.com/maps/documentation/javascript/examples/layer-traffic)  
 
