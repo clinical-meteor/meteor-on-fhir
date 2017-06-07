@@ -1,6 +1,6 @@
 {
   "public": {
-    "title": "Symptomatic - EPA Toxic Release Proximity",
+    "title": "Symptomatic - Pre-existing Conditions Tracker w / Snomed Browser",
     "theme": {
       "showVideoBackground": false,
       "darkroomTextEnabled": false,
@@ -23,7 +23,7 @@
       "disableFooter": false,
       "darkroom": false,
       "iFrameEnabled": false,
-      "iFrameUrl": "https://www.wikipedia.org",
+      "iFrameUrl": "http://browser.ihtsdotools.org",
       "paginationLimit": 100,
       "subscriptionLimit": 1000,
       "cards": {

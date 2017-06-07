@@ -1,11 +1,9 @@
+import { Card, CardActions, CardMedia, CardText, CardTitle } from 'material-ui/Card';
+
 import React from 'react';
-import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
-
-import { Card, CardMedia, CardTitle, CardText, CardActions } from 'material-ui/Card';
-
+import ReactMixin from 'react-mixin';
 import { Table } from 'react-bootstrap';
-
 
 export default class ConditionsTable extends React.Component {
 
@@ -18,7 +16,11 @@ export default class ConditionsTable extends React.Component {
         opacity: Session.get('globalOpacity')
       },
       selected: [],
-      conditions: Conditions.find().fetch()
+      conditions: []
+    }
+    
+    if(Conditions.find().count() > 0){
+      data.conditions = Conditions.find().fetch();
     }
 
 
@@ -35,16 +37,51 @@ export default class ConditionsTable extends React.Component {
   render () {
     let tableRows = [];
     for (var i = 0; i < this.data.conditions.length; i++) {
+      var newRow = {
+        patientDisplay: '',
+        asserterDisplay: '',
+        clinicalStatus: '',
+        snomedCode: '',
+        snomedDisplay: '',
+        evidenceDisplay: '',
+        barcode: ''
+      };
+      if (this.data.conditions[i]){
+        if(this.data.conditions[i].patient){
+          newRow.patientDisplay = this.data.conditions[i].patient.display;
+        }
+        if(this.data.conditions[i].asserter){
+          newRow.asserterDisplay = this.data.conditions[i].asserter.display;
+        }
+        if(this.data.conditions[i].clinicalStatus){
+          newRow.clinicalStatus = this.data.conditions[i].clinicalStatus;
+        }
+        if(this.data.conditions[i].code){
+          if(this.data.conditions[i].code.coding && this.data.conditions[i].code.coding[0]){            
+            newRow.snomedCode = this.data.conditions[i].code.coding[0].code;
+            newRow.snomedDisplay = this.data.conditions[i].code.coding[0].display;
+          }
+        }
+        if(this.data.conditions[i].evidence && this.data.conditions[i].evidence[0]){
+          if(this.data.conditions[i].evidence[0].detail && this.data.conditions[i].evidence[0].detail[0]){            
+            newRow.evidenceDisplay = this.data.conditions[i].evidence[0].detail[0].display;
+          }
+        }
+        if(this.data.conditions[i]._id){
+          newRow.barcode = this.data.conditions[i]._id;
+        }        
+      }
+
       tableRows.push(
         <tr key={i} className="conditionRow" style={{cursor: "pointer"}} onClick={ this.rowClick.bind('this', this.data.conditions[i]._id)} >
 
-          <td className='patientDisplay'>{this.data.conditions[i].patient ? this.data.conditions[i].patient.display :  '' }</td>
-          <td className='asserterDisplay'>{this.data.conditions[i].asserter ? this.data.conditions[i].asserter.display :  '' }</td>
-          <td className='clinicalStatus'>{this.data.conditions[i].clinicalStatus }</td>
-          <td className='snomedCode'>{ this.data.conditions[i].code.coding[0] ? this.data.conditions[i].code.coding[0].code :  '' }</td>
-          <td className='snomedDisplay'>{this.data.conditions[i].code.coding[0].display }</td>
-          <td className='evidenceDisplay'>{this.data.conditions[i].evidence[0].detail[0] ? this.data.conditions[i].evidence[0].detail[0].display :  '' }</td>
-          <td><span className="barcode">{ this.data.conditions[i]._id }</span></td>
+          <td className='patientDisplay'>{ newRow.patientDisplay }</td>
+          <td className='asserterDisplay'>{ newRow.asserterDisplay }</td>
+          <td className='clinicalStatus'>{ newRow.clinicalStatus }</td>
+          <td className='snomedCode'>{ newRow.snomedCode }</td>
+          <td className='snomedDisplay'>{ newRow.snomedDisplay }</td>
+          <td className='evidenceDisplay'>{ newRow.evidenceDisplay }</td>
+          <td><span className="barcode">{ newRow.barcode }</span></td>
         </tr>
       )
     }

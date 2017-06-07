@@ -125,6 +125,15 @@ export class Footer extends React.Component {
           </div>
         );
 
+      // CONDITIONS
+      } else if (Meteor.userId() && (Session.equals('pathname', '/conditions')) && Meteor.settings.public && Meteor.settings.public.modules && Meteor.settings.public.modules.epic) {
+        // the user is logged in as a normal user
+        return (
+          <div>
+            <FlatButton label='GET open.epic.com/Condition' className='querySystemButton' ref='querySystemButton' onClick={this.querySystemButton.bind(this, 'Condition')} style={this.data.style.buttonText} ></FlatButton>
+          </div>
+        );
+
       } else {
         // anything else
         return (

@@ -35,8 +35,11 @@ export class GoogleMapsPage extends React.Component {
           width: Session.get('appWidth')
         }
       },
-      center: {lat: 39.66, lng: -104.95},
-      zoom: 9,
+      center: {
+        lat: 41.8359496, 
+        lng: -87.8317244
+      },
+      zoom: 8,
       options: {
         panControl: false,
         mapTypeControl: false,
@@ -221,6 +224,57 @@ export class GoogleMapsPage extends React.Component {
            defaultZoom={this.data.zoom}
            options={this.data.options}
            onGoogleApiLoaded={function({map, maps}){
+            console.log('onGoogleApiLoaded', map)
+
+            map.data.setStyle({
+              // raw binary data (extremely fast!)
+              //icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAAiklEQVR42mNgQIAoIF4NxGegdCCSHAMzEC+NUlH5v9rF5f+ZoCAwHaig8B8oPhOmKC1NU/P//7Q0DByrqgpSGAtSdOCAry9WRXt9fECK9oIUPXwYFYVV0e2ICJCi20SbFAuyG5uiECUlkKIQmOPng3y30d0d7Lt1bm4w301jQAOgcNoIDad1yOEEAFm9fSv/VqtJAAAAAElFTkSuQmCC'
+  
+              // load from a content delivery network
+              //icon: 'http://maps.google.com/mapfiles/ms/icons/purple-dot.png'
+
+              // load from Meteor server
+              //icon: Meteor.absoluteUrl() + 'geodata/icons/purple-dot.png'
+
+              // load from googleapis
+              //icon: 'https://mts.googleapis.com/vt/icon/name=icons/spotlight/spotlight-waypoint-a.png&text=A&psize=16&font=fonts/Roboto-Regular.ttf&color=ff333333&ax=44&ay=48&scale=1'
+
+              // load a Symbol
+              icon: {
+                // a custom designed path (must be less than 22x22 pixels)
+                //path: 'M 0,0 C -2,-20 -10,-22 -10,-30 A 10,10 0 1,1 10,-30 C 10,-22 2,-20 0,0 z M -2,-30 a 2,2 0 1,1 4,0 2,2 0 1,1 -4,0',
+
+                path: maps.SymbolPath.CIRCLE,
+                fillColor: '#616161',
+                fillOpacity: 0.5,
+                strokeColor: '#bb5599',
+                strokeWeight: 2,
+                scale: 5
+              },
+              fillColor: '#ffffff',
+              fillOpacity: 0.2,
+              strokeColor: '#bb5599',
+              strokeWeight: 0.5
+              //icon: new maps.MarkerImage(
+              //  'http://www.gettyicons.com/free-icons/108/gis-gps/png/24/needle_left_yellow_2_24.png',
+              //  new maps.Size(24, 24),
+              //  new maps.Point(0, 0),
+              //  new maps.Point(0, 24)
+              //)
+
+              // and some labels 
+              //label: {
+              //  color: "blue",
+              //  fontFamily: "Courier",
+              //  fontSize: "24px",
+              //  fontWeight: "bold",
+              //  text: 'foo'
+              //}
+            });
+
+            map.data.loadGeoJson(Meteor.absoluteUrl() + '/geodata/health_service_areas.geojson');
+            console.log('map.data', map.data);  
+
           }}
          ></GoogleMapReact>;
     }

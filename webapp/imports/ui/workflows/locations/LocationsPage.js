@@ -1,6 +1,7 @@
 import { CardText, CardTitle } from 'material-ui/Card';
 import { Tab, Tabs } from 'material-ui/Tabs';
 
+import Checkbox from 'material-ui/Checkbox';
 import { EJSON } from 'meteor/ejson';
 import Glass from '/imports/ui/Glass';
 import { GlassCard } from '/imports/ui/components/GlassCard';
@@ -11,6 +12,7 @@ import { Meteor } from 'meteor/meteor';
 import React  from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin  from 'react-mixin';
+import {ScatterplotChart} from 'react-easy-chart';
 import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 
 // if(process.env.NODE_ENV !== 'test'){
@@ -19,7 +21,68 @@ import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 
 
 Session.setDefault('locationPageTabIndex', 1); Session.setDefault('locationSearchFilter', ''); Session.setDefault('selectedLocation', false);
+Session.setDefault('shapefileDataLayer', false);
 
+const styles = {
+  block: {
+    maxWidth: 250,
+  },
+  checkbox: {
+    marginBottom: 16,
+  },
+};
+const demoData = [
+    {
+      type: 'One',
+      x: 1,
+      y: 5
+    },
+    {
+      type: 'Two',
+      x: 3,
+      y: 1
+    },
+    {
+      type: 'Three',
+      x: 0,
+      y: 6
+    },
+    {
+      type: 'Four',
+      x: 5,
+      y: 2
+    },
+    {
+      type: 'Five',
+      x: 4,
+      y: 4
+    },
+    {
+      type: 'Six',
+      x: 5,
+      y: 9
+    },
+    {
+      type: 'Seven',
+      x: 9,
+      y: 1
+    },
+    {
+      type: 'Eight',
+      x: 5,
+      y: 6
+    },
+    {
+      type: 'Nine',
+      x: 3,
+      y: 9
+    },
+    {
+      type: 'Ten',
+      x: 7,
+      y: 9
+    }
+  ];
 
 export class LocationsPage extends React.Component {
   getMeteorData() {
@@ -48,10 +111,17 @@ export class LocationsPage extends React.Component {
         lat: 41.8359496, 
         lng: -87.8317244
       },
-      zoom: 12, 
+      zoom: 7, 
       layers: {
-        heatmap: true
+        heatmap: false,
+        reimbursements: false,
+        mortality: false,
+        eyeexams: false,
+        diabetes: false,
+        lipidPanels: false,
+        outpatientReimbursement: true
       },
+      shapefileDataLayer: [],
       markers: Locations.find({}, {sort: {name: 1}}).fetch(),
       options: {
         panControl: false,
@@ -62,7 +132,16 @@ export class LocationsPage extends React.Component {
             "elementType": "geometry",
             "stylers": [
               {
-                "color": "#f5f5f5"
+                "strokeWeight": 1
+              }
+            ]
+          },
+          {
+            "elementType": "geometry.stroke",
+            "stylers": [
+              {
+                "color": "#616161",
+                "strokeWeight": 1
               }
             ]
           },
@@ -224,6 +303,10 @@ export class LocationsPage extends React.Component {
       data.state.isLoggedIn = true;
     }
 
+    if(Session.get('shapefileDataLayer')){
+      data.shapefileDataLayer = Session.get('shapefileDataLayer');
+    }
+
     data.style = Glass.blur(data.style);
     data.style.appbar = Glass.darkroom(data.style.appbar);
     data.style.tab = Glass.darkroom(data.style.tab);
@@ -261,6 +344,49 @@ export class LocationsPage extends React.Component {
             </Tab>
             <Tab className="locationDetailsTab" label='Detail' onActive={this.handleActive} style={this.data.style.tab} value={2}>
               <LocationDetail id='locationDetails' />
+            </Tab>
+            <Tab className="layersDetail" label='Layers' onActive={this.handleActive} style={this.data.style.tab} value={3}>
+              <CardText>      
+                    <h4>Map Types</h4>
+                    <Checkbox label="Points" style={styles.checkbox} />
+                    <Checkbox label="Heatmap" style={styles.checkbox} />
+                    <br/>
+
+                    <h4>Health Statistics</h4>
+                    <Checkbox label="Hospital Referral Regions" style={styles.checkbox} />
+                    <Checkbox label="Health Service Areas" style={styles.checkbox} />                        
+                    <br/>
+                
+                    <h4>Public Services</h4>
+                    <Checkbox label="Hospitals" style={styles.checkbox} />
+                    <Checkbox label="Police Departments" style={styles.checkbox} />
+                    <br/>
+                
+                    <h4>Medicare</h4>
+                    <Checkbox label="Reimbursements" style={styles.checkbox} />
+                    <Checkbox label="Total Mortality" style={styles.checkbox} />
+                    <Checkbox label="Eye Exams" style={styles.checkbox} />
+                    <Checkbox label="Diabetes" style={styles.checkbox} />
+                    <Checkbox label="Lipid Panels" style={styles.checkbox} />
+                    <Checkbox label="Outpatient Visits" style={styles.checkbox} />
+              </CardText>
+            </Tab>
+            <Tab className="quickAnalysisTab" label='Analysis' onActive={this.handleActive} style={this.data.style.tab} value={4}>
+              <CardText>
+                <ScatterplotChart 
+                  data={demoData} 
+                  lineData={[
+                    {
+                      x: 'A',
+                      y: 1
+                    },
+                    {
+                      x: 'B',
+                      y: 20
+                    } 
+                  ]}
+                  />
+              </CardText>
             </Tab>
           </Tabs>
         </CardText>
@@ -315,12 +441,15 @@ export class LocationsPage extends React.Component {
                 //path: 'M 0,0 C -2,-20 -10,-22 -10,-30 A 10,10 0 1,1 10,-30 C 10,-22 2,-20 0,0 z M -2,-30 a 2,2 0 1,1 4,0 2,2 0 1,1 -4,0',
 
                 path: maps.SymbolPath.CIRCLE,
-                fillColor: '#bb5599',
+                fillColor: '#616161',
                 fillOpacity: 0.5,
                 strokeColor: '#bb5599',
                 strokeWeight: 2,
                 scale: 5
-              }
+              },
+              fillColor: '#ffffff',
+              strokeColor: '#bb5599',
+              strokeWeight: 1
               //icon: new maps.MarkerImage(
               //  'http://www.gettyicons.com/free-icons/108/gis-gps/png/24/needle_left_yellow_2_24.png',
               //  new maps.Size(24, 24),
@@ -338,9 +467,12 @@ export class LocationsPage extends React.Component {
               //}
             });
 
+
+            
+            // heatmaps are special, and need to process the data from our geojson after it's received
             if(self.data.layers.heatmap){
               var dataLayer = [];
-              HTTP.get(Meteor.absoluteUrl() + '/geodata/illinois-epa-toxic-inventory-sites.geojson', function(error, data){
+              HTTP.get(Meteor.absoluteUrl() + '/geodata/health_service_areas_detailed.geojson', function(error, data){
                 var geojson = EJSON.parse(data.content);
                 console.log('loadGeoJson', geojson);
                 geojson.features.forEach(function(datum){
@@ -350,8 +482,12 @@ export class LocationsPage extends React.Component {
                 })
                 console.log('dataLayer', dataLayer);
 
-                {/*map.data.loadGeoJson(Meteor.absoluteUrl() + '/geodata/illinois-epa-toxic-inventory-sites.geojson');
-                console.log('map.data', map.data);*/}
+                // we sometimes also want to load the data twice
+                // do we need to double fetch?  or can we just pass data in here?
+                if(self.data.layers.points){
+                  map.data.loadGeoJson(Meteor.absoluteUrl() + '/geodata/health_service_areas_detailed.geojson');
+                  console.log('map.data', map.data);
+                }
 
                 var heatmap = new maps.visualization.HeatmapLayer({
                   data: dataLayer,
@@ -378,8 +514,95 @@ export class LocationsPage extends React.Component {
 
               });
             } else {
-              map.data.loadGeoJson(Meteor.absoluteUrl() + '/geodata/illinois-epa-toxic-inventory-sites.geojson');
+              map.data.loadGeoJson(Meteor.absoluteUrl() + '/geodata/health_service_areas_detailed.geojson');
               console.log('map.data', map.data);
+
+              // reimbursements layer
+              if(self.data.layers.reimbursements){
+                map.data.setStyle(function(feature){
+                  var reimbursements = feature.getProperty("Total_Reimbursements");
+                  //console.log('reimbursements', reimbursements);
+                  var color = '#ffffff';
+                  if((1 < reimbursements) && (reimbursements < 7000)){
+                     color = '#f0faf8';
+                  } else if ((7001 < reimbursements) && (reimbursements < 8000)){
+                     color = '#d0dfdd';
+                  } else if ((8001 < reimbursements) && (reimbursements < 9000)){
+                     color = '#b1c5c3';
+                  } else if ((9001 < reimbursements) && (reimbursements < 10000)){
+                     color = '#92aaa9';
+                  } else if ((10001 < reimbursements) && (reimbursements < 11000)){
+                     color = '#73908e';
+                  } else if ((11001 < reimbursements) && (reimbursements < 12000)){
+                     color = '#547574';
+                  } else if (12001 < reimbursements){
+                     color = '#355b5a';
+                  }
+
+                  return {
+                    fillColor: color,
+                    strokeColor: '#164140',
+                    strokeWeight: 1
+                  };
+                })
+              } 
+              if(self.data.layers.mortality){
+                map.data.setStyle(function(feature){
+                  var reimbursements = parseFloat(feature.getProperty("Total Mort"));
+                  console.log('reimbursements', reimbursements);
+                  var color = '#ffffff';
+                  if((1 < reimbursements) && (reimbursements < 3)){
+                     color = '#fdd49e';
+                  } else if ((3 < reimbursements) && (reimbursements <= 3.5)){
+                     color = '#fdbb84';
+                  } else if ((3.5 < reimbursements) && (reimbursements <= 4)){
+                     color = '#fc8d59';
+                  } else if ((4 < reimbursements) && (reimbursements <= 4.5)){
+                     color = '#ef6548';
+                  } else if ((4.5 < reimbursements) && (reimbursements <= 5)){
+                     color = '#d7301f';
+                  } else if ((5 < reimbursements) && (reimbursements <= 5.5)){
+                     color = '#b30000';
+                  } else if (5.5 <= reimbursements){
+                     color = '#7f0000';
+                  }
+
+                  return {
+                    fillColor: color,
+                    strokeColor: '#164140',
+                    strokeWeight: 1
+                  };
+                })
+              }
+
+              if(self.data.layers.outpatientReimbursement){
+                map.data.setStyle(function(feature){
+                  var reimbursements = parseFloat(feature.getProperty("Outpat$"));
+                  console.log('reimbursements', reimbursements);
+                  var color = '#ffffff';
+                  if((1 < reimbursements) && (reimbursements < 1000)){
+                     color = '#eee1eb';
+                  } else if ((1001 < reimbursements) && (reimbursements <= 2000)){
+                     color = '#d6c6e6';
+                  } else if ((2001 < reimbursements) && (reimbursements <= 3000)){
+                     color = '#b89ac5';
+                  } else if ((3001 < reimbursements) && (reimbursements <= 4000)){
+                     color = '#775599';
+                  } else if ((4001 < reimbursements) && (reimbursements <= 5000)){
+                     color = '#321272';
+                  } else if ((5001 < reimbursements) && (reimbursements <= 6000)){
+                     color = '#300042';
+                  } else if (6001 <= reimbursements){
+                     color = '#300042';
+                  }
+
+                  return {
+                    fillColor: color,
+                    strokeColor: '#164140',
+                    strokeWeight: 0.5
+                  };
+                })
+              }              
             }
           }}
         >          
