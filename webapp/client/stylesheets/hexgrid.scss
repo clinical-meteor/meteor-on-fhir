@@ -11,12 +11,12 @@ Russian blue pattern:
 */
 .hexGridPage{
   svg g {
-    fill: #4499a9;
+    fill: #ffffff;
     fill-opacity: 0.6;
   }
   svg g:hover {
-    fill: #7be3f6;
-    fill-opacity: 0.7;
+    fill: #ffffff;
+    fill-opacity: 0.8;
     cursor: pointer;
   }
   svg g:hover text {
@@ -39,14 +39,15 @@ Russian blue pattern:
     fill-opacity: 0.9;
   }
   svg g polygon {
-    stroke: #7be3f6;
+    stroke: #89cff0;
     stroke-width: 0.2;
     transition: fill-opacity .5s;
   }
   svg g text {
     font-size: 0.17em;
-    fill: white;
+    fill: #45b3e7;
     fill-opacity: 0.7;
+    font-weight: bold;
     transition: fill-opacity .5s;
   }
   svg path {

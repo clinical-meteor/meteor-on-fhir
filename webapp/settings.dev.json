@@ -1,11 +1,11 @@
 {
   "public": {
-    "title": "Symptomatic - Pre-existing Conditions Tracker w / Snomed Browser",
+    "title": "Symptomatic",
     "theme": {
       "showVideoBackground": false,
       "darkroomTextEnabled": false,
       "defaultVideo": "/VideoBackgrounds/GrayWaves4.mp4",
-      "backgroundImagePath": "/backgrounds/medical/Gradient.jpg"      
+      "backgroundImagePath": "/AugmentedReality-Nurse-iStockPhoto.jpg"      
     },
     "app": {
       "showUnderConstruction": false,
@@ -14,7 +14,7 @@
     "defaults": {
       "avatars": true,
       "barcodes": true,
-      "hexgridMenu": false,
+      "hexgridMenu": true,
       "nfcOrbital": true,
       "notificationMenu": false,
       "searchbarVisible": true,

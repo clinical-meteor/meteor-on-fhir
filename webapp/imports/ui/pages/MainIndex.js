@@ -196,7 +196,7 @@ export class MainIndex extends React.Component {
   }
 
   renderExperimentalTiles(user){
-    if (user.isPatient || user.isPractitioner) {
+    if (user.isPatient || user.isPractitioner || user.isAdmin) {
       return (
         <div>
 
@@ -522,6 +522,17 @@ export class MainIndex extends React.Component {
       if (user.isPractitioner || user.isAdmin) {
         return (
           <div>
+
+            <div id='bodySitesTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/body-sites') } >
+              <GlassCard style={this.data.style.indexCard} >
+                <CardTitle
+                  title='Body Sites'
+                  subtitle='Anatomical reference and locality.'
+                  titleStyle={this.data.style.title}
+                  subtitleStyle={this.data.style.subtitle}
+                />
+              </GlassCard>
+            </div>
 
             <div id='familyMemberHistoriesTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/family-member-histories') } >
               <GlassCard style={this.data.style.indexCard} >

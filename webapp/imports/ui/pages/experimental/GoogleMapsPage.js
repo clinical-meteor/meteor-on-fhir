@@ -245,15 +245,15 @@ export class GoogleMapsPage extends React.Component {
                 //path: 'M 0,0 C -2,-20 -10,-22 -10,-30 A 10,10 0 1,1 10,-30 C 10,-22 2,-20 0,0 z M -2,-30 a 2,2 0 1,1 4,0 2,2 0 1,1 -4,0',
 
                 path: maps.SymbolPath.CIRCLE,
-                fillColor: '#616161',
+                fillColor: '#89cff0',
                 fillOpacity: 0.5,
-                strokeColor: '#bb5599',
-                strokeWeight: 2,
+                strokeColor: '',
+                strokeWeight: 1,
                 scale: 5
               },
               fillColor: '#ffffff',
               fillOpacity: 0.2,
-              strokeColor: '#bb5599',
+              strokeColor: '#89cff0',
               strokeWeight: 0.5
               //icon: new maps.MarkerImage(
               //  'http://www.gettyicons.com/free-icons/108/gis-gps/png/24/needle_left_yellow_2_24.png',
@@ -272,7 +272,8 @@ export class GoogleMapsPage extends React.Component {
               //}
             });
 
-            map.data.loadGeoJson(Meteor.absoluteUrl() + '/geodata/health_service_areas.geojson');
+            map.data.loadGeoJson(Meteor.absoluteUrl() + '/geodata/2014_Health_Service_Areas.geojson');
+            map.data.loadGeoJson(Meteor.absoluteUrl() + '/geodata/2014_HSA_Hospitals.geojson');
             console.log('map.data', map.data);  
 
           }}

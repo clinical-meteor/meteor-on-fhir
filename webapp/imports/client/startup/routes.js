@@ -6,6 +6,7 @@ import { App } from '/imports/ui/layouts/App';
 import { AppInfoPage } from '/imports/ui/pages/AppInfoPage';
 import { AuditLogPage } from '/imports/ui/pages/AuditLogPage';
 import { AuthorizePage } from '/imports/ui/workflows/oauth/AuthorizePage';
+import { BodySitesPage } from '/imports/ui/workflows/body-sites/BodySitesPage';
 import { ChecklistsPage } from '/imports/ui/workflows/lists/ChecklistsPage';
 import { ClientConfigurationPage } from '/imports/ui/workflows/oauth/ClientConfigurationPage';
 import { ConditionsPage } from '/imports/ui/workflows/conditions/ConditionsPage';
@@ -151,6 +152,7 @@ Meteor.startup(() => {
         <Route name="dataManagement" path="/data-management" component={ DataManagementPage }  onEnter={ requireAuth }/>
 
         <Route name="observation" path="/observations" component={ ObservationsPage }  onEnter={ requireAuth }/>
+        <Route name="bodySites" path="/body-sites" component={ BodySitesPage } onEnter={ requireAuth }/>
 
         <Route name="medications" path="/medications" component={ MedicationsPage }  onEnter={ requireAuth }/>
         <Route name="checklists" path="/checklists" component={ ChecklistsPage }  onEnter={ requireAuth }/>

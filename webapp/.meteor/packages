@@ -62,6 +62,7 @@ clinical:autopublish
 
 # fhir resources
 clinical:hl7-resource-audit-event
+clinical:hl7-resource-body-site
 clinical:hl7-resource-careplan
 clinical:hl7-resource-condition
 clinical:hl7-resource-datatypes
