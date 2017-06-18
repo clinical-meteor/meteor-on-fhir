@@ -27,9 +27,9 @@ import { Table } from 'react-bootstrap';
 import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 
 var componentConfig = {
-  allowedFiletypes: ['.jpg', '.png', '.gif'],
-  iconFiletypes: ['.jpg', '.png', '.gif'],
-  showFiletypeIcon: false,
+  allowedFiletypes: ['.jpg', '.png', '.json', '.23me', '.geojson'],
+  iconFiletypes: ['.jpg', '.png', '.json', '.23me', '.geojson'],
+  showFiletypeIcon: true,
   postUrl: '/uploadHandler'
 };
 var djsConfig = {
@@ -52,28 +52,52 @@ var eventHandlers = {
   dragleave: null,
   // All of these receive the file as first parameter:
   addedfile: function (file) {
-    console.log("Received a file; sending server.");
+    console.log("Received a file; sending to server.");
 
     // well, we received a file; lets take a peek inside to figure out what to do with it
     var reader = new FileReader();
 
     reader.onload = function(e) {
-      fileContent = reader.result;
-      fileContentArray = fileContent.split('\n');
 
-      // hey, the first line mentions 23andMe; lets assume that it's a patient's raw data
-      // and send it to the server for processing
-      if (fileContentArray[0].includes("23andMe")) {
-        console.log("This appears to be a 23andMe datafile!");
+      if(reader.result){
+        console.log('reader.result', JSON.parse(reader.result));
 
-        Meteor.call("parseGenome", fileContent, function (error, result){
-          if (error){
-            console.log("error", error);
-          }
-          if (result){
-            console.log("result", result);
-          }
-        });
+        var data = JSON.parse(reader.result);
+
+        // it might just be .geojason
+        if(data.type == "FeatureCollection"){
+          console.log('Think we found a .geojson file!');          
+
+          Meteor.call("parseGeojson", data, function (error, result){
+            if (error){
+              console.log("error", error);
+            }
+            if (result){
+              console.log("result", result);
+            }
+          });
+        }
+
+
+        // wasn't json; so lets open up the file and take a look at the first line
+        fileContent = reader.result;
+        fileContentArray = fileContent.split('\n');
+
+        // hey, the first line mentions 23andMe; lets assume that it's a patient's raw data
+        // and send it to the server for processing
+        if (fileContentArray[0].includes("23andMe")) {
+          console.log("This appears to be a 23andMe datafile!");
+
+          Meteor.call("parseGenome", fileContent, function (error, result){
+            if (error){
+              console.log("error", error);
+            }
+            if (result){
+              console.log("result", result);
+            }
+          });
+        }
+
 
       }
     }

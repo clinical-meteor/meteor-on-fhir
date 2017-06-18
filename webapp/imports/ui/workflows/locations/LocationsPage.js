@@ -119,7 +119,7 @@ export class LocationsPage extends React.Component {
         eyeexams: false,
         diabetes: false,
         lipidPanels: false,
-        outpatientReimbursement: true
+        outpatientReimbursement: false
       },
       shapefileDataLayer: [],
       markers: Locations.find({}, {sort: {name: 1}}).fetch(),
@@ -403,7 +403,7 @@ export class LocationsPage extends React.Component {
       this.data.markers.forEach(function(location){
         markers.push(
           <div lat={location.position.latitude} lng={ location.position.longitude} style={{width: '200px'}}>
-            <div style={{backgroundColor: 'orange', opacity: '.8', height: '20px', width: '20px', borderRadius: '80%'}}></div>
+            <div style={{backgroundColor: 'orange', opacity: '.8', height: '10px', width: '10px', borderRadius: '80%'}}></div>
             {location.name}
           </div>)
       });
@@ -445,7 +445,7 @@ export class LocationsPage extends React.Component {
                 fillOpacity: 0.5,
                 strokeColor: '#bb5599',
                 strokeWeight: 2,
-                scale: 5
+                scale: 2
               },
               fillColor: '#ffffff',
               strokeColor: '#bb5599',
