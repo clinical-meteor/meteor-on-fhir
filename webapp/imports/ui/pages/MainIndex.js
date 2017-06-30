@@ -341,7 +341,7 @@ export class MainIndex extends React.Component {
     }
   }
   renderLocations(user){
-    if (Meteor.settings.public.modules.fhir.Organizations) {
+    if (Meteor.settings.public.modules.fhir.Locations) {
       if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
           <div id="locationsTile" style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/locations') } >
@@ -598,7 +598,7 @@ export class MainIndex extends React.Component {
 
 
 
-            <div id="carePlansTile" style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/appointments') } >
+            <div id="carePlansTile" style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/care-plans') } >
               <GlassCard style={this.data.style.indexCard} >
                 <CardTitle
                   title='CarePlans'
