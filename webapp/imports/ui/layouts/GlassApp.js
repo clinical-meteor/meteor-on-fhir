@@ -1,10 +1,8 @@
+import { Meteor } from 'meteor/meteor';
 import React from 'react';
-import ReactMixin from 'react-mixin';
 import ReactDOM from 'react-dom';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
-
-import { Session } from 'meteor/session';
-import { Meteor } from 'meteor/meteor';
+import ReactMixin from 'react-mixin';
 
 Session.setDefault('backgroundImagePath', 'Flames.mp4');
 Session.setDefault('backgroundColor', '#eeeeee');
@@ -143,7 +141,6 @@ export class GlassApp extends React.Component {
     return (
       <div id="glassApp">
         {this.renderBackground(this.data.app.showVideoBackground)}
-
         <div style={this.data.app.style}>
           {this.props.children}
         </div>

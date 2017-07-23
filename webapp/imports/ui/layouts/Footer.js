@@ -1,21 +1,17 @@
-import React from 'react';
-import ReactMixin from 'react-mixin';
-import { ReactMeteorData } from 'meteor/react-meteor-data';
-
-import FloatingActionButton from 'material-ui/FloatingActionButton';
-import ImageBlurOn from 'material-ui/svg-icons/image/blur-on';
-import ImageExposure from 'material-ui/svg-icons/image/exposure';
-import FlatButton from 'material-ui/FlatButton';
-
-import {Session} from 'meteor/session';
-
-import OpacitySlider from '../components/OpacitySlider';
-
 // footer
 import AppBar from 'material-ui/AppBar';
+import FlatButton from 'material-ui/FlatButton';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
 import Glass from '/imports/ui/Glass';
-import { browserHistory } from 'react-router';
+import ImageBlurOn from 'material-ui/svg-icons/image/blur-on';
+import ImageExposure from 'material-ui/svg-icons/image/exposure';
+import OpacitySlider from '../components/OpacitySlider';
+import React from 'react';
+import { ReactMeteorData } from 'meteor/react-meteor-data';
+import ReactMixin from 'react-mixin';
+import {Session} from 'meteor/session';
 import { ToolbarTitle } from 'material-ui/Toolbar';
+import { browserHistory } from 'react-router';
 
 Session.setDefault('showThemingControls', false);
 
@@ -88,7 +84,18 @@ export class Footer extends React.Component {
   clickOnThemingButton(){
     browserHistory.push('/theming');
   }
+  querySystemButton(resourceType){
+    console.log("querying open.epic.com", resourceType);
+    Meteor.call("queryEpic", resourceType, function(error, result){
+      if(error){
+        console.log("error", error);
+      }
+      if(result){
+         console.log("queryEpic[epic]", result);         
+      }
+    });
 
+  }
   renderWestNavbar(displayThemeNavbar){
     if (displayThemeNavbar) {
       // the user has pressed ctrl-cmd-t and is looking at theming controls
@@ -100,12 +107,33 @@ export class Footer extends React.Component {
         </div>
       );
     } else {
-
-      if (Meteor.userId() && (Session.equals('pathname', '/'))) {
+      // PATIENTS
+      if (Meteor.userId() && (Session.equals('pathname', '/patients')) && Meteor.settings.public && Meteor.settings.public.modules && Meteor.settings.public.modules.epic) {
         // the user is logged in as a normal user
         return (
-          <div></div>
+          <div>
+            <FlatButton label='query open.epic.com' className='querySystemButton' ref='querySystemButton' onClick={this.queryPatients.bind(this, 'Patients')} style={this.data.style.buttonText} ></FlatButton>
+          </div>
         );
+
+      // ORGANIZATIONS
+      } else if (Meteor.userId() && (Session.equals('pathname', '/organizations')) && Meteor.settings.public && Meteor.settings.public.modules && Meteor.settings.public.modules.epic) {
+        // the user is logged in as a normal user
+        return (
+          <div>
+            <FlatButton label='GET open.epic.com/Organization' className='querySystemButton' ref='querySystemButton' onClick={this.querySystemButton.bind(this, 'Organization')} style={this.data.style.buttonText} ></FlatButton>
+          </div>
+        );
+
+      // CONDITIONS
+      } else if (Meteor.userId() && (Session.equals('pathname', '/conditions')) && Meteor.settings.public && Meteor.settings.public.modules && Meteor.settings.public.modules.epic) {
+        // the user is logged in as a normal user
+        return (
+          <div>
+            <FlatButton label='GET open.epic.com/Condition' className='querySystemButton' ref='querySystemButton' onClick={this.querySystemButton.bind(this, 'Condition')} style={this.data.style.buttonText} ></FlatButton>
+          </div>
+        );
+
       } else {
         // anything else
         return (
@@ -145,6 +173,7 @@ export class Footer extends React.Component {
           style={this.data.footerStyle}
           titleStyle={{color: 'black'}}
         />
+
       </div>
    );
   }

@@ -1,19 +1,20 @@
-import React  from 'react';
-import ReactMixin  from 'react-mixin';
-import { ReactMeteorData } from 'meteor/react-meteor-data';
+import { CardText, CardTitle } from 'material-ui/Card';
+import { Tab, Tabs } from 'material-ui/Tabs';
+import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
 
-import { Tabs, Tab } from 'material-ui/Tabs';
+import { Checklist } from '/imports/ui/workflows/lists/Checklist';
+import ChecklistTableRow from '/imports/ui/workflows/lists/ChecklistTableRow';
+import Glass from '/imports/ui/Glass';
 import { GlassCard } from '/imports/ui/components/GlassCard';
-import { CardTitle, CardText } from 'material-ui/Card';
+import { Meteor } from 'meteor/meteor';
+import React  from 'react';
+import { ReactMeteorData } from 'meteor/react-meteor-data';
+import ReactMixin  from 'react-mixin';
 import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
+
 // import { Table, TableRow, TableBody, TableHeader, TableHeaderColumn, TableRowColumn } from 'material-ui/Table';
 
-import { Table, TableRow, TableBody, TableHeader, TableHeaderColumn, TableRowColumn } from 'material-ui/Table';
-import ChecklistTableRow from '/imports/ui/workflows/lists/ChecklistTableRow';
-import { Checklist } from '/imports/ui/workflows/lists/Checklist';
 
-import { Meteor } from 'meteor/meteor';
-import Glass from '/imports/ui/Glass';
 
 
 

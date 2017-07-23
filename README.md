@@ -57,13 +57,31 @@ Edit the `settings.dev.json` file, and update:
   "public": {
     "title": "Rainbow's End Nursing Home Health Exchange",
     "theme": {
-      "showVideoBackground": false
-    }
+      "backgroundImagePath": "/backgrounds/medical/Gradient.jpg",
+      "backgroundColor": "#34B6C2",
+      "palette": {
+        "colorA": "#34B6C2",
+        "colorB": "#177AB9",
+        "colorC": "#31323C",
+        "colorD": "#710A4A",
+        "colorE": "#FFFFFF"
+      }
+    },
+    "meshNetwork": {
+      "upstreamSync": "http://meteor-on-fhir.meteorapp.com/fhir-3.0.0", 
+      "autosync": false
+    }    
   },
   "private": {
-    "practitionerAccessCode": "hippocrates",
-    "sysadminAccessCode": "rootaccess"
-  }
+    "practitionerAccessCode": "practitionerAccessCode",
+    "sysadminAccessCode": "sysadminAccessCode"
+  },
+  "galaxy.meteor.com": {
+    "env": {
+      "MONGO_URL": "mongodb://username:password@mlab.com:25389/my-org-exchange-db",
+      "NODE_ENV": "produciton"
+    }
+  }  
 }
 ```
 
@@ -75,7 +93,7 @@ scripts/remove_restricted_media_assets.sh
 #### E. Deploy to Production  
 
 ```sh
-TIMEOUT_SCALE_FACTOR=10 DEPLOY_HOSTNAME=galaxy.meteor.com meteor deploy meteor-on-fhir.meteorapp.com --settings settings.dev.json
+TIMEOUT_SCALE_FACTOR=10 DEPLOY_HOSTNAME=galaxy.meteor.com meteor deploy my-org-exchange.meteorapp.com --settings settings.dev.json
 ```   
 
 #### F. Mobile Build   
@@ -92,20 +110,8 @@ NODE_ENV=dev meteor run ios-device --mobile-server http://localhost:3000 --setti
 NODE_ENV=dev meteor run ios-device --mobile-server http://meteor-on-fhir.meteorapp.com --settings settings.dev.json
 ```    
 
-#### G. Publish to Testflight  
 
-- [ ] Update version/build numbers
-- [ ] Set Deployment Target to iOS v10.0
-- [ ] Set Team Signing Certificate
-- [ ] Build to local device
-- [ ] Product > Clean
-- [ ] Set Provision Profile
-- [ ] Set Signing Profile
-- [ ] Product > Archive > Validate
-- [ ] Product > Archive > Upload to App Store
-
-
-#### F. Desktop Build   
+#### G. Desktop Build   
 To enable desktop builds, uncomment the following files in `.meteor/packages`.
 
 - [ ] omega:meteor-desktop-watcher@=0.2.6
@@ -131,7 +137,45 @@ npm run desktop
 ```    
 
 
-### References    
+#### H. Synchronizing With Other Datalakes  
+
+To enable network synchronizing, you'll need to specify an upstream sync partner in your `settings.json` file.  Afterwards, you can enable manual synchronization in the **Data Management* page.  
+
+```javascript
+{
+  "public": {
+    "meshNetwork": {
+      "upstreamSync": "http://meteor-on-fhir.meteorapp.com/fhir-3.0.0", 
+      "autosync": false
+    },
+  }
+}
+```
+
+#### I. Connect to an External EMR   
+[HL7 v2 to FHIR Interface Mapping](https://medium.com/@awatson1978/hl7-v2-to-fhir-interface-mapping-f83c6ecf6bee)  
+
+
+
+### References
+
+#### Miscellaneous References    
 [Supporting Interoperability – Terminology, Subsets and Other Resources from Natl. Library of Medicine](https://www.nlm.nih.gov/hit_interoperability.html)  
 [Health IT Standards for Health Information Management Practices](http://ihe.net/uploadedFiles/Documents/ITI/IHE_ITI_WP_HITStdsforHIMPratices_Rev1.1_2015-09-18.pdf)  
+
+
+
+
+
+
+
+#### Mapping  
+[Snazzy Maps](https://snazzymaps.com/style/13/neutral-blue)  
+[Google Maps Utility Library](https://code.google.com/archive/p/google-maps-utility-library-v3/wikis/Libraries.wiki)  
+[Map Icons](http://map-icons.com/)  
+[Styling Wizard](https://mapstyle.withgoogle.com/)  
+[GoogleMapReact Documentation](https://github.com/istarkov/google-map-react)  
+[GoogleMapReact API](https://github.com/istarkov/google-map-react/blob/master/API.md)  
+[Google Transit Layer](https://developers.google.com/maps/documentation/javascript/examples/layer-transit)  
+[Google Traffic Layer](https://developers.google.com/maps/documentation/javascript/examples/layer-traffic)  
 

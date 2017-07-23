@@ -1,11 +1,10 @@
-import React from 'react';
-import ReactMixin from 'react-mixin';
-import { ReactMeteorData } from 'meteor/react-meteor-data';
+import { Card, CardActions, CardMedia, CardText, CardTitle } from 'material-ui/Card';
 
-import { Card, CardMedia, CardTitle, CardText, CardActions } from 'material-ui/Card';
-
-import { Table } from 'react-bootstrap';
 import Glass from '/imports/ui/Glass';
+import React from 'react';
+import { ReactMeteorData } from 'meteor/react-meteor-data';
+import ReactMixin from 'react-mixin';
+import { Table } from 'react-bootstrap';
 
 export default class DevicesTable extends React.Component {
 
@@ -42,7 +41,7 @@ export default class DevicesTable extends React.Component {
           <td className='manufacturer'>{this.data.devices[i].manufacturer }</td>
           <td className='deviceModel'>{this.data.devices[i].model }</td>
           <td className='serialNumber'>{this.data.devices[i].identifier[0] ? this.data.devices[i].identifier[0].value :  '' }</td>
-          <td className="costOfOwnership">{ this.data.devices[i].note[0] ? this.data.devices[i].note[0].text : '' }</td>
+          <td className="costOfOwnership">{ (this.data.devices[i].note && this.data.devices[i].note[0]) ? this.data.devices[i].note[0].text : '' }</td>
           <td><span className="barcode">{ this.data.devices[i]._id }</span></td>
         </tr>
       );

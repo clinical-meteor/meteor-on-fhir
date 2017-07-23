@@ -12,6 +12,24 @@
  */
 JsonRoutes.Middleware.use('/api/*', oAuth2Server.oauthserver.authorise() );  // OAUTH FLOW - A7.1
 
+/**
+ * OAUTH FLOW - A5.2
+ *
+ * We're going to try to catch the Redirect URI
+ *
+ */
+
+// JsonRoutes.add('get', '/_oauth/FhirVault', function(req, res, next) {
+//
+//     console.log("--------------------------------------------------------------");
+//     console.log('GET /_oauth/FhirVault', req.params);
+//     console.log("");
+//     console.log("this.userId", this.userId);
+//     console.log("Meteor.userId()", Meteor.userId());
+//
+// });
+
+
 
 /**
  * OAUTH FLOW - A7.2

@@ -1,28 +1,39 @@
 {
   "public": {
-    "title": "Meteor on FHIR",
+    "title": "Symptomatic",
     "theme": {
       "showVideoBackground": false,
       "darkroomTextEnabled": false,
-      "defaultVideo": "/VideoBackgrounds/Circulation.mp4",
-      "backgroundImagePath": "/backgrounds/medical/Gradient.jpg"
+      "defaultVideo": "/VideoBackgrounds/GrayWaves4.mp4",
+      "backgroundImagePath": "/AugmentedReality-Nurse-iStockPhoto.jpg"      
     },
     "app": {
-      "barcodes": true,
       "showUnderConstruction": true,
       "showExperimental": false
     },
     "defaults": {
+      "avatars": true,
+      "barcodes": true,
+      "hexgridMenu": true,
+      "nfcOrbital": true,
+      "notificationMenu": false,
+      "searchbarVisible": true,
       "displayNavbars": true,
       "disableHeader": false,
       "disableFooter": false,
       "darkroom": false,
       "iFrameEnabled": false,
-      "iFrameUrl": "https://www.wikipedia.org"
+      "iFrameUrl": "http://browser.ihtsdotools.org",
+      "paginationLimit": 100,
+      "subscriptionLimit": 1000,
+      "cards": {
+        "height": "auto",
+        "opacity": 0.95
+      }      
     },
     "interfaces": {
       "default": {
-        "status": "active",
+        "status": "inactive",
         "channel": {
           "endpoint": "http://localhost:80"
         },
@@ -31,6 +42,10 @@
           "password": "bar"
         }
       }
+    },
+    "meshNetwork": {
+      "upstreamSync": "http://meteor-on-fhir.meteorapp.com/fhir-3.0.0", 
+      "autosync": false
     },
     "modules": {
       "data": true,
@@ -41,15 +56,20 @@
       "telemedicine": true,
       "inbound": true,
       "outbound": true,
+      "epic": true,
+      "statisticsLogging": true,
       "fhir": {
+        "AuditEvents": true,
+        "Conditions": true,
+        "Devices": true,
         "Patients": true,
         "Practitioners": true,
+        "Organizations": true,
         "Observations": true,
-        "ImagingStudies": true,
+        "ImagingStudies": false,
+        "Locations": true,
         "Lists": true,
         "Medications": true,
-        "Devices": true,
-        "Locations": true,
         "Questionnaires": true,
         "RiskAssessments": true
       }
@@ -58,12 +78,9 @@
   "private": {
     "practitionerAccessCode": "hippocrates",
     "sysadminAccessCode": "rootaccess",
-    "disableOauth": true
-  },
-  "galaxy.meteor.com": {
-    "env": {
-      "MONGO_URL": "mongodb://phoenix:phoenix13579@ds025389.mlab.com:25389/meteor-on-fhir",
-      "NODE_ENV": "production"
+    "disableOauth": true,
+    "demo": {
+      "nightlyDatabaseDrop": true
     }
-  }  
+  }
 }

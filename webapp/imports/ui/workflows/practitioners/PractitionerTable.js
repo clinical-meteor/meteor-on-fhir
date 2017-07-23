@@ -1,10 +1,10 @@
-import React from 'react';
-import ReactMixin from 'react-mixin';
-import { ReactMeteorData } from 'meteor/react-meteor-data';
-
 import Avatar from 'material-ui/Avatar';
+import React from 'react';
+import { ReactMeteorData } from 'meteor/react-meteor-data';
+import ReactMixin from 'react-mixin';
 import { Table } from 'react-bootstrap';
 
+//import { moment } from 'meteor/moment:momentjs';
 
 
 
@@ -14,7 +14,9 @@ export default class PractitionerTable extends React.Component {
   getMeteorData() {
     let data = {
       style: {
-        opacity: Session.get('globalOpacity')
+        row: Glass.darkroom({
+          opacity: Session.get('globalOpacity')
+        })
       },
       selected: [],
       practitioners: []
@@ -38,9 +40,18 @@ export default class PractitionerTable extends React.Component {
         issuer: ''
       };
 
-      if (practitioner.name && practitioner.name && practitioner.name.text ) {
-        result.name = practitioner.name.text;
+      // fhir-1.6.0
+      if (practitioner.name && practitioner.name[0]) {
+        if(practitioner.name[0].text){
+          result.name = practitioner.name[0].text;
+        } else {
+          result.name = practitioner.name[0].given[0] + ' ' + practitioner.name[0].family[0];
+        } 
+      } else {
+      // fhir-1.0.2
+        result.name = practitioner.name.text;        
       }
+
       if (practitioner.telecom && practitioner.telecom[0] && practitioner.telecom[0].value ) {
         result.telecomValue = practitioner.telecom[0].value;
       }
@@ -52,10 +63,10 @@ export default class PractitionerTable extends React.Component {
         result.qualificationId = practitioner.qualification[0].identifier[0].value;
       }
       if (practitioner.qualification && practitioner.qualification[0] && practitioner.qualification[0].identifier && practitioner.qualification[0].identifier[0] && practitioner.qualification[0].identifier[0].period && practitioner.qualification[0].identifier[0].period.start ) {
-        result.qualificationStart = practitioner.qualification[0].identifier[0].period.start;
+        result.qualificationStart = moment(practitioner.qualification[0].identifier[0].period.start).format("MMM YYYY");
       }
       if (practitioner.qualification && practitioner.qualification[0] && practitioner.qualification[0].identifier && practitioner.qualification[0].identifier[0] && practitioner.qualification[0].identifier[0].period && practitioner.qualification[0].identifier[0].period.end) {
-        result.qualificationEnd = practitioner.qualification[0].identifier[0].period.end;
+        result.qualificationEnd = moment(practitioner.qualification[0].identifier[0].period.end).format("MMM YYYY");
       }
       if (practitioner.qualification && practitioner.qualification[0] && practitioner.qualification[0].issuer && practitioner.qualification[0].issuer.display ) {
         result.issuer = practitioner.qualification[0].issuer.display;
@@ -77,7 +88,7 @@ export default class PractitionerTable extends React.Component {
     let tableRows = [];
     for (var i = 0; i < this.data.practitioners.length; i++) {
       tableRows.push(
-      <tr className='practitionerRow' key={i} style={{cursor: 'pointer'}} onClick={ this.rowClick.bind('this', this.data.practitioners[i]._id) }>
+      <tr className='practitionerRow' key={i} style={this.data.style.row} onClick={ this.rowClick.bind('this', this.data.practitioners[i]._id) }>
         <td className="name">{this.data.practitioners[i].name}</td>
         <td className="telecomValue">{this.data.practitioners[i].telecomValue}</td>
         <td className="telecomUse">{this.data.practitioners[i].telecomUse}</td>
@@ -85,7 +96,7 @@ export default class PractitionerTable extends React.Component {
         <td className="qualificationId">{this.data.practitioners[i].qualificationId}</td>
         <td className="qualificationStart">{this.data.practitioners[i].qualificationStart}</td>
         <td className="qualificationEnd">{this.data.practitioners[i].qualificationEnd}</td>
-        <td className="barcode">{this.data.practitioners[i]._id}</td>
+        {/*<td className="barcode">{this.data.practitioners[i]._id}</td>*/}
       </tr>);
     }
 
@@ -101,7 +112,7 @@ export default class PractitionerTable extends React.Component {
             <th className="qualificationId">identification</th>
             <th className="qualificationStart">start</th>
             <th className="qualificationEnd">end</th>
-            <th className="barcode">_id</th>
+            {/*<th className="barcode">_id</th>*/}
           </tr>
         </thead>
         <tbody>

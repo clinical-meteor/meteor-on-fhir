@@ -20,7 +20,7 @@
 //       });
 //   },
 //   "user can log in/out" : function (client) {
-//     client.resizeWindow(1200, 1024);
+//     client.resizeWindow(1920, 1200);
 //
 //     // const signinPage = client.page.signinPage();
 //     const indexPage = client.page.indexPage();

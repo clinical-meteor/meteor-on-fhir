@@ -33,5 +33,15 @@ Meteor.methods({
     } else {
       console.log('CarePlans already exist.  Skipping.');
     }
+  },
+  dropCarePlans: function(){
+    if (process.env.NODE_ENV === 'test') {
+      console.log('-----------------------------------------');
+      console.log('Dropping conditions... ');
+      CarePlans.remove({});
+    } else {
+      console.log('This command can only be run in a test environment.');
+      console.log('Try setting NODE_ENV=test');
+    }    
   }
 });

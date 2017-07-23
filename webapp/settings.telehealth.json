@@ -4,7 +4,7 @@
     "theme": {
       "showVideoBackground": true,
       "darkroomTextEnabled": false,
-      "defaultVideo": "/VideoBackgrounds/telehealth-2.mp4"
+      "defaultVideo": "/VideoBackgrounds/telehealth-1.mp4"
     },
     "app": {
       "barcodes": true,
@@ -12,12 +12,25 @@
       "showExperimental": false
     },
     "defaults": {
+      "avatars": true,
+      "barcodes": true,
+      "hexgridMenu": true,
+      "nfcOrbital": true,
+      "notificationMenu": false,
+      "searchbarVisible": true,
       "displayNavbars": true,
       "disableHeader": false,
       "disableFooter": false,
+      "enableSearchbar": false,
       "darkroom": false,
       "iFrameEnabled": false,
-      "iFrameUrl": "https://www.wikipedia.org"
+      "iFrameUrl": "http://browser.ihtsdotools.org",
+      "paginationLimit": 100,
+      "subscriptionLimit": 1000,
+      "cards": {
+        "height": "auto",
+        "opacity": 0.95
+      }  
     },
     "interfaces": {
       "default": {
@@ -31,6 +44,10 @@
         }
       }
     },
+    "meshNetwork": {
+      "upstreamSync": "http://meteor-on-fhir.meteorapp.com/fhir-3.0.0", 
+      "autosync": false
+    },
     "modules": {
       "data": true,
       "forum": true,
@@ -40,15 +57,20 @@
       "telemedicine": true,
       "inbound": true,
       "outbound": true,
+      "epic": true,
+      "statisticsLogging": true,
       "fhir": {
+        "AuditEvents": true,
+        "Conditions": true,
+        "Devices": true,
         "Patients": true,
         "Practitioners": true,
+        "Organizations": true,
         "Observations": true,
-        "ImagingStudies": true,
+        "ImagingStudies": false,
+        "Locations": true,
         "Lists": true,
         "Medications": true,
-        "Devices": true,
-        "Locations": true,
         "Questionnaires": true,
         "RiskAssessments": true
       }
@@ -58,11 +80,5 @@
     "practitionerAccessCode": "hippocrates",
     "sysadminAccessCode": "rootaccess",
     "disableOauth": true
-  },
-  "galaxy.meteor.com": {
-    "env": {
-      "MONGO_URL": "mongodb://phoenix:phoenix13579@ds025389.mlab.com:25389/meteor-on-fhir",
-      "NODE_ENV": "production"
-    }
-  }  
+  }
 }

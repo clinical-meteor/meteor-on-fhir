@@ -1,17 +1,14 @@
-import React from 'react';
-import ReactMixin from 'react-mixin';
-import { ReactMeteorData } from 'meteor/react-meteor-data';
-
-import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
-import { GlassCard } from '/imports/ui/components/GlassCard';
-import { CardTitle, CardText } from 'material-ui/Card';
-
-import { Tabs, Tab } from 'material-ui/Tabs';
-import PatientDetail from '/imports/ui/workflows/patients/PatientDetail';
-import PatientTable from '/imports/ui/workflows/patients/PatientTable';
+import { CardText, CardTitle } from 'material-ui/Card';
+import { Tab, Tabs } from 'material-ui/Tabs';
 
 import Glass from '/imports/ui/Glass';
-
+import { GlassCard } from '/imports/ui/components/GlassCard';
+import PatientDetail from '/imports/ui/workflows/patients/PatientDetail';
+import PatientTable from '/imports/ui/workflows/patients/PatientTable';
+import React from 'react';
+import { ReactMeteorData } from 'meteor/react-meteor-data';
+import ReactMixin from 'react-mixin';
+import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 
 let defaultPatient = {
   index: 2,

@@ -7,6 +7,7 @@ import { DynamicSpacer }  from '/imports/ui/components/DynamicSpacer';
 
 import { AddPost } from '/imports/ui/workflows/posts/AddPost';
 import PostsDeck  from '/imports/ui/workflows/posts/PostsDeck';
+import { VitalMeasurements } from '/imports/ui/components/VitalMeasurements';
 
 import { Meteor } from 'meteor/meteor';
 
@@ -34,8 +35,7 @@ export class Healthlog extends React.Component {
       if (!this.props.routeParams.userId) {
         return (
           <div>
-            <AddPost />
-            <DynamicSpacer />
+            <VitalMeasurements />
           </div>
         );
       }

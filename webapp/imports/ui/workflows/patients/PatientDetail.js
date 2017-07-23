@@ -1,13 +1,12 @@
-import React from 'react';
-import ReactMixin from 'react-mixin';
-import { ReactMeteorData } from 'meteor/react-meteor-data';
+import { CardActions, CardText } from 'material-ui/Card';
+import { insertPatient, removePatientById, updatePatient } from '/imports/ui/workflows/patients/methods';
 
-import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
-
-import { CardText, CardActions } from 'material-ui/Card';
-import { insertPatient, updatePatient, removePatientById } from '/imports/ui/workflows/patients/methods';
 import { Bert } from 'meteor/themeteorchef:bert';
+import RaisedButton from 'material-ui/RaisedButton';
+import React from 'react';
+import { ReactMeteorData } from 'meteor/react-meteor-data';
+import ReactMixin from 'react-mixin';
+import TextField from 'material-ui/TextField';
 
 let defaultPatient = {
   "resourceType" : "Patient",
@@ -169,7 +168,7 @@ export default class PatientDetail extends React.Component {
         patientUpdate.name[0].text = value;
         break;
       case "gender":
-        patientUpdate.gender = value;
+        patientUpdate.gender = value.toLowerCase();
         break;
       case "birthDate":
         patientUpdate.birthDate = value;
@@ -184,7 +183,7 @@ export default class PatientDetail extends React.Component {
 
     }
     // patientUpdate[field] = value;
-    if(process.env.NODE_ENV === "test") console.log("patientUpdate", patientUpdate);
+    process.env.TRACE && console.log("patientUpdate", patientUpdate);
 
     Session.set('patientUpsert', patientUpdate);
   }
@@ -192,6 +191,7 @@ export default class PatientDetail extends React.Component {
 
   // this could be a mixin
   handleSaveButton(){
+    if(process.env.NODE_ENV === "test") console.log('handleSaveButton()');
     let patientUpdate = Session.get('patientUpsert', patientUpdate);
 
 
@@ -226,6 +226,7 @@ export default class PatientDetail extends React.Component {
 
       Patients.insert(patientUpdate, function(error, result) {
         if (error) {
+          if(process.env.NODE_ENV === "test")  console.log('Patients.insert[error]', error);
           Bert.alert(error.reason, 'danger');
         }
         if (result) {
@@ -246,6 +247,7 @@ export default class PatientDetail extends React.Component {
   handleDeleteButton(){
     Patients.remove({_id: Session.get('selectedPatient')}, function(error, result){
       if (error) {
+        if(process.env.NODE_ENV === "test") console.log('Patients.insert[error]', error);
         Bert.alert(error.reason, 'danger');
       }
       if (result) {

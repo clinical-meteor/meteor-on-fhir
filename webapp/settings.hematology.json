@@ -1,0 +1,62 @@
+{
+  "public": {
+    "title": "Hemotology on FHIR",
+    "theme": {
+      "showVideoBackground": true,
+      "darkroomTextEnabled": false,
+      "defaultVideo": "/VideoBackgrounds/Circulation.mp4"
+    },
+    "app": {
+      "barcodes": true,
+      "showUnderConstruction": false,
+      "showExperimental": false
+    },
+    "defaults": {
+      "displayNavbars": true,
+      "disableHeader": false,
+      "disableFooter": false,
+      "darkroom": false,
+      "iFrameEnabled": false,
+      "iFrameUrl": "https://en.wikipedia.org/wiki/Venipuncture"
+    },
+    "interfaces": {
+      "default": {
+        "status": "inactive",
+        "channel": {
+          "endpoint": "http://localhost:80"
+        },
+        "auth": {
+          "username": "foo",
+          "password": "bar"
+        }
+      }
+    },
+    "modules": {
+      "data": true,
+      "forum": true,
+      "genome": true,
+      "healthlog": true,
+      "dermatograms": true,
+      "telemedicine": true,
+      "inbound": true,
+      "outbound": true,
+      "fhir": {
+        "Patients": true,
+        "Practitioners": true,
+        "Observations": true,
+        "ImagingStudies": true,
+        "Lists": true,
+        "Medications": true,
+        "Devices": true,
+        "Locations": true,
+        "Questionnaires": true,
+        "RiskAssessments": false
+      }
+    }
+  },
+  "private": {
+    "practitionerAccessCode": "hippocrates",
+    "sysadminAccessCode": "rootaccess",
+    "disableOauth": true
+  }
+}

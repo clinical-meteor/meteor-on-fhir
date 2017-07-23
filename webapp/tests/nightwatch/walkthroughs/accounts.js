@@ -5,7 +5,7 @@
 // All right, you mutinous, computerized, disloyal half-breed - we'll see about you deserting my ship.
 
 module.exports = {
-  tags: ['accounts', 'passwords', 'users', 'entry', 'circle'],
+  tags: ['accounts', 'passwords', 'users', 'entry', 'circle', 'directory'],
   before: function(client){
     client
       .url("http://localhost:3000").pause(3000)
@@ -14,7 +14,7 @@ module.exports = {
       });
   },
   'User can sign up.': function (client) {
-    client.resizeWindow(1200, 1024);
+    client.resizeWindow(1920, 1200);
 
     client.page.signupPage()
       .navigate()
@@ -189,8 +189,6 @@ module.exports = {
       .click('#deleteUserButton').pause(500)
 
 
-      .verify.elementPresent("input[name='_id']")
-      .verify.elementPresent("input[name='email']")
       .verify.elementPresent("input[name='confirm']")
       .clearValue('input[name="confirm"]');
 
