@@ -131,13 +131,12 @@ export class MainIndex extends React.Component {
 
           <br/>
 
-          <CardTitle title="Under Construction" style={this.data.style.sectionTitle} /> <br/> 
-          {this.renderTilesUnderConstruction(this.data.user, this.data.showUnderConstruction)}
+          {this.renderUnderConstructionSection(this.data.user)}
+          
+          {this.renderTilesUnderConstruction(this.data.user)}
           {this.renderImagingStudy(this.data.user)}
 
-          <br/>
-          <CardTitle title="Experimental" style={this.data.style.sectionTitle} />  
-          <br/>
+          {this.renderExperimentalSection(this.data.user)}
           {this.renderExperimentalTiles(this.data.showExperimental)}
 
         </VerticalCanvas>
@@ -145,6 +144,30 @@ export class MainIndex extends React.Component {
     );
   }
 
+  renderExperimentalSection(user){
+    if (Meteor.settings.public.app.showExperimental) {
+      if (user.isAdmin || user.isPractitioner) {
+        return(
+          <div>
+            <CardTitle title="Experimental" style={this.data.style.sectionTitle} />  
+            <br/>
+          </div>
+        );
+      }
+    }
+  }
+  renderUnderConstructionSection(user){
+    if (Meteor.settings.public.app.showUnderConstruction) {
+      if (user.isAdmin || user.isPractitioner) {
+        return(
+          <div>
+            <CardTitle title="Under Construction" style={this.data.style.sectionTitle} /> 
+            <br/>
+          </div>
+        );
+      }
+    }
+  }  
   renderAdminTiles(user){
     if (user.isAdmin) {
       return (
