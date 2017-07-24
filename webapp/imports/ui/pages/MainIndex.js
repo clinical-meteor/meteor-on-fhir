@@ -126,6 +126,9 @@ export class MainIndex extends React.Component {
           {this.renderConditions(this.data.user)}
           {this.renderAllergyIntolerance(this.data.user)}
 
+          {this.renderProcedures(this.data.user)}
+          {this.renderImmunizations(this.data.user)}
+
           <br/>
 
           <CardTitle title="Under Construction" style={this.data.style.sectionTitle} /> <br/> 
@@ -339,6 +342,43 @@ export class MainIndex extends React.Component {
     }
   }
 
+
+  renderImmunizations(user){
+    if (Meteor.settings.public.modules.fhir.Procedures) {
+      if (user.isPractitioner || user.isAdmin) {
+        return (
+          <div id='immunizationsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/procedures') } >
+            <GlassCard style={this.data.style.indexCard} >
+              <CardTitle
+                title='Immunizations'
+                subtitle='Vaccines and immunizations.'
+                titleStyle={this.data.style.title}
+                subtitleStyle={this.data.style.subtitle}
+              />
+            </GlassCard>
+          </div>
+        );
+      }
+    }
+  }
+  renderProcedures(user){
+    if (Meteor.settings.public.modules.fhir.Procedures) {
+      if (user.isPractitioner || user.isAdmin) {
+        return (
+          <div id='proceduresTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/procedures') } >
+            <GlassCard style={this.data.style.indexCard} >
+              <CardTitle
+                title='Procedures'
+                subtitle='Surgical procedures, outpatient therapy, sports therapy, etc.'
+                titleStyle={this.data.style.title}
+                subtitleStyle={this.data.style.subtitle}
+              />
+            </GlassCard>
+          </div>
+        );
+      }
+    }
+  }
   renderPatients(user){
     if (Meteor.settings.public.modules.fhir.Patients) {
       if (user.isPractitioner || user.isAdmin) {
@@ -594,7 +634,7 @@ export class MainIndex extends React.Component {
         return (
           <div>
 
-            <div id='proceduresTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/procedures') } >
+            {/*<div id='proceduresTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/procedures') } >
               <GlassCard style={this.data.style.indexCard} >
                 <CardTitle
                   title='Procedures'
@@ -614,7 +654,7 @@ export class MainIndex extends React.Component {
                   subtitleStyle={this.data.style.subtitle}
                 />
               </GlassCard>
-            </div>
+            </div>*/}
 
             <div id='allergiesTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/allergies') } >
               <GlassCard style={this.data.style.indexCard} >

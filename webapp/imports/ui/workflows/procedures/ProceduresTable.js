@@ -24,7 +24,7 @@ export default class ProceduresTable extends React.Component {
     }
 
 
-    if(process.env.NODE_ENV === "test") console.log("data", data);
+    if(process.env.NODE_ENV === "test") console.log("ProceduresTable[data]", data);
     return data;
   };
 
@@ -38,49 +38,47 @@ export default class ProceduresTable extends React.Component {
     let tableRows = [];
     for (var i = 0; i < this.data.procedures.length; i++) {
       var newRow = {
-        patientDisplay: '',
-        asserterDisplay: '',
-        clinicalStatus: '',
-        snomedCode: '',
-        snomedDisplay: '',
-        evidenceDisplay: '',
-        barcode: ''
+        status: '',
+        isDone: '',
+        code: ''        
       };
-      // if (this.data.procedures[i]){
-      //   if(this.data.procedures[i].patient){
-      //     newRow.patientDisplay = this.data.procedures[i].patient.display;
-      //   }
-      //   if(this.data.procedures[i].asserter){
-      //     newRow.asserterDisplay = this.data.procedures[i].asserter.display;
-      //   }
-      //   if(this.data.procedures[i].clinicalStatus){
-      //     newRow.clinicalStatus = this.data.procedures[i].clinicalStatus;
-      //   }
-      //   if(this.data.procedures[i].code){
-      //     if(this.data.procedures[i].code.coding && this.data.procedures[i].code.coding[0]){            
-      //       newRow.snomedCode = this.data.procedures[i].code.coding[0].code;
-      //       newRow.snomedDisplay = this.data.procedures[i].code.coding[0].display;
-      //     }
-      //   }
-      //   if(this.data.procedures[i].evidence && this.data.procedures[i].evidence[0]){
-      //     if(this.data.procedures[i].evidence[0].detail && this.data.procedures[i].evidence[0].detail[0]){            
-      //       newRow.evidenceDisplay = this.data.procedures[i].evidence[0].detail[0].display;
-      //     }
-      //   }
-      //   if(this.data.procedures[i]._id){
-      //     newRow.barcode = this.data.procedures[i]._id;
-      //   }        
-      // }
+      if (this.data.procedures[i]){
+        if(this.data.procedures[i].status){
+          newRow.status = this.data.procedures[i].status;
+        }
+        if(this.data.procedures[i].isDone){
+          newRow.isDone = this.data.procedures[i].isDone;
+        }
+        if(this.data.procedures[i].code && this.data.procedures[i].code.text){
+          newRow.code = this.data.procedures[i].code.text;
+        }
+        // if(this.data.procedures[i].code){
+        //   if(this.data.procedures[i].code.coding && this.data.procedures[i].code.coding[0]){            
+        //     newRow.snomedCode = this.data.procedures[i].code.coding[0].code;
+        //     newRow.snomedDisplay = this.data.procedures[i].code.coding[0].display;
+        //   }
+        // }
+        // if(this.data.procedures[i].evidence && this.data.procedures[i].evidence[0]){
+        //   if(this.data.procedures[i].evidence[0].detail && this.data.procedures[i].evidence[0].detail[0]){            
+        //     newRow.evidenceDisplay = this.data.procedures[i].evidence[0].detail[0].display;
+        //   }
+        // }
+        // if(this.data.procedures[i]._id){
+        //   newRow.barcode = this.data.procedures[i]._id;
+        // }        
+      }
 
       tableRows.push(
         <tr key={i} className="procedureRow" style={{cursor: "pointer"}} onClick={ this.rowClick.bind('this', this.data.procedures[i]._id)} >
 
-          <td className='patientDisplay'>{ newRow.patientDisplay }</td>
-          <td className='asserterDisplay'>{ newRow.asserterDisplay }</td>
+          <td className='patientDisplay'>{ newRow.status }</td>
+          <td className='patientDisplay'>{ newRow.isDone }</td>
+          <td className='patientDisplay'>{ newRow.code }</td>
+          {/*<td className='asserterDisplay'>{ newRow.asserterDisplay }</td>
           <td className='clinicalStatus'>{ newRow.clinicalStatus }</td>
           <td className='snomedCode'>{ newRow.snomedCode }</td>
           <td className='snomedDisplay'>{ newRow.snomedDisplay }</td>
-          <td className='evidenceDisplay'>{ newRow.evidenceDisplay }</td>
+          <td className='evidenceDisplay'>{ newRow.evidenceDisplay }</td>*/}
           <td><span className="barcode">{ newRow.barcode }</span></td>
         </tr>
       )
@@ -90,12 +88,9 @@ export default class ProceduresTable extends React.Component {
       <Table id='proceduresTable' responses hover >
         <thead>
           <tr>
-            <th className='patientDisplay'>patient</th>
-            <th className='asserterDisplay'>asserter</th>
-            <th className='clinicalStatus'>status</th>
-            <th className='snomedCode'>code</th>
-            <th className='snomedDisplay'>procedure</th>
-            <th className='evidenceDisplay'>evidence</th>
+            <th className='status'>status</th>
+            <th className='isDone'>isDone</th>
+            <th className='code'>code</th>
             <th>_id</th>
           </tr>
         </thead>
