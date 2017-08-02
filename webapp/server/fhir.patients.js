@@ -1,20 +1,24 @@
-import FHIR from 'fhir';
+
 import { HTTP } from 'meteor/http';
 import { Meteor } from 'meteor/meteor';
 import { Promise } from 'meteor/promise';
 import { parseString } from 'xml2js';
 
-var fhir = new FHIR(FHIR.DSTU1);
+if(process.env.FhirEnabled){
+  import FHIR from 'fhir';  
+}
+
 
 Meteor.methods({
-  queryEpic: function(resourceType){
+   queryEpic: async function(resourceType){
     console.log('-----------------------------------------');
     console.log('Querying open.epic.com...', resourceType);
 
-    if(resourceType === "Patient"){
-      var httpResult = HTTP.get('https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB');
+    if(process.env.FhirEnabled){
+      if(resourceType === "Patient"){
+        var httpResult = HTTP.get('https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB');
 
-      const patientJson = Promise.await(fhir.XmlToObject(httpResult.content));
+        const patientJson = Promise.await(fhir.XmlToObject(httpResult.content));
 
           console.log('parseEpicXml[result]', patientJson)
           var patientStu3 = Patients.toStu3(patientJson);
@@ -38,10 +42,9 @@ Meteor.methods({
           } else {
             console.log('Not a patient...')
           }
-    } 
-
-    
-  },
+      } 
+    }
+   },
   createPatient:function(patientObject){
     check(patientObject, Object);
 
