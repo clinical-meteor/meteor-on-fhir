@@ -19,7 +19,7 @@ module.exports = {
         .verify.elementPresent("#publicNavigation")
         .verify.elementPresent("#signupLink")
         .verify.elementPresent("#signinLink")
-        .saveScreenshot("tests/nightwatch/screenshots/routes/root.png");
+        .saveScreenshot("tests/nightwatch/screenshots/routes.practitioner/root.png");
   },
   "/signin": function (client) {
     client
@@ -30,27 +30,29 @@ module.exports = {
     client.page.signupPage()
       .navigate()
       .fillOutSignupPage('Gregory', 'House', 'house@test.org', 'house123', 'hippocrates')
-      .saveScreenshot('tests/nightwatch/screenshots/accounts/A-signupPage.png', client)
+      .saveScreenshot('tests/nightwatch/screenshots/routes.practitioner/A-signupPage.png', client)
       .signup()
-      .pause(1000, client);
+      .saveScreenshot('tests/nightwatch/screenshots/routes.practitioner/A-signupPage-1.png', client)
+      .pause(1000, client)
+      .saveScreenshot('tests/nightwatch/screenshots/routes.practitioner/A-signupPage-2.png', client);
   },
   "/ (signed in)": function (client) {
     client
-      .url("http://localhost:3000").pause(2000)
+      .url("http://localhost:3000").pause(3000)
         .verify.elementPresent("#indexPage")
-        .saveScreenshot("tests/nightwatch/screenshots/routes/index.png");
+        .saveScreenshot("tests/nightwatch/screenshots/routes.practitioner/index.png");
   },
   "/dashboard": function (client) {
     client
       .url("http://localhost:3000/dashboard").pause(2000)
         .verify.elementPresent("#dashboardPage")
-        .saveScreenshot("tests/nightwatch/screenshots/routes/dashboard.png");
+        .saveScreenshot("tests/nightwatch/screenshots/routes.practitioner/dashboard.png");
   },
   "/patients": function (client) {
     client
       .url("http://localhost:3000/patients").pause(2000)
         .verify.elementPresent("#patientsPage")
-        .saveScreenshot("tests/nightwatch/screenshots/routes/patients.png")
+        .saveScreenshot("tests/nightwatch/screenshots/routes.practitioner/patients.png")
         .end();
   }
 };
