@@ -397,7 +397,7 @@ export class LocationsPage extends React.Component {
     var pageContent;
     // we only want to render the google map in certain environments
     // specifically, we don't want to render it while running QA tests
-    //if(process.env.NODE_ENV !== 'test'){
+    if(process.env.NODE_ENV !== 'test'){
       // okay, we're not running QA tests,
       // so lets create a bunch of markers to draw on the map, and load them into a variable
       this.data.markers.forEach(function(location){
@@ -609,10 +609,10 @@ export class LocationsPage extends React.Component {
         {markers}
         {canvas}
       </GoogleMapReact>
-    // } else {
-    //   // but if we're in a test environment, we're just going to render the locations CRUD user interface
-    //   pageContent = canvas;
-    // }
+    } else {
+      // but if we're in a test environment, we're just going to render the locations CRUD user interface
+      pageContent = canvas;
+    }
           
     return (
       <div id="locationsPage" style={this.data.style.page}> 
