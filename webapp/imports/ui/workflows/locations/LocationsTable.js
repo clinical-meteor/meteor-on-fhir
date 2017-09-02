@@ -19,7 +19,11 @@ export default class LocationTable extends React.Component {
         },
         checkbox: {
           //marginBottom: 16
-        }
+        },
+        row: Glass.darkroom({
+          opacity: Session.get('globalOpacity'),
+          cursor: 'pointer'
+        })
       },
       selected: [],
       locations: Locations.find().map(function(location){
@@ -88,7 +92,7 @@ export default class LocationTable extends React.Component {
     
     for (var i = 0; i < this.data.locations.length; i++) {
       tableRows.push(
-      <tr className='locationRow' ref='med-{i}' key={i} style={{cursor: 'pointer'}} onClick={ this.rowClick.bind('this', this.data.locations[i]._id) }>
+      <tr className='locationRow' ref='med-{i}' key={i} style={this.data.style.row} onClick={ this.rowClick.bind('this', this.data.locations[i]._id) }>
         <td className="locationName hidden-on-phone">{this.data.locations[i].name}</td>
         <td className="latitutude">{(this.data.locations[i].position) ? this.data.locations[i].position.latitude : ''}</td>
         <td className="longitude">{(this.data.locations[i].position) ? this.data.locations[i].position.longitude : ''}</td>

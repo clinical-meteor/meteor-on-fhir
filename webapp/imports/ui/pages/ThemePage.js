@@ -1,25 +1,21 @@
-import React from 'react';
-import ReactMixin from 'react-mixin';
-import { ReactMeteorData } from 'meteor/react-meteor-data';
+import { CardActions, CardText, CardTitle } from 'material-ui/Card';
+import { Tab, Tabs } from 'material-ui/Tabs';
 
-import { CardTitle, CardText } from 'material-ui/Card';
-import RaisedButton from 'material-ui/RaisedButton';
-import FontIcon from 'material-ui/FontIcon';
-
-import { Image } from 'react-bootstrap';
-import { Tabs, Tab } from 'material-ui/Tabs';
-import TextField from 'material-ui/TextField';
 import { Bert } from 'meteor/themeteorchef:bert';
-
-import { Session } from 'meteor/session';
-
+import FlatButton from 'material-ui/FlatButton';
+import FontIcon from 'material-ui/FontIcon';
 import { GlassCard } from '/imports/ui/components/GlassCard';
-import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
-import OpacitySlider from '/imports/ui/components/OpacitySlider';
-
+import { Image } from 'react-bootstrap';
 import { Meteor } from 'meteor/meteor';
+import OpacitySlider from '/imports/ui/components/OpacitySlider';
+import RaisedButton from 'material-ui/RaisedButton';
+import React from 'react';
+import { ReactMeteorData } from 'meteor/react-meteor-data';
+import ReactMixin from 'react-mixin';
+import { Session } from 'meteor/session';
+import TextField from 'material-ui/TextField';
+import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 import { setUserTheme } from '../../api/users/methods';
-
 
 let defaultState = {
   index: 0
@@ -54,7 +50,16 @@ export class ThemePage extends React.Component {
 
     return data;
   }
-
+  resetTheme(){
+    console.log('reset theme...')
+    var resetString = '';
+    if(Meteor.settings && Meteor.settings.public && Meteor.settings.public.theme && Meteor.settings.public.theme.backgroundImagePath){
+      resetString = Meteor.settings.public.theme.backgroundImagePath;
+    }
+    Meteor.users.update({_id: Meteor.userId()}, {$set: {
+      'profile.theme.backgroundImagePath': resetString
+    }});
+  }
   render(){
     var backgroundThumbnail = {
       width: '191px',
@@ -195,7 +200,9 @@ export class ThemePage extends React.Component {
               */}
 
             </Tabs>
-
+            <CardActions>
+              <FlatButton id='resetTheme' primary={true} onClick={this.resetTheme}> Reset Theme </FlatButton>
+            </CardActions>
           </GlassCard>
         </VerticalCanvas>
       </div>

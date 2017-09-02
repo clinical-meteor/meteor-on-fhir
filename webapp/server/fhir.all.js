@@ -21,18 +21,24 @@ Meteor.methods({
     Meteor.call('dropRiskAssessments');    
   },
   initializeAll: function(){
+    console.log('Initializing all collections....');
+    
     Meteor.call('initializeCarePlan');
     Meteor.call('initializeChecklists');
     Meteor.call('initializeCondition');
     Meteor.call('initializeDevice');
+    Meteor.call('initializeImmunizations');
     Meteor.call('initializeMedications');
     Meteor.call('initializeObservation', 70.0, '');
     Meteor.call('initializePatient');
+    Meteor.call('initializeProcedure');
     Meteor.call('initializePractitioner');
     Meteor.call('initializeQuestionnaire');
 
     Meteor.call('initializeSystemUsers');
     Meteor.call('initializeProviderDirectory');    
+
+
   },
   initializeProviderDirectory: function(){
     Meteor.call('initializeBlockchain');  // creates Organizations

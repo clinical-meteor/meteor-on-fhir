@@ -45,12 +45,13 @@ export class HexGridPage extends React.Component {
     //let { grid, config } = this.state;
     return(
       <div className="hexGridPage">
-        <HexGrid width={1200} height={800} viewBox="-50 -50 100 100">
+        <HexGrid width={3200} height={1800} viewBox="-50 -50 100 100">
           {/* Grid with manually inserted hexagons */}
           <Layout size={{ x: 10, y: 10 }} flat={true} spacing={1.1} origin={{ x: 0, y: 0 }}>
             <Hexagon q={0} r={0} s={0} />
             {/* Using pattern (defined below) to fill the hexagon */}
-            <Hexagon q={0} r={-1} s={1} />
+            <Hexagon q={-4} r={1} s={0} fill='null' />
+            <Hexagon q={0} r={-1} s={1} fill='null' />
             <Hexagon q={0} r={1} s={-1} onClick={ this.openLink.bind(this, '/locations')} >
               <Text>Locations</Text>
             </Hexagon>
@@ -61,6 +62,9 @@ export class HexGridPage extends React.Component {
               <Text>Practitioners</Text>
             </Hexagon>
             {/* Pattern and text */}
+            <Hexagon q={-1} r={2} s={0} fill='null'>
+              <Text></Text>
+            </Hexagon>
             <Hexagon q={-1} r={1} s={0} onClick={ this.openLink.bind(this, '/medications')}>
               <Text>Medications</Text>
             </Hexagon>
@@ -70,11 +74,35 @@ export class HexGridPage extends React.Component {
             <Hexagon q={-2} r={0} s={1} onClick={ this.openLink.bind(this, '/patients')}>
               <Text>Patients</Text>
             </Hexagon>
+            <Hexagon q={-3} r={2} s={2} >
+              <Text>Device</Text>
+            </Hexagon>
             <Hexagon q={-2} r={2} s={0} onClick={ this.openLink.bind(this, '/checklists')}>
               <Text>Checklists</Text>
             </Hexagon>
             <Hexagon q={2} r={0} s={0} onClick={ this.openLink.bind(this, '/hipaa-log')}>
               <Text>Audit Log</Text>
+            </Hexagon>
+            <Hexagon q={3} r={0} s={0} >
+              <Text>Allergies</Text>
+            </Hexagon>
+            <Hexagon q={3} r={-1} s={0} fill='null' >
+              <Text></Text>
+            </Hexagon>
+            <Hexagon q={4} r={0} s={0} >
+              <Text>Care Plan</Text>
+            </Hexagon>
+            <Hexagon q={4} r={2} s={0} >
+              <Text>Goal</Text>
+            </Hexagon>
+            <Hexagon q={4} r={1} s={0} >
+              <Text>Device</Text>
+            </Hexagon>
+            <Hexagon q={4} r={-1} s={0} >
+              <Text>>Reports</Text>
+            </Hexagon>
+            <Hexagon q={5} r={0} s={0} >
+              <Text>Condition</Text>
             </Hexagon>
           </Layout>
           {/*<Pattern id="pat-1" link="http://cat-picture" />

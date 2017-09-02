@@ -1,4 +1,4 @@
-import { CardHeader, CardText, CardTitle } from 'material-ui/Card';
+import { CardActions, CardHeader, CardText, CardTitle } from 'material-ui/Card';
 import { Col, Grid, Row } from 'react-bootstrap';
 import { Tab, Tabs } from 'material-ui/Tabs';
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
@@ -81,6 +81,16 @@ export class MyProfilePage extends React.Component {
       },
       header: {
         avatar: 'noAvatar.png'
+      }, 
+      address: {
+        line: '',
+        city: '',
+        state: '',
+        postalCode: '',
+        country: '',
+        latitude: '',
+        longitude: '',
+        latlng: '0.0, 0.0'
       }
     };
 
@@ -100,7 +110,7 @@ export class MyProfilePage extends React.Component {
         longitude: '',
         latitude: '',
         profileImage: Meteor.user().profile.avatar
-      };
+      };      
       if (Meteor.user().profile && Meteor.user().profile.avatar) {
         data.user.profileImage = Meteor.user().profile.avatar;
         data.header.avatar = Meteor.user().profile.avatar;
@@ -118,6 +128,44 @@ export class MyProfilePage extends React.Component {
         data.user.family = '';
         data.user.fullName = '';
       }
+      if(Meteor.user() && Meteor.user().profile && Meteor.user().profile.locations  && Meteor.user().profile.locations.home && Meteor.user().profile.locations.home.address){
+        if(Meteor.user().profile.locations.home.address.line){
+          data.address.line = Meteor.user().profile.locations.home.address.line;
+        }
+        if(Meteor.user().profile.locations.home.address.city){
+          data.address.city = Meteor.user().profile.locations.home.address.city;
+        }
+        if(Meteor.user().profile.locations.home.address.state){
+          data.address.state = Meteor.user().profile.locations.home.address.state;
+        }
+        if(Meteor.user().profile.locations.home.address.postalCode){
+          data.address.postalCode = Meteor.user().profile.locations.home.address.postalCode;
+        }
+        if(Meteor.user().profile.locations.home.address.country){
+          data.address.country = Meteor.user().profile.locations.home.address.country;
+        }
+      }
+      if(Meteor.user() && Meteor.user().profile && Meteor.user().profile.locations  && Meteor.user().profile.locations.home && Meteor.user().profile.locations.home.position){
+        if(Meteor.user().profile.locations.home.position.latitude && Meteor.user().profile.locations.home.position.longitude){
+          data.address.latlng = Meteor.user().profile.locations.home.position.latitude + ', ' + Meteor.user().profile.locations.home.position.longitude;
+        }
+
+        // var latlngString = '';
+
+        // if(Meteor.user().profile.locations.home.position.latitude){
+        //   data.address.latlng = Meteor.user().profile.locations.home.position.latitude.toString() + ', ';
+        // } else {
+        //   data.address.latlng = '';
+        // }
+        // if(Meteor.user().profile.locations.home.position.longitude){
+        //   data.address.latlng = data.address.latlng + Meteor.user().profile.locations.home.position.longitude.toString();
+        // } else {
+        //   data.address.latlng = '';          
+        // }
+        // data.address.latlng = latlngString;
+        
+      }
+
     }
 
     if (Session.get('appWidth') > 768) {
@@ -344,9 +392,95 @@ export class MyProfilePage extends React.Component {
 
           <Spacer />
           <GlassCard>
-            <CardTitle title="Profile Resources" />
+            <CardTitle title="Home Address" subtitle='last updated: yyyy/mm/dd' style={{float: 'left'}} />
+            <CardTitle subtitle={this.data.address.latlng} style={{position: 'relative', right: '0px', top: '0px', float: 'right'}}/>
             <CardText>
-              ...
+              
+              <Row>
+                <Col md={12}>
+                  <TextField
+                    id='streetAddressInput'
+                    ref='streetAddress'
+                    name='streetAddress'
+                    type='text'
+                    floatingLabelText='Street Address'
+                    floatingLabelFixed={true}                    
+                    value={this.data.address.line}
+                    onChange={ this.changeHomeStreetAddress.bind(this) }
+                    fullWidth
+                    />
+                </Col>
+              </Row>
+              <Row>
+                <Col md={3}>
+                  <TextField
+                    id='cityInput'
+                    ref='city'
+                    name='city'
+                    type='text'
+                    floatingLabelText='City'
+                    floatingLabelFixed={true}
+                    value={this.data.address.city}
+                    onChange={ this.changeHomeCity.bind(this) }
+                    fullWidth
+                    />
+                </Col>
+                <Col md={3}>
+                  <TextField
+                    id='stateInput'
+                    ref='state'
+                    name='state'
+                    type='text'
+                    floatingLabelText='State'
+                    floatingLabelFixed={true}
+                    value={this.data.address.state}
+                    onChange={ this.changeHomeState.bind(this) }
+                    fullWidth
+                    />
+                </Col>
+                <Col md={3}>
+                  <TextField
+                    id='postalCodeInput'
+                    ref='postalCode'
+                    name='postalCode'
+                    type='text'
+                    floatingLabelText='Postal Code'
+                    floatingLabelFixed={true}
+                    value={this.data.address.postalCode}
+                    onChange={ this.changeHomeZip.bind(this) }
+                    fullWidth
+                    />
+                </Col>
+                <Col md={3}>
+                  <TextField
+                    id='countryInput'
+                    ref='country'
+                    name='country'
+                    type='text'
+                    floatingLabelText='Country'
+                    floatingLabelFixed={true}
+                    value={this.data.address.country}
+                    onChange={ this.changeHomeCountry.bind(this) }
+                    fullWidth
+                    />
+                </Col>
+              </Row>
+            </CardText>
+            <CardActions>
+              <FlatButton 
+                label='Geocode' 
+                onClick={this.geocode.bind(this)}
+                />
+            </CardActions>
+          </GlassCard>
+
+
+
+          <Spacer />
+          <GlassCard>
+            <CardTitle title="Resources" subtitle='Healthcare data is attached to your profile via resources.' />
+            <CardText>
+              ---
             </CardText>
           </GlassCard>
         </VerticalCanvas>
@@ -423,12 +557,41 @@ export class MyProfilePage extends React.Component {
   }
 
   handleChangeAvatar(event, value) {
-    // if(process.env.NODE_ENV === "test") console.log('Lets change the avatar...');
-    // if(process.env.NODE_ENV === "test") console.log('value', value);
-
     Meteor.users.update({  _id: Meteor.userId()}, {$set:{
       'profile.avatar': value
     }});
+  }
+  changeHomeStreetAddress(event, value) {
+    Meteor.users.update({  _id: Meteor.userId()}, {$set:{
+      'profile.locations.home.address.line': value
+    }});
+  }
+  changeHomeCity(event, value) {
+    Meteor.users.update({  _id: Meteor.userId()}, {$set:{
+      'profile.locations.home.address.city': value
+    }});
+  }
+  changeHomeState(event, value) {
+    Meteor.users.update({  _id: Meteor.userId()}, {$set:{
+      'profile.locations.home.address.state': value
+    }});
+  }
+  changeHomeZip(event, value) {
+    Meteor.users.update({  _id: Meteor.userId()}, {$set:{
+      'profile.locations.home.address.postalCode': value
+    }});
+  }
+  changeHomeCountry(event, value) {
+    Meteor.users.update({  _id: Meteor.userId()}, {$set:{
+      'profile.locations.home.address.country': value
+    }});
+  }
+  geocode(){
+    console.log('lets try geocoding something...');
+    var user = Meteor.user();
+    if(user && user.profile && user.profile.locations && user.profile.locations.home && user.profile.locations.home.address ){
+      Meteor.call('geocode', user.profile.locations.home.address);
+    }
   }
   handleDelete() {
     let state = Session.get('myProfileState');

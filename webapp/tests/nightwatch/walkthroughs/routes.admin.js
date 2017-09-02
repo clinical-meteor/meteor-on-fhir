@@ -19,7 +19,7 @@ module.exports = {
         .verify.elementPresent("#publicNavigation")
         .verify.elementPresent("#signupLink")
         .verify.elementPresent("#signinLink")
-        .saveScreenshot("tests/nightwatch/screenshots/routes/root.png");
+        .saveScreenshot("tests/nightwatch/screenshots/routes.admin/root.png");
   },
   "/signin": function (client) {
     client
@@ -30,32 +30,32 @@ module.exports = {
     client.page.signupPage()
       .navigate()
       .fillOutSignupPage('System', 'Admin', 'sysadmin@test.org', 'sysadmin123', 'rootaccess')
-      .saveScreenshot('tests/nightwatch/screenshots/accounts/A-signupPage.png', client)
+      .saveScreenshot('tests/nightwatch/screenshots/routes.admin/A-signupPage.png', client)
       .signup()
       .pause(2000, client);
   },
   "/ (signed in)": function (client) {
     client
       .waitForElementPresent("#indexPage", 5000)
-      .saveScreenshot("tests/nightwatch/screenshots/routes/index.png");
+      .saveScreenshot("tests/nightwatch/screenshots/routes.admin/index.png");
   },
   "/dashboard": function (client) {
     client
       .url("http://localhost:3000/dashboard")
       .waitForElementPresent("#dashboardPage", 3000)
-      .saveScreenshot("tests/nightwatch/screenshots/routes/dashboard.png");
+      .saveScreenshot("tests/nightwatch/screenshots/routes.admin/dashboard.png");
   },
   "/patients": function (client) {
     client
       .url("http://localhost:3000/patients")
         .waitForElementPresent("#patientsPage", 3000)
-        .saveScreenshot("tests/nightwatch/screenshots/routes/patients.png");
+        .saveScreenshot("tests/nightwatch/screenshots/routes.admin/patients.png");
   },
   "/practitioners": function (client) {
     client
       .url("http://localhost:3000/practitioners")
         .waitForElementPresent("#practitionersPage", 3000)
-        .saveScreenshot("tests/nightwatch/screenshots/routes/practitioners.png")
+        .saveScreenshot("tests/nightwatch/screenshots/routes.admin/practitioners.png")
         .end();
   }
 };

@@ -1,16 +1,14 @@
-import React  from 'react';
-import ReactMixin  from 'react-mixin';
-import { ReactMeteorData } from 'meteor/react-meteor-data';
-
-import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
-import { GlassCard } from '/imports/ui/components/GlassCard';
-import { CardTitle, CardText } from 'material-ui/Card';
+import { CardText, CardTitle } from 'material-ui/Card';
+import {Tab, Tabs} from 'material-ui/Tabs';
 
 import ConditionDetail from '/imports/ui/workflows/conditions/ConditionDetail';
 import ConditionsTable from '/imports/ui/workflows/conditions/ConditionsTable';
-import {Tabs, Tab} from 'material-ui/Tabs';
-
+import { GlassCard } from '/imports/ui/components/GlassCard';
 import { Meteor } from 'meteor/meteor';
+import React  from 'react';
+import { ReactMeteorData } from 'meteor/react-meteor-data';
+import ReactMixin  from 'react-mixin';
+import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 
 export class ConditionsPage extends React.Component {
   getMeteorData() {
@@ -55,7 +53,7 @@ export class ConditionsPage extends React.Component {
     return (
       <div id='conditionsPage'>
         <VerticalCanvas>
-          <GlassCard>
+          <GlassCard height='auto'>
             <CardTitle title='Conditions' />
             <CardText>
               <Tabs id="conditionsPageTabs" default value={this.data.tabIndex} onChange={this.handleTabChange} initialSelectedIndex={1}>

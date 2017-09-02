@@ -1,16 +1,14 @@
-import React  from 'react';
-import ReactMixin  from 'react-mixin';
-import { ReactMeteorData } from 'meteor/react-meteor-data';
+import { CardText, CardTitle } from 'material-ui/Card';
+import {Tab, Tabs} from 'material-ui/Tabs';
 
-import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 import { GlassCard } from '/imports/ui/components/GlassCard';
-import { CardTitle, CardText } from 'material-ui/Card';
-
+import { Meteor } from 'meteor/meteor';
+import React  from 'react';
+import { ReactMeteorData } from 'meteor/react-meteor-data';
+import ReactMixin  from 'react-mixin';
 import RiskAssessmentDetail from '/imports/ui/workflows/risk-assessments/RiskAssessmentDetail';
 import RiskAssessmentsTable from '/imports/ui/workflows/risk-assessments/RiskAssessmentsTable';
-import {Tabs, Tab} from 'material-ui/Tabs';
-
-import { Meteor } from 'meteor/meteor';
+import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 
 export class RiskAssessmentsPage extends React.Component {
   getMeteorData() {
@@ -55,7 +53,7 @@ export class RiskAssessmentsPage extends React.Component {
     return (
       <div id='riskAssessmentsPage'>
         <VerticalCanvas>
-          <GlassCard>
+          <GlassCard height='auto'>
             <CardTitle title='RiskAssessments' />
             <CardText>
               <Tabs id="riskAssessmentsPageTabs" default value={this.data.tabIndex} onChange={this.handleTabChange} initialSelectedIndex={1}>

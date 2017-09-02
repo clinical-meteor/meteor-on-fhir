@@ -1,14 +1,14 @@
 {
   "public": {
-    "title": "Meteor on FHIR",
+    "title": "Symptomatic",
     "theme": {
       "showVideoBackground": false,
       "darkroomTextEnabled": false,
       "defaultVideo": "/VideoBackgrounds/GrayWaves4.mp4",
-      "backgroundImagePath": "/backgrounds/medical/Gradient.jpg"      
+      "backgroundImagePath": "/AugmentedReality-Nurse-iStockPhoto.jpg"      
     },
     "app": {
-      "showUnderConstruction": false,
+      "showUnderConstruction": true,
       "showExperimental": false
     },
     "defaults": {
@@ -23,7 +23,7 @@
       "disableFooter": false,
       "darkroom": false,
       "iFrameEnabled": false,
-      "iFrameUrl": "https://www.wikipedia.org",
+      "iFrameUrl": "http://browser.ihtsdotools.org",
       "paginationLimit": 100,
       "subscriptionLimit": 1000,
       "cards": {
@@ -62,14 +62,16 @@
         "AuditEvents": true,
         "Conditions": true,
         "Devices": true,
-        "Patients": true,
-        "Practitioners": true,
-        "Organizations": true,
-        "Observations": true,
         "ImagingStudies": false,
+        "Immunizations": true,
         "Locations": true,
         "Lists": true,
         "Medications": true,
+        "Organizations": true,
+        "Observations": true,
+        "Patients": true,
+        "Practitioners": true,
+        "Procedures": true,
         "Questionnaires": true,
         "RiskAssessments": true
       }
