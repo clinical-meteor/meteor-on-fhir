@@ -112,7 +112,7 @@ export class Footer extends React.Component {
         // the user is logged in as a normal user
         return (
           <div>
-            <FlatButton label='query open.epic.com' className='querySystemButton' ref='querySystemButton' onClick={this.queryPatients.bind(this, 'Patients')} style={this.data.style.buttonText} ></FlatButton>
+            <FlatButton label='query open.epic.com' className='querySystemButton' ref='querySystemButton' onClick={this.querySystemButton.bind(this, 'Patients')} style={this.data.style.buttonText} ></FlatButton>
           </div>
         );
 
