@@ -48,8 +48,8 @@ export class MainIndex extends React.Component {
         isPractitioner: false,
         isPatient: true
       },
-      showUnderConstruction: false,
-      showExperimental: false
+      showUnderConstruction: true,
+      showExperimental: true
     };
 
     data.style.indexCard = Glass.darkroom(data.style.indexCard);
@@ -137,7 +137,7 @@ export class MainIndex extends React.Component {
           {this.renderImagingStudy(this.data.user)}
 
           {this.renderExperimentalSection(this.data.user)}
-          {this.renderExperimentalTiles(this.data.showExperimental)}
+          {this.renderExperimentalTiles(this.data.user)}
 
         </VerticalCanvas>
       </div>
@@ -652,7 +652,8 @@ export class MainIndex extends React.Component {
 
 
   renderTilesUnderConstruction(user, showUnderConstruction){
-    if (showUnderConstruction) {
+    // if (showUnderConstruction) {
+    if (true) {
       if (user.isPractitioner || user.isAdmin) {
         return (
           <div>

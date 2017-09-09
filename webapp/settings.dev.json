@@ -9,7 +9,7 @@
     },
     "app": {
       "showUnderConstruction": true,
-      "showExperimental": false
+      "showExperimental": true
     },
     "defaults": {
       "avatars": true,
