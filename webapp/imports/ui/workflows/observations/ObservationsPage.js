@@ -1,18 +1,17 @@
-import React  from 'react';
-import ReactMixin  from 'react-mixin';
-import { ReactMeteorData } from 'meteor/react-meteor-data';
+import { CardText, CardTitle } from 'material-ui/Card';
+import { Tab, Tabs } from 'material-ui/Tabs';
 
-import { Tabs, Tab } from 'material-ui/Tabs';
-import { GlassCard } from '/imports/ui/components/GlassCard';
 import { DynamicSpacer }  from '/imports/ui/components/DynamicSpacer';
-import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
-
+import Glass from '/imports/ui/Glass';
+import { GlassCard } from '/imports/ui/components/GlassCard';
+import { Meteor } from 'meteor/meteor';
 import ObservationDetail from '/imports/ui/workflows/observations/ObservationDetail';
 import ObservationTable from '/imports/ui/workflows/observations/ObservationTable';
 import ObservationsDeck  from '/imports/ui/workflows/observations/ObservationsDeck';
-
-import { Meteor } from 'meteor/meteor';
-import Glass from '/imports/ui/Glass';
+import React  from 'react';
+import { ReactMeteorData } from 'meteor/react-meteor-data';
+import ReactMixin  from 'react-mixin';
+import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 
 Session.setDefault('observationPageTabIndex', 1);
 Session.setDefault('observationSearchFilter', '');
@@ -91,7 +90,9 @@ export class ObservationsPage extends React.Component {
       <div id="observationsPage">
         <VerticalCanvas>
           <GlassCard height='auto'>
-
+            <CardTitle
+              title="Observations"
+            />
             <Tabs id="observationsPageTabs" default value={this.data.tabIndex} onChange={this.handleTabChange} initialSelectedIndex={1}>
               <Tab className="newObservationTab" label='New' style={this.data.style.tab} onActive={ this.onNewTab } value={0} >
                 <ObservationDetail id='newObservation' />

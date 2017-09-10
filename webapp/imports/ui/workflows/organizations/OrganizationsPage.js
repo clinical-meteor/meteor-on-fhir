@@ -1,16 +1,15 @@
-import React  from 'react';
-import ReactMixin  from 'react-mixin';
-import { ReactMeteorData } from 'meteor/react-meteor-data';
+import { CardText, CardTitle } from 'material-ui/Card';
+import { Tab, Tabs } from 'material-ui/Tabs';
 
-import { Tabs, Tab } from 'material-ui/Tabs';
+import Glass from '/imports/ui/Glass';
 import { GlassCard } from '/imports/ui/components/GlassCard';
-import { CardTitle, CardText } from 'material-ui/Card';
-import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
-
+import { Meteor } from 'meteor/meteor';
 import OrganizationDetail from '/imports/ui/workflows/organizations/OrganizationDetail';
 import OrganizationTable from '/imports/ui/workflows/organizations/OrganizationsTable';
-import { Meteor } from 'meteor/meteor';
-import Glass from '/imports/ui/Glass';
+import React  from 'react';
+import { ReactMeteorData } from 'meteor/react-meteor-data';
+import ReactMixin  from 'react-mixin';
+import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 
 Session.setDefault('organizationPageTabIndex', 1); Session.setDefault('organizationSearchFilter', ''); Session.setDefault('selectedOrganization', false);
 
@@ -57,7 +56,7 @@ export class OrganizationsPage extends React.Component {
   render() {
     return (
       <div id="organizationsPage"> <VerticalCanvas>
-          <GlassCard>
+          <GlassCard height='auto'>
             <CardTitle
               title="Organizations"
             />

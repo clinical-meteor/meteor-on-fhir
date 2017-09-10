@@ -5,12 +5,14 @@ import {teal400, teal600} from 'material-ui/styles/colors';
 import { Footer } from '/imports/ui/layouts/Footer';
 import { GlassApp } from '/imports/ui/layouts/GlassApp';
 import { GlassCard } from '/imports/ui/components/GlassCard';
-import { GlassLayout } from '/imports/ui/layouts/GlassLayout';
 import { Header } from '/imports/ui/layouts/Header';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import React  from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin  from 'react-mixin';
+import { SciFiPage } from '/imports/ui/pages/SciFiPage';
+import { Session } from 'meteor/session';
+import { SinglePanelLayout } from '/imports/ui/layouts/SinglePanelLayout';
 import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 // Material UI Theming
 import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
@@ -98,10 +100,16 @@ export class App extends React.Component {
   }
 
   render(){
+    var orbital;
+    if(Meteor.settings && Meteor.settings.public && Meteor.settings.public.defaults && Meteor.settings.public.defaults.nfcOrbital){
+      orbital = <SciFiPage />;
+    }
+
     return (
      <MuiThemeProvider muiTheme={muiTheme}>
       <GlassApp>
-        <GlassLayout>
+        <SinglePanelLayout>
+          {orbital}
           <Header />
             <div className='primaryFlexPanel' >
               { this.props.children }
@@ -118,7 +126,7 @@ export class App extends React.Component {
               </VerticalCanvas>
             </div>
           <Footer />
-        </GlassLayout>
+        </SinglePanelLayout>
       </GlassApp>
      </MuiThemeProvider>
     );

@@ -14,6 +14,9 @@
     "defaults": {
       "avatars": true,
       "barcodes": true,
+      "hexgridMenu": false,
+      "nfcOrbital": true,
+      "notificationMenu": false,
       "displayNavbars": true,
       "disableHeader": false,
       "disableFooter": false,

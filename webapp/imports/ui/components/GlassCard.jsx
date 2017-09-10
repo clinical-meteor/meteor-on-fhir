@@ -1,8 +1,8 @@
-import React from 'react';
-import ReactMixin from 'react-mixin';
-import { ReactMeteorData } from 'meteor/react-meteor-data';
-import { Session } from 'meteor/session';
 import { Card } from 'material-ui/Card';
+import React from 'react';
+import { ReactMeteorData } from 'meteor/react-meteor-data';
+import ReactMixin from 'react-mixin';
+import { Session } from 'meteor/session';
 
 export class GlassCard extends React.Component {
   constructor(props) {
@@ -12,7 +12,9 @@ export class GlassCard extends React.Component {
   getMeteorData() {
 
     let data = {
-      style: {}
+      style: {
+        overflowY: 'scroll'
+      }
     };
 
     if (this.props && this.props.style) {
@@ -45,8 +47,32 @@ export class GlassCard extends React.Component {
     }
 
 
-    // this could be a mixin/extracted to a helper function
-    // Glass.autoHeight()
+    // // this could be a mixin/extracted to a helper function
+    // // Glass.autoHeight()
+    // if (this.props.height === "auto") {
+    //   console.log("is autoheight");
+
+    //   var autoHeight = Session.get('appHeight');
+
+    //   if(Session.get('showNavbars')){
+    //     autoHeight = autoHeight - 128;
+    //   }
+    //   if(Session.get('showSearchbar')){
+    //     autoHeight = autoHeight - 64;
+    //   }
+    //   if(Session.get('mainPanelIsCard')){
+    //     autoHeight = autoHeight - 40;
+    //   }
+
+    //   data.style.height = autoHeight + 'px';
+    // }
+
+
+    // if (this.props.width) {
+    //   data.style.width = this.props.width;
+    // }
+    // return data;
+
     if (this.props.height === "auto") {
       console.log("is autoheight");
 
@@ -62,19 +88,18 @@ export class GlassCard extends React.Component {
           data.style.overflowY = "scroll";
         }
       }
+    } else {
+      data.style.height = this.props.height;      
     }
-
-    if (this.props.width) {
-      data.style.width = this.props.width;
-    }
+    data.style.paddingBottom = '0px';
     // GlassFactory.addStyling(data);
 
-    return data;
+    return data;    
   }
 
   render(){
     return (
-       <Card id={this.props.id} style={this.data.style}>
+       <Card id={this.props.id} className="glassCard" containerStyle={this.data.style} style={this.data.style}>
         { this.props.children }
        </Card>
     );

@@ -1,7 +1,6 @@
 import { Accounts } from 'meteor/accounts-base';
 import { Meteor } from 'meteor/meteor';
 
-
 Meteor.startup(function (){
   if (process.env.INITIALIZE && (Meteor.users.find().count() === 0)) {
     console.log('No users found.');
@@ -62,10 +61,10 @@ Meteor.methods({
 
     Meteor.users.update({_id: userId}, {$set: { profile: profileData }}, function(error, result){
       if(error){
-        HipaaLogger.logEvent('error', Meteor.userId(), Meteor.user().getPrimaryEmail(), 'RiskAssessments', null, null, null, error);
+        HipaaLogger.logEvent({eventType: "error", userId: Meteor.userId(), userName: Meteor.user().getPrimaryEmail(), collectionName: "Patients"});
       }
       if(result){
-        HipaaLogger.logEvent('update', Meteor.userId(), Meteor.user().getPrimaryEmail(), 'Meteor.users', null, null, null, null);
+        HipaaLogger.logEvent({eventType: "update", userId: Meteor.userId(), userName: Meteor.user().getPrimaryEmail(), collectionName: "Patients"});
       }
     });
   },

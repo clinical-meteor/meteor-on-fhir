@@ -1,25 +1,29 @@
 {
   "public": {
-    "title": "Meteor on FHIR",
+    "title": "Symptomatic",
     "theme": {
       "showVideoBackground": false,
       "darkroomTextEnabled": false,
-      "defaultVideo": "/VideoBackgrounds/Circulation.mp4",
-      "backgroundImagePath": "/backgrounds/medical/Gradient.jpg"
+      "defaultVideo": "/VideoBackgrounds/GrayWaves4.mp4",
+      "backgroundImagePath": "/AugmentedReality-Nurse-iStockPhoto.jpg"      
     },
     "app": {
-      "showUnderConstruction": false,
+      "showUnderConstruction": true,
       "showExperimental": false
     },
     "defaults": {
       "avatars": true,
       "barcodes": true,
+      "hexgridMenu": false,
+      "nfcOrbital": true,
+      "notificationMenu": false,
+      "searchbarVisible": true,
       "displayNavbars": true,
       "disableHeader": false,
       "disableFooter": false,
       "darkroom": false,
       "iFrameEnabled": false,
-      "iFrameUrl": "https://www.wikipedia.org",
+      "iFrameUrl": "http://browser.ihtsdotools.org",
       "paginationLimit": 100,
       "subscriptionLimit": 1000,
       "cards": {
@@ -39,6 +43,10 @@
         }
       }
     },
+    "meshNetwork": {
+      "upstreamSync": "http://meteor-on-fhir.meteorapp.com/fhir-3.0.0", 
+      "autosync": false
+    },
     "modules": {
       "data": true,
       "forum": true,
@@ -48,18 +56,22 @@
       "telemedicine": true,
       "inbound": true,
       "outbound": true,
+      "epic": true,
+      "statisticsLogging": true,
       "fhir": {
         "AuditEvents": true,
         "Conditions": true,
         "Devices": true,
-        "Patients": true,
-        "Practitioners": true,
-        "Organizations": true,
-        "Observations": true,
-        "ImagingStudies": true,
+        "ImagingStudies": false,
+        "Immunizations": true,
         "Locations": true,
         "Lists": true,
         "Medications": true,
+        "Organizations": true,
+        "Observations": true,
+        "Patients": true,
+        "Practitioners": true,
+        "Procedures": true,
         "Questionnaires": true,
         "RiskAssessments": true
       }
@@ -68,6 +80,9 @@
   "private": {
     "practitionerAccessCode": "hippocrates",
     "sysadminAccessCode": "rootaccess",
-    "disableOauth": true
+    "disableOauth": true,
+    "demo": {
+      "nightlyDatabaseDrop": true
+    }
   }
 }

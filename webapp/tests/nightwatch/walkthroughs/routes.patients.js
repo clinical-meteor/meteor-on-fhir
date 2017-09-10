@@ -19,7 +19,7 @@ module.exports = {
         .verify.elementPresent("#publicNavigation")
         .verify.elementPresent("#signupLink")
         .verify.elementPresent("#signinLink")
-        .saveScreenshot("tests/nightwatch/screenshots/routes/root.png");
+        .saveScreenshot("tests/nightwatch/screenshots/routes.patients/root.png");
   },
   "/signin": function (client) {
     client
@@ -30,7 +30,7 @@ module.exports = {
     client.page.signupPage()
       .navigate()
       .fillOutSignupPage('Alice', 'Doe', 'alice@test.org', 'alicedoe')
-      .saveScreenshot('tests/nightwatch/screenshots/accounts/A-signupPage.png', client)
+      .saveScreenshot('tests/nightwatch/screenshots/routes.patients/A-signupPage.png', client)
       .signup()
       .pause(1000, client);
   },
@@ -38,13 +38,13 @@ module.exports = {
     client
       .url("http://localhost:3000").pause(2000)
         .verify.elementPresent("#indexPage")
-        .saveScreenshot("tests/nightwatch/screenshots/routes/index.png");
+        .saveScreenshot("tests/nightwatch/screenshots/routes.patients/index.png");
   },
   "/weblog": function (client) {
     client
       .url("http://localhost:3000/weblog").pause(2000)
       .verify.elementPresent("#weblogPage")
-      .saveScreenshot("tests/nightwatch/screenshots/routes/weblog.png")
+      .saveScreenshot("tests/nightwatch/screenshots/routes.patients/weblog.png")
       .end();
   }
 

@@ -1,50 +1,20 @@
-import React from 'react';
-import ReactMixin from 'react-mixin';
-import { ReactMeteorData } from 'meteor/react-meteor-data';
+import { CardActions, CardText } from 'material-ui/Card';
 
-import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
 import { Bert } from 'meteor/themeteorchef:bert';
-
-import { CardText, CardActions } from 'material-ui/Card';
+import RaisedButton from 'material-ui/RaisedButton';
+import React from 'react';
+import { ReactMeteorData } from 'meteor/react-meteor-data';
+import ReactMixin from 'react-mixin';
+import TextField from 'material-ui/TextField';
 
 let defaultLocation = {
-  resourceType: 'Location',
-  code: {
-    text: ""
-  },
-  isBrand: true,
-  manufacturer: {
-    display: '',
-    reference: ''
-  },
-  product: {
-    form: {
-      text: 'tablet'
-    },
-    ingredient: [{
-      item: {
-        resourceType: 'Substance',
-        code: {
-          text: ''
-        },
-        description: ''
-      },
-      instance: [{
-        quantity: ''
-      }]
-    }]
-  },
-  package: {
-    container: {
-      text: 'bottle'
-    },
-    content: [{
-      amount: {
-        value: 30,
-        unit: 'tablet'
-      }
-    }]
+  "resourceType": "Location",
+  "status": "active",
+  "name": "",
+  "position": {
+    'latitude': 0,
+    'longitude': 0,
+    'altitude': 0
   }
 };
 
@@ -104,29 +74,20 @@ export default class LocationDetail extends React.Component {
 
     switch (field) {
       case "locationName":
-        locationUpdate.code.text = value;
+        locationUpdate.name = value;
         break;
-      case "manufacturerDisplay":
-        locationUpdate.manufacturer.display = value;
+      case "locationLatitude":
+        locationUpdate.position.latitude = value;
         break;
-      case "locationForm":
-        locationUpdate.product.form.text = value;
+      case "locationLongitude":
+        locationUpdate.position.longitude = value;
         break;
-      case "activeIngredient":
-        locationUpdate.product.ingredient[0].item.code.text = value;
-        break;
-      case "activeIngredientQuantity":
-        locationUpdate.product.ingredient[0].instance[0].quantity = value;
-        break;
-      case "activeIngredientDescription":
-        locationUpdate.product.ingredient[0].item.description = value;
+      case "locationAltitude":
+        locationUpdate.position.altitude = value;
         break;
       default:
-
     }
 
-
-    // locationUpdate[field] = value;
     if(process.env.NODE_ENV === "test") console.log("locationUpdate", locationUpdate);
 
     Session.set('locationUpsert', locationUpdate);
@@ -141,60 +102,42 @@ export default class LocationDetail extends React.Component {
 
   render() {
     return (
-      <div id={this.props.id} className="locationDetail">
+      <div id={this.props.id} className="locationDetail" style={{height: '100%'}}>
         <CardText>
           <TextField
             id='locationNameInput'
             ref='locationName'
             name='locationName'
             floatingLabelText='Location Name'
-            value={this.data.location.code.text}
+            value={(this.data.location.name) ? this.data.location.name : ''}
             onChange={ this.changeState.bind(this, 'locationName')}
             fullWidth
             /><br/>
           <TextField
-            id='manufacturerDisplayInput'
-            ref='manufacturerDisplay'
-            name='manufacturerDisplay'
-            floatingLabelText='Manufacturer'
-            value={this.data.location.manufacturer.display ? this.data.location.manufacturer.display : ''}
-            onChange={ this.changeState.bind(this, 'manufacturerDisplay')}
+            id='latitudeInput'
+            ref='latitude'
+            name='latitude'
+            floatingLabelText='Latitude'
+            value={(this.data.location.position) ? this.data.location.position.latitude : ''}
+            onChange={ this.changeState.bind(this, 'locationLatitude')}
             fullWidth
             /><br/>
           <TextField
-            id='locationFormInput'
-            ref='locationForm'
-            name='locationForm'
-            floatingLabelText='Substance Form'
-            value={this.data.location.product.form.text}
-            onChange={ this.changeState.bind(this, 'locationForm')}
+            id='longitudeInput'
+            ref='longitude'
+            name='longitude'
+            floatingLabelText='Longitude'
+            value={(this.data.location.position) ? this.data.location.position.longitude : ''}
+            onChange={ this.changeState.bind(this, 'locationLongitude')}
             fullWidth
             /><br/>
           <TextField
-            id='activeIngredientInput'
-            ref='activeIngredient'
-            name='activeIngredient'
-            floatingLabelText='Active Ingredient'
-            value={this.data.location.product.ingredient[0].item.code.text}
-            onChange={ this.changeState.bind(this, 'activeIngredient')}
-            fullWidth
-            /><br/>
-          <TextField
-            id='activeIngredientQuantityInput'
-            ref='activeIngredientQuantity'
-            name='activeIngredientQuantity'
-            floatingLabelText='Quantity'
-            value={this.data.location.product.ingredient[0].instance[0].quantity}
-            onChange={ this.changeState.bind(this, 'activeIngredientQuantity')}
-            fullWidth
-            /><br/>
-          <TextField
-            id='activeIngredientDescriptionInput'
-            ref='activeIngredientDescription'
-            name='activeIngredientDescription'
-            floatingLabelText='Active Ingredient Description'
-            value={this.data.location.product.ingredient[0].item.description}
-            onChange={ this.changeState.bind(this, 'activeIngredientDescription')}
+            id='altitudeInput'
+            ref='altitude'
+            name='altitude'
+            floatingLabelText='Altitude'
+            value={(this.data.location.position) ? this.data.location.position.altitude : ''}
+            onChange={ this.changeState.bind(this, 'locationAltitude')}
             fullWidth
             /><br/>
         </CardText>
@@ -211,7 +154,7 @@ export default class LocationDetail extends React.Component {
       return (
         <div>
           <RaisedButton id="saveLocationButton" label="Save" primary={true} onClick={this.handleSaveButton.bind(this)} />
-          <RaisedButton id="deleteLocationButton" label="Delete" onClick={this.handleDeleteButton.bind(this)} />
+          <RaisedButton id="deleteLocationButton" label="Delete" onClick={this.handleDeleteButton.bind(this)} style={{marginLeft: '20px'}} />
         </div>
       );
     } else {
@@ -269,8 +212,7 @@ export default class LocationDetail extends React.Component {
   }
 
   handleDeleteButton(){
-    removeLocationById.call(
-      {_id: Session.get('selectedLocation')}, (error) => {
+    Meteor.call('removeLocationById', Session.get('selectedLocation'), function(error, result){
       if (error) {
         Bert.alert(error.reason, 'danger');
       } else {
@@ -278,6 +220,9 @@ export default class LocationDetail extends React.Component {
         Session.set('locationPageTabIndex', 1);
         Session.set('selectedLocation', false);
         Session.set('locationUpsert', false);
+      }
+      if (result) {
+        HipaaLogger.logEvent({eventType: "delete", userId: Meteor.userId(), userName: Meteor.user().fullName(), collectionName: "Organizations", recordId: Session.get('selectedOrganization')});
       }
     });
   }

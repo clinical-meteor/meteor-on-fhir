@@ -1,6 +1,50 @@
 
+import { HTTP } from 'meteor/http';
+import { Meteor } from 'meteor/meteor';
+import { Promise } from 'meteor/promise';
+import { parseString } from 'xml2js';
+
+if(process.env.FhirEnabled){
+  import FHIR from 'fhir';  
+}
+
 
 Meteor.methods({
+   queryEpic: async function(resourceType){
+    console.log('-----------------------------------------');
+    console.log('Querying open.epic.com...', resourceType);
+
+    if(process.env.FhirEnabled){
+      if(resourceType === "Patient"){
+        var httpResult = HTTP.get('https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB');
+
+        const patientJson = Promise.await(fhir.XmlToObject(httpResult.content));
+
+          console.log('parseEpicXml[result]', patientJson)
+          var patientStu3 = Patients.toStu3(patientJson);
+
+          PatientSchema.clean(patientStu3);
+
+          console.log('savePatient', patientStu3);
+              
+          if(patientStu3.resourceType === "Patient"){
+            Patients.insert(patientStu3, function(error, result){
+              if (error) {
+                console.log('Patients.insert[error]', error);
+                HipaaLogger.logEvent({eventType: "error", userId: Meteor.userId(), userName: Meteor.user().getPrimaryEmail(), collectionName: "Patients"});
+              }
+              if (result) {
+                console.log('Patient created: ' + result);
+                HipaaLogger.logEvent({eventType: "create", userId: Meteor.userId(), userName: Meteor.user().getPrimaryEmail(), collectionName: "Patients"});
+              }
+            });        
+
+          } else {
+            console.log('Not a patient...')
+          }
+      } 
+    }
+   },
   createPatient:function(patientObject){
     check(patientObject, Object);
 
@@ -10,12 +54,11 @@ Meteor.methods({
       Patients.insert(patientObject, function(error, result){
         if (error) {
           console.log(error);
-          HipaaLogger.logEvent('error', Meteor.userId(), Meteor.user().getPrimaryEmail(), 'Patients', null, null, null, error);
-
+          HipaaLogger.logEvent({eventType: "error", userId: Meteor.userId(), userName: Meteor.user().getPrimaryEmail(), collectionName: "Patients"});
         }
         if (result) {
           console.log('Patient created: ' + result);
-          HipaaLogger.logEvent('create', Meteor.userId(), Meteor.user().getPrimaryEmail(), 'Patients', null, null, null, null);
+          HipaaLogger.logEvent({eventType: "create", userId: Meteor.userId(), userName: Meteor.user().getPrimaryEmail(), collectionName: "Patients"});
         }
       });
     } else {
@@ -87,4 +130,39 @@ Meteor.methods({
       console.log('Try setting NODE_ENV=test');
     }
   }
+
+  // NEED TO THINK ABOUT THE LEGAL IMPLICATIONS OF THE FOLLOWING 
+  // HOW COULD THIS BE ABUSED?
+
+  // syncPatients: function(){
+  //   if(Meteor.settings && Meteor.settings.public && Meteor.settings.public.meshNetwork && Meteor.settings.public.meshNetwork.upstreamSync){
+  //     console.log('-----------------------------------------');
+  //     console.log('Syncing patients... ');
+  //     var queryString = Meteor.settings.public.meshNetwork.upstreamSync + "/Patient";
+  //     console.log(queryString);
+      
+  //     var result =  HTTP.get(queryString);
+
+  //     var bundle = JSON.parse(result.content);
+
+  //     console.log('result', bundle);
+  //     bundle.entry.forEach(function(record){
+  //       console.log('record', record);
+  //       if(record.resource.resourceType === "Patient"){
+  //         // if(!Patients.findOne({id:id})){
+  //           Patients.insert(record);
+  //         // }
+  //       }
+  //     });
+  //     Meteor.call('generateDailyStat');
+  //     var stats = DailyStats.generate();
+  //     Statistics.insert(stats);
+  //     return stats;
+  //   }else {
+  //   console.log('-----------------------------------------');
+  //   console.log('Syncing disabled... ');      
+  //   }
+
+  // }  
 });
+

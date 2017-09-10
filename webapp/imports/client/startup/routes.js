@@ -2,10 +2,13 @@ import { IndexRoute, Route, Router, browserHistory } from 'react-router';
 
 import { AboutPage } from '/imports/ui/pages/AboutPage';
 import { AdminDashboard } from '/imports/ui/pages/AdminDashboard';
+import { AllergyIntolerancesPage } from '/imports/ui/workflows/allergyIntolerances/AllergyIntolerancesPage';
 import { App } from '/imports/ui/layouts/App';
 import { AppInfoPage } from '/imports/ui/pages/AppInfoPage';
 import { AuditLogPage } from '/imports/ui/pages/AuditLogPage';
 import { AuthorizePage } from '/imports/ui/workflows/oauth/AuthorizePage';
+import { BodySitesPage } from '/imports/ui/workflows/body-sites/BodySitesPage';
+import { CarePlansPage } from '/imports/ui/workflows/carePlans/CarePlansPage';
 import { ChecklistsPage } from '/imports/ui/workflows/lists/ChecklistsPage';
 import { ClientConfigurationPage } from '/imports/ui/workflows/oauth/ClientConfigurationPage';
 import { ConditionsPage } from '/imports/ui/workflows/conditions/ConditionsPage';
@@ -16,16 +19,21 @@ import { DataManagementPage } from '/imports/ui/pages/DataManagementPage';
 import { DecisionTree } from '/imports/ui/components/DecisionTree';
 import { DermatogramsPage } from '/imports/ui/pages/DermatogramsPage';
 import { DevicesPage } from '/imports/ui/workflows/devices/DevicesPage';
+import { DiagnosticReportsPage } from '/imports/ui/workflows/diagnosticReports/DiagnosticReportsPage';
 import { ForumPage } from '/imports/ui/pages/ForumPage';
 import { GenomePage } from '/imports/ui/workflows/genome/GenomePage';
+import { GoalsPage } from '/imports/ui/workflows/goals/GoalsPage';
 import { GoogleMapsPage } from '/imports/ui/pages/experimental/GoogleMapsPage';
 import { Healthlog } from '/imports/ui/pages/Healthlog';
 import { HexGridPage } from '/imports/ui/pages/HexGridPage';
 import { ImagingStudiesPage } from '/imports/ui/workflows/imaging-studies/ImagingStudiesPage';
+import { ImmunizationsPage } from '/imports/ui/workflows/immunizations/ImmunizationsPage';
 import { InboundMessagesPage } from '/imports/ui/pages/InboundMessagesPage';
 import { LocationsPage } from '/imports/ui/workflows/locations/LocationsPage';
 import { MainIndex } from '/imports/ui/pages/MainIndex';
 import { MathPage } from '/imports/ui/pages/experimental/MathPage';
+import { MedicationOrdersPage } from '/imports/ui/workflows/medicationOrders/MedicationOrdersPage';
+import { MedicationStatementsPage } from '/imports/ui/workflows/medicationStatements/MedicationStatementsPage';
 import { MedicationsPage } from '/imports/ui/workflows/medications/MedicationsPage';
 import { MetadataPage } from '/imports/ui/pages/MetadataPage';
 import { Meteor } from 'meteor/meteor';
@@ -44,12 +52,15 @@ import { PatientsPage } from '/imports/ui/workflows/patients/PatientsPage';
 import { PractitionerDashboard } from '/imports/ui/pages/PractitionerDashboard';
 import { PractitionersPage } from '/imports/ui/workflows/practitioners/PractitionersPage';
 import { PrivacyPage } from '/imports/ui/pages/PrivacyPage';
+import { ProceduresPage } from '/imports/ui/workflows/procedures/ProceduresPage';
+import { ProviderDirectoryPage } from '/imports/ui/pages/ProviderDirectoryPage';
 import { QuestionnaireResponsesPage } from '/imports/ui/workflows/questionnaires/QuestionnaireResponsesPage';
 import { QuestionnairesPage } from '/imports/ui/workflows/questionnaires/QuestionnairesPage';
 import React from 'react';
 import { RecoverPassword } from '/imports/ui/pages/RecoverPassword';
 import { ResetPassword } from '/imports/ui/pages/ResetPassword';
 import { RiskAssessmentsPage } from '/imports/ui/workflows/risk-assessments/RiskAssessmentsPage';
+import { SciFiPage } from '/imports/ui/pages/SciFiPage';
 import { ServerConfigurationPage } from '/imports/ui/workflows/oauth/ServerConfigurationPage';
 import { Signin } from '/imports/ui/pages/Signin';
 import { Signup } from '/imports/ui/pages/Signup';
@@ -139,7 +150,7 @@ Meteor.startup(() => {
         <Route name="needToBeSysadmin" path="/need-to-be-sysadmin" component={ NeedToBeSysadmin } />
         <Route name="needToBePractitioner" path="/need-to-be-practitioner" component={ NeedToBePractitioner }  />
 
-        <Route name="hexGrid" path="/hex" component={ HexGridPage } />
+        <Route name="hexGrid" path="/hexgrid" component={ HexGridPage } />
         <Route name="appInfo" path="/info" component={ AppInfoPage } />
 
         <Route name="appInfo" path="/info" component={ AppInfoPage } />
@@ -149,6 +160,7 @@ Meteor.startup(() => {
         <Route name="dataManagement" path="/data-management" component={ DataManagementPage }  onEnter={ requireAuth }/>
 
         <Route name="observation" path="/observations" component={ ObservationsPage }  onEnter={ requireAuth }/>
+        <Route name="bodySites" path="/body-sites" component={ BodySitesPage } onEnter={ requireAuth }/>
 
         <Route name="medications" path="/medications" component={ MedicationsPage }  onEnter={ requireAuth }/>
         <Route name="checklists" path="/checklists" component={ ChecklistsPage }  onEnter={ requireAuth }/>
@@ -188,6 +200,21 @@ Meteor.startup(() => {
         <Route name="CornerstonePage" path="/cornerstone" component={ CornerstonePage } />
         <Route name="GoogleMapsPage" path="/maps" component={ GoogleMapsPage } />
 
+        <Route name="ProviderDirectoryPage" path="/provider-directory" component={ ProviderDirectoryPage } />
+
+        <Route name="SciFiPage" path="/scifi" component={ SciFiPage } />
+
+
+        <Route name="procedures" path="/procedures" component={ ProceduresPage }  onEnter={ requireAuth }/>
+        <Route name="allergies" path="/allergies" component={ AllergyIntolerancesPage }  onEnter={ requireAuth }/>
+        <Route name="immunizations" path="/immunizations" component={ ImmunizationsPage }  onEnter={ requireAuth }/>
+
+
+        <Route name="GoalsPage" path="/goals" component={ GoalsPage }  onEnter={ requireAuth }/>
+        <Route name="CarePlansPage" path="/care-plans" component={ CarePlansPage }  onEnter={ requireAuth }/>
+        <Route name="DiagnosticReportsPage" path="/diagnostic-reports" component={ DiagnosticReportsPage }  onEnter={ requireAuth }/>
+        <Route name="MedicationOrdersPage" path="/medication-orders" component={ MedicationOrdersPage }  onEnter={ requireAuth }/>
+        <Route name="MedicationStatementsPage" path="/medication-statements" component={ MedicationStatementsPage }  onEnter={ requireAuth }/>
 
         <Route path="*" component={ NotFound } />
 
