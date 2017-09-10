@@ -1,13 +1,13 @@
-
-
+import { AllergyIntolerances } from 'meteor/clinical:hl7-resource-allergy-intolerance';
 
 Meteor.methods({
   createAllergyIntolerance:function(allergyIntolleranceObject){
     check(allergyIntolleranceObject, Object);
 
+    //TODO:  Maybe we should check that this is an admin?
     if (process.env.NODE_ENV === 'test') {
       console.log('Creating AllergyIntolerance...');
-      AllergyIntollerances.insert(allergyIntolleranceObject, function(error, result){
+      AllergyIntolerances.insert(allergyIntolleranceObject, function(error, result){
         if (error) {
           console.log(error);
         }
@@ -20,57 +20,134 @@ Meteor.methods({
       console.log('Try setting NODE_ENV=test');
     }
   },
-  initializeAllergyIntolerance:function(allergyIntolleranceValue, deviceId){
-    check(allergyIntolleranceValue, Number);
-    check(deviceId, String);
+  initializeAllergyIntolerances:function(){
+    if (AllergyIntolerances.find().count() === 0) {
+      console.log('No records found in AllergyIntolerances collection.  Lets create some...');
 
-    if (AllergyIntollerances.find().count() === 0) {
-      console.log('No records found in AllergyIntollerances collection.  Lets create some...');
-
-      var defaultAllergyIntolerance = {
+      var milk = {
         resourceType: 'AllergyIntolerance',
-        // status: 'final',
-        // category: {
-        //   text: 'Weight'
-        // },
-        // effectiveDateTime: new Date(),
-        // subject: {
-        //   display: 'Jane Doe',
-        //   reference: ''
-        // },
-        // performer: {
-        //   display: '',
-        //   reference: ''
-        // },
-        // device: {
-        //   display: 'Withings Weight Scale',
-        //   reference: deviceId
-        // },
-        // valueQuantity: {
-        //   value: allergyIntolleranceValue,
-        //   unit: 'kg',
-        //   system: 'http://unitsofmeasure.org'
-        // }
+        identifier: [{
+          use: 'oficial',
+          value: 'Milk'
+        }],
+        clinicalStatus: 'active',
+        verificationStatus: 'confirmed',
+        type: 'allergy',
+        category: ['food'],
+        code: null,
+        patient: null
       };
+      Meteor.call('createAllergyIntolerance', milk);
 
-      // if (this.userId) {
-      //   let user = Meteor.users.findOne({_id: this.userId});
-      //   if (user && user.profile && user.profile.name && user.profile.name.text) {
+      var eggs = {
+        resourceType: 'AllergyIntolerance',
+        identifier: [{
+          use: 'oficial',
+          value: 'Eggs'
+        }],
+        clinicalStatus: 'active',
+        verificationStatus: 'confirmed',
+        type: 'allergy',
+        category: ['food'],
+        code: null,
+        patient: null
+      };
+      Meteor.call('createAllergyIntolerance', eggs);
 
-      //     //   display: Patients.findByUserId(this.userId).fullName(),
-      //     //   reference: 'Patients/' + Patients.findByUserId(this.userId).patientId()
 
-      //     defaultAllergyIntolerance.subject.display = user.profile.name.text;
-      //     defaultAllergyIntolerance.subject.reference = 'Meteor.users/' + this.userId;
+      var fish = {
+        resourceType: 'AllergyIntolerance',
+        identifier: [{
+          use: 'oficial',
+          value: 'Fish'
+        }],
+        clinicalStatus: 'active',
+        verificationStatus: 'confirmed',
+        type: 'allergy',
+        category: ['food'],
+        code: null,
+        patient: null
+      };
+      Meteor.call('createAllergyIntolerance', fish);
 
-      //     defaultAllergyIntolerance.performer.display = user.profile.name.text;
-      //     defaultAllergyIntolerance.performer.reference = 'Meteor.users/' + this.userId;
-      //   }
-      // }
+      var crustacean = {
+        resourceType: 'AllergyIntolerance',
+        identifier: [{
+          use: 'oficial',
+          value: 'Crustacean'
+        }],
+        clinicalStatus: 'active',
+        verificationStatus: 'confirmed',
+        type: 'allergy',
+        category: ['food'],
+        code: null,
+        patient: null
+      };
+      Meteor.call('createAllergyIntolerance', crustacean);
 
-      Meteor.call('createAllergyIntolerance', defaultAllergyIntolerance);
+      var nuts = {
+        resourceType: 'AllergyIntolerance',
+        identifier: [{
+          use: 'oficial',
+          value: 'Tree Nuts'
+        }],
+        clinicalStatus: 'active',
+        verificationStatus: 'confirmed',
+        type: 'allergy',
+        category: ['food'],
+        code: null,
+        patient: null
+      };
+      Meteor.call('createAllergyIntolerance', nuts);
+
+      var peanuts = {
+        resourceType: 'AllergyIntolerance',
+        identifier: [{
+          use: 'oficial',
+          value: 'Peanuts'
+        }],
+        clinicalStatus: 'active',
+        verificationStatus: 'confirmed',
+        type: 'allergy',
+        category: ['food'],
+        code: null,
+        patient: null
+      };
+      Meteor.call('createAllergyIntolerance', peanuts);
+
+      var wheat = {
+        resourceType: 'AllergyIntolerance',
+        identifier: [{
+          use: 'oficial',
+          value: 'Wheat'
+        }],
+        clinicalStatus: 'active',
+        verificationStatus: 'confirmed',
+        type: 'allergy',
+        category: ['food'],
+        code: null,
+        patient: null
+      };
+      Meteor.call('createAllergyIntolerance', wheat);
+
+
+      var soybeans = {
+        resourceType: 'AllergyIntolerance',
+        identifier: [{
+          use: 'oficial',
+          value: 'Soybeans'
+        }],
+        clinicalStatus: 'active',
+        verificationStatus: 'confirmed',
+        type: 'allergy',
+        category: ['food'],
+        code: null,
+        patient: null
+      };
+      Meteor.call('createAllergyIntolerance', soybeans);
+
     } else {
-      console.log('AllergyIntollerances already exist.  Skipping.');
+      console.log('AllergyIntolerances already exist.  Skipping.');
     }
   },
   removeAllergyIntoleranceById: function(allergyIntolleranceId){
@@ -78,17 +155,17 @@ Meteor.methods({
     if (process.env.NODE_ENV === 'test') {
       console.log('-----------------------------------------');
       console.log('Removing allergyIntollerance... ');
-      AllergyIntollerances.remove({_id: allergyIntolleranceId});
+      AllergyIntolerances.remove({_id: allergyIntolleranceId});
     } else {
       console.log('This command can only be run in a test environment.');
       console.log('Try setting NODE_ENV=test');
     }
   },
-  dropAllergyIntollerances: function(){
+  dropAllergyIntolerances: function(){
     if (process.env.NODE_ENV === 'test') {
       console.log('-----------------------------------------');
-      console.log('Dropping allergyIntollerances... ');
-      AllergyIntollerances.remove({});
+      console.log('Dropping AllergyIntolerances... ');
+      AllergyIntolerances.remove({});
     } else {
       console.log('This command can only be run in a test environment.');
       console.log('Try setting NODE_ENV=test');
