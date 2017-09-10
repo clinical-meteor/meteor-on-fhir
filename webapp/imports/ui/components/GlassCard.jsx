@@ -47,47 +47,59 @@ export class GlassCard extends React.Component {
     }
 
 
-    // this could be a mixin/extracted to a helper function
-    // Glass.autoHeight()
+    // // this could be a mixin/extracted to a helper function
+    // // Glass.autoHeight()
+    // if (this.props.height === "auto") {
+    //   console.log("is autoheight");
+
+    //   var autoHeight = Session.get('appHeight');
+
+    //   if(Session.get('showNavbars')){
+    //     autoHeight = autoHeight - 128;
+    //   }
+    //   if(Session.get('showSearchbar')){
+    //     autoHeight = autoHeight - 64;
+    //   }
+    //   if(Session.get('mainPanelIsCard')){
+    //     autoHeight = autoHeight - 40;
+    //   }
+
+    //   data.style.height = autoHeight + 'px';
+    // }
+
+
+    // if (this.props.width) {
+    //   data.style.width = this.props.width;
+    // }
+    // return data;
+
     if (this.props.height === "auto") {
       console.log("is autoheight");
 
-      var autoHeight = Session.get('appHeight');
-
-      if(Session.get('showNavbars')){
-        autoHeight = autoHeight - 128;
+      if (Session.get('hasPagePadding')) {
+        data.style.height = Session.get('appHeight') - 160 + 'px';
+        data.style.overflowY = "scroll";
+      } else {
+        if (Session.get('mainPanelIsCard')) {
+          data.style.height = Session.get('appHeight') - 40 + 'px';
+          data.style.overflowY = "scroll";
+        } else {
+          data.style.height = Session.get('appHeight') + 'px';
+          data.style.overflowY = "scroll";
+        }
       }
-      if(!Session.get('showSearchbar')){
-        autoHeight = autoHeight - 64;
-      }
-      if(!Session.get('mainPanelIsCard')){
-        autoHeight = autoHeight - 40;
-      }
-
-      // if (Session.get('hasPagePadding')) {
-      //   data.style.height = Session.get('appHeight') - 160 + 'px';
-      // } else {
-      //   if (Session.get('mainPanelIsCard')) {
-      //     data.style.height = Session.get('appHeight') - 40 + 'px';
-      //   } else {
-      //     data.style.height = Session.get('appHeight') + 'px';
-      //   }
-      // }
-      data.style.height = autoHeight + 'px';
+    } else {
+      data.style.height = this.props.height;      
     }
-
-
-    if (this.props.width) {
-      data.style.width = this.props.width;
-    }
+    data.style.paddingBottom = '0px';
     // GlassFactory.addStyling(data);
 
-    return data;
+    return data;    
   }
 
   render(){
     return (
-       <Card id={this.props.id} style={this.data.style}>
+       <Card id={this.props.id} className="glassCard" containerStyle={this.data.style} style={this.data.style}>
         { this.props.children }
        </Card>
     );

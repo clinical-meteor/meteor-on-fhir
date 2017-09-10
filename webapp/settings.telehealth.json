@@ -1,0 +1,84 @@
+{
+  "public": {
+    "title": "Meteor on FHIR",
+    "theme": {
+      "showVideoBackground": true,
+      "darkroomTextEnabled": false,
+      "defaultVideo": "/VideoBackgrounds/telehealth-1.mp4"
+    },
+    "app": {
+      "barcodes": true,
+      "showUnderConstruction": true,
+      "showExperimental": false
+    },
+    "defaults": {
+      "avatars": true,
+      "barcodes": true,
+      "hexgridMenu": true,
+      "nfcOrbital": true,
+      "notificationMenu": false,
+      "searchbarVisible": true,
+      "displayNavbars": true,
+      "disableHeader": false,
+      "disableFooter": false,
+      "enableSearchbar": false,
+      "darkroom": false,
+      "iFrameEnabled": false,
+      "iFrameUrl": "http://browser.ihtsdotools.org",
+      "paginationLimit": 100,
+      "subscriptionLimit": 1000,
+      "cards": {
+        "height": "auto",
+        "opacity": 0.95
+      }  
+    },
+    "interfaces": {
+      "default": {
+        "status": "active",
+        "channel": {
+          "endpoint": "http://localhost:80"
+        },
+        "auth": {
+          "username": "foo",
+          "password": "bar"
+        }
+      }
+    },
+    "meshNetwork": {
+      "upstreamSync": "http://meteor-on-fhir.meteorapp.com/fhir-3.0.0", 
+      "autosync": false
+    },
+    "modules": {
+      "data": true,
+      "forum": true,
+      "genome": true,
+      "healthlog": true,
+      "dermatograms": true,
+      "telemedicine": true,
+      "inbound": true,
+      "outbound": true,
+      "epic": true,
+      "statisticsLogging": true,
+      "fhir": {
+        "AuditEvents": true,
+        "Conditions": true,
+        "Devices": true,
+        "Patients": true,
+        "Practitioners": true,
+        "Organizations": true,
+        "Observations": true,
+        "ImagingStudies": false,
+        "Locations": true,
+        "Lists": true,
+        "Medications": true,
+        "Questionnaires": true,
+        "RiskAssessments": true
+      }
+    }
+  },
+  "private": {
+    "practitionerAccessCode": "hippocrates",
+    "sysadminAccessCode": "rootaccess",
+    "disableOauth": true
+  }
+}

@@ -112,7 +112,7 @@ export class Footer extends React.Component {
         // the user is logged in as a normal user
         return (
           <div>
-            <FlatButton label='query open.epic.com' className='querySystemButton' ref='querySystemButton' onClick={this.queryPatients.bind(this, 'Patients')} style={this.data.style.buttonText} ></FlatButton>
+            <FlatButton label='query open.epic.com' className='querySystemButton' ref='querySystemButton' onClick={this.querySystemButton.bind(this, 'Patients')} style={this.data.style.buttonText} ></FlatButton>
           </div>
         );
 
@@ -122,6 +122,15 @@ export class Footer extends React.Component {
         return (
           <div>
             <FlatButton label='GET open.epic.com/Organization' className='querySystemButton' ref='querySystemButton' onClick={this.querySystemButton.bind(this, 'Organization')} style={this.data.style.buttonText} ></FlatButton>
+          </div>
+        );
+
+      // CONDITIONS
+      } else if (Meteor.userId() && (Session.equals('pathname', '/conditions')) && Meteor.settings.public && Meteor.settings.public.modules && Meteor.settings.public.modules.epic) {
+        // the user is logged in as a normal user
+        return (
+          <div>
+            <FlatButton label='GET open.epic.com/Condition' className='querySystemButton' ref='querySystemButton' onClick={this.querySystemButton.bind(this, 'Condition')} style={this.data.style.buttonText} ></FlatButton>
           </div>
         );
 

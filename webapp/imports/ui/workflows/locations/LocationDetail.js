@@ -102,7 +102,7 @@ export default class LocationDetail extends React.Component {
 
   render() {
     return (
-      <div id={this.props.id} className="locationDetail">
+      <div id={this.props.id} className="locationDetail" style={{height: '100%'}}>
         <CardText>
           <TextField
             id='locationNameInput'

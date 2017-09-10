@@ -24,17 +24,22 @@ export class VerticalCanvas extends React.Component {
 
 
 
-
-    var canvasWidth;
+    // figure out if the vertical canvas should be wide or not
     if(Session.get('isWideHorizontally')){
       canvasWidth = Session.get('appWidth') - 1;
     } else {
-      if (this.props.width) {
-        canvasWidth = this.props.width;
+      canvasWidth = 1024;      
+    }
+    
+    // but if we're passed in a width via a prop, then overide
+    if (this.props.width) {
+      if(this.props.width == 'wide'){
+        canvasWidth = Session.get('appWidth') - 1;
       } else {
-        canvasWidth = 1024;
+        canvasWidth = this.props.width;
       }
     }
+
 
     if (Session.get('appWidth') > canvasWidth) {
       data.style.position = 'relative';
@@ -43,7 +48,8 @@ export class VerticalCanvas extends React.Component {
 
       if (Session.get('appSurfaceOffset')) {
         // golden ratio
-        data.style.left = (Session.get('appWidth') - canvasWidth) * 0.1618;
+        // data.style.left = (Session.get('appWidth') - canvasWidth) + 40;
+        data.style.left = 80;
         data.style.marginRight = '100px';
       } else {
         // centered
@@ -59,30 +65,16 @@ export class VerticalCanvas extends React.Component {
     var paddingBottom = 0;
 
     if(Session.get('showNavbars')){
-      paddingTop = paddingTop + 60;
-      paddingBottom = paddingBottom + 60;
+      paddingTop = paddingTop + 64;
+      paddingBottom = paddingBottom + 64;
     }
     if(Session.get('showSearchbar')){
       paddingTop = paddingTop + 60;
-      paddingBottom = paddingBottom + 60;
     }
     if(Session.get('mainPanelIsCard')){
       paddingTop = paddingTop + 20;
-      paddingBottom = paddingBottom + 20;
     }
 
-    // if (Session.get('hasPagePadding')) {
-    //   data.style.paddingTop = 80;
-    //   data.style.paddingBottom = 80;
-    // } else {
-    //   if (Session.get('mainPanelIsCard')) {
-    //     data.style.paddingTop = 20;
-    //     data.style.paddingBottom = 20;
-    //   } else {
-    //     data.style.paddingTop = 0;
-    //     data.style.paddingBottom = 0;
-    //   }
-    // }
     data.style.paddingTop = paddingTop + 'px';
     data.style.paddingBottom = paddingBottom + 'px';
 
@@ -115,7 +107,7 @@ export class VerticalCanvas extends React.Component {
 
   render(){
     return (
-      <section className="pageContainer" style={this.data.style}>
+      <section className="pageContainer verticalContainer" style={this.data.style}>
           { this.props.children }
       </section>
     );
