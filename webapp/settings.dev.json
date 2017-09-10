@@ -59,6 +59,7 @@
       "epic": true,
       "statisticsLogging": true,
       "fhir": {
+        "AllergyIntolerances": true,
         "AuditEvents": true,
         "Conditions": true,
         "Devices": true,
@@ -67,6 +68,7 @@
         "Locations": true,
         "Lists": true,
         "Medications": true,
+        "MedicationStatements": true,
         "Organizations": true,
         "Observations": true,
         "Patients": true,
