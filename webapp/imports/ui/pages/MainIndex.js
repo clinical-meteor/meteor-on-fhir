@@ -373,7 +373,7 @@ export class MainIndex extends React.Component {
     if (Meteor.settings.public.modules.fhir.Procedures) {
       if (user.isPractitioner || user.isAdmin) {
         return (
-          <div id='immunizationsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/procedures') } >
+          <div id='immunizationsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/immunizations') } >
             <GlassCard style={this.data.style.indexCard} >
               <CardTitle
                 title='Immunizations'
@@ -613,7 +613,7 @@ export class MainIndex extends React.Component {
     if (Meteor.settings.public.modules.fhir.AllergyIntolerances) {
       if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
-            <div id='allergyIntoleranceTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/allergies') } >
+            <div id='allergyIntoleranceTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/allergies') } >
               <GlassCard style={this.data.style.indexCard} >
                 <CardTitle
                   title='Allergy Intolerances'
@@ -631,7 +631,7 @@ export class MainIndex extends React.Component {
     if (Meteor.settings.public.modules.fhir.AllergyIntolerances) {
       if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
-            <div id='medicationStatementsTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/allergies') } >
+            <div id='medicationStatementsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/medication-statements') } >
               <GlassCard style={this.data.style.indexCard} >
                 <CardTitle
                   title='Medication Statements'
