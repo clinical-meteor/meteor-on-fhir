@@ -48,8 +48,8 @@ export class MainIndex extends React.Component {
         isPractitioner: false,
         isPatient: true
       },
-      showUnderConstruction: false,
-      showExperimental: false
+      showUnderConstruction: true,
+      showExperimental: true
     };
 
     data.style.indexCard = Glass.darkroom(data.style.indexCard);
@@ -124,10 +124,13 @@ export class MainIndex extends React.Component {
 
           {this.renderDiagnosticReport(this.data.user)}
           {this.renderConditions(this.data.user)}
-          {this.renderAllergyIntolerance(this.data.user)}
+          {/* {this.renderAllergyIntolerance(this.data.user)} */}
 
           {this.renderProcedures(this.data.user)}
           {this.renderImmunizations(this.data.user)}
+          {this.renderAllergies(this.data.user)}
+          {this.renderMedicationStatements(this.data.user)}
+
 
           <br/>
 
@@ -137,7 +140,7 @@ export class MainIndex extends React.Component {
           {this.renderImagingStudy(this.data.user)}
 
           {this.renderExperimentalSection(this.data.user)}
-          {this.renderExperimentalTiles(this.data.showExperimental)}
+          {this.renderExperimentalTiles(this.data.user)}
 
         </VerticalCanvas>
       </div>
@@ -370,7 +373,7 @@ export class MainIndex extends React.Component {
     if (Meteor.settings.public.modules.fhir.Procedures) {
       if (user.isPractitioner || user.isAdmin) {
         return (
-          <div id='immunizationsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/procedures') } >
+          <div id='immunizationsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/immunizations') } >
             <GlassCard style={this.data.style.indexCard} >
               <CardTitle
                 title='Immunizations'
@@ -384,6 +387,27 @@ export class MainIndex extends React.Component {
       }
     }
   }
+
+
+  renderAllergies(user){
+    if (Meteor.settings.public.modules.fhir.AllergyIntolerances) {
+      if (user.isPractitioner || user.isAdmin) {
+        return (
+          <div id='immunizationsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/allergies') } >
+            <GlassCard style={this.data.style.indexCard} >
+              <CardTitle
+                title='Allergy Intollerances'
+                subtitle='Things that might trigger autoimmunize responses.'
+                titleStyle={this.data.style.title}
+                subtitleStyle={this.data.style.subtitle}
+              />
+            </GlassCard>
+          </div>
+        );
+      }
+    }
+  }
+
   renderProcedures(user){
     if (Meteor.settings.public.modules.fhir.Procedures) {
       if (user.isPractitioner || user.isAdmin) {
@@ -589,7 +613,7 @@ export class MainIndex extends React.Component {
     if (Meteor.settings.public.modules.fhir.AllergyIntolerances) {
       if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
-            <div id='allergyIntoleranceTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/allergies') } >
+            <div id='allergyIntoleranceTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/allergies') } >
               <GlassCard style={this.data.style.indexCard} >
                 <CardTitle
                   title='Allergy Intolerances'
@@ -603,6 +627,25 @@ export class MainIndex extends React.Component {
       }
     }
   }   
+  renderMedicationStatements(user){
+    if (Meteor.settings.public.modules.fhir.AllergyIntolerances) {
+      if (user.isPatient || user.isPractitioner || user.isAdmin) {
+        return (
+            <div id='medicationStatementsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/medication-statements') } >
+              <GlassCard style={this.data.style.indexCard} >
+                <CardTitle
+                  title='Medication Statements'
+                  subtitle='Current list of medications a person is on.'
+                  titleStyle={this.data.style.title}
+                  subtitleStyle={this.data.style.subtitle}
+                />
+              </GlassCard>
+            </div>
+        );
+      }
+    }
+  }   
+  
 
 
   renderImagingStudy(user){
@@ -652,7 +695,8 @@ export class MainIndex extends React.Component {
 
 
   renderTilesUnderConstruction(user, showUnderConstruction){
-    if (showUnderConstruction) {
+    // if (showUnderConstruction) {
+    if (true) {
       if (user.isPractitioner || user.isAdmin) {
         return (
           <div>
@@ -679,7 +723,20 @@ export class MainIndex extends React.Component {
               </GlassCard>
             </div>*/}
 
-            <div id='allergiesTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/allergies') } >
+            {/* <div id='allergiesTi
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            le' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/allergies') } >
               <GlassCard style={this.data.style.indexCard} >
                 <CardTitle
                   title='Allergies'
@@ -688,7 +745,7 @@ export class MainIndex extends React.Component {
                   subtitleStyle={this.data.style.subtitle}
                 />
               </GlassCard>
-            </div>
+            </div> */}
             <div id='bodySitesTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/body-sites') } >
               <GlassCard style={this.data.style.indexCard} >
                 <CardTitle
@@ -736,7 +793,7 @@ export class MainIndex extends React.Component {
             </div>    
 
 
-            <div id='medicationStatementTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/medication-statements') } >
+            {/* <div id='medicationStatementTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/medication-statements') } >
               <GlassCard style={this.data.style.indexCard} >
                 <CardTitle
                   title='Medication Statement'
@@ -745,7 +802,7 @@ export class MainIndex extends React.Component {
                   subtitleStyle={this.data.style.subtitle}
                 />
               </GlassCard>
-            </div>    
+            </div>     */}
 
             <div id='medicationOrderTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/medication-orders') } >
               <GlassCard style={this.data.style.indexCard} >

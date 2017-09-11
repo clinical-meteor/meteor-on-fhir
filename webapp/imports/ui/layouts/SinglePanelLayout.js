@@ -121,7 +121,7 @@ export class SinglePanelLayout extends React.Component {
           <div onClick={ this.closeOpenedSidebar }>
               <IndexLinkContainer id="userIdentification" to='/myprofile' >
                  <CardHeader
-                   avatar={this.data.card.avatar}
+                   //avatar={this.data.card.avatar}
                    title={this.data.card.title}
                    subtitle={this.data.card.subtitle}
                    style={{cursor: 'pointer'}}

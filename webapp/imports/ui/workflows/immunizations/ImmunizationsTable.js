@@ -24,7 +24,9 @@ export default class ImmunizationsTable extends React.Component {
     }
 
 
-    if(process.env.NODE_ENV === "test") console.log("data", data);
+    //if(process.env.NODE_ENV === "test"){
+      console.log("ImmunizationsTable[data]", data)
+    //};
     return data;
   };
 
@@ -35,12 +37,16 @@ export default class ImmunizationsTable extends React.Component {
     Session.set('immunizationPageTabIndex', 2);
   };
   render () {
-    let tableRows = [];
+    console.log('this.data', this.data)
+
+      let tableRows = [];
     for (var i = 0; i < this.data.immunizations.length; i++) {
+      console.log('this.data.immunizations[i]', this.data.immunizations[i])
       var newRow = {
         status: '',
         notGiven: '',
         identifier: '',
+        vaccine: '',
         snomedCode: '',
         snomedDisplay: '',
         evidenceDisplay: '',
@@ -53,12 +59,27 @@ export default class ImmunizationsTable extends React.Component {
         if(this.data.immunizations[i].notGiven){
           newRow.notGiven = this.data.immunizations[i].notGiven;
         }
-        if(this.data.immunizations[i].identifier && this.data.immunizations[i].identifier[0] && this.data.immunizations[i].identifier[0].type && this.data.immunizations[i].identifier[0].type.text){
-          newRow.identifier = this.data.immunizations[i].identifier[0].type.text;
+
+        if(this.data.immunizations[i].identifier && this.data.immunizations[i].identifier[0]){
+          console.log('this.data.immunizations[i].identifier', this.data.immunizations[i].identifier)
+          this.data.immunizations[i].identifier.forEach(function(record){
+            console.log('record', record)
+
+            if(record.use == 'official'){              
+              newRow.identifier = record.type.text;
+            }
+            if(record.use == 'secondary'){
+              newRow.vaccine = newRow.vaccine + ' ' + record.type.text;
+            }
+
+          });
         }
         if(this.data.immunizations[i].vaccineCode && this.data.immunizations[i].vaccineCode.text){
           newRow.vaccineCode = this.data.immunizations[i].vaccineCode.text;
         }
+        // if(this.data.immunizations[i].identifier && this.data.immunizations[i].identifier[0] && this.data.immunizations[i].identifier[0].type.text){
+        //   newRow.identifier = this.data.immunizations[i].identifier[0].type.text;
+        // }
         // if(this.data.immunizations[i].code){
         //   if(this.data.immunizations[i].code.coding && this.data.immunizations[i].code.coding[0]){            
         //     newRow.snomedCode = this.data.immunizations[i].code.coding[0].code;
@@ -80,12 +101,9 @@ export default class ImmunizationsTable extends React.Component {
 
       tableRows.push(
         <tr key={i} className="immunizationRow" style={{cursor: "pointer"}} onClick={ this.rowClick.bind('this', this.data.immunizations[i]._id)} >
-
-          <td className='notGiven'>{ newRow.notGiven }</td>
-          <td className='status'>{ newRow.status }</td>
           <td className='identifier'>{ newRow.identifier }</td>
+          <td className='vaccine'>{ newRow.vaccine }</td>
           <td className='vaccineCode'>{ newRow.vaccineCode }</td>
-          {/*<td><span className="barcode">{ newRow.barcode }</span></td>*/}
         </tr>
       )
     }
@@ -94,11 +112,9 @@ export default class ImmunizationsTable extends React.Component {
       <Table id='immunizationsTable' responses hover >
         <thead>
           <tr>
-            <th className='notGiven'>notGiven</th>
-            <th className='status'>status</th>
             <th className='identifier'>identifier</th>
+            <th className='vaccine'>vaccine</th>
             <th className='vaccineCode'>vaccineCode</th>
-            {/*<th>_id</th>*/}
           </tr>
         </thead>
         <tbody>

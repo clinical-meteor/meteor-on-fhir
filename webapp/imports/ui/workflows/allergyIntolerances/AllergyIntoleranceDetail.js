@@ -75,10 +75,10 @@ export default class AllergyIntoleranceDetail extends React.Component {
         console.log("selectedAllergyIntolerance", selectedAllergyIntolerance);
 
         if (selectedAllergyIntolerance) {
-          data.procedure = selectedAllergyIntolerance;
+          data.allergy = selectedAllergyIntolerance;
         }
       } else {
-        data.procedure = defaultAllergyIntolerance;
+        data.allergy = defaultAllergyIntolerance;
       }
 
     }
@@ -88,14 +88,14 @@ export default class AllergyIntoleranceDetail extends React.Component {
 
   render() {
     return (
-      <div id={this.props.id} className="procedureDetail">
+      <div id={this.props.id} className="allergyDetail">
         <CardText>
           <TextField
             id='patientDisplayInput'
             ref='patientDisplay'
             name='patientDisplay'
             floatingLabelText='Patient'
-            value={this.data.procedure.patient ? this.data.procedure.patient.display : ''}
+            value={this.data.allergy.patient ? this.data.allergy.patient.display : ''}
             onChange={ this.changeState.bind(this, 'patientDisplay')}
             fullWidth
             /><br/>
@@ -104,7 +104,7 @@ export default class AllergyIntoleranceDetail extends React.Component {
             ref='asserterDisplay'
             name='asserterDisplay'
             floatingLabelText='Asserter'
-            value={this.data.procedure.asserter ? this.data.procedure.asserter.display : ''}
+            value={this.data.allergy.asserter ? this.data.allergy.asserter.display : ''}
             onChange={ this.changeState.bind(this, 'asserterDisplay')}
             fullWidth
             /><br/>
@@ -113,7 +113,7 @@ export default class AllergyIntoleranceDetail extends React.Component {
             ref='clinicalStatus'
             name='clinicalStatus'
             floatingLabelText='Clinical Status'
-            value={this.data.procedure.clinicalStatus ? this.data.procedure.clinicalStatus : ''}
+            value={this.data.allergy.clinicalStatus ? this.data.allergy.clinicalStatus : ''}
             onChange={ this.changeState.bind(this, 'clinicalStatus')}
             fullWidth
             /><br/>
@@ -122,7 +122,7 @@ export default class AllergyIntoleranceDetail extends React.Component {
             ref='snomedCode'
             name='snomedCode'
             floatingLabelText='SNOMED Code'
-            value={this.data.procedure.code.coding[0] ? this.data.procedure.code.coding[0].code : ''}
+            value={this.data.allergy.code.coding[0] ? this.data.allergy.code.coding[0].code : ''}
             onChange={ this.changeState.bind(this, 'snomedCode')}
             fullWidth
             /><br/>
@@ -131,7 +131,7 @@ export default class AllergyIntoleranceDetail extends React.Component {
             ref='snomedDisplay'
             name='snomedDisplay'
             floatingLabelText='SNOMED Display'
-            value={this.data.procedure.code.coding[0] ? this.data.procedure.code.coding[0].display : ''}
+            value={this.data.allergy.code.coding[0] ? this.data.allergy.code.coding[0].display : ''}
             onChange={ this.changeState.bind(this, 'snomedDisplay')}
             fullWidth
             /><br/>
@@ -140,7 +140,7 @@ export default class AllergyIntoleranceDetail extends React.Component {
             ref='evidenceDisplay'
             name='evidenceDisplay'
             floatingLabelText='Evidence (Observation)'
-            value={this.data.procedure.evidence[0].detail[0] ? this.data.procedure.evidence[0].detail[0].display : ''}
+            value={this.data.allergy.evidence[0].detail[0] ? this.data.allergy.evidence[0].detail[0].display : ''}
             onChange={ this.changeState.bind(this, 'evidenceDisplay')}
             fullWidth
             /><br/>
@@ -150,15 +150,15 @@ export default class AllergyIntoleranceDetail extends React.Component {
 
         </CardText>
         <CardActions>
-          { this.determineButtons(this.data.procedureId) }
+          { this.determineButtons(this.data.allergyId) }
         </CardActions>
       </div>
     );
   }
 
 
-  determineButtons(procedureId){
-    if (procedureId) {
+  determineButtons(allergyId){
+    if (allergyId) {
       return (
         <div>
           <RaisedButton id="saveAllergyIntoleranceButton" label="Save" primary={true} onClick={this.handleSaveButton.bind(this)} />
@@ -176,55 +176,55 @@ export default class AllergyIntoleranceDetail extends React.Component {
 
   // this could be a mixin
   changeState(field, event, value){
-    let procedureUpdate;
+    let allergyUpdate;
 
     if(process.env.NODE_ENV === "test") console.log("AllergyIntoleranceDetail.changeState", field, event, value);
 
-    // by default, assume there's no other data and we're creating a new procedure
-    if (Session.get('procedureUpsert')) {
-      procedureUpdate = Session.get('procedureUpsert');
+    // by default, assume there's no other data and we're creating a new allergy
+    if (Session.get('allergyUpsert')) {
+      allergyUpdate = Session.get('allergyUpsert');
     } else {
-      procedureUpdate = defaultAllergyIntolerance;
+      allergyUpdate = defaultAllergyIntolerance;
     }
 
 
 
-    // if there's an existing procedure, use them
+    // if there's an existing allergy, use them
     if (Session.get('selectedAllergyIntolerance')) {
-      procedureUpdate = this.data.procedure;
+      allergyUpdate = this.data.allergy;
     }
 
     switch (field) {
       case "patientDisplay":
-        procedureUpdate.patient.display = value;
+        allergyUpdate.patient.display = value;
         break;
       case "asserterDisplay":
-        procedureUpdate.asserter.display = value;
+        allergyUpdate.asserter.display = value;
         break;
       case "clinicalStatus":
-        procedureUpdate.clinicalStatus = value;
+        allergyUpdate.clinicalStatus = value;
         break;
       case "snomedCode":
-        procedureUpdate.code.coding[0].code = value;
+        allergyUpdate.code.coding[0].code = value;
         break;
       case "snomedDisplay":
-        procedureUpdate.code.coding[0].display = value;
+        allergyUpdate.code.coding[0].display = value;
         break;
       case "evidenceDisplay":
-        procedureUpdate.evidence[0].detail[0].display = value;
+        allergyUpdate.evidence[0].detail[0].display = value;
         break;
       default:
 
     }
 
-    if(process.env.NODE_ENV === "test") console.log("procedureUpdate", procedureUpdate);
-    Session.set('procedureUpsert', procedureUpdate);
+    if(process.env.NODE_ENV === "test") console.log("allergyUpdate", allergyUpdate);
+    Session.set('allergyUpsert', allergyUpdate);
   }
 
   handleSaveButton(){
-    let procedureUpdate = Session.get('procedureUpsert', procedureUpdate);
+    let allergyUpdate = Session.get('allergyUpsert', allergyUpdate);
 
-    if(process.env.NODE_ENV === "test") console.log("procedureUpdate", procedureUpdate);
+    if(process.env.NODE_ENV === "test") console.log("allergyUpdate", allergyUpdate);
 
 
     if (Session.get('selectedAllergyIntolerance')) {

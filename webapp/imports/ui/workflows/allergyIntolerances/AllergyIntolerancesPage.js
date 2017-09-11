@@ -54,7 +54,7 @@ export class AllergyIntolerancesPage extends React.Component {
       <div id='allergyIntolerancesPage'>
         <VerticalCanvas>
           <GlassCard height='auto'>
-            <CardTitle title='AllergyIntolerances' />
+            <CardTitle title='Allergy Intolerances' />
             <CardText>
               <Tabs id="allergyIntolerancesPageTabs" default value={this.data.tabIndex} onChange={this.handleTabChange} initialSelectedIndex={1}>
                <Tab className='newAllergyIntoleranceTab' label='New' style={this.data.style.tab} onActive={ this.onNewTab } value={0}>

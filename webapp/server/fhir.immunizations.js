@@ -26,33 +26,85 @@ Meteor.methods({
   initializeImmunizations:function(){
     console.log('Initializing immunizations...');
 
-    if (Immunizations.find({'identifier.type.text': 'Chickenpox'}).count() === 0) {
-      console.log('No records found in Immunizations collection.  Lets create some...');
-
-      var chickenpox = {
+    if (Immunizations.find({'vaccineCode.text': 'MMRV'}).count() === 0) {
+      var multspectrum = {
         resourceType: 'Immunization',
-        status: 'unknown', 
         notGiven: true,
         identifier: [{
+          use: 'secondary',
           type: {
-            text: 'Chickenpox'
+            text: 'Varicella'
+          }
+        }, {
+          use: 'secondary',
+          type: {
+            text: 'Mumps'
+          }
+        }, {
+          use: 'secondary',
+          type: {
+            text: 'Measles'
+          }
+        }, {
+          use: 'secondary',
+          type: {
+            text: 'Rubella'
+          }
+        }, {
+          use: 'official',
+          type: {
+            text: 'ProQuad'
           }
         }],
         vaccineCode: {
-          text: 'Varicella vaccine'
+          text: 'MMRV'
         }
       };
-      Meteor.call('createImmunization', chickenpox);
+      Meteor.call('createImmunization', multspectrum);
+    }
+
+    if (Immunizations.find({'vaccineCode.text': 'VAR'}).count() === 0) {
+      console.log('No records found in Immunizations collection.  Lets create some...');
+
+      var chickenpox1 = {
+        resourceType: 'Immunization',
+        notGiven: true,
+        identifier: [{
+          use: 'secondary',
+          type: {
+            text: 'Chickenpox'
+          }
+        }, {
+          use: 'secondary',
+          type: {
+            text: 'Varicella'
+          }
+        }, {
+          use: 'official',
+          type: {
+            text: 'Varivax'
+          }
+        }],
+        vaccineCode: {
+          text: 'VAR'
+        }
+      };
+      Meteor.call('createImmunization', chickenpox1);
     } 
 
-    if (Immunizations.find({'identifier.type.text': 'Diptheria'}).count() === 0) {
+    if (Immunizations.find({'vaccineCode.text': 'DTaP*'}).count() === 0) {
       console.log('No records found in Immunizations collection.  Lets create some...');
 
       var diptheria = {
         resourceType: 'Immunization',
-        status: 'unknown', 
         notGiven: true,
         identifier: [{
+          use: 'official',
+          type: {
+            text: 'Daptacel'
+          }
+        }, {
+          use: 'secondary',
           type: {
             text: 'Diptheria'
           }
@@ -64,33 +116,43 @@ Meteor.methods({
       Meteor.call('createImmunization', diptheria);
     } 
 
-    if (Immunizations.find({'identifier.type.text': 'Hib'}).count() === 0) {
+    if (Immunizations.find({'vaccineCode.text': 'ActHIB'}).count() === 0) {
       console.log('No records found in Immunizations collection.  Lets create some...');
 
       var hib = {
         resourceType: 'Immunization',
-        status: 'unknown', 
         notGiven: true,
         identifier: [{
+          use: 'official',
           type: {
             text: 'Hib'
           }
+        }, {
+          use: 'secondary',
+          type: {
+            text: 'Haemophilus influenzae type b'
+          }
         }],
         vaccineCode: {
-          text: 'Hib'
+          text: 'ActHIB'
         }        
       };
       Meteor.call('createImmunization', hib);
     }     
 
-    if (Immunizations.find({'identifier.type.text': 'Hepatitis A'}).count() === 0) {
+    if (Immunizations.find({'vaccineCode.text': 'HepA'}).count() === 0) {
       console.log('No records found in Immunizations collection.  Lets create some...');
 
       var hepA = {
         resourceType: 'Immunization',
-        status: 'unknown', 
         notGiven: true,
         identifier: [{
+          use: 'official',
+          type: {
+            text: 'Havrix'
+          }
+        }, {
+          use: 'secondary',
           type: {
             text: 'Hepatitis A'
           }
@@ -102,14 +164,19 @@ Meteor.methods({
       Meteor.call('createImmunization', hepA);
     }     
 
-    if (Immunizations.find({'identifier.type.text': 'Hepatitis B'}).count() === 0) {
+    if (Immunizations.find({'vaccineCode.text': 'HepB'}).count() === 0) {
       console.log('No records found in Immunizations collection.  Lets create some...');
 
       var hepB = {
         resourceType: 'Immunization',
-        status: 'unknown', 
         notGiven: true,
         identifier: [{
+          use: 'official',
+          type: {
+            text: 'Engerix-B'
+          }
+        }, {
+          use: 'secondary',
           type: {
             text: 'Hepatitis B'
           }
@@ -121,35 +188,60 @@ Meteor.methods({
       Meteor.call('createImmunization', hepB);
     }     
 
-    if (Immunizations.find({'identifier.type.text': 'Influenza'}).count() === 0) {
+    if (Immunizations.find({'vaccineCode.text': 'IIV*'}).count() === 0) {
       console.log('No records found in Immunizations collection.  Lets create some...');
 
       var flu = {
         resourceType: 'Immunization',
-        status: 'unknown', 
         notGiven: true,
         identifier: [{
+          use: 'official',
+          type: {
+            text: 'Afluria'
+          }
+        }, {
+          use: 'secondary',
           type: {
             text: 'Influenza'
           }
+        }, {
+          use: 'secondary',
+          type: {
+            text: 'Flu'
+          }
         }],
         vaccineCode: {
-          text: 'Flu vaccine'
+          text: 'IIV*'
         }        
       };
       Meteor.call('createImmunization', flu);
     }     
 
-    if (Immunizations.find({'identifier.type.text': 'Measles'}).count() === 0) {
+    if (Immunizations.find({'vaccineCode.text': 'MMR**'}).count() === 0) {
       console.log('No records found in Immunizations collection.  Lets create some...');
 
       var measles = {
         resourceType: 'Immunization',
-        status: 'unknown', 
         notGiven: true,
         identifier: [{
+          use: 'official',
+          type: {
+            text: 'M-M-R II'
+          }
+        }, {
+          use: 'secondary',
+          type: {
+            text: 'Mumps'
+          }
+        }, {
+          use: 'secondary',
           type: {
             text: 'Measles'
+          }
+        }, {
+          use: 'secondary',
+          type: {
+            text: 'Rubella'
           }
         }],
         vaccineCode: {
@@ -159,140 +251,132 @@ Meteor.methods({
       Meteor.call('createImmunization', measles);
     }     
 
-    if (Immunizations.find({'identifier.type.text': 'Mumps'}).count() === 0) {
-      console.log('No records found in Immunizations collection.  Lets create some...');
 
-      var mumps = {
-        resourceType: 'Immunization',
-        status: 'unknown', 
-        notGiven: true,
-        identifier: [{
-          type: {
-            text: 'Mumps'
-          }
-        }],
-        vaccineCode: {
-          text: 'MMR**'
-        }        
-      };
-      Meteor.call('createImmunization', mumps);
-    }  
-
-    if (Immunizations.find({'identifier.type.text': 'Pertussis'}).count() === 0) {
+    if (Immunizations.find({'vaccineCode.text': 'DTaP'}).count() === 0) {
       console.log('No records found in Immunizations collection.  Lets create some...');
 
       var pertussis = {
         resourceType: 'Immunization',
-        status: 'unknown', 
         notGiven: true,
         identifier: [{
+          use: 'official',
+          type: {
+            text: 'Daptacel'
+          }
+        }, {
+          use: 'secondary',
+          type: {
+            text: 'Tetanus'
+          }
+        }, {
+          use: 'secondary',
+          type: {
+            text: 'Diphtheria'
+          }
+        }, {
+          use: 'secondary',
           type: {
             text: 'Pertussis'
           }
         }],
         vaccineCode: {
-          text: 'DTaP*'
+          text: 'DTaP'
         }        
       };
       Meteor.call('createImmunization', pertussis);
     }       
 
 
-    if (Immunizations.find({'identifier.type.text': 'Polio'}).count() === 0) {
+    if (Immunizations.find({'vaccineCode.text': 'DTaP-IPV'}).count() === 0) {
       console.log('No records found in Immunizations collection.  Lets create some...');
 
       var polio = {
         resourceType: 'Immunization',
-        status: 'unknown', 
         notGiven: true,
         identifier: [{
+          use: 'official',
+          type: {
+            text: 'Quadracel'
+          }
+        }, {
+          use: 'secondary',
+          type: {
+            text: 'Diptheria'
+          }
+        }, {
+          use: 'secondary',
+          type: {
+            text: 'Pertussis'
+          }
+        }, {
+          use: 'secondary',
           type: {
             text: 'Polio'
           }
+        }, {
+          use: 'secondary',
+          type: {
+            text: 'Tetanus'
+          }
         }],
         vaccineCode: {
-          text: 'IPV'
+          text: 'DTaP-IPV'
         }        
       };
       Meteor.call('createImmunization', polio);
     }    
 
-    if (Immunizations.find({'identifier.type.text': 'Pneumococcal'}).count() === 0) {
+    if (Immunizations.find({'vaccineCode.text': 'PCV13'}).count() === 0) {
       console.log('No records found in Immunizations collection.  Lets create some...');
 
       var pneumococcal = {
         resourceType: 'Immunization',
-        status: 'unknown', 
         notGiven: true,
         identifier: [{
+          use: 'official',
+          type: {
+            text: 'Prevnar13'
+          }
+        }, {
+          use: 'secondary',
           type: {
             text: 'Pneumococcal'
           }
         }],
         vaccineCode: {
-          text: 'PCV'
+          text: 'PCV13'
         }                
       };
       Meteor.call('createImmunization', pneumococcal);
     }    
 
 
-    if (Immunizations.find({'identifier.type.text': 'Rotavirus'}).count() === 0) {
+    if (Immunizations.find({'vaccineCode.text': 'RV1'}).count() === 0) {
       console.log('No records found in Immunizations collection.  Lets create some...');
 
       var rotavirus = {
         resourceType: 'Immunization',
-        status: 'unknown', 
         notGiven: true,
         identifier: [{
+          use: 'official',
+          type: {
+            text: 'Rotarix'
+          }
+        }, {
+          use: 'secondary',
           type: {
             text: 'Rotavirus'
           }
         }],
         vaccineCode: {
-          text: 'RV'
+          text: 'RV1'
         }        
       };
       Meteor.call('createImmunization', rotavirus);
     }    
 
-    if (Immunizations.find({'identifier.type.text': 'Rubella'}).count() === 0) {
-      console.log('No records found in Immunizations collection.  Lets create some...');
-
-      var rubella = {
-        resourceType: 'Immunization',
-        status: 'unknown', 
-        notGiven: true,
-        identifier: [{
-          type: {
-            text: 'Rubella'
-          }
-        }],
-        vaccineCode: {
-          text: 'MMR**'
-        }        
-      };
-      Meteor.call('createImmunization', rubella);
-    }    
-
-    if (Immunizations.find({'identifier.type.text': 'Tetanus'}).count() === 0) {
-      console.log('No records found in Immunizations collection.  Lets create some...');
-
-      var tetanus = {
-        resourceType: 'Immunization',
-        status: 'unknown', 
-        notGiven: true,
-        identifier: [{
-          type: {
-            text: 'Tetanus'
-          }
-        }],
-        vaccineCode: {
-          text: 'DTaP*'
-        }        
-      };
-      Meteor.call('createImmunization', tetanus);
-    }    
+ 
+  
   },
   removeImmunizationById: function(immunizationId){
     check(immunizationId, String);
