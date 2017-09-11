@@ -142,15 +142,14 @@ export class SciFiPage extends React.Component {
     return(
         <View 
           id='orbital'
-          flex={true}
           onMouseDown={() => { this.hideDemo(); }}
           onMouseUp={() => { this.showDemo(); }}
           onTouchStart={() => { this.hideDemo(); }}
           onTouchEnd={() => { this.showDemo(); }}
           style={this.data.orbital}
           >
-          <View flex={true} style={contentStyle}>
-            <Fade show={showDemo} flex={true}>
+          <View style={contentStyle}>
+            <Fade show={showDemo} >
               <Zoom show={showDemo}
                 stifness={showDemo ? 160 : 170}
                 damping={showDemo ? 13 : 26}>

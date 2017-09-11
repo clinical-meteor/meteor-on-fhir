@@ -38,7 +38,7 @@ Meteor.methods({
     Meteor.call('initializeSystemUsers');
     Meteor.call('initializeProviderDirectory');    
 
-
+    Meteor.call('initializeAllergyIntolerances');
   },
   initializeProviderDirectory: function(){
     Meteor.call('initializeBlockchain');  // creates Organizations

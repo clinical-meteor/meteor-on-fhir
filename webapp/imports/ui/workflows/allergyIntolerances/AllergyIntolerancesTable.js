@@ -40,48 +40,61 @@ export default class AllergyIntolerancesTable extends React.Component {
       var newRow = {
         patientDisplay: '',
         asserterDisplay: '',
+        name: '',
+        type: '',
+        category: '',
         clinicalStatus: '',
+        verificationStatus: '',
         snomedCode: '',
         snomedDisplay: '',
         evidenceDisplay: '',
         barcode: ''
       };
-      // if (this.data.allergyIntolerances[i]){
-      //   if(this.data.allergyIntolerances[i].patient){
-      //     newRow.patientDisplay = this.data.allergyIntolerances[i].patient.display;
-      //   }
-      //   if(this.data.allergyIntolerances[i].asserter){
-      //     newRow.asserterDisplay = this.data.allergyIntolerances[i].asserter.display;
-      //   }
-      //   if(this.data.allergyIntolerances[i].clinicalStatus){
-      //     newRow.clinicalStatus = this.data.allergyIntolerances[i].clinicalStatus;
-      //   }
-      //   if(this.data.allergyIntolerances[i].code){
-      //     if(this.data.allergyIntolerances[i].code.coding && this.data.allergyIntolerances[i].code.coding[0]){            
-      //       newRow.snomedCode = this.data.allergyIntolerances[i].code.coding[0].code;
-      //       newRow.snomedDisplay = this.data.allergyIntolerances[i].code.coding[0].display;
-      //     }
-      //   }
-      //   if(this.data.allergyIntolerances[i].evidence && this.data.allergyIntolerances[i].evidence[0]){
-      //     if(this.data.allergyIntolerances[i].evidence[0].detail && this.data.allergyIntolerances[i].evidence[0].detail[0]){            
-      //       newRow.evidenceDisplay = this.data.allergyIntolerances[i].evidence[0].detail[0].display;
-      //     }
-      //   }
-      //   if(this.data.allergyIntolerances[i]._id){
-      //     newRow.barcode = this.data.allergyIntolerances[i]._id;
-      //   }        
-      // }
+      if (this.data.allergyIntolerances[i]){
+        // if(this.data.allergyIntolerances[i].patient){
+        //   newRow.patientDisplay = this.data.allergyIntolerances[i].patient.display;
+        // }
+        // if(this.data.allergyIntolerances[i].asserter){
+        //   newRow.asserterDisplay = this.data.allergyIntolerances[i].asserter.display;
+        // }
+        if(this.data.allergyIntolerances[i].identifier && this.data.allergyIntolerances[i].identifier[0] && this.data.allergyIntolerances[i].identifier[0].value){
+          newRow.name = this.data.allergyIntolerances[i].identifier[0].value;
+        }
+        if(this.data.allergyIntolerances[i].clinicalStatus){
+          newRow.clinicalStatus = this.data.allergyIntolerances[i].clinicalStatus;
+        }
+        if(this.data.allergyIntolerances[i].verificationStatus){
+          newRow.verificationStatus = this.data.allergyIntolerances[i].verificationStatus;
+        }
+        if(this.data.allergyIntolerances[i].type){
+          newRow.type = this.data.allergyIntolerances[i].type;
+        }
+        if(this.data.allergyIntolerances[i].category && this.data.allergyIntolerances[i].category[0]){
+          newRow.category = this.data.allergyIntolerances[i].category[0];
+        }
+        if(this.data.allergyIntolerances[i].code){
+          if(this.data.allergyIntolerances[i].code.coding && this.data.allergyIntolerances[i].code.coding[0]){            
+            newRow.snomedCode = this.data.allergyIntolerances[i].code.coding[0].code;
+            newRow.snomedDisplay = this.data.allergyIntolerances[i].code.coding[0].display;
+          }
+        }
+        // if(this.data.allergyIntolerances[i].evidence && this.data.allergyIntolerances[i].evidence[0]){
+        //   if(this.data.allergyIntolerances[i].evidence[0].detail && this.data.allergyIntolerances[i].evidence[0].detail[0]){            
+        //     newRow.evidenceDisplay = this.data.allergyIntolerances[i].evidence[0].detail[0].display;
+        //   }
+        // }
+        // if(this.data.allergyIntolerances[i]._id){
+        //   newRow.barcode = this.data.allergyIntolerances[i]._id;
+        // }        
+      }
 
       tableRows.push(
         <tr key={i} className="allergyIntoleranceRow" style={{cursor: "pointer"}} onClick={ this.rowClick.bind('this', this.data.allergyIntolerances[i]._id)} >
-
-          <td className='patientDisplay'>{ newRow.patientDisplay }</td>
-          <td className='asserterDisplay'>{ newRow.asserterDisplay }</td>
+          <td className='name'>{ newRow.name }</td>
           <td className='clinicalStatus'>{ newRow.clinicalStatus }</td>
-          <td className='snomedCode'>{ newRow.snomedCode }</td>
-          <td className='snomedDisplay'>{ newRow.snomedDisplay }</td>
-          <td className='evidenceDisplay'>{ newRow.evidenceDisplay }</td>
-          <td><span className="barcode">{ newRow.barcode }</span></td>
+          <td className='verificationStatus'>{ newRow.verificationStatus }</td>
+          <td className='type'>{ newRow.type }</td>
+          <td className='category'>{ newRow.category }</td>
         </tr>
       )
     }
@@ -90,13 +103,11 @@ export default class AllergyIntolerancesTable extends React.Component {
       <Table id='allergyIntolerancesTable' responses hover >
         <thead>
           <tr>
-            <th className='patientDisplay'>patient</th>
-            <th className='asserterDisplay'>asserter</th>
+            <th className='name'>name</th>
             <th className='clinicalStatus'>status</th>
-            <th className='snomedCode'>code</th>
-            <th className='snomedDisplay'>allergyIntolerance</th>
-            <th className='evidenceDisplay'>evidence</th>
-            <th>_id</th>
+            <th className='verificationStatus'>verification</th>
+            <th className='type'>type</th>
+            <th className='category'>category</th>
           </tr>
         </thead>
         <tbody>
