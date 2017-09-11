@@ -106,41 +106,41 @@ export class MainIndex extends React.Component {
           <CardTitle title="Admin Functionality" style={this.data.style.sectionTitle} />  
           {this.renderAdminTiles(this.data.user)}
 
+          {this.renderAppsSection(this.data.user)}
+            {this.renderChecklists(this.data.user)}
+
+
+          {this.renderFhirSection(this.data.user)}
+
+
+            {this.renderPatients(this.data.user)}
+            {this.renderPractitioners(this.data.user)}
+
+            {this.renderDevices(this.data.user)}
+            {this.renderObservations(this.data.user)}
+            {this.renderMedications(this.data.user)}
+
+            {this.renderOrganizations(this.data.user)}
+            {this.renderLocations(this.data.user)}
+
+            {this.renderRiskAssessments(this.data.user)}
+
+            {this.renderDiagnosticReport(this.data.user)}
+            {this.renderConditions(this.data.user)}
+            {/* {this.renderAllergyIntolerance(this.data.user)} */}
+
+            {this.renderProcedures(this.data.user)}
+            {this.renderImmunizations(this.data.user)}
+            {this.renderAllergies(this.data.user)}
+            {this.renderMedicationStatements(this.data.user)}
+
           <br/>
-          <CardTitle title="Fast Healthcare Interoperability Resources" style={this.data.style.sectionTitle} /><br/>  
-
-          {this.renderPatients(this.data.user)}
-          {this.renderPractitioners(this.data.user)}
-
-          {this.renderDevices(this.data.user)}
-          {this.renderObservations(this.data.user)}
-          {this.renderChecklists(this.data.user)}
-          {this.renderMedications(this.data.user)}
-
-          {this.renderOrganizations(this.data.user)}
-          {this.renderLocations(this.data.user)}
-
-          {this.renderRiskAssessments(this.data.user)}
-
-          {this.renderDiagnosticReport(this.data.user)}
-          {this.renderConditions(this.data.user)}
-          {/* {this.renderAllergyIntolerance(this.data.user)} */}
-
-          {this.renderProcedures(this.data.user)}
-          {this.renderImmunizations(this.data.user)}
-          {this.renderAllergies(this.data.user)}
-          {this.renderMedicationStatements(this.data.user)}
-
-
-          <br/>
-
-          {this.renderUnderConstructionSection(this.data.user)}
-          
-          {this.renderTilesUnderConstruction(this.data.user)}
-          {this.renderImagingStudy(this.data.user)}
+          {this.renderUnderConstructionSection(this.data.user)}          
+            {this.renderTilesUnderConstruction(this.data.user)}
+            {this.renderImagingStudy(this.data.user)}
 
           {this.renderExperimentalSection(this.data.user)}
-          {this.renderExperimentalTiles(this.data.user)}
+            {this.renderExperimentalTiles(this.data.user)}
 
         </VerticalCanvas>
       </div>
@@ -171,6 +171,35 @@ export class MainIndex extends React.Component {
       }
     }
   }  
+  renderAppsSection(user){
+    if (Meteor.settings.public.app.showApps) {
+      if (user.isAdmin || user.isPractitioner || user.isUser) {
+        return(
+          <div>
+            <CardTitle title="Apps" style={this.data.style.sectionTitle} /> 
+            <br/>
+          </div>
+        );
+      }
+    }
+  }    
+  renderFhirSection(user){
+    if (Meteor.settings.public.app.showApps) {
+      if (user.isAdmin || user.isPractitioner || user.isUser) {
+        return(
+          <div>
+            <br/>
+            <CardTitle title="Fast Healthcare Interoperability Resources" style={this.data.style.sectionTitle} /><br/>  
+            <br/>
+          </div>
+        );
+      }
+    }
+  }    
+
+
+
+
   renderAdminTiles(user){
     if (user.isAdmin) {
       return (
