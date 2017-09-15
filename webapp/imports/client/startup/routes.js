@@ -1,3 +1,4 @@
+import { CardText, CardTitle } from 'material-ui/Card';
 import { IndexRoute, Route, Router, browserHistory } from 'react-router';
 
 import { AboutPage } from '/imports/ui/pages/AboutPage';
@@ -20,8 +21,10 @@ import { DecisionTree } from '/imports/ui/components/DecisionTree';
 import { DermatogramsPage } from '/imports/ui/pages/DermatogramsPage';
 import { DevicesPage } from '/imports/ui/workflows/devices/DevicesPage';
 import { DiagnosticReportsPage } from '/imports/ui/workflows/diagnosticReports/DiagnosticReportsPage';
+import DynamicRoutes from '/imports/client/startup/index';
 import { ForumPage } from '/imports/ui/pages/ForumPage';
 import { GenomePage } from '/imports/ui/workflows/genome/GenomePage';
+import { GlassCard } from '/imports/ui/components/GlassCard';
 import { GoalsPage } from '/imports/ui/workflows/goals/GoalsPage';
 import { GoogleMapsPage } from '/imports/ui/pages/experimental/GoogleMapsPage';
 import { Healthlog } from '/imports/ui/pages/Healthlog';
@@ -68,8 +71,21 @@ import { SpecificitySensitivityCard } from '/imports/ui/components/SpecificitySe
 import { TelemedicinePage } from '/imports/ui/pages/TelemedicinePage';
 import { ThemePage } from '/imports/ui/pages/ThemePage';
 import { UsersPage } from '/imports/ui/pages/UsersPage';
+import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 import { WelcomePatientPage } from '/imports/ui/pages/WelcomePatientPage';
 import { render } from 'react-dom';
+
+// Pick up any dynamic routes that are specified in packages, and include them
+var dynamicRoutes = [];
+Object.keys(Package).forEach(function(packageName){
+  if(Package[packageName].DynamicRoutes){
+    // we try to build up a route from what's specified in the package
+    Package[packageName].DynamicRoutes.forEach(function(route){
+      dynamicRoutes.push(route);      
+    });    
+  }
+});
+
 
 // we're storing the current route URL in a reactive variable
 // which will be used to update active controls
@@ -112,6 +128,7 @@ const requreSysadmin = (nextState, replace) => {
 
 
 Meteor.startup(() => {
+
   render(
     <Router history={ browserHistory }>
       <Route path="/" component={ App }>
@@ -216,6 +233,8 @@ Meteor.startup(() => {
         <Route name="MedicationOrdersPage" path="/medication-orders" component={ MedicationOrdersPage }  onEnter={ requireAuth }/>
         <Route name="MedicationStatementsPage" path="/medication-statements" component={ MedicationStatementsPage }  onEnter={ requireAuth }/>
 
+        { dynamicRoutes.map(route => <Route name={route.name} path={route.path} component={ route.component } />) }
+        
         <Route path="*" component={ NotFound } />
 
       </Route>

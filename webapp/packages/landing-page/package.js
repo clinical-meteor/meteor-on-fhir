@@ -11,14 +11,20 @@ Package.describe({
 });
 
 Package.onUse(function(api) {
-  api.versionsFrom('1.4.2.3');
-  api.use('ecmascript');
-  api.mainModule('landing-page.js');
-});
+  api.versionsFrom('1.4');
 
-Package.onTest(function(api) {
   api.use('ecmascript');
-  api.use('tinytest');
-  api.use('clinical:landing-page');
-  api.mainModule('landing-page-tests.js');
+  api.use('react-meteor-data');
+  api.use('session');
+  api.use('ecmascript');
+  api.use('meteor-platform');
+  
+  api.mainModule('index.jsx', 'client');
+});
+                                                                                                                                                                                                 
+// This lets you use npm packages in your package:
+Npm.depends({
+  'react': '15.4.1',
+  'react-mixin': '3.0.5',
+  'material-ui': '0.16.5'  
 });
