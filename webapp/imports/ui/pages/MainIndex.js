@@ -1,12 +1,14 @@
 import { CardTitle } from 'material-ui/Card';
 import Glass from '/imports/ui/Glass';
 import { GlassCard } from '/imports/ui/components/GlassCard';
+import { Meteor } from 'meteor/meteor';
 import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
 import Spacer from '/imports/ui/components/Spacer';
 import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 import { browserHistory } from 'react-router';
+import { get } from 'lodash';
 
 export class MainIndex extends React.Component {
   constructor(props) {
@@ -57,13 +59,15 @@ export class MainIndex extends React.Component {
     let user = Meteor.user();
     if (user && user.roles) {
       user.roles.forEach(function(role){
-        if (role === "sysadmin") {
+        if (role == "sysadmin") {
           data.user.isAdmin = true;
           data.style.sectionTitle.display = 'inline-block';
-        } else if (role === "practitioner") {
+        } else if (role == "practitioner") {
           data.user.isPractitioner = true;
-        } else if (role === "patient") {
+          data.style.sectionTitle.display = 'inline-block';
+        } else if (role == "patient") {
           data.user.isPatient = true;
+          data.style.sectionTitle.display = 'inline-block';
         }
       });
     }
@@ -103,7 +107,6 @@ export class MainIndex extends React.Component {
       <div id='indexPage'>
         <VerticalCanvas>
 
-          <CardTitle title="Admin Functionality" style={this.data.style.sectionTitle} />  
           {this.renderAdminTiles(this.data.user)}
 
           {this.renderAppsSection(this.data.user)}
@@ -127,7 +130,6 @@ export class MainIndex extends React.Component {
 
             {this.renderDiagnosticReport(this.data.user)}
             {this.renderConditions(this.data.user)}
-            {/* {this.renderAllergyIntolerance(this.data.user)} */}
 
             {this.renderProcedures(this.data.user)}
             {this.renderImmunizations(this.data.user)}
@@ -136,11 +138,8 @@ export class MainIndex extends React.Component {
 
           <br/>
           {this.renderUnderConstructionSection(this.data.user)}          
-            {this.renderTilesUnderConstruction(this.data.user)}
-            {this.renderImagingStudy(this.data.user)}
 
           {this.renderExperimentalSection(this.data.user)}
-            {this.renderExperimentalTiles(this.data.user)}
 
         </VerticalCanvas>
       </div>
@@ -154,26 +153,30 @@ export class MainIndex extends React.Component {
           <div>
             <CardTitle title="Experimental" style={this.data.style.sectionTitle} />  
             <br/>
+            {this.renderExperimentalTiles(this.data.user)}
+
           </div>
         );
       }
     }
   }
   renderUnderConstructionSection(user){
-    if (Meteor.settings.public.app.showUnderConstruction) {
+    if (Meteor.settings.public.platform.showUnderConstruction) {
       if (user.isAdmin || user.isPractitioner) {
         return(
           <div>
             <CardTitle title="Under Construction" style={this.data.style.sectionTitle} /> 
             <br/>
+            {this.renderTilesUnderConstruction(this.data.user)}
+            {this.renderImagingStudy(this.data.user)}
           </div>
         );
       }
     }
   }  
   renderAppsSection(user){
-    if (Meteor.settings.public.app.showApps) {
-      if (user.isAdmin || user.isPractitioner || user.isUser) {
+    if (get(Meteor.settings, 'public.platform.showApps')) {
+      if (user.isAdmin || user.isPractitioner || user.isPatient) {
         return(
           <div>
             <CardTitle title="Apps" style={this.data.style.sectionTitle} /> 
@@ -184,8 +187,8 @@ export class MainIndex extends React.Component {
     }
   }    
   renderFhirSection(user){
-    if (Meteor.settings.public.app.showApps) {
-      if (user.isAdmin || user.isPractitioner || user.isUser) {
+    if (get(Meteor.settings, 'public.platform.showFhirMenu')) {
+      if (user.isAdmin || user.isPractitioner || user.isPatient || user.isUser) {
         return(
           <div>
             <br/>
@@ -204,6 +207,8 @@ export class MainIndex extends React.Component {
     if (user.isAdmin) {
       return (
         <div>
+          <CardTitle title="Admin Functionality" style={this.data.style.sectionTitle} />  
+          <br />  
 
           <div id='inboundMessagesTile' style={this.data.style.indexCardPadding} onClick={ this.openInboundMessages.bind(this) } >
             <GlassCard style={this.data.style.indexCard} >

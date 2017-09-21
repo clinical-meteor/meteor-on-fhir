@@ -10,12 +10,13 @@
     "platform": {
       "showUnderConstruction": true,
       "showExperimental": false,
-      "showApps": true      
+      "showApps": true,      
+      "showFhirMenu": true
     },
     "app": {
       "showUnderConstruction": true,
       "showExperimental": false,
-      "showApps": true      
+      "showApps": true
     },
     "defaults": {
       "avatars": true,
