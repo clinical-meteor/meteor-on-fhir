@@ -50,13 +50,19 @@ Meteor.startup(function (){
 });
 
 
-Posts = _Posts;
-
-Topics = _Topics;
-
-Statistics = _Statistics;
-
-MyGenotype = _MyGenotype;
+//-----------------------------------------------------------------------------
+// Global Objects
 
 
 
+  // Core 
+  Statistics = _Statistics;
+  DynamicRoutes = [];
+
+  // Social Network
+  Posts = _Posts;
+  Topics = _Topics;
+
+  // Premium Modules
+  MyGenotype = _MyGenotype;
+  
