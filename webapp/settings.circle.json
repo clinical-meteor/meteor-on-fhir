@@ -7,16 +7,24 @@
       "defaultVideo": "/VideoBackgrounds/Circulation.mp4",
       "backgroundImagePath": "/backgrounds/global.jpg"
     },
+    "platform": {
+      "showUnderConstruction": true,
+      "showExperimental": false,
+      "showApps": true,      
+      "showFhirMenu": true
+    },
     "app": {
       "showUnderConstruction": false,
-      "showExperimental": false
+      "showExperimental": false,
+      "showApps": true      
     },
     "defaults": {
       "avatars": true,
       "barcodes": true,
       "hexgridMenu": false,
-      "nfcOrbital": true,
+      "nfcOrbital": false,
       "notificationMenu": false,
+      "searchbarVisible": true,
       "displayNavbars": true,
       "disableHeader": false,
       "disableFooter": false,
@@ -47,18 +55,33 @@
       "telemedicine": true,
       "inbound": true,
       "outbound": true,
+      "epic": true,
+      "statisticsLogging": true,
+      "apps": {
+        "ChecklistManifesto": true,
+        "ContinuityOfCare": true        
+      },
       "fhir": {
+        "AllergyIntolerances": true,
         "AuditEvents": true,
+        "BodySites": true,
+        "CarePlans": true,
         "Conditions": true,
         "Devices": true,
-        "Patients": true,
-        "Practitioners": true,
-        "Organizations": true,
-        "Observations": true,
-        "ImagingStudies": true,
+        "DiagnosticReports": true,
+        "Goals": true,
+        "ImagingStudies": false,
+        "Immunizations": true,
         "Locations": true,
         "Lists": true,
         "Medications": true,
+        "MedicationOrders": true,
+        "MedicationStatements": true,
+        "Organizations": true,
+        "Observations": true,
+        "Patients": true,
+        "Practitioners": true,
+        "Procedures": true,
         "Questionnaires": true,
         "RiskAssessments": true
       }
