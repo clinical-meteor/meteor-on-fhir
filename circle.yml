@@ -61,9 +61,16 @@ test:
     #- we sometimes develop with proprietary packages; make sure we remove them for tests
     - cd webapp && meteor remove clinical:landing-page
 
+    #- make sure we have our tests
+    - cd webapp/tests && ls -la
+    - cd webapp/tests && git clone https://github.com/awatson1978/meteor-on-fhir-validation nightwatch
+
+    #- run the app
     - "cd webapp && meteor run --settings settings.circle.json":
           background: true
     - sleep 300
+
+  #- the run our tests
   override:
     - cd webapp && meteor npm run-script circle-nightwatch
 

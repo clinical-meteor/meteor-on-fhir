@@ -43,9 +43,8 @@ cd meteor-on-fhir/webapp/tests
 ## install test tools
 git clone https://github.com/awatson1978/meteor-on-fhir-validation nightwatch
 
-
 ## install test tools
-# meteor npm install nightwatch starrynight chromedriver phantomjs-prebuilt selenium-standalone-jar
+cd meteor-on-fhir/webapp/tests
 meteor npm install
 
 ## run validation tests (using nightwatch)
