@@ -38,6 +38,12 @@ NODE_ENV=test INITIALIZE=true Patients=true Practitioners=true meteor --settings
 You may need to install [Java SDK 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) to run the latest version of Selenium.
 
 ```sh
+cd meteor-on-fhir/webapp/tests
+
+## install test tools
+git clone https://github.com/awatson1978/meteor-on-fhir-validation nightwatch
+
+
 ## install test tools
 # meteor npm install nightwatch starrynight chromedriver phantomjs-prebuilt selenium-standalone-jar
 meteor npm install
