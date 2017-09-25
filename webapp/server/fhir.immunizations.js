@@ -1,116 +1,403 @@
-// add tests to this file using the Nightwatch.js API
-// http://nightwatchjs.org/api
+
+// https://www.cdc.gov/vaccines/schedules/index.html
+// https://www.hl7.org/fhir/immunization.html
 
 
 
-module.exports = {
-  tags: ['immunizations', 'Immunizations', 'crud', 'fhir', 'circle'],
-  before: function(client){
-    client
-      .url("http://localhost:3000").pause(3000)
-      .executeAsync(function(){
-        Meteor.call('dropImmunizations');
-        Meteor.call('dropTestUsers');
+Meteor.methods({
+  createImmunization:function(immunizationObject){
+    check(immunizationObject, Object);
+
+    if (process.env.NODE_ENV === 'test') {
+      console.log('Creating Immunization...');
+      Immunizations.insert(immunizationObject, function(error, result){
+        if (error) {
+          console.log(error);
+        }
+        if (result) {
+          console.log('Immunization created: ' + result);
+        }
       });
+    } else {
+      console.log('This command can only be run in a test environment.');
+      console.log('Try setting NODE_ENV=test');
+    }
   },
-  'Sign up.': function (client) {
-    client.resizeWindow(1920, 1200);
+  initializeImmunizations:function(){
+    console.log('Initializing immunizations...');
 
-    client.page.signupPage()
-      .navigate()
-      .fillOutSignupPage('Gregory', 'House', 'house@test.org', 'house123', 'hippocrates')
-      .saveScreenshot('tests/nightwatch/screenshots/practitioners/A-Signup-Practitioner.png', client)
-      .signup()
-      .pause(5000, client);
+    if (Immunizations.find({'vaccineCode.text': 'MMRV'}).count() === 0) {
+      var multspectrum = {
+        resourceType: 'Immunization',
+        notGiven: true,
+        identifier: [{
+          use: 'secondary',
+          type: {
+            text: 'Varicella'
+          }
+        }, {
+          use: 'secondary',
+          type: {
+            text: 'Mumps'
+          }
+        }, {
+          use: 'secondary',
+          type: {
+            text: 'Measles'
+          }
+        }, {
+          use: 'secondary',
+          type: {
+            text: 'Rubella'
+          }
+        }, {
+          use: 'official',
+          type: {
+            text: 'ProQuad'
+          }
+        }],
+        vaccineCode: {
+          text: 'MMRV'
+        }
+      };
+      Meteor.call('createImmunization', multspectrum);
+    }
 
-    client
-      .verify.elementPresent('#indexPage')
-      .verify.containsText('#authenticatedUsername', 'Gregory House')
-      .pause(3000);
+    if (Immunizations.find({'vaccineCode.text': 'VAR'}).count() === 0) {
+      console.log('No records found in Immunizations collection.  Lets create some...');
+
+      var chickenpox1 = {
+        resourceType: 'Immunization',
+        notGiven: true,
+        identifier: [{
+          use: 'secondary',
+          type: {
+            text: 'Chickenpox'
+          }
+        }, {
+          use: 'secondary',
+          type: {
+            text: 'Varicella'
+          }
+        }, {
+          use: 'official',
+          type: {
+            text: 'Varivax'
+          }
+        }],
+        vaccineCode: {
+          text: 'VAR'
+        }
+      };
+      Meteor.call('createImmunization', chickenpox1);
+    } 
+
+    if (Immunizations.find({'vaccineCode.text': 'DTaP*'}).count() === 0) {
+      console.log('No records found in Immunizations collection.  Lets create some...');
+
+      var diptheria = {
+        resourceType: 'Immunization',
+        notGiven: true,
+        identifier: [{
+          use: 'official',
+          type: {
+            text: 'Daptacel'
+          }
+        }, {
+          use: 'secondary',
+          type: {
+            text: 'Diptheria'
+          }
+        }],
+        vaccineCode: {
+          text: 'DTaP*'
+        }        
+      };
+      Meteor.call('createImmunization', diptheria);
+    } 
+
+    if (Immunizations.find({'vaccineCode.text': 'ActHIB'}).count() === 0) {
+      console.log('No records found in Immunizations collection.  Lets create some...');
+
+      var hib = {
+        resourceType: 'Immunization',
+        notGiven: true,
+        identifier: [{
+          use: 'official',
+          type: {
+            text: 'Hib'
+          }
+        }, {
+          use: 'secondary',
+          type: {
+            text: 'Haemophilus influenzae type b'
+          }
+        }],
+        vaccineCode: {
+          text: 'ActHIB'
+        }        
+      };
+      Meteor.call('createImmunization', hib);
+    }     
+
+    if (Immunizations.find({'vaccineCode.text': 'HepA'}).count() === 0) {
+      console.log('No records found in Immunizations collection.  Lets create some...');
+
+      var hepA = {
+        resourceType: 'Immunization',
+        notGiven: true,
+        identifier: [{
+          use: 'official',
+          type: {
+            text: 'Havrix'
+          }
+        }, {
+          use: 'secondary',
+          type: {
+            text: 'Hepatitis A'
+          }
+        }],
+        vaccineCode: {
+          text: 'HepA'
+        }        
+      };
+      Meteor.call('createImmunization', hepA);
+    }     
+
+    if (Immunizations.find({'vaccineCode.text': 'HepB'}).count() === 0) {
+      console.log('No records found in Immunizations collection.  Lets create some...');
+
+      var hepB = {
+        resourceType: 'Immunization',
+        notGiven: true,
+        identifier: [{
+          use: 'official',
+          type: {
+            text: 'Engerix-B'
+          }
+        }, {
+          use: 'secondary',
+          type: {
+            text: 'Hepatitis B'
+          }
+        }],
+        vaccineCode: {
+          text: 'HepB'
+        }        
+      };
+      Meteor.call('createImmunization', hepB);
+    }     
+
+    if (Immunizations.find({'vaccineCode.text': 'IIV*'}).count() === 0) {
+      console.log('No records found in Immunizations collection.  Lets create some...');
+
+      var flu = {
+        resourceType: 'Immunization',
+        notGiven: true,
+        identifier: [{
+          use: 'official',
+          type: {
+            text: 'Afluria'
+          }
+        }, {
+          use: 'secondary',
+          type: {
+            text: 'Influenza'
+          }
+        }, {
+          use: 'secondary',
+          type: {
+            text: 'Flu'
+          }
+        }],
+        vaccineCode: {
+          text: 'IIV*'
+        }        
+      };
+      Meteor.call('createImmunization', flu);
+    }     
+
+    if (Immunizations.find({'vaccineCode.text': 'MMR**'}).count() === 0) {
+      console.log('No records found in Immunizations collection.  Lets create some...');
+
+      var measles = {
+        resourceType: 'Immunization',
+        notGiven: true,
+        identifier: [{
+          use: 'official',
+          type: {
+            text: 'M-M-R II'
+          }
+        }, {
+          use: 'secondary',
+          type: {
+            text: 'Mumps'
+          }
+        }, {
+          use: 'secondary',
+          type: {
+            text: 'Measles'
+          }
+        }, {
+          use: 'secondary',
+          type: {
+            text: 'Rubella'
+          }
+        }],
+        vaccineCode: {
+          text: 'MMR**'
+        }        
+      };
+      Meteor.call('createImmunization', measles);
+    }     
+
+
+    if (Immunizations.find({'vaccineCode.text': 'DTaP'}).count() === 0) {
+      console.log('No records found in Immunizations collection.  Lets create some...');
+
+      var pertussis = {
+        resourceType: 'Immunization',
+        notGiven: true,
+        identifier: [{
+          use: 'official',
+          type: {
+            text: 'Daptacel'
+          }
+        }, {
+          use: 'secondary',
+          type: {
+            text: 'Tetanus'
+          }
+        }, {
+          use: 'secondary',
+          type: {
+            text: 'Diphtheria'
+          }
+        }, {
+          use: 'secondary',
+          type: {
+            text: 'Pertussis'
+          }
+        }],
+        vaccineCode: {
+          text: 'DTaP'
+        }        
+      };
+      Meteor.call('createImmunization', pertussis);
+    }       
+
+
+    if (Immunizations.find({'vaccineCode.text': 'DTaP-IPV'}).count() === 0) {
+      console.log('No records found in Immunizations collection.  Lets create some...');
+
+      var polio = {
+        resourceType: 'Immunization',
+        notGiven: true,
+        identifier: [{
+          use: 'official',
+          type: {
+            text: 'Quadracel'
+          }
+        }, {
+          use: 'secondary',
+          type: {
+            text: 'Diptheria'
+          }
+        }, {
+          use: 'secondary',
+          type: {
+            text: 'Pertussis'
+          }
+        }, {
+          use: 'secondary',
+          type: {
+            text: 'Polio'
+          }
+        }, {
+          use: 'secondary',
+          type: {
+            text: 'Tetanus'
+          }
+        }],
+        vaccineCode: {
+          text: 'DTaP-IPV'
+        }        
+      };
+      Meteor.call('createImmunization', polio);
+    }    
+
+    if (Immunizations.find({'vaccineCode.text': 'PCV13'}).count() === 0) {
+      console.log('No records found in Immunizations collection.  Lets create some...');
+
+      var pneumococcal = {
+        resourceType: 'Immunization',
+        notGiven: true,
+        identifier: [{
+          use: 'official',
+          type: {
+            text: 'Prevnar13'
+          }
+        }, {
+          use: 'secondary',
+          type: {
+            text: 'Pneumococcal'
+          }
+        }],
+        vaccineCode: {
+          text: 'PCV13'
+        }                
+      };
+      Meteor.call('createImmunization', pneumococcal);
+    }    
+
+
+    if (Immunizations.find({'vaccineCode.text': 'RV1'}).count() === 0) {
+      console.log('No records found in Immunizations collection.  Lets create some...');
+
+      var rotavirus = {
+        resourceType: 'Immunization',
+        notGiven: true,
+        identifier: [{
+          use: 'official',
+          type: {
+            text: 'Rotarix'
+          }
+        }, {
+          use: 'secondary',
+          type: {
+            text: 'Rotavirus'
+          }
+        }],
+        vaccineCode: {
+          text: 'RV1'
+        }        
+      };
+      Meteor.call('createImmunization', rotavirus);
+    }    
+
+ 
+  
   },
-  'list immunizations': function (client) {
-    client.page
-      .indexPage()
-      .selectImmunizationsTile();
-
-    client.page
-      .immunizationsPage()
-      .verifyElements()
-      .verifyEmptyList();
+  removeImmunizationById: function(immunizationId){
+    check(immunizationId, String);
+    if (process.env.NODE_ENV === 'test') {
+      console.log('-----------------------------------------');
+      console.log('Removing immunization... ');
+      Immunizations.remove({_id: immunizationId});
+    } else {
+      console.log('This command can only be run in a test environment.');
+      console.log('Try setting NODE_ENV=test');
+    }
   },
-  'create new immunization': function (client) {
-
-    client.page
-      .immunizationsPage()
-      .selectNewImmunizationTab()
-      .verifyNewImmunizationCard();
-
-    client.pause(1000).executeAsync(function(){
-      Session.set('immunizationUpsert', {
-        "resourceType": "Immunization",
-        'notGiven': true,
-        'identifier': '',
-        'vaccine': '',
-        'vaccineCode': ''
-      });
-    });
-    
-    client.page
-      .immunizationsPage()
-      .upsertImmunization('cholera, live attenuated', 'cholera', '174', '#newImmunization')
-      .saveScreenshot('tests/nightwatch/screenshots/immunizations.crud/B-ImmunizationList.png', client);
-
-    client
-      .click('#newImmunization #saveImmunizationButton').pause(1000);
-  },
-  "table should contain recently created immunization" : function (client) {
-    client.page
-      .immunizationsPage()
-      .selectListTab()
-      .verifyImmunizationListCard()
-      .listContainsImmunization(1, 'cholera, live attenuated', 'cholera')
-      .saveScreenshot('tests/nightwatch/screenshots/immunizations.crud/B-ImmunizationList.png', client);
-  },
-  'immunization detail': function (client) {
-    client.page
-      .immunizationsPage()
-      .selectImmunization(1)
-      .verifyImmunizationDetails('cholera, live attenuated', 'cholera')
-      .saveScreenshot('tests/nightwatch/screenshots/immunizations.crud/C-ImmunizationDetails.png', client);
-  },
-  'edit immunization': function (client) {
-    client.pause(1000).executeAsync(function(){
-      Session.set('immunizationUpsert', {
-        "resourceType": "Immunization",
-        'notGiven': true,
-        'identifier': '',
-        'vaccine': '',
-        'vaccineCode': ''
-      });
-    });
-
-    client.page
-      .immunizationsPage()
-      .upsertImmunization('cholera, live attenuated', 'cholera', '174', '#immunizationDetails')
-      .saveScreenshot('tests/nightwatch/screenshots/immunizations.crud/D-EditedImmunization.png', client);
-
-    // since we're using the ImmunizationDetail component twice,
-    // there are two #saveImmunizationButtons on the page
-    // so we need to scope the button accordingly
-    client
-      .verify.elementPresent('#immunizationDetails #saveImmunizationButton')
-      .click('#immunizationDetails #saveImmunizationButton').pause(2000);
-  },
-  'list edited Immunizations': function (client) {
-    client.page
-      .immunizationsPage()
-      .listContainsImmunization(1, 'cholera, live attenuated', 'cholera', '174')
-      //.pause(40000, client)
-      .saveScreenshot('tests/nightwatch/screenshots/immunizations.crud/E-EditedImmunizationList.png', client);
-  },
-
-  'fin': function (client) {
-    client
-      .end();
+  dropImmunizations: function(){
+    if (process.env.NODE_ENV === 'test') {
+      console.log('-----------------------------------------');
+      console.log('Dropping immunizations... ');
+      Immunizations.remove({});
+    } else {
+      console.log('This command can only be run in a test environment.');
+      console.log('Try setting NODE_ENV=test');
+    }
   }
-};
+
+});

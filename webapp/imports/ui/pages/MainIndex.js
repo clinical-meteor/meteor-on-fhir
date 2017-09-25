@@ -35,7 +35,7 @@ export class MainIndex extends React.Component {
         indexCardPadding: {
           width: '100%',
           display: 'inline-block',
-          paddingBottom: '20px',
+          paddingBottom: '20px'
         },
         spacer: {
           display: 'block'
@@ -764,7 +764,7 @@ export class MainIndex extends React.Component {
     if (Meteor.settings.public.modules.fhir.DiagnosticReports) {
       if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
-            <div id='diagnosticReportsTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/diagnostic-report') } >
+            <div id='diagnosticReportsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/diagnostic-reports') } >
               <GlassCard style={this.data.style.indexCard} >
                 <CardTitle
                   title='Diagnostic Report'

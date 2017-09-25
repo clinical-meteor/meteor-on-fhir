@@ -11,7 +11,10 @@ import { get } from 'lodash';
 let defaultProcedure = {
   'resourceType': 'Procedure',
   'status': 'unknown',
-  'nodeDone': false,
+  'identifier': [{
+    'use': 'official',
+    'value': ''
+  }],
   'code': {
     'text': ''
   }
@@ -74,7 +77,15 @@ export default class ProcedureDetail extends React.Component {
             onChange={ this.changeState.bind(this, 'code')}
             fullWidth
             /><br/>
-
+          <TextField
+            id='statusInput'
+            ref='status'
+            name='status'
+            floatingLabelText='Status'
+            value={this.data.procedure.status ? this.data.procedure.status : ''}
+            onChange={ this.changeState.bind(this, 'status')}
+            fullWidth
+            /><br/>
 
 
 
@@ -91,7 +102,7 @@ export default class ProcedureDetail extends React.Component {
     if (procedureId) {
       return (
         <div>
-          <RaisedButton id="saveProcedureButton" label="Save" primary={true} onClick={this.handleSaveButton.bind(this)} />
+          <RaisedButton id="saveProcedureButton" label="Save" primary={true} onClick={this.handleSaveButton.bind(this)} style={{marginRight: '20px'}}  />
           <RaisedButton id="deleteProcedureButton" label="Delete" onClick={this.handleDeleteButton.bind(this)} />
         </div>
       );
@@ -126,15 +137,17 @@ export default class ProcedureDetail extends React.Component {
 
     switch (field) {
       case "identifier":
-        procedureUpdate.identifier = {
+        procedureUpdate.identifier = [{
           use: 'official',
           value: value
-        };
+        }];
         break;
       case "code":
-          procedureUpdate.code.text = value;
-          break;
-
+        procedureUpdate.code.text = value;
+        break;
+      case "status":
+        procedureUpdate.status = value;
+        break;
       default:
     }
 
