@@ -1,4 +1,4 @@
 settings.galaxy.json
 
-tests/nightwatch
+webapp/tests/nightwatch
 packages/module-landing-page-symptomatic
