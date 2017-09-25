@@ -1,14 +1,12 @@
-import React from 'react';
-import ReactMixin from 'react-mixin';
-import { ReactMeteorData } from 'meteor/react-meteor-data';
+import { CardActions, CardText } from 'material-ui/Card';
+import { createObservation, removeObservation, updateObservation } from '/imports/api/observations/methods';
 
-import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
-
-import { CardText, CardActions } from 'material-ui/Card';
-import { createObservation, updateObservation, removeObservation } from '/imports/api/observations/methods';
 import { Bert } from 'meteor/themeteorchef:bert';
-
+import RaisedButton from 'material-ui/RaisedButton';
+import React from 'react';
+import { ReactMeteorData } from 'meteor/react-meteor-data';
+import ReactMixin from 'react-mixin';
+import TextField from 'material-ui/TextField';
 
 let defaultObservation = {
   status: 'preliminary',
@@ -141,7 +139,7 @@ export default class ObservationDetail extends React.Component {
     if (observationId) {
       return (
         <div>
-          <RaisedButton id="saveObservationButton" label="Save" className="saveObservationButton" primary={true} onClick={this.handleSaveButton.bind(this)} />
+          <RaisedButton id="saveObservationButton" label="Save" className="saveObservationButton" primary={true} onClick={this.handleSaveButton.bind(this)} style={{marginRight: '20px'}}  />
           <RaisedButton id="deleteObservationButton" label="Delete" onClick={this.handleDeleteButton.bind(this)} />
         </div>
       );
