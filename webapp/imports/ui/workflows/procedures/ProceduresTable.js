@@ -38,22 +38,27 @@ export default class ProceduresTable extends React.Component {
     let tableRows = [];
     for (var i = 0; i < this.data.procedures.length; i++) {
       var newRow = {
+        identifier: '',
         status: '',
         code: ''        
       };
       if (this.data.procedures[i]){
-        if(this.data.procedures[i].status){
-          newRow.status = this.data.procedures[i].status;
+        if(this.data.procedures[i].identifier){
+          newRow.identifier = this.data.procedures[i].identifier[0].value;
         }
         if(this.data.procedures[i].code && this.data.procedures[i].code.text){
           newRow.code = this.data.procedures[i].code.text;
         }     
+        if(this.data.procedures[i].status){
+          newRow.status = this.data.procedures[i].status;
+        }
       }
 
       tableRows.push(
         <tr key={i} className="procedureRow" style={{cursor: "pointer"}} onClick={ this.rowClick.bind('this', this.data.procedures[i]._id)} >
-          <td className='patientDisplay'>{ newRow.code }</td>
-          <td className='patientDisplay'>{ newRow.status }</td>
+          <td className='identifier'>{ newRow.identifier }</td>
+          <td className='code'>{ newRow.code }</td>
+          <td className='status'>{ newRow.status }</td>
         </tr>
       )
     }
@@ -62,6 +67,7 @@ export default class ProceduresTable extends React.Component {
       <Table id='proceduresTable' responses hover >
         <thead>
           <tr>
+            <th className='identifier'>identifier</th>
             <th className='code'>code</th>
             <th className='status'>status</th>
           </tr>
