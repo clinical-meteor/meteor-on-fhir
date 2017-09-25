@@ -6,51 +6,21 @@ import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
 import TextField from 'material-ui/TextField';
+import { get } from 'lodash';
 
 let defaultAllergyIntolerance = {
   "resourceType": "AllergyIntolerance",
-  "patient": {
-    "reference": "",
-    "display": ""
-  },
-  "asserter": {
-    "reference": "",
-    "display": ""
-  },
-  "dateRecorded": "",
-  "code": {
-    "coding": [
-      {
-        "system": "http://snomed.info/sct",
-        "code": "",
-        "display": ""
-      }
-    ]
-  },
-  "clinicalStatus": "",
-  "verificationStatus": "confirmed",
-  "severity": {
-    "coding": [
-      {
-        "system": "http://snomed.info/sct",
-        "code": "",
-        "display": ""
-      }
-    ]
-  },
-  "onsetDateTime": "",
-  "evidence": [
-    {
-      "detail": [
-        {
-          "reference": "",
-          "display": ""
-        }
-      ]
-    }
-  ]
+    'identifier': [{
+      'use': 'oficial',
+      'value': ''
+    }],
+    'clinicalStatus': 'active',
+    'verificationStatus': 'confirmed',
+    'type': 'allergy',
+    'category': ['food'],
+    'code': null,
+    'patient': null
 };
-
 
 
 Session.setDefault('allergyIntoleranceUpsert', false);
@@ -65,7 +35,7 @@ export default class AllergyIntoleranceDetail extends React.Component {
     };
 
     if (Session.get('allergyIntoleranceUpsert')) {
-      data.allergyIntolerance = Session.get('allergyIntoleranceUpsert');
+      data.allergy = Session.get('allergyIntoleranceUpsert');
     } else {
       if (Session.get('selectedAllergyIntolerance')) {
         data.allergyIntoleranceId = Session.get('selectedAllergyIntolerance');
@@ -88,69 +58,71 @@ export default class AllergyIntoleranceDetail extends React.Component {
 
   render() {
     return (
-      <div id={this.props.id} className="allergyDetail">
+      <div id={this.props.id} className="allergyIntoleranceDetail">
         <CardText>
+          <TextField
+            id='identifierInput'
+            ref='identifier'
+            name='identifier'
+            floatingLabelText='Identifier'            
+            value={ get(this, 'data.allergy.identifier[0].value') ? get(this, 'data.allergy.identifier[0].value'): ''}
+            onChange={ this.changeState.bind(this, 'identifier')}
+            fullWidth
+            /><br/>
+
+            <TextField
+            id='clinicalStatusInput'
+            ref='clinicalStatus'
+            name='clinicalStatus'
+            floatingLabelText='Clinical Status'
+            value={ get(this, 'data.allergy.clinicalStatus') ? get(this, 'data.allergy.clinicalStatus'): ''}
+            onChange={ this.changeState.bind(this, 'clinicalStatus')}
+            fullWidth
+            /><br/>
+
+            <TextField
+            id='verificationStatusInput'
+            ref='verificationStatus'
+            name='verificationStatus'
+            floatingLabelText='Verification Status'
+            value={ get(this, 'data.allergy.verificationStatus') ? get(this, 'data.allergy.verificationStatus'): ''}
+            onChange={ this.changeState.bind(this, 'verificationStatus')}
+            fullWidth
+            /><br/>            
+
+          <TextField
+            id='typeInput'
+            ref='type'
+            name='type'
+            floatingLabelText='Type'
+            value={ get(this, 'data.allergy.type') ? get(this, 'data.allergy.type'): ''}
+            onChange={ this.changeState.bind(this, 'type')}
+            fullWidth
+            /><br/>
+
+          <TextField
+            id='categoryInput'
+            ref='category'
+            name='category'
+            floatingLabelText='Category'
+            value={ get(this, 'data.allergy.category') ? get(this, 'data.allergy.category'): ''}
+            onChange={ this.changeState.bind(this, 'category')}
+            fullWidth
+            /><br/>
+
           <TextField
             id='patientDisplayInput'
             ref='patientDisplay'
             name='patientDisplay'
             floatingLabelText='Patient'
-            value={this.data.allergy.patient ? this.data.allergy.patient.display : ''}
+            value={ get(this, 'data.allergy.patient.display')  ? get(this, 'data.allergy.patient.display')  : ''}
             onChange={ this.changeState.bind(this, 'patientDisplay')}
             fullWidth
             /><br/>
-          <TextField
-            id='asserterDisplayInput'
-            ref='asserterDisplay'
-            name='asserterDisplay'
-            floatingLabelText='Asserter'
-            value={this.data.allergy.asserter ? this.data.allergy.asserter.display : ''}
-            onChange={ this.changeState.bind(this, 'asserterDisplay')}
-            fullWidth
-            /><br/>
-          <TextField
-            id='clinicalStatusInput'
-            ref='clinicalStatus'
-            name='clinicalStatus'
-            floatingLabelText='Clinical Status'
-            value={this.data.allergy.clinicalStatus ? this.data.allergy.clinicalStatus : ''}
-            onChange={ this.changeState.bind(this, 'clinicalStatus')}
-            fullWidth
-            /><br/>
-          <TextField
-            id='snomedCodeInput'
-            ref='snomedCode'
-            name='snomedCode'
-            floatingLabelText='SNOMED Code'
-            value={this.data.allergy.code.coding[0] ? this.data.allergy.code.coding[0].code : ''}
-            onChange={ this.changeState.bind(this, 'snomedCode')}
-            fullWidth
-            /><br/>
-          <TextField
-            id='snomedDisplayInput'
-            ref='snomedDisplay'
-            name='snomedDisplay'
-            floatingLabelText='SNOMED Display'
-            value={this.data.allergy.code.coding[0] ? this.data.allergy.code.coding[0].display : ''}
-            onChange={ this.changeState.bind(this, 'snomedDisplay')}
-            fullWidth
-            /><br/>
-          <TextField
-            id='evidenceDisplayInput'
-            ref='evidenceDisplay'
-            name='evidenceDisplay'
-            floatingLabelText='Evidence (Observation)'
-            value={this.data.allergy.evidence[0].detail[0] ? this.data.allergy.evidence[0].detail[0].display : ''}
-            onChange={ this.changeState.bind(this, 'evidenceDisplay')}
-            fullWidth
-            /><br/>
-
-
-
 
         </CardText>
         <CardActions>
-          { this.determineButtons(this.data.allergyId) }
+          { this.determineButtons(this.data.allergyIntoleranceId ) }
         </CardActions>
       </div>
     );
@@ -161,7 +133,7 @@ export default class AllergyIntoleranceDetail extends React.Component {
     if (allergyId) {
       return (
         <div>
-          <RaisedButton id="saveAllergyIntoleranceButton" label="Save" primary={true} onClick={this.handleSaveButton.bind(this)} />
+          <RaisedButton id="saveAllergyIntoleranceButton" label="Save" primary={true} onClick={this.handleSaveButton.bind(this)} style={{marginRight: '20px'}} />
           <RaisedButton id="deleteAllergyIntoleranceButton" label="Delete" onClick={this.handleDeleteButton.bind(this)} />
         </div>
       );
@@ -181,8 +153,8 @@ export default class AllergyIntoleranceDetail extends React.Component {
     if(process.env.NODE_ENV === "test") console.log("AllergyIntoleranceDetail.changeState", field, event, value);
 
     // by default, assume there's no other data and we're creating a new allergy
-    if (Session.get('allergyUpsert')) {
-      allergyUpdate = Session.get('allergyUpsert');
+    if (Session.get('allergyIntoleranceUpsert')) {
+      allergyUpdate = Session.get('allergyIntoleranceUpsert');
     } else {
       allergyUpdate = defaultAllergyIntolerance;
     }
@@ -195,36 +167,41 @@ export default class AllergyIntoleranceDetail extends React.Component {
     }
 
     switch (field) {
-      case "patientDisplay":
-        allergyUpdate.patient.display = value;
+      case "identifier":
+        allergyUpdate.identifier = [{
+          use: 'official',
+          value: value
+        }];
         break;
-      case "asserterDisplay":
-        allergyUpdate.asserter.display = value;
+      case "verificationStatus":
+        allergyUpdate.verificationStatus = value;
         break;
       case "clinicalStatus":
         allergyUpdate.clinicalStatus = value;
         break;
-      case "snomedCode":
-        allergyUpdate.code.coding[0].code = value;
+      case "type":
+        allergyUpdate.type = value;
         break;
-      case "snomedDisplay":
-        allergyUpdate.code.coding[0].display = value;
+      case "category":
+        allergyUpdate.category = [value];
         break;
-      case "evidenceDisplay":
-        allergyUpdate.evidence[0].detail[0].display = value;
+      case "patientDisplay":
+        allergyUpdate.patient = {
+          display: value
+        }
         break;
       default:
 
     }
 
     if(process.env.NODE_ENV === "test") console.log("allergyUpdate", allergyUpdate);
-    Session.set('allergyUpsert', allergyUpdate);
+    Session.set('allergyIntoleranceUpsert', allergyUpdate);
   }
 
   handleSaveButton(){
-    let allergyUpdate = Session.get('allergyUpsert', allergyUpdate);
+    let allergyIntoleranceUpdate = Session.get('allergyIntoleranceUpsert');
 
-    if(process.env.NODE_ENV === "test") console.log("allergyUpdate", allergyUpdate);
+    if(process.env.NODE_ENV === "test") console.log("allergyIntoleranceUpdate", allergyIntoleranceUpdate);
 
 
     if (Session.get('selectedAllergyIntolerance')) {
@@ -238,7 +215,6 @@ export default class AllergyIntoleranceDetail extends React.Component {
         {_id: Session.get('selectedAllergyIntolerance')}, {$set: allergyIntoleranceUpdate }, function(error, result) {
           if (error) {
             console.log("error", error);
-
             Bert.alert(error.reason, 'danger');
           }
           if (result) {
@@ -274,7 +250,7 @@ export default class AllergyIntoleranceDetail extends React.Component {
   }
 
   handleDeleteButton(){
-    AllergyIntolerance.remove({_id: Session.get('selectedAllergyIntolerance')}, function(error, result){
+    AllergyIntolerances.remove({_id: Session.get('selectedAllergyIntolerance')}, function(error, result){
       if (error) {
         Bert.alert(error.reason, 'danger');
       }
