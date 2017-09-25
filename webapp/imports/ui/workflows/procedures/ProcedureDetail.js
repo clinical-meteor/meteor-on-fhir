@@ -6,49 +6,15 @@ import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
 import TextField from 'material-ui/TextField';
+import { get } from 'lodash';
 
 let defaultProcedure = {
-  "resourceType": "Procedure",
-  "patient": {
-    "reference": "",
-    "display": ""
-  },
-  "asserter": {
-    "reference": "",
-    "display": ""
-  },
-  "dateRecorded": "",
-  "code": {
-    "coding": [
-      {
-        "system": "http://snomed.info/sct",
-        "code": "",
-        "display": ""
-      }
-    ]
-  },
-  "clinicalStatus": "",
-  "verificationStatus": "confirmed",
-  "severity": {
-    "coding": [
-      {
-        "system": "http://snomed.info/sct",
-        "code": "",
-        "display": ""
-      }
-    ]
-  },
-  "onsetDateTime": "",
-  "evidence": [
-    {
-      "detail": [
-        {
-          "reference": "",
-          "display": ""
-        }
-      ]
-    }
-  ]
+  'resourceType': 'Procedure',
+  'status': 'unknown',
+  'nodeDone': false,
+  'code': {
+    'text': ''
+  }
 };
 
 
@@ -90,58 +56,22 @@ export default class ProcedureDetail extends React.Component {
     return (
       <div id={this.props.id} className="procedureDetail">
         <CardText>
-          <TextField
-            id='patientDisplayInput'
-            ref='patientDisplay'
-            name='patientDisplay'
-            floatingLabelText='Patient'
-            value={this.data.procedure.patient ? this.data.procedure.patient.display : ''}
-            onChange={ this.changeState.bind(this, 'patientDisplay')}
+        <TextField
+            id='identifierInput'
+            ref='identifier'
+            name='identifier'
+            floatingLabelText='Identifier'
+            value={ get(this, 'data.procedure.identifier[0].value') ? get(this, 'data.procedure.identifier[0].value') : ''}
+            onChange={ this.changeState.bind(this, 'identifier')}
             fullWidth
             /><br/>
           <TextField
-            id='asserterDisplayInput'
-            ref='asserterDisplay'
-            name='asserterDisplay'
-            floatingLabelText='Asserter'
-            value={this.data.procedure.asserter ? this.data.procedure.asserter.display : ''}
-            onChange={ this.changeState.bind(this, 'asserterDisplay')}
-            fullWidth
-            /><br/>
-          <TextField
-            id='clinicalStatusInput'
-            ref='clinicalStatus'
-            name='clinicalStatus'
-            floatingLabelText='Clinical Status'
-            value={this.data.procedure.clinicalStatus ? this.data.procedure.clinicalStatus : ''}
-            onChange={ this.changeState.bind(this, 'clinicalStatus')}
-            fullWidth
-            /><br/>
-          <TextField
-            id='snomedCodeInput'
-            ref='snomedCode'
-            name='snomedCode'
-            floatingLabelText='SNOMED Code'
-            value={this.data.procedure.code.coding[0] ? this.data.procedure.code.coding[0].code : ''}
-            onChange={ this.changeState.bind(this, 'snomedCode')}
-            fullWidth
-            /><br/>
-          <TextField
-            id='snomedDisplayInput'
-            ref='snomedDisplay'
-            name='snomedDisplay'
-            floatingLabelText='SNOMED Display'
-            value={this.data.procedure.code.coding[0] ? this.data.procedure.code.coding[0].display : ''}
-            onChange={ this.changeState.bind(this, 'snomedDisplay')}
-            fullWidth
-            /><br/>
-          <TextField
-            id='evidenceDisplayInput'
-            ref='evidenceDisplay'
-            name='evidenceDisplay'
-            floatingLabelText='Evidence (Observation)'
-            value={this.data.procedure.evidence[0].detail[0] ? this.data.procedure.evidence[0].detail[0].display : ''}
-            onChange={ this.changeState.bind(this, 'evidenceDisplay')}
+            id='codeInput'
+            ref='code'
+            name='code'
+            floatingLabelText='Code'
+            value={this.data.procedure.code ? this.data.procedure.code.text : ''}
+            onChange={ this.changeState.bind(this, 'code')}
             fullWidth
             /><br/>
 
@@ -195,26 +125,17 @@ export default class ProcedureDetail extends React.Component {
     }
 
     switch (field) {
-      case "patientDisplay":
-        procedureUpdate.patient.display = value;
+      case "identifier":
+        procedureUpdate.identifier = {
+          use: 'official',
+          value: value
+        };
         break;
-      case "asserterDisplay":
-        procedureUpdate.asserter.display = value;
-        break;
-      case "clinicalStatus":
-        procedureUpdate.clinicalStatus = value;
-        break;
-      case "snomedCode":
-        procedureUpdate.code.coding[0].code = value;
-        break;
-      case "snomedDisplay":
-        procedureUpdate.code.coding[0].display = value;
-        break;
-      case "evidenceDisplay":
-        procedureUpdate.evidence[0].detail[0].display = value;
-        break;
-      default:
+      case "code":
+          procedureUpdate.code.text = value;
+          break;
 
+      default:
     }
 
     if(process.env.NODE_ENV === "test") console.log("procedureUpdate", procedureUpdate);

@@ -6,49 +6,15 @@ import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
 import TextField from 'material-ui/TextField';
+import { get } from 'lodash';
 
 let defaultGoal = {
   "resourceType": "Goal",
-  "patient": {
-    "reference": "",
-    "display": ""
+  'description': '',
+  'priority': {
+    'text': ''
   },
-  "asserter": {
-    "reference": "",
-    "display": ""
-  },
-  "dateRecorded": "",
-  "code": {
-    "coding": [
-      {
-        "system": "http://snomed.info/sct",
-        "code": "",
-        "display": ""
-      }
-    ]
-  },
-  "clinicalStatus": "",
-  "verificationStatus": "confirmed",
-  "severity": {
-    "coding": [
-      {
-        "system": "http://snomed.info/sct",
-        "code": "",
-        "display": ""
-      }
-    ]
-  },
-  "onsetDateTime": "",
-  "evidence": [
-    {
-      "detail": [
-        {
-          "reference": "",
-          "display": ""
-        }
-      ]
-    }
-  ]
+  'status': ''
 };
 
 
@@ -75,10 +41,10 @@ export default class GoalDetail extends React.Component {
         console.log("selectedGoal", selectedGoal);
 
         if (selectedGoal) {
-          data.procedure = selectedGoal;
+          data.goal = selectedGoal;
         }
       } else {
-        data.procedure = defaultGoal;
+        data.goal = defaultGoal;
       }
 
     }
@@ -88,60 +54,33 @@ export default class GoalDetail extends React.Component {
 
   render() {
     return (
-      <div id={this.props.id} className="procedureDetail">
+      <div id={this.props.id} className="goalDetail">
         <CardText>
           <TextField
-            id='patientDisplayInput'
-            ref='patientDisplay'
-            name='patientDisplay'
-            floatingLabelText='Patient'
-            value={this.data.procedure.patient ? this.data.procedure.patient.display : ''}
-            onChange={ this.changeState.bind(this, 'patientDisplay')}
+            id='descriptionInput'
+            ref='description'
+            name='description'
+            floatingLabelText='Description'
+            value={ get(this, 'data.goal.description') ? get(this, 'data.goal.description') : ''}
+            onChange={ this.changeState.bind(this, 'description')}
             fullWidth
             /><br/>
           <TextField
-            id='asserterDisplayInput'
-            ref='asserterDisplay'
-            name='asserterDisplay'
-            floatingLabelText='Asserter'
-            value={this.data.procedure.asserter ? this.data.procedure.asserter.display : ''}
-            onChange={ this.changeState.bind(this, 'asserterDisplay')}
+            id='priorityInput'
+            ref='priority'
+            name='priority'
+            floatingLabelText='Priority'
+            value={ get(this, 'data.goal.priority.text') ? get(this, 'data.goal.priority.text') : ''}
+            onChange={ this.changeState.bind(this, 'priority')}
             fullWidth
             /><br/>
           <TextField
-            id='clinicalStatusInput'
-            ref='clinicalStatus'
-            name='clinicalStatus'
-            floatingLabelText='Clinical Status'
-            value={this.data.procedure.clinicalStatus ? this.data.procedure.clinicalStatus : ''}
-            onChange={ this.changeState.bind(this, 'clinicalStatus')}
-            fullWidth
-            /><br/>
-          <TextField
-            id='snomedCodeInput'
-            ref='snomedCode'
-            name='snomedCode'
-            floatingLabelText='SNOMED Code'
-            value={this.data.procedure.code.coding[0] ? this.data.procedure.code.coding[0].code : ''}
-            onChange={ this.changeState.bind(this, 'snomedCode')}
-            fullWidth
-            /><br/>
-          <TextField
-            id='snomedDisplayInput'
-            ref='snomedDisplay'
-            name='snomedDisplay'
-            floatingLabelText='SNOMED Display'
-            value={this.data.procedure.code.coding[0] ? this.data.procedure.code.coding[0].display : ''}
-            onChange={ this.changeState.bind(this, 'snomedDisplay')}
-            fullWidth
-            /><br/>
-          <TextField
-            id='evidenceDisplayInput'
-            ref='evidenceDisplay'
-            name='evidenceDisplay'
-            floatingLabelText='Evidence (Observation)'
-            value={this.data.procedure.evidence[0].detail[0] ? this.data.procedure.evidence[0].detail[0].display : ''}
-            onChange={ this.changeState.bind(this, 'evidenceDisplay')}
+            id='statusInput'
+            ref='status'
+            name='status'
+            floatingLabelText='Status'
+            value={ get(this, 'data.goal.status') ? get(this, 'data.goal.status') : ''}
+            onChange={ this.changeState.bind(this, 'status')}
             fullWidth
             /><br/>
 
@@ -150,15 +89,15 @@ export default class GoalDetail extends React.Component {
 
         </CardText>
         <CardActions>
-          { this.determineButtons(this.data.procedureId) }
+          { this.determineButtons(this.data.goalId) }
         </CardActions>
       </div>
     );
   }
 
 
-  determineButtons(procedureId){
-    if (procedureId) {
+  determineButtons(goalId){
+    if (goalId) {
       return (
         <div>
           <RaisedButton id="saveGoalButton" label="Save" primary={true} onClick={this.handleSaveButton.bind(this)} />
@@ -176,55 +115,45 @@ export default class GoalDetail extends React.Component {
 
   // this could be a mixin
   changeState(field, event, value){
-    let procedureUpdate;
+    let goalUpdate;
 
     if(process.env.NODE_ENV === "test") console.log("GoalDetail.changeState", field, event, value);
 
-    // by default, assume there's no other data and we're creating a new procedure
-    if (Session.get('procedureUpsert')) {
-      procedureUpdate = Session.get('procedureUpsert');
+    // by default, assume there's no other data and we're creating a new goal
+    if (Session.get('goalUpsert')) {
+      goalUpdate = Session.get('goalUpsert');
     } else {
-      procedureUpdate = defaultGoal;
+      goalUpdate = defaultGoal;
     }
 
 
 
-    // if there's an existing procedure, use them
+    // if there's an existing goal, use them
     if (Session.get('selectedGoal')) {
-      procedureUpdate = this.data.procedure;
+      goalUpdate = this.data.goal;
     }
 
     switch (field) {
-      case "patientDisplay":
-        procedureUpdate.patient.display = value;
+      case "description":
+        goalUpdate.description = value;
         break;
-      case "asserterDisplay":
-        procedureUpdate.asserter.display = value;
+      case "priority":
+        goalUpdate.priority.text = value;
         break;
-      case "clinicalStatus":
-        procedureUpdate.clinicalStatus = value;
+      case "status":
+        goalUpdate.status = value;
         break;
-      case "snomedCode":
-        procedureUpdate.code.coding[0].code = value;
-        break;
-      case "snomedDisplay":
-        procedureUpdate.code.coding[0].display = value;
-        break;
-      case "evidenceDisplay":
-        procedureUpdate.evidence[0].detail[0].display = value;
-        break;
-      default:
 
     }
 
-    if(process.env.NODE_ENV === "test") console.log("procedureUpdate", procedureUpdate);
-    Session.set('procedureUpsert', procedureUpdate);
+    if(process.env.NODE_ENV === "test") console.log("goalUpdate", goalUpdate);
+    Session.set('goalUpsert', goalUpdate);
   }
 
   handleSaveButton(){
-    let procedureUpdate = Session.get('procedureUpsert', procedureUpdate);
+    let goalUpdate = Session.get('goalUpsert', goalUpdate);
 
-    if(process.env.NODE_ENV === "test") console.log("procedureUpdate", procedureUpdate);
+    if(process.env.NODE_ENV === "test") console.log("goalUpdate", goalUpdate);
 
 
     if (Session.get('selectedGoal')) {

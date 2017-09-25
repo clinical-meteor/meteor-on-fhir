@@ -8,13 +8,13 @@
       "backgroundImagePath": "/backgrounds/medical/Gradient.jpg"      
     },
     "platform": {
-      "showUnderConstruction": true,
+      "showUnderConstruction": false,
       "showExperimental": false,
       "showApps": true,      
       "showFhirMenu": true
     },
     "app": {
-      "showUnderConstruction": true,
+      "showUnderConstruction": false,
       "showExperimental": false,
       "showApps": true
     },

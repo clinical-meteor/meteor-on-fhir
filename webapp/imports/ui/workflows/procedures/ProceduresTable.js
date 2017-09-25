@@ -39,47 +39,21 @@ export default class ProceduresTable extends React.Component {
     for (var i = 0; i < this.data.procedures.length; i++) {
       var newRow = {
         status: '',
-        isDone: '',
         code: ''        
       };
       if (this.data.procedures[i]){
         if(this.data.procedures[i].status){
           newRow.status = this.data.procedures[i].status;
         }
-        if(this.data.procedures[i].isDone){
-          newRow.isDone = this.data.procedures[i].isDone;
-        }
         if(this.data.procedures[i].code && this.data.procedures[i].code.text){
           newRow.code = this.data.procedures[i].code.text;
-        }
-        // if(this.data.procedures[i].code){
-        //   if(this.data.procedures[i].code.coding && this.data.procedures[i].code.coding[0]){            
-        //     newRow.snomedCode = this.data.procedures[i].code.coding[0].code;
-        //     newRow.snomedDisplay = this.data.procedures[i].code.coding[0].display;
-        //   }
-        // }
-        // if(this.data.procedures[i].evidence && this.data.procedures[i].evidence[0]){
-        //   if(this.data.procedures[i].evidence[0].detail && this.data.procedures[i].evidence[0].detail[0]){            
-        //     newRow.evidenceDisplay = this.data.procedures[i].evidence[0].detail[0].display;
-        //   }
-        // }
-        // if(this.data.procedures[i]._id){
-        //   newRow.barcode = this.data.procedures[i]._id;
-        // }        
+        }     
       }
 
       tableRows.push(
         <tr key={i} className="procedureRow" style={{cursor: "pointer"}} onClick={ this.rowClick.bind('this', this.data.procedures[i]._id)} >
-
-          <td className='patientDisplay'>{ newRow.status }</td>
-          <td className='patientDisplay'>{ newRow.isDone }</td>
           <td className='patientDisplay'>{ newRow.code }</td>
-          {/*<td className='asserterDisplay'>{ newRow.asserterDisplay }</td>
-          <td className='clinicalStatus'>{ newRow.clinicalStatus }</td>
-          <td className='snomedCode'>{ newRow.snomedCode }</td>
-          <td className='snomedDisplay'>{ newRow.snomedDisplay }</td>
-          <td className='evidenceDisplay'>{ newRow.evidenceDisplay }</td>*/}
-          <td><span className="barcode">{ newRow.barcode }</span></td>
+          <td className='patientDisplay'>{ newRow.status }</td>
         </tr>
       )
     }
@@ -88,10 +62,8 @@ export default class ProceduresTable extends React.Component {
       <Table id='proceduresTable' responses hover >
         <thead>
           <tr>
-            <th className='status'>status</th>
-            <th className='isDone'>isDone</th>
             <th className='code'>code</th>
-            <th>_id</th>
+            <th className='status'>status</th>
           </tr>
         </thead>
         <tbody>

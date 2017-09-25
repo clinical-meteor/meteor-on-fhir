@@ -4,16 +4,14 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
 import { Session } from 'meteor/session';
 
-Meteor.startup(function (){
-  Session.set('appSurfaceOffset', false);
-  Session.set('hasPagePadding', true);
-});
-
 export class FullPageCanvas extends React.Component {
   constructor(props) {
     super(props);
   }
-
+  componentDidMount() {
+    Session.set('appSurfaceOffset', true);
+    Session.set('hasPagePadding', true);
+  }
   getMeteorData() {
     let data = {
       style: {
