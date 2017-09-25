@@ -23,10 +23,12 @@ Meteor.methods({
   initializeAll: function(){
     console.log('Initializing all collections....');
     
+    Meteor.call('initializeAllergyIntolerances');
     Meteor.call('initializeCarePlan');
     Meteor.call('initializeChecklists');
-    Meteor.call('initializeCondition');
-    Meteor.call('initializeDevice');
+    Meteor.call('initializeConditions');
+    Meteor.call('initializeDevices');
+    Meteor.call('initializeDiagnosticReports')
     Meteor.call('initializeImmunizations');
     Meteor.call('initializeMedications');
     Meteor.call('initializeObservation', 70.0, '');
@@ -38,7 +40,6 @@ Meteor.methods({
     Meteor.call('initializeSystemUsers');
     Meteor.call('initializeProviderDirectory');    
 
-    Meteor.call('initializeAllergyIntolerances');
   },
   initializeProviderDirectory: function(){
     Meteor.call('initializeBlockchain');  // creates Organizations

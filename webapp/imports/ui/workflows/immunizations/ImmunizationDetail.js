@@ -6,51 +6,31 @@ import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
 import TextField from 'material-ui/TextField';
+import { get } from 'lodash';
 
 let defaultImmunization = {
   "resourceType": "Immunization",
-  "patient": {
-    "reference": "",
-    "display": ""
-  },
-  "asserter": {
-    "reference": "",
-    "display": ""
-  },
-  "dateRecorded": "",
-  "code": {
-    "coding": [
-      {
-        "system": "http://snomed.info/sct",
-        "code": "",
-        "display": ""
-      }
-    ]
-  },
-  "clinicalStatus": "",
-  "verificationStatus": "confirmed",
-  "severity": {
-    "coding": [
-      {
-        "system": "http://snomed.info/sct",
-        "code": "",
-        "display": ""
-      }
-    ]
-  },
-  "onsetDateTime": "",
-  "evidence": [
-    {
-      "detail": [
-        {
-          "reference": "",
-          "display": ""
-        }
-      ]
+  'notGiven': true,
+  'identifier': [{
+    'use': 'official',
+    'type': {
+      'text': ''
     }
-  ]
+  }, {
+    'use': 'secondary',
+    'type': {
+      'text': ''
+    }
+  }],
+  'vaccineCode': {
+    'text': ''
+  }    
 };
-
+let defaultImmunizationForm = {
+  'identifier': '',
+  'vaccine': '',
+  'vaccineCode': ''
+}
 
 
 Session.setDefault('immunizationUpsert', false);
@@ -61,11 +41,13 @@ export default class ImmunizationDetail extends React.Component {
   getMeteorData() {
     let data = {
       immunizationId: false,
-      immunization: defaultImmunization
+      immunization: defaultImmunization,
+      immunizationForm: defaultImmunizationForm
     };
 
     if (Session.get('immunizationUpsert')) {
-      data.immunization = Session.get('immunizationUpsert');
+      // data.immunization = Session.get('immunizationUpsert');
+      data.immunizationForm = Session.get('immunizationUpsert');
     } else {
       if (Session.get('selectedImmunization')) {
         data.immunizationId = Session.get('selectedImmunization');
@@ -75,10 +57,23 @@ export default class ImmunizationDetail extends React.Component {
         console.log("selectedImmunization", selectedImmunization);
 
         if (selectedImmunization) {
-          data.procedure = selectedImmunization;
+          data.immunization = selectedImmunization;
+
+          var immunizationForm = defaultImmunizationForm;
+          selectedImmunization.identifier.forEach(function(identifier){
+            if(identifier.use == 'official'){
+              immunizationForm.identifier = identifier.type.text;
+            } 
+            if(identifier.use == 'secondary'){
+              immunizationForm.vaccine = identifier.type.text;              
+            } 
+          });
+          immunizationForm.vaccineCode = selectedImmunization.vaccineCode.text;
+          data.immunizationForm = immunizationForm
         }
       } else {
-        data.procedure = defaultImmunization;
+        // data.immunization = defaultImmunization;
+        data.immunizationForm = defaultImmunizationForm;
       }
 
     }
@@ -88,60 +83,33 @@ export default class ImmunizationDetail extends React.Component {
 
   render() {
     return (
-      <div id={this.props.id} className="procedureDetail">
+      <div id={this.props.id} className="immunizationDetail">
         <CardText>
           <TextField
-            id='patientDisplayInput'
-            ref='patientDisplay'
-            name='patientDisplay'
-            floatingLabelText='Patient'
-            value={this.data.procedure.patient ? this.data.procedure.patient.display : ''}
-            onChange={ this.changeState.bind(this, 'patientDisplay')}
+            id='identifierInput'
+            ref='identifier'
+            name='identifier'
+            floatingLabelText='Identifier'
+            value={ get(this, 'data.immunizationForm.identifier') ? get(this, 'data.immunizationForm.identifier') : ''}
+            onChange={ this.changeState.bind(this, 'identifier')}
             fullWidth
             /><br/>
           <TextField
-            id='asserterDisplayInput'
-            ref='asserterDisplay'
-            name='asserterDisplay'
-            floatingLabelText='Asserter'
-            value={this.data.procedure.asserter ? this.data.procedure.asserter.display : ''}
-            onChange={ this.changeState.bind(this, 'asserterDisplay')}
-            fullWidth
+            id='vaccineInput'
+            ref='vaccine'
+            name='vaccine'
+            floatingLabelText='Vaccine'
+            value={ get(this, 'data.immunizationForm.vaccine') ? get(this, 'data.immunizationForm.vaccine') : ''}
+            onChange={ this.changeState.bind(this, 'vaccine')}
+            fullWidth4
             /><br/>
           <TextField
-            id='clinicalStatusInput'
-            ref='clinicalStatus'
-            name='clinicalStatus'
-            floatingLabelText='Clinical Status'
-            value={this.data.procedure.clinicalStatus ? this.data.procedure.clinicalStatus : ''}
-            onChange={ this.changeState.bind(this, 'clinicalStatus')}
-            fullWidth
-            /><br/>
-          <TextField
-            id='snomedCodeInput'
-            ref='snomedCode'
-            name='snomedCode'
-            floatingLabelText='SNOMED Code'
-            value={this.data.procedure.code.coding[0] ? this.data.procedure.code.coding[0].code : ''}
-            onChange={ this.changeState.bind(this, 'snomedCode')}
-            fullWidth
-            /><br/>
-          <TextField
-            id='snomedDisplayInput'
-            ref='snomedDisplay'
-            name='snomedDisplay'
-            floatingLabelText='SNOMED Display'
-            value={this.data.procedure.code.coding[0] ? this.data.procedure.code.coding[0].display : ''}
-            onChange={ this.changeState.bind(this, 'snomedDisplay')}
-            fullWidth
-            /><br/>
-          <TextField
-            id='evidenceDisplayInput'
-            ref='evidenceDisplay'
-            name='evidenceDisplay'
-            floatingLabelText='Evidence (Observation)'
-            value={this.data.procedure.evidence[0].detail[0] ? this.data.procedure.evidence[0].detail[0].display : ''}
-            onChange={ this.changeState.bind(this, 'evidenceDisplay')}
+            id='vaccineCodeInput'
+            ref='vaccineCode'
+            name='vaccineCode'
+            floatingLabelText='Vaccine Code'
+            value={ get(this, 'data.immunizationForm.vaccineCode') ? get(this, 'data.immunizationForm.vaccineCode') : ''}
+            onChange={ this.changeState.bind(this, 'vaccineCode')}
             fullWidth
             /><br/>
 
@@ -150,15 +118,15 @@ export default class ImmunizationDetail extends React.Component {
 
         </CardText>
         <CardActions>
-          { this.determineButtons(this.data.procedureId) }
+          { this.determineButtons(this.data.immunizationId) }
         </CardActions>
       </div>
     );
   }
 
 
-  determineButtons(procedureId){
-    if (procedureId) {
+  determineButtons(immunizationId){
+    if (immunizationId) {
       return (
         <div>
           <RaisedButton id="saveImmunizationButton" label="Save" primary={true} onClick={this.handleSaveButton.bind(this)} />
@@ -176,66 +144,76 @@ export default class ImmunizationDetail extends React.Component {
 
   // this could be a mixin
   changeState(field, event, value){
-    let procedureUpdate;
+    let immunizationUpdate;
 
     if(process.env.NODE_ENV === "test") console.log("ImmunizationDetail.changeState", field, event, value);
 
-    // by default, assume there's no other data and we're creating a new procedure
-    if (Session.get('procedureUpsert')) {
-      procedureUpdate = Session.get('procedureUpsert');
+    // by default, assume there's no other data and we're creating a new immunization
+    if (Session.get('immunizationUpsert')) {
+      immunizationUpdate = Session.get('immunizationUpsert');
     } else {
-      procedureUpdate = defaultImmunization;
+      immunizationUpdate = defaultImmunizationForm;
     }
 
 
 
-    // if there's an existing procedure, use them
+    // if there's an existing immunization, use them
     if (Session.get('selectedImmunization')) {
-      procedureUpdate = this.data.procedure;
+      immunizationUpdate = this.data.immunizationForm;
     }
 
     switch (field) {
-      case "patientDisplay":
-        procedureUpdate.patient.display = value;
+      case "identifier":
+        immunizationUpdate.identifier = value;
         break;
-      case "asserterDisplay":
-        procedureUpdate.asserter.display = value;
+      case "vaccine":
+        immunizationUpdate.vaccine = value;
         break;
-      case "clinicalStatus":
-        procedureUpdate.clinicalStatus = value;
-        break;
-      case "snomedCode":
-        procedureUpdate.code.coding[0].code = value;
-        break;
-      case "snomedDisplay":
-        procedureUpdate.code.coding[0].display = value;
-        break;
-      case "evidenceDisplay":
-        procedureUpdate.evidence[0].detail[0].display = value;
+      case "vaccineCode":
+        immunizationUpdate.vaccineCode = value;
         break;
       default:
 
     }
 
-    if(process.env.NODE_ENV === "test") console.log("procedureUpdate", procedureUpdate);
-    Session.set('procedureUpsert', procedureUpdate);
+    if(process.env.NODE_ENV === "test") console.log("immunizationUpdate", immunizationUpdate);
+    Session.set('immunizationUpsert', immunizationUpdate);
   }
 
   handleSaveButton(){
-    let procedureUpdate = Session.get('procedureUpsert', procedureUpdate);
+    let immunizationUpdate = Session.get('immunizationUpsert', immunizationUpdate);
 
-    if(process.env.NODE_ENV === "test") console.log("procedureUpdate", procedureUpdate);
+    if(process.env.NODE_ENV === "test") console.log("immunizationUpdate", immunizationUpdate);
 
 
     if (Session.get('selectedImmunization')) {
       if(process.env.NODE_ENV === "test") console.log("Updating immunization...");
-      delete immunizationUpdate._id;
+      //delete immunizationUpdate._id;
 
       // not sure why we're having to respecify this; fix for a bug elsewhere
-      immunizationUpdate.resourceType = 'Immunization';
+      //immunizationUpdate.resourceType = 'Immunization';     
+      
+      var currentImmunization = Immunizations.findOne({_id: Session.get('selectedImmunization')});
+      delete currentImmunization._id;     
+      delete currentImmunization._document;     
+      currentImmunization.resourceType = 'Immunization';     
+      currentImmunization.identifier = [];
+      currentImmunization.identifier.push({
+        'use': 'official',
+        'type': {
+          'text': immunizationUpdate.identifier
+        }
+      });
+      currentImmunization.identifier.push({
+        'use': 'secondary',
+        'type': {
+          'text': immunizationUpdate.vaccine
+        }
+      });
+      currentImmunization.vaccineCode.text = immunizationUpdate.vaccineCode;
 
       Immunizations.update(
-        {_id: Session.get('selectedImmunization')}, {$set: immunizationUpdate }, function(error, result) {
+        {_id: Session.get('selectedImmunization')}, {$set: currentImmunization }, function(error, result) {
           if (error) {
             console.log("error", error);
 
@@ -253,7 +231,29 @@ export default class ImmunizationDetail extends React.Component {
 
       if(process.env.NODE_ENV === "test") console.log("create a new immunization", immunizationUpdate);
 
-      Immunizations.insert(immunizationUpdate, function(error, result) {
+      var newImmunization = {
+        "resourceType": "Immunization",
+        'notGiven': true,
+        'identifier': [],
+        'vaccineCode': {
+          'text': immunizationUpdate.vaccineCode
+        }
+      };
+
+      newImmunization.identifier.push({
+        'use': 'official',
+        'type': {
+          'text': immunizationUpdate.identifier
+        }
+      });
+      newImmunization.identifier.push({
+        'use': 'secondary',
+        'type': {
+          'text': immunizationUpdate.vaccine
+        }
+      });
+
+      Immunizations.insert(newImmunization, function(error, result) {
         if (error) {
           console.log("error", error);
           Bert.alert(error.reason, 'danger');

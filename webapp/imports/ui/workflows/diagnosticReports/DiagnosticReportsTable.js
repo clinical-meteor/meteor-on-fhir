@@ -4,6 +4,8 @@ import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
 import { Table } from 'react-bootstrap';
+import { get } from 'lodash';
+import { moment } from 'meteor/momentjs:moment';
 
 export default class DiagnosticReportsTable extends React.Component {
 
@@ -20,7 +22,55 @@ export default class DiagnosticReportsTable extends React.Component {
     }
     
     if(DiagnosticReports.find().count() > 0){
-      data.diagnosticReports = DiagnosticReports.find().fetch();
+      data.diagnosticReports = DiagnosticReports.find().map(function(report){
+        var newRow = {
+          subjectDisplay: '',
+          code: '',
+          status: '',
+          issued: '',
+          performerDisplay: '',
+          identifier: '',
+          category: '',
+          effectiveDate: ''
+        };
+        if (report){
+          if(report.subject){
+            if(report.subject.display){
+              newRow.subjectDisplay = report.subject.display;
+            } else {
+              newRow.subjectDisplay = report.subject.reference;          
+            }
+          }
+  
+          if(report.performer && report.performer[0]){
+            if(report.performer.display){
+              newRow.performerDisplay = report.performer[0].display;
+            } else {
+              newRow.performerDisplay = report.performer[0].reference;          
+            }
+          }
+          if(report.code){
+            newRow.code = report.code.text;
+          }
+
+          if(report.identifier && report.identifier[0] && report.identifier[0].value){
+            newRow.identifier = report.identifier[0].value;
+          }
+          if(report.status){
+            newRow.status = report.status;
+          }
+          if(report.effectiveDateTime){
+            newRow.effectiveDate = moment(report.effectiveDateTime).format("YYYY-MM-DD");
+          }
+          if(report.category && report.category.coding && report.category.coding[0] && report.category.coding[0].code ){
+            newRow.category = report.category.coding[0].code;
+          }
+          if(report.issued){
+            newRow.issued = moment(report.issued).format("YYYY-MM-DD"); 
+          }       
+        } 
+        return newRow;  
+      });
     }
 
 
@@ -37,51 +87,18 @@ export default class DiagnosticReportsTable extends React.Component {
   render () {
     let tableRows = [];
     for (var i = 0; i < this.data.diagnosticReports.length; i++) {
-      var newRow = {
-        patientDisplay: '',
-        asserterDisplay: '',
-        clinicalStatus: '',
-        snomedCode: '',
-        snomedDisplay: '',
-        evidenceDisplay: '',
-        barcode: ''
-      };
-      // if (this.data.diagnosticReports[i]){
-      //   if(this.data.diagnosticReports[i].patient){
-      //     newRow.patientDisplay = this.data.diagnosticReports[i].patient.display;
-      //   }
-      //   if(this.data.diagnosticReports[i].asserter){
-      //     newRow.asserterDisplay = this.data.diagnosticReports[i].asserter.display;
-      //   }
-      //   if(this.data.diagnosticReports[i].clinicalStatus){
-      //     newRow.clinicalStatus = this.data.diagnosticReports[i].clinicalStatus;
-      //   }
-      //   if(this.data.diagnosticReports[i].code){
-      //     if(this.data.diagnosticReports[i].code.coding && this.data.diagnosticReports[i].code.coding[0]){            
-      //       newRow.snomedCode = this.data.diagnosticReports[i].code.coding[0].code;
-      //       newRow.snomedDisplay = this.data.diagnosticReports[i].code.coding[0].display;
-      //     }
-      //   }
-      //   if(this.data.diagnosticReports[i].evidence && this.data.diagnosticReports[i].evidence[0]){
-      //     if(this.data.diagnosticReports[i].evidence[0].detail && this.data.diagnosticReports[i].evidence[0].detail[0]){            
-      //       newRow.evidenceDisplay = this.data.diagnosticReports[i].evidence[0].detail[0].display;
-      //     }
-      //   }
-      //   if(this.data.diagnosticReports[i]._id){
-      //     newRow.barcode = this.data.diagnosticReports[i]._id;
-      //   }        
-      // }
 
       tableRows.push(
         <tr key={i} className="diagnosticReportRow" style={{cursor: "pointer"}} onClick={ this.rowClick.bind('this', this.data.diagnosticReports[i]._id)} >
 
-          <td className='patientDisplay'>{ newRow.patientDisplay }</td>
-          <td className='asserterDisplay'>{ newRow.asserterDisplay }</td>
-          <td className='clinicalStatus'>{ newRow.clinicalStatus }</td>
-          <td className='snomedCode'>{ newRow.snomedCode }</td>
-          <td className='snomedDisplay'>{ newRow.snomedDisplay }</td>
-          <td className='evidenceDisplay'>{ newRow.evidenceDisplay }</td>
-          <td><span className="barcode">{ newRow.barcode }</span></td>
+          <td className='subjectDisplay'>{ this.data.diagnosticReports[i].subjectDisplay }</td>
+          <td className='code'>{ this.data.diagnosticReports[i].code }</td>
+          <td className='status'>{ this.data.diagnosticReports[i].status }</td>
+          <td className='issued'>{ this.data.diagnosticReports[i].issued }</td>
+          <td className='performerDisplay'>{ this.data.diagnosticReports[i].performerDisplay }</td>
+          <td className='identifier'>{ this.data.diagnosticReports[i].identifier }</td>
+          <td className='effectiveDate'>{ this.data.diagnosticReports[i].effectiveDate }</td>
+          <td className='category'>{ this.data.diagnosticReports[i].category }</td>
         </tr>
       )
     }
@@ -90,13 +107,14 @@ export default class DiagnosticReportsTable extends React.Component {
       <Table id='diagnosticReportsTable' responses hover >
         <thead>
           <tr>
-            <th className='patientDisplay'>patient</th>
-            <th className='asserterDisplay'>asserter</th>
-            <th className='clinicalStatus'>status</th>
-            <th className='snomedCode'>code</th>
-            <th className='snomedDisplay'>diagnosticReport</th>
-            <th className='evidenceDisplay'>evidence</th>
-            <th>_id</th>
+            <th className='subjectDisplay'>subject</th>
+            <th className='code'>code</th>
+            <th className='status'>status</th>
+            <th className='issued'>issued</th>
+            <th className='performerDisplay'>performer</th>
+            <th className='identifier'>identifier</th>
+            <th className='effectiveDateTime'>date/time</th>
+            <th className='category'>category</th>
           </tr>
         </thead>
         <tbody>

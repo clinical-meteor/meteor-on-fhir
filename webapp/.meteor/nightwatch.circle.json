@@ -46,6 +46,12 @@
         "acceptSslCerts": true,
         "loggingPrefs": {
           "browser": "ALL"
+        },
+        "chromeOptions" : {
+          "prefs" : {
+            "credentials_enable_service" : false,
+            "profile.password_manager_enabled" : false
+          }
         }
       },
       "exclude": "./tests/nightwatch/unittests/*",

@@ -19,7 +19,7 @@ Meteor.methods({
       console.log('Try setting NODE_ENV=test');
     }
   },
-  initializeCondition:function(){
+  initializeConditions:function(){
 
     if (Conditions.find().count() === 0) {
       console.log('No records found in Conditions collection.  Lets create some...');

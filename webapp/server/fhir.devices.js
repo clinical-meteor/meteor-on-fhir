@@ -23,7 +23,7 @@ Meteor.methods({
       console.log('Try setting NODE_ENV=test');
     }
   },
-  initializeDevice:function(){
+  initializeDevices:function(){
 
     if (process.env.INITIALIZE) {
 

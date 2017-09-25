@@ -61,7 +61,7 @@ export class AllergyIntolerancesPage extends React.Component {
                  <AllergyIntoleranceDetail id='newAllergyIntolerance' />
                </Tab>
                <Tab className="allergyIntoleranceListTab" label='AllergyIntolerances' onActive={this.handleActive} style={this.data.style.tab} value={1}>
-                <AllergyIntolerancesTable />
+                <AllergyIntolerancesTable id='allergyIntolerancesTable' />
                </Tab>
                <Tab className="allergyIntoleranceDetailsTab" label='Detail' onActive={this.handleActive} style={this.data.style.tab} value={2}>
                  <AllergyIntoleranceDetail id='allergyIntoleranceDetails' />

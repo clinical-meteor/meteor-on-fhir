@@ -51,12 +51,7 @@ export default class AllergyIntolerancesTable extends React.Component {
         barcode: ''
       };
       if (this.data.allergyIntolerances[i]){
-        // if(this.data.allergyIntolerances[i].patient){
-        //   newRow.patientDisplay = this.data.allergyIntolerances[i].patient.display;
-        // }
-        // if(this.data.allergyIntolerances[i].asserter){
-        //   newRow.asserterDisplay = this.data.allergyIntolerances[i].asserter.display;
-        // }
+
         if(this.data.allergyIntolerances[i].identifier && this.data.allergyIntolerances[i].identifier[0] && this.data.allergyIntolerances[i].identifier[0].value){
           newRow.name = this.data.allergyIntolerances[i].identifier[0].value;
         }
@@ -77,20 +72,12 @@ export default class AllergyIntolerancesTable extends React.Component {
             newRow.snomedCode = this.data.allergyIntolerances[i].code.coding[0].code;
             newRow.snomedDisplay = this.data.allergyIntolerances[i].code.coding[0].display;
           }
-        }
-        // if(this.data.allergyIntolerances[i].evidence && this.data.allergyIntolerances[i].evidence[0]){
-        //   if(this.data.allergyIntolerances[i].evidence[0].detail && this.data.allergyIntolerances[i].evidence[0].detail[0]){            
-        //     newRow.evidenceDisplay = this.data.allergyIntolerances[i].evidence[0].detail[0].display;
-        //   }
-        // }
-        // if(this.data.allergyIntolerances[i]._id){
-        //   newRow.barcode = this.data.allergyIntolerances[i]._id;
-        // }        
+        }    
       }
 
       tableRows.push(
         <tr key={i} className="allergyIntoleranceRow" style={{cursor: "pointer"}} onClick={ this.rowClick.bind('this', this.data.allergyIntolerances[i]._id)} >
-          <td className='name'>{ newRow.name }</td>
+          <td className='identifier'>{ newRow.name }</td>
           <td className='clinicalStatus'>{ newRow.clinicalStatus }</td>
           <td className='verificationStatus'>{ newRow.verificationStatus }</td>
           <td className='type'>{ newRow.type }</td>
@@ -103,7 +90,7 @@ export default class AllergyIntolerancesTable extends React.Component {
       <Table id='allergyIntolerancesTable' responses hover >
         <thead>
           <tr>
-            <th className='name'>name</th>
+            <th className='identifier'>name</th>
             <th className='clinicalStatus'>status</th>
             <th className='verificationStatus'>verification</th>
             <th className='type'>type</th>

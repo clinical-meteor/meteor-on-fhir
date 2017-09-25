@@ -1,4 +1,7 @@
+import { Col, Grid, Row } from 'react-bootstrap';
+
 import { CardTitle } from 'material-ui/Card';
+import { FullPageCanvas } from '/imports/ui/layouts/FullPageCanvas';
 import Glass from '/imports/ui/Glass';
 import { GlassCard } from '/imports/ui/components/GlassCard';
 import { Meteor } from 'meteor/meteor';
@@ -6,7 +9,6 @@ import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
 import Spacer from '/imports/ui/components/Spacer';
-import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 import { browserHistory } from 'react-router';
 import { get } from 'lodash';
 
@@ -22,22 +24,18 @@ export class MainIndex extends React.Component {
         },
         inactiveIndexCard: {
           opacity: .5,
-          width: '50%',
+          width: '100%',
           display: 'inline-block',
-          paddingLeft: '10px',
-          paddingRight: '10px',
           paddingBottom: '20px'
         },
         indexCard: {
-          cursor: 'pointer'
+          cursor: 'pointer',
+          height: '240px'
         },
         indexCardPadding: {
-          width: '50%',
+          width: '100%',
           display: 'inline-block',
-          paddingLeft: '10px',
-          paddingRight: '10px',
-          paddingBottom: '20px',
-          maxWidth: '512px'
+          paddingBottom: '20px'
         },
         spacer: {
           display: 'block'
@@ -105,43 +103,103 @@ export class MainIndex extends React.Component {
   render() {
     return (
       <div id='indexPage'>
-        <VerticalCanvas>
+        <FullPageCanvas>
 
           {this.renderAdminTiles(this.data.user)}
 
           {this.renderAppsSection(this.data.user)}
-            {this.renderChecklists(this.data.user)}
+            <Row>
+              <Col md={3}>
+                {this.renderChecklists(this.data.user)}
+              </Col>
+            </Row>
 
 
           {this.renderFhirSection(this.data.user)}
+            <Row>
+              <Col lg={3}>
+                {this.renderAllergies(this.data.user)}
+              </Col>
+              <Col lg={3}>
+                {this.renderCarePlans(this.data.user)}
+              </Col>
+              <Col lg={3}>
+                {this.renderConditions(this.data.user)}
+              </Col>
+              <Col lg={3}>
+              {this.renderDevices(this.data.user)}
+              </Col>
+            </Row>
 
 
-            {this.renderPatients(this.data.user)}
-            {this.renderPractitioners(this.data.user)}
+            <Row>
+              <Col lg={3}>
+                {this.renderDiagnosticReport(this.data.user)}
+              </Col>
+              <Col lg={3}>
+                {this.renderGoals(this.data.user)}
+              </Col>
+              <Col lg={3}>
+                {this.renderImmunizations(this.data.user)}
+              </Col>
+              <Col lg={3}>
+                {this.renderLocations(this.data.user)}
+              </Col>
+            </Row>
 
-            {this.renderDevices(this.data.user)}
-            {this.renderObservations(this.data.user)}
-            {this.renderMedications(this.data.user)}
+            <Row>
+              <Col lg={3}>
+                {this.renderMedications(this.data.user)}
+              </Col>
+              <Col lg={3}>
+                {this.renderMedicationOrders(this.data.user)}
+              </Col>
+              <Col lg={3}>
+                {this.renderMedicationStatements(this.data.user)}
+              </Col>
+              <Col lg={3}>
+                {this.renderObservations(this.data.user)}
+              </Col>
+            </Row>
 
-            {this.renderOrganizations(this.data.user)}
-            {this.renderLocations(this.data.user)}
 
-            {this.renderRiskAssessments(this.data.user)}
+            <Row>
+              <Col lg={3}>
+                {this.renderOrganizations(this.data.user)}
+              </Col>
+              <Col lg={3}>
+                {this.renderPatients(this.data.user)}
+              </Col>
+              <Col lg={3}>
+                {this.renderPractitioners(this.data.user)}
+              </Col>
+              <Col lg={3}>
+                {this.renderProcedures(this.data.user)}
+              </Col>
+            </Row>
+            <Row>
+              <Col lg={3}>
+                {this.renderRiskAssessments(this.data.user)}
+              </Col>
+              <Col lg={3}>
+              </Col>
+              <Col lg={3}>
+              </Col>
+              <Col lg={3}>
+              </Col>
+            </Row>
 
-            {this.renderDiagnosticReport(this.data.user)}
-            {this.renderConditions(this.data.user)}
 
-            {this.renderProcedures(this.data.user)}
-            {this.renderImmunizations(this.data.user)}
-            {this.renderAllergies(this.data.user)}
-            {this.renderMedicationStatements(this.data.user)}
+
+
+
 
           <br/>
           {this.renderUnderConstructionSection(this.data.user)}          
 
           {this.renderExperimentalSection(this.data.user)}
 
-        </VerticalCanvas>
+        </FullPageCanvas>
       </div>
     );
   }
@@ -425,9 +483,9 @@ export class MainIndex extends React.Component {
 
   renderAllergies(user){
     if (Meteor.settings.public.modules.fhir.AllergyIntolerances) {
-      if (user.isPractitioner || user.isAdmin) {
+      if (user.isPractitioner || user.isAdmin || user.isPatient) {
         return (
-          <div id='immunizationsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/allergies') } >
+          <div id='allergyIntollerancesTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/allergies') } >
             <GlassCard style={this.data.style.indexCard} >
               <CardTitle
                 title='Allergy Intollerances'
@@ -704,9 +762,9 @@ export class MainIndex extends React.Component {
 
   renderDiagnosticReport(user){
     if (Meteor.settings.public.modules.fhir.DiagnosticReports) {
-      if (user.isPractitioner || user.isAdmin) {
+      if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
-            <div id='diagnosticReportsTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/diagnostic-report') } >
+            <div id='diagnosticReportsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/diagnostic-reports') } >
               <GlassCard style={this.data.style.indexCard} >
                 <CardTitle
                   title='Diagnostic Report'
@@ -719,11 +777,67 @@ export class MainIndex extends React.Component {
         );
       }
     }
-  }     
+  }    
+  
+  renderGoals(user){
+    if (Meteor.settings.public.modules.fhir.Goals) {
+      if (user.isPatient || user.isPractitioner || user.isAdmin) {
+        return (
+          <div id='goalsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/goals') } >
+            <GlassCard style={this.data.style.indexCard} >
+              <CardTitle
+                title='Goals'
+                subtitle='Treatment and careplan goals.'
+                titleStyle={this.data.style.title}
+                subtitleStyle={this.data.style.subtitle}
+              />
+            </GlassCard>
+          </div>
+        );
+      }
+    }
+  }      
 
 
+  
+  
+  renderCarePlans(user){
+    if (Meteor.settings.public.modules.fhir.CarePlans) {
+      if (user.isPatient || user.isPractitioner || user.isAdmin) {
+        return (
+          <div id="carePlansTile" style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/care-plans') } >
+            <GlassCard style={this.data.style.indexCard} >
+              <CardTitle
+                title='CarePlans'
+                subtitle='Treatment careplans.'
+                titleStyle={this.data.style.title}
+                subtitleStyle={this.data.style.subtitle}
+              />
+            </GlassCard>
+          </div>
+        );
+      }
+    }
+  }      
 
-
+  renderMedicationOrders(user){
+    if (Meteor.settings.public.modules.fhir.MedicationOrders) {
+      if (user.isPatient || user.isPractitioner || user.isAdmin) {
+        return (
+          <div id='medicationOrderTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/medication-orders') } >
+            <GlassCard style={this.data.style.indexCard} >
+              <CardTitle
+                title='Medication Orders'
+                subtitle='Pending prescriptions for medications.'
+                titleStyle={this.data.style.title}
+                subtitleStyle={this.data.style.subtitle}
+              />
+            </GlassCard>
+          </div>    
+        );
+      }
+    }
+  }   
 
 
 
@@ -734,77 +848,6 @@ export class MainIndex extends React.Component {
       if (user.isPractitioner || user.isAdmin) {
         return (
           <div>
-
-            {/*<div id='proceduresTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/procedures') } >
-              <GlassCard style={this.data.style.indexCard} >
-                <CardTitle
-                  title='Procedures'
-                  subtitle='Procedures and treatments performed by practitioners.'
-                  titleStyle={this.data.style.title}
-                  subtitleStyle={this.data.style.subtitle}
-                />
-              </GlassCard>
-            </div>
-
-            <div id='immunizationsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/immunizations') } >
-              <GlassCard style={this.data.style.indexCard} >
-                <CardTitle
-                  title='Immunizations'
-                  subtitle='Patient immunization records.'
-                  titleStyle={this.data.style.title}
-                  subtitleStyle={this.data.style.subtitle}
-                />
-              </GlassCard>
-            </div>*/}
-
-            {/* <div id='allergiesTi
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            le' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/allergies') } >
-              <GlassCard style={this.data.style.indexCard} >
-                <CardTitle
-                  title='Allergies'
-                  subtitle='Allergies and substances to avoid.'
-                  titleStyle={this.data.style.title}
-                  subtitleStyle={this.data.style.subtitle}
-                />
-              </GlassCard>
-            </div> */}
-
-
-            <div id="carePlansTile" style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/care-plans') } >
-              <GlassCard style={this.data.style.indexCard} >
-                <CardTitle
-                  title='CarePlans'
-                  subtitle='Treatment careplans.'
-                  titleStyle={this.data.style.title}
-                  subtitleStyle={this.data.style.subtitle}
-                />
-              </GlassCard>
-            </div>
-
-            <div id='goalsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/goals') } >
-              <GlassCard style={this.data.style.indexCard} >
-                <CardTitle
-                  title='Goals'
-                  subtitle='Treatment and careplan goals.'
-                  titleStyle={this.data.style.title}
-                  subtitleStyle={this.data.style.subtitle}
-                />
-              </GlassCard>
-            </div>
-
-
 
             <div id='diagnosticReportsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/diagnostic-reports') } >
               <GlassCard style={this.data.style.indexCard} >
@@ -827,21 +870,6 @@ export class MainIndex extends React.Component {
                 />
               </GlassCard>
             </div>
-
-            <div id='medicationOrderTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/medication-orders') } >
-              <GlassCard style={this.data.style.indexCard} >
-                <CardTitle
-                  title='Medication Orders'
-                  subtitle='Pending prescriptions for medications.'
-                  titleStyle={this.data.style.title}
-                  subtitleStyle={this.data.style.subtitle}
-                />
-              </GlassCard>
-            </div>    
-
-
-
-
 
           </div>);
       }
