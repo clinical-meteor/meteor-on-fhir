@@ -153,8 +153,8 @@ export default class LocationDetail extends React.Component {
     if (locationId) {
       return (
         <div>
-          <RaisedButton id="saveLocationButton" label="Save" primary={true} onClick={this.handleSaveButton.bind(this)} />
-          <RaisedButton id="deleteLocationButton" label="Delete" onClick={this.handleDeleteButton.bind(this)} style={{marginLeft: '20px'}} />
+          <RaisedButton id="saveLocationButton" label="Save" primary={true} onClick={this.handleSaveButton.bind(this)} style={{marginRight: '20px'}}  />
+          <RaisedButton id="deleteLocationButton" label="Delete" onClick={this.handleDeleteButton.bind(this)}  />
         </div>
       );
     } else {

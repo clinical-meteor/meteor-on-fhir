@@ -195,7 +195,7 @@ export default class DiagnosticReportDetail extends React.Component {
     if (diagnosticReportId) {
       return (
         <div>
-          <RaisedButton id="saveDiagnosticReportButton" label="Save" primary={true} onClick={this.handleSaveButton.bind(this)} />
+          <RaisedButton id="saveDiagnosticReportButton" label="Save" primary={true} onClick={this.handleSaveButton.bind(this)}  style={{marginRight: '20px'}}  />
           <RaisedButton id="deleteDiagnosticReportButton" label="Delete" onClick={this.handleDeleteButton.bind(this)} />
         </div>
       );
