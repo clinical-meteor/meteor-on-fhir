@@ -236,6 +236,7 @@ export default class DiagnosticReportDetail extends React.Component {
       diagnosticReportUpsert = this.data.diagnosticReport;
     }
 
+    var performer = diagnosticReportUpsert.performer[0];
     switch (field) {
       case "subjectDisplay":
         diagnosticReportUpsert.subject.display = value;
@@ -258,14 +259,14 @@ export default class DiagnosticReportDetail extends React.Component {
         diagnosticReportUpsert.performer = [{
           actor: {
             display: value,
-            reference: diagnosticReportUpsert.performer[0].actor.reference
+            reference: performer.actor.reference
           }
         }];        
         break;
       case "performerReference":        
         diagnosticReportUpsert.performer = [{
           actor: {
-            display: diagnosticReportUpsert.performer[0].actor.display,
+            display: performer.actor.display,
             reference: value
           }
         }];        
@@ -306,7 +307,8 @@ export default class DiagnosticReportDetail extends React.Component {
 
       // not sure why we're having to respecify this; fix for a bug elsewhere
       diagnosticReportUpsert.resourceType = 'DiagnosticReport';
-
+      diagnosticReportUpsert.issued = new Date();
+      
       DiagnosticReports.update(
         {_id: Session.get('selectedDiagnosticReport')}, {$set: diagnosticReportUpsert }, function(error, result) {
           if (error) {
@@ -326,6 +328,9 @@ export default class DiagnosticReportDetail extends React.Component {
 
       if(process.env.NODE_ENV === "test") console.log("create a new diagnosticReport", diagnosticReportUpsert);
 
+      diagnosticReportUpsert.effectiveDateTime = new Date();
+      diagnosticReportUpsert.issued = new Date();
+      
       DiagnosticReports.insert(diagnosticReportUpsert, function(error, result) {
         if (error) {
           console.log("error", error);
