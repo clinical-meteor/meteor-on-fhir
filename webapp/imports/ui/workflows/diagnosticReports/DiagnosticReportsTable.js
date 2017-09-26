@@ -24,6 +24,7 @@ export default class DiagnosticReportsTable extends React.Component {
     if(DiagnosticReports.find().count() > 0){
       data.diagnosticReports = DiagnosticReports.find().map(function(report){
         var newRow = {
+          _id: report._id,
           subjectDisplay: '',
           code: '',
           status: '',
@@ -74,12 +75,13 @@ export default class DiagnosticReportsTable extends React.Component {
     }
 
 
-    if(process.env.NODE_ENV === "test") console.log("data", data);
+    if(process.env.NODE_ENV === "test") console.log("DiagnosticReportsTable[data]", data);
     return data;
   };
 
 
   rowClick(id){
+    console.log('rowClick', id)
     Session.set('diagnosticReportsUpsert', false);
     Session.set('selectedDiagnosticReport', id);
     Session.set('diagnosticReportPageTabIndex', 2);
