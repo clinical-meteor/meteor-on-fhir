@@ -21,8 +21,10 @@ let defaultDiagnosticReport = {
     'reference': ''
   },
   "performer": [{
-    'display': '',
-    'reference': ''
+    "actor": {
+      'display': '',
+      'reference': ''
+    }
   }],
   "identifier": [],
   "category": {
@@ -72,6 +74,14 @@ export default class DiagnosticReportDetail extends React.Component {
       });
     }
 
+    
+    if(get(data, 'diagnosticReport.performer[0].actor.display')){
+      data.diagnosticReport.performerDisplay = get(data, 'diagnosticReport.performer[0].actor.display');
+    }
+    if(get(data, 'diagnosticReport.performer[0].actor.reference')){
+      data.diagnosticReport.performerReference = get(data, 'diagnosticReport.performer[0].actor.reference');
+    }
+    
 
     console.log('DiagnosticReportDetail[data]', data);
     return data;
@@ -131,7 +141,7 @@ export default class DiagnosticReportDetail extends React.Component {
             ref='performerDisplay'
             name='performerDisplay'
             floatingLabelText='Performer - Display Text'
-            value={this.data.diagnosticReport.performer[0] ? this.data.diagnosticReport.performer[0].display : ''}
+            value={this.data.diagnosticReport.performerDisplay ? this.data.diagnosticReport.performerDisplay : ''}
             onChange={ this.changeState.bind(this, 'performerDisplay')}
             fullWidth
             /><br/>
@@ -140,7 +150,7 @@ export default class DiagnosticReportDetail extends React.Component {
             ref='performerReference'
             name='performerReference'
             floatingLabelText='Performer - Reference'
-            value={this.data.diagnosticReport.performer[0] ? this.data.diagnosticReport.performer[0].reference : ''}
+            value={this.data.diagnosticReport.performerReference ? this.data.diagnosticReport.performerReference : ''}
             onChange={ this.changeState.bind(this, 'performerReference')}
             fullWidth
             /><br/>            
@@ -210,91 +220,95 @@ export default class DiagnosticReportDetail extends React.Component {
 
   // this could be a mixin
   changeState(field, event, value){
-    let diagnosticReportUpdate;
+    let diagnosticReportUpsert;
 
-    if(process.env.NODE_ENV === "test") console.log("DiagnosticReportDetail.changeState", field, event, value);
+    if(process.env.NODE_ENV === "test") console.log("DiagnosticReportDetail.changeState", field, value);
 
     // by default, assume there's no other data and we're creating a new diagnosticReport
     if (Session.get('diagnosticReportUpsert')) {
-      diagnosticReportUpdate = Session.get('diagnosticReportUpsert');
+      diagnosticReportUpsert = Session.get('diagnosticReportUpsert');
     } else {
-      diagnosticReportUpdate = defaultDiagnosticReport;
+      diagnosticReportUpsert = defaultDiagnosticReport;
     }
-
-
 
     // if there's an existing diagnosticReport, use them
     if (Session.get('selectedDiagnosticReport')) {
-      diagnosticReportUpdate = this.data.diagnosticReport;
+      diagnosticReportUpsert = this.data.diagnosticReport;
     }
 
     switch (field) {
       case "subjectDisplay":
-        diagnosticReportUpdate.subject.display = value;
+        diagnosticReportUpsert.subject.display = value;
         break;
         case "subjectReference":
-        diagnosticReportUpdate.subject.reference = value;
+        diagnosticReportUpsert.subject.reference = value;
         break;
       case "code":
-        diagnosticReportUpdate.code = {
+        diagnosticReportUpsert.code = {
           text: value
         }
         break;
       case "status":
-        diagnosticReportUpdate.status = value;
+        diagnosticReportUpsert.status = value;
         break;
       case "issued":
-        diagnosticReportUpdate.issued = moment(value);
+        diagnosticReportUpsert.issued = moment(value);
         break;
       case "performerDisplay":
-        var performer = diagnosticReportUpdate.performer[0];
-        performer.display = value;
-        diagnosticReportUpdate.performer = [performer];
+        diagnosticReportUpsert.performer = [{
+          actor: {
+            display: value,
+            reference: diagnosticReportUpsert.performer[0].actor.reference
+          }
+        }];        
         break;
-      case "performerReference":
-        var performer = diagnosticReportUpdate.performer[0];
-        performer.reference = value;
-        diagnosticReportUpdate.performer = [performer];
+      case "performerReference":        
+        diagnosticReportUpsert.performer = [{
+          actor: {
+            display: diagnosticReportUpsert.performer[0].actor.display,
+            reference: value
+          }
+        }];        
         break;
       case "identifier":
-        diagnosticReportUpdate.identifier = [{
+        diagnosticReportUpsert.identifier = [{
           'use': 'official',
           'value': value
         }]
         break;
       case "category":
-        diagnosticReportUpdate.category.coding = [{
+        diagnosticReportUpsert.category.coding = [{
           code: value
         }];
         break;
       case "effectiveDate":
-        diagnosticReportUpdate.effectiveDate = moment(value);
+        diagnosticReportUpsert.effectiveDate = moment(value);
         break;
       case "conclusion":
-        diagnosticReportUpdate.conclusion = value;
+        diagnosticReportUpsert.conclusion = value;
         break;      
         default:
     }
-
-    if(process.env.NODE_ENV === "test") console.log("diagnosticReportUpdate", diagnosticReportUpdate);
-    Session.set('diagnosticReportUpsert', diagnosticReportUpdate);
+    
+    if(process.env.NODE_ENV === "test") console.log("changeState[end]", diagnosticReportUpsert);
+    Session.set('diagnosticReportUpsert', diagnosticReportUpsert);
   }
 
   handleSaveButton(){
-    let diagnosticReportUpdate = Session.get('diagnosticReportUpsert', diagnosticReportUpdate);
+    let diagnosticReportUpsert = Session.get('diagnosticReportUpsert', diagnosticReportUpsert);
 
-    if(process.env.NODE_ENV === "test") console.log("diagnosticReportUpdate", diagnosticReportUpdate);
+    if(process.env.NODE_ENV === "test") console.log("handleSaveButton", diagnosticReportUpsert);
 
 
     if (Session.get('selectedDiagnosticReport')) {
       if(process.env.NODE_ENV === "test") console.log("Updating diagnosticReport...");
-      delete diagnosticReportUpdate._id;
+      delete diagnosticReportUpsert._id;
 
       // not sure why we're having to respecify this; fix for a bug elsewhere
-      diagnosticReportUpdate.resourceType = 'DiagnosticReport';
+      diagnosticReportUpsert.resourceType = 'DiagnosticReport';
 
       DiagnosticReports.update(
-        {_id: Session.get('selectedDiagnosticReport')}, {$set: diagnosticReportUpdate }, function(error, result) {
+        {_id: Session.get('selectedDiagnosticReport')}, {$set: diagnosticReportUpsert }, function(error, result) {
           if (error) {
             console.log("error", error);
 
@@ -310,9 +324,9 @@ export default class DiagnosticReportDetail extends React.Component {
         });
     } else {
 
-      if(process.env.NODE_ENV === "test") console.log("create a new diagnosticReport", diagnosticReportUpdate);
+      if(process.env.NODE_ENV === "test") console.log("create a new diagnosticReport", diagnosticReportUpsert);
 
-      DiagnosticReports.insert(diagnosticReportUpdate, function(error, result) {
+      DiagnosticReports.insert(diagnosticReportUpsert, function(error, result) {
         if (error) {
           console.log("error", error);
           Bert.alert(error.reason, 'danger');
