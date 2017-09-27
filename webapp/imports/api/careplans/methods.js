@@ -1,17 +1,17 @@
-//import { CarePlans, FooSchema } from '/imports/api/careplans/careplans';
+import { insertObservation, removeObservationById, updateObservation } from '/imports/api/observations/methods';
+
+import { CarePlans } from 'meteor/clinical:hl7-resource-careplan';
+import { Observations } from '/imports/api/observations/observations';
+import { Random } from 'meteor/random';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
 
-import { Random } from 'meteor/random';
-import { defaultCarePlan } from '/imports/api/careplans/default';
+// import { Adherences } from '/imports/api/adherences/adherences';
+// import { QuestionnaireResponses } from 'meteor/clinical:hl7-resource-questionnaire-response';
+//import { defaultCarePlan } from '/imports/api/careplans/default';
 
-import { Adherences } from '/imports/api/adherences/adherences';
-import { Observations } from '/imports/api/observations/observations';
 
-import { CarePlans } from 'meteor/clinical:hl7-resource-careplan';
-import { QuestionnaireResponses } from 'meteor/clinical:hl7-resource-questionnaire-response';
 
-import { insertObservation, updateObservation, removeObservationById } from '/imports/api/observations/methods';
 
 
 
@@ -122,22 +122,22 @@ export const cloneCarePlan = new ValidatedMethod({
 
 
 
-    var lastObservation = Observations.find({'sessionId': carouselDataPayload.session}).fetch();
-    var lastQuestionnaireResponse = QuestionnaireResponses.find({'sessionId': carouselDataPayload.session}).fetch();
-    var lasAdherencePhoto = Adherences.find({'sessionId': carouselDataPayload.session}).fetch();
+    // var lastObservation = Observations.find({'sessionId': carouselDataPayload.session}).fetch();
+    // var lastQuestionnaireResponse = QuestionnaireResponses.find({'sessionId': carouselDataPayload.session}).fetch();
+    // // var lasAdherencePhoto = Adherences.find({'sessionId': carouselDataPayload.session}).fetch();
 
-    if (lastObservation) {
-      console.log("found an observation for this session...");
+    // if (lastObservation) {
+    //   console.log("found an observation for this session...");
 
-    }
-    if (lastQuestionnaireResponse) {
-      console.log("found an questionnaire response for this session...");
+    // }
+    // if (lastQuestionnaireResponse) {
+    //   console.log("found an questionnaire response for this session...");
 
-    }
-    if (lasAdherencePhoto) {
-      console.log("found an adherence photo for this session...");
+    // }
+    // // if (lasAdherencePhoto) {
+    // //   console.log("found an adherence photo for this session...");
 
-    }
+    // // }
 
 
 
@@ -149,7 +149,8 @@ export const cloneCarePlan = new ValidatedMethod({
       delete newCarePlan._id;
     } else {
       // if it's not available, use the hard-coded default
-      newCarePlan = defaultCarePlan;
+      //newCarePlan = defaultCarePlan;
+      newCarePlan = {};
     }
 
     // if we can find a valid patient careplan template, override all the above
@@ -215,107 +216,107 @@ export const cloneCarePlan = new ValidatedMethod({
 
 
 
-    // let newAdherenecPhoto = {
-    //
-    // }
-    // Adherences.insert(newAdherenecPhoto, function(error){
-    //   if (error) {
-    //     if(process.env.NODE_ENV === "test") console.log("Adherences.insert[error]", error);
-    //   }
-    // });
+    // // let newAdherenecPhoto = {
+    // //
+    // // }
+    // // Adherences.insert(newAdherenecPhoto, function(error){
+    // //   if (error) {
+    // //     if(process.env.NODE_ENV === "test") console.log("Adherences.insert[error]", error);
+    // //   }
+    // // });
 
-    let newQuestionnaireResponses = {
-      resourceType: "QuestionnaireResource",
-      identifier: {
-        use: "usual",
-        type: {
-          text: "FooQuestionnaireResponse",
-          coding: [{
-            system: "medical",
-            version: "1",
-            code: "",
-            display: "Foo Survey Questionnaire",
-            userSelected: false
-          }]
-        }
-      },
-      status: "started",
-      questionnaire: {
-        display: "FooQuestionnaire",
-        reference: "Questionnaires/FooQuestionnaire"
-      },
-      author: {
-        display: carouselDataPayload.subject.display,
-        reference: carouselDataPayload.subject.reference
-      },
-      subject: {
-        display: carouselDataPayload.subject.display,
-        reference: carouselDataPayload.subject.reference
-      },
-      source: {
-        display: '',
-        reference: ''
-      },
-      encounter: {
-        display: '',
-        reference: ''
-      },
-      group: {
-        linkId: '',
-        title: "BREATHALYZER SURVEY",
-        text: "Foo Survey",
-        required: false,
-        repeats: true,
-        question: [{
-          linkId: "survey-question-1",
-          text: "Have you drank today?",
-          answer: []
-        }, {
-          linkId: "survey-question-2",
-          text: "When did you take your first drink today?",
-          answer: []
-        }, {
-          linkId: "survey-question-3",
-          text: "When did you take your last drink today?",
-          answer: []
-        }, {
-          linkId: "survey-question-4",
-          text: "How many drinks did you have today?",
-          helpText: "Slide to select number of drinks",
-          answer: []
-        }, {
-          linkId: "survey-question-5",
-          text: "What is your estimated blood alcohol level?",
-          helpText: "Slide to estimate level",
-          answer: []
-        }]
-      }
-    };
-    if (carouselDataPayload.didDrink) {
-      newQuestionnaireResponses.group.question[0].answer.push({
-        valueBoolean: carouselDataPayload.didDrink
-      });
-    }
-    if (carouselDataPayload.firstDrinkTime) {
-      newQuestionnaireResponses.group.question[1].answer.push({
-        valueString: carouselDataPayload.firstDrinkTime.toString()
-      });
-    }
-    if (carouselDataPayload.lastDrinkTime) {
-      newQuestionnaireResponses.group.question[2].answer.push({
-        valueString: carouselDataPayload.lastDrinkTime.toString()
-      });
-    }
-    if (carouselDataPayload.numberDrinks) {
-      newQuestionnaireResponses.group.question[3].answer.push({
-        valueString: carouselDataPayload.numberDrinks
-      });
-    }
-    if (carouselDataPayload.estimatedBAC) {
-      newQuestionnaireResponses.group.question[4].answer.push({
-        valueString: carouselDataPayload.estimatedBAC
-      });
-    }
+    // let newQuestionnaireResponses = {
+    //   resourceType: "QuestionnaireResource",
+    //   identifier: {
+    //     use: "usual",
+    //     type: {
+    //       text: "FooQuestionnaireResponse",
+    //       coding: [{
+    //         system: "medical",
+    //         version: "1",
+    //         code: "",
+    //         display: "Foo Survey Questionnaire",
+    //         userSelected: false
+    //       }]
+    //     }
+    //   },
+    //   status: "started",
+    //   questionnaire: {
+    //     display: "FooQuestionnaire",
+    //     reference: "Questionnaires/FooQuestionnaire"
+    //   },
+    //   author: {
+    //     display: carouselDataPayload.subject.display,
+    //     reference: carouselDataPayload.subject.reference
+    //   },
+    //   subject: {
+    //     display: carouselDataPayload.subject.display,
+    //     reference: carouselDataPayload.subject.reference
+    //   },
+    //   source: {
+    //     display: '',
+    //     reference: ''
+    //   },
+    //   encounter: {
+    //     display: '',
+    //     reference: ''
+    //   },
+    //   group: {
+    //     linkId: '',
+    //     title: "BREATHALYZER SURVEY",
+    //     text: "Foo Survey",
+    //     required: false,
+    //     repeats: true,
+    //     question: [{
+    //       linkId: "survey-question-1",
+    //       text: "Have you drank today?",
+    //       answer: []
+    //     }, {
+    //       linkId: "survey-question-2",
+    //       text: "When did you take your first drink today?",
+    //       answer: []
+    //     }, {
+    //       linkId: "survey-question-3",
+    //       text: "When did you take your last drink today?",
+    //       answer: []
+    //     }, {
+    //       linkId: "survey-question-4",
+    //       text: "How many drinks did you have today?",
+    //       helpText: "Slide to select number of drinks",
+    //       answer: []
+    //     }, {
+    //       linkId: "survey-question-5",
+    //       text: "What is your estimated blood alcohol level?",
+    //       helpText: "Slide to estimate level",
+    //       answer: []
+    //     }]
+    //   }
+    // };
+    // if (carouselDataPayload.didDrink) {
+    //   newQuestionnaireResponses.group.question[0].answer.push({
+    //     valueBoolean: carouselDataPayload.didDrink
+    //   });
+    // }
+    // if (carouselDataPayload.firstDrinkTime) {
+    //   newQuestionnaireResponses.group.question[1].answer.push({
+    //     valueString: carouselDataPayload.firstDrinkTime.toString()
+    //   });
+    // }
+    // if (carouselDataPayload.lastDrinkTime) {
+    //   newQuestionnaireResponses.group.question[2].answer.push({
+    //     valueString: carouselDataPayload.lastDrinkTime.toString()
+    //   });
+    // }
+    // if (carouselDataPayload.numberDrinks) {
+    //   newQuestionnaireResponses.group.question[3].answer.push({
+    //     valueString: carouselDataPayload.numberDrinks
+    //   });
+    // }
+    // if (carouselDataPayload.estimatedBAC) {
+    //   newQuestionnaireResponses.group.question[4].answer.push({
+    //     valueString: carouselDataPayload.estimatedBAC
+    //   });
+    // }
 
 
     QuestionnaireResponses.insert(newQuestionnaireResponses, function(error){

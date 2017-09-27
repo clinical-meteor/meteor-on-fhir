@@ -89,7 +89,7 @@ Meteor.methods({
           lat: 41.7694777,
           lng: -87.6922738
         }, {
-          name: "Lakeside Veterans Administration ",
+          name: "Lakeside Veterans Administration",
           lat: 41.8944773,
           lng: -87.6189413
         }, { 
@@ -161,7 +161,7 @@ Meteor.methods({
           lat: 41.8397557,
           lng: -87.6131063 
         }, { 
-          name: "Ronald McDonald Childrens Hospital ",
+          name: "Ronald McDonald Childrens Hospital",
           lat: 41.8605869,
           lng: -87.8350591
         }, { 

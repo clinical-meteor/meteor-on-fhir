@@ -168,18 +168,18 @@ export class MainIndex extends React.Component {
                 {this.renderOrganizations(this.data.user)}
               </Col>
               <Col lg={3}>
-                {this.renderPatients(this.data.user)}
-              </Col>
-              <Col lg={3}>
                 {this.renderPractitioners(this.data.user)}
               </Col>
               <Col lg={3}>
                 {this.renderProcedures(this.data.user)}
               </Col>
+              <Col lg={3}>
+                {this.renderRiskAssessments(this.data.user)}
+              </Col>
             </Row>
             <Row>
               <Col lg={3}>
-                {this.renderRiskAssessments(this.data.user)}
+                {this.renderPatients(this.data.user)}
               </Col>
               <Col lg={3}>
               </Col>
@@ -463,7 +463,7 @@ export class MainIndex extends React.Component {
 
   renderImmunizations(user){
     if (Meteor.settings.public.modules.fhir.Procedures) {
-      if (user.isPractitioner || user.isAdmin) {
+      if (user.isPractitioner || user.isAdmin || user.isPatient) {
         return (
           <div id='immunizationsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/immunizations') } >
             <GlassCard style={this.data.style.indexCard} >
@@ -502,7 +502,7 @@ export class MainIndex extends React.Component {
 
   renderProcedures(user){
     if (Meteor.settings.public.modules.fhir.Procedures) {
-      if (user.isPractitioner || user.isAdmin) {
+      if (user.isPractitioner || user.isAdmin || user.isPatient) {
         return (
           <div id='proceduresTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/procedures') } >
             <GlassCard style={this.data.style.indexCard} >

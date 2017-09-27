@@ -1,6 +1,7 @@
 import { CardText, CardTitle } from 'material-ui/Card';
 import {Tab, Tabs} from 'material-ui/Tabs';
 
+import CarePlanDesignerPage from '/imports/ui/workflows/carePlans/CarePlanDesignerPage';
 import CarePlanDetail from '/imports/ui/workflows/carePlans/CarePlanDetail';
 import CarePlansTable from '/imports/ui/workflows/carePlans/CarePlansTable';
 import { GlassCard } from '/imports/ui/components/GlassCard';
@@ -57,9 +58,9 @@ export class CarePlansPage extends React.Component {
             <CardTitle title='CarePlans' />
             <CardText>
               <Tabs id="carePlansPageTabs" default value={this.data.tabIndex} onChange={this.handleTabChange} initialSelectedIndex={1}>
-               <Tab className='newCarePlanTab' label='New' style={this.data.style.tab} onActive={ this.onNewTab } value={0}>
+               {/* <Tab className='newCarePlanTab' label='New' style={this.data.style.tab} onActive={ this.onNewTab } value={0}>
                  <CarePlanDetail id='newCarePlan' />
-               </Tab>
+               </Tab> */}
                <Tab className="carePlanListTab" label='CarePlans' onActive={this.handleActive} style={this.data.style.tab} value={1}>
                 <CarePlansTable />
                </Tab>

@@ -24,13 +24,59 @@ Meteor.methods({
       console.log("No records found in Goals collection.  Lets create some...");
 
       var developAwareness = {
-        description: '10,000 steps per day.',
+        description: 'Biomarker - Weight - Loose 20 lbs.',
         priority: {
           text: 'medium'
         },
         status: 'planned'
       };
       Meteor.call('createGoal', developAwareness);
+
+      var cycleToWork = {
+        description: 'Biomarker - Blood Pressure - 120/80-140/90',
+        priority: {
+          text: 'medium'
+        },
+        status: 'planned'
+      };
+      Meteor.call('createGoal', cycleToWork);      
+
+      var quitSmoking24 = {
+        description: '24 hours without cigarette smoking.',
+        priority: {
+          text: 'medium'
+        },
+        status: 'planned'
+      };
+      Meteor.call('createGoal', quitSmoking24);
+      
+      var quitSmoking3days = {
+        description: '3 days without cigarette smoking.',
+        priority: {
+          text: 'medium'
+        },
+        status: 'planned'
+      };
+      Meteor.call('createGoal', quitSmoking3days);
+
+      var quitSmoking7days = {
+        description: '7 days without cigarette smoking.',
+        priority: {
+          text: 'medium'
+        },
+        status: 'planned'
+      };
+      Meteor.call('createGoal', quitSmoking3days);
+      
+      var quitSmoking1month = {
+        description: '1 month without cigarette smoking.',
+        priority: {
+          text: 'medium'
+        },
+        status: 'planned'
+      };
+      Meteor.call('createGoal', quitSmoking1month);
+
 
     } else {
       console.log('Goals already exist.  Skipping.');

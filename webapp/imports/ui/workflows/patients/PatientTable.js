@@ -40,6 +40,9 @@ export default class PatientTable extends React.Component {
     if (Meteor.settings && Meteor.settings.public && Meteor.settings.public.defaults && Meteor.settings.public.defaults.paginationLimit) {
       options.limit = Meteor.settings.public.defaults.paginationLimit;
     }
+    if(this.props.limit){
+      options.limit = this.props.limit;      
+    }
 
     data.patients = Patients.find(query, options).map(function(person){
       let result = {
