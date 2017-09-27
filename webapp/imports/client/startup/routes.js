@@ -188,7 +188,7 @@ Meteor.startup(() => {
 
         <Route name="conditions" path="/conditions" component={ ConditionsPage }  onEnter={ requireAuth }/>
         <Route name="devices" path="/devices" component={ DevicesPage }  onEnter={ requireAuth }/>
-        <Route name="telemedicine" path="/telemed" component={ TelemedicinePage }  onEnter={ requireAuth }/>
+        <Route name="telemedicine" path="/videoconferencing" component={ TelemedicinePage }  onEnter={ requireAuth }/>
         <Route name="locations" path="/locations" component={ LocationsPage }  onEnter={ requireAuth }/>
         <Route name="dermatograms" path="/dermatograms" component={ DermatogramsPage }  onEnter={ requireAuth }/>
         <Route name="questionnaires" path="/questionnaires" component={ QuestionnairesPage }  onEnter={ requireAuth }/>

@@ -112,6 +112,9 @@ export class MainIndex extends React.Component {
               <Col md={3}>
                 {this.renderChecklists(this.data.user)}
               </Col>
+              <Col md={3}>
+                {this.renderVideoconferencing(this.data.user)}
+              </Col>
             </Row>
 
 
@@ -149,6 +152,9 @@ export class MainIndex extends React.Component {
 
             <Row>
               <Col lg={3}>
+              {this.renderOrganizations(this.data.user)}
+              </Col>
+              <Col lg={3}>
                 {this.renderMedications(this.data.user)}
               </Col>
               <Col lg={3}>
@@ -157,21 +163,18 @@ export class MainIndex extends React.Component {
               <Col lg={3}>
                 {this.renderMedicationStatements(this.data.user)}
               </Col>
-              <Col lg={3}>
-                {this.renderObservations(this.data.user)}
-              </Col>
             </Row>
 
 
             <Row>
               <Col lg={3}>
-                {this.renderOrganizations(this.data.user)}
+                {this.renderPractitioners(this.data.user)}
               </Col>
               <Col lg={3}>
                 {this.renderPatients(this.data.user)}
               </Col>
               <Col lg={3}>
-                {this.renderPractitioners(this.data.user)}
+                {this.renderObservations(this.data.user)}
               </Col>
               <Col lg={3}>
                 {this.renderProcedures(this.data.user)}
@@ -645,7 +648,7 @@ export class MainIndex extends React.Component {
     }
   }
   renderChecklists(user){
-    if (Meteor.settings.public.modules.fhir.Devices) {
+    if (Meteor.settings.public.modules.apps.ChecklistManifesto) {
       if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
           <div id='checklistsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/checklists') } >
@@ -662,6 +665,25 @@ export class MainIndex extends React.Component {
       }
     }
   }
+  renderVideoconferencing(user){
+    if (Meteor.settings.public.modules.apps.Videoconferencing) {
+      if (user.isPatient || user.isPractitioner || user.isAdmin) {
+        return (
+          <div id='videoconferencingTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/videoconferencing') } >
+            <GlassCard style={this.data.style.indexCard} >
+              <CardTitle
+                title='Videoconferencing'
+                subtitle='Telehealth and remote consultations.'
+                titleStyle={this.data.style.title}
+                subtitleStyle={this.data.style.subtitle}
+              />
+            </GlassCard>
+          </div>
+        );
+      }
+    }
+  }
+
 
   renderRiskAssessments(user){
     if (Meteor.settings.public.modules.fhir.RiskAssessments) {
