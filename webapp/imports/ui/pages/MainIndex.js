@@ -171,18 +171,18 @@ export class MainIndex extends React.Component {
                 {this.renderPractitioners(this.data.user)}
               </Col>
               <Col lg={3}>
-                {this.renderPatients(this.data.user)}
-              </Col>
-              <Col lg={3}>
-                {this.renderObservations(this.data.user)}
+                {this.renderPractitioners(this.data.user)}
               </Col>
               <Col lg={3}>
                 {this.renderProcedures(this.data.user)}
               </Col>
+              <Col lg={3}>
+                {this.renderRiskAssessments(this.data.user)}
+              </Col>
             </Row>
             <Row>
               <Col lg={3}>
-                {this.renderRiskAssessments(this.data.user)}
+                {this.renderPatients(this.data.user)}
               </Col>
               <Col lg={3}>
               </Col>
@@ -466,7 +466,7 @@ export class MainIndex extends React.Component {
 
   renderImmunizations(user){
     if (Meteor.settings.public.modules.fhir.Procedures) {
-      if (user.isPractitioner || user.isAdmin) {
+      if (user.isPractitioner || user.isAdmin || user.isPatient) {
         return (
           <div id='immunizationsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/immunizations') } >
             <GlassCard style={this.data.style.indexCard} >
@@ -505,7 +505,7 @@ export class MainIndex extends React.Component {
 
   renderProcedures(user){
     if (Meteor.settings.public.modules.fhir.Procedures) {
-      if (user.isPractitioner || user.isAdmin) {
+      if (user.isPractitioner || user.isAdmin || user.isPatient) {
         return (
           <div id='proceduresTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/procedures') } >
             <GlassCard style={this.data.style.indexCard} >
@@ -672,8 +672,8 @@ export class MainIndex extends React.Component {
           <div id='videoconferencingTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/videoconferencing') } >
             <GlassCard style={this.data.style.indexCard} >
               <CardTitle
-                title='Videoconferencing'
-                subtitle='Telehealth and remote consultations.'
+                title='Telemedicine'
+                subtitle='Videoconferencing and remote consultations.'
                 titleStyle={this.data.style.title}
                 subtitleStyle={this.data.style.subtitle}
               />

@@ -1,12 +1,11 @@
-import React from 'react';
-import ReactMixin from 'react-mixin';
-import { ReactMeteorData } from 'meteor/react-meteor-data';
+import { CardActions, CardText } from 'material-ui/Card';
 
-import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
 import { Bert } from 'meteor/themeteorchef:bert';
-
-import { CardText, CardActions } from 'material-ui/Card';
+import RaisedButton from 'material-ui/RaisedButton';
+import React from 'react';
+import { ReactMeteorData } from 'meteor/react-meteor-data';
+import ReactMixin from 'react-mixin';
+import TextField from 'material-ui/TextField';
 
 let defaultMedication = {
   resourceType: 'Medication',
@@ -210,7 +209,7 @@ export default class MedicationDetail extends React.Component {
     if (medicationId) {
       return (
         <div>
-          <RaisedButton id="saveMedicationButton" label="Save" primary={true} onClick={this.handleSaveButton.bind(this)} />
+          <RaisedButton id="saveMedicationButton" label="Save" primary={true} onClick={this.handleSaveButton.bind(this)} style={{marginRight: '20px'}}  />
           <RaisedButton id="deleteMedicationButton" label="Delete" onClick={this.handleDeleteButton.bind(this)} />
         </div>
       );

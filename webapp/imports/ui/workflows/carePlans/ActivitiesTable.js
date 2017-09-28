@@ -1,7 +1,6 @@
 import React from 'react';
-import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
-
+import ReactMixin from 'react-mixin';
 import { Table } from 'react-bootstrap';
 import Toggle from 'material-ui/Toggle';
 
@@ -34,6 +33,22 @@ export default class MedicationTable extends React.Component {
       if (carePlanTemplate ) {
         data.activity = carePlanTemplate.activity;
       }
+    } else {
+      data.activity = [{
+        detail: {
+          description: '10,000 steps per day'
+        },
+        reference: {
+          display: ''
+        }
+      }, {
+        detail: {
+          description: 'Cycle to work 30 mins.'
+        },
+        reference: {
+          display: ''
+        }
+      }]
     }
 
     if (Session.get('darkroomEnabled')) {
@@ -89,8 +104,8 @@ export default class MedicationTable extends React.Component {
             style={this.data.style.checkbox}
           />
         </td>
-        <td className="description">{this.data.activity[i].reference.display}</td>
-        <td className="goal hidden-on-phone">{this.data.activity[i].detail.description}</td>
+        <td className="description">{this.data.activity[i].detail.description}</td>
+        <td className="goal hidden-on-phone">{this.data.activity[i].reference.display}</td>
       </tr>);
     }
 

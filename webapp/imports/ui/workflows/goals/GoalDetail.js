@@ -100,7 +100,7 @@ export default class GoalDetail extends React.Component {
     if (goalId) {
       return (
         <div>
-          <RaisedButton id="saveGoalButton" label="Save" primary={true} onClick={this.handleSaveButton.bind(this)} />
+          <RaisedButton id="saveGoalButton" label="Save" primary={true} onClick={this.handleSaveButton.bind(this)} style={{marginRight: '20px'}} />
           <RaisedButton id="deleteGoalButton" label="Delete" onClick={this.handleDeleteButton.bind(this)} />
         </div>
       );

@@ -9,6 +9,7 @@ import { AppInfoPage } from '/imports/ui/pages/AppInfoPage';
 import { AuditLogPage } from '/imports/ui/pages/AuditLogPage';
 import { AuthorizePage } from '/imports/ui/workflows/oauth/AuthorizePage';
 import { BodySitesPage } from '/imports/ui/workflows/body-sites/BodySitesPage';
+import { CarePlanDesignerPage } from '/imports/ui/workflows/carePlans/CarePlanDesignerPage';
 import { CarePlansPage } from '/imports/ui/workflows/carePlans/CarePlansPage';
 import { ChecklistsPage } from '/imports/ui/workflows/lists/ChecklistsPage';
 import { ClientConfigurationPage } from '/imports/ui/workflows/oauth/ClientConfigurationPage';
@@ -229,6 +230,7 @@ Meteor.startup(() => {
 
         <Route name="GoalsPage" path="/goals" component={ GoalsPage }  onEnter={ requireAuth }/>
         <Route name="CarePlansPage" path="/care-plans" component={ CarePlansPage }  onEnter={ requireAuth }/>
+        <Route name="CarePlanDesignerPage" path="/careplan-designer" component={ CarePlanDesignerPage }  onEnter={ requireAuth }/>
         <Route name="DiagnosticReportsPage" path="/diagnostic-reports" component={ DiagnosticReportsPage }  onEnter={ requireAuth }/>
         <Route name="MedicationOrdersPage" path="/medication-orders" component={ MedicationOrdersPage }  onEnter={ requireAuth }/>
         <Route name="MedicationStatementsPage" path="/medication-statements" component={ MedicationStatementsPage }  onEnter={ requireAuth }/>

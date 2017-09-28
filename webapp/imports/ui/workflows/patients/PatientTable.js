@@ -37,8 +37,13 @@ export default class PatientTable extends React.Component {
 
     let query = {};
     let options = {};
+    // number of items in the table should be set globally
     if (Meteor.settings && Meteor.settings.public && Meteor.settings.public.defaults && Meteor.settings.public.defaults.paginationLimit) {
       options.limit = Meteor.settings.public.defaults.paginationLimit;
+    }
+    // but can be over-ridden by props being more explicit
+    if(this.props.limit){
+      options.limit = this.props.limit;      
     }
 
     data.patients = Patients.find(query, options).map(function(person){

@@ -161,7 +161,7 @@ export default class MedicationStatementDetail extends React.Component {
     if (medicationStatementId) {
       return (
         <div>
-          <RaisedButton id="saveMedicationStatementButton" label="Save" primary={true} onClick={this.handleSaveButton.bind(this)} />
+          <RaisedButton id="saveMedicationStatementButton" label="Save" primary={true} onClick={this.handleSaveButton.bind(this)} style={{marginRight: '20px'}}  />
           <RaisedButton id="deleteMedicationStatementButton" label="Delete" onClick={this.handleDeleteButton.bind(this)} />
         </div>
       );

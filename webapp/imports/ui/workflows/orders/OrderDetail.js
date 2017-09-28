@@ -1,14 +1,12 @@
-import React from 'react';
-import ReactMixin from 'react-mixin';
-import { ReactMeteorData } from 'meteor/react-meteor-data';
+import { CardActions, CardText } from 'material-ui/Card';
+import { createOrder, removeOrder, updateOrder } from '/imports/api/orders/methods';
 
-import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
-
-import { CardText, CardActions } from 'material-ui/Card';
-import { createOrder, updateOrder, removeOrder } from '/imports/api/orders/methods';
 import { Bert } from 'meteor/themeteorchef:bert';
-
+import RaisedButton from 'material-ui/RaisedButton';
+import React from 'react';
+import { ReactMeteorData } from 'meteor/react-meteor-data';
+import ReactMixin from 'react-mixin';
+import TextField from 'material-ui/TextField';
 
 let defaultOrder = {
   status: 'preliminary',
@@ -141,7 +139,7 @@ export default class OrderDetail extends React.Component {
     if (orderId) {
       return (
         <div>
-          <RaisedButton id="saveOrderButton" label="Save" className="saveOrderButton" primary={true} onClick={this.handleSaveButton.bind(this)} />
+          <RaisedButton id="saveOrderButton" label="Save" className="saveOrderButton" primary={true} onClick={this.handleSaveButton.bind(this)} style={{marginRight: '20px'}}  />
           <RaisedButton id="deleteOrderButton" label="Delete" onClick={this.handleDeleteButton.bind(this)} />
         </div>
       );

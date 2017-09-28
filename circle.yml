@@ -63,7 +63,7 @@ test:
 
     #- make sure we have our tests
     - cd webapp/tests && ls -la
-    - cd webapp/tests && git clone https://github.com/awatson1978/meteor-on-fhir-validation nightwatch
+    - cd webapp && git clone https://github.com/awatson1978/meteor-on-fhir-validation tests/nightwatch
 
     #- run the app
     - "cd webapp && meteor run --settings settings.circle.json":

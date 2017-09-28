@@ -163,6 +163,11 @@ To enable network synchronizing, you'll need to specify an upstream sync partner
 
 ### References
 
+#### Miscellaneous Notes  
+- CarePlans can be complicated.  At the current time, they're very much an advanced feature and don't ship completed and ready to use out of the box.  Expect to have to implement your own careplan.  It's best to turn the careplan module off in the settings.json file until you have the time to implement custom careplan logic.  
+
+
+
 #### Miscellaneous References    
 [Supporting Interoperability – Terminology, Subsets and Other Resources from Natl. Library of Medicine](https://www.nlm.nih.gov/hit_interoperability.html)  
 [Health IT Standards for Health Information Management Practices](http://ihe.net/uploadedFiles/Documents/ITI/IHE_ITI_WP_HITStdsforHIMPratices_Rev1.1_2015-09-18.pdf)  
