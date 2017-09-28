@@ -618,7 +618,7 @@ export class MainIndex extends React.Component {
           <div id="medicationsTile" style={this.data.style.indexCardPadding} onClick={ this.openMedications.bind(this) } >
             <GlassCard style={this.data.style.indexCard} >
               <CardTitle
-                title='Medication Inventory'
+                title='Medications'
                 subtitle='Crash carts, first responder kits, and surgical prep.'
                 titleStyle={this.data.style.title}
                   subtitleStyle={this.data.style.subtitle}

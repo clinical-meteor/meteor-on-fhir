@@ -32,6 +32,7 @@ Meteor.methods({
     Meteor.call('initializeDiagnosticReports')
     Meteor.call('initializeImmunizations');
     Meteor.call('initializeMedications');
+    Meteor.call('initializeMedicationStatements');
     Meteor.call('initializeObservation', 70.0, '');
     Meteor.call('initializePatient');
     Meteor.call('initializeProcedure');
