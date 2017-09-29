@@ -2,7 +2,7 @@ import {ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar';
 
 import ActionAccountCircle from 'material-ui/svg-icons/action/account-circle';
 import ActionExitToApp from 'material-ui/svg-icons/action/exit-to-app';
-import AvVideoCall from 'material-ui/svg-icons/AV/video-call';
+import AvVideoCall from 'material-ui/svg-icons/av/video-call';
 import { CardText } from 'material-ui/Card';
 import Glass from '/imports/ui/Glass';
 import IconButton from 'material-ui/IconButton';
