@@ -27,15 +27,16 @@ export default class MedicationStatementsTable extends React.Component {
 
     MedicationStatements.find().map(function(statement){
       var newRow = {
-        medication: '',
-        basedOn: '',
-        effectiveDateTime: '',
-        dateAsserted: '',
-        informationSource: '',
-        subjectDisplay: '',
-        taken: '',
-        reasonCodeDisplay: '',
-        dosage: '',
+        '_id': statement._id,
+        'medication': '',
+        'basedOn': '',
+        'effectiveDateTime': '',
+        'dateAsserted': '',
+        'informationSource': '',
+        'subjectDisplay': '',
+        'taken': '',
+        'reasonCodeDisplay': '',
+        'dosage': '',
       };
       console.log('statement', statement)
 
