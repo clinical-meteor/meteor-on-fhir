@@ -1,4 +1,5 @@
 import { CardActions, CardText } from 'material-ui/Card';
+import { get, has, set } from 'lodash';
 import { insertPatient, removePatientById, updatePatient } from '/imports/ui/workflows/patients/methods';
 
 import { Bert } from 'meteor/themeteorchef:bert';

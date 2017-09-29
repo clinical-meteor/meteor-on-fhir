@@ -107,7 +107,7 @@ export default class MedicationStatementsTable extends React.Component {
         <tr key={i} className="medicationStatementRow" style={{cursor: "pointer"}} onClick={ this.rowClick.bind('this', this.data.medicationStatements[i]._id)} >
 
           <td className='medication'>{ this.data.medicationStatements[i].medication }</td>
-          <td className='basedOn'>{ this.data.medicationStatements[i].basedOn }</td>
+          {/* <td className='basedOn'>{ this.data.medicationStatements[i].basedOn }</td> */}
           <td className='effectiveDateTime'>{ this.data.medicationStatements[i].effectiveDateTime }</td>
           <td className='dateAsserted'>{ this.data.medicationStatements[i].dateAsserted }</td>
           <td className='informationSource'>{ this.data.medicationStatements[i].informationSource }</td>
@@ -124,7 +124,7 @@ export default class MedicationStatementsTable extends React.Component {
         <thead>
           <tr>
             <th className='medication'>medication</th>
-            <th className='basedOn'>based on</th>
+            {/* <th className='basedOn'>based on</th> */}
             <th className='effectiveDateTime'>date /time</th>
             <th className='dateAsserted'>assertion</th>
             <th className='informationSource'>source</th>

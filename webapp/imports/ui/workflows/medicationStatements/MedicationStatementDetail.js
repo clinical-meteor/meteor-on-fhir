@@ -26,11 +26,21 @@ let defaultMedicationStatement = {
     "reference": "",
     "display": ""
   },
-  "taken": "",
-  "reasonCode": [],
-  "note": [],
-  "dosage": [],
-  "note": []
+  "medicationReference": {
+    "reference": "",
+    "display": ""
+  },
+  "taken": "y",
+  "reasonCode": [{
+    "coding": [{
+      "code": "",
+      "display": ""
+    }]
+  }],
+  "note": [{
+    "text": ''
+  }],
+  "dosage": []
 };
 
 var defaultMedicationStatementForm = {
@@ -43,6 +53,7 @@ var defaultMedicationStatementForm = {
   subjectReference: "",
   taken: "",
   reasonCodeDisplay: "",
+  reasonCode: "",
   dosage: "",
   medicationReference: '',
   medicationDisplay: '',
@@ -68,26 +79,22 @@ export default class MedicationStatementDetail extends React.Component {
 
       data.medicationStatement = MedicationStatements.findOne({_id: Session.get('selectedMedicationStatement')});
       console.log("selectedMedicationStatement", data.medicationStatement);
-    } else {
-      data.medicationStatement = defaultMedicationStatement;
-    }  
 
-    if (Session.get('medicationStatementFormUpsert')) {
-      data.medicationStatementForm = Session.get('medicationStatementFormUpsert');
     } else {
       data.medicationStatementForm = defaultMedicationStatementForm;
-    }
-
+      data.medicationStatement = defaultMedicationStatement;
+    }    
+    
 
     if(has(data.medicationStatement, 'medicationReference.display')){
-      data.medicationStatementForm.medicationDisplay = get(data.medicationStatement, 'medicationReference.display');
+      data.medicationStatementForm.medicationDisplay = get(data.medicationStatement, 'medicationReference.display', '');
     } 
     if(has(data.medicationStatement, 'medicationReference.reference')){
-      data.medicationStatementForm.medicationReference = get(data.medicationStatement, 'medicationReference.reference');
+      data.medicationStatementForm.medicationReference = get(data.medicationStatement, 'medicationReference.reference', '');
     } 
 
     if(has(data.medicationStatement, 'identifier[0].value')){
-      data.medicationStatementForm.identifier = get(data.medicationStatement, 'identifier[0].value');
+      data.medicationStatementForm.identifier = get(data.medicationStatement, 'identifier[0].value', '');
     }        
 
     if(has(data.medicationStatement, 'effectiveDateTime')){
@@ -99,37 +106,36 @@ export default class MedicationStatementDetail extends React.Component {
     }        
 
     if(has(data.medicationStatement, 'subject.display')){
-      data.medicationStatementForm.subjectDisplay = get(data.medicationStatement, 'subject.display');
+      data.medicationStatementForm.subjectDisplay = get(data.medicationStatement, 'subject.display', '');
     }        
     if(has(data.medicationStatement, 'subject.reference')){
-      data.medicationStatementForm.subjectReference = get(data.medicationStatement, 'subject.reference');
+      data.medicationStatementForm.subjectReference = get(data.medicationStatement, 'subject.reference', '');
     }        
 
     if(has(data.medicationStatement, 'informationSource.display')){
-      data.medicationStatementForm.informationSourceDisplay = get(data.medicationStatement, 'informationSource.display');
+      data.medicationStatementForm.informationSourceDisplay = get(data.medicationStatement, 'informationSource.display', '');
     }        
     if(has(data.medicationStatement, 'informationSource.reference')){
-      data.medicationStatementForm.informationSourceReference = get(data.medicationStatement, 'informationSource.reference');
+      data.medicationStatementForm.informationSourceReference = get(data.medicationStatement, 'informationSource.reference', '');
     }        
 
     if(has(data.medicationStatement, 'taken')){
-      data.medicationStatementForm.taken = get(data.medicationStatement, 'taken');
+      data.medicationStatementForm.taken = get(data.medicationStatement, 'taken', 'y');
     }        
 
     if(has(data.medicationStatement, 'reasonCode[0].coding[0].display')){
-      data.medicationStatementForm.reasonCodeDisplay = get(data.medicationStatement, 'reasonCode[0].coding[0].display');
+      data.medicationStatementForm.reasonCodeDisplay = get(data.medicationStatement, 'reasonCode[0].coding[0].display', '');
     }  
-    if(has(data.medicationStatement, 'reasonCode[0].coding[0].value')){
-      data.medicationStatementForm.reasonCodeValue = get(data.medicationStatement, 'reasonCode[0].coding[0].value');
+    if(has(data.medicationStatement, 'reasonCode[0].coding[0].code')){
+      data.medicationStatementForm.reasonCode = get(data.medicationStatement, 'reasonCode[0].coding[0].code', '');
     }  
-
     if(has(data.medicationStatement, 'note[0].text')){
       data.medicationStatementForm.clinicalNote = get(data.medicationStatement, 'note[0].text', '');
+    }     
+    
+    if (Session.get('medicationStatementFormUpsert')) {
+      data.medicationStatementForm = Session.get('medicationStatementFormUpsert');
     } 
-
-    // if (!Session.get('medicationStatementFormUpsert')) {
-    Session.set('medicationStatementFormUpsert', data.medicationStatementForm)
-    // }
 
     console.log('MedicationStatementDetail[data]', data);
     return data;
@@ -196,6 +202,32 @@ export default class MedicationStatementDetail extends React.Component {
             </Col>
           </Row>
 
+
+          <Row> 
+            <Col md={8} >
+              <TextField
+                id='medicationDisplayInput'
+                ref='medicationDisplay'
+                name='medicationDisplay'
+                floatingLabelText='Medication - Display'
+                value={this.data.medicationStatementForm.medicationDisplay ? this.data.medicationStatementForm.medicationDisplay : ''}
+                onChange={ this.changeState.bind(this, 'medicationDisplay')}
+                fullWidth
+                /><br/>               
+            </Col>
+            <Col md={4} >
+              <TextField
+                id='medicationReferenceInput'
+                ref='medicationReference'
+                name='medicationReference'
+                floatingLabelText='Medication - Reference'
+                value={this.data.medicationStatementForm.medicationReference ? this.data.medicationStatementForm.medicationReference : ''}
+                onChange={ this.changeState.bind(this, 'medicationReference')}
+                fullWidth
+                /><br/>     
+            </Col>
+          </Row> 
+
           <Row> 
             <Col md={8} >
               <TextField
@@ -210,12 +242,12 @@ export default class MedicationStatementDetail extends React.Component {
             </Col>
             <Col md={4} >
               <TextField
-                id='reasonCodeValueInput'
-                ref='reasonCodeValue'
-                name='reasonCodeValue'
+                id='reasonCodeInput'
+                ref='reasonCode'
+                name='reasonCode'
                 floatingLabelText='Reason - Code Value'
-                value={this.data.medicationStatementForm.reasonCodeValue ? this.data.medicationStatementForm.reasonCodeValue : ''}
-                onChange={ this.changeState.bind(this, 'reasonCodeValue')}
+                value={this.data.medicationStatementForm.reasonCode ? this.data.medicationStatementForm.reasonCode : ''}
+                onChange={ this.changeState.bind(this, 'reasonCode')}
                 fullWidth
                 /><br/>   
             </Col>
@@ -248,30 +280,7 @@ export default class MedicationStatementDetail extends React.Component {
           </Row>
 
 
-          <Row> 
-            <Col md={8} >
-              <TextField
-                id='medicationDisplayInput'
-                ref='medicationDisplay'
-                name='medicationDisplay'
-                floatingLabelText='Medication - Display'
-                value={this.data.medicationStatementForm.medicationDisplay ? this.data.medicationStatementForm.medicationDisplay : ''}
-                onChange={ this.changeState.bind(this, 'medicationDisplay')}
-                fullWidth
-                /><br/>               
-            </Col>
-            <Col md={4} >
-              <TextField
-                id='medicationReferenceInput'
-                ref='medicationReference'
-                name='medicationReference'
-                floatingLabelText='Medication - Reference'
-                value={this.data.medicationStatementForm.medicationReference ? this.data.medicationStatementForm.medicationReference : ''}
-                onChange={ this.changeState.bind(this, 'medicationReference')}
-                fullWidth
-                /><br/>     
-            </Col>
-          </Row> 
+
           
           <TextField
             id='clinicalNoteInput'
@@ -357,6 +366,9 @@ export default class MedicationStatementDetail extends React.Component {
       case "reasonCodeDisplay":
         medicationStatementStateChange.reasonCodeDisplay = value;
         break;
+      case "reasonCode":
+        medicationStatementStateChange.reasonCode = value;
+        break;
       case "dosage":
         medicationStatementStateChange.dosage = value;
         break;
@@ -417,15 +429,14 @@ export default class MedicationStatementDetail extends React.Component {
     if(formUpsert.taken){
       set(medicationStatementDiff, 'taken', formUpsert.taken);
     }
-    if(formUpsert.dateAsserted){
-      set(medicationStatementDiff, 'note', [ formUpsert.clinicalNote ]);
+    if(formUpsert.clinicalNote){
+      set(medicationStatementDiff, 'note[0].text', formUpsert.clinicalNote);
     }  
-
     if(formUpsert.reasonCodeDisplay){
       set(medicationStatementDiff, 'reasonCode[0].coding[0].display', formUpsert.reasonCodeDisplay);
     }
-    if(formUpsert.reasonCodeValue){
-      set(medicationStatementDiff, 'reasonCode[0].coding[0].code', formUpsert.reasonCodeValue);
+    if(formUpsert.reasonCode){
+      set(medicationStatementDiff, 'reasonCode[0].coding[0].code', formUpsert.reasonCode);
     }
 
     delete medicationStatementDiff._id;
@@ -453,7 +464,7 @@ export default class MedicationStatementDetail extends React.Component {
         });
     } else {
 
-      if(process.env.NODE_ENV === "test") console.log("create a new medicationStatement", medicationStatementUpdate);
+      if(process.env.NODE_ENV === "test") console.log("create a new medicationStatement", medicationStatementDiff);
 
       MedicationStatements.insert(medicationStatementDiff, function(error, result) {
         if (error) {

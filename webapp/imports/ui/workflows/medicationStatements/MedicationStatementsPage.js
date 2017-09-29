@@ -45,7 +45,7 @@ export class MedicationStatementsPage extends React.Component {
 
   onNewTab(){
     Session.set('selectedMedicationStatement', false);
-    Session.set('medicationStatementUpsert', false);
+    Session.set('medicationStatementFormUpsert', false);
   }
 
   render() {
