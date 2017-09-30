@@ -24,6 +24,7 @@ export default class DiagnosticReportsTable extends React.Component {
     if(DiagnosticReports.find().count() > 0){
       data.diagnosticReports = DiagnosticReports.find().map(function(report){
         var newRow = {
+          _id: report._id,
           subjectDisplay: '',
           code: '',
           status: '',
@@ -42,11 +43,11 @@ export default class DiagnosticReportsTable extends React.Component {
             }
           }
   
-          if(report.performer && report.performer[0]){
-            if(report.performer.display){
-              newRow.performerDisplay = report.performer[0].display;
+          if(report.performer && report.performer[0] && report.performer[0].actor){
+            if(report.performer[0].actor.display){
+              newRow.performerDisplay = report.performer[0].actor.display;
             } else {
-              newRow.performerDisplay = report.performer[0].reference;          
+              newRow.performerDisplay = report.performer[0].actor.reference;          
             }
           }
           if(report.code){
@@ -74,12 +75,13 @@ export default class DiagnosticReportsTable extends React.Component {
     }
 
 
-    if(process.env.NODE_ENV === "test") console.log("data", data);
+    if(process.env.NODE_ENV === "test") console.log("DiagnosticReportsTable[data]", data);
     return data;
   };
 
 
   rowClick(id){
+    console.log('rowClick', id)
     Session.set('diagnosticReportsUpsert', false);
     Session.set('selectedDiagnosticReport', id);
     Session.set('diagnosticReportPageTabIndex', 2);
@@ -97,7 +99,7 @@ export default class DiagnosticReportsTable extends React.Component {
           <td className='issued'>{ this.data.diagnosticReports[i].issued }</td>
           <td className='performerDisplay'>{ this.data.diagnosticReports[i].performerDisplay }</td>
           <td className='identifier'>{ this.data.diagnosticReports[i].identifier }</td>
-          <td className='effectiveDate'>{ this.data.diagnosticReports[i].effectiveDate }</td>
+          <td className='effectiveDateTime'>{ this.data.diagnosticReports[i].effectiveDate }</td>
           <td className='category'>{ this.data.diagnosticReports[i].category }</td>
         </tr>
       )
@@ -113,7 +115,7 @@ export default class DiagnosticReportsTable extends React.Component {
             <th className='issued'>issued</th>
             <th className='performerDisplay'>performer</th>
             <th className='identifier'>identifier</th>
-            <th className='effectiveDateTime'>date/time</th>
+            <th className='effectiveDateTime'>effective date</th>
             <th className='category'>category</th>
           </tr>
         </thead>

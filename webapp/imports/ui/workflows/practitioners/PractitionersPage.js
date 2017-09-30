@@ -4,7 +4,7 @@ import { Tab, Tabs } from 'material-ui/Tabs';
 import Glass from '/imports/ui/Glass';
 import { GlassCard } from '/imports/ui/components/GlassCard';
 import PractitionerDetail  from '/imports/ui/workflows/practitioners/PractitionerDetail';
-import PractitionerTable  from '/imports/ui/workflows/practitioners/PractitionerTable';
+import PractitionersTable  from '/imports/ui/workflows/practitioners/PractitionersTable';
 import React  from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin  from 'react-mixin';
@@ -64,7 +64,7 @@ export class PractitionersPage extends React.Component {
                   <PractitionerDetail id='newPractitioner' />
                 </Tab>
                 <Tab className="practitionerListTab" label='Practitioners' onActive={this.handleActive} style={this.data.style.tab} value={1}>
-                  <PractitionerTable showBarcodes={false} />
+                  <PractitionersTable showBarcodes={false} />
                  </Tab>
                  <Tab className="practitionerDetailsTab" label='Detail' onActive={this.handleActive} style={this.data.style.tab} value={2}>
                   <PractitionerDetail id='practitionerDetails' />
@@ -79,7 +79,7 @@ export class PractitionersPage extends React.Component {
 }
 
 
-PractitionersPage.propTypes = {
-  hasUser: React.PropTypes.object
-};
+// PractitionersPage.propTypes = {
+//   hasUser: React.PropTypes.object
+// };
 ReactMixin(PractitionersPage.prototype, ReactMeteorData);

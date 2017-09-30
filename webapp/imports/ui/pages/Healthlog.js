@@ -1,15 +1,12 @@
-import React  from 'react';
-import ReactMixin  from 'react-mixin';
-import { ReactMeteorData } from 'meteor/react-meteor-data';
-
-import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
-import { DynamicSpacer }  from '/imports/ui/components/DynamicSpacer';
-
 import { AddPost } from '/imports/ui/workflows/posts/AddPost';
-import PostsDeck  from '/imports/ui/workflows/posts/PostsDeck';
-import { VitalMeasurements } from '/imports/ui/components/VitalMeasurements';
-
+import { DynamicSpacer }  from '/imports/ui/components/DynamicSpacer';
 import { Meteor } from 'meteor/meteor';
+import PostsDeck  from '/imports/ui/workflows/posts/PostsDeck';
+import React  from 'react';
+import { ReactMeteorData } from 'meteor/react-meteor-data';
+import ReactMixin  from 'react-mixin';
+import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
+import { VitalMeasurements } from '/imports/ui/components/VitalMeasurements';
 
 export class Healthlog extends React.Component {
   getMeteorData() {
@@ -45,7 +42,7 @@ export class Healthlog extends React.Component {
   render() {
     return (
       <div id="weblogPage">
-        <VerticalCanvas width={600}>
+        <VerticalCanvas>
           { this.renderAuthenticatedUserControls(this.data.state.isLoggedIn) }
           <PostsDeck userId={this.props.routeParams.userId} />
         </VerticalCanvas>

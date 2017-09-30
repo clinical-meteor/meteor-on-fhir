@@ -2,6 +2,7 @@ import {ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar';
 
 import ActionAccountCircle from 'material-ui/svg-icons/action/account-circle';
 import ActionExitToApp from 'material-ui/svg-icons/action/exit-to-app';
+import AvVideoCall from 'material-ui/svg-icons/av/video-call';
 import { CardText } from 'material-ui/Card';
 import Glass from '/imports/ui/Glass';
 import IconButton from 'material-ui/IconButton';
@@ -13,6 +14,7 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
 import { Session } from 'meteor/session';
 import { browserHistory } from 'react-router';
+import { get } from 'lodash';
 
 Session.get('showNotificationMenu', true);
 
@@ -60,16 +62,36 @@ export class AuthenticatedNavigation extends React.Component {
         MozUserSelect: 'none',
         msUserSelect: 'none',
         cursor: 'pointer'
-      })
+      }),
+      notifications: [],
+      notificationCount: 0,
+      notificationColor: 'green',
+      isIncomingCall: false
     };
 
 
     if (Meteor.user()) {
       data.user = Meteor.user().fullName();
+
+      if(get(Meteor.user(), 'profile.notifications')){
+        data.notifications = get(Meteor.user(), 'profile.notifications');   
+        data.notificationCount = Meteor.user().profile.notifications.length;   
+      }
     } else {
       data.user = '';
     }
 
+
+    if(data.notificationCount > 0){
+      data.notificationColor = 'orange';
+      if(data.notifications){
+        data.notifications.forEach(function(notification){
+          if(notification.type == 'videocall'){
+            data.isIncomingCall = true;
+          }
+        });          
+      }
+    }
     console.log("AuthenticatedNavigation[data]", data);
 
 
@@ -87,6 +109,15 @@ export class AuthenticatedNavigation extends React.Component {
     }    
   }
   render () {
+    var currentIcon;
+
+    if(this.data.isIncomingCall){
+      currentIcon = <AvVideoCall onClick={this.openNotifications} style={{color: this.data.notificationColor}} />            
+    } else {
+      currentIcon = <ActionAccountCircle onClick={this.openNotifications} style={{color: this.data.notificationColor}} />      
+    }
+
+
     return(
       <div id='authenticatedUserMenuToggle' onTouchTap={this.toggleNotificationMenu } style={this.data.glassText}>
         <ToolbarGroup >
@@ -98,8 +129,13 @@ export class AuthenticatedNavigation extends React.Component {
             open={false}
             iconButtonElement={
               <div>
+                <ToolbarTitle
+                  id='notificationCount'
+                  text={ this.data.notificationCount }
+                  style={this.data.glassText}
+                />
                 <IconButton touch={true} style={this.data.glassTextIcon}>
-                  <ActionAccountCircle onClick={this.openNotifications} />
+                  { currentIcon }
                 </IconButton>
                 <ToolbarTitle
                   id='authenticatedUsername'

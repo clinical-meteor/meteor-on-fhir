@@ -1,15 +1,14 @@
-import { Table } from 'react-bootstrap';
-import React from 'react';
-import ReactMixin from 'react-mixin';
-import { ReactMeteorData } from 'meteor/react-meteor-data';
-
-import { Meteor } from 'meteor/meteor';
+import AvVideoCall from 'material-ui/svg-icons/av/video-call';
 import Avatar from 'material-ui/Avatar';
-
-import IconButton from 'material-ui/IconButton';
-import { browserHistory } from 'react-router';
 import { Bert } from 'meteor/themeteorchef:bert';
-
+import CommunicationPhone from 'material-ui/svg-icons/communication/phone';
+import IconButton from 'material-ui/IconButton';
+import { Meteor } from 'meteor/meteor';
+import React from 'react';
+import { ReactMeteorData } from 'meteor/react-meteor-data';
+import ReactMixin from 'react-mixin';
+import { Table } from 'react-bootstrap';
+import { browserHistory } from 'react-router';
 import { removeUserById } from '/imports/api/users/methods';
 
 export class UserTable extends React.Component {
@@ -25,8 +24,22 @@ export class UserTable extends React.Component {
         isAdmin: false
       },
       selected: [],
-      users: Meteor.users.find().fetch()
+      users: []
     };
+
+
+    let query = {};
+    let options = {};
+    // number of items in the table should be set globally
+    if (Meteor.settings && Meteor.settings.public && Meteor.settings.public.defaults && Meteor.settings.public.defaults.paginationLimit) {
+      options.limit = Meteor.settings.public.defaults.paginationLimit;
+    }
+    // but can be over-ridden by props being more explicit
+    if(this.props.limit){
+      options.limit = this.props.limit;      
+    }
+
+    data.users = Meteor.users.find(query, options).fetch();
 
     if (Meteor.user() && Meteor.user().roles && (Meteor.user().roles[0] === 'sysadmin')) {
       data.state.isAdmin = true;
@@ -74,16 +87,65 @@ export class UserTable extends React.Component {
       );
     }
   }
+
+  renderRowAvatarHeader(){
+    if (Meteor.settings.public.defaults.avatars && !(this.props.avatars == false)) {
+      return (
+        <th className='avatar'>photo</th>
+      );
+    }
+  }
+  renderRowAvatar(user, avatarStyle){
+    if (Meteor.settings.public.defaults.avatars && !(this.props.avatars == false)) {
+      return (
+        <td className='avatar'>
+          {/* <img src={user.photo} style={avatarStyle}/> */}
+          <Avatar src={user.profile ? user.profile.avatar : '/thumbnail-blank.png' } style={avatarStyle}/>
+        </td>
+      );
+    }
+  }
+
+
+  renderDialButtonHeader(){
+    if (Meteor.settings.public.defaults.avatars) {
+      return (
+        <th className='dial'>dial</th>
+      );
+    }
+  }
+  renderDialButton(user){
+    if (Meteor.settings.public.defaults.avatars) {
+      return (
+        <td className='dial'>
+          <CommunicationPhone onClick={this.videocallUser.bind(this, user) } style={{color: 'green'}} />
+        </td>
+      );
+    }
+  }
+
+  onRowClick(user){
+    console.log('onRowClick', this.props.onClick)
+    if(this.props.onClick){
+      this.props.onClick(user);
+    }
+    
+  }
+  videocallUser(user){
+    console.log('videocallUser', user);
+  }
+
   render () {
 
     let tableRows = [];
     for (var i = 0; i < this.data.users.length; i++) {
       tableRows.push(
-      <tr key={i}>
-        <td>
-          <Avatar src={this.data.users[i].profile ? this.data.users[i].profile.avatar : '/thumbnail-blank.png' } />
-        </td>
-        <td onClick={this.routeToHealthlog.bind(this, this.data.users[i]._id)} style={{cursor: 'pointer'}}>/weblog/{this.data.users[i]._id}</td>
+      <tr key={i} className='userRow' style={{cursor: "pointer"}} onClick={this.onRowClick.bind(this, this.data.users[i] )} >
+
+        { this.renderRowAvatar(this.data.users[i], this.data.style.avatar) }
+        { this.renderDialButton(this.data.users[i]) }
+
+        {/* <td onClick={this.routeToHealthlog.bind(this, this.data.users[i]._id)} style={{cursor: 'pointer'}}>/weblog/{this.data.users[i]._id}</td> */}
         <td>{this.data.users[i].username}</td>
         <td>{this.data.users[i].fullName()}</td>
         <td>{this.data.users[i].emails ? this.data.users[i].emails[0].address : ''}</td>
@@ -96,8 +158,10 @@ export class UserTable extends React.Component {
       <Table responses >
         <thead>
           <tr>
-            <th>Photo</th>
-            <th>weblog/_id</th>
+            { this.renderRowAvatarHeader() }
+            { this.renderDialButtonHeader() }
+
+            {/* <th>weblog/_id</th> */}
             <th>username</th>
             <th>full name</th>
             <th>email</th>

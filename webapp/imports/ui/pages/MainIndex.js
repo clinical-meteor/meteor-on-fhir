@@ -112,6 +112,9 @@ export class MainIndex extends React.Component {
               <Col md={3}>
                 {this.renderChecklists(this.data.user)}
               </Col>
+              <Col md={3}>
+                {this.renderVideoconferencing(this.data.user)}
+              </Col>
             </Row>
 
 
@@ -149,6 +152,9 @@ export class MainIndex extends React.Component {
 
             <Row>
               <Col lg={3}>
+              {this.renderOrganizations(this.data.user)}
+              </Col>
+              <Col lg={3}>
                 {this.renderMedications(this.data.user)}
               </Col>
               <Col lg={3}>
@@ -157,18 +163,12 @@ export class MainIndex extends React.Component {
               <Col lg={3}>
                 {this.renderMedicationStatements(this.data.user)}
               </Col>
-              <Col lg={3}>
-                {this.renderObservations(this.data.user)}
-              </Col>
             </Row>
 
 
             <Row>
               <Col lg={3}>
-                {this.renderOrganizations(this.data.user)}
-              </Col>
-              <Col lg={3}>
-                {this.renderPatients(this.data.user)}
+                {this.renderObservations(this.data.user)}
               </Col>
               <Col lg={3}>
                 {this.renderPractitioners(this.data.user)}
@@ -176,10 +176,13 @@ export class MainIndex extends React.Component {
               <Col lg={3}>
                 {this.renderProcedures(this.data.user)}
               </Col>
+              <Col lg={3}>
+                {this.renderRiskAssessments(this.data.user)}
+              </Col>
             </Row>
             <Row>
               <Col lg={3}>
-                {this.renderRiskAssessments(this.data.user)}
+                {this.renderPatients(this.data.user)}
               </Col>
               <Col lg={3}>
               </Col>
@@ -463,7 +466,7 @@ export class MainIndex extends React.Component {
 
   renderImmunizations(user){
     if (Meteor.settings.public.modules.fhir.Procedures) {
-      if (user.isPractitioner || user.isAdmin) {
+      if (user.isPractitioner || user.isAdmin || user.isPatient) {
         return (
           <div id='immunizationsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/immunizations') } >
             <GlassCard style={this.data.style.indexCard} >
@@ -502,7 +505,7 @@ export class MainIndex extends React.Component {
 
   renderProcedures(user){
     if (Meteor.settings.public.modules.fhir.Procedures) {
-      if (user.isPractitioner || user.isAdmin) {
+      if (user.isPractitioner || user.isAdmin || user.isPatient) {
         return (
           <div id='proceduresTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/procedures') } >
             <GlassCard style={this.data.style.indexCard} >
@@ -522,7 +525,7 @@ export class MainIndex extends React.Component {
     if (Meteor.settings.public.modules.fhir.Patients) {
       if (user.isPractitioner || user.isAdmin) {
         return (
-          <div id='patientsTile' style={this.data.style.indexCardPadding} onClick={ this.openPatients.bind(this) } >
+          <div id='patientsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/patients') } >
             <GlassCard style={this.data.style.indexCard} >
               <CardTitle
                 title='Patients'
@@ -540,7 +543,7 @@ export class MainIndex extends React.Component {
     if (Meteor.settings.public.modules.fhir.Practitioners) {
       if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
-          <div id="practitionersTile" style={this.data.style.indexCardPadding} onClick={ this.openPractitioners.bind(this) } >
+          <div id="practitionersTile" style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/practitioners') } >
             <GlassCard style={this.data.style.indexCard} >
               <CardTitle
                 title='Practitioners'
@@ -558,7 +561,7 @@ export class MainIndex extends React.Component {
     if (Meteor.settings.public.modules.fhir.Observations) {
       if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
-          <div id='observationsTile' style={this.data.style.indexCardPadding} onClick={ this.openObservations.bind(this) } >
+          <div id='observationsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/observations') } >
             <GlassCard style={this.data.style.indexCard} >
               <CardTitle
                 title='Observations'
@@ -612,10 +615,10 @@ export class MainIndex extends React.Component {
     if (Meteor.settings.public.modules.fhir.Medications) {
       if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
-          <div id="medicationsTile" style={this.data.style.indexCardPadding} onClick={ this.openMedications.bind(this) } >
+          <div id="medicationsTile" style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/medications') } >
             <GlassCard style={this.data.style.indexCard} >
               <CardTitle
-                title='Medication Inventory'
+                title='Medications'
                 subtitle='Crash carts, first responder kits, and surgical prep.'
                 titleStyle={this.data.style.title}
                   subtitleStyle={this.data.style.subtitle}
@@ -645,7 +648,7 @@ export class MainIndex extends React.Component {
     }
   }
   renderChecklists(user){
-    if (Meteor.settings.public.modules.fhir.Devices) {
+    if (Meteor.settings.public.modules.apps.ChecklistManifesto) {
       if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
           <div id='checklistsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/checklists') } >
@@ -662,6 +665,25 @@ export class MainIndex extends React.Component {
       }
     }
   }
+  renderVideoconferencing(user){
+    if (Meteor.settings.public.modules.apps.Videoconferencing) {
+      if (user.isPatient || user.isPractitioner || user.isAdmin) {
+        return (
+          <div id='videoconferencingTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/videoconferencing') } >
+            <GlassCard style={this.data.style.indexCard} >
+              <CardTitle
+                title='Telemedicine'
+                subtitle='Videoconferencing and remote consultations.'
+                titleStyle={this.data.style.title}
+                subtitleStyle={this.data.style.subtitle}
+              />
+            </GlassCard>
+          </div>
+        );
+      }
+    }
+  }
+
 
   renderRiskAssessments(user){
     if (Meteor.settings.public.modules.fhir.RiskAssessments) {

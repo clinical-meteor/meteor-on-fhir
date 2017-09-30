@@ -1,4 +1,5 @@
 import { Card, CardActions, CardMedia, CardText, CardTitle } from 'material-ui/Card';
+import { get, has } from 'lodash';
 
 import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
@@ -20,9 +21,73 @@ export default class MedicationStatementsTable extends React.Component {
     }
     
     if(MedicationStatements.find().count() > 0){
-      data.medicationStatements = MedicationStatements.find().fetch();
+      data.medicationStatements = [];
     }
 
+
+    MedicationStatements.find().map(function(statement){
+      var newRow = {
+        '_id': statement._id,
+        'medication': '',
+        'basedOn': '',
+        'effectiveDateTime': '',
+        'dateAsserted': '',
+        'informationSource': '',
+        'subjectDisplay': '',
+        'taken': '',
+        'reasonCodeDisplay': '',
+        'dosage': '',
+      };
+      console.log('statement', statement)
+
+      if(get(statement), 'subject.display'){
+        newRow.subjectDisplay = get(statement, 'subject.display');
+      }        
+
+      console.log('medicationReference.reference', get(statement, 'medicationReference.reference'));
+
+      // display the reference if it's the only thing we have
+      if(has(statement, 'medicationReference.reference')){
+        newRow.medication = get(statement, 'medicationReference.reference');
+      } 
+      // but if there's a display value specified, use it instead
+      if(has(statement, 'medicationReference.display')){
+        newRow.medication = get(statement, 'medicationReference.display');
+      } 
+      // but best is to use a properly coded value
+      if(has(statement, 'medicationCodeableConcept.coding[0].display')){
+        newRow.medication = get(statement, 'medicationCodeableConcept.coding[0].display');
+      }  
+
+      if(has(statement, 'identifier[0].value')){
+        newRow.identifier = get(statement, 'identifier[0].value');
+      }        
+
+      if(has(statement, 'effectiveDateTime')){
+        newRow.effectiveDateTime = moment(get(statement, 'effectiveDateTime')).format("YYYY-MM-DD");
+      }        
+
+      if(has(statement, 'dateAsserted')){
+        newRow.dateAsserted = moment(get(statement, 'dateAsserted')).format("YYYY-MM-DD");
+      }        
+
+      if(has(statement, 'informationSource.display')){
+        newRow.informationSource = get(statement, 'informationSource.display');
+      }        
+
+      if(has(statement, 'taken')){
+        newRow.taken = get(statement, 'taken');
+      }        
+
+      if(has(statement, 'reasonCode[0].coding[0].display')){
+        newRow.reasonCodeDisplay = get(statement, 'reasonCode[0].coding[0].display');
+      }  
+      console.log('newRow', newRow);
+
+      data.medicationStatements.push(newRow);
+    });
+
+    // console.log('newRow', newRow)
 
     if(process.env.NODE_ENV === "test") console.log("data", data);
     return data;
@@ -37,51 +102,19 @@ export default class MedicationStatementsTable extends React.Component {
   render () {
     let tableRows = [];
     for (var i = 0; i < this.data.medicationStatements.length; i++) {
-      var newRow = {
-        patientDisplay: '',
-        asserterDisplay: '',
-        clinicalStatus: '',
-        snomedCode: '',
-        snomedDisplay: '',
-        evidenceDisplay: '',
-        barcode: ''
-      };
-      // if (this.data.medicationStatements[i]){
-      //   if(this.data.medicationStatements[i].patient){
-      //     newRow.patientDisplay = this.data.medicationStatements[i].patient.display;
-      //   }
-      //   if(this.data.medicationStatements[i].asserter){
-      //     newRow.asserterDisplay = this.data.medicationStatements[i].asserter.display;
-      //   }
-      //   if(this.data.medicationStatements[i].clinicalStatus){
-      //     newRow.clinicalStatus = this.data.medicationStatements[i].clinicalStatus;
-      //   }
-      //   if(this.data.medicationStatements[i].code){
-      //     if(this.data.medicationStatements[i].code.coding && this.data.medicationStatements[i].code.coding[0]){            
-      //       newRow.snomedCode = this.data.medicationStatements[i].code.coding[0].code;
-      //       newRow.snomedDisplay = this.data.medicationStatements[i].code.coding[0].display;
-      //     }
-      //   }
-      //   if(this.data.medicationStatements[i].evidence && this.data.medicationStatements[i].evidence[0]){
-      //     if(this.data.medicationStatements[i].evidence[0].detail && this.data.medicationStatements[i].evidence[0].detail[0]){            
-      //       newRow.evidenceDisplay = this.data.medicationStatements[i].evidence[0].detail[0].display;
-      //     }
-      //   }
-      //   if(this.data.medicationStatements[i]._id){
-      //     newRow.barcode = this.data.medicationStatements[i]._id;
-      //   }        
-      // }
 
       tableRows.push(
         <tr key={i} className="medicationStatementRow" style={{cursor: "pointer"}} onClick={ this.rowClick.bind('this', this.data.medicationStatements[i]._id)} >
 
-          <td className='patientDisplay'>{ newRow.patientDisplay }</td>
-          <td className='asserterDisplay'>{ newRow.asserterDisplay }</td>
-          <td className='clinicalStatus'>{ newRow.clinicalStatus }</td>
-          <td className='snomedCode'>{ newRow.snomedCode }</td>
-          <td className='snomedDisplay'>{ newRow.snomedDisplay }</td>
-          <td className='evidenceDisplay'>{ newRow.evidenceDisplay }</td>
-          <td><span className="barcode">{ newRow.barcode }</span></td>
+          <td className='medication'>{ this.data.medicationStatements[i].medication }</td>
+          {/* <td className='basedOn'>{ this.data.medicationStatements[i].basedOn }</td> */}
+          <td className='effectiveDateTime'>{ this.data.medicationStatements[i].effectiveDateTime }</td>
+          <td className='dateAsserted'>{ this.data.medicationStatements[i].dateAsserted }</td>
+          <td className='informationSource'>{ this.data.medicationStatements[i].informationSource }</td>
+          <td className='subject'>{ this.data.medicationStatements[i].subjectDisplay }</td>
+          <td className='taken'>{ this.data.medicationStatements[i].taken }</td>
+          <td className='reason'>{ this.data.medicationStatements[i].reasonCodeDisplay }</td>
+          <td className='dosage'>{ this.data.medicationStatements[i].dosage }</td>
         </tr>
       )
     }
@@ -90,13 +123,15 @@ export default class MedicationStatementsTable extends React.Component {
       <Table id='medicationStatementsTable' responses hover >
         <thead>
           <tr>
-            <th className='patientDisplay'>patient</th>
-            <th className='asserterDisplay'>asserter</th>
-            <th className='clinicalStatus'>status</th>
-            <th className='snomedCode'>code</th>
-            <th className='snomedDisplay'>medicationStatement</th>
-            <th className='evidenceDisplay'>evidence</th>
-            <th>_id</th>
+            <th className='medication'>medication</th>
+            {/* <th className='basedOn'>based on</th> */}
+            <th className='effectiveDateTime'>date /time</th>
+            <th className='dateAsserted'>assertion</th>
+            <th className='informationSource'>source</th>
+            <th className='subject'>subject</th>
+            <th className='taken'>taken</th>
+            <th className='reason'>reason</th>
+            <th className='dosage'>dosage</th>
           </tr>
         </thead>
         <tbody>

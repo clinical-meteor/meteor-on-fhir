@@ -45,7 +45,7 @@ export class MedicationStatementsPage extends React.Component {
 
   onNewTab(){
     Session.set('selectedMedicationStatement', false);
-    Session.set('medicationStatementUpsert', false);
+    Session.set('medicationStatementFormUpsert', false);
   }
 
   render() {
@@ -54,7 +54,7 @@ export class MedicationStatementsPage extends React.Component {
       <div id='medicationStatementsPage'>
         <VerticalCanvas>
           <GlassCard height='auto'>
-            <CardTitle title='MedicationStatements' />
+            <CardTitle title='Medication Statements' />
             <CardText>
               <Tabs id="medicationStatementsPageTabs" default value={this.data.tabIndex} onChange={this.handleTabChange} initialSelectedIndex={1}>
                <Tab className='newMedicationStatementTab' label='New' style={this.data.style.tab} onActive={ this.onNewTab } value={0}>

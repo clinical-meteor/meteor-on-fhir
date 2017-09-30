@@ -10,7 +10,7 @@ import { Table } from 'react-bootstrap';
 
 Session.setDefault('selectedPractitioner', false);
 
-export default class PractitionerTable extends React.Component {
+export default class PractitionersTable extends React.Component {
   getMeteorData() {
     let data = {
       style: {
@@ -75,7 +75,7 @@ export default class PractitionerTable extends React.Component {
       return result;
     });
 
-    console.log("PractitionerTable[data]", data);
+    console.log("PractitionersTable[data]", data);
     return data;
   }
 
@@ -124,4 +124,4 @@ export default class PractitionerTable extends React.Component {
   }
 }
 
-ReactMixin(PractitionerTable.prototype, ReactMeteorData);
+ReactMixin(PractitionersTable.prototype, ReactMeteorData);

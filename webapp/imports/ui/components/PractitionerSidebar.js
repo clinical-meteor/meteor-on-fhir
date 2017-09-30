@@ -43,6 +43,10 @@ export class PractitionerSidebar extends React.Component {
              <ListItem primaryText='Provider Directory' href='/provider-directory' />
           </IndexLinkContainer>
 
+          <IndexLinkContainer to='/careplan-designer'>
+             <ListItem primaryText='Careplan Designer' href='/careplan-designer' />
+          </IndexLinkContainer>          
+
           <IndexLinkContainer to='/dashboard'>
              <ListItem primaryText='Dashboard' href='/dashboard' />
           </IndexLinkContainer>

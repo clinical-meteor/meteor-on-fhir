@@ -189,8 +189,8 @@ export default class OrganizationDetail extends React.Component {
     if (organizationId) {
       return (
         <div>
-          <RaisedButton id="saveOrganizationButton" label="Save" primary={true} onClick={this.handleSaveButton.bind(this)} />
-          <RaisedButton id="deleteOrganizationButton" label="Delete" onClick={this.handleDeleteButton.bind(this)} style={{marginLeft: '20px'}} />
+          <RaisedButton id="saveOrganizationButton" label="Save" primary={true} onClick={this.handleSaveButton.bind(this)} style={{marginRight: '20px'}} />
+          <RaisedButton id="deleteOrganizationButton" label="Delete" onClick={this.handleDeleteButton.bind(this)} />
         </div>
       );
     } else {
