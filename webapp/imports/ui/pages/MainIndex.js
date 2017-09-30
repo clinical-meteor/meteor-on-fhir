@@ -525,7 +525,7 @@ export class MainIndex extends React.Component {
     if (Meteor.settings.public.modules.fhir.Patients) {
       if (user.isPractitioner || user.isAdmin) {
         return (
-          <div id='patientsTile' style={this.data.style.indexCardPadding} onClick={ this.openPatients.bind(this) } >
+          <div id='patientsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/patients') } >
             <GlassCard style={this.data.style.indexCard} >
               <CardTitle
                 title='Patients'
@@ -543,7 +543,7 @@ export class MainIndex extends React.Component {
     if (Meteor.settings.public.modules.fhir.Practitioners) {
       if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
-          <div id="practitionersTile" style={this.data.style.indexCardPadding} onClick={ this.openPractitioners.bind(this) } >
+          <div id="practitionersTile" style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/practitioners') } >
             <GlassCard style={this.data.style.indexCard} >
               <CardTitle
                 title='Practitioners'
@@ -561,7 +561,7 @@ export class MainIndex extends React.Component {
     if (Meteor.settings.public.modules.fhir.Observations) {
       if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
-          <div id='observationsTile' style={this.data.style.indexCardPadding} onClick={ this.openObservations.bind(this) } >
+          <div id='observationsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/observations') } >
             <GlassCard style={this.data.style.indexCard} >
               <CardTitle
                 title='Observations'
@@ -615,7 +615,7 @@ export class MainIndex extends React.Component {
     if (Meteor.settings.public.modules.fhir.Medications) {
       if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
-          <div id="medicationsTile" style={this.data.style.indexCardPadding} onClick={ this.openMedications.bind(this) } >
+          <div id="medicationsTile" style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/medications') } >
             <GlassCard style={this.data.style.indexCard} >
               <CardTitle
                 title='Medications'
