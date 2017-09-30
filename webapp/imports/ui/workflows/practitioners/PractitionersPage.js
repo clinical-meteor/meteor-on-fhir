@@ -79,7 +79,7 @@ export class PractitionersPage extends React.Component {
 }
 
 
-PractitionersPage.propTypes = {
-  hasUser: React.PropTypes.object
-};
+// PractitionersPage.propTypes = {
+//   hasUser: React.PropTypes.object
+// };
 ReactMixin(PractitionersPage.prototype, ReactMeteorData);

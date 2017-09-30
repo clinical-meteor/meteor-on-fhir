@@ -10,7 +10,7 @@ import { Table } from 'react-bootstrap';
 
 Session.setDefault('selectedPractitioner', false);
 
-export class PractitionersTable extends React.Component {
+export default class PractitionersTable extends React.Component {
   getMeteorData() {
     let data = {
       style: {
