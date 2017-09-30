@@ -168,7 +168,7 @@ export class MainIndex extends React.Component {
 
             <Row>
               <Col lg={3}>
-                {this.renderPractitioners(this.data.user)}
+                {this.renderObservations(this.data.user)}
               </Col>
               <Col lg={3}>
                 {this.renderPractitioners(this.data.user)}
