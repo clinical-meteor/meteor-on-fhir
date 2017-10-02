@@ -2,17 +2,15 @@ import { Card, CardText, CardTitle } from 'material-ui/Card';
 
 import { AboutAppCard } from '/imports/ui/components/AboutAppCard';
 import { GlassCard } from '/imports/ui/components/GlassCard';
+import GoogleMapReact from 'google-map-react';
 import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
 import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 
-//  documentation
-//  https://www.npmjs.com/package/react-katex
-
-if(process.env.NODE_ENV !== 'test'){
-  import GoogleMapReact from 'google-map-react';
-}
+// if(process.env.NODE_ENV !== 'test'
+//   import GoogleMapReact from 'google-map-react';
+// }
 
 
 
@@ -217,6 +215,10 @@ export class GoogleMapsPage extends React.Component {
     var self = this;
 
     var map;
+
+    var globalGoogle;
+
+
     if(process.env.NODE_ENV !== "test"){
       map = <GoogleMapReact
            id="googleMap"
@@ -224,7 +226,11 @@ export class GoogleMapsPage extends React.Component {
            defaultZoom={this.data.zoom}
            options={this.data.options}
            onGoogleApiLoaded={function({map, maps}){
-            console.log('onGoogleApiLoaded', map)
+            console.log('maps', maps)
+            console.log('map', map)
+
+            var directionsDisplay;
+            var directionsService;
 
             map.data.setStyle({
               // raw binary data (extremely fast!)
@@ -273,8 +279,40 @@ export class GoogleMapsPage extends React.Component {
             });
 
             map.data.loadGeoJson(Meteor.absoluteUrl() + '/geodata/2014_Health_Service_Areas.geojson');
-            map.data.loadGeoJson(Meteor.absoluteUrl() + '/geodata/2014_HSA_Hospitals.geojson');
-            console.log('map.data', map.data);  
+            //map.data.loadGeoJson(Meteor.absoluteUrl() + '/geodata/2014_HSA_Hospitals.geojson');
+
+            directionsService = new maps.DirectionsService({map: map});
+            directionsDisplay = new maps.DirectionsRenderer({map: map});
+            //var chicago = new google.maps.LatLng(41.850033, -87.6500523);
+            directionsDisplay.setMap(map);
+
+            var request = {
+              origin: 'Chicago, IL',
+              destination: 'Los Angeles, CA',
+              waypoints: [
+                {
+                  location: 'Joplin, MO',
+                  stopover: false
+                },{
+                  location: 'Oklahoma City, OK',
+                  stopover: true
+                }],
+              provideRouteAlternatives: false,
+              travelMode: 'DRIVING',
+              unitSystem: maps.UnitSystem.IMPERIAL
+            }
+
+            console.log('directionsService', directionsService);
+            console.log('directionsDisplay', directionsDisplay);
+
+            directionsService.route(request, function(result, status) {
+              if (status == 'OK') {
+                directionsDisplay.setDirections(result);
+              }
+            });
+
+
+
 
           }}
          ></GoogleMapReact>;

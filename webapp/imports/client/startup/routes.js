@@ -218,6 +218,7 @@ Meteor.startup(() => {
         <Route name="CornerstonePage" path="/cornerstone" component={ CornerstonePage } />
         <Route name="GoogleMapsPage" path="/maps" component={ GoogleMapsPage } />
 
+
         <Route name="ProviderDirectoryPage" path="/provider-directory" component={ ProviderDirectoryPage } />
 
         <Route name="SciFiPage" path="/scifi" component={ SciFiPage } />
