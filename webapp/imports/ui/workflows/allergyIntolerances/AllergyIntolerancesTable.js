@@ -19,10 +19,13 @@ export default class AllergyIntolerancesTable extends React.Component {
       allergyIntolerances: []
     }
     
-    if(AllergyIntolerances.find().count() > 0){
-      data.allergyIntolerances = AllergyIntolerances.find().fetch();
+    if(this.props.data){
+      data.allergyIntolerances = this.props.data;
+    } else {
+      if(AllergyIntolerances.find().count() > 0){
+        data.allergyIntolerances = AllergyIntolerances.find().fetch();
+      }  
     }
-
 
     if(process.env.NODE_ENV === "test") console.log("data", data);
     return data;

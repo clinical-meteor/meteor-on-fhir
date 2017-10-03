@@ -18,11 +18,14 @@ export default class ProceduresTable extends React.Component {
       selected: [],
       procedures: []
     }
-    
-    if(Procedures.find().count() > 0){
-      data.procedures = Procedures.find().fetch();
-    }
 
+    if(this.props.data){
+      this.procedures = this.props.data;
+    } else {
+      if(Procedures.find().count() > 0){
+        data.procedures = Procedures.find().fetch();
+      }  
+    }
 
     if(process.env.NODE_ENV === "test") console.log("ProceduresTable[data]", data);
     return data;

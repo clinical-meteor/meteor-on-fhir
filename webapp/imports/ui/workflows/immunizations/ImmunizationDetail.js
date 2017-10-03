@@ -1,6 +1,7 @@
 import { CardActions, CardText } from 'material-ui/Card';
 
 import { Bert } from 'meteor/themeteorchef:bert';
+import DatePicker from 'material-ui/DatePicker';
 import RaisedButton from 'material-ui/RaisedButton';
 import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
@@ -112,8 +113,13 @@ export default class ImmunizationDetail extends React.Component {
             onChange={ this.changeState.bind(this, 'vaccineCode')}
             fullWidth
             /><br/>
-
-
+            
+          <br/>
+          <DatePicker 
+            hintText="Date of Administration" 
+            container="inline" 
+            mode="landscape"
+            /><br/>
 
 
         </CardText>

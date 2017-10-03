@@ -20,61 +20,64 @@ export default class DiagnosticReportsTable extends React.Component {
       selected: [],
       diagnosticReports: []
     }
+
+    if(this.props.data){
+      data.diagnosticReports = this.props.data; 
+    } else {
+      if(DiagnosticReports.find().count() > 0){
+        data.diagnosticReports = DiagnosticReports.find().map(function(report){
+          var newRow = {
+            _id: report._id,
+            subjectDisplay: '',
+            code: '',
+            status: '',
+            issued: '',
+            performerDisplay: '',
+            identifier: '',
+            category: '',
+            effectiveDate: ''
+          };
+          if (report){
+            if(report.subject){
+              if(report.subject.display){
+                newRow.subjectDisplay = report.subject.display;
+              } else {
+                newRow.subjectDisplay = report.subject.reference;          
+              }
+            }
     
-    if(DiagnosticReports.find().count() > 0){
-      data.diagnosticReports = DiagnosticReports.find().map(function(report){
-        var newRow = {
-          _id: report._id,
-          subjectDisplay: '',
-          code: '',
-          status: '',
-          issued: '',
-          performerDisplay: '',
-          identifier: '',
-          category: '',
-          effectiveDate: ''
-        };
-        if (report){
-          if(report.subject){
-            if(report.subject.display){
-              newRow.subjectDisplay = report.subject.display;
-            } else {
-              newRow.subjectDisplay = report.subject.reference;          
+            if(report.performer && report.performer[0] && report.performer[0].actor){
+              if(report.performer[0].actor.display){
+                newRow.performerDisplay = report.performer[0].actor.display;
+              } else {
+                newRow.performerDisplay = report.performer[0].actor.reference;          
+              }
             }
-          }
+            if(report.code){
+              newRow.code = report.code.text;
+            }
   
-          if(report.performer && report.performer[0] && report.performer[0].actor){
-            if(report.performer[0].actor.display){
-              newRow.performerDisplay = report.performer[0].actor.display;
-            } else {
-              newRow.performerDisplay = report.performer[0].actor.reference;          
+            if(report.identifier && report.identifier[0] && report.identifier[0].value){
+              newRow.identifier = report.identifier[0].value;
             }
-          }
-          if(report.code){
-            newRow.code = report.code.text;
-          }
-
-          if(report.identifier && report.identifier[0] && report.identifier[0].value){
-            newRow.identifier = report.identifier[0].value;
-          }
-          if(report.status){
-            newRow.status = report.status;
-          }
-          if(report.effectiveDateTime){
-            newRow.effectiveDate = moment(report.effectiveDateTime).format("YYYY-MM-DD");
-          }
-          if(report.category && report.category.coding && report.category.coding[0] && report.category.coding[0].code ){
-            newRow.category = report.category.coding[0].code;
-          }
-          if(report.issued){
-            newRow.issued = moment(report.issued).format("YYYY-MM-DD"); 
-          }       
-        } 
-        return newRow;  
-      });
+            if(report.status){
+              newRow.status = report.status;
+            }
+            if(report.effectiveDateTime){
+              newRow.effectiveDate = moment(report.effectiveDateTime).format("YYYY-MM-DD");
+            }
+            if(report.category && report.category.coding && report.category.coding[0] && report.category.coding[0].code ){
+              newRow.category = report.category.coding[0].code;
+            }
+            if(report.issued){
+              newRow.issued = moment(report.issued).format("YYYY-MM-DD"); 
+            }       
+          } 
+          return newRow;  
+        });
+      }
     }
-
-
+    
     if(process.env.NODE_ENV === "test") console.log("DiagnosticReportsTable[data]", data);
     return data;
   };

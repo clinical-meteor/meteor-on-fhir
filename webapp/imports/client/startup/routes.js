@@ -14,6 +14,7 @@ import { CarePlansPage } from '/imports/ui/workflows/carePlans/CarePlansPage';
 import { ChecklistsPage } from '/imports/ui/workflows/lists/ChecklistsPage';
 import { ClientConfigurationPage } from '/imports/ui/workflows/oauth/ClientConfigurationPage';
 import { ConditionsPage } from '/imports/ui/workflows/conditions/ConditionsPage';
+import { ContinuityOfCarePage } from '/imports/ui/pages/ContinuityOfCarePage';
 import { ConversationsPage } from '/imports/ui/pages/ConversationsPage';
 import { CornerstonePage } from '/imports/ui/pages/CornerstonePage';
 import { DashboardPage } from '/imports/ui/pages/DashboardPage';
@@ -234,6 +235,9 @@ Meteor.startup(() => {
         <Route name="DiagnosticReportsPage" path="/diagnostic-reports" component={ DiagnosticReportsPage }  onEnter={ requireAuth }/>
         <Route name="MedicationOrdersPage" path="/medication-orders" component={ MedicationOrdersPage }  onEnter={ requireAuth }/>
         <Route name="MedicationStatementsPage" path="/medication-statements" component={ MedicationStatementsPage }  onEnter={ requireAuth }/>
+
+        <Route name="ContinuityOfCarePage" path="/continuity-of-care" component={ ContinuityOfCarePage }  onEnter={ requireAuth }/>
+
 
         { dynamicRoutes.map(route => <Route name={route.name} path={route.path} component={ route.component } />) }
         

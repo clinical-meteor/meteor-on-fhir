@@ -88,7 +88,6 @@ clinical:hl7-resource-procedure
 clinical:hl7-resource-questionnaire
 clinical:hl7-resource-questionnaire-response
 clinical:hl7-resource-risk-assessment
-clinical:continuity-of-care
 
 # test data
 clinical:accounts-housemd

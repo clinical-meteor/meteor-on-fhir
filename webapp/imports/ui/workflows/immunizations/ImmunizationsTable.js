@@ -4,6 +4,7 @@ import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
 import { Table } from 'react-bootstrap';
+import Toggle from 'material-ui/Toggle';
 
 export default class ImmunizationsTable extends React.Component {
 
@@ -19,9 +20,17 @@ export default class ImmunizationsTable extends React.Component {
       immunizations: []
     }
     
-    if(Immunizations.find({}, {$sort: {'identifier.type.text': 1}}).count() > 0){
-      data.immunizations = Immunizations.find().fetch();
+
+    if(this.props.data){
+      data.immunizations = this.props.data;
+    } else {
+      if(Immunizations.find({}, {$sort: {'identifier.type.text': 1}}).count() > 0){
+        data.immunizations = Immunizations.find().fetch();
+      }
     }
+
+
+
 
 
     //if(process.env.NODE_ENV === "test"){
@@ -101,6 +110,12 @@ export default class ImmunizationsTable extends React.Component {
 
       tableRows.push(
         <tr key={i} className="immunizationRow" style={{cursor: "pointer"}} onClick={ this.rowClick.bind('this', this.data.immunizations[i]._id)} >
+          <td className="toggle">
+            <Toggle
+              defaultToggled={true}
+              //style={styles.toggle}
+            />
+          </td>
           <td className='identifier'>{ newRow.identifier }</td>
           <td className='vaccine'>{ newRow.vaccine }</td>
           <td className='vaccineCode'>{ newRow.vaccineCode }</td>
@@ -112,6 +127,7 @@ export default class ImmunizationsTable extends React.Component {
       <Table id='immunizationsTable' responses hover >
         <thead>
           <tr>
+            <th className="toggle">toggle</th>
             <th className='identifier'>identifier</th>
             <th className='vaccine'>vaccine</th>
             <th className='vaccineCode'>vaccineCode</th>

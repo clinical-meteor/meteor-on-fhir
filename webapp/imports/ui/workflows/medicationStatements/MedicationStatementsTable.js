@@ -20,75 +20,80 @@ export default class MedicationStatementsTable extends React.Component {
       medicationStatements: []
     }
     
-    if(MedicationStatements.find().count() > 0){
-      data.medicationStatements = [];
+    if(this.props.data){
+      this.medicationStatements = this.props.data;
+    } else {
+      if(MedicationStatements.find().count() > 0){
+
+        MedicationStatements.find().map(function(statement){
+          var newRow = {
+            '_id': statement._id,
+            'medication': '',
+            'basedOn': '',
+            'effectiveDateTime': '',
+            'dateAsserted': '',
+            'informationSource': '',
+            'subjectDisplay': '',
+            'taken': '',
+            'reasonCodeDisplay': '',
+            'dosage': '',
+          };
+          console.log('statement', statement)
+    
+          if(get(statement), 'subject.display'){
+            newRow.subjectDisplay = get(statement, 'subject.display');
+          }        
+    
+          console.log('medicationReference.reference', get(statement, 'medicationReference.reference'));
+    
+          // display the reference if it's the only thing we have
+          if(has(statement, 'medicationReference.reference')){
+            newRow.medication = get(statement, 'medicationReference.reference');
+          } 
+          // but if there's a display value specified, use it instead
+          if(has(statement, 'medicationReference.display')){
+            newRow.medication = get(statement, 'medicationReference.display');
+          } 
+          // but best is to use a properly coded value
+          if(has(statement, 'medicationCodeableConcept.coding[0].display')){
+            newRow.medication = get(statement, 'medicationCodeableConcept.coding[0].display');
+          }  
+    
+          if(has(statement, 'identifier[0].value')){
+            newRow.identifier = get(statement, 'identifier[0].value');
+          }        
+    
+          if(has(statement, 'effectiveDateTime')){
+            newRow.effectiveDateTime = moment(get(statement, 'effectiveDateTime')).format("YYYY-MM-DD");
+          }        
+    
+          if(has(statement, 'dateAsserted')){
+            newRow.dateAsserted = moment(get(statement, 'dateAsserted')).format("YYYY-MM-DD");
+          }        
+    
+          if(has(statement, 'informationSource.display')){
+            newRow.informationSource = get(statement, 'informationSource.display');
+          }        
+    
+          if(has(statement, 'taken')){
+            newRow.taken = get(statement, 'taken');
+          }        
+    
+          if(has(statement, 'reasonCode[0].coding[0].display')){
+            newRow.reasonCodeDisplay = get(statement, 'reasonCode[0].coding[0].display');
+          }  
+          console.log('newRow', newRow);
+    
+          data.medicationStatements.push(newRow);
+        });
+    
+
+      } else {
+        data.medicationStatements = [];        
+      }
     }
 
-
-    MedicationStatements.find().map(function(statement){
-      var newRow = {
-        '_id': statement._id,
-        'medication': '',
-        'basedOn': '',
-        'effectiveDateTime': '',
-        'dateAsserted': '',
-        'informationSource': '',
-        'subjectDisplay': '',
-        'taken': '',
-        'reasonCodeDisplay': '',
-        'dosage': '',
-      };
-      console.log('statement', statement)
-
-      if(get(statement), 'subject.display'){
-        newRow.subjectDisplay = get(statement, 'subject.display');
-      }        
-
-      console.log('medicationReference.reference', get(statement, 'medicationReference.reference'));
-
-      // display the reference if it's the only thing we have
-      if(has(statement, 'medicationReference.reference')){
-        newRow.medication = get(statement, 'medicationReference.reference');
-      } 
-      // but if there's a display value specified, use it instead
-      if(has(statement, 'medicationReference.display')){
-        newRow.medication = get(statement, 'medicationReference.display');
-      } 
-      // but best is to use a properly coded value
-      if(has(statement, 'medicationCodeableConcept.coding[0].display')){
-        newRow.medication = get(statement, 'medicationCodeableConcept.coding[0].display');
-      }  
-
-      if(has(statement, 'identifier[0].value')){
-        newRow.identifier = get(statement, 'identifier[0].value');
-      }        
-
-      if(has(statement, 'effectiveDateTime')){
-        newRow.effectiveDateTime = moment(get(statement, 'effectiveDateTime')).format("YYYY-MM-DD");
-      }        
-
-      if(has(statement, 'dateAsserted')){
-        newRow.dateAsserted = moment(get(statement, 'dateAsserted')).format("YYYY-MM-DD");
-      }        
-
-      if(has(statement, 'informationSource.display')){
-        newRow.informationSource = get(statement, 'informationSource.display');
-      }        
-
-      if(has(statement, 'taken')){
-        newRow.taken = get(statement, 'taken');
-      }        
-
-      if(has(statement, 'reasonCode[0].coding[0].display')){
-        newRow.reasonCodeDisplay = get(statement, 'reasonCode[0].coding[0].display');
-      }  
-      console.log('newRow', newRow);
-
-      data.medicationStatements.push(newRow);
-    });
-
-    // console.log('newRow', newRow)
-
+  
     if(process.env.NODE_ENV === "test") console.log("data", data);
     return data;
   };

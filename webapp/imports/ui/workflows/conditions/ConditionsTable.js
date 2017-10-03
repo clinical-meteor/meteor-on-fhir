@@ -19,10 +19,13 @@ export default class ConditionsTable extends React.Component {
       conditions: []
     }
     
-    if(Conditions.find().count() > 0){
-      data.conditions = Conditions.find().fetch();
+    if(this.props.data){
+      this.conditions = this.props.data;
+    } else {
+      if(Conditions.find().count() > 0){
+        data.conditions = Conditions.find().fetch();
+      }  
     }
-
 
     if(process.env.NODE_ENV === "test") console.log("data", data);
     return data;
