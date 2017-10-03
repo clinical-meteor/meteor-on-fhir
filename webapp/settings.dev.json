@@ -67,7 +67,8 @@
       "statisticsLogging": true,
       "apps": {
         "ChecklistManifesto": true,
-        "ContinuityOfCare": true        
+        "ContinuityOfCare": true,
+        "Videoconferencing": true        
       },
       "fhir": {
         "AllergyIntolerances": true,

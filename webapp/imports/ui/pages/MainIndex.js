@@ -115,6 +115,9 @@ export class MainIndex extends React.Component {
               <Col md={3}>
                 {this.renderVideoconferencing(this.data.user)}
               </Col>
+              <Col md={3}>
+                {this.renderContinuityOfCare(this.data.user)}
+              </Col>
             </Row>
 
 
@@ -683,7 +686,24 @@ export class MainIndex extends React.Component {
       }
     }
   }
-
+  renderContinuityOfCare(user){
+    if (Meteor.settings.public.modules.apps.ContinuityOfCare) {
+      if (user.isPatient || user.isPractitioner || user.isAdmin) {
+        return (
+          <div id='continuityOfCareTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/continuity-of-care') } >
+            <GlassCard style={this.data.style.indexCard} >
+              <CardTitle
+                title='Continuity of Care Document'
+                subtitle='Aggregated medical history between providers.'
+                titleStyle={this.data.style.title}
+                subtitleStyle={this.data.style.subtitle}
+              />
+            </GlassCard>
+          </div>
+        );
+      }
+    }
+  }
 
   renderRiskAssessments(user){
     if (Meteor.settings.public.modules.fhir.RiskAssessments) {
