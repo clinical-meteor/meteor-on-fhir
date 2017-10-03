@@ -88,8 +88,8 @@ clinical:hl7-resource-procedure
 clinical:hl7-resource-questionnaire
 clinical:hl7-resource-questionnaire-response
 clinical:hl7-resource-risk-assessment
-clinical:landing-page
-clinical:routing-algorithms
+#clinical:landing-page
+#clinical:routing-algorithms
 
 # test data
 clinical:accounts-housemd
