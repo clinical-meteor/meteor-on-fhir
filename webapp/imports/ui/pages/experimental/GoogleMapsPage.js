@@ -213,11 +213,16 @@ export class GoogleMapsPage extends React.Component {
   }
   render(){
     var self = this;
-
     var map;
-
     var globalGoogle;
+    var tspWaypoints = [];
 
+    for (var index = 0; index < 8; index++) {
+      tspWaypoints.push({
+        location: new maps.LatLng(this.data.tspRoute[index].latitude, this.data.tspRoute[index].longitude),
+        stopover: true
+      });
+    }
 
     if(process.env.NODE_ENV !== "test"){
       map = <GoogleMapReact
@@ -287,16 +292,9 @@ export class GoogleMapsPage extends React.Component {
             directionsDisplay.setMap(map);
 
             var request = {
-              origin: 'Chicago, IL',
-              destination: 'Los Angeles, CA',
-              waypoints: [
-                {
-                  location: 'Joplin, MO',
-                  stopover: false
-                },{
-                  location: 'Oklahoma City, OK',
-                  stopover: true
-                }],
+              origin: 'Logan Square, Chicago, IL',
+              destination: 'Logan Square, Chicago, IL',
+              waypoints: tspWaypoints,
               provideRouteAlternatives: false,
               travelMode: 'DRIVING',
               unitSystem: maps.UnitSystem.IMPERIAL
