@@ -7,6 +7,7 @@ import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
 import TextField from 'material-ui/TextField';
+import { browserHistory } from 'react-router';
 import { get } from 'lodash';
 
 let defaultImmunization = {
@@ -25,12 +26,14 @@ let defaultImmunization = {
   }],
   'vaccineCode': {
     'text': ''
-  }    
+  },
+  'date': null
 };
 let defaultImmunizationForm = {
   'identifier': '',
   'vaccine': '',
-  'vaccineCode': ''
+  'vaccineCode': '',
+  'datePicker': null
 }
 
 
@@ -43,15 +46,20 @@ export default class ImmunizationDetail extends React.Component {
     let data = {
       immunizationId: false,
       immunization: defaultImmunization,
-      immunizationForm: defaultImmunizationForm
+      immunizationForm: defaultImmunizationForm,
+      showDatePicker: false
     };
+
+    if(this.props.showDatePicker){
+      data.showDatePicker = this.props.showDatePicker
+    }
 
     if (Session.get('immunizationUpsert')) {
       // data.immunization = Session.get('immunizationUpsert');
       data.immunizationForm = Session.get('immunizationUpsert');
     } else {
-      if (Session.get('selectedImmunization')) {
-        data.immunizationId = Session.get('selectedImmunization');
+      // if (Session.get('selectedImmunization')) {
+      //   data.immunizationId = Session.get('selectedImmunization');
         console.log("selectedImmunization", Session.get('selectedImmunization'));
 
         let selectedImmunization = Immunizations.findOne({_id: Session.get('selectedImmunization')});
@@ -72,16 +80,33 @@ export default class ImmunizationDetail extends React.Component {
           immunizationForm.vaccineCode = selectedImmunization.vaccineCode.text;
           data.immunizationForm = immunizationForm
         }
-      } else {
-        // data.immunization = defaultImmunization;
-        data.immunizationForm = defaultImmunizationForm;
-      }
-
+      // } else {
+      //   // data.immunization = defaultImmunization;
+      //   data.immunizationForm = defaultImmunizationForm;
+      // }
     }
 
+    if (Session.get('selectedImmunization')) {
+      data.immunizationId = Session.get('selectedImmunization');
+    }  
+
+    console.log('ImmunizationDetail[data]', data);
     return data;
   }
-
+  renderDatePicker(showDatePicker, datePickerValue){
+    if (showDatePicker) {
+      return (
+        <DatePicker 
+          name='datePicker'
+          hintText="Date of Administration" 
+          container="inline" 
+          mode="landscape"
+          value={ datePickerValue ? datePickerValue : ''}    
+          onChange={ this.changeState.bind(this, 'datePicker')}      
+          />
+      );
+    }
+  }
   render() {
     return (
       <div id={this.props.id} className="immunizationDetail">
@@ -115,11 +140,8 @@ export default class ImmunizationDetail extends React.Component {
             /><br/>
             
           <br/>
-          <DatePicker 
-            hintText="Date of Administration" 
-            container="inline" 
-            mode="landscape"
-            /><br/>
+          { this.renderDatePicker(this.data.showDatePicker, get(this, 'data.immunizationForm.datePicker') ) }
+          <br/>
 
 
         </CardText>
@@ -130,13 +152,52 @@ export default class ImmunizationDetail extends React.Component {
     );
   }
 
+  addToContinuityOfCareDoc(){
+    console.log('addToContinuityOfCareDoc', Session.get('immunizationUpsert'));
 
+    var immunizationUpsert = Session.get('immunizationUpsert');
+
+    var newImmunization = {
+      "resourceType": "Immunization",
+      'notGiven': true,
+      'identifier': [{
+        'use': 'official',
+        'type': {
+          'text': immunizationUpsert.identifier
+        }
+      }, {
+        'use': 'secondary',
+        'type': {
+          'text': immunizationUpsert.vaccine
+        }
+      }],
+      'vaccineCode': {
+        'text': immunizationUpsert.vaccineCode
+      },
+      'date': immunizationUpsert.datePicker
+    }
+
+    console.log('Lets write this to the profile... ', newImmunization);
+
+    Meteor.users.update({_id: Meteor.userId()}, {$addToSet: {
+      'profile.continuityOfCare.immunizations': newImmunization
+    }}, function(error, result){
+      if(error){
+        console.log('error', error);
+      }
+      if(result){
+        browserHistory.push('/continuity-of-care');
+      }
+    });
+  }
   determineButtons(immunizationId){
     if (immunizationId) {
       return (
         <div>
           <RaisedButton id="saveImmunizationButton" label="Save" primary={true} onClick={this.handleSaveButton.bind(this)} style={{marginRight: '20px'}} />
           <RaisedButton id="deleteImmunizationButton" label="Delete" onClick={this.handleDeleteButton.bind(this)} />
+
+          <RaisedButton id="addImmunizationToContinuityCareDoc" label="Add to CCD" primary={true} onClick={this.addToContinuityOfCareDoc.bind(this)} style={{float: 'right'}} />
         </div>
       );
     } else {
@@ -178,6 +239,10 @@ export default class ImmunizationDetail extends React.Component {
       case "vaccineCode":
         immunizationUpdate.vaccineCode = value;
         break;
+      case "datePicker":
+        immunizationUpdate.datePicker = value;
+        break;
+        
       default:
 
     }

@@ -64,7 +64,10 @@ export class ImmunizationsPage extends React.Component {
                 <ImmunizationsTable />
                </Tab>
                <Tab className="immunizationDetailsTab" label='Detail' onActive={this.handleActive} style={this.data.style.tab} value={2}>
-                 <ImmunizationDetail id='immunizationDetails' />
+                 <ImmunizationDetail 
+                  id='immunizationDetails' 
+                  showDatePicker={true} 
+                  />
                </Tab>
              </Tabs>
             </CardText>

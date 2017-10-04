@@ -24,6 +24,7 @@ import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
 import Spacer from '/imports/ui/components/Spacer';
+import { browserHistory } from 'react-router';
 
 export class ContinuityOfCarePage extends React.Component {
   constructor(props) {
@@ -32,15 +33,25 @@ export class ContinuityOfCarePage extends React.Component {
   getMeteorData() {
     let data = {
       style: {},
-      ccd: {}
+      ccd: {
+        immunizations: []
+      }
     };
-
+    
+    if(Meteor.user()){
+      if(get(Meteor.user(), 'profile.continuityOfCare.immunizations')){
+        data.ccd.immunizations = get(Meteor.user(), 'profile.continuityOfCare.immunizations');
+      }
+    }
     // if(get(Meteor.user(), 'profile.continuityOfCare')){
     //   data.ccd = get(Meteor.user(), 'profile.continuityOfCare');
     // }
 
     return data;
   }
+  openLink(url){
+    browserHistory.push(url);
+  }  
   render(){
     return(
       <div id="ContinuityOfCarePage">
@@ -51,10 +62,13 @@ export class ContinuityOfCarePage extends React.Component {
                 <GlassCard>
                   <CardTitle title="Immunizations" />
                   <CardText>
-                    <ImmunizationsTable data={[]} />
+                    <ImmunizationsTable 
+                      data={ this.data.ccd.immunizations } 
+                      displayDates={true} 
+                    />
                   </CardText>
                   <CardActions>     
-                    <FlatButton label='Add' />
+                    <FlatButton label='Add' onClick={ this.openLink.bind(this, '/immunizations') } />
                   </CardActions>
                 </GlassCard>        
                 <Spacer />
