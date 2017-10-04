@@ -26,7 +26,13 @@ export default class LocationTable extends React.Component {
         })
       },
       selected: [],
-      locations: Locations.find().map(function(location){
+      locations: []
+    };
+
+    if(this.props.data){
+       data.locations = this.props.data;
+    } else {
+      data.locations = Locations.find().map(function(location){
         let result = {
           _id: '',
           name: '',
@@ -47,7 +53,7 @@ export default class LocationTable extends React.Component {
 
         return result;
       })
-    };
+    }
 
     if (Session.get('darkroomEnabled')) {
       data.style.color = 'black';
@@ -93,6 +99,7 @@ export default class LocationTable extends React.Component {
     for (var i = 0; i < this.data.locations.length; i++) {
       tableRows.push(
       <tr className='locationRow' ref='med-{i}' key={i} style={this.data.style.row} onClick={ this.rowClick.bind('this', this.data.locations[i]._id) }>
+        <td className="cardinality">{(this.data.locations[i].cardinality) ? this.data.locations[i].cardinality : ''}</td>
         <td className="locationName hidden-on-phone">{this.data.locations[i].name}</td>
         <td className="latitutude">{(this.data.locations[i].position) ? this.data.locations[i].position.latitude : ''}</td>
         <td className="longitude">{(this.data.locations[i].position) ? this.data.locations[i].position.longitude : ''}</td>
@@ -105,6 +112,7 @@ export default class LocationTable extends React.Component {
       <Table id="locationsTable" ref='locationsTable' responses hover >
         <thead>
           <tr>
+            <th className="cardinality hidden-on-phone">cardinality</th>
             <th className="locationName hidden-on-phone">name</th>
             <th className="latitutude">latitutude</th>
             <th className="longitude">longitude</th>

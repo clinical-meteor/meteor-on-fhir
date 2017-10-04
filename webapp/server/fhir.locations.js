@@ -77,10 +77,6 @@ Meteor.methods({
           lat: 41.7892007,
           lng: -87.6044935
         }, {
-          name: "Bethesda Hospital",
-          lat: 42.0189199,
-          lng: 41.8736438
-        }, {
           name: "Gottlieb Memorial Hospital",
           lat: 41.9114198,
           lng: -87.843672

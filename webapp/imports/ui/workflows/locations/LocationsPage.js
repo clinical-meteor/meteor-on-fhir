@@ -1,4 +1,5 @@
 import { CardText, CardTitle } from 'material-ui/Card';
+import { Col, Grid, Row } from 'react-bootstrap';
 import { Tab, Tabs } from 'material-ui/Tabs';
 
 import Checkbox from 'material-ui/Checkbox';
@@ -9,10 +10,12 @@ import GoogleMapReact from 'google-map-react';
 import LocationDetail from '/imports/ui/workflows/locations/LocationDetail';
 import LocationTable from '/imports/ui/workflows/locations/LocationsTable';
 import { Meteor } from 'meteor/meteor';
+import RaisedButton from 'material-ui/RaisedButton';
 import React  from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin  from 'react-mixin';
 import {ScatterplotChart} from 'react-easy-chart';
+import TextField from 'material-ui/TextField';
 import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 
 // if(process.env.NODE_ENV !== 'test'){
@@ -22,6 +25,7 @@ import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 
 Session.setDefault('locationPageTabIndex', 1); Session.setDefault('locationSearchFilter', ''); Session.setDefault('selectedLocation', false);
 Session.setDefault('shapefileDataLayer', false);
+Session.setDefault('tspRoute', []);
 
 const styles = {
   block: {
@@ -111,7 +115,7 @@ export class LocationsPage extends React.Component {
         lat: 41.8359496, 
         lng: -87.8317244
       },
-      zoom: 7, 
+      zoom: 10, 
       layers: {
         heatmap: false,
         reimbursements: false,
@@ -123,6 +127,7 @@ export class LocationsPage extends React.Component {
       },
       shapefileDataLayer: [],
       markers: Locations.find({}, {sort: {name: 1}}).fetch(),
+      tspRoute: Session.get('tspRoute'),
       options: {
         panControl: false,
         mapTypeControl: false,
@@ -296,6 +301,10 @@ export class LocationsPage extends React.Component {
             ]
           }
         ]
+      },
+      metadata: {
+        pricePerGallonGasoline: 2.50,
+        milesPerGallon: 24
       }
     };
 
@@ -323,10 +332,55 @@ export class LocationsPage extends React.Component {
     Session.set('selectedLocation', false);
     Session.set('locationUpsert', false);
   }
+  // this could be a mixin
+  changeState(field, event, value){
+    let routeMetadataUpdate;
 
+    // if(process.env.NODE_ENV === "test") console.log("LocationDetail.changeState", field, event, value);
+
+    // by default, assume there's no other data and we're creating a new location
+    if (Session.get('routeMetadataUpdate')) {
+      routeMetadataUpdate = Session.get('routeMetadataUpdate');
+    } else {
+      routeMetadataUpdate = {
+        pricePerGallonGasoline: 2.50,
+        milesPerGallon: 24
+      };
+    }
+
+
+
+    // if there's an existing location, use them
+    if (Session.get('selectedLocation')) {
+      routeMetadataUpdate = this.data.location;
+    }
+
+    switch (field) {
+      case "pricePerGallonGasoline":
+        routeMetadataUpdate.pricePerGallonGasoline = value;
+        break;
+      case "milesPerGallon":
+        routeMetadataUpdate.milesPerGallon = value;
+        break;
+      default:
+    }
+
+    Session.set('routeMetadataUpdate', routeMetadataUpdate);
+  }
+  calculateTspRoute(){
+    console.log('calculateTspRoute');
+    Meteor.call('calculateTspRoute', function(error, result){
+      if(result){
+        console.log('result', result);
+        Session.set('tspRoute', result.shortestFoundPath);
+      }
+    });
+  }
   render() {
     var self = this;
     var markers = [];
+    var tspWaypoints = [];
+  
 
     // we know that the vertical canvas with locations will be displayed regardless of whether
     // we load the background map; so lets create a variable to set it up
@@ -347,45 +401,61 @@ export class LocationsPage extends React.Component {
             </Tab>
             <Tab className="layersDetail" label='Layers' onActive={this.handleActive} style={this.data.style.tab} value={3}>
               <CardText>      
-                    <h4>Map Types</h4>
-                    <Checkbox label="Points" style={styles.checkbox} />
-                    <Checkbox label="Heatmap" style={styles.checkbox} />
-                    <br/>
+                <h4>Map Types</h4>
+                <Checkbox label="Points" style={styles.checkbox} />
+                <Checkbox label="Heatmap" style={styles.checkbox} />
+                <br/>
 
-                    <h4>Health Statistics</h4>
-                    <Checkbox label="Hospital Referral Regions" style={styles.checkbox} />
-                    <Checkbox label="Health Service Areas" style={styles.checkbox} />                        
-                    <br/>
-                
-                    <h4>Public Services</h4>
-                    <Checkbox label="Hospitals" style={styles.checkbox} />
-                    <Checkbox label="Police Departments" style={styles.checkbox} />
-                    <br/>
-                
-                    <h4>Medicare</h4>
-                    <Checkbox label="Reimbursements" style={styles.checkbox} />
-                    <Checkbox label="Total Mortality" style={styles.checkbox} />
-                    <Checkbox label="Eye Exams" style={styles.checkbox} />
-                    <Checkbox label="Diabetes" style={styles.checkbox} />
-                    <Checkbox label="Lipid Panels" style={styles.checkbox} />
-                    <Checkbox label="Outpatient Visits" style={styles.checkbox} />
+                <h4>Health Statistics</h4>
+                <Checkbox label="Hospital Referral Regions" style={styles.checkbox} />
+                <Checkbox label="Health Service Areas" style={styles.checkbox} />                        
+                <br/>
+            
+                <h4>Public Services</h4>
+                <Checkbox label="Hospitals" style={styles.checkbox} />
+                <Checkbox label="Police Departments" style={styles.checkbox} />
+                <br/>
+            
+                <h4>Medicare</h4>
+                <Checkbox label="Reimbursements" style={styles.checkbox} />
+                <Checkbox label="Total Mortality" style={styles.checkbox} />
+                <Checkbox label="Eye Exams" style={styles.checkbox} />
+                <Checkbox label="Diabetes" style={styles.checkbox} />
+                <Checkbox label="Lipid Panels" style={styles.checkbox} />
+                <Checkbox label="Outpatient Visits" style={styles.checkbox} />
               </CardText>
             </Tab>
             <Tab className="quickAnalysisTab" label='Analysis' onActive={this.handleActive} style={this.data.style.tab} value={4}>
               <CardText>
-                <ScatterplotChart 
-                  data={demoData} 
-                  lineData={[
-                    {
-                      x: 'A',
-                      y: 1
-                    },
-                    {
-                      x: 'B',
-                      y: 20
-                    } 
-                  ]}
-                  />
+                  <Row>
+                    <Col md={4}>
+                      <TextField
+                        id='pricePerGallonGasolineInput'
+                        ref='pricePerGallonGasoline'
+                        name='pricePerGallonGasoline'
+                        floatingLabelText='Price Per Gallon'
+                        value={(this.data.metadata) ? this.data.metadata.pricePerGallonGasoline : ''}
+                        onChange={ this.changeState.bind(this, 'pricePerGallonGasoline')}
+                        fullWidth
+                        /><br/>
+                    </Col>
+                    <Col md={4}>
+                      <TextField
+                        id='milesPerGallonInput'
+                        ref='milesPerGallon'
+                        name='milesPerGallon'
+                        floatingLabelText='Miles Per Gallon'
+                        value={(this.data.metadata) ? this.data.metadata.milesPerGallon : ''}
+                        onChange={ this.changeState.bind(this, 'milesPerGallon')}
+                        fullWidth
+                        /><br/>
+                    </Col>
+                  </Row>
+                  <RaisedButton id="calculateRoute" label="Calculate Route" primary={true} onClick={this.calculateTspRoute.bind(this)}  />
+
+                  <hr />
+
+                  <LocationTable data={ this.data.tspRoute } />
               </CardText>
             </Tab>
           </Tabs>
@@ -420,7 +490,16 @@ export class LocationsPage extends React.Component {
             libraries: 'visualization'
           }}
           onGoogleApiLoaded={function({map, maps}){
-            console.log('onGoogleApiLoaded', map)
+            console.log('onGoogleApiLoaded', map);
+
+            for (var index = 0; index < 8; index++) {
+              tspWaypoints.push({
+                location: new maps.LatLng(self.data.tspRoute[index].latitude, self.data.tspRoute[index].longitude),
+                stopover: true
+              });
+            }
+            console.log('tspWaypoints', tspWaypoints)
+
   
             map.data.setStyle({
               // raw binary data (extremely fast!)
@@ -443,13 +522,13 @@ export class LocationsPage extends React.Component {
                 path: maps.SymbolPath.CIRCLE,
                 fillColor: '#616161',
                 fillOpacity: 0.5,
-                strokeColor: '#bb5599',
+                strokeColor: '#9e4545',
                 strokeWeight: 2,
                 scale: 2
               },
               fillColor: '#ffffff',
-              strokeColor: '#bb5599',
-              strokeWeight: 1
+              strokeColor: '#9e4545',
+              strokeWeight: 0.5
               //icon: new maps.MarkerImage(
               //  'http://www.gettyicons.com/free-icons/108/gis-gps/png/24/needle_left_yellow_2_24.png',
               //  new maps.Size(24, 24),
@@ -465,6 +544,30 @@ export class LocationsPage extends React.Component {
               //  fontWeight: "bold",
               //  text: 'foo'
               //}
+            });
+
+
+            // TSP Routing / Directions
+            directionsService = new maps.DirectionsService({map: map});
+            directionsDisplay = new maps.DirectionsRenderer({map: map});
+            directionsDisplay.setMap(map);
+
+            var request = {
+              origin: 'Logan Square, Chicago, IL',
+              destination: 'Logan Square, Chicago, IL',
+              waypoints: tspWaypoints,
+              provideRouteAlternatives: false,
+              travelMode: 'DRIVING',
+              unitSystem: maps.UnitSystem.IMPERIAL
+            }
+
+            console.log('directionsService', directionsService);
+            console.log('directionsDisplay', directionsDisplay);
+
+            directionsService.route(request, function(result, status) {
+              if (status == 'OK') {
+                directionsDisplay.setDirections(result);
+              }
             });
 
 
@@ -489,6 +592,8 @@ export class LocationsPage extends React.Component {
                   console.log('map.data', map.data);
                 }
 
+
+                // if we turn on the heatmap
                 var heatmap = new maps.visualization.HeatmapLayer({
                   data: dataLayer,
                   map: map

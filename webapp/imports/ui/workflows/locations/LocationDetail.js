@@ -1,4 +1,5 @@
 import { CardActions, CardText } from 'material-ui/Card';
+import { Col, Grid, Row } from 'react-bootstrap';
 
 import { Bert } from 'meteor/themeteorchef:bert';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -113,33 +114,42 @@ export default class LocationDetail extends React.Component {
             onChange={ this.changeState.bind(this, 'locationName')}
             fullWidth
             /><br/>
-          <TextField
-            id='latitudeInput'
-            ref='latitude'
-            name='latitude'
-            floatingLabelText='Latitude'
-            value={(this.data.location.position) ? this.data.location.position.latitude : ''}
-            onChange={ this.changeState.bind(this, 'locationLatitude')}
-            fullWidth
-            /><br/>
-          <TextField
-            id='longitudeInput'
-            ref='longitude'
-            name='longitude'
-            floatingLabelText='Longitude'
-            value={(this.data.location.position) ? this.data.location.position.longitude : ''}
-            onChange={ this.changeState.bind(this, 'locationLongitude')}
-            fullWidth
-            /><br/>
-          <TextField
-            id='altitudeInput'
-            ref='altitude'
-            name='altitude'
-            floatingLabelText='Altitude'
-            value={(this.data.location.position) ? this.data.location.position.altitude : ''}
-            onChange={ this.changeState.bind(this, 'locationAltitude')}
-            fullWidth
-            /><br/>
+
+          <Row>
+            <Col md={4}>
+              <TextField
+                id='latitudeInput'
+                ref='latitude'
+                name='latitude'
+                floatingLabelText='Latitude'
+                value={(this.data.location.position) ? this.data.location.position.latitude : ''}
+                onChange={ this.changeState.bind(this, 'locationLatitude')}
+                fullWidth
+                /><br/>
+            </Col>
+            <Col md={4}>
+              <TextField
+                id='longitudeInput'
+                ref='longitude'
+                name='longitude'
+                floatingLabelText='Longitude'
+                value={(this.data.location.position) ? this.data.location.position.longitude : ''}
+                onChange={ this.changeState.bind(this, 'locationLongitude')}
+                fullWidth
+                /><br/>
+            </Col>
+            <Col md={4}>
+              <TextField
+                id='altitudeInput'
+                ref='altitude'
+                name='altitude'
+                floatingLabelText='Altitude'
+                value={(this.data.location.position) ? this.data.location.position.altitude : ''}
+                onChange={ this.changeState.bind(this, 'locationAltitude')}
+                fullWidth
+                /><br/>
+            </Col>
+          </Row>
         </CardText>
         <CardActions>
           { this.determineButtons(this.data.locationId) }

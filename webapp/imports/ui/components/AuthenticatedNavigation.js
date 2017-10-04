@@ -131,7 +131,7 @@ export class AuthenticatedNavigation extends React.Component {
               <div>
                 <ToolbarTitle
                   id='notificationCount'
-                  text={ this.data.notificationCount }
+                  text={ this.data.notificationCount.toString() }
                   style={this.data.glassText}
                 />
                 <IconButton touch={true} style={this.data.glassTextIcon}>

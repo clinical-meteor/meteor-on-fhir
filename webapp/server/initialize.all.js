@@ -44,8 +44,9 @@ Meteor.methods({
 
   },
   initializeProviderDirectory: function(){
-    Meteor.call('initializeBlockchain');  // creates Organizations
-    // Meteor.call('initializeLocations');
+    if(Package['clinical:routing-algorithms']){
+      Meteor.call('initializeBlockchain');  
+    }
     Meteor.call('initializeHospitals');
   },
   initializeSystemUsers: function(){
