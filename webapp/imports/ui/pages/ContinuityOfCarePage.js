@@ -34,7 +34,12 @@ export class ContinuityOfCarePage extends React.Component {
     let data = {
       style: {},
       ccd: {
-        immunizations: []
+        immunizations: [],
+        allergyIntolerances: [],
+        conditions: [],
+        medicationStatements: [],
+        procedures: [],
+        diagnosticReports: [],
       }
     };
     
@@ -42,10 +47,23 @@ export class ContinuityOfCarePage extends React.Component {
       if(get(Meteor.user(), 'profile.continuityOfCare.immunizations')){
         data.ccd.immunizations = get(Meteor.user(), 'profile.continuityOfCare.immunizations');
       }
+      if(get(Meteor.user(), 'profile.continuityOfCare.allergyIntolerances')){
+        data.ccd.allergyIntolerances = get(Meteor.user(), 'profile.continuityOfCare.allergyIntolerances');
+      }
+      if(get(Meteor.user(), 'profile.continuityOfCare.conditions')){
+        data.ccd.conditions = get(Meteor.user(), 'profile.continuityOfCare.conditions');
+      }
+      if(get(Meteor.user(), 'profile.continuityOfCare.medicationStatements')){
+        data.ccd.medicationStatements = get(Meteor.user(), 'profile.continuityOfCare.medicationStatements');
+      }
+      if(get(Meteor.user(), 'profile.continuityOfCare.procedures')){
+        data.ccd.procedures = get(Meteor.user(), 'profile.continuityOfCare.procedures');
+      }
+      if(get(Meteor.user(), 'profile.continuityOfCare.diagnosticReports')){
+        data.ccd.diagnosticReports = get(Meteor.user(), 'profile.continuityOfCare.diagnosticReports');
+      }
     }
-    // if(get(Meteor.user(), 'profile.continuityOfCare')){
-    //   data.ccd = get(Meteor.user(), 'profile.continuityOfCare');
-    // }
+
 
     return data;
   }
@@ -76,10 +94,13 @@ export class ContinuityOfCarePage extends React.Component {
                 <GlassCard>
                   <CardTitle title="Allergies" />
                   <CardText>
-                    <AllergyIntolerancesTable data={[]} />
-                  </CardText>
+                    <AllergyIntolerancesTable
+                      data={ this.data.ccd.allergyIntolerances } 
+                      displayDates={true} 
+                    />
+                </CardText>
                   <CardActions>       
-                    <FlatButton label='Add' />
+                    <FlatButton label='Add' onClick={ this.openLink.bind(this, '/allergies') } />
                   </CardActions>
                 </GlassCard>        
                 <Spacer />
@@ -87,10 +108,13 @@ export class ContinuityOfCarePage extends React.Component {
                 <GlassCard>
                   <CardTitle title="Conditions" />
                   <CardText>
-                    <ConditionsTable data={[]} />
+                    <ConditionsTable
+                      data={ this.data.ccd.conditions } 
+                      displayDates={true} 
+                    />                  
                   </CardText>
                   <CardActions>       
-                    <FlatButton label='Add' />
+                    <FlatButton label='Add' onClick={ this.openLink.bind(this, '/conditions') } />
                   </CardActions>
                 </GlassCard>        
                 <Spacer />
@@ -98,10 +122,14 @@ export class ContinuityOfCarePage extends React.Component {
                 <GlassCard>
                   <CardTitle title="Medication Statements" />
                   <CardText>
-                    <MedicationStatementsTable data={[]} />
+                    <MedicationStatementsTable
+                      data={ this.data.ccd.medicationStatements } 
+                      displayDates={true} 
+                    />
+                    
                   </CardText>
                   <CardActions>       
-                    <FlatButton label='Add' />
+                    <FlatButton label='Add' onClick={ this.openLink.bind(this, '/medication-statements') } />
                   </CardActions>
                 </GlassCard>        
                 <Spacer />
@@ -109,10 +137,14 @@ export class ContinuityOfCarePage extends React.Component {
                 <GlassCard>
                   <CardTitle title="Procedures" />
                   <CardText>
-                    <ProceduresTable data={[]} />
+                    <ProceduresTable
+                      data={ this.data.ccd.procedures } 
+                      displayDates={true} 
+                    />
+                    
                   </CardText>
                   <CardActions>       
-                    <FlatButton label='Add' />
+                  <FlatButton label='Add' onClick={ this.openLink.bind(this, '/procedures') } />
                   </CardActions>
                 </GlassCard>        
                 <Spacer />
@@ -120,10 +152,14 @@ export class ContinuityOfCarePage extends React.Component {
                 <GlassCard>
                   <CardTitle title="Diagnostic Reports" />
                   <CardText>
-                    <DiagnosticReportsTable data={[]} />
+                    <DiagnosticReportsTable 
+                      data={ this.data.ccd.diagnosticReports } 
+                      displayDates={true} 
+                    />
+                    
                   </CardText>
                   <CardActions>       
-                    <FlatButton label='Add' />
+                  <FlatButton label='Add' onClick={ this.openLink.bind(this, '/diagnostic-reports') } />
                   </CardActions>
                 </GlassCard>        
                 <Spacer />
