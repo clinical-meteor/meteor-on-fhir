@@ -1,11 +1,13 @@
 import { CardActions, CardText } from 'material-ui/Card';
 
 import { Bert } from 'meteor/themeteorchef:bert';
+import DatePicker from 'material-ui/DatePicker';
 import RaisedButton from 'material-ui/RaisedButton';
 import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
 import TextField from 'material-ui/TextField';
+import { browserHistory } from 'react-router';
 import { get } from 'lodash';
 
 let defaultProcedure = {
@@ -30,14 +32,19 @@ export default class ProcedureDetail extends React.Component {
   getMeteorData() {
     let data = {
       procedureId: false,
-      procedure: defaultProcedure
+      procedure: defaultProcedure,
+      showDatePicker: false
     };
+
+    if(this.props.showDatePicker){
+      data.showDatePicker = this.props.showDatePicker
+    }
 
     if (Session.get('procedureUpsert')) {
       data.procedure = Session.get('procedureUpsert');
     } else {
-      if (Session.get('selectedProcedure')) {
-        data.procedureId = Session.get('selectedProcedure');
+      // if (Session.get('selectedProcedure')) {
+      //   data.procedureId = Session.get('selectedProcedure');
         console.log("selectedProcedure", Session.get('selectedProcedure'));
 
         let selectedProcedure = Procedures.findOne({_id: Session.get('selectedProcedure')});
@@ -46,13 +53,31 @@ export default class ProcedureDetail extends React.Component {
         if (selectedProcedure) {
           data.procedure = selectedProcedure;
         }
-      } else {
-        data.procedure = defaultProcedure;
-      }
-
+      // } else {
+      //   data.procedure = defaultProcedure;
+      // }
     }
 
+    if (Session.get('selectedProcedure')) {
+      data.procedureId = Session.get('selectedProcedure');
+    }      
+
     return data;
+  }
+
+  renderDatePicker(showDatePicker, datePickerValue){
+    if (showDatePicker) {
+      return (
+        <DatePicker 
+          name='performedDateTime'
+          hintText="Performed Date/Time" 
+          container="inline" 
+          mode="landscape"
+          value={ datePickerValue ? datePickerValue : ''}    
+          onChange={ this.changeState.bind(this, 'performedDateTime')}      
+          />
+      );
+    }
   }
 
   render() {
@@ -88,6 +113,9 @@ export default class ProcedureDetail extends React.Component {
             /><br/>
 
 
+            <br/>
+          { this.renderDatePicker(this.data.showDatePicker, get(this, 'data.procedure.performedDateTime') ) }
+          <br/>
 
         </CardText>
         <CardActions>
@@ -98,12 +126,42 @@ export default class ProcedureDetail extends React.Component {
   }
 
 
+  addToContinuityOfCareDoc(){
+    console.log('addToContinuityOfCareDoc', Session.get('procedureUpsert'));
+
+    var procedureUpsert = Session.get('procedureUpsert');
+
+    var newProcedure = {
+      'resourceType': 'Procedure',
+      'status': procedureUpsert.status,
+      'identifier': procedureUpsert.identifier,
+      'code': {
+        'text': procedureUpsert.code.text
+      },
+      'performedDateTime': procedureUpsert.performedDateTime  
+    }
+
+    console.log('Lets write this to the profile... ', newProcedure);
+
+    Meteor.users.update({_id: Meteor.userId()}, {$addToSet: {
+      'profile.continuityOfCare.procedures': newProcedure
+    }}, function(error, result){
+      if(error){
+        console.log('error', error);
+      }
+      if(result){
+        browserHistory.push('/continuity-of-care');
+      }
+    });
+  }
   determineButtons(procedureId){
     if (procedureId) {
       return (
         <div>
           <RaisedButton id="saveProcedureButton" label="Save" primary={true} onClick={this.handleSaveButton.bind(this)} style={{marginRight: '20px'}}  />
           <RaisedButton id="deleteProcedureButton" label="Delete" onClick={this.handleDeleteButton.bind(this)} />
+
+          <RaisedButton id="addProcedureToContinuityCareDoc" label="Add to CCD" primary={true} onClick={this.addToContinuityOfCareDoc.bind(this)} style={{float: 'right'}} />
         </div>
       );
     } else {
@@ -148,6 +206,10 @@ export default class ProcedureDetail extends React.Component {
       case "status":
         procedureUpdate.status = value;
         break;
+      case "performedDateTime":
+        procedureUpdate.performedDateTime = value;
+        break;
+
       default:
     }
 
