@@ -1,11 +1,13 @@
 import { CardActions, CardText } from 'material-ui/Card';
 
 import { Bert } from 'meteor/themeteorchef:bert';
+import DatePicker from 'material-ui/DatePicker';
 import RaisedButton from 'material-ui/RaisedButton';
 import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
 import TextField from 'material-ui/TextField';
+import { browserHistory } from 'react-router';
 import { get } from 'lodash';
 
 let defaultAllergyIntolerance = {
@@ -19,7 +21,8 @@ let defaultAllergyIntolerance = {
     'type': 'allergy',
     'category': ['food'],
     'code': null,
-    'patient': null
+    'patient': null,
+    "assertedDate": null
 };
 
 
@@ -31,14 +34,19 @@ export default class AllergyIntoleranceDetail extends React.Component {
   getMeteorData() {
     let data = {
       allergyIntoleranceId: false,
-      allergyIntolerance: defaultAllergyIntolerance
+      allergy: defaultAllergyIntolerance,
+      showDatePicker: false      
     };
+
+    if(this.props.showDatePicker){
+      data.showDatePicker = this.props.showDatePicker
+    }
 
     if (Session.get('allergyIntoleranceUpsert')) {
       data.allergy = Session.get('allergyIntoleranceUpsert');
     } else {
-      if (Session.get('selectedAllergyIntolerance')) {
-        data.allergyIntoleranceId = Session.get('selectedAllergyIntolerance');
+      // if (Session.get('selectedAllergyIntolerance')) {
+      //   data.allergyIntoleranceId = Session.get('selectedAllergyIntolerance');
         console.log("selectedAllergyIntolerance", Session.get('selectedAllergyIntolerance'));
 
         let selectedAllergyIntolerance = AllergyIntolerances.findOne({_id: Session.get('selectedAllergyIntolerance')});
@@ -47,15 +55,32 @@ export default class AllergyIntoleranceDetail extends React.Component {
         if (selectedAllergyIntolerance) {
           data.allergy = selectedAllergyIntolerance;
         }
-      } else {
-        data.allergy = defaultAllergyIntolerance;
-      }
-
+      // } else {
+      //   data.allergy = defaultAllergyIntolerance;
+      // }
     }
 
+    if (Session.get('selectedAllergyIntolerance')) {
+      data.allergyIntoleranceId = Session.get('selectedAllergyIntolerance');
+    }  
+
+    console.log('AllergyIntoleranceDetail[data]', data);
     return data;
   }
-
+  renderDatePicker(showDatePicker, datePickerValue){
+    if (showDatePicker) {
+      return (
+        <DatePicker 
+          name='datePicker'
+          hintText="Date of Confirmation" 
+          container="inline" 
+          mode="landscape"
+          value={ datePickerValue ? datePickerValue : ''}    
+          onChange={ this.changeState.bind(this, 'datePicker')}      
+          />
+      );
+    }
+  }
   render() {
     return (
       <div id={this.props.id} className="allergyIntoleranceDetail">
@@ -120,6 +145,11 @@ export default class AllergyIntoleranceDetail extends React.Component {
             fullWidth
             /><br/>
 
+          <br/>
+          { this.renderDatePicker(this.data.showDatePicker, get(this, 'data.allergy.assertedDate') ) }
+          <br/>
+          
+
         </CardText>
         <CardActions>
           { this.determineButtons(this.data.allergyIntoleranceId ) }
@@ -127,7 +157,54 @@ export default class AllergyIntoleranceDetail extends React.Component {
       </div>
     );
   }
+  addToContinuityOfCareDoc(){
+    console.log('addToContinuityOfCareDoc', Session.get('allergyIntoleranceUpsert'));
 
+    var allergyIntoleranceUpsert = Session.get('allergyIntoleranceUpsert');
+
+    var newAllergy = {
+      "resourceType": "AllergyIntolerance",
+      'identifier': allergyIntoleranceUpsert.identifier,
+      'clinicalStatus': allergyIntoleranceUpsert.clinicalStatus,
+      'verificationStatus': allergyIntoleranceUpsert.verificationStatus,
+      'type': allergyIntoleranceUpsert.type,
+      'category': allergyIntoleranceUpsert.category,
+      'code': null,
+      'patient': null,
+      "assertedDate": allergyIntoleranceUpsert.datePicker
+
+      // "resourceType": "Immunization",
+      // 'notGiven': true,
+      // 'identifier': [{
+      //   'use': 'official',
+      //   'type': {
+      //     'text': allergyIntoleranceUpsert.identifier
+      //   }
+      // }, {
+      //   'use': 'secondary',
+      //   'type': {
+      //     'text': allergyIntoleranceUpsert.vaccine
+      //   }
+      // }],
+      // 'vaccineCode': {
+      //   'text': allergyIntoleranceUpsert.vaccineCode
+      // },
+      // 'date': allergyIntoleranceUpsert.datePicker
+    }
+
+    console.log('Lets write this to the profile... ', newAllergy);
+
+    Meteor.users.update({_id: Meteor.userId()}, {$addToSet: {
+      'profile.continuityOfCare.allergyIntolerances': newAllergy
+    }}, function(error, result){
+      if(error){
+        console.log('error', error);
+      }
+      if(result){
+        browserHistory.push('/continuity-of-care');
+      }
+    });
+  }
 
   determineButtons(allergyId){
     if (allergyId) {
@@ -135,6 +212,8 @@ export default class AllergyIntoleranceDetail extends React.Component {
         <div>
           <RaisedButton id="saveAllergyIntoleranceButton" label="Save" primary={true} onClick={this.handleSaveButton.bind(this)} style={{marginRight: '20px'}} />
           <RaisedButton id="deleteAllergyIntoleranceButton" label="Delete" onClick={this.handleDeleteButton.bind(this)} />
+
+          <RaisedButton id="addAllergyToContinuityCareDoc" label="Add to CCD" primary={true} onClick={this.addToContinuityOfCareDoc.bind(this)} style={{float: 'right'}} />
         </div>
       );
     } else {
@@ -190,6 +269,10 @@ export default class AllergyIntoleranceDetail extends React.Component {
           display: value
         }
         break;
+      case "datePicker":
+        allergyUpdate.assertedDate = value;
+        break;
+  
       default:
 
     }
