@@ -61,8 +61,6 @@ export default class ImmunizationsTable extends React.Component {
       );
     }
   }
-
-
   renderDateHeader(displayDates){
     if (displayDates) {
       return (

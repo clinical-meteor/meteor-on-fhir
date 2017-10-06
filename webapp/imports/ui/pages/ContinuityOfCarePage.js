@@ -64,7 +64,7 @@ export class ContinuityOfCarePage extends React.Component {
       }
     }
 
-
+    console.log('ContinuityOfCarePage[data]', data);
     return data;
   }
   openLink(url){

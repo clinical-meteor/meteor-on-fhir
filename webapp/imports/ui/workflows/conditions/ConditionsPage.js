@@ -64,7 +64,10 @@ export class ConditionsPage extends React.Component {
                 <ConditionsTable />
                </Tab>
                <Tab className="conditionDetailsTab" label='Detail' onActive={this.handleActive} style={this.data.style.tab} value={2}>
-                 <ConditionDetail id='conditionDetails' />
+                 <ConditionDetail 
+                 id='conditionDetails' 
+                 showDatePicker={true} 
+                 />
                </Tab>
              </Tabs>
             </CardText>
