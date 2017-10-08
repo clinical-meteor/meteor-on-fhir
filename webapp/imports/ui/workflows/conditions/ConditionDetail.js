@@ -1,11 +1,14 @@
 import { CardActions, CardText } from 'material-ui/Card';
 
 import { Bert } from 'meteor/themeteorchef:bert';
+import DatePicker from 'material-ui/DatePicker';
 import RaisedButton from 'material-ui/RaisedButton';
 import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
 import TextField from 'material-ui/TextField';
+import { browserHistory } from 'react-router';
+import { get } from 'lodash';
 
 let defaultCondition = {
   "resourceType": "Condition",
@@ -48,7 +51,8 @@ let defaultCondition = {
         }
       ]
     }
-  ]
+  ],
+  "onsetDateTime": null
 };
 
 
@@ -61,14 +65,19 @@ export default class ConditionDetail extends React.Component {
   getMeteorData() {
     let data = {
       conditionId: false,
-      condition: defaultCondition
+      condition: defaultCondition,
+      showDatePicker: false      
     };
 
+    if(this.props.showDatePicker){
+      data.showDatePicker = this.props.showDatePicker
+    }
+    
     if (Session.get('conditionUpsert')) {
       data.condition = Session.get('conditionUpsert');
     } else {
-      if (Session.get('selectedCondition')) {
-        data.conditionId = Session.get('selectedCondition');
+      // if (Session.get('selectedCondition')) {
+      //   data.conditionId = Session.get('selectedCondition');
         console.log("selectedCondition", Session.get('selectedCondition'));
 
         let selectedCondition = Conditions.findOne({_id: Session.get('selectedCondition')});
@@ -77,15 +86,32 @@ export default class ConditionDetail extends React.Component {
         if (selectedCondition) {
           data.condition = selectedCondition;
         }
-      } else {
-        data.condition = defaultCondition;
-      }
-
+      // } else {
+      //   data.condition = defaultCondition;
+      // }
     }
+
+    if (Session.get('selectedCondition')) {
+      data.conditionId = Session.get('selectedCondition');
+    }  
+
 
     return data;
   }
-
+  renderDatePicker(showDatePicker, datePickerValue){
+    if (showDatePicker) {
+      return (
+        <DatePicker 
+          name='onsetDateTime'
+          hintText="Onset Date" 
+          container="inline" 
+          mode="landscape"
+          value={ datePickerValue ? datePickerValue : ''}    
+          onChange={ this.changeState.bind(this, 'onsetDateTime')}      
+          />
+      );
+    }
+  }
   render() {
     return (
       <div id={this.props.id} className="conditionDetail">
@@ -145,6 +171,9 @@ export default class ConditionDetail extends React.Component {
             fullWidth
             /><br/>
 
+            <br/>
+          { this.renderDatePicker(this.data.showDatePicker, get(this, 'data.condition.onsetDateTime') ) }
+          <br/>
 
 
 
@@ -157,12 +186,77 @@ export default class ConditionDetail extends React.Component {
   }
 
 
+  addToContinuityOfCareDoc(){
+    console.log('addToContinuityOfCareDoc', Session.get('conditionUpsert'));
+
+    var conditionUpsert = Session.get('conditionUpsert');
+
+    var newCondition = {
+      "resourceType": "Condition",
+      "patient": {
+        "reference": get(conditionUpsert, 'patient.reference'),
+        "display": get(conditionUpsert, 'patient.display'),
+      },
+      "asserter": {
+        "reference": get(conditionUpsert, 'asserter.reference'),
+        "display": get(conditionUpsert, 'asserter.display'),
+      },
+      "dateRecorded": get(conditionUpsert, 'dateRecorded'),
+      "code": {
+        "coding": [
+          {
+            "system": "http://snomed.info/sct",
+            "code": get(conditionUpsert, 'code.coding[0].code'),
+            "display": get(conditionUpsert, 'code.coding[0].display'),
+          }
+        ]
+      },
+      "clinicalStatus": get(conditionUpsert, 'clinicalStatus'),
+      "verificationStatus": get(conditionUpsert, 'verificationStatus'),
+      "severity": {
+        "coding": [
+          {
+            "system": "http://snomed.info/sct",
+            "code": "",
+            "display": ""
+          }
+        ]
+      },
+      "onsetDateTime": "",
+      "evidence": [
+        {
+          "detail": [
+            {
+              "reference": get(conditionUpsert, 'evidence[0].detail[0].reference'),
+              "display": get(conditionUpsert, 'evidence[0].detail[0].display'),
+            }
+          ]
+        }
+      ],
+      "onsetDateTime": get(conditionUpsert, 'onsetDateTime'),
+    }
+
+    console.log('Lets write this to the profile... ', newCondition);
+
+    Meteor.users.update({_id: Meteor.userId()}, {$addToSet: {
+      'profile.continuityOfCare.conditions': newCondition
+    }}, function(error, result){
+      if(error){
+        console.log('error', error);
+      }
+      if(result){
+        browserHistory.push('/continuity-of-care');
+      }
+    });
+  }
   determineButtons(conditionId){
     if (conditionId) {
       return (
         <div>
           <RaisedButton id="saveConditionButton" label="Save" primary={true} onClick={this.handleSaveButton.bind(this)} style={{marginRight: '20px'}}  />
           <RaisedButton id="deleteConditionButton" label="Delete" onClick={this.handleDeleteButton.bind(this)} />
+
+          <RaisedButton id="addConditionToContinuityCareDoc" label="Add to CCD" primary={true} onClick={this.addToContinuityOfCareDoc.bind(this)} style={{float: 'right'}} />
         </div>
       );
     } else {
@@ -213,6 +307,11 @@ export default class ConditionDetail extends React.Component {
       case "evidenceDisplay":
         conditionUpdate.evidence[0].detail[0].display = value;
         break;
+      case "onsetDateTime":
+        conditionUpdate.onsetDateTime = value;
+        break;
+
+        
       default:
 
     }

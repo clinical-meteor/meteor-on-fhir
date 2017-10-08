@@ -16,19 +16,63 @@ export default class AllergyIntolerancesTable extends React.Component {
         opacity: Session.get('globalOpacity')
       },
       selected: [],
-      allergyIntolerances: []
-    }
-    
-    if(AllergyIntolerances.find().count() > 0){
-      data.allergyIntolerances = AllergyIntolerances.find().fetch();
+      allergyIntolerances: [],
+      displayToggle: false,
+      displayDates: false
     }
 
+    if(this.props.displayToggles){
+      data.displayToggle = this.props.displayToggles;
+    }
+    if(this.props.displayDates){
+      data.displayDates = this.props.displayDates;
+    }
 
-    if(process.env.NODE_ENV === "test") console.log("data", data);
+    if(this.props.data){
+      data.allergyIntolerances = this.props.data;
+    } else {
+      if(AllergyIntolerances.find().count() > 0){
+        data.allergyIntolerances = AllergyIntolerances.find().fetch();
+      }  
+    }
+
+    if(process.env.NODE_ENV === "test") console.log("AllergyIntolerancesTable[data]", data);
     return data;
   };
 
-
+  renderTogglesHeader(displayToggle){
+    if (displayToggle) {
+      return (
+        <th className="toggle">toggle</th>
+      );
+    }
+  }
+  renderToggles(displayToggle, patientId ){
+    if (displayToggle) {
+      return (
+        <td className="toggle">
+            <Toggle
+              defaultToggled={true}
+              //style={styles.toggle}
+            />
+          </td>
+      );
+    }
+  }
+  renderDateHeader(displayDates){
+    if (displayDates) {
+      return (
+        <th className='date'>date</th>
+      );
+    }
+  }
+  renderDate(displayDates, newDate ){
+    if (displayDates) {
+      return (
+        <td className='date'>{ moment(newDate).format('YYYY-MM-DD') }</td>
+      );
+    }
+  }
   rowClick(id){
     Session.set('allergyIntolerancesUpsert', false);
     Session.set('selectedAllergyIntolerance', id);
@@ -77,11 +121,13 @@ export default class AllergyIntolerancesTable extends React.Component {
 
       tableRows.push(
         <tr key={i} className="allergyIntoleranceRow" style={{cursor: "pointer"}} onClick={ this.rowClick.bind('this', this.data.allergyIntolerances[i]._id)} >
+          { this.renderToggles(this.data.displayToggle, this.data.allergyIntolerances[i]) }
           <td className='identifier'>{ newRow.name }</td>
           <td className='clinicalStatus'>{ newRow.clinicalStatus }</td>
           <td className='verificationStatus'>{ newRow.verificationStatus }</td>
           <td className='type'>{ newRow.type }</td>
           <td className='category'>{ newRow.category }</td>
+          { this.renderDate(this.data.displayDates, this.data.allergyIntolerances[i].assertedDate) }
         </tr>
       )
     }
@@ -90,11 +136,13 @@ export default class AllergyIntolerancesTable extends React.Component {
       <Table id='allergyIntolerancesTable' responses hover >
         <thead>
           <tr>
+            { this.renderTogglesHeader(this.data.displayToggle) }
             <th className='identifier'>name</th>
             <th className='clinicalStatus'>status</th>
             <th className='verificationStatus'>verification</th>
             <th className='type'>type</th>
             <th className='category'>category</th>
+            { this.renderDateHeader(this.data.displayDates) }
           </tr>
         </thead>
         <tbody>

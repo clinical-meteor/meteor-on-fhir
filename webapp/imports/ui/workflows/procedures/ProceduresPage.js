@@ -64,7 +64,10 @@ export class ProceduresPage extends React.Component {
                 <ProceduresTable />
                </Tab>
                <Tab className="procedureDetailsTab" label='Detail' onActive={this.handleActive} style={this.data.style.tab} value={2}>
-                 <ProcedureDetail id='procedureDetails' />
+                 <ProcedureDetail 
+                  id='procedureDetails'
+                  showDatePicker={true} 
+                 />
                </Tab>
              </Tabs>
             </CardText>

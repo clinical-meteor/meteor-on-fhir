@@ -16,17 +16,119 @@ export default class ConditionsTable extends React.Component {
         opacity: Session.get('globalOpacity')
       },
       selected: [],
-      conditions: []
+      conditions: [],
+      displayToggle: false,
+      displayDates: false,
+      displayPatientName: false,
+      displayAsserterName: false,
+      displayEvidence: false
     }
     
-    if(Conditions.find().count() > 0){
-      data.conditions = Conditions.find().fetch();
+    if(this.props.displayPatientName){
+      data.displayPatientName = this.props.displayPatientName;
+    }
+    if(this.props.displayAsserterName){
+      data.displayAsserterName = this.props.displayAsserterName;
+    }
+    if(this.props.displayToggles){
+      data.displayToggle = this.props.displayToggles;
+    }
+    if(this.props.displayDates){
+      data.displayDates = this.props.displayDates;
+    }
+    if(this.props.displayEvidence){
+      data.displayEvidence = this.props.displayEvidence;
     }
 
+    if(this.props.data){
+      data.conditions = this.props.data;
+    } else {
+      if(Conditions.find().count() > 0){
+        data.conditions = Conditions.find().fetch();
+      }  
+    }
 
-    if(process.env.NODE_ENV === "test") console.log("data", data);
+    if(process.env.NODE_ENV === "test") console.log("ConditionsTable[data]", data);
     return data;
   };
+
+  renderTogglesHeader(displayToggle){
+    if (displayToggle) {
+      return (
+        <th className="toggle">toggle</th>
+      );
+    }
+  }
+  renderToggles(displayToggle, patientId ){
+    if (displayToggle) {
+      return (
+        <td className="toggle">
+            <Toggle
+              defaultToggled={true}
+              //style={styles.toggle}
+            />
+          </td>
+      );
+    }
+  }
+  renderDateHeader(displayDates){
+    if (displayDates) {
+      return (
+        <th className='date'>date</th>
+      );
+    }
+  }
+  renderDate(displayDates, newDate ){
+    if (displayDates) {
+      return (
+        <td className='date'>{ moment(newDate).format('YYYY-MM-DD') }</td>
+      );
+    }
+  }
+
+
+  renderPatientNameHeader(displayPatientName){
+    if (displayPatientName) {
+      return (
+        <th className='patientDisplay'>patient</th>
+      );
+    }
+  }
+  renderPatientName(displayPatientName, patientDisplay ){
+    if (displayPatientName) {
+      return (
+        <td className='patientDisplay'>{ patientDisplay }</td>
+      );
+    }
+  }
+  renderAsserterNameHeader(displayAsserterName){
+    if (displayAsserterName) {
+      return (
+        <th className='asserterDisplay'>asserter</th>
+      );
+    }
+  }
+  renderAsserterName(displayAsserterName, asserterDisplay ){
+    if (displayAsserterName) {
+      return (
+        <td className='asserterDisplay'>{ asserterDisplay }</td>
+      );
+    }
+  }  
+  renderEvidenceHeader(displayEvidence){
+    if (displayEvidence) {
+      return (
+        <th className='asserterDisplay'>asserter</th>
+      );
+    }
+  }
+  renderEvidence(displayEvidence, evidenceDisplay ){
+    if (displayEvidence) {
+      return (
+        <td className='evidenceDisplay'>{ evidenceDisplay }</td>
+      );
+    }
+  } 
 
 
   rowClick(id){
@@ -74,14 +176,14 @@ export default class ConditionsTable extends React.Component {
 
       tableRows.push(
         <tr key={i} className="conditionRow" style={{cursor: "pointer"}} onClick={ this.rowClick.bind('this', this.data.conditions[i]._id)} >
-
-          <td className='patientDisplay'>{ newRow.patientDisplay }</td>
-          <td className='asserterDisplay'>{ newRow.asserterDisplay }</td>
+          { this.renderToggles(this.data.displayToggle, this.data.conditions[i]) }
+          { this.renderPatientName(this.data.displayPatientName, newRow.patientDisplay ) } 
+          { this.renderAsserterName(this.data.displayAsserterName, newRow.asserterDisplay ) } 
           <td className='clinicalStatus'>{ newRow.clinicalStatus }</td>
           <td className='snomedCode'>{ newRow.snomedCode }</td>
           <td className='snomedDisplay'>{ newRow.snomedDisplay }</td>
-          <td className='evidenceDisplay'>{ newRow.evidenceDisplay }</td>
-          <td><span className="barcode">{ newRow.barcode }</span></td>
+          { this.renderEvidence(this.data.displayEvidence, newRow.evidenceDisplay) }
+          { this.renderDate(this.data.displayDates, this.data.conditions[i].date) }
         </tr>
       )
     }
@@ -90,13 +192,14 @@ export default class ConditionsTable extends React.Component {
       <Table id='conditionsTable' responses hover >
         <thead>
           <tr>
-            <th className='patientDisplay'>patient</th>
-            <th className='asserterDisplay'>asserter</th>
+            { this.renderTogglesHeader(this.data.displayToggle) }
+            { this.renderPatientNameHeader(this.data.displayPatientName) }
+            { this.renderAsserterNameHeader(this.data.displayAsserterName) }
             <th className='clinicalStatus'>status</th>
             <th className='snomedCode'>code</th>
             <th className='snomedDisplay'>condition</th>
-            <th className='evidenceDisplay'>evidence</th>
-            <th>_id</th>
+            { this.renderEvidenceHeader(this.data.displayEvidence) }
+            { this.renderDateHeader(this.data.displayDates) }
           </tr>
         </thead>
         <tbody>

@@ -4,6 +4,7 @@ import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
 import { Table } from 'react-bootstrap';
+import Toggle from 'material-ui/Toggle';
 
 export default class ImmunizationsTable extends React.Component {
 
@@ -16,19 +17,64 @@ export default class ImmunizationsTable extends React.Component {
         opacity: Session.get('globalOpacity')
       },
       selected: [],
-      immunizations: []
-    }
-    
-    if(Immunizations.find({}, {$sort: {'identifier.type.text': 1}}).count() > 0){
-      data.immunizations = Immunizations.find().fetch();
+      immunizations: [],
+      displayToggle: false,
+      displayDates: false
     }
 
-
+    if(this.props.displayToggles){
+      data.displayToggle = this.props.displayToggles;
+    }
+    if(this.props.displayDates){
+      data.displayDates = this.props.displayDates;
+    }
+    if(this.props.data){
+      data.immunizations = this.props.data;
+    } else {
+      if(Immunizations.find({}, {$sort: {'identifier.type.text': 1}}).count() > 0){
+        data.immunizations = Immunizations.find().fetch();
+      }
+    }
     //if(process.env.NODE_ENV === "test"){
       console.log("ImmunizationsTable[data]", data)
     //};
     return data;
   };
+
+
+  renderTogglesHeader(displayToggle){
+    if (displayToggle) {
+      return (
+        <th className="toggle">toggle</th>
+      );
+    }
+  }
+  renderToggles(displayToggle, patientId ){
+    if (displayToggle) {
+      return (
+        <td className="toggle">
+            <Toggle
+              defaultToggled={true}
+              //style={styles.toggle}
+            />
+          </td>
+      );
+    }
+  }
+  renderDateHeader(displayDates){
+    if (displayDates) {
+      return (
+        <th className='date'>date</th>
+      );
+    }
+  }
+  renderDate(displayDates, newDate ){
+    if (displayDates) {
+      return (
+        <td className='date'>{ moment(newDate).format('YYYY-MM-DD') }</td>
+      );
+    }
+  }
 
 
   rowClick(id){
@@ -76,24 +122,7 @@ export default class ImmunizationsTable extends React.Component {
         }
         if(this.data.immunizations[i].vaccineCode && this.data.immunizations[i].vaccineCode.text){
           newRow.vaccineCode = this.data.immunizations[i].vaccineCode.text;
-        }
-        // if(this.data.immunizations[i].identifier && this.data.immunizations[i].identifier[0] && this.data.immunizations[i].identifier[0].type.text){
-        //   newRow.identifier = this.data.immunizations[i].identifier[0].type.text;
-        // }
-        // if(this.data.immunizations[i].code){
-        //   if(this.data.immunizations[i].code.coding && this.data.immunizations[i].code.coding[0]){            
-        //     newRow.snomedCode = this.data.immunizations[i].code.coding[0].code;
-        //     newRow.snomedDisplay = this.data.immunizations[i].code.coding[0].display;
-        //   }
-        // }
-        // if(this.data.immunizations[i].evidence && this.data.immunizations[i].evidence[0]){
-        //   if(this.data.immunizations[i].evidence[0].detail && this.data.immunizations[i].evidence[0].detail[0]){            
-        //     newRow.evidenceDisplay = this.data.immunizations[i].evidence[0].detail[0].display;
-        //   }
-        // }
-        // if(this.data.immunizations[i]._id){
-        //   newRow.barcode = this.data.immunizations[i]._id;
-        // }        
+        }     
         if(this.data.immunizations[i]._id){
           newRow.barcode = this.data.immunizations[i]._id;
         }
@@ -101,9 +130,11 @@ export default class ImmunizationsTable extends React.Component {
 
       tableRows.push(
         <tr key={i} className="immunizationRow" style={{cursor: "pointer"}} onClick={ this.rowClick.bind('this', this.data.immunizations[i]._id)} >
+          { this.renderToggles(this.data.displayToggle, this.data.immunizations[i]) }
           <td className='identifier'>{ newRow.identifier }</td>
           <td className='vaccine'>{ newRow.vaccine }</td>
           <td className='vaccineCode'>{ newRow.vaccineCode }</td>
+          { this.renderDate(this.data.displayDates, this.data.immunizations[i].date) }
         </tr>
       )
     }
@@ -112,9 +143,11 @@ export default class ImmunizationsTable extends React.Component {
       <Table id='immunizationsTable' responses hover >
         <thead>
           <tr>
+            { this.renderTogglesHeader(this.data.displayToggle) }
             <th className='identifier'>identifier</th>
             <th className='vaccine'>vaccine</th>
             <th className='vaccineCode'>vaccineCode</th>
+            { this.renderDateHeader(this.data.displayDates) }
           </tr>
         </thead>
         <tbody>

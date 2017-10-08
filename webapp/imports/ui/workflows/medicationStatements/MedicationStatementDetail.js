@@ -3,11 +3,13 @@ import { Col, Grid, Row } from 'react-bootstrap';
 import { get, has, set } from 'lodash';
 
 import { Bert } from 'meteor/themeteorchef:bert';
+import DatePicker from 'material-ui/DatePicker';
 import RaisedButton from 'material-ui/RaisedButton';
 import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
 import TextField from 'material-ui/TextField';
+import { browserHistory } from 'react-router';
 
 let defaultMedicationStatement = {
   "resourceType": "MedicationStatement",
@@ -16,8 +18,8 @@ let defaultMedicationStatement = {
   "medicationCodeableConcept": {
     "coding": []
   },
-  "effectiveDateTime": undefined,
-  "dateAsserted": undefined,
+  "effectiveDateTime": null,
+  "dateAsserted": null,
   "informationSource": {
     "reference": "",
     "display": ""
@@ -267,11 +269,13 @@ export default class MedicationStatementDetail extends React.Component {
                 /><br/>   
             </Col>
             <Col md={6} >
-              <TextField
+              <DatePicker
                 id='effectiveDateTimeInput'
                 ref='effectiveDateTime'
                 name='effectiveDateTime'
                 floatingLabelText='Effective Date/Time'
+                container="inline" 
+                mode="landscape"
                 value={this.data.medicationStatementForm.effectiveDateTime ? this.data.medicationStatementForm.effectiveDateTime : ''}
                 onChange={ this.changeState.bind(this, 'effectiveDateTime')}
                 fullWidth
@@ -301,12 +305,72 @@ export default class MedicationStatementDetail extends React.Component {
   }
 
 
+  addToContinuityOfCareDoc(){
+    console.log('addToContinuityOfCareDoc', Session.get('medicationStatementFormUpsert'));
+
+    var medicationStatementFormUpsert = Session.get('medicationStatementFormUpsert');
+
+
+    // medicationStatementStateChange.basedOn
+    // medicationStatementStateChange.dosage
+    
+
+    var newMedicationStatement = {
+      "resourceType": "MedicationStatement",
+      "partOf": [],
+      "status": "",
+      "medicationCodeableConcept": {
+        "coding": []
+      },
+      "effectiveDateTime": medicationStatementFormUpsert.effectiveDateTime,
+      "dateAsserted": medicationStatementFormUpsert.dateAsserted,
+      "informationSource": {
+        "reference": medicationStatementFormUpsert.informationSourceReference,
+        "display": medicationStatementFormUpsert.informationSourceDisplay,
+      },
+      "subject": {
+        "reference": medicationStatementFormUpsert.subjectReference,
+        "display": medicationStatementFormUpsert.subjectDisplay,
+      },
+      "medicationReference": {
+        "reference": medicationStatementFormUpsert.medicationReference,
+        "display": medicationStatementFormUpsert.medicationDisplay,
+      },
+      "taken": medicationStatementFormUpsert.taken,
+      "reasonCode": [{
+        "coding": [{
+          "code": medicationStatementFormUpsert.reasonCode,
+          "display": medicationStatementFormUpsert.reasonCodeDisplay
+        }]
+      }],
+      "note": [{
+        "text": medicationStatementFormUpsert.clinicalNote
+      }]
+    }
+
+    console.log('Lets write this to the profile... ', newMedicationStatement);
+
+    Meteor.users.update({_id: Meteor.userId()}, {$addToSet: {
+      'profile.continuityOfCare.medicationStatements': newMedicationStatement
+    }}, function(error, result){
+      if(error){
+        console.log('error', error);
+      }
+      if(result){
+        browserHistory.push('/continuity-of-care');
+      }
+    });
+  }
+
+
   determineButtons(medicationStatementId){
     if (medicationStatementId) {
       return (
         <div>
           <RaisedButton id="saveMedicationStatementButton" label="Save" primary={true} onClick={this.handleSaveButton.bind(this)} style={{marginRight: '20px'}}  />
           <RaisedButton id="deleteMedicationStatementButton" label="Delete" onClick={this.handleDeleteButton.bind(this)} />
+
+          <RaisedButton id="addMedicationStatementToContinuityCareDoc" label="Add to CCD" primary={true} onClick={this.addToContinuityOfCareDoc.bind(this)} style={{float: 'right'}} />
         </div>
       );
     } else {

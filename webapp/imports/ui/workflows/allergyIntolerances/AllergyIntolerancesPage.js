@@ -64,7 +64,10 @@ export class AllergyIntolerancesPage extends React.Component {
                 <AllergyIntolerancesTable id='allergyIntolerancesTable' />
                </Tab>
                <Tab className="allergyIntoleranceDetailsTab" label='Detail' onActive={this.handleActive} style={this.data.style.tab} value={2}>
-                 <AllergyIntoleranceDetail id='allergyIntoleranceDetails' />
+                 <AllergyIntoleranceDetail 
+                  id='allergyIntoleranceDetails' 
+                  showDatePicker={true} 
+                  />
                </Tab>
              </Tabs>
             </CardText>
