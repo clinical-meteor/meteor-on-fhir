@@ -1,12 +1,14 @@
 import { CardActions, CardText } from 'material-ui/Card';
 
 import { Bert } from 'meteor/themeteorchef:bert';
+import DatePicker from 'material-ui/DatePicker';
 import { GlassCard } from '/imports/ui/components/GlassCard';
 import RaisedButton from 'material-ui/RaisedButton';
 import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
 import TextField from 'material-ui/TextField';
+import { browserHistory } from 'react-router';
 import { get } from 'lodash';
 
 let defaultDiagnosticReport = {
@@ -46,25 +48,33 @@ export default class DiagnosticReportDetail extends React.Component {
   getMeteorData() {
     let data = {
       diagnosticReportId: false,
-      diagnosticReport: defaultDiagnosticReport
+      diagnosticReport: defaultDiagnosticReport,
+      showDatePicker: false
     };
+
+
+    if(this.props.showDatePicker){
+      data.showDatePicker = this.props.showDatePicker
+    }
+
+
 
     if (Session.get('diagnosticReportUpsert')) {
       data.diagnosticReport = Session.get('diagnosticReportUpsert');
     } else {
-      if (Session.get('selectedDiagnosticReport')) {
-        data.diagnosticReportId = Session.get('selectedDiagnosticReport');
-        console.log("selectedDiagnosticReport", Session.get('selectedDiagnosticReport'));
+      // if (Session.get('selectedDiagnosticReport')) {
+      //   data.diagnosticReportId = Session.get('selectedDiagnosticReport');
+        //console.log("selectedDiagnosticReport", Session.get('selectedDiagnosticReport'));
 
         let selectedDiagnosticReport = DiagnosticReports.findOne({_id: Session.get('selectedDiagnosticReport')});
-        console.log("selectedDiagnosticReport", selectedDiagnosticReport);
+        //console.log("selectedDiagnosticReport", selectedDiagnosticReport);
 
         if (selectedDiagnosticReport) {
           data.diagnosticReport = selectedDiagnosticReport;
         }
-      } else {
-        data.diagnosticReport = defaultDiagnosticReport;
-      }
+      // } else {
+      //   data.diagnosticReport = defaultDiagnosticReport;
+      // }
     }
 
     
@@ -83,10 +93,28 @@ export default class DiagnosticReportDetail extends React.Component {
     }
     
 
+    if (Session.get('selectedDiagnosticReport')) {
+      data.diagnosticReportId = Session.get('selectedDiagnosticReport');
+    }  
+
+
     console.log('DiagnosticReportDetail[data]', data);
     return data;
   }
-
+  renderDatePicker(showDatePicker, datePickerValue){
+    if (showDatePicker) {
+      return (
+        <DatePicker 
+          name='effectiveDate'
+          hintText="Effective Date" 
+          container="inline" 
+          mode="landscape"
+          value={ datePickerValue ? datePickerValue : ''}    
+          onChange={ this.changeState.bind(this, 'effectiveDate')}      
+          />         
+      );
+    }
+  }
   render() {
     return (
       <div id={this.props.id} className="diagnosticReportDetail">
@@ -173,15 +201,12 @@ export default class DiagnosticReportDetail extends React.Component {
             onChange={ this.changeState.bind(this, 'category')}
             fullWidth
             /><br/>
-          <TextField
-            id='effectiveDateInput'
-            ref='effectiveDate'
-            name='effectiveDate'
-            floatingLabelText='Effective Date'
-            value={this.data.diagnosticReport.effectiveDateTime ? moment(this.data.diagnosticReport.effectiveDateTime).format("YYYY-MM-DD") : ''}
-            onChange={ this.changeState.bind(this, 'effectiveDate')}
-            fullWidth
-            /><br/>
+
+            <br/>
+          { this.renderDatePicker(this.data.showDatePicker, get(this, 'data.diagnosticReport.effectiveDate') ) }
+          <br/>
+
+
           <TextField
             id='conclusionInput'
             ref='conclusion'
@@ -200,13 +225,47 @@ export default class DiagnosticReportDetail extends React.Component {
     );
   }
 
+  addToContinuityOfCareDoc(){
+    console.log('addToContinuityOfCareDoc', Session.get('diagnosticReportUpsert'));
 
+    var diagnosticReportUpsert = Session.get('diagnosticReportUpsert');
+
+    var newDiagnosticReport = {
+      "resourceType": "DiagnosticReport",
+      //"code": diagnosticReportUpsert.code,  
+      "status": diagnosticReportUpsert.status,
+      "issued": diagnosticReportUpsert.issued,
+      "subject": diagnosticReportUpsert.subject,
+      "performer": diagnosticReportUpsert.performer,
+      "identifier": diagnosticReportUpsert.identifier,
+      "category": diagnosticReportUpsert.category,
+      "effectiveDateTime": diagnosticReportUpsert.effectiveDate,      
+      "conclusion": "",
+      "categoryText": "",
+      "conclusion": diagnosticReportUpsert.conclusion
+    }
+
+    console.log('Lets write this to the profile... ', newDiagnosticReport);
+
+    Meteor.users.update({_id: Meteor.userId()}, {$addToSet: {
+      'profile.continuityOfCare.diagnosticReports': newDiagnosticReport
+    }}, function(error, result){
+      if(error){
+        console.log('error', error);
+      }
+      if(result){
+        browserHistory.push('/continuity-of-care');
+      }
+    });
+  }
   determineButtons(diagnosticReportId){
     if (diagnosticReportId) {
       return (
         <div>
           <RaisedButton id="saveDiagnosticReportButton" label="Save" primary={true} onClick={this.handleSaveButton.bind(this)}  style={{marginRight: '20px'}}  />
           <RaisedButton id="deleteDiagnosticReportButton" label="Delete" onClick={this.handleDeleteButton.bind(this)} />
+
+          <RaisedButton id="addDiagnosticReportToContinuityCareDoc" label="Add to CCD" primary={true} onClick={this.addToContinuityOfCareDoc.bind(this)} style={{float: 'right'}} />
         </div>
       );
     } else {
@@ -241,7 +300,7 @@ export default class DiagnosticReportDetail extends React.Component {
       case "subjectDisplay":
         diagnosticReportUpsert.subject.display = value;
         break;
-        case "subjectReference":
+      case "subjectReference":
         diagnosticReportUpsert.subject.reference = value;
         break;
       case "code":
@@ -283,7 +342,7 @@ export default class DiagnosticReportDetail extends React.Component {
         }];
         break;
       case "effectiveDate":
-        diagnosticReportUpsert.effectiveDate = moment(value);
+        diagnosticReportUpsert.effectiveDate = value;
         break;
       case "conclusion":
         diagnosticReportUpsert.conclusion = value;

@@ -64,7 +64,10 @@ export class DiagnosticReportsPage extends React.Component {
                 <DiagnosticReportsTable />
                </Tab>
                <Tab className="diagnosticReportDetailsTab" label='Detail' onActive={this.handleActive} style={this.data.style.tab} value={2}>
-                 <DiagnosticReportDetail id='diagnosticReportDetails' />
+                 <DiagnosticReportDetail 
+                  id='diagnosticReportDetails' 
+                  showDatePicker={true}                 
+                />
                </Tab>
              </Tabs>
             </CardText>

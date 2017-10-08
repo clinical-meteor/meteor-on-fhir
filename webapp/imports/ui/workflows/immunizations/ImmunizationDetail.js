@@ -139,9 +139,9 @@ export default class ImmunizationDetail extends React.Component {
             fullWidth
             /><br/>
             
-          <br/>
-          { this.renderDatePicker(this.data.showDatePicker, get(this, 'data.immunizationForm.datePicker') ) }
-          <br/>
+            <br/>
+            { this.renderDatePicker(this.data.showDatePicker, get(this, 'data.immunizationForm.datePicker') ) }
+            <br/>
 
 
         </CardText>
