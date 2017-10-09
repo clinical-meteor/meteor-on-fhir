@@ -72,6 +72,8 @@ import { Signup } from '/imports/ui/pages/Signup';
 import { SpecificitySensitivityCard } from '/imports/ui/components/SpecificitySensitivityCard';
 import { TelemedicinePage } from '/imports/ui/pages/TelemedicinePage';
 import { ThemePage } from '/imports/ui/pages/ThemePage';
+import { TimelinePage } from '/imports/ui/pages/TimelinePage';
+import { TimelineSidescrollPage } from '/imports/ui/pages/TimelineSidescrollPage';
 import { UsersPage } from '/imports/ui/pages/UsersPage';
 import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 import { WelcomePatientPage } from '/imports/ui/pages/WelcomePatientPage';
@@ -239,7 +241,9 @@ Meteor.startup(() => {
 
         <Route name="ContinuityOfCarePage" path="/continuity-of-care" component={ ContinuityOfCarePage }  onEnter={ requireAuth }/>
 
-
+        <Route name="TimelinePage" path="/timeline" component={ TimelinePage }  onEnter={ requireAuth }/>
+        <Route name="TimelineSidescrollPage" path="/timeline-sidescroll" component={ TimelineSidescrollPage }  onEnter={ requireAuth }/>
+        
         { dynamicRoutes.map(route => <Route name={route.name} path={route.path} component={ route.component } />) }
         
         <Route path="*" component={ NotFound } />

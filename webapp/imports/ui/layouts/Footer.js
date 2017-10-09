@@ -94,7 +94,11 @@ export class Footer extends React.Component {
          console.log("queryEpic[epic]", result);         
       }
     });
+  }
+  openLink(url){
+    console.log("openLink", url);
 
+    browserHistory.push(url);
   }
   renderWestNavbar(displayThemeNavbar){
     if (displayThemeNavbar) {
@@ -117,11 +121,21 @@ export class Footer extends React.Component {
         );
 
       // ORGANIZATIONS
-      } else if (Meteor.userId() && (Session.equals('pathname', '/organizations')) && Meteor.settings.public && Meteor.settings.public.modules && Meteor.settings.public.modules.epic) {
+      } else if (Meteor.userId() && (Session.equals('pathname', '/organizations')) && Meteor.settings.public && Meteor.settings.public.modules && Meteor.settings.public.modules.fhir && Meteor.settings.public.modules.fhir.Organizations) {
         // the user is logged in as a normal user
         return (
           <div>
             <FlatButton label='GET open.epic.com/Organization' className='querySystemButton' ref='querySystemButton' onClick={this.querySystemButton.bind(this, 'Organization')} style={this.data.style.buttonText} ></FlatButton>
+          </div>
+        );
+
+      // CONTINUITY OF CARE
+      } else if (Meteor.userId() && (Session.equals('pathname', '/continuity-of-care'))) {
+        // the user is logged in as a normal user
+        return (
+          <div>
+            <FlatButton label='Timeline' className='verticalTimeline' ref='verticalTimeline' onClick={this.openLink.bind(this, '/timeline')} style={this.data.style.buttonText} ></FlatButton>
+            <FlatButton label='Sidescroll Timeline' className='horizontalTimeline' ref='horizontalTimeline' onClick={this.openLink.bind(this, '/timeline-sidescroll')} style={this.data.style.buttonText} ></FlatButton>
           </div>
         );
 
