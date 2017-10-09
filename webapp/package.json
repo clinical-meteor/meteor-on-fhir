@@ -90,6 +90,7 @@
     "react-mixin": "^3.0.5",
     "react-modal-dialog": "4.0.4",
     "react-motion": "^0.5.0",
+    "react-rotating-text": "^1.2.0",
     "react-router": "^2.8.0",
     "react-router-bootstrap": "^0.20.1",
     "react-router-transition": "0.0.6",
