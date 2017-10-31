@@ -2,8 +2,6 @@
 // https://github.com/Lighthouse-io/react-visjs-timeline
 // http://visjs.org/examples/timeline/interaction/animateWindow.html
 
-
-
 import { CardHeader, CardText, CardTitle } from 'material-ui/Card';
 import React, {Component} from 'react'
 import { get, has, sortBy } from 'lodash';
