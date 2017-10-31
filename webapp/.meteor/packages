@@ -104,7 +104,7 @@ awatson1978:accounts-muppets
 
 # oauth server
 clinical:fhir-vault-client
-clinical:fhir-vault-server
+#clinical:fhir-vault-server
 simple:json-routes
 
 # data visualization
