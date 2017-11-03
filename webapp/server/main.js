@@ -3,15 +3,13 @@ import '/imports/api/users/methods';
 import '/imports/api/practitioners/methods';
 import '/imports/ui/workflows/patients/methods';
 
+import { get, has } from 'lodash';
+
 import { Accounts } from 'meteor/accounts-base';
 import { Meteor } from 'meteor/meteor';
 
 Meteor.startup(function (){
-
-  if(!Meteor.settings){
-    console.log('No settings file found!  Did you forget to use --settings?  Try the following...');
-    console.log('NODE_ENV=test DEBUG=true INITIALIZE=true meteor --settings settings.dev.json');
-  }
+  console.log('Meteor app framework is initializing....');
 
   // if (Meteor.users.find({username: 'janedoe'}).count() === 0) {
   if (Meteor.users.find({'emails.0.address': 'janedoe@test.org'}).count() === 0) {
@@ -32,5 +30,12 @@ Meteor.startup(function (){
     console.log('Jane Doe account already exists.  Skipping.');
   }
 
-
+  console.log('Meteor.settings', Meteor.settings);
 });
+
+
+
+if(!has(Meteor, 'settings.private')) {
+  Meteor.settings = JSON.parse(Assets.getText('settings.default.json'));
+}
+

@@ -10,7 +10,9 @@
  * It is expected whenever a /api url is called, a "access_token" is present in the
  * query or the body.
  */
-JsonRoutes.Middleware.use('/api/*', oAuth2Server.oauthserver.authorise() );  // OAUTH FLOW - A7.1
+if(typeof oAuth2Server === "object"){
+  JsonRoutes.Middleware.use('/api/*', oAuth2Server.oauthserver.authorise() );  // OAUTH FLOW - A7.1  
+}
 
 /**
  * OAUTH FLOW - A5.2
@@ -45,12 +47,19 @@ JsonRoutes.Middleware.use('/api/*', oAuth2Server.oauthserver.authorise() );  // 
 JsonRoutes.add('get', '/api/getUserId', function(req, res, next) {
     console.log('GET /api/getUserId');
 
-    var accessTokenStr = (req.params && req.params.access_token) || (req.query && req.query.access_token);
-    var accessToken = oAuth2Server.collections.accessToken.findOne({accessToken: accessTokenStr});
-
-    JsonRoutes.sendResult(res, {
+    if(typeof oAuth2Server === "object"){
+      var accessTokenStr = (req.params && req.params.access_token) || (req.query && req.query.access_token);
+      var accessToken = oAuth2Server.collections.accessToken.findOne({accessToken: accessTokenStr});
+  
+      JsonRoutes.sendResult(res, {
         data: accessToken.userId
-    });
+      });
+    } else {
+      // no oAuth server installed; Not Implemented
+      JsonRoutes.sendResult(res, {
+        code: 501
+      });
+    }
 });
 
 
@@ -63,22 +72,30 @@ JsonRoutes.add("get", "/api/getUserData/:id", function (req, res, next) {
   //console.log('res', res);
 
   var accessTokenStr = (req.params && req.params.access_token) || (req.query && req.query.access_token);
-  var accessToken = oAuth2Server.collections.accessToken.findOne({accessToken: accessTokenStr});
 
-  if (accessToken || process.env.NOAUTH) {
-    console.log('accessToken', accessToken);
-    console.log('accessToken.userId', accessToken.userId);
-
-    var id = req.params.id;
-    console.log('Meteor.users.findOne(id)', Meteor.users.findOne(id));
-
-    JsonRoutes.sendResult(res, {
-      code: 200,
-      data: Meteor.users.findOne(id)
-    });
+  if(typeof oAuth2Server === "object"){
+    var accessToken = oAuth2Server.collections.accessToken.findOne({accessToken: accessTokenStr});
+    
+      if (accessToken || process.env.NOAUTH) {
+        console.log('accessToken', accessToken);
+        console.log('accessToken.userId', accessToken.userId);
+    
+        var id = req.params.id;
+        console.log('Meteor.users.findOne(id)', Meteor.users.findOne(id));
+    
+        JsonRoutes.sendResult(res, {
+          code: 200,
+          data: Meteor.users.findOne(id)
+        });
+      } else {
+        JsonRoutes.sendResult(res, {
+          code: 401
+        });
+      }
   } else {
+    // no oAuth server installed; Not Implemented
     JsonRoutes.sendResult(res, {
-      code: 401
+      code: 501
     });
   }
 });

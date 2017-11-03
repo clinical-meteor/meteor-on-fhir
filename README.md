@@ -30,7 +30,7 @@ meteor npm install
 INITIALIZE=true Patients=true Practitioners=true meteor
 
 ## general development
-NODE_ENV=test INITIALIZE=true Patients=true Practitioners=true meteor --settings settings.dev.json
+NODE_ENV=test INITIALIZE=true Patients=true Practitioners=true meteor --settings configs/settings.dev.json
 ```
 
 
@@ -97,12 +97,16 @@ scripts/remove_restricted_media_assets.sh
 #### E. Deploy to Production  
 
 ```sh
-TIMEOUT_SCALE_FACTOR=10 DEPLOY_HOSTNAME=galaxy.meteor.com meteor deploy my-org-exchange.meteorapp.com --settings settings.dev.json
+TIMEOUT_SCALE_FACTOR=10 DEPLOY_HOSTNAME=galaxy.meteor.com meteor deploy my-org-exchange.meteorapp.com --settings configs/settings.dev.json
 ```   
 
 #### F. Mobile Build   
 
 ```sh
+
+# install meteor-desktop / electron
+meteor npm install meteor-desktop
+
 # development
 # this can be tricky, because http://localhost:3000 may need to be a local IP address
 # you may need to use `ifconfig` to find that address
@@ -111,7 +115,7 @@ NODE_ENV=dev meteor run ios-device --mobile-server http://localhost:3000 --setti
 
 # production
 # we need to specify the production server
-NODE_ENV=dev meteor run ios-device --mobile-server http://meteor-on-fhir.meteorapp.com --settings settings.dev.json
+NODE_ENV=dev meteor run ios-device --mobile-server http://meteor-on-fhir.meteorapp.com --settings configs/settings.dev.json
 ```    
 
 
@@ -131,7 +135,7 @@ npm run desktop -- init
 
 # run the app locally, as if you were doing a mobile build
 # (you may be able to just use the running mobile build server)
-NODE_ENV=dev meteor --mobile-server http://localhost:3000 --settings settings.dev.json
+NODE_ENV=dev meteor --mobile-server http://localhost:3000 --settings configs/settings.dev.json
 
 # then run the desktop build
 npm run desktop
@@ -159,7 +163,34 @@ To enable network synchronizing, you'll need to specify an upstream sync partner
 #### I. Connect to an External EMR   
 [HL7 v2 to FHIR Interface Mapping](https://medium.com/@awatson1978/hl7-v2-to-fhir-interface-mapping-f83c6ecf6bee)  
 
+#### J. Dockerfile  
+Docker containers are pretty exciting, and we now support containerization and container composition of the Meteor on FHIR architecture.
 
+```sh
+# build the docker image
+cd webapp
+docker build -t symptomatic/meteor-on-fhir .
+
+# run the docker image; you'll need to set environment variables
+# beware that each container has it's own localhost address; so 127.0.0.1 won't point to the same container
+# you'll need to link containers and/or enable host or bridge networking
+docker run -d -e METEOR_SETTINGS="$(cat configs/settings.dev.json)" -e MONG_URL=mongodb://111.222.333.444:27017/meteor -p 80:3000 symptomatic/meteor-on-fhir
+
+# push the container to your infrastructure
+docker push symptomatic/meteor-on-fhir
+
+# or run the orchestration and monitor logs
+docker-compose up
+docker-compose logs
+
+# and general maintenance and devops
+docker images
+docker ps
+docker inspect
+```
+
+For more details on running Dockerized Meteor apps in production, see:
+https://projectricochet.com/blog/production-meteor-and-node-using-docker-part-vi
 
 ### References
 

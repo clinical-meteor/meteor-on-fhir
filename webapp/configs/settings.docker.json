@@ -1,15 +1,18 @@
 {
   "public": {
-    "app": {
-      "barcodes": true,
-      "showUnderConstruction": true,
-      "showExperimental": false
+    "title": "Symptomatic",
+    "theme": {
+      "showVideoBackground": true,
+      "darkroomTextEnabled": false,
+      "defaultVideo": "/VideoBackgrounds/GrayWaves.mp4",
+      "backgroundImagePath": "/backgrounds/medical/Gradient.jpg"      
     },
-    "credentials": {
-      "tokbox": {
-        "apiKey": "45967882"
-      }
-    },  
+    "platform": {
+      "showUnderConstruction": false,
+      "showExperimental": false,
+      "showApps": true,      
+      "showFhirMenu": true
+    },
     "defaults": {
       "avatars": true,
       "barcodes": true,
@@ -20,20 +23,19 @@
       "displayNavbars": true,
       "disableHeader": false,
       "disableFooter": false,
-      "enableSearchbar": false,
       "darkroom": false,
       "iFrameEnabled": false,
-      "iFrameUrl": "http://browser.ihtsdotools.org",
+      "iFrameUrl": "https://www.wikipedia.org/",
       "paginationLimit": 100,
       "subscriptionLimit": 1000,
       "cards": {
         "height": "auto",
         "opacity": 0.95
-      }  
+      }      
     },
     "interfaces": {
       "default": {
-        "status": "active",
+        "status": "inactive",
         "channel": {
           "endpoint": "http://localhost:80"
         },
@@ -62,7 +64,7 @@
         "ChecklistManifesto": true,
         "ContinuityOfCare": true,
         "Videoconferencing": true        
-      },      
+      },
       "fhir": {
         "AllergyIntolerances": true,
         "AuditEvents": true,
@@ -87,19 +89,6 @@
         "Questionnaires": true,
         "RiskAssessments": true
       }
-    },
-    "platform": {
-      "showUnderConstruction": false,
-      "showExperimental": false,
-      "showApps": true,      
-      "showFhirMenu": true
-    },
-    "title": "Meteor on FHIR",
-    "theme": {
-      "showVideoBackground": true,
-      "darkroomTextEnabled": false,
-      "defaultVideo": "/VideoBackgrounds/GrayWaves.mp4",
-      "backgroundImagePath": "/backgrounds/medical/Gradient.jpg"      
     }
   },
   "private": {
@@ -108,14 +97,6 @@
     "disableOauth": true,
     "demo": {
       "nightlyDatabaseDrop": true
-    },
-    "credentials": {
-      "tokbox": {
-        "apiKey": "45967882",
-        "secret": "1a7c966f638255529d9747dc8f4cbf62ab640020"
-      }
-    }    
+    }
   }
 }
-
-

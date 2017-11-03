@@ -19,6 +19,7 @@ import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import { get } from 'lodash';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import { has } from 'lodash';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 const muiTheme = getMuiTheme({
@@ -31,11 +32,11 @@ const muiTheme = getMuiTheme({
 
 Session.setDefault('iFrameLocation', '');
 Meteor.startup(function (){
-  if (Meteor.settings.public.defaults.iFrameUrl) {
-    Session.set('iFrameLocation', Meteor.settings.public.defaults.iFrameUrl);
+  if (has(Meteor.settings, 'public.defaults.iFrameUrl')){
+    Session.set('iFrameLocation', get(Meteor.settings, 'public.defaults.iFrameUrl'));
   }
-  if (Meteor.settings.public.defaults.iFrameEnabled) {
-    Session.set('secondPanelVisible', Meteor.settings.public.defaults.iFrameEnabled);
+  if (has(Meteor.settings, 'public.defaults.iFrameEnabled')){
+    Session.set('secondPanelVisible', get(Meteor.settings, 'public.defaults.iFrameEnabled'));
   }
 });
 

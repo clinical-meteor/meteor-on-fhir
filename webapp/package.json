@@ -5,9 +5,9 @@
   "repository": "http://github.com/awatson1978/fire-demo",
   "description": "Application description.",
   "scripts": {
-    "start": "NODE_ENV=test meteor --settings settings.dev.json",
-    "debug": "DEBUG=true meteor --settings settings.dev.json",
-    "trace": "DEBUG=true TRACe=true meteor --settings settings.dev.json",
+    "start": "NODE_ENV=test meteor --settings configs/settings.dev.json",
+    "debug": "DEBUG=true meteor --settings configs/settings.dev.json",
+    "trace": "DEBUG=true TRACe=true meteor --settings configs/settings.dev.json",
     "test": "meteor test --driver-package dispatch:mocha-phantomjs --port 5000",
     "test-app": "meteor test --full-app --driver-package dispatch:mocha-phantomjs --port 5000 --once",
     "package-verification": "starrynight run-tests --type package-verification",
@@ -16,14 +16,15 @@
     "spacejam": "starrynight run-tests --framework spacejam",
     "chimp-test": "chimp --ddp=http://localhost:3000 --mocha --path=tests/chimp",
     "chimp-watch": "chimp --ddp=http://localhost:3000 --watch --mocha --path=tests/chimp",
-    "staging": "meteor deploy staging.meteor.com --settings settings-development.json",
-    "production": "meteor deploy production.meteor.com --settings settings-production.json",
+    "staging": "meteor deploy staging.meteor.com --settings configs/settings.staging.json",
+    "production": "meteor deploy production.meteor.com --settings configs/settings.prod.json",
     "coverage": "COVERAGE=1 meteor",
     "monitor": "COVERAGE=1 meteor test --driver-package dispatch:mocha --port 5000",
     "nightwatch": "nightwatch -c .meteor/nightwatch.json --tag circle",
     "phantom": "nightwatch -c .meteor/nightwatch.json --env phantom",
     "circle-nightwatch": "nightwatch -c .meteor/nightwatch.circle.json --tag circle",
-    "desktop": "meteor-desktop"
+    "desktop": "meteor-desktop",
+    "dockerize": "../scripts/build_docker_compose_file.sh"
   },
   "eslintConfig": {
     "parserOptions": {
@@ -109,9 +110,7 @@
     "eslint-plugin-jsx-a11y": "^0.6.2",
     "eslint-plugin-meteor": "^3.5.2",
     "eslint-plugin-react": "^4.3.0",
-    "meteor-desktop": "^0.2.6",
     "nightwatch": "0.9.8",
-    "phantomjs-prebuilt": "2.1.12",
     "selenium-standalone-jar": "3.0.1"
   }
 }
