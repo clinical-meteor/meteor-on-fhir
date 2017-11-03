@@ -1,5 +1,6 @@
 import { CardActions, CardText, CardTitle } from 'material-ui/Card';
 import { Tab, Tabs } from 'material-ui/Tabs';
+import { get, has } from 'lodash';
 
 import { Bert } from 'meteor/themeteorchef:bert';
 import FlatButton from 'material-ui/FlatButton';
@@ -53,8 +54,8 @@ export class ThemePage extends React.Component {
   resetTheme(){
     console.log('reset theme...')
     var resetString = '';
-    if(Meteor.settings && Meteor.settings.public && Meteor.settings.public.theme && Meteor.settings.public.theme.backgroundImagePath){
-      resetString = Meteor.settings.public.theme.backgroundImagePath;
+    if(has(Meteor.settings, 'public.theme.backgroundImagePath')){
+      resetString = get(Meteor.settings, 'public.theme.backgroundImagePath'); 
     }
     Meteor.users.update({_id: Meteor.userId()}, {$set: {
       'profile.theme.backgroundImagePath': resetString

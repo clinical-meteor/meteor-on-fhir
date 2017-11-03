@@ -30,7 +30,7 @@ meteor npm install
 INITIALIZE=true Patients=true Practitioners=true meteor
 
 ## general development
-NODE_ENV=test INITIALIZE=true Patients=true Practitioners=true meteor --settings settings.dev.json
+NODE_ENV=test INITIALIZE=true Patients=true Practitioners=true meteor --settings configs/settings.dev.json
 ```
 
 
@@ -97,12 +97,16 @@ scripts/remove_restricted_media_assets.sh
 #### E. Deploy to Production  
 
 ```sh
-TIMEOUT_SCALE_FACTOR=10 DEPLOY_HOSTNAME=galaxy.meteor.com meteor deploy my-org-exchange.meteorapp.com --settings settings.dev.json
+TIMEOUT_SCALE_FACTOR=10 DEPLOY_HOSTNAME=galaxy.meteor.com meteor deploy my-org-exchange.meteorapp.com --settings configs/settings.dev.json
 ```   
 
 #### F. Mobile Build   
 
 ```sh
+
+# install meteor-desktop / electron
+meteor npm install meteor-desktop
+
 # development
 # this can be tricky, because http://localhost:3000 may need to be a local IP address
 # you may need to use `ifconfig` to find that address
@@ -111,7 +115,7 @@ NODE_ENV=dev meteor run ios-device --mobile-server http://localhost:3000 --setti
 
 # production
 # we need to specify the production server
-NODE_ENV=dev meteor run ios-device --mobile-server http://meteor-on-fhir.meteorapp.com --settings settings.dev.json
+NODE_ENV=dev meteor run ios-device --mobile-server http://meteor-on-fhir.meteorapp.com --settings configs/settings.dev.json
 ```    
 
 
@@ -131,7 +135,7 @@ npm run desktop -- init
 
 # run the app locally, as if you were doing a mobile build
 # (you may be able to just use the running mobile build server)
-NODE_ENV=dev meteor --mobile-server http://localhost:3000 --settings settings.dev.json
+NODE_ENV=dev meteor --mobile-server http://localhost:3000 --settings configs/settings.dev.json
 
 # then run the desktop build
 npm run desktop
@@ -159,6 +163,15 @@ To enable network synchronizing, you'll need to specify an upstream sync partner
 #### I. Connect to an External EMR   
 [HL7 v2 to FHIR Interface Mapping](https://medium.com/@awatson1978/hl7-v2-to-fhir-interface-mapping-f83c6ecf6bee)  
 
+#### J. Dockerfile  
+
+```
+docker build -t symptomatic/meteor-on-fhir .
+
+docker run -d -e METEOR_SETTINGS="$(cat configs/settings.dev.json)" -p 80:3000 symptomatic/meteor-on-fhir
+
+docker push symptomatic/meteor-on-fhir
+```
 
 
 ### References

@@ -1,3 +1,5 @@
+import { get, has } from 'lodash';
+
 import { Meteor } from 'meteor/meteor';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -53,8 +55,8 @@ export class GlassApp extends React.Component {
       ReactDOM.findDOMNode(this.refs.BackgroundVideo).play();
     }
 
-    if (Meteor.settings && Meteor.settings.public && Meteor.settings.public.theme && Meteor.settings.public.theme.showVideoBackground) {
-      data.app.showVideoBackground = Meteor.settings.public.theme.showVideoBackground;
+    if(has(Meteor.settings, 'public.theme.showVideoBackground')){
+      data.app.showVideoBackground = get(Meteor.settings, 'public.theme.showVideoBackground')      
     }
 
     if (Meteor.user()) {
@@ -101,8 +103,8 @@ export class GlassApp extends React.Component {
   }
 
   useGlobalDefaultBackground(style){
-    if (Meteor.settings.public.theme.backgroundImagePath) {
-      style.backgroundImage = 'url(' + Meteor.settings.public.theme.backgroundImagePath + ')';
+    if(has(Meteor.settings, 'public.theme.backgroundImagePath')){
+      style.backgroundImage = 'url(' + get(Meteor.settings, 'public.theme.backgroundImagePath') + ')';
     } else {
       style.backgroundImage = 'none';
     }
