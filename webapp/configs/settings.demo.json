@@ -1,6 +1,6 @@
 {
   "public": {
-    "title": "Symptomatic",
+    "title": "Meteor on FHIR",
     "theme": {
       "showVideoBackground": true,
       "darkroomTextEnabled": false,

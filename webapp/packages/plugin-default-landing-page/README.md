@@ -1,3 +1,3 @@
-## Symptomatic Landing Page  
+## Plugin - Default Landing Page 
 
-Private modules!!!!
+Feel free to edit this package to adjust the front landing page.
