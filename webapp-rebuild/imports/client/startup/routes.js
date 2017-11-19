@@ -27,6 +27,6 @@ Meteor.startup(() => {
       </Route>
     </Router>,
     // document.getElementById('react-root')
-    document.getElementById('render-target')
+    document.getElementById('react-root')
   );
 });
