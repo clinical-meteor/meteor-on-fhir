@@ -1,6 +1,7 @@
 import React from 'react';
 import { Row, Col, Alert, FormGroup, ControlLabel, FormControl, Button } from 'react-bootstrap';
 import { handleResetPassword } from '/imports/client/entry/handleResetPassword';
+import PropTypes from 'prop-types';
 
 import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 
@@ -51,5 +52,5 @@ export class ResetPassword extends React.Component {
 }
 
 ResetPassword.propTypes = {
-  params: React.PropTypes.object,
+  params: PropTypes.object,
 };

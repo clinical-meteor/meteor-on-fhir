@@ -1,6 +1,7 @@
 import { CardTitle } from 'material-ui/Card';
 import React from 'react';
 import ReactMixin from 'react-mixin';
+import PropTypes from 'prop-types';
 
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import Spacer from '/imports/ui/components/Spacer';
@@ -138,6 +139,6 @@ export class PractitionerDashboard extends React.Component {
 
 
 PractitionerDashboard.propTypes = {
-  hasUser: React.PropTypes.object
+  hasUser: PropTypes.object
 };
 ReactMixin(PractitionerDashboard.prototype, ReactMeteorData);

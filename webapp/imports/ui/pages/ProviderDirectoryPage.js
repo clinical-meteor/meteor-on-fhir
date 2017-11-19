@@ -8,6 +8,7 @@ import ReactMixin from 'react-mixin';
 import Spacer from '/imports/ui/components/Spacer';
 import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 import { browserHistory } from 'react-router';
+import PropTypes from 'prop-types';
 
 export class ProviderDirectoryPage extends React.Component {
   constructor(props) {
@@ -231,6 +232,6 @@ export class ProviderDirectoryPage extends React.Component {
 
 
 ProviderDirectoryPage.propTypes = {
-  hasUser: React.PropTypes.object
+  hasUser: PropTypes.object
 };
 ReactMixin(ProviderDirectoryPage.prototype, ReactMeteorData);

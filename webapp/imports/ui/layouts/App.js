@@ -1,6 +1,7 @@
 // base layout
 import { CardHeader, CardText, CardTitle } from 'material-ui/Card';
 import {teal400, teal600} from 'material-ui/styles/colors';
+import PropTypes from 'prop-types';
 
 import { Footer } from '/imports/ui/layouts/Footer';
 import { GlassApp } from '/imports/ui/layouts/GlassApp';
@@ -181,10 +182,10 @@ export class App extends React.Component {
 }
 
 App.propTypes = {
-  children: React.PropTypes.element.isRequired
+  children: PropTypes.element.isRequired
 };
 App.childContextTypes = {
-  muiTheme: React.PropTypes.object.isRequired
+  muiTheme: PropTypes.object.isRequired
 };
 App.defaultProps = {};
 

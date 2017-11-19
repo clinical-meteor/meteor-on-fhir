@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
+import PropTypes from 'prop-types';
 
 import { AddForumTopic } from   '/imports/ui/workflows/forums/AddForumTopic';
 import { VerticalCanvas } from   '/imports/ui/components/VerticalCanvas';
@@ -47,6 +48,6 @@ export class NewTopicPage extends React.Component {
 
 
 NewTopicPage.propTypes = {
-  children: React.PropTypes.any
+  children: PropTypes.any
 };
 ReactMixin(NewTopicPage.prototype, ReactMeteorData);

@@ -9,6 +9,7 @@ import ReactMixin from 'react-mixin';
 import TextField from 'material-ui/TextField';
 import { browserHistory } from 'react-router';
 import { get } from 'lodash';
+import PropTypes from 'prop-types';
 
 let defaultProcedure = {
   'resourceType': 'Procedure',
@@ -287,6 +288,6 @@ export default class ProcedureDetail extends React.Component {
 
 
 ProcedureDetail.propTypes = {
-  hasUser: React.PropTypes.object
+  hasUser: PropTypes.object
 };
 ReactMixin(ProcedureDetail.prototype, ReactMeteorData);

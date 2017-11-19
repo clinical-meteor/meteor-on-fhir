@@ -64,7 +64,4 @@ export class ObservationHistoryPage extends React.Component {
 }
 
 
-// ObservationHistoryPage.propTypes = {
-//   children: React.PropTypes.any
-// };
 ReactMixin(ObservationHistoryPage.prototype, ReactMeteorData);

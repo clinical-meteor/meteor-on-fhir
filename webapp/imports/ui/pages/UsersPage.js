@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
+import PropTypes from 'prop-types';
 
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -155,6 +156,6 @@ export class UsersPage extends React.Component {
 
 
 UsersPage.propTypes = {
-  hasUser: React.PropTypes.object
+  hasUser: PropTypes.object
 };
 ReactMixin(UsersPage.prototype, ReactMeteorData);

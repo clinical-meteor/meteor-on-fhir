@@ -6,6 +6,7 @@ import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
 import TextField from 'material-ui/TextField';
+import PropTypes from 'prop-types';
 
 let defaultBodySite = {
   resourceType: 'BodySite',
@@ -342,6 +343,6 @@ export default class BodySiteDetail extends React.Component {
 
 
 BodySiteDetail.propTypes = {
-  hasUser: React.PropTypes.object
+  hasUser: PropTypes.object
 };
 ReactMixin(BodySiteDetail.prototype, ReactMeteorData);

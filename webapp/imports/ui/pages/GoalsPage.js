@@ -1,6 +1,7 @@
 import React  from 'react';
 import ReactMixin  from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
+import PropTypes from 'prop-types';
 
 import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 
@@ -68,6 +69,6 @@ export class GoalsPage extends React.Component {
 
 
 GoalsPage.propTypes = {
-  children: React.PropTypes.any
+  children: PropTypes.any
 };
 ReactMixin(GoalsPage.prototype, ReactMeteorData);

@@ -7,6 +7,7 @@ import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
 import TextField from 'material-ui/TextField';
+import PropTypes from 'prop-types';
 
 let defaultObservation = {
   status: 'preliminary',
@@ -269,6 +270,6 @@ export default class ObservationDetail extends React.Component {
 
 
 ObservationDetail.propTypes = {
-  hasUser: React.PropTypes.object
+  hasUser: PropTypes.object
 };
 ReactMixin(ObservationDetail.prototype, ReactMeteorData);

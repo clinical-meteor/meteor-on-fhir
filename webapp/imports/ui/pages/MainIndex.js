@@ -12,7 +12,7 @@ import ReactMixin from 'react-mixin';
 import Spacer from '/imports/ui/components/Spacer';
 import { browserHistory } from 'react-router';
 import { get } from 'lodash';
-
+import PropTypes from 'prop-types';
 
 import StreetView from 'react-icons/lib/fa/street-view';
 import Heartbeat from 'react-icons/lib/fa/heartbeat';
@@ -85,8 +85,7 @@ export class MainIndex extends React.Component {
         title: Glass.darkroom({
           marginTop: '20px',
           textAlign: 'center',
-          fontSize: '48px',
-          color: "#666666"
+          fontSize: '48px'
         }),
         subtitle: Glass.darkroom({
           textAlign: 'center',
@@ -364,7 +363,7 @@ export class MainIndex extends React.Component {
               <CardTitle
                 subtitle='Audit Events'
                 titleStyle={this.data.style.title}
-                  subtitleStyle={this.data.style.subtitle}
+                subtitleStyle={this.data.style.subtitle}
               />
             </GlassCard>
           </div>
@@ -1004,6 +1003,6 @@ export class MainIndex extends React.Component {
 
 
 MainIndex.propTypes = {
-  hasUser: React.PropTypes.object
+  hasUser: PropTypes.object
 };
 ReactMixin(MainIndex.prototype, ReactMeteorData);

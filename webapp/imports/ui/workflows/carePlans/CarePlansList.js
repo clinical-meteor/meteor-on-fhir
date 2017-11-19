@@ -1,6 +1,7 @@
 import React from 'react';
 import { ListGroup, Alert } from 'react-bootstrap';
 import { CarePlans } from './CarePlans.js';
+import PropTypes from 'prop-types';
 
 export const CarePlansList = ({ carePlan }) => (
   carePlan.length > 0 ?
@@ -14,5 +15,5 @@ export const CarePlansList = ({ carePlan }) => (
 );
 
 CarePlansList.propTypes = {
-  carePlan: React.PropTypes.array,
+  carePlan: PropTypes.array,
 };

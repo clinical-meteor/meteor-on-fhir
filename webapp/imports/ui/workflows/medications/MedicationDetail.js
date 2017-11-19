@@ -6,6 +6,7 @@ import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
 import TextField from 'material-ui/TextField';
+import PropTypes from 'prop-types';
 
 let defaultMedication = {
   resourceType: 'Medication',
@@ -289,6 +290,6 @@ export default class MedicationDetail extends React.Component {
 
 
 MedicationDetail.propTypes = {
-  hasUser: React.PropTypes.object
+  hasUser: PropTypes.object
 };
 ReactMixin(MedicationDetail.prototype, ReactMeteorData);

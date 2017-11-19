@@ -6,6 +6,7 @@ import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
 import TextField from 'material-ui/TextField';
+import PropTypes from 'prop-types';
 
 let defaultRiskAssessment = {
   resourceType: "RiskAssessment",
@@ -260,6 +261,6 @@ export default class RiskAssessmentDetail extends React.Component {
 
 
 RiskAssessmentDetail.propTypes = {
-  hasUser: React.PropTypes.object
+  hasUser: PropTypes.object
 };
 ReactMixin(RiskAssessmentDetail.prototype, ReactMeteorData);

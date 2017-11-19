@@ -7,6 +7,7 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin  from 'react-mixin';
 import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 import { VitalMeasurements } from '/imports/ui/components/VitalMeasurements';
+import PropTypes from 'prop-types';
 
 export class Healthlog extends React.Component {
   getMeteorData() {
@@ -53,6 +54,6 @@ export class Healthlog extends React.Component {
 
 
 Healthlog.propTypes = {
-  children: React.PropTypes.any
+  children: PropTypes.any
 };
 ReactMixin(Healthlog.prototype, ReactMeteorData);

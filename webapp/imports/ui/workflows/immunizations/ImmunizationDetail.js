@@ -9,6 +9,7 @@ import ReactMixin from 'react-mixin';
 import TextField from 'material-ui/TextField';
 import { browserHistory } from 'react-router';
 import { get } from 'lodash';
+import PropTypes from 'prop-types';
 
 let defaultImmunization = {
   "resourceType": "Immunization",
@@ -362,6 +363,6 @@ export default class ImmunizationDetail extends React.Component {
 
 
 ImmunizationDetail.propTypes = {
-  hasUser: React.PropTypes.object
+  hasUser: PropTypes.object
 };
 ReactMixin(ImmunizationDetail.prototype, ReactMeteorData);

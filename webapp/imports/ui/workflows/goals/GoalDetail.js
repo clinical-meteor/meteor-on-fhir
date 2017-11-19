@@ -7,6 +7,7 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
 import TextField from 'material-ui/TextField';
 import { get } from 'lodash';
+import PropTypes from 'prop-types';
 
 let defaultGoal = {
   "resourceType": "Goal",
@@ -220,6 +221,6 @@ export default class GoalDetail extends React.Component {
 
 
 GoalDetail.propTypes = {
-  hasUser: React.PropTypes.object
+  hasUser: PropTypes.object
 };
 ReactMixin(GoalDetail.prototype, ReactMeteorData);
