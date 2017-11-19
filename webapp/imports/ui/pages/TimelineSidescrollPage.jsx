@@ -1,17 +1,17 @@
 // http://visjs.org/docs/timeline/index.html
 // https://github.com/Lighthouse-io/react-visjs-timeline
 // http://visjs.org/examples/timeline/interaction/animateWindow.html
+import React, { Component } from 'react';
+import Timeline from 'react-visjs-timeline';
+import moment from 'moment';
 
-import { AboutAppCard } from '/imports/ui/components/AboutAppCard';
 import { GlassCard } from '/imports/ui/components/GlassCard';
-import React from 'react';
 import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
-import Timeline from 'react-visjs-timeline'
 
 // http://visjs.org/docs/timeline/#Configuration_Options
 const options = {
   width: '100%',
-  height: '60px',
+  height: '300px',
   stack: false,
   showMajorLabels: true,
   showCurrentTime: true,

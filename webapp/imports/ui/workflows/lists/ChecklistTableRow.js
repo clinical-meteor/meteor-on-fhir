@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+import PropTypes from 'prop-types';
 
 var _extends2 = require('babel-runtime/helpers/extends');
 
@@ -189,94 +190,94 @@ ChecklistTableRow.defaultProps = {
   striped: false
 };
 ChecklistTableRow.contextTypes = {
-  muiTheme: _react.PropTypes.object.isRequired
+  muiTheme: PropTypes.object.isRequired
 };
 process.env.NODE_ENV !== "production" ? ChecklistTableRow.propTypes = {
   /**
    * Children passed to table row.
    */
-  children: _react.PropTypes.node,
+  children: PropTypes.node,
   /**
    * The css class name of the root element.
    */
-  className: _react.PropTypes.string,
+  className: PropTypes.string,
   /**
    * If true, row border will be displayed for the row.
    * If false, no border will be drawn.
    */
-  displayBorder: _react.PropTypes.bool,
+  displayBorder: PropTypes.bool,
   /**
    * Controls whether or not the row reponseds to hover events.
    */
-  hoverable: _react.PropTypes.bool,
+  hoverable: PropTypes.bool,
   /**
    * Controls whether or not the row should be rendered as being
    * hovered. This property is evaluated in addition to this.state.hovered
    * and can be used to synchronize the hovered state with some other
    * external events.
    */
-  hovered: _react.PropTypes.bool,
+  hovered: PropTypes.bool,
   /**
    * @ignore
    * Called when a row cell is clicked.
    * rowNumber is the row number and columnId is
    * the column number or the column key.
    */
-  onCellClick: _react.PropTypes.func,
+  onCellClick: PropTypes.func,
   /**
    * @ignore
    * Called when a table cell is hovered.
    * rowNumber is the row number of the hovered row
    * and columnId is the column number or the column key of the cell.
    */
-  onCellHover: _react.PropTypes.func,
+  onCellHover: PropTypes.func,
   /**
    * @ignore
    * Called when a table cell is no longer hovered.
    * rowNumber is the row number of the row and columnId
    * is the column number or the column key of the cell.
    */
-  onCellHoverExit: _react.PropTypes.func,
+  onCellHoverExit: PropTypes.func,
   /**
    * @ignore
    * Called when row is clicked.
    */
-  onRowClick: _react.PropTypes.func,
+  onRowClick: PropTypes.func,
   /**
    * @ignore
    * Called when a table row is hovered.
    * rowNumber is the row number of the hovered row.
    */
-  onRowHover: _react.PropTypes.func,
+  onRowHover: PropTypes.func,
   /**
    * @ignore
    * Called when a table row is no longer hovered.
    * rowNumber is the row number of the row that is no longer hovered.
    */
-  onRowHoverExit: _react.PropTypes.func,
+  onRowHoverExit: PropTypes.func,
   /**
    * Number to identify the row. This property is
    * automatically populated when used with the TableBody component.
    */
-  rowNumber: _react.PropTypes.number,
+  rowNumber: PropTypes.number,
   /**
    * If true, table rows can be selected. If multiple row
    * selection is desired, enable multiSelectable.
    * The default value is true.
    */
-  selectable: _react.PropTypes.bool,
+  selectable: PropTypes.bool,
   /**
    * Indicates that a particular row is selected.
    * This property can be used to programmatically select rows.
    */
-  selected: _react.PropTypes.bool,
+  selected: PropTypes.bool,
   /**
    * Indicates whether or not the row is striped.
    */
-  striped: _react.PropTypes.bool,
+  striped: PropTypes.bool,
   /**
    * Override the inline-styles of the root element.
    */
-  style: _react.PropTypes.object
+  style: PropTypes.object
 } : void 0;
 exports.default = ChecklistTableRow;

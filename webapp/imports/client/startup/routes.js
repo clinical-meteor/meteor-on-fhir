@@ -1,82 +1,82 @@
 import { CardText, CardTitle } from 'material-ui/Card';
 import { IndexRoute, Route, Router, browserHistory } from 'react-router';
 
-import { AboutPage } from '/imports/ui/pages/AboutPage';
-import { AdminDashboard } from '/imports/ui/pages/AdminDashboard';
-import { AllergyIntolerancesPage } from '/imports/ui/workflows/allergyIntolerances/AllergyIntolerancesPage';
+// import { AboutPage } from '/imports/ui/pages/AboutPage';
+// import { AdminDashboard } from '/imports/ui/pages/AdminDashboard';
+// import { AllergyIntolerancesPage } from '/imports/ui/workflows/allergyIntolerances/AllergyIntolerancesPage';
 import { App } from '/imports/ui/layouts/App';
-import { AppInfoPage } from '/imports/ui/pages/AppInfoPage';
-import { AuditLogPage } from '/imports/ui/pages/AuditLogPage';
-import { AuthorizePage } from '/imports/ui/workflows/oauth/AuthorizePage';
-import { BodySitesPage } from '/imports/ui/workflows/body-sites/BodySitesPage';
-import { CarePlanDesignerPage } from '/imports/ui/workflows/carePlans/CarePlanDesignerPage';
-import { CarePlansPage } from '/imports/ui/workflows/carePlans/CarePlansPage';
-import { ChecklistsPage } from '/imports/ui/workflows/lists/ChecklistsPage';
-import { ClientConfigurationPage } from '/imports/ui/workflows/oauth/ClientConfigurationPage';
-import { ConditionsPage } from '/imports/ui/workflows/conditions/ConditionsPage';
-import { ContinuityOfCarePage } from '/imports/ui/pages/ContinuityOfCarePage';
-import { ConversationsPage } from '/imports/ui/pages/ConversationsPage';
-import { CornerstonePage } from '/imports/ui/pages/CornerstonePage';
-import { DashboardPage } from '/imports/ui/pages/DashboardPage';
-import { DataManagementPage } from '/imports/ui/pages/DataManagementPage';
-import { DecisionTree } from '/imports/ui/components/DecisionTree';
-import { DermatogramsPage } from '/imports/ui/pages/DermatogramsPage';
-import { DevicesPage } from '/imports/ui/workflows/devices/DevicesPage';
-import { DiagnosticReportsPage } from '/imports/ui/workflows/diagnosticReports/DiagnosticReportsPage';
+// import { AppInfoPage } from '/imports/ui/pages/AppInfoPage';
+// import { AuditLogPage } from '/imports/ui/pages/AuditLogPage';
+// import { AuthorizePage } from '/imports/ui/workflows/oauth/AuthorizePage';
+// import { BodySitesPage } from '/imports/ui/workflows/body-sites/BodySitesPage';
+// import { CarePlanDesignerPage } from '/imports/ui/workflows/carePlans/CarePlanDesignerPage';
+// import { CarePlansPage } from '/imports/ui/workflows/carePlans/CarePlansPage';
+// import { ChecklistsPage } from '/imports/ui/workflows/lists/ChecklistsPage';
+// import { ClientConfigurationPage } from '/imports/ui/workflows/oauth/ClientConfigurationPage';
+// import { ConditionsPage } from '/imports/ui/workflows/conditions/ConditionsPage';
+// import { ContinuityOfCarePage } from '/imports/ui/pages/ContinuityOfCarePage';
+// import { ConversationsPage } from '/imports/ui/pages/ConversationsPage';
+// import { CornerstonePage } from '/imports/ui/pages/CornerstonePage';
+// import { DashboardPage } from '/imports/ui/pages/DashboardPage';
+// import { DataManagementPage } from '/imports/ui/pages/DataManagementPage';
+// import { DecisionTree } from '/imports/ui/components/DecisionTree';
+// import { DermatogramsPage } from '/imports/ui/pages/DermatogramsPage';
+// import { DevicesPage } from '/imports/ui/workflows/devices/DevicesPage';
+// import { DiagnosticReportsPage } from '/imports/ui/workflows/diagnosticReports/DiagnosticReportsPage';
 import DynamicRoutes from '/imports/client/startup/index';
-import { ForumPage } from '/imports/ui/pages/ForumPage';
-import { GenomePage } from '/imports/ui/workflows/genome/GenomePage';
-import { GlassCard } from '/imports/ui/components/GlassCard';
-import { GoalsPage } from '/imports/ui/workflows/goals/GoalsPage';
-import { GoogleMapsPage } from '/imports/ui/pages/experimental/GoogleMapsPage';
-import { Healthlog } from '/imports/ui/pages/Healthlog';
-import { HexGridPage } from '/imports/ui/pages/HexGridPage';
-import { ImagingStudiesPage } from '/imports/ui/workflows/imaging-studies/ImagingStudiesPage';
-import { ImmunizationsPage } from '/imports/ui/workflows/immunizations/ImmunizationsPage';
-import { InboundMessagesPage } from '/imports/ui/pages/InboundMessagesPage';
-import { LocationsPage } from '/imports/ui/workflows/locations/LocationsPage';
+// import { ForumPage } from '/imports/ui/pages/ForumPage';
+// import { GenomePage } from '/imports/ui/workflows/genome/GenomePage';
+// import { GlassCard } from '/imports/ui/components/GlassCard';
+// import { GoalsPage } from '/imports/ui/workflows/goals/GoalsPage';
+// import { GoogleMapsPage } from '/imports/ui/pages/experimental/GoogleMapsPage';
+// import { Healthlog } from '/imports/ui/pages/Healthlog';
+// import { HexGridPage } from '/imports/ui/pages/HexGridPage';
+// import { ImagingStudiesPage } from '/imports/ui/workflows/imaging-studies/ImagingStudiesPage';
+// import { ImmunizationsPage } from '/imports/ui/workflows/immunizations/ImmunizationsPage';
+// import { InboundMessagesPage } from '/imports/ui/pages/InboundMessagesPage';
+// import { LocationsPage } from '/imports/ui/workflows/locations/LocationsPage';
 import { MainIndex } from '/imports/ui/pages/MainIndex';
-import { MathPage } from '/imports/ui/pages/experimental/MathPage';
-import { MedicationOrdersPage } from '/imports/ui/workflows/medicationOrders/MedicationOrdersPage';
-import { MedicationStatementsPage } from '/imports/ui/workflows/medicationStatements/MedicationStatementsPage';
-import { MedicationsPage } from '/imports/ui/workflows/medications/MedicationsPage';
-import { MetadataPage } from '/imports/ui/pages/MetadataPage';
+// import { MathPage } from '/imports/ui/pages/experimental/MathPage';
+// import { MedicationOrdersPage } from '/imports/ui/workflows/medicationOrders/MedicationOrdersPage';
+// import { MedicationStatementsPage } from '/imports/ui/workflows/medicationStatements/MedicationStatementsPage';
+// import { MedicationsPage } from '/imports/ui/workflows/medications/MedicationsPage';
+// import { MetadataPage } from '/imports/ui/pages/MetadataPage';
 import { Meteor } from 'meteor/meteor';
-import { MyConditions } from '/imports/ui/workflows/conditions/MyConditions';
-import { MyProfilePage } from '/imports/ui/pages/MyProfilePage';
-import { NeedToBePractitioner } from '/imports/ui/pages/NeedToBePractitioner';
-import { NeedToBeSysadmin } from '/imports/ui/pages/NeedToBeSysadmin';
-import { NewTopicPage } from '/imports/ui/pages/NewTopicPage';
-import { NotFound } from '/imports/ui/pages/NotFound';
-import { NotificationsPage } from '/imports/ui/pages/NotificationsPage';
-import { OAuthScrapYardPage } from '/imports/ui/workflows/oauth/OAuthScrapYardPage';
-import { ObservationsPage } from '/imports/ui/workflows/observations/ObservationsPage';
-import { OrganizationsPage } from '/imports/ui/workflows/organizations/OrganizationsPage';
-import { OutboundHeaderPage } from '/imports/ui/pages/OutboundHeaderPage';
-import { PatientsPage } from '/imports/ui/workflows/patients/PatientsPage';
-import { PractitionerDashboard } from '/imports/ui/pages/PractitionerDashboard';
-import { PractitionersPage } from '/imports/ui/workflows/practitioners/PractitionersPage';
-import { PrivacyPage } from '/imports/ui/pages/PrivacyPage';
-import { ProceduresPage } from '/imports/ui/workflows/procedures/ProceduresPage';
-import { ProviderDirectoryPage } from '/imports/ui/pages/ProviderDirectoryPage';
-import { QuestionnaireResponsesPage } from '/imports/ui/workflows/questionnaires/QuestionnaireResponsesPage';
-import { QuestionnairesPage } from '/imports/ui/workflows/questionnaires/QuestionnairesPage';
+// import { MyConditions } from '/imports/ui/workflows/conditions/MyConditions';
+// import { MyProfilePage } from '/imports/ui/pages/MyProfilePage';
+// import { NeedToBePractitioner } from '/imports/ui/pages/NeedToBePractitioner';
+// import { NeedToBeSysadmin } from '/imports/ui/pages/NeedToBeSysadmin';
+// import { NewTopicPage } from '/imports/ui/pages/NewTopicPage';
+// import { NotFound } from '/imports/ui/pages/NotFound';
+// import { NotificationsPage } from '/imports/ui/pages/NotificationsPage';
+// import { OAuthScrapYardPage } from '/imports/ui/workflows/oauth/OAuthScrapYardPage';
+// import { ObservationsPage } from '/imports/ui/workflows/observations/ObservationsPage';
+// import { OrganizationsPage } from '/imports/ui/workflows/organizations/OrganizationsPage';
+// import { OutboundHeaderPage } from '/imports/ui/pages/OutboundHeaderPage';
+// import { PatientsPage } from '/imports/ui/workflows/patients/PatientsPage';
+// import { PractitionerDashboard } from '/imports/ui/pages/PractitionerDashboard';
+// import { PractitionersPage } from '/imports/ui/workflows/practitioners/PractitionersPage';
+// import { PrivacyPage } from '/imports/ui/pages/PrivacyPage';
+// import { ProceduresPage } from '/imports/ui/workflows/procedures/ProceduresPage';
+// import { ProviderDirectoryPage } from '/imports/ui/pages/ProviderDirectoryPage';
+// import { QuestionnaireResponsesPage } from '/imports/ui/workflows/questionnaires/QuestionnaireResponsesPage';
+// import { QuestionnairesPage } from '/imports/ui/workflows/questionnaires/QuestionnairesPage';
 import React from 'react';
-import { RecoverPassword } from '/imports/ui/pages/RecoverPassword';
-import { ResetPassword } from '/imports/ui/pages/ResetPassword';
-import { RiskAssessmentsPage } from '/imports/ui/workflows/risk-assessments/RiskAssessmentsPage';
-import { SciFiPage } from '/imports/ui/pages/SciFiPage';
-import { ServerConfigurationPage } from '/imports/ui/workflows/oauth/ServerConfigurationPage';
-import { Signin } from '/imports/ui/pages/Signin';
-import { Signup } from '/imports/ui/pages/Signup';
-import { SpecificitySensitivityCard } from '/imports/ui/components/SpecificitySensitivityCard';
-import { TelemedicinePage } from '/imports/ui/pages/TelemedicinePage';
-import { ThemePage } from '/imports/ui/pages/ThemePage';
-import { TimelinePage } from '/imports/ui/pages/TimelinePage';
+// import { RecoverPassword } from '/imports/ui/pages/RecoverPassword';
+// import { ResetPassword } from '/imports/ui/pages/ResetPassword';
+// import { RiskAssessmentsPage } from '/imports/ui/workflows/risk-assessments/RiskAssessmentsPage';
+// import { SciFiPage } from '/imports/ui/pages/SciFiPage';
+// import { ServerConfigurationPage } from '/imports/ui/workflows/oauth/ServerConfigurationPage';
+// import { Signin } from '/imports/ui/pages/Signin';
+// import { Signup } from '/imports/ui/pages/Signup';
+// import { SpecificitySensitivityCard } from '/imports/ui/components/SpecificitySensitivityCard';
+// import { TelemedicinePage } from '/imports/ui/pages/TelemedicinePage';
+// import { ThemePage } from '/imports/ui/pages/ThemePage';
+// import { TimelinePage } from '/imports/ui/pages/TimelinePage';
 import { TimelineSidescrollPage } from '/imports/ui/pages/TimelineSidescrollPage';
-import { UsersPage } from '/imports/ui/pages/UsersPage';
+// import { UsersPage } from '/imports/ui/pages/UsersPage';
 import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
-import { WelcomePatientPage } from '/imports/ui/pages/WelcomePatientPage';
+// import { WelcomePatientPage } from '/imports/ui/pages/WelcomePatientPage';
 import { render } from 'react-dom';
 
 // Pick up any dynamic routes that are specified in packages, and include them
@@ -137,7 +137,7 @@ Meteor.startup(() => {
     <Router history={ browserHistory }>
       <Route path="/" component={ App }>
         <IndexRoute name="index" component={ MainIndex } onEnter={ requireAuth } />
-
+{/* 
         <Route name="sysadmin" path="/sysadmin" component={ AdminDashboard } onEnter={ requreSysadmin } />
         <Route name="practitioner" path="/practitioner" component={ PractitionerDashboard } onEnter={ requireAuth } />
 
@@ -241,10 +241,10 @@ Meteor.startup(() => {
 
         <Route name="ContinuityOfCarePage" path="/continuity-of-care" component={ ContinuityOfCarePage }  onEnter={ requireAuth }/>
 
-        <Route name="TimelinePage" path="/timeline" component={ TimelinePage }  onEnter={ requireAuth }/>
+        <Route name="TimelinePage" path="/timeline" component={ TimelinePage }  onEnter={ requireAuth }/> */}
         <Route name="TimelineSidescrollPage" path="/timeline-sidescroll" component={ TimelineSidescrollPage }  onEnter={ requireAuth }/>
         
-        { dynamicRoutes.map(route => <Route name={route.name} path={route.path} component={ route.component } />) }
+        {/* { dynamicRoutes.map(route => <Route name={route.name} path={route.path} component={ route.component } />) } */}
         
         <Route path="*" component={ NotFound } />
 

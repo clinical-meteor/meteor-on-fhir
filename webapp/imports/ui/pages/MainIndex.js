@@ -1,3 +1,6 @@
+// https://material.io/icons/
+// https://andy-pro.github.io/icon-viewer/
+
 import { Col, Grid, Row } from 'react-bootstrap';
 
 import { CardTitle } from 'material-ui/Card';
