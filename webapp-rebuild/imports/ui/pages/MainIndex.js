@@ -1,7 +1,7 @@
 // https://material.io/icons/
 // https://andy-pro.github.io/icon-viewer/
 
-import { Col, Grid, Row } from 'react-bootstrap';
+import { Container, Col, Row } from 'react-bootstrap';
 
 import { CardTitle } from 'material-ui/Card';
 import { FullPageCanvas } from '/imports/ui/layouts/FullPageCanvas';
@@ -160,19 +160,19 @@ export class MainIndex extends React.Component {
     return (
       <div id='indexPage'>
         <VerticalCanvas>
-          <Grid>
+          <div>
 
             {this.renderAdminTiles(this.data.user)}
 
             {this.renderAppsSection(this.data.user)}
               <Row>
-                <Col md={3} style={this.data.style.column} >
+                <Col sm={3} style={this.data.style.column} >
                   {this.renderChecklists(this.data.user)}
                 </Col>
-                <Col md={3} style={this.data.style.column}>
+                <Col sm={3} style={this.data.style.column}>
                   {this.renderVideoconferencing(this.data.user)}
                 </Col>
-                <Col md={3} style={this.data.style.column}>
+                <Col sm={3} style={this.data.style.column}>
                   {this.renderContinuityOfCare(this.data.user)}
                 </Col>
               </Row>
@@ -180,16 +180,16 @@ export class MainIndex extends React.Component {
 
             {this.renderFhirSection(this.data.user)}
               <Row>
-                <Col lg={3} style={this.data.style.column}>
+                <Col sm={3} style={this.data.style.column}>
                   {this.renderAllergies(this.data.user)}
                 </Col>
-                <Col lg={3} style={this.data.style.column}>
+                <Col sm={3} style={this.data.style.column}>
                   {this.renderCarePlans(this.data.user)}
                 </Col>
-                <Col lg={3} style={this.data.style.column}>
+                <Col sm={3} style={this.data.style.column}>
                   {this.renderConditions(this.data.user)}
                 </Col>
-                <Col lg={3} style={this.data.style.column}>
+                <Col sm={3} style={this.data.style.column}>
                 {this.renderDevices(this.data.user)}
                 </Col>
               </Row>
@@ -261,7 +261,7 @@ export class MainIndex extends React.Component {
             {this.renderUnderConstructionSection(this.data.user)}          
 
             {this.renderExperimentalSection(this.data.user)}
-          </Grid>
+          </div>
 
         </VerticalCanvas>
       </div>

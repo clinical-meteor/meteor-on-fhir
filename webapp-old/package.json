@@ -95,7 +95,7 @@
     "react-motion": "^0.5.2",
     "react-rotating-text": "^1.2.1",
     "react-router": "^2.8.0",
-    "react-router-bootstrap": "^0.24.4",
+    "react-router-bootstrap@rr-v3": "^0.24.4",
     "react-router-transition": "^1.1.2",
     "react-scifi": "0.1.0-alpha",
     "react-scroll-box": "^0.2.9",

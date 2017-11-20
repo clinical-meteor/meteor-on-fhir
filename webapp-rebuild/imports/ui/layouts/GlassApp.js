@@ -31,7 +31,9 @@ export class GlassApp extends React.Component {
         style: {
           width: '100%',
           height: '100%',
-          position: 'fixed'
+          position: 'fixed',
+          left: '0px',
+          top: '0px'
         },
         showVideoBackground: false
       },
