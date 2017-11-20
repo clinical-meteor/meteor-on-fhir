@@ -6,10 +6,11 @@
       "darkroomTextEnabled": false,
       "defaultVideo": "/VideoBackgrounds/telehealth-1.mp4"
     },
-    "app": {
-      "barcodes": true,
+    "home": {
       "showUnderConstruction": true,
-      "showExperimental": false
+      "showExperimental": false,
+      "showApps": true,      
+      "showFhirMenu": true
     },
     "defaults": {
       "avatars": true,

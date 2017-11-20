@@ -7,9 +7,11 @@
       "defaultVideo": "/VideoBackgrounds/Circulation.mp4",
       "backgroundImagePath": "/backgrounds/medical/Gradient.jpg"
     },
-    "app": {
-      "showUnderConstruction": false,
-      "showExperimental": false
+    "home": {
+      "showUnderConstruction": true,
+      "showExperimental": false,
+      "showApps": true,      
+      "showFhirMenu": true
     },
     "defaults": {
       "avatars": true,

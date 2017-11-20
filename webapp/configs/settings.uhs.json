@@ -7,10 +7,11 @@
       "defaultVideo": "/VideoBackgrounds/Circulation.mp4",
       "backgroundImagePath": "https://www.uhs.com/wp-content/uploads/0404-1.jpg"
     },
-    "app": {
-      "barcodes": true,
-      "showUnderConstruction": false,
-      "showExperimental": false
+    "home": {
+      "showUnderConstruction": true,
+      "showExperimental": false,
+      "showApps": true,      
+      "showFhirMenu": true
     },
     "defaults": {
       "displayNavbars": true,

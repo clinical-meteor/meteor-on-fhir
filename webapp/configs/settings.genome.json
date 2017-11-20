@@ -7,16 +7,11 @@
       "defaultVideo": "/VideoBackgrounds/GrayWaves.mp4",
       "backgroundImagePath": "/backgrounds/medical/PlasmidRed.jpg"      
     },
-    "platform": {
+    "home": {
       "showUnderConstruction": false,
       "showExperimental": false,
       "showApps": true,      
       "showFhirMenu": true
-    },
-    "app": {
-      "showUnderConstruction": false,
-      "showExperimental": false,
-      "showApps": true
     },
     "defaults": {
       "avatars": true,

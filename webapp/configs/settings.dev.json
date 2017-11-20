@@ -7,16 +7,11 @@
       "defaultVideo": "/VideoBackgrounds/GrayWaves.mp4",
       "backgroundImagePath": "/backgrounds/medical/Gradient.jpg"      
     },
-    "platform": {
-      "showUnderConstruction": false,
+    "home": {
+      "showUnderConstruction": true,
       "showExperimental": false,
-      "showApps": false,      
-      "showFhirMenu": false
-    },
-    "app": {
-      "showUnderConstruction": false,
-      "showExperimental": false,
-      "showApps": false
+      "showApps": true,      
+      "showFhirMenu": true
     },
     "defaults": {
       "avatars": true,

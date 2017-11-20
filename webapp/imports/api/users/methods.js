@@ -7,10 +7,10 @@ import { ValidatedMethod } from 'meteor/mdg:validated-method';
 
 export const insertUser = new ValidatedMethod({
   name: 'users.insert',
-  validate: null,
-  // validate: function(){
-  //   return true;
-  // },
+  // validate: null,
+  validate: function(){
+    return true;
+  },
   // validate: new SimpleSchema({
   //   title: { type: String },
   //   createdAt: { type: Date },
@@ -22,10 +22,10 @@ export const insertUser = new ValidatedMethod({
 
 export const updateUser = new ValidatedMethod({
   name: 'users.update',
-  validate: null,
-  // validate: function(){
-  //   return true;
-  // },
+  // validate: null,
+  validate: function(){
+    return true;
+  },
   // validate: new SimpleSchema({
   //   _id: { type: String },
   //   'update.title': { type: String, optional: true },
@@ -37,10 +37,9 @@ export const updateUser = new ValidatedMethod({
 
 export const removeUserById = new ValidatedMethod({
   name: 'users.removeById',
-  validate: null,
-  // validate: new SimpleSchema({
-  //   _id: { type: String },
-  // }).validator(),
+  validate: new SimpleSchema({
+    _id: { type: String },
+  }).validator(),
   run({ _id }) {
     console.log("Removing user " + _id);
     Meteor.users.remove({_id: _id});
@@ -50,11 +49,10 @@ export const removeUserById = new ValidatedMethod({
 
 export const setUserAvatar = new ValidatedMethod({
   name: 'users.setAvatar',
-  validate: null,
-  // validate: new SimpleSchema({
-  //   _id: { type: String },
-  //   avatar: { type: String }
-  // }).validator(),
+  validate: new SimpleSchema({
+    _id: { type: String },
+    avatar: { type: String }
+  }).validator(),
   run({ _id, avatar }) {
     Meteor.users.update(_id, { $set: {'profile.avatar': avatar} });
   }
@@ -92,11 +90,10 @@ export const setUserTheme = new ValidatedMethod({
 
 export const changeUserPassword = new ValidatedMethod({
   name: 'users.changePassword',
-  validate: null,
-  // validate: new SimpleSchema({
-  //   _id: { type: String },
-  //   password: { type: String }
-  // }).validator(),
+  validate: new SimpleSchema({
+    _id: { type: String },
+    password: { type: String }
+  }).validator(),
   run({ _id, avatar }) {
     Meteor.users.update(_id, { $set: {'profile.avatar': avatar} });
   },
