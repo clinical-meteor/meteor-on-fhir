@@ -9,6 +9,7 @@ import ReactMixin from 'react-mixin';
 import TextField from 'material-ui/TextField';
 import { browserHistory } from 'react-router';
 import { get } from 'lodash';
+import PropTypes from 'prop-types';
 
 let defaultAllergyIntolerance = {
   "resourceType": "AllergyIntolerance",
@@ -350,6 +351,6 @@ export default class AllergyIntoleranceDetail extends React.Component {
 
 
 AllergyIntoleranceDetail.propTypes = {
-  hasUser: React.PropTypes.object
+  hasUser: PropTypes.object
 };
 ReactMixin(AllergyIntoleranceDetail.prototype, ReactMeteorData);

@@ -3,6 +3,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import React from 'react';
 import ReactMixin from 'react-mixin';
+import PropTypes from 'prop-types';
 
 import { Bert } from 'meteor/themeteorchef:bert';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
@@ -222,6 +223,6 @@ export default class UserDetail extends React.Component {
 
 
 UserDetail.propTypes = {
-  hasUser: React.PropTypes.object
+  hasUser: PropTypes.object
 };
 ReactMixin(UserDetail.prototype, ReactMeteorData);

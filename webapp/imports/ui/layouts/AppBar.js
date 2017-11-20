@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+import PropTypes from 'prop-types';
 
 var _extends2 = require('babel-runtime/helpers/extends');
 
@@ -301,83 +302,83 @@ AppBar.defaultProps = {
   zDepth: 1
 };
 AppBar.contextTypes = {
-  muiTheme: _react.PropTypes.object.isRequired
+  muiTheme: PropTypes.object.isRequired
 };
 process.env.NODE_ENV !== "production" ? AppBar.propTypes = {
   /**
    * Can be used to render a tab inside an app bar for instance.
    */
-  children: _react.PropTypes.node,
+  children: PropTypes.node,
   /**
    * Applied to the app bar's root element.
    */
-  className: _react.PropTypes.string,
+  className: PropTypes.string,
   /**
    * The classname of the icon on the left of the app bar.
    * If you are using a stylesheet for your icons, enter the class name for the icon to be used here.
    */
-  iconClassNameLeft: _react.PropTypes.string,
+  iconClassNameLeft: PropTypes.string,
   /**
    * Similiar to the iconClassNameLeft prop except that
    * it applies to the icon displayed on the right of the app bar.
    */
-  iconClassNameRight: _react.PropTypes.string,
+  iconClassNameRight: PropTypes.string,
   /**
    * The custom element to be displayed on the left side of the
    * app bar such as an SvgIcon.
    */
-  iconElementLeft: _react.PropTypes.element,
+  iconElementLeft: PropTypes.element,
   /**
    * Similiar to the iconElementLeft prop except that this element is displayed on the right of the app bar.
    */
-  iconElementRight: _react.PropTypes.element,
+  iconElementRight: PropTypes.element,
   /**
    * Override the inline-styles of the element displayed on the left side of the app bar.
    */
-  iconStyleLeft: _react.PropTypes.object,
+  iconStyleLeft: PropTypes.object,
   /**
    * Override the inline-styles of the element displayed on the right side of the app bar.
    */
-  iconStyleRight: _react.PropTypes.object,
+  iconStyleRight: PropTypes.object,
   /**
    * Callback function for when the left icon is selected via a touch tap.
    *
    * @param {object} event TouchTap event targeting the left `IconButton`.
    */
-  onLeftIconButtonTouchTap: _react.PropTypes.func,
+  onLeftIconButtonTouchTap: PropTypes.func,
   /**
    * Callback function for when the right icon is selected via a touch tap.
    *
    * @param {object} event TouchTap event targeting the right `IconButton`.
    */
-  onRightIconButtonTouchTap: _react.PropTypes.func,
+  onRightIconButtonTouchTap: PropTypes.func,
   /**
    * Callback function for when the title text is selected via a touch tap.
    *
    * @param {object} event TouchTap event targeting the `title` node.
    */
-  onTitleTouchTap: _react.PropTypes.func,
+  onTitleTouchTap: PropTypes.func,
   /**
    * Determines whether or not to display the Menu icon next to the title.
    * Setting this prop to false will hide the icon.
    */
-  showMenuIconButton: _react.PropTypes.bool,
+  showMenuIconButton: PropTypes.bool,
   /**
    * Override the inline-styles of the root element.
    */
-  style: _react.PropTypes.object,
+  style: PropTypes.object,
   /**
    * The title to display on the app bar.
    */
-  title: _react.PropTypes.node,
+  title: PropTypes.node,
   /**
    * Assign an ID to the title
    */
-  titleId: _react.PropTypes.string,
+  titleId: PropTypes.string,
   /**
    * Override the inline-styles of the app bar's title element.
    */
-  titleStyle: _react.PropTypes.object,
+  titleStyle: PropTypes.object,
   /**
    * The zDepth of the component.
    * The shadow of the app bar is also dependent on this property.

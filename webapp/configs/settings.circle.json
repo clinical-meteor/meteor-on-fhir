@@ -7,16 +7,11 @@
       "defaultVideo": "/VideoBackgrounds/Circulation.mp4",
       "backgroundImagePath": "/backgrounds/global.jpg"
     },
-    "platform": {
-      "showUnderConstruction": true,
+    "home": {
+      "showUnderConstruction": false,
       "showExperimental": false,
       "showApps": true,      
       "showFhirMenu": true
-    },
-    "app": {
-      "showUnderConstruction": false,
-      "showExperimental": false,
-      "showApps": true      
     },
     "defaults": {
       "avatars": true,

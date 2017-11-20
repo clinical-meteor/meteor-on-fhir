@@ -5,6 +5,7 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import { Bert } from 'meteor/themeteorchef:bert';
+import PropTypes from 'prop-types';
 
 import { CardText, CardActions } from 'material-ui/Card';
 
@@ -285,6 +286,6 @@ export default class QuestionnaireDetail extends React.Component {
 
 
 QuestionnaireDetail.propTypes = {
-  hasUser: React.PropTypes.object
+  hasUser: PropTypes.object
 };
 ReactMixin(QuestionnaireDetail.prototype, ReactMeteorData);

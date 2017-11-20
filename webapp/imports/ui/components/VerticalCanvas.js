@@ -28,7 +28,7 @@ export class VerticalCanvas extends React.Component {
     if(Session.get('isWideHorizontally')){
       canvasWidth = Session.get('appWidth') - 1;
     } else {
-      canvasWidth = 1024;      
+      canvasWidth = 1200;      
     }
     
     // but if we're passed in a width via a prop, then overide

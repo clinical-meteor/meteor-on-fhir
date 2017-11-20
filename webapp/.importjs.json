@@ -1,3 +1,4 @@
+// this file is for either VSCode or Atom to detect imports; it's a tooling file
 {
   "appliesTo": "**",
   "useRelativePaths": false,

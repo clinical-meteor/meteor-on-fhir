@@ -1,6 +1,7 @@
 // base layout
 import { CardHeader, CardText, CardTitle } from 'material-ui/Card';
 import {teal400, teal600} from 'material-ui/styles/colors';
+import PropTypes from 'prop-types';
 
 import { Footer } from '/imports/ui/layouts/Footer';
 import { GlassApp } from '/imports/ui/layouts/GlassApp';
@@ -20,7 +21,7 @@ import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import { get } from 'lodash';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { has } from 'lodash';
-import injectTapEventPlugin from 'react-tap-event-plugin';
+// import injectTapEventPlugin from 'react-tap-event-plugin';
 
 const muiTheme = getMuiTheme({
   palette: {
@@ -111,24 +112,15 @@ export class App extends React.Component {
           <Image />
         </GlassCard>
       );
-
-    // // ORGANIZATIONS
-    // } else if (Meteor.userId() && (Session.equals('pathname', '/organizations')) && Meteor.settings.public && Meteor.settings.public.modules && Meteor.settings.public.modules.epic) {
-    //   // the user is logged in as a normal user
-    //   return (
-    //     <div>
-    //       <FlatButton label='GET open.epic.com/Organization' className='querySystemButton' ref='querySystemButton' onClick={this.querySystemButton.bind(this, 'Organization')} style={this.data.style.buttonText} ></FlatButton>
-    //     </div>
-    //   );
-    // Website
-  } else if (Meteor.userId() && Session.equals('pathname', '/videoconferencing')) {
-    return (
-      <GlassCard style={this.data.style.card} height='auto'>
-        <CardText>
-          Video!
-        </CardText>
-      </GlassCard>
-    );
+      // Website
+    } else if (Meteor.userId() && Session.equals('pathname', '/videoconferencing')) {
+      return (
+        <GlassCard style={this.data.style.card} height='auto'>
+          <CardText>
+            Video!
+          </CardText>
+        </GlassCard>
+      );
 
 
     // Website
@@ -150,7 +142,6 @@ export class App extends React.Component {
       );
 
     }
-
   }
   render(){
     var orbital;
@@ -181,10 +172,10 @@ export class App extends React.Component {
 }
 
 App.propTypes = {
-  children: React.PropTypes.element.isRequired
+  children: PropTypes.element.isRequired
 };
 App.childContextTypes = {
-  muiTheme: React.PropTypes.object.isRequired
+  muiTheme: PropTypes.object.isRequired
 };
 App.defaultProps = {};
 

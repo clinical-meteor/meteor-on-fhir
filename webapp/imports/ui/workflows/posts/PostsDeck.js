@@ -6,7 +6,7 @@ import ReactMixin from 'react-mixin';
 import { GlassCard } from '/imports/ui/components/GlassCard';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
-import { removePost } from '/imports/api/posts/methods.js';
+// import { removePost } from '/imports/api/posts/methods.js';
 import { DynamicSpacer } from '/imports/ui/components/DynamicSpacer';
 
 import { Meteor } from 'meteor/meteor';

@@ -1,6 +1,7 @@
 import React from 'react';
 import { ListGroup, Alert } from 'react-bootstrap';
 import { Post } from './Post.js';
+import PropTypes from 'prop-types';
 
 export const PostsList = ({ posts }) => (
   posts.length > 0 ?
@@ -14,5 +15,5 @@ export const PostsList = ({ posts }) => (
 );
 
 PostsList.propTypes = {
-  posts: React.PropTypes.array,
+  posts: PropTypes.array,
 };

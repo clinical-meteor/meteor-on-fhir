@@ -7,6 +7,7 @@ import { ValidatedMethod } from 'meteor/mdg:validated-method';
 
 export const insertUser = new ValidatedMethod({
   name: 'users.insert',
+  // validate: null,
   validate: function(){
     return true;
   },
@@ -21,6 +22,7 @@ export const insertUser = new ValidatedMethod({
 
 export const updateUser = new ValidatedMethod({
   name: 'users.update',
+  // validate: null,
   validate: function(){
     return true;
   },

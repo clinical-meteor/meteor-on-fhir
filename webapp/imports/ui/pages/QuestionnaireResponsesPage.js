@@ -86,7 +86,4 @@ export class QuestionnaireResponsesPage extends React.Component {
 }
 
 
-// QuestionnaireResponsesPage.propTypes = {
-//   hasUser: React.PropTypes.object
-// };
 ReactMixin(QuestionnaireResponsesPage.prototype, ReactMeteorData);

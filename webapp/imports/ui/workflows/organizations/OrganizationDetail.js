@@ -6,6 +6,7 @@ import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
 import TextField from 'material-ui/TextField';
+import PropTypes from 'prop-types';
 
 let defaultOrganization = {
   resourceType: 'Organization',
@@ -305,6 +306,6 @@ export default class OrganizationDetail extends React.Component {
 
 
 OrganizationDetail.propTypes = {
-  hasUser: React.PropTypes.object
+  hasUser: PropTypes.object
 };
 ReactMixin(OrganizationDetail.prototype, ReactMeteorData);

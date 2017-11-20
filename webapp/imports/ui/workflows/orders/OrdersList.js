@@ -1,6 +1,7 @@
 import React from 'react';
 import { ListGroup, Alert } from 'react-bootstrap';
 import { Orders } from './Orders.js';
+import PropTypes from 'prop-types';
 
 export const OrdersList = ({ observations }) => (
   observations.length > 0 ?
@@ -14,5 +15,5 @@ export const OrdersList = ({ observations }) => (
 );
 
 OrdersList.propTypes = {
-  observations: React.PropTypes.array,
+  observations: PropTypes.array,
 };

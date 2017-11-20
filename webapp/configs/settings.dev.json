@@ -2,21 +2,16 @@
   "public": {
     "title": "Meteor on FHIR",
     "theme": {
-      "showVideoBackground": true,
+      "showVideoBackground": false,
       "darkroomTextEnabled": false,
       "defaultVideo": "/VideoBackgrounds/GrayWaves.mp4",
       "backgroundImagePath": "/backgrounds/medical/Gradient.jpg"      
     },
-    "platform": {
-      "showUnderConstruction": false,
+    "home": {
+      "showUnderConstruction": true,
       "showExperimental": false,
       "showApps": true,      
       "showFhirMenu": true
-    },
-    "app": {
-      "showUnderConstruction": false,
-      "showExperimental": false,
-      "showApps": true
     },
     "defaults": {
       "avatars": true,
@@ -66,33 +61,33 @@
       "epic": true,
       "statisticsLogging": true,
       "apps": {
-        "ChecklistManifesto": true,
-        "ContinuityOfCare": true,
-        "Videoconferencing": true        
+        "ChecklistManifesto": false,
+        "ContinuityOfCare": false,
+        "Videoconferencing": false        
       },
       "fhir": {
-        "AllergyIntolerances": true,
-        "AuditEvents": true,
-        "BodySites": true,
-        "CarePlans": true,
-        "Conditions": true,
-        "Devices": true,
-        "DiagnosticReports": true,
-        "Goals": true,
+        "AllergyIntolerances": false,
+        "AuditEvents": false,
+        "BodySites": false,
+        "CarePlans": false,
+        "Conditions": false,
+        "Devices": false,
+        "DiagnosticReports": false,
+        "Goals": false,
         "ImagingStudies": false,
-        "Immunizations": true,
-        "Locations": true,
-        "Lists": true,
-        "Medications": true,
-        "MedicationOrders": true,
-        "MedicationStatements": true,
-        "Organizations": true,
-        "Observations": true,
-        "Patients": true,
-        "Practitioners": true,
-        "Procedures": true,
-        "Questionnaires": true,
-        "RiskAssessments": true
+        "Immunizations": false,
+        "Locations": false,
+        "Lists": false,
+        "Medications": false,
+        "MedicationOrders": false,
+        "MedicationStatements": false,
+        "Organizations": false,
+        "Observations": false,
+        "Patients": false,
+        "Practitioners": false,
+        "Procedures": false,
+        "Questionnaires": false,
+        "RiskAssessments": false
       }
     }
   },

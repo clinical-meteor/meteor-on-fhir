@@ -9,6 +9,7 @@ import ReactMixin from 'react-mixin';
 import TextField from 'material-ui/TextField';
 import { browserHistory } from 'react-router';
 import { get } from 'lodash';
+import PropTypes from 'prop-types';
 
 let defaultCondition = {
   "resourceType": "Condition",
@@ -390,6 +391,6 @@ export default class ConditionDetail extends React.Component {
 
 
 ConditionDetail.propTypes = {
-  hasUser: React.PropTypes.object
+  hasUser: PropTypes.object
 };
 ReactMixin(ConditionDetail.prototype, ReactMeteorData);

@@ -6,10 +6,11 @@
       "darkroomTextEnabled": false,
       "defaultVideo": "/VideoBackgrounds/Circulation.mp4"
     },
-    "app": {
-      "barcodes": true,
-      "showUnderConstruction": false,
-      "showExperimental": false
+    "home": {
+      "showUnderConstruction": true,
+      "showExperimental": false,
+      "showApps": true,      
+      "showFhirMenu": true
     },
     "defaults": {
       "displayNavbars": true,

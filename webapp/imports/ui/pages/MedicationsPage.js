@@ -4,6 +4,7 @@ import ReactMixin  from 'react-mixin';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import { GlassCard } from '/imports/ui/components/GlassCard';
 import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
+import PropTypes from 'prop-types';
 
 import MedicationDetail from '/imports/ui/workflows/medications/MedicationDetail';
 import MedicationTable from '/imports/ui/workflows/medications/MedicationTable';
@@ -105,6 +106,6 @@ export class MedicationsPage extends React.Component {
 
 
 MedicationsPage.propTypes = {
-  hasUser: React.PropTypes.object
+  hasUser: PropTypes.object
 };
 ReactMixin(MedicationsPage.prototype, ReactMeteorData);
