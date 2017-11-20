@@ -1,8 +1,51 @@
 {
-  "name": "simple-todos",
-  "private": true,
+  "name": "fhir-demo",
+  "license": "MIT",
+  "version": "1.2.0",
+  "repository": "http://github.com/clinical-meteor/meteor-on-fhir",
+  "description": "Demo meteor app supporting the FHIR protcol.",
   "scripts": {
-    "start": "meteor run"
+    "start": "NODE_ENV=test meteor --settings configs/settings.dev.json",
+    "debug": "DEBUG=true meteor --settings configs/settings.dev.json",
+    "trace": "DEBUG=true TRACe=true meteor --settings configs/settings.dev.json",
+    "test": "meteor test --driver-package dispatch:mocha-phantomjs --port 5000",
+    "test-app": "meteor test --full-app --driver-package dispatch:mocha-phantomjs --port 5000 --once",
+    "package-verification": "starrynight run-tests --type package-verification",
+    "verification": "starrynight run-tests --type verification",
+    "validation": "starrynight run-tests --type validation",
+    "spacejam": "starrynight run-tests --framework spacejam",
+    "staging": "meteor deploy staging.meteor.com --settings configs/settings.staging.json",
+    "production": "meteor deploy production.meteor.com --settings configs/settings.prod.json",
+    "coverage": "COVERAGE=1 meteor",
+    "monitor": "COVERAGE=1 meteor test --driver-package dispatch:mocha --port 5000",
+    "nightwatch": "nightwatch -c .meteor/nightwatch.json --tag circle",
+    "phantom": "nightwatch -c .meteor/nightwatch.json --env phantom",
+    "circle-nightwatch": "nightwatch -c .meteor/nightwatch.circle.json --tag circle",
+    "desktop": "meteor-desktop",
+    "dockerize": "../scripts/build_docker_compose_file.sh"
+  },
+  "eslintConfig": {
+    "parserOptions": {
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true,
+        "modules": true
+      }
+    },
+    "plugins": [
+      "react",
+      "meteor"
+    ],
+    "extends": [],
+    "globals": {
+      "server": false,
+      "browser": false,
+      "expect": false
+    },
+    "rules": {
+      "import/no-unresolved": 0,
+      "react/jsx-uses-vars": 1
+    }
   },
   "dependencies": {
     "babel-runtime": "^6.26.0",
