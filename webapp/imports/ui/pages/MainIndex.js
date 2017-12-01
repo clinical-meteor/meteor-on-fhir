@@ -269,7 +269,7 @@ export class MainIndex extends React.Component {
   }
 
   renderExperimentalSection(user){
-    if (has(Meteor, 'settings.public.home.showExperimental')) {
+    if (get(Meteor, 'settings.public.home.showExperimental')) {
       if (user.isAdmin || user.isPractitioner) {
         return(
           <div>
@@ -283,7 +283,7 @@ export class MainIndex extends React.Component {
     }
   }
   renderUnderConstructionSection(user){
-    if (has(Meteor, 'settings.public.home.showUnderConstruction')) {
+    if (get(Meteor, 'settings.public.home.showUnderConstruction')) {
       if (user.isAdmin || user.isPractitioner) {
         return(
           <div>
@@ -297,7 +297,7 @@ export class MainIndex extends React.Component {
     }
   }  
   renderAppsSection(user){
-    if (has(Meteor, 'settings.public.home.showApps')) {
+    if (get(Meteor, 'settings.public.home.showApps')) {
       if (user.isAdmin || user.isPractitioner || user.isPatient) {
         return(
           <div>
@@ -309,7 +309,7 @@ export class MainIndex extends React.Component {
     }
   }    
   renderFhirSection(user){
-    if (has(Meteor, 'settings.public.home.showFhirMenu')) {
+    if (get(Meteor, 'settings.public.home.showFhirMenu')) {
       if (user.isAdmin || user.isPractitioner || user.isPatient || user.isUser) {
         return(
           <div>
@@ -511,7 +511,7 @@ export class MainIndex extends React.Component {
 
 
   renderImmunizations(user){
-    if (has(Meteor, 'settings.public.modules.fhir.Immunizations')) {
+    if (get(Meteor, 'settings.public.modules.fhir.Immunizations')) {
       if (user.isPractitioner || user.isAdmin || user.isPatient) {
         return (
           <div id='immunizationsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/immunizations') } >
@@ -531,7 +531,7 @@ export class MainIndex extends React.Component {
 
 
   renderAllergies(user){
-    if (has(Meteor, 'settings.public.modules.fhir.AllergyIntolerances')) {
+    if (get(Meteor, 'settings.public.modules.fhir.AllergyIntolerances')) {
       if (user.isPractitioner || user.isAdmin || user.isPatient) {
         return (
           <div id='allergyIntollerancesTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/allergies') } >
@@ -550,7 +550,7 @@ export class MainIndex extends React.Component {
   }
 
   renderProcedures(user){
-    if (has(Meteor, 'settings.public.modules.fhir.Procedures')) {
+    if (get(Meteor, 'settings.public.modules.fhir.Procedures')) {
       if (user.isPractitioner || user.isAdmin || user.isPatient) {
         return (
           <div id='proceduresTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/procedures') } >
@@ -568,7 +568,7 @@ export class MainIndex extends React.Component {
     }
   }
   renderPatients(user){
-    if (has(Meteor, 'settings.public.modules.fhir.Patients')) {
+    if (get(Meteor, 'settings.public.modules.fhir.Patients')) {
       if (user.isPractitioner || user.isAdmin) {
         return (
           <div id='patientsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/patients') } >
@@ -586,7 +586,7 @@ export class MainIndex extends React.Component {
     }
   }
   renderPractitioners(user){
-    if (has(Meteor, 'settings.public.modules.fhir.Practitioners')) {
+    if (get(Meteor, 'settings.public.modules.fhir.Practitioners')) {
       if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
           <div id="practitionersTile" style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/practitioners') } >
@@ -604,7 +604,7 @@ export class MainIndex extends React.Component {
     }
   }
   renderObservations(user){
-    if (has(Meteor, 'settings.public.modules.fhir.Observations')) {
+    if (get(Meteor, 'settings.public.modules.fhir.Observations')) {
       if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
           <div id='observationsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/observations') } >
@@ -622,7 +622,7 @@ export class MainIndex extends React.Component {
     }
   }
   renderOrganizations(user){
-    if (has(Meteor, 'settings.public.modules.fhir.Organizations')) {
+    if (get(Meteor, 'settings.public.modules.fhir.Organizations')) {
       if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
           <div id='organizationsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/organizations') } >
@@ -640,7 +640,7 @@ export class MainIndex extends React.Component {
     }
   }
   renderLocations(user){
-    if (has(Meteor, 'settings.public.modules.fhir.Locations')) {
+    if (get(Meteor, 'settings.public.modules.fhir.Locations')) {
       if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
           <div id="locationsTile" style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/locations') } >
@@ -658,7 +658,7 @@ export class MainIndex extends React.Component {
     }
   }
   renderMedications(user){
-    if (has(Meteor, 'settings.public.modules.fhir.Medications')) {
+    if (get(Meteor, 'settings.public.modules.fhir.Medications')) {
       if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
           <div id="medicationsTile" style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/medications') } >
@@ -676,7 +676,7 @@ export class MainIndex extends React.Component {
     }
   }
   renderDevices(user){
-    if (has(Meteor, 'settings.public.modules.fhir.Devices')) {
+    if (get(Meteor, 'settings.public.modules.fhir.Devices')) {
       if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
           <div id='devicesTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/devices') } >
@@ -694,7 +694,7 @@ export class MainIndex extends React.Component {
     }
   }
   renderChecklists(user){
-    if (has(Meteor, 'settings.public.modules.apps.ChecklistManifesto')) {
+    if (get(Meteor, 'settings.public.modules.apps.ChecklistManifesto')) {
       if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
           <div id='checklistsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/checklists') } >
@@ -712,7 +712,7 @@ export class MainIndex extends React.Component {
     }
   }
   renderVideoconferencing(user){
-    if (has(Meteor, 'settings.public.modules.apps.Videoconferencing')) {
+    if (get(Meteor, 'settings.public.modules.apps.Videoconferencing')) {
       if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
           <div id='videoconferencingTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/videoconferencing') } >
@@ -730,7 +730,7 @@ export class MainIndex extends React.Component {
     }
   }
   renderContinuityOfCare(user){
-    if (has(Meteor, 'settings.public.modules.apps.ContinuityOfCare')) {
+    if (get(Meteor, 'settings.public.modules.apps.ContinuityOfCare')) {
       if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
           <div id='continuityOfCareTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/continuity-of-care') } >
@@ -749,7 +749,7 @@ export class MainIndex extends React.Component {
   }
 
   renderRiskAssessments(user){
-    if (has(Meteor, 'settings.public.modules.fhir.RiskAssessments')) {
+    if (get(Meteor, 'settings.public.modules.fhir.RiskAssessments')) {
       if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
           <div id='riskAssessmentsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/risk-assessments') } >
@@ -768,7 +768,7 @@ export class MainIndex extends React.Component {
   }
 
   renderConditions(user){
-    if (has(Meteor, 'settings.public.modules.fhir.Conditions')) {
+    if (get(Meteor, 'settings.public.modules.fhir.Conditions')) {
       if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
           <div id='conditionsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/conditions') } >
@@ -787,7 +787,7 @@ export class MainIndex extends React.Component {
   }  
 
   renderAllergyIntolerance(user){
-    if (has(Meteor, 'settings.public.modules.fhir.AllergyIntolerances')) {
+    if (get(Meteor, 'settings.public.modules.fhir.AllergyIntolerances')) {
       if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
             <div id='allergyIntoleranceTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/allergies') } >
@@ -805,7 +805,7 @@ export class MainIndex extends React.Component {
     }
   }   
   renderMedicationStatements(user){
-    if (has(Meteor, 'settings.public.modules.fhir.MedicationStatements')) {
+    if (get(Meteor, 'settings.public.modules.fhir.MedicationStatements')) {
       if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
             <div id='medicationStatementsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/medication-statements') } >
@@ -826,7 +826,7 @@ export class MainIndex extends React.Component {
 
 
   renderImagingStudy(user){
-    if (has(Meteor, 'settings.public.modules.fhir.ImagingStudies')) {
+    if (get(Meteor, 'settings.public.modules.fhir.ImagingStudies')) {
       if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
             <div id='imagingStudiesTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/radiology') } >
@@ -846,7 +846,7 @@ export class MainIndex extends React.Component {
 
 
   renderDiagnosticReport(user){
-    if (has(Meteor, 'settings.public.modules.fhir.DiagnosticReports')) {
+    if (get(Meteor, 'settings.public.modules.fhir.DiagnosticReports')) {
       if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
             <div id='diagnosticReportsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/diagnostic-reports') } >
@@ -865,7 +865,7 @@ export class MainIndex extends React.Component {
   }    
   
   renderGoals(user){
-    if (has(Meteor, 'settings.public.modules.fhir.Goals')) {
+    if (get(Meteor, 'settings.public.modules.fhir.Goals')) {
       if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
           <div id='goalsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/goals') } >
@@ -887,7 +887,7 @@ export class MainIndex extends React.Component {
   
   
   renderCarePlans(user){
-    if (has(Meteor, 'settings.public.modules.fhir.CarePlans')) {
+    if (get(Meteor, 'settings.public.modules.fhir.CarePlans')) {
       if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
           <div id="carePlansTile" style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/care-plans') } >
@@ -906,7 +906,7 @@ export class MainIndex extends React.Component {
   }      
 
   renderMedicationOrders(user){
-    if (has(Meteor, 'settings.public.modules.fhir.MedicationOrders')) {
+    if (get(Meteor, 'settings.public.modules.fhir.MedicationOrders')) {
       if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
           <div id='medicationOrderTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/medication-orders') } >

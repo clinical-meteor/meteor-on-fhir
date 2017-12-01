@@ -1,6 +1,6 @@
 {
   "public": {
-    "title": "Meteor on FHIR",
+    "title": "Blank Canvas (Build Your Own Plugin)",
     "theme": {
       "showVideoBackground": false,
       "darkroomTextEnabled": false,
@@ -10,8 +10,8 @@
     "home": {
       "showUnderConstruction": false,
       "showExperimental": false,
-      "showApps": true,      
-      "showFhirMenu": true
+      "showApps": false,      
+      "showFhirMenu": false
     },
     "defaults": {
       "avatars": true,

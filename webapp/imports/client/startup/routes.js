@@ -109,7 +109,7 @@ browserHistory.listen(function(event) {
 const requireAuth = (nextState, replace) => {
   if (!Meteor.loggingIn() && !Meteor.userId()) {
     replace({
-      pathname: '/signin',
+      pathname: '/landing-page',
       state: { nextPathname: nextState.location.pathname }
     });
   }
