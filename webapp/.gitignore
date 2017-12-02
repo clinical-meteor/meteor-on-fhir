@@ -17,6 +17,13 @@ settings.galaxy.json
 
 version.desktop
 .desktop
+.desktop-install
 
 marketing.jpg
 
+awatson1978-medical-history
+watson-medical-history
+hipaa
+*hipaa*
+
+public/builds

@@ -63,6 +63,7 @@
     "katex": "^0.9.0-alpha1",
     "lodash": "^4.17.4",
     "material-ui": "^0.19.4",
+    "meteor-desktop": "^0.11.1",
     "meteor-node-stubs": "~0.2.0",
     "moment": "^2.18.1",
     "node-geocoder": "^3.21.1",

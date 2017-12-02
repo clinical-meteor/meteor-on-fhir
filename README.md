@@ -97,7 +97,21 @@ scripts/remove_restricted_media_assets.sh
 #### E. Deploy to Production  
 
 ```sh
-TIMEOUT_SCALE_FACTOR=10 DEPLOY_HOSTNAME=galaxy.meteor.com meteor deploy my-org-exchange.meteorapp.com --settings configs/settings.dev.json
+# build the executables and add them into the /public directory
+cd webapp
+meteor add-platform ios
+meteor add omega:meteor-desktop-watcher@=0.11.1 omega:meteor-desktop-bundler@=0.11.1 omega:meteor-desktop-localstorage@=0.0.11
+meteor npm install --save meteor-desktop
+meteor --mobile-server http://www.symptomatic.io --settings configs/settings.galaxy.json
+npm run desktop -- build-installer http://www.symptomatic.io
+mv .desktop-installer/mac public/builds/
+
+# remove the desktop pipeline before building for Galaxy
+meteor remove omega:meteor-desktop-watcher omega:meteor-desktop-bundler omega:meteor-desktop-localstorage
+
+
+# upload to Galaxy
+TIMEOUT_SCALE_FACTOR=10 DEPLOY_HOSTNAME=us-east-1.galaxy-deploy.meteor.com MONGO_URL=mongodb://<dbuser>:<dbpassword>@ds019638.mlab.com:19638/clinical-meteor meteor deploy --settings configs/settings.galaxy.json meteor-on-fhir.meteorapp.com
 ```   
 
 #### F. Mobile Build   
@@ -115,7 +129,7 @@ NODE_ENV=dev meteor run ios-device --mobile-server http://localhost:3000 --setti
 
 # production
 # we need to specify the production server
-NODE_ENV=dev meteor run ios-device --mobile-server http://meteor-on-fhir.meteorapp.com --settings configs/settings.dev.json
+NODE_ENV=dev meteor run ios-device --mobile-server http://meteor-on-fhir.meteorapp.com --settings configs/settings.galaxy.json
 ```    
 
 
@@ -135,7 +149,7 @@ npm run desktop -- init
 
 # run the app locally, as if you were doing a mobile build
 # (you may be able to just use the running mobile build server)
-NODE_ENV=dev meteor --mobile-server http://localhost:3000 --settings configs/settings.dev.json
+NODE_ENV=dev meteor --mobile-server http://localhost:3000 --settings configs/settings.galaxy.json
 
 # then run the desktop build
 npm run desktop
