@@ -108,10 +108,17 @@ browserHistory.listen(function(event) {
 // patient authentication function
 const requireAuth = (nextState, replace) => {
   if (!Meteor.loggingIn() && !Meteor.userId()) {
-    replace({
-      pathname: '/landing-page',
-      state: { nextPathname: nextState.location.pathname }
-    });
+    if(Meteor.isDesktop){
+      replace({
+        pathname: '/signin',
+        state: { nextPathname: nextState.location.pathname }
+      });  
+    } else {
+      replace({
+        pathname: '/landing-page',
+        state: { nextPathname: nextState.location.pathname }
+      });  
+    }
   }
 };
 
