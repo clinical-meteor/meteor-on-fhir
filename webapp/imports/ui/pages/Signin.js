@@ -65,9 +65,9 @@ export class Signin extends React.Component {
                 ref="emailAddress"
                 name="emailAddress"
                 hintText="Email Address"
-                hintStyle={this.data.style.hintStyle}
+                // hintStyle={this.data.style.hintStyle}
                 onKeyPress={this.handleKeyPress.bind(this)}
-                inputStyle={this.data.style.textColor}
+                // inputStyle={this.data.style.textColor}
               />
               <br/>
               <TextField
@@ -75,10 +75,10 @@ export class Signin extends React.Component {
                 ref="password"
                 name="password"
                 hintText="Password"
-                hintStyle={this.data.style.hintStyle}
+                // hintStyle={this.data.style.hintStyle}
                 onKeyPress={this.handleKeyPress.bind(this)}
                 style={this.data.style.textColor}
-                inputStyle={this.data.style.textColor}
+                // inputStyle={this.data.style.textColor}
               />
               <br/>
               <br/>
