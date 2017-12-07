@@ -87,8 +87,8 @@ clinical:hl7-resource-procedure
 clinical:hl7-resource-questionnaire
 clinical:hl7-resource-questionnaire-response
 clinical:hl7-resource-risk-assessment
+clinical:landing-page
 #clinical:plugin-default-landing-page
-#clinical:landing-page
 #clinical:routing-algorithms
 
 # oauth server
