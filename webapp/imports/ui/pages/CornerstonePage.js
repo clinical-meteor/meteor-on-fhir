@@ -24,7 +24,7 @@ export class CornerstonePage extends React.Component {
         <VerticalCanvas>
           <GlassCard>
             <CardText>
-              <Image />
+              <Image height="999px" style={{height: '999px'}} />
             </CardText>
           </GlassCard>
         </VerticalCanvas>

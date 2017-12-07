@@ -100,6 +100,7 @@
     "react-router-transition": "^1.1.2",
     "react-scifi": "0.1.0-alpha",
     "react-scroll-box": "^0.2.9",
+    "react-slick": "^0.15.4",
     "react-tap-event-plugin": "^2.0.1",
     "react-tappable": "^1.0.2",
     "react-toolbox": "^2.0.0-beta.12",

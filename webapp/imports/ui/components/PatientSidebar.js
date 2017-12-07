@@ -48,9 +48,9 @@ export class PatientSidebar extends React.Component {
             <ListItem className="indexItem" href='/' primaryText='Index' />
           </IndexLinkContainer>
 
-          <IndexLinkContainer to='/provider-directory'>
+          {/* <IndexLinkContainer to='/provider-directory'>
              <ListItem primaryText='Provider Directory' href='/provider-directory' />
-          </IndexLinkContainer>
+          </IndexLinkContainer> */}
           
           <IndexLinkContainer to='/weblog'>
              <ListItem primaryText='Healthlog' href='/weblog' />

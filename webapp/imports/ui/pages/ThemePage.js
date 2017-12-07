@@ -83,6 +83,27 @@ export class ThemePage extends React.Component {
     var greenTile = JSON.parse(JSON.stringify(backgroundThumbnail));
     greenTile.background = '#AEC9A8';
 
+    var purpleTile = JSON.parse(JSON.stringify(backgroundThumbnail));
+    purpleTile.background = '#800080';
+
+    var orangeTile = JSON.parse(JSON.stringify(backgroundThumbnail));
+    orangeTile.background = '#ffa500';
+
+
+    var blackTile = JSON.parse(JSON.stringify(backgroundThumbnail));
+    blackTile.background = '#000000';
+
+    var charcoalTile = JSON.parse(JSON.stringify(backgroundThumbnail));
+    charcoalTile.background = '#222222';
+
+    var grayTile = JSON.parse(JSON.stringify(backgroundThumbnail));
+    grayTile.background = '#999999';
+
+    var smokeTile = JSON.parse(JSON.stringify(backgroundThumbnail));
+    smokeTile.background = '#eeeeee';
+
+
+
     var whiteTile = JSON.parse(JSON.stringify(backgroundThumbnail));
     whiteTile.background = '#FFFFFF';
 
@@ -127,11 +148,17 @@ export class ThemePage extends React.Component {
                     <Image src='/backgrounds/medical/MedBay.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
                     <Image src='/backgrounds/medical/Gradient.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
 
-                    <Image responsive style={whiteTile} onClick={this.onColorClick} />
-                    <Image responsive style={grayTile} onClick={this.onColorClick} />
+                    <Image responsive style={purpleTile} onClick={this.onColorClick} />
+                    <Image responsive style={orangeTile} onClick={this.onColorClick} />
                     <Image responsive style={redTile} onClick={this.onColorClick} />
                     <Image responsive style={greenTile} onClick={this.onColorClick} />
                     <Image responsive style={blueTile} onClick={this.onColorClick} />
+
+                    <Image responsive style={whiteTile} onClick={this.onColorClick} />
+                    <Image responsive style={smokeTile} onClick={this.onColorClick} />
+                    <Image responsive style={grayTile} onClick={this.onColorClick} />
+                    <Image responsive style={charcoalTile} onClick={this.onColorClick} />
+                    <Image responsive style={blackTile} onClick={this.onColorClick} />
 
                   </div>
                 </div>
