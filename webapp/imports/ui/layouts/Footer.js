@@ -130,12 +130,15 @@ export class Footer extends React.Component {
         );
 
       // CONTINUITY OF CARE
-      } else if (Meteor.userId() && (Session.equals('pathname', '/continuity-of-care'))) {
+      } else if (Meteor.userId() && (Session.equals('pathname', '/continuity-of-care') || Session.equals('pathname', '/data-import') || Session.equals('pathname', '/timeline') || Session.equals('pathname', '/timeline-sidescroll'))) {
         // the user is logged in as a normal user
         return (
           <div>
+            <FlatButton label='Import' className='importData' ref='importCcd' onClick={this.openLink.bind(this, '/data-import')} style={this.data.style.buttonText} ></FlatButton>
+            <FlatButton label='Continuity of Care Document' className='ccdPage' ref='ccdPage' onClick={this.openLink.bind(this, '/continuity-of-care')} style={this.data.style.buttonText} ></FlatButton>
             <FlatButton label='Timeline' className='verticalTimeline' ref='verticalTimeline' onClick={this.openLink.bind(this, '/timeline')} style={this.data.style.buttonText} ></FlatButton>
             <FlatButton label='Sidescroll Timeline' className='horizontalTimeline' ref='horizontalTimeline' onClick={this.openLink.bind(this, '/timeline-sidescroll')} style={this.data.style.buttonText} ></FlatButton>
+            <FlatButton label='Export CCD' className='exportCcd' ref='exportCcd' style={this.data.style.buttonText} ></FlatButton>
           </div>
         );
 

@@ -4,7 +4,7 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 
 import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 
-import ObservationTable  from '/imports/ui/workflows/observations/ObservationTable';
+import ObservationsTable  from '/imports/ui/workflows/observations/ObservationsTable';
 import { Card, CardMedia, CardTitle, CardText, CardActions } from 'material-ui/Card';
 import { GlassCard } from '/imports/ui/components/GlassCard';
 
@@ -55,7 +55,7 @@ export class ObservationHistoryPage extends React.Component {
       <div id="observationHistoryPage">
         <VerticalCanvas>
           <GlassCard>
-            <ObservationTable />
+            <ObservationsTable />
           </GlassCard>
         </VerticalCanvas>
       </div>

@@ -2,6 +2,7 @@ import { CardActions, CardHeader, CardText, CardTitle } from 'material-ui/Card';
 import { Col, Grid, Row } from 'react-bootstrap';
 import { Tab, Tabs } from 'material-ui/Tabs';
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
+import { has, get } from 'lodash';
 
 import { Accounts } from 'meteor/accounts-base';
 import Avatar from 'material-ui/Avatar';
@@ -91,6 +92,26 @@ export class MyProfilePage extends React.Component {
         latitude: '',
         longitude: '',
         latlng: '0.0, 0.0'
+      },
+      ccd: {
+        AllergyIntolerances: 0,
+        CarePlans: 0,
+        Conditions: 0,
+        Devices: 0,
+        DiagnosticReports: 0,
+        Goals: 0,
+        ImagingStudies: 0,
+        Immunizations: 0,
+        Locations: 0,
+        Medications: 0,
+        MedicationStatements: 0,
+        Observations: 0,
+        Patients: 0,
+        Persons: 0,
+        Practitioners: 0,
+        Procedures: 0,
+        RelatedPersons: 0,
+        Sequences: 0
       }
     };
 
@@ -111,7 +132,9 @@ export class MyProfilePage extends React.Component {
         latitude: '',
         profileImage: Meteor.user().profile.avatar
       };      
-      if (Meteor.user().profile && Meteor.user().profile.avatar) {
+
+      // if (Meteor.user().profile && Meteor.user().profile.avatar) {
+      if(get(Meteor.user(), 'profile.avatar')) {
         data.user.profileImage = Meteor.user().profile.avatar;
         data.header.avatar = Meteor.user().profile.avatar;
       } else {
@@ -119,7 +142,8 @@ export class MyProfilePage extends React.Component {
         data.header.avatar = 'thumbnail.png';
       }
 
-      if (Meteor.user() && Meteor.user().profile && Meteor.user().profile.name) {
+      // if (Meteor.user() && Meteor.user().profile && Meteor.user().profile.name) {
+      if(get(Meteor.user(), 'profile.name')) {
         data.user.given = Meteor.user().profile.name.given;
         data.user.family = Meteor.user().profile.name.family;
         data.user.fullName = Meteor.user().profile.name.given + ' ' + Meteor.user().profile.name.family;
@@ -128,26 +152,42 @@ export class MyProfilePage extends React.Component {
         data.user.family = '';
         data.user.fullName = '';
       }
-      if(Meteor.user() && Meteor.user().profile && Meteor.user().profile.locations  && Meteor.user().profile.locations.home && Meteor.user().profile.locations.home.address){
-        if(Meteor.user().profile.locations.home.address.line){
-          data.address.line = Meteor.user().profile.locations.home.address.line;
+
+      
+      // if(Meteor.user() && Meteor.user().profile && Meteor.user().profile.locations  && Meteor.user().profile.locations.home && Meteor.user().profile.locations.home.address){
+      if(get(Meteor.user(), 'profile.locations.home.address')){
+        // if(Meteor.user().profile.locations.home.address.line){
+        if(get(Meteor.user(), 'profile.locations.home.address.line')){
+          // data.address.line = Meteor.user().profile.locations.home.address.line;
+          data.address.line = get(Meteor.user(), 'profile.locations.home.address.line');
         }
-        if(Meteor.user().profile.locations.home.address.city){
-          data.address.city = Meteor.user().profile.locations.home.address.city;
-        }
-        if(Meteor.user().profile.locations.home.address.state){
-          data.address.state = Meteor.user().profile.locations.home.address.state;
-        }
-        if(Meteor.user().profile.locations.home.address.postalCode){
-          data.address.postalCode = Meteor.user().profile.locations.home.address.postalCode;
-        }
-        if(Meteor.user().profile.locations.home.address.country){
-          data.address.country = Meteor.user().profile.locations.home.address.country;
-        }
+        // if(Meteor.user().profile.locations.home.address.city){
+        if(get(Meteor.user(), 'profile.locations.home.address.city')){
+            // data.address.city = Meteor.user().profile.locations.home.address.city;
+            data.address.city = get(Meteor.user(), 'profile.locations.home.address.city');
+          }
+        // if(Meteor.user().profile.locations.home.address.state){
+        if(get(Meteor.user(), 'profile.locations.home.address.state')){
+            // data.address.state = Meteor.user().profile.locations.home.address.state;
+            data.address.state = get(Meteor.user(), 'profile.locations.home.address.state');
+          }
+        // if(Meteor.user().profile.locations.home.address.postalCode){
+        if(get(Meteor.user(), 'profile.locations.home.address.postalCode')){
+            // data.address.postalCode = Meteor.user().profile.locations.home.address.postalCode;
+            data.address.postalCode = get(Meteor.user(), 'profile.locations.home.address.postalCode');
+          }
+        // if(Meteor.user().profile.locations.home.address.country){
+        if(get(Meteor.user(), 'profile.locations.home.address.country')){
+            // data.address.country = Meteor.user().profile.locations.home.address.country;
+            data.address.country = get(Meteor.user(), 'profile.locations.home.address.country');
+          }
       }
-      if(Meteor.user() && Meteor.user().profile && Meteor.user().profile.locations  && Meteor.user().profile.locations.home && Meteor.user().profile.locations.home.position){
-        if(Meteor.user().profile.locations.home.position.latitude && Meteor.user().profile.locations.home.position.longitude){
-          data.address.latlng = Meteor.user().profile.locations.home.position.latitude + ', ' + Meteor.user().profile.locations.home.position.longitude;
+
+      // if(Meteor.user() && Meteor.user().profile && Meteor.user().profile.locations  && Meteor.user().profile.locations.home && Meteor.user().profile.locations.home.position){
+      if(get(Meteor.user(), 'profile.locations.home.position')){
+        // if(Meteor.user().profile.locations.home.position.latitude && Meteor.user().profile.locations.home.position.longitude){
+        if(get(Meteor.user(), 'profile.locations.home.position.latitute') && get(Meteor.user(), 'profile.locations.home.position.longitude')){
+            data.address.latlng = get(Meteor.user(), 'profile.locations.home.position.latitute') + ', ' + get(Meteor.user(), 'profile.locations.home.position.longitude');
         }
 
         // var latlngString = '';
@@ -166,6 +206,68 @@ export class MyProfilePage extends React.Component {
         
       }
 
+
+      if(get(Meteor.user(), 'profile.continuityOfCare')){
+        if(get(Meteor.user(), 'profile.continuityOfCare.allergyIntolerances')){
+          data.ccd.AllergyIntolerances = get(Meteor.user(), 'profile.continuityOfCare.allergyIntolerances').length;
+        }
+        if(get(Meteor.user(), 'profile.continuityOfCare.carePlans')){
+          data.ccd.CarePlans = get(Meteor.user(), 'profile.continuityOfCare.carePlans').length;
+        }
+        if(get(Meteor.user(), 'profile.continuityOfCare.conditions')){
+          data.ccd.Conditions = get(Meteor.user(), 'profile.continuityOfCare.conditions').length;
+        }
+
+        if(get(Meteor.user(), 'profile.continuityOfCare.devices')){
+          data.ccd.Devices = get(Meteor.user(), 'profile.continuityOfCare.devices').length;
+        }
+        if(get(Meteor.user(), 'profile.continuityOfCare.diagnosticReports')){
+          data.ccd.DiagnosticReports = get(Meteor.user(), 'profile.continuityOfCare.diagnosticReports').length;
+        }
+        if(get(Meteor.user(), 'profile.continuityOfCare.goals')){
+          data.ccd.Goals = get(Meteor.user(), 'profile.continuityOfCare.goals').length;
+        }
+
+        if(get(Meteor.user(), 'profile.continuityOfCare.imagingStudies')){
+          data.ccd.ImagingStudies = get(Meteor.user(), 'profile.continuityOfCare.imagingStudies').length;
+        }
+        if(get(Meteor.user(), 'profile.continuityOfCare.immunizations')){
+          data.ccd.Immunizations = get(Meteor.user(), 'profile.continuityOfCare.immunizations').length;
+        }
+        if(get(Meteor.user(), 'profile.continuityOfCare.locations')){
+          data.ccd.Locations = get(Meteor.user(), 'profile.continuityOfCare.locations').length;
+        }
+
+        if(get(Meteor.user(), 'profile.continuityOfCare.medications')){
+          data.ccd.Medications = get(Meteor.user(), 'profile.continuityOfCare.medications').length;
+        }        
+        if(get(Meteor.user(), 'profile.continuityOfCare.medicationStatements')){
+          data.ccd.MedicationStatements = get(Meteor.user(), 'profile.continuityOfCare.medicationStatements').length;
+        }        
+        if(get(Meteor.user(), 'profile.continuityOfCare.observations')){
+          data.ccd.Observations = get(Meteor.user(), 'profile.continuityOfCare.observations').length;
+        }        
+
+        if(get(Meteor.user(), 'profile.continuityOfCare.patients')){
+          data.ccd.Patients = get(Meteor.user(), 'profile.continuityOfCare.patients').length;
+        }           
+        if(get(Meteor.user(), 'profile.continuityOfCare.persons')){
+          data.ccd.Persons = get(Meteor.user(), 'profile.continuityOfCare.persons').length;
+        }           
+        if(get(Meteor.user(), 'profile.continuityOfCare.practitioners')){
+          data.ccd.Practitioners = get(Meteor.user(), 'profile.continuityOfCare.practitioners').length;
+        }           
+        if(get(Meteor.user(), 'profile.continuityOfCare.procedures')){
+          data.ccd.Procedures = get(Meteor.user(), 'profile.continuityOfCare.procedures').length;
+        }           
+        if(get(Meteor.user(), 'profile.continuityOfCare.relatedPersons')){
+          data.ccd.RelatedPersons = get(Meteor.user(), 'profile.continuityOfCare.relatedPersons').length;
+        }           
+        if(get(Meteor.user(), 'profile.continuityOfCare.sequences')){
+          data.ccd.Sequences = get(Meteor.user(), 'profile.continuityOfCare.sequences').length;
+        }           
+
+      }
     }
 
     if (Session.get('appWidth') > 768) {
@@ -192,6 +294,120 @@ export class MyProfilePage extends React.Component {
 
 
   render(){
+
+    var ccdResources = [];
+
+    if(get(this, 'data.ccd.AllergyIntolerances')){
+      ccdResources.push(<TableRow>
+        <TableRowColumn>{this.data.ccd.AllergyIntolerances}</TableRowColumn>
+        <TableRowColumn>Allergies</TableRowColumn>
+      </TableRow>);
+    }
+    if(get(this, 'data.ccd.CarePlans')){
+      ccdResources.push(<TableRow>
+        <TableRowColumn>{this.data.ccd.CarePlans}</TableRowColumn>
+        <TableRowColumn>CarePlans</TableRowColumn>
+      </TableRow>);
+    }
+    if(get(this, 'data.ccd.Conditions')){
+      ccdResources.push(<TableRow>
+        <TableRowColumn>{this.data.ccd.Conditions}</TableRowColumn>
+        <TableRowColumn>Conditions</TableRowColumn>
+      </TableRow>);
+    }
+    if(get(this, 'data.ccd.Devices')){
+      ccdResources.push(<TableRow>
+        <TableRowColumn>{this.data.ccd.Devices}</TableRowColumn>
+        <TableRowColumn>Devices</TableRowColumn>
+      </TableRow>);
+    }
+    if(get(this, 'data.ccd.DiagnosticReports')){
+      ccdResources.push(<TableRow>
+        <TableRowColumn>{this.data.ccd.DiagnosticReports}</TableRowColumn>
+        <TableRowColumn>DiagnosticReports</TableRowColumn>
+      </TableRow>);
+    }
+    if(get(this, 'data.ccd.Goals')){
+      ccdResources.push(<TableRow>
+        <TableRowColumn>{this.data.ccd.Goals}</TableRowColumn>
+        <TableRowColumn>Goals</TableRowColumn>
+      </TableRow>);
+    }
+    if(get(this, 'data.ccd.ImagingStudies')){
+      ccdResources.push(<TableRow>
+        <TableRowColumn>{this.data.ccd.ImagingStudies}</TableRowColumn>
+        <TableRowColumn>ImagingStudies</TableRowColumn>
+      </TableRow>);
+    }
+    if(get(this, 'data.ccd.Immunizations')){
+      ccdResources.push(<TableRow>
+        <TableRowColumn>{this.data.ccd.Immunizations}</TableRowColumn>
+        <TableRowColumn>Immunizations</TableRowColumn>
+      </TableRow>);
+    }
+    if(get(this, 'data.ccd.Locations')){
+      ccdResources.push(<TableRow>
+        <TableRowColumn>{this.data.ccd.Locations}</TableRowColumn>
+        <TableRowColumn>Locations</TableRowColumn>
+      </TableRow>);
+    }    
+    if(get(this, 'data.ccd.Medications')){
+      ccdResources.push(<TableRow>
+        <TableRowColumn>{this.data.ccd.Medications}</TableRowColumn>
+        <TableRowColumn>Medications</TableRowColumn>
+      </TableRow>);
+    }
+    if(get(this, 'data.ccd.MedicationStatements')){
+      ccdResources.push(<TableRow>
+        <TableRowColumn>{this.data.ccd.MedicationStatements}</TableRowColumn>
+        <TableRowColumn>MedicationStatements</TableRowColumn>
+      </TableRow>);
+    }
+    if(get(this, 'data.ccd.Observations')){
+      ccdResources.push(<TableRow>
+        <TableRowColumn>{this.data.ccd.Observations}</TableRowColumn>
+        <TableRowColumn>Observations</TableRowColumn>
+      </TableRow>);
+    }
+    if(get(this, 'data.ccd.Patients')){
+      ccdResources.push(<TableRow>
+        <TableRowColumn>{this.data.ccd.Patients}</TableRowColumn>
+        <TableRowColumn>Patients</TableRowColumn>
+      </TableRow>);
+    }
+  
+    if(get(this, 'data.ccd.Persons')){
+      ccdResources.push(<TableRow>
+        <TableRowColumn>{this.data.ccd.Persons}</TableRowColumn>
+        <TableRowColumn>Persons</TableRowColumn>
+      </TableRow>);
+    }
+    if(get(this, 'data.ccd.Practitioners')){
+      ccdResources.push(<TableRow>
+        <TableRowColumn>{this.data.ccd.Practitioners}</TableRowColumn>
+        <TableRowColumn>Practitioners</TableRowColumn>
+      </TableRow>);
+    }            
+    if(get(this, 'data.ccd.Procedures')){
+      ccdResources.push(<TableRow>
+        <TableRowColumn>{this.data.ccd.Procedures}</TableRowColumn>
+        <TableRowColumn>Procedures</TableRowColumn>
+      </TableRow>);
+    }    
+    if(get(this, 'data.ccd.RelatedPersons')){
+      ccdResources.push(<TableRow>
+        <TableRowColumn>{this.data.ccd.RelatedPersons}</TableRowColumn>
+        <TableRowColumn>RelatedPersons</TableRowColumn>
+      </TableRow>);
+    }
+    if(get(this, 'data.ccd.Sequences')){
+      ccdResources.push(<TableRow>
+        <TableRowColumn>{this.data.ccd.Sequences}</TableRowColumn>
+        <TableRowColumn>Sequences</TableRowColumn>
+      </TableRow>);
+    }    
+    
+
     return(
       <div id='myProfilePage'>
         <VerticalCanvas>
@@ -478,9 +694,17 @@ export class MyProfilePage extends React.Component {
 
           <Spacer />
           <GlassCard>
-            <CardTitle title="Resources" subtitle='Healthcare data is attached to your profile via resources.' />
+            <CardTitle title="Continuity of Care" subtitle='Healthcare data is attached to your profile via resources.' />
             <CardText>
-              ---
+              <Table  >
+                <TableBody displayRowCheckbox={false} showRowHover={false}>
+                  <TableRow style={{fontWeight: 'bold'}}>
+                    <TableRowColumn style={{width: '20%'}}>Count</TableRowColumn>
+                    <TableRowColumn style={{width: '80%'}}>Resource</TableRowColumn>
+                  </TableRow>
+                  { ccdResources }      
+                </TableBody>
+              </Table>
             </CardText>
           </GlassCard>
         </VerticalCanvas>

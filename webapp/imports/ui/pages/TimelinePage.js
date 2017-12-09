@@ -28,41 +28,70 @@ export class TimelinePage extends React.Component {
     if(has(Meteor.user(), 'profile.continuityOfCare')){
       data.ccd = get(Meteor.user(), 'profile.continuityOfCare');
 
-      data.ccd.immunizations.forEach(function(record) {
-        // Object.keys(data.ccd.immunizations).forEach(function(record) {
+      if(get(Meteor.user(), 'profile.continuityOfCare.allergyIntolerances')){
+        data.ccd.allergyIntolerances.forEach(function(record) {
+          record.date = get(record, 'onsetDateTime', '');
+          record.text = get(record, 'identifier[0].value', '');
+          data.timelineEntries.push(record);
+        });
+      }
+
+      if(get(Meteor.user(), 'profile.continuityOfCare.carePlans')){
+        data.ccd.carePlans.forEach(function(record) {
+          record.date = get(record, 'period.start', '');
+          record.text = get(record, 'title', '');
+          data.timelineEntries.push(record);
+        });
+      }
+
+      if(get(Meteor.user(), 'profile.continuityOfCare.conditions')){
+        data.ccd.conditions.forEach(function(record) {
+          record.date = get(record, 'period.start', '');
+          record.text = get(record, 'code.coding[0].display', '');
+          data.timelineEntries.push(record);
+        });
+      }      
+
+      if(get(Meteor.user(), 'profile.continuityOfCare.diagnosticReports')){
+        data.ccd.diagnosticReports.forEach(function(record) {
+          record.date = get(record, 'period.start', '');
+          record.text = get(record, 'conclusion', '');
+          data.timelineEntries.push(record);
+        });
+      }      
+
+      if(get(Meteor.user(), 'profile.continuityOfCare.immunizations')){
+        data.ccd.immunizations.forEach(function(record) {
+          record.date = get(record, 'period.start', '');
           record.text = get(record, 'identifier[0].type.text', '');
           data.timelineEntries.push(record);
-      });
-      // Object.keys(data.ccd.allergyIntolerances).forEach(function(record) {
-      data.ccd.allergyIntolerances.forEach(function(record) {
-        record.date = record.assertedDate;
-        record.text = get(record, 'identifier[0].value', '');
-        data.timelineEntries.push(record);
-      });
-      // Object.keys(data.ccd.conditions).forEach(function(record) {
-      data.ccd.conditions.forEach(function(record) {
-        record.date = record.onsetDateTime;
-        record.text = get(record, 'code.coding[0].display', '');
-        data.timelineEntries.push(record);
-      });
-      // Object.keys(data.ccd.medicationStatements).forEach(function(record) {
-      data.ccd.medicationStatements.forEach(function(record) {
-        record.date = record.effectiveDateTime;
-        record.text = get(record, 'medicationReference.display', '');
-        data.timelineEntries.push(record);
-      });
-      // Object.keys(data.ccd.procedures).forEach(function(record) {
-      data.ccd.procedures.forEach(function(record) {
-        record.date = record.performedDateTime;
-        record.text = get(record, 'code.text', '');
-        data.timelineEntries.push(record);
-      });
-      // Object.keys(data.ccd.diagnosticReports).forEach(function(record) {
-      data.ccd.diagnosticReports.forEach(function(record) {
-        record.date = record.effectiveDateTime;
-        record.text = get(record, 'conclusion', '');
-        data.timelineEntries.push(record);
-      });
+        });
+      }
+
+      if(get(Meteor.user(), 'profile.continuityOfCare.medicationStatements')){
+        data.ccd.medicationStatements.forEach(function(record) {
+          record.date = get(record, 'period.start', '');
+          record.text = get(record, 'identifier[0].type.text', '');
+          data.timelineEntries.push(record);
+        });
+      }
+
+      if(get(Meteor.user(), 'profile.continuityOfCare.medicationStatements')){
+        data.ccd.medicationStatements.forEach(function(record) {
+          record.date = record.effectiveDateTime;
+          record.text = get(record, 'identifier[0].value', '');
+          data.timelineEntries.push(record);
+        });
+      }      
+
+      if(get(Meteor.user(), 'profile.continuityOfCare.procedures')){
+        data.ccd.procedures.forEach(function(record) {
+          record.date = record.effectiveDateTime;
+          record.text = get(record, 'identifier[0].value', '');
+          data.timelineEntries.push(record);
+        });
+      }      
+
 
       data.timelineEntries = sortBy(data.timelineEntries, 'date');
       // data.timelineEntries.sort(function compare(a, b) {

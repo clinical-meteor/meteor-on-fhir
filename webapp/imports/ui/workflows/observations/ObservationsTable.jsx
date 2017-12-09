@@ -9,7 +9,7 @@ import { Table } from 'react-bootstrap';
 import { Observations } from 'meteor/clinical:hl7-resource-observation';
 import Glass from '/imports/ui/Glass';
 
-export default class ObservationTable extends React.Component {
+export default class ObservationsTable extends React.Component {
 
   getMeteorData() {
 
@@ -78,7 +78,7 @@ export default class ObservationTable extends React.Component {
       data.style.backdropFilter = "blur(5px)";
     }
 
-    if(process.env.NODE_ENV === "test") console.log("ObservationTable[data]", data);
+    if(process.env.NODE_ENV === "test") console.log("ObservationsTable[data]", data);
     return data;
   }
   handleChange(row, key, value) {
@@ -146,4 +146,4 @@ export default class ObservationTable extends React.Component {
 }
 
 
-ReactMixin(ObservationTable.prototype, ReactMeteorData);
+ReactMixin(ObservationsTable.prototype, ReactMeteorData);

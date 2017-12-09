@@ -48,13 +48,66 @@ export class PatientSidebar extends React.Component {
             <ListItem className="indexItem" href='/' primaryText='Index' />
           </IndexLinkContainer>
 
+          <IndexLinkContainer to='/weblog'>
+             <ListItem primaryText='Healthlog' href='/weblog' />
+          </IndexLinkContainer>
+
           {/* <IndexLinkContainer to='/provider-directory'>
              <ListItem primaryText='Provider Directory' href='/provider-directory' />
           </IndexLinkContainer> */}
           
-          <IndexLinkContainer to='/weblog'>
-             <ListItem primaryText='Healthlog' href='/weblog' />
+          <hr />
+
+
+          <IndexLinkContainer to='/alergies'>
+             <ListItem primaryText='Allergy Intolerances' href='/weblog' />
           </IndexLinkContainer>
+          <IndexLinkContainer to='/care-plans'>
+             <ListItem primaryText='Care Plans' href='/weblog' />
+          </IndexLinkContainer>
+          <IndexLinkContainer to='/conditions'>
+             <ListItem primaryText='Conditions' href='/conditions' />
+          </IndexLinkContainer>
+          <IndexLinkContainer to='/devices'>
+             <ListItem primaryText='Devices' href='/devices' />
+          </IndexLinkContainer>
+          <IndexLinkContainer to='/diagnostic-reports'>
+             <ListItem primaryText='Diagnostic Reports' href='/diagnostic-reports' />
+          </IndexLinkContainer>
+          <IndexLinkContainer to='/goals'>
+             <ListItem primaryText='Goals' href='/goals' />
+          </IndexLinkContainer>
+          <IndexLinkContainer to='/immunizations'>
+             <ListItem primaryText='Imunizations' href='/immunizations' />
+          </IndexLinkContainer>
+          <IndexLinkContainer to='/locations'>
+             <ListItem primaryText='Locations' href='/locations' />
+          </IndexLinkContainer>
+          <IndexLinkContainer to='/organizations'>
+             <ListItem primaryText='Organizations' href='/organizations' />
+          </IndexLinkContainer>
+          <IndexLinkContainer to='/medications'>
+             <ListItem primaryText='Medications' href='/medications' />
+          </IndexLinkContainer>
+          <IndexLinkContainer to='/medication-orders'>
+             <ListItem primaryText='Medication Orders' href='/medication-orders' />
+          </IndexLinkContainer>
+          <IndexLinkContainer to='/medication-statements'>
+             <ListItem primaryText='Medication Statements' href='/medication-statements' />
+          </IndexLinkContainer>
+          <IndexLinkContainer to='/observations'>
+             <ListItem primaryText='Observations' href='/observations' />
+          </IndexLinkContainer>
+          <IndexLinkContainer to='/procedures'>
+             <ListItem primaryText='Procedures' href='/procedures' />
+          </IndexLinkContainer>
+          <IndexLinkContainer to='/risk-assessments'>
+             <ListItem primaryText='Risk Assessments' href='/risk-assessments' />
+          </IndexLinkContainer>
+
+
+          <hr />
+
 
           <IndexLinkContainer to='/theming'>
              <ListItem primaryText='Theming' href='/theming' />

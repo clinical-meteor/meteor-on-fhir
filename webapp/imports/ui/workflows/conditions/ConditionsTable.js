@@ -4,6 +4,7 @@ import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
 import { Table } from 'react-bootstrap';
+import { get, has } from 'lodash';
 
 export default class ConditionsTable extends React.Component {
 
@@ -71,17 +72,24 @@ export default class ConditionsTable extends React.Component {
       );
     }
   }
-  renderDateHeader(displayDates){
+  renderDateHeader(displayDates, header){
     if (displayDates) {
       return (
-        <th className='date'>date</th>
+        <th className='date'>{header}</th>
       );
     }
   }
-  renderDate(displayDates, newDate ){
+  renderStartDate(displayDates, startDate ){
     if (displayDates) {
       return (
-        <td className='date'>{ moment(newDate).format('YYYY-MM-DD') }</td>
+        <td className='date'>{ moment(startDate).format('YYYY-MM-DD') }</td>
+      );
+    }
+  }
+  renderEndDate(displayDates, endDate ){
+    if (displayDates) {
+      return (
+        <td className='date'>{ moment(endDate).format('YYYY-MM-DD') }</td>
       );
     }
   }
@@ -140,6 +148,7 @@ export default class ConditionsTable extends React.Component {
     let tableRows = [];
     for (var i = 0; i < this.data.conditions.length; i++) {
       var newRow = {
+        identifier: '',        
         patientDisplay: '',
         asserterDisplay: '',
         clinicalStatus: '',
@@ -149,6 +158,10 @@ export default class ConditionsTable extends React.Component {
         barcode: ''
       };
       if (this.data.conditions[i]){
+
+        if(get(this.data.conditions[i], 'identifier[0].value')){
+          newRow.identifier = this.data.conditions[i].identifier[0].value;
+        }
         if(this.data.conditions[i].patient){
           newRow.patientDisplay = this.data.conditions[i].patient.display;
         }
@@ -180,10 +193,12 @@ export default class ConditionsTable extends React.Component {
           { this.renderPatientName(this.data.displayPatientName, newRow.patientDisplay ) } 
           { this.renderAsserterName(this.data.displayAsserterName, newRow.asserterDisplay ) } 
           <td className='clinicalStatus'>{ newRow.clinicalStatus }</td>
+          <td className='identifier'>{ newRow.identifier }</td>
           <td className='snomedCode'>{ newRow.snomedCode }</td>
           <td className='snomedDisplay'>{ newRow.snomedDisplay }</td>
           { this.renderEvidence(this.data.displayEvidence, newRow.evidenceDisplay) }
-          { this.renderDate(this.data.displayDates, this.data.conditions[i].date) }
+          { this.renderStartDate(this.data.displayDates, this.data.conditions[i].onsetDateTime) }
+          { this.renderEndDate(this.data.displayDates, this.data.conditions[i].abatementDateTime) }
         </tr>
       )
     }
@@ -196,10 +211,12 @@ export default class ConditionsTable extends React.Component {
             { this.renderPatientNameHeader(this.data.displayPatientName) }
             { this.renderAsserterNameHeader(this.data.displayAsserterName) }
             <th className='clinicalStatus'>status</th>
+            <th className='identifier'>identifier</th>
             <th className='snomedCode'>code</th>
             <th className='snomedDisplay'>condition</th>
             { this.renderEvidenceHeader(this.data.displayEvidence) }
-            { this.renderDateHeader(this.data.displayDates) }
+            { this.renderDateHeader(this.data.displayDates, 'start') }
+            { this.renderDateHeader(this.data.displayDates, 'end') }
           </tr>
         </thead>
         <tbody>
