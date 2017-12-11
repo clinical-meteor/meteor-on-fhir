@@ -82,7 +82,95 @@ export class TimelineSidescrollPage extends React.Component {
     }
 
     if(Meteor.userId()){
-      data.items = get(Meteor.user(), 'profile.timeline');
+      var continuityOfCare = get(Meteor.user(), 'profile.continuityOfCare', {});
+
+      if(continuityOfCare.allergyIntolerances){
+        continuityOfCare.allergyIntolerances.forEach(function(allergy){
+          data.items.push({
+            content: allergy.identifier[0].value,
+            group: 'Allergies',
+            start: allergy.onsetDateTime,
+            end: null,
+            type: 'point'
+          })   
+        });  
+      }
+      if(continuityOfCare.carePlans){
+        continuityOfCare.carePlans.forEach(function(carePlan){
+          data.items.push({
+            content: carePlan.title,
+            group: 'CarePlans',
+            start: carePlan.period.start,
+            end: carePlan.period.end,
+            type: 'range'
+          })   
+        });  
+      }
+      if(continuityOfCare.conditions){
+        continuityOfCare.conditions.forEach(function(condition){
+          data.items.push({
+            content: condition.identifier[0].value,
+            group: 'Conditions',
+            start: condition.onsetDateTime,
+            end: condition.abatementDateTime,
+            type: condition.abatementDateTime ? 'range' : 'point'
+          })   
+        });  
+      }
+      if(continuityOfCare.immunizations){
+        continuityOfCare.immunizations.forEach(function(immunization){
+          data.items.push({
+            content: immunization.identifier[0].type.text,
+            group: 'immunizations',
+            start: immunization.date,
+            end: null,
+            type: 'point'
+          })   
+        });  
+      }
+      if(continuityOfCare.imagingStudies){
+        continuityOfCare.imagingStudies.forEach(function(imagingStudy){
+          data.items.push({
+            content: imagingStudy.description,
+            group: 'imagingStudies',
+            start: imagingStudy.started,
+            type: 'point'
+          })   
+        });  
+      }
+      if(continuityOfCare.medicaitonStatements){
+        continuityOfCare.medicaitonStatements.forEach(function(medicationStatement){
+          data.items.push({
+            content: medicationStatement.medicationReference.display,
+            group: 'MedicationStatements',
+            start: effectiveDateTime.started,
+            type: 'point'
+          })   
+        });  
+      }
+      if(continuityOfCare.observations){
+        continuityOfCare.observations.forEach(function(observation){
+          data.items.push({
+            content: observation.identifier[0].value,
+            group: 'Observations',
+            start: observation.effectiveDateTime,
+            type: 'point'
+          })   
+        });  
+      }
+      if(continuityOfCare.procedures){
+        continuityOfCare.procedures.forEach(function(procedure){
+          data.items.push({
+            content: procedure.identifier[0].value,
+            group: 'Procedures',
+            start: procedure.performedDateTime,
+            type: 'point'
+          })   
+        });  
+      }      
+      
+
+
     }
 
     const now = moment().minutes(0).seconds(0).milliseconds(0)

@@ -26,15 +26,18 @@ import { Statistics } from '/imports/api/statistics/statistics';
 import { Table } from 'react-bootstrap';
 import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 
+import { parseString } from 'xml2js';
+
 var componentConfig = {
-  allowedFiletypes: ['.jpg', '.png', '.json', '.23me', '.geojson'],
-  iconFiletypes: ['.jpg', '.png', '.json', '.23me', '.geojson'],
+  allowedFiletypes: ['.json', '.ccd', '.jpg', '.png', '.23me', '.geojson'],
+  iconFiletypes: ['.json', '.xml', '.ccd', '.23me', '.geojson',  '.png',  '.jpg','.dicom'],
   showFiletypeIcon: true,
   postUrl: '/uploadHandler'
 };
 var djsConfig = {
   autoProcessQueue: false,
-  addRemoveLinks: true
+  addRemoveLinks: true,
+  dictDefaultMessage: 'Drop a file to begin import (or click to select a file).  '
 };
 var eventHandlers = {
   // This one receives the dropzone object as the first parameter
@@ -42,8 +45,8 @@ var eventHandlers = {
   // object
   init: null,
   // All of these receive the event as first parameter:
-  drop: function(){
-    console.log("Drop!");
+  drop: function(input){
+    console.log("Drop!", input);
   },
   dragstart: null,
   dragend: null,
@@ -52,56 +55,74 @@ var eventHandlers = {
   dragleave: null,
   // All of these receive the file as first parameter:
   addedfile: function (file) {
-    console.log("Received a file; sending to server.");
+    console.log("Received a file; sending to server.", file);
 
-    // well, we received a file; lets take a peek inside to figure out what to do with it
+    // we're going to need the extention to figure out what kind of file parsing we're going to do
+    var extension = file.name.split('.').pop().toLowerCase();
+    console.log('Extension: ', extension);
+    Session.set('fileExtension', extension);
+
+    // we received a file; lets take a peek inside to figure out what to do with it
     var reader = new FileReader();
 
     reader.onload = function(e) {
 
       if(reader.result){
-        console.log('reader.result', JSON.parse(reader.result));
+        process.env.TRACE && console.log('reader.result', reader.result);
 
-        var data = JSON.parse(reader.result);
+        var data;
 
-        // it might just be .geojason
-        if(data.type == "FeatureCollection"){
-          console.log('Think we found a .geojson file!');          
-
-          Meteor.call("parseGeojson", data, function (error, result){
-            if (error){
-              console.log("error", error);
-            }
-            if (result){
-              console.log("result", result);
-            }
+        if(extension == "xml"){
+          console.log('Found an .xml file; loading...');
+    
+          parseString(reader.result, function (err, result) {
+            console.log('managed to parse xml...')
+            console.dir(result);       
+            Session.set('dataContent', result);    
           });
+
+        } else if(extension == "json"){
+          console.log('Found an .json file; loading...');
+
+          Session.set('dataContent', JSON.parse(reader.result));    
+          
+        } else if(extension == "geojson"){
+          if(data.type == "FeatureCollection"){
+            console.log('Found an .geojson file; loading...');
+  
+            Meteor.call("parseGeojson", data, function (error, result){
+              if (error){
+                console.log("error", error);
+              }
+              if (result){
+                console.log("result", result);
+              }
+            });
+          }
+        } else if(extension == "23andme"){
+          if(data.type == "FeatureCollection"){
+            console.log('Found an .23andme file; loading...');
+            
+            Meteor.call("parseGenome", reader.result, function (error, result){
+              if (error){
+                console.log("error", error);
+              }
+              if (result){
+                console.log("result", result);
+              }
+            });
+          }
         }
-
-
-        // wasn't json; so lets open up the file and take a look at the first line
-        fileContent = reader.result;
-        fileContentArray = fileContent.split('\n');
-
-        // hey, the first line mentions 23andMe; lets assume that it's a patient's raw data
-        // and send it to the server for processing
-        if (fileContentArray[0].includes("23andMe")) {
-          console.log("This appears to be a 23andMe datafile!");
-
-          Meteor.call("parseGenome", fileContent, function (error, result){
-            if (error){
-              console.log("error", error);
-            }
-            if (result){
-              console.log("result", result);
-            }
-          });
-        }
-
-
       }
     }
-    reader.readAsText(file);
+
+    // do we encounter a file that needs special file reading access???
+    if(extension == ".2fa"){
+      console.log('Abort!  Found a raw genome sequence; too big to load via the user interface.');
+    } else {
+      // otherwise, we assume it's some sort of text file
+      reader.readAsText(file);      
+    }
   },
   removedfile: null,
   thumbnail: null,
@@ -128,9 +149,8 @@ var eventHandlers = {
   queuecomplete: null
 };
 
-Session.setDefault('showServerCounts', false);
-Session.setDefault('patientDialogOpen', false);
-Session.setDefault('open', false);
+Session.setDefault('fileExtension', '');
+Session.setDefault('dataContent', '');
 
 export class DataImportPage extends React.Component {
   constructor(props) {
@@ -145,7 +165,12 @@ export class DataImportPage extends React.Component {
         isAdmin: false
       },
       title: "Client Collections",
-      upstreamSync: false
+      upstreamSync: false,
+      preview: {
+        fileExtension: Session.get('fileExtension'),
+        maxHeight: (Session.get('appHeight') - 520 ) + 'px',
+        data: ''
+      }
     };
 
     if(Meteor.settings && Meteor.settings.public && Meteor.settings.public.meshNetwork && Meteor.settings.public.meshNetwork.upstreamSync){
@@ -153,6 +178,9 @@ export class DataImportPage extends React.Component {
       data.upstreamSync = Meteor.settings.public.meshNetwork.upstreamSync;
     }
 
+    if(['xml', 'json'].includes(Session.get('fileExtension'))){
+      data.preview.data = JSON.stringify(Session.get('dataContent'), null, 2);
+    }
 
     let user = Meteor.user();
     if(user){
@@ -172,24 +200,58 @@ export class DataImportPage extends React.Component {
     console.log('DataImportPage', data);
     return data;
   }
-  openTutorialOverlay(){
-    Session.set('patientDialogOpen', true);
-  }
-  handleOpen(){
-    Session.set('open', true);
-  }
-  handleClose(){
-    Session.set('open', false);
-  }    
+   
   changeInput(variable, event, value){
     Session.set(variable, value);
   }  
+  importFile(variable, event, value){
+    if(this.data.preview.fileExtension === 'xml'){
+      alert("We haven't implemented .xml parsing yet.  Contact sales@symptomatic.io if you'd like to sponsor this work.  Otherwise, download the source code and implement a parser in DataImportPage.js")      
+    }
+    if(this.data.preview.fileExtension === 'json'){
+      var dataContent = Session.get('dataContent');
+      if(dataContent.allergyIntolerances){
+        Meteor.users.update({_id: Meteor.userId()}, {$set: {
+          'profile.continuityOfCare.allergyIntolerances': dataContent.allergyIntolerances
+        }});        
+      }
+      if(dataContent.carePlans){
+        Meteor.users.update({_id: Meteor.userId()}, {$set: {
+          'profile.continuityOfCare.carePlans': dataContent.carePlans
+        }});        
+      }
+      if(dataContent.conditions){
+        Meteor.users.update({_id: Meteor.userId()}, {$set: {
+          'profile.continuityOfCare.conditions': dataContent.conditions
+        }});        
+      }    
+      if(dataContent.immunizations){
+        Meteor.users.update({_id: Meteor.userId()}, {$set: {
+          'profile.continuityOfCare.immunizations': dataContent.immunizations
+        }});        
+      }            
+      if(dataContent.medicationStatements){
+        Meteor.users.update({_id: Meteor.userId()}, {$set: {
+          'profile.continuityOfCare.medicationStatements': dataContent.medicationStatements
+        }});        
+      }   
+      if(dataContent.observations){
+        Meteor.users.update({_id: Meteor.userId()}, {$set: {
+          'profile.continuityOfCare.observations': dataContent.observations
+        }});        
+      }         
+      if(dataContent.procedures){
+        Meteor.users.update({_id: Meteor.userId()}, {$set: {
+          'profile.continuityOfCare.procedures': dataContent.procedures
+        }});        
+      }        
+    }
+  }
   render(){
-
     return(
       <div id="DataImportPage">
         <VerticalCanvas >
-          <GlassCard>
+          <GlassCard height='auto' >
             <CardTitle
               title="Data Import"
             />
@@ -198,9 +260,18 @@ export class DataImportPage extends React.Component {
                 config={componentConfig}
                  eventHandlers={eventHandlers}
                  djsConfig={djsConfig}
-                 onTouchTap={this.openTutorialOverlay}
+                 //onTouchTap={this.openTutorialOverlay}
               />
+              <pre style={{width: '100%', position: 'relative', marginTop: '40px', maxHeight: this.data.preview.maxHeight}}>
+                { this.data.preview.data }
+              </pre>              
             </CardText>
+            <CardActions>
+            <FlatButton 
+                label='Import' 
+                onClick={this.importFile.bind(this)}
+                />
+            </CardActions>
           </GlassCard>
         </VerticalCanvas>
       </div>

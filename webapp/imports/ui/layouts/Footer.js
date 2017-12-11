@@ -12,6 +12,7 @@ import ReactMixin from 'react-mixin';
 import {Session} from 'meteor/session';
 import { ToolbarTitle } from 'material-ui/Toolbar';
 import { browserHistory } from 'react-router';
+import { has, get } from 'lodash';
 
 Session.setDefault('showThemingControls', false);
 
@@ -100,6 +101,22 @@ export class Footer extends React.Component {
 
     browserHistory.push(url);
   }
+  exportContinuityOfCareDoc(){
+    console.log('exportContinuityOfCareDoc');
+
+    var continuityOfCareDoc = {}
+
+    if(Meteor.user()){
+      continuityOfCareDoc = get(Meteor.user(), 'profile.continuityOfCare');
+    }    
+
+    var dataString = 'data:text/csv;charset=utf-8,' + encodeURIComponent(JSON.stringify(continuityOfCareDoc, null, 2));  
+    var downloadlAnchorElement = document.getElementById('downloadAnchorElement');
+    downloadAnchorElement.setAttribute("href", dataString );
+    downloadAnchorElement.setAttribute("download", "continuity-of-care.json");
+    downloadAnchorElement.click();
+    // window.open('data:text/csv;charset=utf-8,' + escape(continuityOfCareDoc), '_self');  
+  }
   renderWestNavbar(displayThemeNavbar){
     if (displayThemeNavbar) {
       // the user has pressed ctrl-cmd-t and is looking at theming controls
@@ -135,10 +152,11 @@ export class Footer extends React.Component {
         return (
           <div>
             <FlatButton label='Import' className='importData' ref='importCcd' onClick={this.openLink.bind(this, '/data-import')} style={this.data.style.buttonText} ></FlatButton>
-            <FlatButton label='Continuity of Care Document' className='ccdPage' ref='ccdPage' onClick={this.openLink.bind(this, '/continuity-of-care')} style={this.data.style.buttonText} ></FlatButton>
+            <FlatButton label='Continuity of Care' className='ccdPage' ref='ccdPage' onClick={this.openLink.bind(this, '/continuity-of-care')} style={this.data.style.buttonText} ></FlatButton>
             <FlatButton label='Timeline' className='verticalTimeline' ref='verticalTimeline' onClick={this.openLink.bind(this, '/timeline')} style={this.data.style.buttonText} ></FlatButton>
             <FlatButton label='Sidescroll Timeline' className='horizontalTimeline' ref='horizontalTimeline' onClick={this.openLink.bind(this, '/timeline-sidescroll')} style={this.data.style.buttonText} ></FlatButton>
-            <FlatButton label='Export CCD' className='exportCcd' ref='exportCcd' style={this.data.style.buttonText} ></FlatButton>
+            <FlatButton label='Export CCD' id="exportContinuityOfCareDoc" className='exportCcd' ref='exportContinuityOfCareDoc' style={this.data.style.buttonText} onClick={this.exportContinuityOfCareDoc}></FlatButton>
+            <a id="downloadAnchorElement" style={{display: "none"}}></a>
           </div>
         );
 

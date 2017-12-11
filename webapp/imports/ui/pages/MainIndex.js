@@ -47,7 +47,6 @@ import Leaf from 'react-icons/lib/io/leaf';
 import Ribbon from 'react-icons/lib/io/ribbon-b';
 import Nutrition from 'react-icons/lib/io/ios-nutrition';
 import MdLocalPhramacy from 'react-icons/lib/md/local-pharmacy';
-
 import MdAddAlert from 'react-icons/lib/md/add-alert';
 import MdList from 'react-icons/lib/md/list';
 import MdDashboard from 'react-icons/lib/md/dashboard';
@@ -592,7 +591,7 @@ export class MainIndex extends React.Component {
           <div id="practitionersTile" style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/practitioners') } >
             <GlassCard style={this.data.style.indexCard} >
               <CardTitle
-                title={<Heartbeat />}
+                title={<Person />}
                 subtitle='Practitioners'
                 titleStyle={this.data.style.title}
                   subtitleStyle={this.data.style.subtitle}
@@ -852,7 +851,7 @@ export class MainIndex extends React.Component {
             <div id='diagnosticReportsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/diagnostic-reports') } >
               <GlassCard style={this.data.style.indexCard} >
                 <CardTitle
-                  title={<Heartbeat />}
+                  title={<Clipboard />}
                   subtitle='Diagnostic Report'
                   titleStyle={this.data.style.title}
                   subtitleStyle={this.data.style.subtitle}

@@ -21,6 +21,7 @@ import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import { get } from 'lodash';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { has } from 'lodash';
+import { RouteTransition } from 'react-router-transition';
 // import injectTapEventPlugin from 'react-tap-event-plugin';
 
 const muiTheme = getMuiTheme({
@@ -156,7 +157,18 @@ export class App extends React.Component {
           {orbital}
           <Header />
             <div className='primaryFlexPanel' >
-              { this.props.children }
+              {/* { this.props.children } */}
+
+              <RouteTransition                  
+                  // pathname={this.props.location.pathname}
+                  // atEnter={pop.atEnter}
+                  // atLeave={pop.atLeave}
+                  // atActive={pop.atActive}
+                  className="transition-wrapper"
+                >
+                  {this.props.children}
+                </RouteTransition>
+
             </div>
             <div className='secondaryFlexPanel' style={this.data.style.secondary}>
               <VerticalCanvas>
