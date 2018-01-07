@@ -64,7 +64,6 @@ export class TimelineSidescrollPage extends React.Component {
         showMajorLabels: true,
         showCurrentTime: true,
         zoomMin: 1000000,
-        //type: 'background',
         format: {
           minorLabels: {
             minute: 'h:mma',
@@ -72,9 +71,9 @@ export class TimelineSidescrollPage extends React.Component {
           }
         },
         start: '1978-01-25',
-        end: '2018-01-01',
-        min: '1977-01-01',
-        max: '2022-01-01', 
+        end: moment().format("YYYY-MM-DD"),
+        min: '1977-04-25',
+        max: '2054-01-01', 
         groupOrder: 'content'  // groupOrder can be a property name or a sorting function'
       },
       groups: [],
@@ -83,6 +82,20 @@ export class TimelineSidescrollPage extends React.Component {
 
     if(Meteor.userId()){
       var continuityOfCare = get(Meteor.user(), 'profile.continuityOfCare', {});
+
+      data.items.push({
+        start: '1977-04-25',
+        end: '1978-01-25',
+        type: 'background',
+        style: 'background-color: #ecdcde; opacity: 0.5;'
+      })   
+
+      data.items.push({
+        start: '1988-01-25',
+        end: '1995-01-25',
+        type: 'background',
+        style: 'background-color: #ecdcde; opacity: 0.5;'
+      })   
 
       if(continuityOfCare.allergyIntolerances){
         continuityOfCare.allergyIntolerances.forEach(function(allergy){
@@ -96,13 +109,14 @@ export class TimelineSidescrollPage extends React.Component {
         });  
       }
       if(continuityOfCare.carePlans){
-        continuityOfCare.carePlans.forEach(function(carePlan){
+        continuityOfCare.carePlans.forEach(function(carePlan){        
           data.items.push({
             content: carePlan.title,
             group: 'CarePlans',
-            start: carePlan.period.start,
-            end: carePlan.period.end,
-            type: 'range'
+            start: get(carePlan, 'period.start', null),
+            end: get(carePlan, 'period.end', null),
+            type: 'range',
+            style: "background-color: white; border-color: lightgray;"
           })   
         });  
       }
@@ -113,7 +127,9 @@ export class TimelineSidescrollPage extends React.Component {
             group: 'Conditions',
             start: condition.onsetDateTime,
             end: condition.abatementDateTime,
-            type: condition.abatementDateTime ? 'range' : 'point'
+            type: condition.abatementDateTime ? 'range' : 'point',
+            style: condition.abatementDateTime ? "background-color: white; border-color: lightgray;" : "",
+            //style: 
           })   
         });  
       }
@@ -121,8 +137,8 @@ export class TimelineSidescrollPage extends React.Component {
         continuityOfCare.immunizations.forEach(function(immunization){
           data.items.push({
             content: immunization.identifier[0].type.text,
-            group: 'immunizations',
-            start: immunization.date,
+            group: 'Immunizations',
+            start: get(immunization, 'date'),
             end: null,
             type: 'point'
           })   
@@ -130,40 +146,46 @@ export class TimelineSidescrollPage extends React.Component {
       }
       if(continuityOfCare.imagingStudies){
         continuityOfCare.imagingStudies.forEach(function(imagingStudy){
+          console.log('imagingStudy', imagingStudy);
           data.items.push({
             content: imagingStudy.description,
-            group: 'imagingStudies',
-            start: imagingStudy.started,
+            group: 'ImagingStudies',
+            start: get(imagingStudy, 'started', null),
             type: 'point'
           })   
         });  
       }
-      if(continuityOfCare.medicaitonStatements){
-        continuityOfCare.medicaitonStatements.forEach(function(medicationStatement){
-          data.items.push({
-            content: medicationStatement.medicationReference.display,
-            group: 'MedicationStatements',
-            start: effectiveDateTime.started,
-            type: 'point'
-          })   
+      if(continuityOfCare.medicationStatements){
+        continuityOfCare.medicationStatements.forEach(function(medicationStatement){
+          console.log('medicationStatement', medicationStatement);
+          if(get(medicationStatement, 'effectiveDateTime')){
+            data.items.push({
+              content: get(medicationStatement, 'medicationReference.display', ''),
+              group: 'MedicationStatements',
+              start: get(medicationStatement, 'effectiveDateTime', null),
+              type: 'point'
+            });  
+          }
         });  
       }
       if(continuityOfCare.observations){
         continuityOfCare.observations.forEach(function(observation){
+          //console.log('observation', observation);
           data.items.push({
-            content: observation.identifier[0].value,
+            content: get(observation, 'identifier[0].value'),
             group: 'Observations',
-            start: observation.effectiveDateTime,
+            start: get(observation, 'effectiveDateTime', null),
             type: 'point'
           })   
         });  
       }
       if(continuityOfCare.procedures){
         continuityOfCare.procedures.forEach(function(procedure){
+          //console.log('procedure', procedure);
           data.items.push({
             content: procedure.identifier[0].value,
             group: 'Procedures',
-            start: procedure.performedDateTime,
+            start: get(procedure, 'performedDateTime'),
             type: 'point'
           })   
         });  
@@ -173,10 +195,10 @@ export class TimelineSidescrollPage extends React.Component {
 
     }
 
-    const now = moment().minutes(0).seconds(0).milliseconds(0)
+    // const now = moment().minutes(0).seconds(0).milliseconds(0);
     
       // create a data set with groups
-    const names = ['Conditions', 'Medications', 'Observations', 'Procedures', "CarePlans", "Allergies", "Immunizations", "Imaging Studies"]
+    const names = ['Conditions', 'MedicationStatements', 'Observations', 'Procedures', "CarePlans", "Allergies", "Immunizations", "Imaging Studies"]
     for (let g = 0; g < names.length; g++) {
       data.groups.push({ id: names[g], content: names[g] })
     }

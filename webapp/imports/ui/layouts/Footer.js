@@ -117,6 +117,11 @@ export class Footer extends React.Component {
     downloadAnchorElement.click();
     // window.open('data:text/csv;charset=utf-8,' + escape(continuityOfCareDoc), '_self');  
   }
+  clearContinuityOfCareDoc(){
+    Meteor.users.update({_id: Meteor.userId()}, {$unset: {
+      'profile.continuityOfCare': ''
+    }});
+  }
   renderWestNavbar(displayThemeNavbar){
     if (displayThemeNavbar) {
       // the user has pressed ctrl-cmd-t and is looking at theming controls
@@ -156,6 +161,7 @@ export class Footer extends React.Component {
             <FlatButton label='Timeline' className='verticalTimeline' ref='verticalTimeline' onClick={this.openLink.bind(this, '/timeline')} style={this.data.style.buttonText} ></FlatButton>
             <FlatButton label='Sidescroll Timeline' className='horizontalTimeline' ref='horizontalTimeline' onClick={this.openLink.bind(this, '/timeline-sidescroll')} style={this.data.style.buttonText} ></FlatButton>
             <FlatButton label='Export CCD' id="exportContinuityOfCareDoc" className='exportCcd' ref='exportContinuityOfCareDoc' style={this.data.style.buttonText} onClick={this.exportContinuityOfCareDoc}></FlatButton>
+            <FlatButton label='Clear' id="clearContinuityOfCareDoc" className='clearCcd' ref='clearContinuityOfCareDoc' style={this.data.style.buttonText} onClick={this.clearContinuityOfCareDoc}></FlatButton>
             <a id="downloadAnchorElement" style={{display: "none"}}></a>
           </div>
         );
