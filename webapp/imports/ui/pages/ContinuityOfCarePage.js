@@ -1,3 +1,11 @@
+// http://wwww.hl7.org/fhir/comparison-cda.html  
+// http://wwww.hl7.org/FHIR/us/ccda/2017Jan  
+// http://wwww.hl7.org/FHIR/us/ccda/2017Jan/StructureDefinition-CCDA-on-FHIR-US-Realm-Header.html  
+// http://wwww.hl7.org/FHIR/us/ccda/2017Jan/StructureDefinition-CCDA-on-FHIR-Continuity-of-Care-Document.html  
+// http://wwww.hl7.org/FHIR/us/ccda/2017Jan/StructureDefinition-CCDA-on-FHIR-Continuity-of-Care-Document-Example.json.html  
+
+
+
 import { Card, CardActions, CardHeader, CardText, CardTitle } from 'material-ui/Card';
 import { Col, Grid, Row } from 'react-bootstrap';
 import {
