@@ -195,59 +195,59 @@ export class MainIndex extends React.Component {
 
 
               <Row>
-                <Col lg={3} style={this.data.style.column}>
+                <Col sm={3} style={this.data.style.column}>
                   {this.renderDiagnosticReport(this.data.user)}
                 </Col>
-                <Col lg={3} style={this.data.style.column}>
+                <Col sm={3} style={this.data.style.column}>
                   {this.renderGoals(this.data.user)}
                 </Col>
-                <Col lg={3} style={this.data.style.column}>
+                <Col sm={3} style={this.data.style.column}>
                   {this.renderImmunizations(this.data.user)}
                 </Col>
-                <Col lg={3} style={this.data.style.column}>
+                <Col sm={3} style={this.data.style.column}>
                   {this.renderLocations(this.data.user)}
                 </Col>
               </Row>
 
               <Row>
-                <Col lg={3} style={this.data.style.column}>
+                <Col sm={3} style={this.data.style.column}>
                 {this.renderOrganizations(this.data.user)}
                 </Col>
-                <Col lg={3} style={this.data.style.column}>
+                <Col sm={3} style={this.data.style.column}>
                   {this.renderMedications(this.data.user)}
                 </Col>
-                <Col lg={3} style={this.data.style.column}>
+                <Col sm={3} style={this.data.style.column}>
                   {this.renderMedicationOrders(this.data.user)}
                 </Col>
-                <Col lg={3} style={this.data.style.column}>
+                <Col sm={3} style={this.data.style.column}>
                   {this.renderMedicationStatements(this.data.user)}
                 </Col>
               </Row>
 
 
               <Row>
-                <Col lg={3} style={this.data.style.column}>
+                <Col sm={3} style={this.data.style.column}>
                   {this.renderObservations(this.data.user)}
                 </Col>
-                <Col lg={3} style={this.data.style.column}>
+                <Col sm={3} style={this.data.style.column}>
                   {this.renderPractitioners(this.data.user)}
                 </Col>
-                <Col lg={3} style={this.data.style.column}>
+                <Col sm={3} style={this.data.style.column}>
                   {this.renderProcedures(this.data.user)}
                 </Col>
-                <Col lg={3} style={this.data.style.column}>
+                <Col sm={3} style={this.data.style.column}>
                   {this.renderRiskAssessments(this.data.user)}
                 </Col>
               </Row>
               <Row>
-                <Col lg={3} style={this.data.style.column}>
+                <Col sm={3} style={this.data.style.column}>
                   {this.renderPatients(this.data.user)}
                 </Col>
-                <Col lg={3} style={this.data.style.column}>
+                <Col sm={3} style={this.data.style.column}>
                 </Col>
-                <Col lg={3} style={this.data.style.column}>
+                <Col sm={3} style={this.data.style.column}>
                 </Col>
-                <Col lg={3} style={this.data.style.column}>
+                <Col sm={3} style={this.data.style.column}>
                 </Col>
               </Row>
 
