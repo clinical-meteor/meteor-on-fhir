@@ -1,11 +1,11 @@
 App.info({
   id: 'io.sympatomatic.support',
-  name: 'Symptomatic Support Forum',
-  description: 'A support forum for Clinical Meteor and managed services.',
+  name: 'Symptomatic',
+  description: 'Symptmoatic Continuity of Care Viewer.',
   author: 'Abigail Watson',
-  email: 'pentasyllabic.studios@gmail.com',
+  email: 'abigail@symptomatic.io',
   website: 'http://meteor-on-fhir.meteorapp.com',
-  version: '0.2.0'
+  version: '0.3.0'
 });
 
 App.icons({
@@ -56,8 +56,8 @@ App.setPreference('DisallowOverscroll', 'true');
 // Set PhoneGap/Cordova access rules
 App.accessRule('http://localhost', { type: 'navigation' } );
 App.accessRule('http://localhost:3000', { type: 'navigation' } );
-App.accessRule('http://checklist.symptomatic.io', { type: 'navigation' } );
-App.accessRule('http://checklist-manifesto.meteorapp.com', { type: 'navigation' } );
+App.accessRule('http://www.symptomatic.io', { type: 'navigation' } );
+App.accessRule('http://meteor-on-fhir.meteorapp.com', { type: 'navigation' } );
 
 App.setPreference("BackupWebStorage", "local");
 // // Pass preferences for a particular PhoneGap/Cordova plugin

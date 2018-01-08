@@ -319,6 +319,7 @@ export class LocationsPage extends React.Component {
     data.style = Glass.blur(data.style);
     data.style.appbar = Glass.darkroom(data.style.appbar);
     data.style.tab = Glass.darkroom(data.style.tab);
+    data.apiKey = get(Meteor, 'settings.public.credentials.tokbox.apiKey', '');
 
     if(process.env.NODE_ENV === "test") console.log("LocationsPage[data]", data);
     return data;
@@ -487,6 +488,7 @@ export class LocationsPage extends React.Component {
           defaultZoom={this.data.zoom}           
           options={this.data.options}
           bootstrapURLKeys={{
+            key: this.data.apiKey,
             libraries: 'visualization'
           }}
           onGoogleApiLoaded={function({map, maps}){

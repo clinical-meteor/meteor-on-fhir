@@ -88,7 +88,6 @@ clinical:hl7-resource-procedure
 clinical:hl7-resource-questionnaire
 clinical:hl7-resource-questionnaire-response
 clinical:hl7-resource-risk-assessment
-clinical:landing-page
 #clinical:plugin-default-landing-page
 #clinical:routing-algorithms
 
@@ -106,4 +105,7 @@ percolate:synced-cron
 d3js:d3
 mousetrap:mousetrap@1.4.6
 
-symptomatic:blockchain-core
+
+### Remove these to deploy to mobile
+# symptomatic:blockchain-core
+clinical:landing-page
