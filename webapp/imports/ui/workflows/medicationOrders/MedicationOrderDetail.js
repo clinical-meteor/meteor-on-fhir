@@ -91,7 +91,7 @@ export default class MedicationOrderDetail extends React.Component {
     return (
       <div id={this.props.id} className="medicationOrderDetail">
         <CardText>
-          <TextField
+          {/* <TextField
             id='patientDisplayInput'
             ref='patientDisplay'
             name='patientDisplay'
@@ -144,7 +144,7 @@ export default class MedicationOrderDetail extends React.Component {
             value={this.data.medicationOrder.evidence[0].detail[0] ? this.data.medicationOrder.evidence[0].detail[0].display : ''}
             onChange={ this.changeState.bind(this, 'evidenceDisplay')}
             fullWidth
-            /><br/>
+            /><br/> */}
 
 
 
