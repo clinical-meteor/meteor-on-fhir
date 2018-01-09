@@ -1,6 +1,6 @@
 Meteor.methods({
   initializeChecklists: function (){
-    console.log('Initializing Lists', Lists.find().fetch());
+    console.log('Initializing Lists...');
 
     var data = [
       {name: "Collect Blood Specimen",
