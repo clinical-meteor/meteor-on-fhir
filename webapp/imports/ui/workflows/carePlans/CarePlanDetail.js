@@ -91,60 +91,7 @@ export default class CarePlanDetail extends React.Component {
     return (
       <div id={this.props.id} className="carePlanDetail">
         <CardText>
-          <TextField
-            id='patientDisplayInput'
-            ref='patientDisplay'
-            name='patientDisplay'
-            floatingLabelText='Patient'
-            value={this.data.carePlan.patient ? this.data.carePlan.patient.display : ''}
-            onChange={ this.changeState.bind(this, 'patientDisplay')}
-            fullWidth
-            /><br/>
-          <TextField
-            id='asserterDisplayInput'
-            ref='asserterDisplay'
-            name='asserterDisplay'
-            floatingLabelText='Asserter'
-            value={this.data.carePlan.asserter ? this.data.carePlan.asserter.display : ''}
-            onChange={ this.changeState.bind(this, 'asserterDisplay')}
-            fullWidth
-            /><br/>
-          <TextField
-            id='clinicalStatusInput'
-            ref='clinicalStatus'
-            name='clinicalStatus'
-            floatingLabelText='Clinical Status'
-            value={this.data.carePlan.clinicalStatus ? this.data.carePlan.clinicalStatus : ''}
-            onChange={ this.changeState.bind(this, 'clinicalStatus')}
-            fullWidth
-            /><br/>
-          <TextField
-            id='snomedCodeInput'
-            ref='snomedCode'
-            name='snomedCode'
-            floatingLabelText='SNOMED Code'
-            value={this.data.carePlan.code.coding[0] ? this.data.carePlan.code.coding[0].code : ''}
-            onChange={ this.changeState.bind(this, 'snomedCode')}
-            fullWidth
-            /><br/>
-          <TextField
-            id='snomedDisplayInput'
-            ref='snomedDisplay'
-            name='snomedDisplay'
-            floatingLabelText='SNOMED Display'
-            value={this.data.carePlan.code.coding[0] ? this.data.carePlan.code.coding[0].display : ''}
-            onChange={ this.changeState.bind(this, 'snomedDisplay')}
-            fullWidth
-            /><br/>
-          <TextField
-            id='evidenceDisplayInput'
-            ref='evidenceDisplay'
-            name='evidenceDisplay'
-            floatingLabelText='Evidence (Observation)'
-            value={this.data.carePlan.evidence[0].detail[0] ? this.data.carePlan.evidence[0].detail[0].display : ''}
-            onChange={ this.changeState.bind(this, 'evidenceDisplay')}
-            fullWidth
-            /><br/>
+
 
 
 

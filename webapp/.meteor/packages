@@ -88,7 +88,6 @@ clinical:hl7-resource-procedure
 clinical:hl7-resource-questionnaire
 clinical:hl7-resource-questionnaire-response
 clinical:hl7-resource-risk-assessment
-#clinical:plugin-default-landing-page
 #clinical:routing-algorithms
 
 # oauth server
@@ -108,4 +107,5 @@ mousetrap:mousetrap@1.4.6
 
 ### Remove these to deploy to mobile
 # symptomatic:blockchain-core
-clinical:landing-page
+# clinical:plugin-default-landing-page
+symptomatic:landing-page

@@ -736,7 +736,7 @@ export class MainIndex extends React.Component {
             <GlassCard style={this.data.style.indexCard} >
               <CardTitle
                 title={<Heartbeat />}
-                subtitle='Continuity of Care Document'
+                subtitle='Continuity of Care'
                 titleStyle={this.data.style.title}
                 subtitleStyle={this.data.style.subtitle}
               />

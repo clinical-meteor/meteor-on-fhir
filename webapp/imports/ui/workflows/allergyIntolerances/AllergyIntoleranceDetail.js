@@ -23,7 +23,7 @@ let defaultAllergyIntolerance = {
     'category': ['food'],
     'code': null,
     'patient': null,
-    "assertedDate": null
+    "onsetDateTime": null
 };
 
 
@@ -147,7 +147,7 @@ export default class AllergyIntoleranceDetail extends React.Component {
             /><br/>
 
           <br/>
-          { this.renderDatePicker(this.data.showDatePicker, get(this, 'data.allergy.assertedDate') ) }
+          { this.renderDatePicker(this.data.showDatePicker, get(this, 'data.allergy.onsetDateTime') ) }
           <br/>
           
 
@@ -172,7 +172,7 @@ export default class AllergyIntoleranceDetail extends React.Component {
       'category': allergyIntoleranceUpsert.category,
       'code': null,
       'patient': null,
-      "assertedDate": allergyIntoleranceUpsert.datePicker
+      "onsetDateTime": allergyIntoleranceUpsert.onsetDateTime
 
       // "resourceType": "Immunization",
       // 'notGiven': true,
@@ -271,7 +271,7 @@ export default class AllergyIntoleranceDetail extends React.Component {
         }
         break;
       case "datePicker":
-        allergyUpdate.assertedDate = value;
+        allergyUpdate.onsetDateTime = value;
         break;
   
       default:

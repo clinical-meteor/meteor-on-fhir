@@ -100,7 +100,7 @@ export class TimelineSidescrollPage extends React.Component {
       if(continuityOfCare.allergyIntolerances){
         continuityOfCare.allergyIntolerances.forEach(function(allergy){
           data.items.push({
-            content: allergy.identifier[0].value,
+            content: get(allergy, 'identifier[0].value'),
             group: 'Allergies',
             start: allergy.onsetDateTime,
             end: null,
@@ -123,20 +123,19 @@ export class TimelineSidescrollPage extends React.Component {
       if(continuityOfCare.conditions){
         continuityOfCare.conditions.forEach(function(condition){
           data.items.push({
-            content: condition.identifier[0].value,
+            content: get(condition, 'identifier[0].value') ? get(condition, 'identifier[0].value', '') : get(condition, 'code.coding[0].display', ''),
             group: 'Conditions',
             start: condition.onsetDateTime,
             end: condition.abatementDateTime,
             type: condition.abatementDateTime ? 'range' : 'point',
-            style: condition.abatementDateTime ? "background-color: white; border-color: lightgray;" : "",
-            //style: 
+            style: condition.abatementDateTime ? "background-color: white; border-color: lightgray;" : ""
           })   
         });  
       }
       if(continuityOfCare.immunizations){
         continuityOfCare.immunizations.forEach(function(immunization){
           data.items.push({
-            content: immunization.identifier[0].type.text,
+            content: get(immunization, 'identifier[0].type.text'),
             group: 'Immunizations',
             start: get(immunization, 'date'),
             end: null,
@@ -148,7 +147,7 @@ export class TimelineSidescrollPage extends React.Component {
         continuityOfCare.imagingStudies.forEach(function(imagingStudy){
           console.log('imagingStudy', imagingStudy);
           data.items.push({
-            content: imagingStudy.description,
+            content: get(imagingStudy, 'description'),
             group: 'ImagingStudies',
             start: get(imagingStudy, 'started', null),
             type: 'point'
@@ -183,7 +182,7 @@ export class TimelineSidescrollPage extends React.Component {
         continuityOfCare.procedures.forEach(function(procedure){
           //console.log('procedure', procedure);
           data.items.push({
-            content: procedure.identifier[0].value,
+            content: get(procedure, 'identifier[0].value') ? get(procedure, 'identifier[0].value') : get(procedure, 'code.text'),
             group: 'Procedures',
             start: get(procedure, 'performedDateTime'),
             type: 'point'

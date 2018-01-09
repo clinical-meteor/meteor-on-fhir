@@ -59,7 +59,7 @@ export class PatientSidebar extends React.Component {
           <hr />
 
 
-          <IndexLinkContainer to='/alergies'>
+          <IndexLinkContainer to='/allergies'>
              <ListItem primaryText='Allergy Intolerances' href='/weblog' />
           </IndexLinkContainer>
           <IndexLinkContainer to='/care-plans'>

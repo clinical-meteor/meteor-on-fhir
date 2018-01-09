@@ -98,9 +98,9 @@ scripts/remove_restricted_media_assets.sh
 #### E. Mobile Build   
 
 ```sh
-
-# install meteor-desktop / electron
-meteor npm install meteor-desktop
+# don't include geodata 
+cd webapp
+mv public/geodata ..
 
 # development
 # this can be tricky, because http://localhost:3000 may need to be a local IP address
@@ -120,6 +120,8 @@ NODE_ENV=dev meteor run ios-device --mobile-server http://meteor-on-fhir.meteora
  # build the executables and add them into the /public directory
 meteor add-platform ios
 meteor add omega:meteor-desktop-watcher@=0.11.1 omega:meteor-desktop-bundler@=0.11.1 omega:meteor-desktop-localstorage@=0.0.11
+
+# install meteor-desktop / electron
 meteor npm install --save meteor-desktop
 
 # add the .desktop directory, which has files needed by omega:meteor-desktop
@@ -133,7 +135,6 @@ NODE_ENV=dev meteor --mobile-server http://localhost:3000 --settings configs/set
 npm run desktop
 
 # or try the shortcut script
-
 meteor npm run-script desktop
 
 # If you want to build a production release, that connects to the main server, you'll need to specify a different URL
@@ -146,6 +147,7 @@ npm run desktop -- build-installer http://www.symptomatic.io
 
 ```sh
 # remove the desktop pipeline before building for Galaxy
+meteor reset
 meteor remove-platform ios
 meteor remove omega:meteor-desktop-watcher omega:meteor-desktop-bundler omega:meteor-desktop-localstorage
 meteor npm remove meteor-desktop
