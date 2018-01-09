@@ -5,27 +5,27 @@
 Meteor.startup(function (){
 
   var newOrganization = {
-  "resourceType": "Organization",
-  "identifier": [
-    {
-      "system": "http://www.acme.org.au/units",
-      "value": "ClinLab"
-    }
-  ],
-  "name": "Clinical Lab",
-  "telecom": [
-    {
-      "system": "phone",
-      "value": "+1 555 234 1234",
-      "use": "work"
-    },
-    {
-      "system": "email",
-      "value": "contact@labs.acme.org",
-      "use": "work"
-    }
-  ]
-};
+    "resourceType": "Organization",
+    "identifier": [
+      {
+        "system": "",
+        "value": ""
+      }
+    ],
+    "name": "Clinical Lab",
+    "telecom": [
+      {
+        "system": "phone",
+        "value": "",
+        "use": "work"
+      },
+      {
+        "system": "email",
+        "value": "",
+        "use": "work"
+      }
+    ]
+  };
 
   console.log("newOrganization", newOrganization);
 
