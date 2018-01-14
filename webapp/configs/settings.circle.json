@@ -5,7 +5,7 @@
       "showVideoBackground": false,
       "darkroomTextEnabled": false,
       "defaultVideo": "/VideoBackgrounds/Circulation.mp4",
-      "backgroundImagePath": "/backgrounds/global.jpg"
+      "backgroundImagePath": "/backgrounds/medical/Gradient-Desaturated.png"     
     },
     "home": {
       "showUnderConstruction": false,
@@ -54,7 +54,8 @@
       "statisticsLogging": true,
       "apps": {
         "ChecklistManifesto": true,
-        "ContinuityOfCare": true        
+        "ContinuityOfCare": true,
+        "Videoconferencing": true        
       },
       "fhir": {
         "AllergyIntolerances": true,
