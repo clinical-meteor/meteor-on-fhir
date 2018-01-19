@@ -60,8 +60,10 @@ test:
     - cd webapp && meteor npm install nightwatch chromedriver@2.19.0 phantomjs-prebuilt selenium-server-standalone-jar@2.45.0
 
     #- we sometimes develop with proprietary packages; make sure we remove them for tests
-    # - cd webapp && meteor remove clinical:landing-page
     - if [ -e .meteor/local/build/programs/server/packages/clinical_landing-page ]; cd webapp && meteor remove clinical:landing-page; fi;
+
+    # and make sure that the default login page is installed
+    - if [ ! -e .meteor/local/build/programs/server/packages/clinical_plugin-default-landing-page ]; cd webapp && meteor add clinical:plugin-default-landing-page; fi;
 
     #- make sure we have our tests
     - cd webapp/tests && ls -la
