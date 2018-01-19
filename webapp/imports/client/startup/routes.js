@@ -66,7 +66,6 @@ import { PractitionerDashboard } from '/imports/ui/pages/PractitionerDashboard';
 import { PractitionersPage } from '/imports/ui/workflows/practitioners/PractitionersPage';
 import { PrivacyPage } from '/imports/ui/pages/PrivacyPage';
 import { ProceduresPage } from '/imports/ui/workflows/procedures/ProceduresPage';
-import { ProviderDirectoryPage } from '/imports/ui/pages/ProviderDirectoryPage';
 import { QuestionnaireResponsesPage } from '/imports/ui/workflows/questionnaires/QuestionnaireResponsesPage';
 import { QuestionnairesPage } from '/imports/ui/workflows/questionnaires/QuestionnairesPage';
 import { RecoverPassword } from '/imports/ui/pages/RecoverPassword';
@@ -237,9 +236,7 @@ Meteor.startup(() => {
       
               <Route name="CornerstonePage" path="/cornerstone" component={ CornerstonePage } />
               <Route name="GoogleMapsPage" path="/maps" component={ GoogleMapsPage } />
-      
-              <Route name="ProviderDirectoryPage" path="/provider-directory" component={ ProviderDirectoryPage } />
-      
+            
               <Route name="SciFiPage" path="/scifi" component={ SciFiPage } />
       
       

@@ -5,7 +5,7 @@
       "showVideoBackground": false,
       "darkroomTextEnabled": false,
       "defaultVideo": "/VideoBackgrounds/Circulation.mp4",
-      "backgroundImagePath": "/backgrounds/medical/Gradient.jpg"
+      "backgroundImagePath": "/backgrounds/medical/Gradient-Desaturated.png"     
     },
     "home": {
       "showUnderConstruction": true,
@@ -16,18 +16,22 @@
     "defaults": {
       "avatars": true,
       "barcodes": true,
+      "hexgridMenu": false,
+      "nfcOrbital": false,
+      "notificationMenu": true,
+      "searchbarVisible": true,
       "displayNavbars": true,
       "disableHeader": false,
       "disableFooter": false,
       "darkroom": false,
       "iFrameEnabled": false,
-      "iFrameUrl": "https://www.wikipedia.org",
+      "iFrameUrl": "https://www.wikipedia.org/",
       "paginationLimit": 100,
       "subscriptionLimit": 1000,
       "cards": {
         "height": "auto",
         "opacity": 0.95
-      }      
+      }
     },
     "interfaces": {
       "default": {
@@ -41,6 +45,17 @@
         }
       }
     },
+    "meshNetwork": {
+      "upstreamSync": "http://meteor-on-fhir.meteorapp.com/fhir-3.0.0", 
+      "autosync": false
+    },
+    "ipfs": {
+      "autosync": false,
+      "url": "https://ipfs.io/ipfs/",
+      "files": {
+        "Organizations": "Qmeqk72zA8VcmyduNG3sYPDsgd8rbVpRL3HTwYf1R5SGLx"
+      }
+    },    
     "modules": {
       "data": true,
       "forum": true,
@@ -50,22 +65,36 @@
       "telemedicine": true,
       "inbound": true,
       "outbound": true,
-      "epic": false,
+      "epic": true,
       "statisticsLogging": true,
+      "apps": {
+        "ChecklistManifesto": true,
+        "ContinuityOfCare": true,
+        "Videoconferencing": true        
+      },
       "fhir": {
+        "AllergyIntolerances": true,
         "AuditEvents": true,
-        "Conditions": false,
-        "Devices": false,
+        "BodySites": true,
+        "CarePlans": true,
+        "Conditions": true,
+        "Devices": true,
+        "DiagnosticReports": true,
+        "Goals": true,
+        "ImagingStudies": false,
+        "Immunizations": true,
+        "Locations": true,
+        "Lists": true,
+        "Medications": true,
+        "MedicationOrders": true,
+        "MedicationStatements": true,
+        "Organizations": true,
+        "Observations": true,
         "Patients": true,
         "Practitioners": true,
-        "Organizations": true,
-        "Observations": false,
-        "ImagingStudies": false,
-        "Locations": true,
-        "Lists": false,
-        "Medications": false,
+        "Procedures": true,
         "Questionnaires": true,
-        "RiskAssessments": false
+        "RiskAssessments": true
       }
     }
   },

@@ -95,40 +95,6 @@ export class LandingPage extends React.Component {
       <div id="LandingPage" >
         <FullPageCanvas width='wide' >
 
-          {/* <div style={{height: '100%', width: '100%', textAlign: 'center'}} onClick={this.scrollToDynamicText }>
-            <OrbitalGlyph />
-          </div> */}
-
-
-          {/* <GlassCard id='dynamicText' style={{height: '100%'}} onClick={this.scrollToPremiumModule }>
-            <CardText style={{textAlign: 'center'}}>
-              <h1><ReactRotatingText items={[
-                'Interface Engine', 
-                'FHIR relay', 
-                'FHIR router',
-                'FHIR cache',
-                'FHIR database',
-                'FHIR datalake',
-                'Software as a Service',
-                'Cerner App Store',
-                'Epic App Orchard',
-                'Wordpress Business Model',
-                'Interoperability',
-                'Health Information Exchange',
-                'MACRA compliance',
-                'Mesh network',
-                'Blockhain',
-                'Distributed App',
-                'DApp'
-                ]} /></h1>
-
-            </CardText>
-          </GlassCard>     
-
-          <br />
-          <br /> */}
-
-
           <GlassCard id='architectureCard' style={{height: '100%'}} onClick={this.scrollToMeaningfulUse }>
             <CardTitle title="Getting Started" subtitle="Welcome to Meteor on FHIR.  This is the default landing page.  Please read through the following materials to get started." style={{textAlign: 'center'}} />
             <CardText style={{textAlign: 'center', height: window.innerHeight - 260 }} >
@@ -146,7 +112,6 @@ export class LandingPage extends React.Component {
               </Row>
             </CardText>
           </GlassCard>
-
           
           <br />
           <br />

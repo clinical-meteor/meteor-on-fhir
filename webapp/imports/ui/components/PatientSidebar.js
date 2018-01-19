@@ -8,6 +8,20 @@ import ReactMixin from 'react-mixin';
 import { Session } from 'meteor/session';
 import { browserHistory } from 'react-router';
 
+
+
+// Pick up any dynamic routes that are specified in packages, and include them
+var dynamicElements = [];
+Object.keys(Package).forEach(function(packageName){
+  if(Package[packageName].SidebarElements){
+    // we try to build up a route from what's specified in the package
+    Package[packageName].SidebarElements.forEach(function(element){
+      dynamicElements.push(element);      
+    });    
+  }
+});
+
+
 export class PatientSidebar extends React.Component {
   getMeteorData() {
     let data = {
@@ -52,10 +66,18 @@ export class PatientSidebar extends React.Component {
              <ListItem primaryText='Healthlog' href='/weblog' />
           </IndexLinkContainer>
 
-          {/* <IndexLinkContainer to='/provider-directory'>
+          <IndexLinkContainer to='/provider-directory'>
              <ListItem primaryText='Provider Directory' href='/provider-directory' />
-          </IndexLinkContainer> */}
-          
+          </IndexLinkContainer> 
+
+              
+        { dynamicElements.map(function(element){ 
+          <IndexLinkContainer to={element.to} >
+            <ListItem primaryText={element.primaryText} href={element.href} />
+          </IndexLinkContainer> 
+        })}
+
+
           <hr />
 
 

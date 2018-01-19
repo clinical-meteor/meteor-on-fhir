@@ -32,8 +32,10 @@ Meteor.startup(function(){
   if(Package["symptomatic:blockchain-core"]){
     console.log('Trying to initialize symptomatic:blockchain-core');
     import { Ipfs } from 'meteor/symptomatic:blockchain-core';
-    Ipfs.loadOrganizations();
-  }
 
+    if( typeof Ipfs == "object") {
+      Ipfs.loadOrganizations();
+    };
+  }
 
 });
