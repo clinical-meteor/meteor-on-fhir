@@ -56,7 +56,7 @@ test:
     #- sleep 60
 
     - cd webapp && meteor --version
-    - cd webapp && meteor npm install --production
+    - cd webapp && meteor npm install 
     - cd webapp && meteor npm install nightwatch chromedriver@2.19.0 phantomjs-prebuilt selenium-server-standalone-jar@2.45.0
 
     #- we sometimes develop with proprietary packages; make sure we remove them for tests
