@@ -67,4 +67,12 @@ Meteor.startup(function (){
   MyGenotype = _MyGenotype;
   
 
-  
+
+  // -----------------------------------------------------------------------------
+// Buffer API
+// https://github.com/meteor/meteor/blob/master/History.md#v15-2017-05-30
+
+import('buffer').then(({Buffer}) => {global.Buffer = Buffer;})
+
+// global.Buffer = function() {}
+// global.Buffer.isBuffer = () => false
