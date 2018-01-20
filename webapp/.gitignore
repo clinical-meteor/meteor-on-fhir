@@ -5,8 +5,10 @@ settings.videoconferencing.json
 settings.galaxy.json
 settings.json
 
+
 npm-debug.log
 node_modules
+
 
 screenshots
 screenshots/*
@@ -19,13 +21,26 @@ version.desktop
 .desktop
 .desktop-install
 
+
 marketing.jpg
+
 
 awatson1978-medical-history
 watson-medical-history
+symptomatic-blockchain-core
 symptomatic-landing-page
+symptomatic-videoconferencing
+symptomatic-vault-server
+symptomatic-continuity-of-care
+symptomatic-grid-layout
+symptomatic-static-pages
+symptomatic-routing-algorithms
+
 
 hipaa
 *hipaa*
 
+
 public/builds
+
+

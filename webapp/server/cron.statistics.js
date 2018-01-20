@@ -93,7 +93,7 @@ let DailyStats = {
       newDailyStat.counts.schedules = Schedules.find().count();
     }
 
-    console.log('newDailyStat', newDailyStat);
+    process.env.DEBUG && console.log('newDailyStat', newDailyStat);
 
     return newDailyStat;
   }

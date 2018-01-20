@@ -104,6 +104,15 @@
     "disableOauth": true,
     "demo": {
       "nightlyDatabaseDrop": true
+    },
+    "bigchain": {
+      "url": "https://test.bigchaindb.com/api/v1/",
+      "app_id": "ffa33063",
+      "app_key": "abe3660dffbb9d170a8d502ef32c39be",
+      "locale": "US",
+      "dataset": "housemd",
+      "organization" : {},
+      "location": {}
     }    
   }
 }

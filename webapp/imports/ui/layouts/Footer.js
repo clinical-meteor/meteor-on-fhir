@@ -99,15 +99,9 @@ export class Footer extends React.Component {
   queryBigchain(){
     console.log("queryBigchain");
 
-
-    // Meteor.call("queryEpic", resourceType, function(error, result){
-    //   if(error){
-    //     console.log("error", error);
-    //   }
-    //   if(result){
-    //      console.log("queryEpic[epic]", result);         
-    //   }
-    // });
+    Meteor.call('searchBigchainMetadata', function(error, data){
+      console.log(data)
+    });
   }
   openLink(url){
     console.log("openLink", url);
