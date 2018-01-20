@@ -69,6 +69,9 @@ test:
     # add the default packages back in
     - if [ ! grep -Fxq clinical:plugin-default-landing-page ]; then cd webapp && meteor add clinical:plugin-default-landing-page; fi;
 
+    #- before/after
+    - cd webapp && cat .meteor/packages
+
     #- make sure we have our tests
     - cd webapp/tests && ls -la
     - cd webapp && git clone https://github.com/awatson1978/meteor-on-fhir-validation tests/nightwatch
