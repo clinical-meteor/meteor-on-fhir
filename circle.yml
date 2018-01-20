@@ -59,7 +59,7 @@ test:
     - cd webapp && meteor npm install 
     - cd webapp && meteor npm install nightwatch chromedriver@2.19.0 phantomjs-prebuilt selenium-server-standalone-jar@2.45.0
 
-    - cd webapp && more .meteor/packages
+    - cd webapp && cat .meteor/packages
 
     # # and make sure that symptomatic packages aren't installed
     # - if [ -e .meteor/local/build/programs/server/packages/symptomatic_blockchain-core ]; then cd webapp && meteor remove symptomatic:blockchain-core; fi;
