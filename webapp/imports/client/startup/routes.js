@@ -256,7 +256,7 @@ Meteor.startup(() => {
 
               <Route name="TimelinePage" path="/timeline" component={ TimelinePage }  onEnter={ requireAuth }/>
               
-              { dynamicRoutes.map(route => <Route name={route.name} path={route.path} component={ route.component } />) }
+              { dynamicRoutes.map(function(route, index){<Route name={route.name} path={route.path} component={ route.component } key={index}/> })}
                     
               <Route name="timeline" path="/timeline-sidescroll" component={ TimelineSidescrollPage }  />
 

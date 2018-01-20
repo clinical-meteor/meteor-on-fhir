@@ -61,7 +61,7 @@ test:
 
     #- we sometimes develop with proprietary packages; make sure we remove them for tests
     - if [ -e .meteor/local/build/programs/server/packages/clinical_landing-page ]; cd webapp && meteor remove clinical:landing-page; fi;
-    - if [ -e .meteor/local/build/programs/server/packages/symptomatic_blockchain-core ]; cd webapp && meteor remove symptomatic_blockchain-core; fi;
+    - if [ -e .meteor/local/build/programs/server/packages/symptomatic_blockchain-core ]; cd webapp && meteor remove symptomatic:blockchain-core; fi;
 
     # and make sure that the default login page is installed
     - if [ ! -e .meteor/local/build/programs/server/packages/clinical_plugin-default-landing-page ]; cd webapp && meteor add clinical:plugin-default-landing-page; fi;
