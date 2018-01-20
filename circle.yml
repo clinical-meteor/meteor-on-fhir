@@ -63,11 +63,11 @@ test:
 
     # # and make sure that symptomatic packages aren't installed
     # - if [ -e .meteor/local/build/programs/server/packages/symptomatic_blockchain-core ]; then cd webapp && meteor remove symptomatic:blockchain-core; fi;
-    - if [ "grep -Fxq symptomatic:blockchain-core webapp/.meteor/packages" ]; then cd webapp && meteor remove symptomatic:blockchain-core; fi;
-    - if [ "grep -Fxq symptomatic:landing-page webapp/.meteor/packages" ]; then cd webapp && meteor remove symptomatic:landing-page; fi;
+    - if [ "grep -Fxq symptomatic:blockchain-core webapp/.meteor/packages" ]; then cd webapp && meteor remove symptomatic:blockchain-core ---allow-incompatible-update; fi;
+    - if [ "grep -Fxq symptomatic:landing-page webapp/.meteor/packages" ]; then cd webapp && meteor remove symptomatic:landing-page ---allow-incompatible-update; fi;
 
     # add the default packages back in
-    - if [ ! "grep -Fxq clinical:plugin-default-landing-page webapp/.meteor/packages" ]; then cd webapp && meteor add clinical:plugin-default-landing-page; fi;
+    - if [ ! "grep -Fxq clinical:plugin-default-landing-page webapp/.meteor/packages" ]; then cd webapp && meteor add clinical:plugin-default-landing-page ---allow-incompatible-update; fi;
 
     #- before/after
     - cd webapp && cat .meteor/packages
