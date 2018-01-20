@@ -72,7 +72,4 @@ Meteor.startup(function (){
 // Buffer API
 // https://github.com/meteor/meteor/blob/master/History.md#v15-2017-05-30
 
-import('buffer').then(({Buffer}) => {global.Buffer = Buffer;})
-
-// global.Buffer = function() {}
-// global.Buffer.isBuffer = () => false
+global.Buffer = global.Buffer || require("buffer").Buffer;

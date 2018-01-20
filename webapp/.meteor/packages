@@ -106,6 +106,7 @@ mousetrap:mousetrap@1.4.6
 
 
 ### Remove these to deploy to mobile
-symptomatic:blockchain-core
+
 # clinical:plugin-default-landing-page
 clinical:plugin-default-landing-page
+symptomatic:blockchain-core
