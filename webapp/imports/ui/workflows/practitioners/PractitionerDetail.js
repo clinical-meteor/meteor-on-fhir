@@ -221,6 +221,9 @@ export default class PractitionerDetail extends React.Component {
                 /><br/>
             </Col>
           </Row>
+          <Row>
+            Foo
+          </Row>
         </CardText>
         <CardActions>
           { this.determineButtons(this.data.practitionerId) }
