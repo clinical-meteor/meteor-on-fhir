@@ -23,7 +23,8 @@
     "circle-nightwatch": "nightwatch -c .meteor/nightwatch.circle.json --tag circle",
     "desktop": "meteor-desktop",
     "dockerize": "../scripts/generate_docker_compose_file.sh",
-    "prep_for_circle_ci": "../scripts/prep_for_circle_ci.sh"
+    "push_to_circle_ci": "../scripts/push_to_circle_ci.sh",
+    "prep_for_symptomatic_dev": "../scripts/prep_for_symptomatic_dev.sh"
   },
   "eslintConfig": {
     "parserOptions": {

@@ -1,5 +1,7 @@
 #!/bin/sh  
 
+branch=$1
+echo $branch
 
 # remove symptomatic plugins
 meteor remove symptomatic:blockchain-core
@@ -14,7 +16,7 @@ meteor remove symptomatic:routing-algorithms
 # add default plugins
 meteor add clinical:plugin-default-landing-page
 
-
+git push origin $branch
 
 
 
