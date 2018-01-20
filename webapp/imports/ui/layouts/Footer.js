@@ -96,6 +96,19 @@ export class Footer extends React.Component {
       }
     });
   }
+  queryBigchain(){
+    console.log("queryBigchain");
+
+
+    // Meteor.call("queryEpic", resourceType, function(error, result){
+    //   if(error){
+    //     console.log("error", error);
+    //   }
+    //   if(result){
+    //      console.log("queryEpic[epic]", result);         
+    //   }
+    // });
+  }
   openLink(url){
     console.log("openLink", url);
 
@@ -142,6 +155,16 @@ export class Footer extends React.Component {
           </div>
         );
 
+      // PRACTITIONERS
+      } else if (Meteor.userId() && (Session.equals('pathname', '/practitioners')) && get(Meteor, 'settings.public.modules.fhir.Practitioners')) {
+        // the user is logged in as a normal user
+        return (
+          <div>
+            <FlatButton label='Query Practitioners on Bigchain' className='querySystemButton' ref='querySystemButton' onClick={this.queryBigchain.bind(this)} style={this.data.style.buttonText} ></FlatButton>
+          </div>
+        );
+      
+      
       // ORGANIZATIONS
       } else if (Meteor.userId() && (Session.equals('pathname', '/organizations')) && Meteor.settings.public && Meteor.settings.public.modules && Meteor.settings.public.modules.fhir && Meteor.settings.public.modules.fhir.Organizations) {
         // the user is logged in as a normal user
