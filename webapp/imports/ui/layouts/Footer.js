@@ -151,12 +151,14 @@ export class Footer extends React.Component {
 
       // PRACTITIONERS
       } else if (Meteor.userId() && (Session.equals('pathname', '/practitioners')) && get(Meteor, 'settings.public.modules.fhir.Practitioners')) {
-        // the user is logged in as a normal user
-        return (
-          <div>
-            <FlatButton label='Query Practitioners on Bigchain' className='querySystemButton' ref='querySystemButton' onClick={this.queryBigchain.bind(this)} style={this.data.style.buttonText} ></FlatButton>
-          </div>
-        );
+
+        if(Package["symptomatic:blockchain-core"]){          
+          return (
+            <div>
+              <FlatButton label='Query Practitioners on Bigchain' className='querySystemButton' ref='querySystemButton' onClick={this.queryBigchain.bind(this)} style={this.data.style.buttonText} ></FlatButton>
+            </div>
+          );
+        }
       
       
       // ORGANIZATIONS

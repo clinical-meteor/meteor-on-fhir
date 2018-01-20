@@ -18,5 +18,9 @@ meteor add clinical:plugin-default-landing-page
 
 git push origin $branch
 
+# set things back to how they were by removing the default landing page
+meteor remove clinical:plugin-default-landing-page
 
-
+# and add our symptomatic plugins back in
+meteor add symptomatic:blockchain-core
+meteor add symptomatic:landing-page
