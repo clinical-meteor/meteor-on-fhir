@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
-
 import { Table } from 'react-bootstrap';
 
 
@@ -24,9 +23,17 @@ export default class CarePlansTable extends React.Component {
         opacity: Session.get('globalOpacity')
       },
       selected: [],
-      careplans: CarePlans.find(carePlanQuery).map(function(plan){
-      // careplans: CarePlans.find({'subject.reference': Meteor.userId}).map(function(plan){
+      careplans: []
+    };
+
+
+    if(this.props.data){
+      data.careplans = this.props.data;
+    } else {
+      data.careplans = CarePlans.find(carePlanQuery).map(function(plan){
+        // careplans: CarePlans.find({'subject.reference': Meteor.userId}).map(function(plan){
         // todo: replace tertiary logic
+
         let result = {
           _id: plan._id,
           subject: '',
@@ -36,7 +43,9 @@ export default class CarePlansTable extends React.Component {
           pm: '',
           activities: '',
           goals: '',
-          createdAt: ''
+          start: '',
+          end: '',
+          title: ''
         };
 
         if (plan.template) {
@@ -49,7 +58,7 @@ export default class CarePlansTable extends React.Component {
           result.author = plan.author[0].display;
         }
         if (plan.createdAt) {
-          result.createdAt = moment(plan.createdAt).format("YYYY-MM-DD hh:mm a");
+          result.createdAt = moment(plan.period.start).format("YYYY-MM-DD hh:mm a");
         }
         if (plan.activity) {
           result.activities = plan.activity.length;
@@ -57,11 +66,21 @@ export default class CarePlansTable extends React.Component {
         if (plan.goal) {
           result.goals = plan.goal.length;
         }
+        if (plan.title) {
+          result.title = plan.title;
+        }
+        // if( plan.period ) {
+        //   if (plan.period.start) {
+        //     result.start = plan.period.start;
+        //   }
+        //   if (plan.period.end) {
+        //     result.end = plan.period.end;
+        //   }
+        // }
 
         return result;
-      })
-    };
-
+      });
+    }
 
 
     if (Session.get('darkroomEnabled')) {
@@ -83,7 +102,7 @@ export default class CarePlansTable extends React.Component {
       data.style.backdropFilter = "blur(5px)";
     }
 
-    if(process.env.NODE_ENV === "test") console.log("data", data);
+    if(process.env.NODE_ENV === "test") console.log("CarePlansTable[data]", data);
 
 
     return data;
@@ -130,15 +149,16 @@ export default class CarePlansTable extends React.Component {
     for (var i = 0; i < this.data.careplans.length; i++) {
       tableRows.push(
         <tr key={i} className="patientRow" style={{cursor: "pointer"}} onClick={ this.rowClick.bind('this', this.data.careplans[i]._id)} >
-
+          <td>{this.data.careplans[i].title }</td>
           <td>{this.data.careplans[i].subject }</td>
           <td>{this.data.careplans[i].author }</td>
           <td>{this.data.careplans[i].am}</td>
           <td>{this.data.careplans[i].pm}</td>
           <td>{this.data.careplans[i].activities}</td>
           <td>{this.data.careplans[i].goals}</td>
-          <td>{this.data.careplans[i].createdAt }</td>
-          <td>{this.data.careplans[i].template}</td>
+          <td>{ moment(this.data.careplans[i].period.start).format("YYYY-MM-DD") }</td>
+          <td>{ moment(this.data.careplans[i].period.end).format("YYYY-MM-DD") }</td>
+          {/* <td>{this.data.careplans[i].template}</td> */}
           {this.renderAvatarHeader}
         </tr>
       );
@@ -149,14 +169,16 @@ export default class CarePlansTable extends React.Component {
       <Table responses hover >
         <thead>
           <tr>
+            <th>title</th>
             <th>subject</th>
             <th>author</th>
             <th>am</th>
             <th>pm</th>
             <th>activities</th>
             <th>goals</th>
-            <th>created at</th>
-            <th>template</th>
+            <th>start</th>
+            <th>end</th>
+            {/* <th>template</th> */}
             {this.renderBarcodeHeader}
           </tr>
         </thead>

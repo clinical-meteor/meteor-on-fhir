@@ -12,6 +12,7 @@ import ReactMixin from 'react-mixin';
 import {Session} from 'meteor/session';
 import { ToolbarTitle } from 'material-ui/Toolbar';
 import { browserHistory } from 'react-router';
+import { has, get } from 'lodash';
 
 Session.setDefault('showThemingControls', false);
 
@@ -95,10 +96,38 @@ export class Footer extends React.Component {
       }
     });
   }
+  queryBigchain(){
+    console.log("queryBigchain");
+
+    Meteor.call('searchBigchainMetadata', function(error, data){
+      console.log(data)
+    });
+  }
   openLink(url){
     console.log("openLink", url);
 
     browserHistory.push(url);
+  }
+  exportContinuityOfCareDoc(){
+    console.log('exportContinuityOfCareDoc');
+
+    var continuityOfCareDoc = {}
+
+    if(Meteor.user()){
+      continuityOfCareDoc = get(Meteor.user(), 'profile.continuityOfCare');
+    }    
+
+    var dataString = 'data:text/csv;charset=utf-8,' + encodeURIComponent(JSON.stringify(continuityOfCareDoc, null, 2));  
+    var downloadlAnchorElement = document.getElementById('downloadAnchorElement');
+    downloadAnchorElement.setAttribute("href", dataString );
+    downloadAnchorElement.setAttribute("download", "continuity-of-care.json");
+    downloadAnchorElement.click();
+    // window.open('data:text/csv;charset=utf-8,' + escape(continuityOfCareDoc), '_self');  
+  }
+  clearContinuityOfCareDoc(){
+    Meteor.users.update({_id: Meteor.userId()}, {$unset: {
+      'profile.continuityOfCare': ''
+    }});
   }
   renderWestNavbar(displayThemeNavbar){
     if (displayThemeNavbar) {
@@ -120,6 +149,18 @@ export class Footer extends React.Component {
           </div>
         );
 
+      // PRACTITIONERS
+      } else if (Meteor.userId() && (Session.equals('pathname', '/practitioners')) && get(Meteor, 'settings.public.modules.fhir.Practitioners')) {
+
+        if(Package["symptomatic:blockchain-core"]){          
+          return (
+            <div>
+              <FlatButton label='Query Practitioners on Bigchain' className='querySystemButton' ref='querySystemButton' onClick={this.queryBigchain.bind(this)} style={this.data.style.buttonText} ></FlatButton>
+            </div>
+          );
+        }
+      
+      
       // ORGANIZATIONS
       } else if (Meteor.userId() && (Session.equals('pathname', '/organizations')) && Meteor.settings.public && Meteor.settings.public.modules && Meteor.settings.public.modules.fhir && Meteor.settings.public.modules.fhir.Organizations) {
         // the user is logged in as a normal user
@@ -130,12 +171,17 @@ export class Footer extends React.Component {
         );
 
       // CONTINUITY OF CARE
-      } else if (Meteor.userId() && (Session.equals('pathname', '/continuity-of-care'))) {
+      } else if (Meteor.userId() && (Session.equals('pathname', '/continuity-of-care') || Session.equals('pathname', '/data-import') || Session.equals('pathname', '/timeline') || Session.equals('pathname', '/timeline-sidescroll'))) {
         // the user is logged in as a normal user
         return (
           <div>
+            <FlatButton label='Import' className='importData' ref='importCcd' onClick={this.openLink.bind(this, '/data-import')} style={this.data.style.buttonText} ></FlatButton>
+            <FlatButton label='Continuity of Care' className='ccdPage' ref='ccdPage' onClick={this.openLink.bind(this, '/continuity-of-care')} style={this.data.style.buttonText} ></FlatButton>
             <FlatButton label='Timeline' className='verticalTimeline' ref='verticalTimeline' onClick={this.openLink.bind(this, '/timeline')} style={this.data.style.buttonText} ></FlatButton>
             <FlatButton label='Sidescroll Timeline' className='horizontalTimeline' ref='horizontalTimeline' onClick={this.openLink.bind(this, '/timeline-sidescroll')} style={this.data.style.buttonText} ></FlatButton>
+            <FlatButton label='Export CCD' id="exportContinuityOfCareDoc" className='exportCcd' ref='exportContinuityOfCareDoc' style={this.data.style.buttonText} onClick={this.exportContinuityOfCareDoc}></FlatButton>
+            <FlatButton label='Clear' id="clearContinuityOfCareDoc" className='clearCcd' ref='clearContinuityOfCareDoc' style={this.data.style.buttonText} onClick={this.clearContinuityOfCareDoc}></FlatButton>
+            <a id="downloadAnchorElement" style={{display: "none"}}></a>
           </div>
         );
 

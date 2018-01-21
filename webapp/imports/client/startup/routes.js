@@ -26,6 +26,7 @@ import { ContinuityOfCarePage } from '/imports/ui/pages/ContinuityOfCarePage';
 import { CornerstonePage } from '/imports/ui/pages/CornerstonePage';
 import { DashboardPage } from '/imports/ui/pages/DashboardPage';
 import { DataManagementPage } from '/imports/ui/pages/DataManagementPage';
+import { DataImportPage } from '/imports/ui/pages/DataImportPage';
 import { DecisionTree } from '/imports/ui/components/DecisionTree';
 import { DermatogramsPage } from '/imports/ui/pages/DermatogramsPage';
 import { DevicesPage } from '/imports/ui/workflows/devices/DevicesPage';
@@ -65,7 +66,6 @@ import { PractitionerDashboard } from '/imports/ui/pages/PractitionerDashboard';
 import { PractitionersPage } from '/imports/ui/workflows/practitioners/PractitionersPage';
 import { PrivacyPage } from '/imports/ui/pages/PrivacyPage';
 import { ProceduresPage } from '/imports/ui/workflows/procedures/ProceduresPage';
-import { ProviderDirectoryPage } from '/imports/ui/pages/ProviderDirectoryPage';
 import { QuestionnaireResponsesPage } from '/imports/ui/workflows/questionnaires/QuestionnaireResponsesPage';
 import { QuestionnairesPage } from '/imports/ui/workflows/questionnaires/QuestionnairesPage';
 import { RecoverPassword } from '/imports/ui/pages/RecoverPassword';
@@ -195,6 +195,7 @@ Meteor.startup(() => {
               <Route name="inboundHeader" path="/inbound" component={ InboundMessagesPage } onEnter={ requireAuth } />
               <Route name="outboundHeader" path="/outbound" component={ OutboundHeaderPage }  onEnter={ requireAuth }/>
               <Route name="dataManagement" path="/data-management" component={ DataManagementPage }  onEnter={ requireAuth }/>
+              <Route name="dataImport" path="/data-import" component={ DataImportPage }  onEnter={ requireAuth }/>
       
               <Route name="observation" path="/observations" component={ ObservationsPage }  onEnter={ requireAuth }/>
               {/* <Route name="bodySites" path="/body-sites" component={ BodySitesPage } onEnter={ requireAuth }/> */}
@@ -235,9 +236,7 @@ Meteor.startup(() => {
       
               <Route name="CornerstonePage" path="/cornerstone" component={ CornerstonePage } />
               <Route name="GoogleMapsPage" path="/maps" component={ GoogleMapsPage } />
-      
-              <Route name="ProviderDirectoryPage" path="/provider-directory" component={ ProviderDirectoryPage } />
-      
+            
               <Route name="SciFiPage" path="/scifi" component={ SciFiPage } />
       
       

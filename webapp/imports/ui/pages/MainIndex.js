@@ -47,7 +47,6 @@ import Leaf from 'react-icons/lib/io/leaf';
 import Ribbon from 'react-icons/lib/io/ribbon-b';
 import Nutrition from 'react-icons/lib/io/ios-nutrition';
 import MdLocalPhramacy from 'react-icons/lib/md/local-pharmacy';
-
 import MdAddAlert from 'react-icons/lib/md/add-alert';
 import MdList from 'react-icons/lib/md/list';
 import MdDashboard from 'react-icons/lib/md/dashboard';
@@ -196,59 +195,59 @@ export class MainIndex extends React.Component {
 
 
               <Row>
-                <Col lg={3} style={this.data.style.column}>
+                <Col sm={3} style={this.data.style.column}>
                   {this.renderDiagnosticReport(this.data.user)}
                 </Col>
-                <Col lg={3} style={this.data.style.column}>
+                <Col sm={3} style={this.data.style.column}>
                   {this.renderGoals(this.data.user)}
                 </Col>
-                <Col lg={3} style={this.data.style.column}>
+                <Col sm={3} style={this.data.style.column}>
                   {this.renderImmunizations(this.data.user)}
                 </Col>
-                <Col lg={3} style={this.data.style.column}>
+                <Col sm={3} style={this.data.style.column}>
                   {this.renderLocations(this.data.user)}
                 </Col>
               </Row>
 
               <Row>
-                <Col lg={3} style={this.data.style.column}>
+                <Col sm={3} style={this.data.style.column}>
                 {this.renderOrganizations(this.data.user)}
                 </Col>
-                <Col lg={3} style={this.data.style.column}>
+                <Col sm={3} style={this.data.style.column}>
                   {this.renderMedications(this.data.user)}
                 </Col>
-                <Col lg={3} style={this.data.style.column}>
+                <Col sm={3} style={this.data.style.column}>
                   {this.renderMedicationOrders(this.data.user)}
                 </Col>
-                <Col lg={3} style={this.data.style.column}>
+                <Col sm={3} style={this.data.style.column}>
                   {this.renderMedicationStatements(this.data.user)}
                 </Col>
               </Row>
 
 
               <Row>
-                <Col lg={3} style={this.data.style.column}>
+                <Col sm={3} style={this.data.style.column}>
                   {this.renderObservations(this.data.user)}
                 </Col>
-                <Col lg={3} style={this.data.style.column}>
+                <Col sm={3} style={this.data.style.column}>
                   {this.renderPractitioners(this.data.user)}
                 </Col>
-                <Col lg={3} style={this.data.style.column}>
+                <Col sm={3} style={this.data.style.column}>
                   {this.renderProcedures(this.data.user)}
                 </Col>
-                <Col lg={3} style={this.data.style.column}>
+                <Col sm={3} style={this.data.style.column}>
                   {this.renderRiskAssessments(this.data.user)}
                 </Col>
               </Row>
               <Row>
-                <Col lg={3} style={this.data.style.column}>
+                <Col sm={3} style={this.data.style.column}>
                   {this.renderPatients(this.data.user)}
                 </Col>
-                <Col lg={3} style={this.data.style.column}>
+                <Col sm={3} style={this.data.style.column}>
                 </Col>
-                <Col lg={3} style={this.data.style.column}>
+                <Col sm={3} style={this.data.style.column}>
                 </Col>
-                <Col lg={3} style={this.data.style.column}>
+                <Col sm={3} style={this.data.style.column}>
                 </Col>
               </Row>
 
@@ -592,7 +591,7 @@ export class MainIndex extends React.Component {
           <div id="practitionersTile" style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/practitioners') } >
             <GlassCard style={this.data.style.indexCard} >
               <CardTitle
-                title={<Heartbeat />}
+                title={<Person />}
                 subtitle='Practitioners'
                 titleStyle={this.data.style.title}
                   subtitleStyle={this.data.style.subtitle}
@@ -737,7 +736,7 @@ export class MainIndex extends React.Component {
             <GlassCard style={this.data.style.indexCard} >
               <CardTitle
                 title={<Heartbeat />}
-                subtitle='Continuity of Care Document'
+                subtitle='Continuity of Care'
                 titleStyle={this.data.style.title}
                 subtitleStyle={this.data.style.subtitle}
               />
@@ -852,7 +851,7 @@ export class MainIndex extends React.Component {
             <div id='diagnosticReportsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/diagnostic-reports') } >
               <GlassCard style={this.data.style.indexCard} >
                 <CardTitle
-                  title={<Heartbeat />}
+                  title={<Clipboard />}
                   subtitle='Diagnostic Report'
                   titleStyle={this.data.style.title}
                   subtitleStyle={this.data.style.subtitle}

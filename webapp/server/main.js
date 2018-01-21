@@ -30,7 +30,13 @@ Meteor.startup(function (){
     console.log('Jane Doe account already exists.  Skipping.');
   }
 
-  console.log('Meteor.settings', Meteor.settings);
+  //console.log('Meteor.settings', Meteor.settings);
+  console.log('----------------------------------------')
+  console.log('Package');
+  Object.keys(Package).forEach(function(packageName){
+    console.log(packageName);
+  });
+
 });
 
 

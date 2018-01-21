@@ -2,10 +2,10 @@
   "public": {
     "title": "Meteor on FHIR",
     "theme": {
-      "showVideoBackground": true,
+      "showVideoBackground": false,
       "darkroomTextEnabled": false,
       "defaultVideo": "/VideoBackgrounds/GrayWaves.mp4",
-      "backgroundImagePath": "/backgrounds/medical/PlasmidRed.jpg"      
+      "backgroundImagePath": "/backgrounds/medical/Gradient-Desaturated.png"     
     },
     "home": {
       "showUnderConstruction": true,
@@ -31,7 +31,7 @@
       "cards": {
         "height": "auto",
         "opacity": 0.95
-      }      
+      }
     },
     "interfaces": {
       "default": {
@@ -48,6 +48,13 @@
     "meshNetwork": {
       "upstreamSync": "http://meteor-on-fhir.meteorapp.com/fhir-3.0.0", 
       "autosync": false
+    },
+    "ipfs": {
+      "autosync": false,
+      "url": "https://ipfs.io/ipfs/",
+      "files": {
+        "Organizations": "Qmeqk72zA8VcmyduNG3sYPDsgd8rbVpRL3HTwYf1R5SGLx"
+      }
     },
     "modules": {
       "data": true,

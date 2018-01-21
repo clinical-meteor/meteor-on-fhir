@@ -17,6 +17,7 @@ import ReactMixin  from 'react-mixin';
 import {ScatterplotChart} from 'react-easy-chart';
 import TextField from 'material-ui/TextField';
 import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
+import { get, has } from 'lodash';
 
 // if(process.env.NODE_ENV !== 'test'){
 //   import GoogleMapReact from 'google-map-react';
@@ -319,6 +320,8 @@ export class LocationsPage extends React.Component {
     data.style = Glass.blur(data.style);
     data.style.appbar = Glass.darkroom(data.style.appbar);
     data.style.tab = Glass.darkroom(data.style.tab);
+    data.apiKey = get(Meteor, 'settings.public.google.maps.apiKey', '');
+    //console.log('data.apiKey', data.apiKey);
 
     if(process.env.NODE_ENV === "test") console.log("LocationsPage[data]", data);
     return data;
@@ -487,6 +490,7 @@ export class LocationsPage extends React.Component {
           defaultZoom={this.data.zoom}           
           options={this.data.options}
           bootstrapURLKeys={{
+            key: this.data.apiKey,
             libraries: 'visualization'
           }}
           onGoogleApiLoaded={function({map, maps}){

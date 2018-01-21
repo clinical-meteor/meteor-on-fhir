@@ -3,6 +3,7 @@ import { GeneticAlgorithms } from '/imports/api/genotype/GeneticAlgorithms';
 import { MyGenotype } from '/imports/api/genotype/MyGenotype';
 import NodeGeocoder from 'node-geocoder';
 import { Topics } from '/imports/api/topics/topics';
+import { get, has } from 'lodash';
 
 var options = {
   provider: 'google'
@@ -11,6 +12,12 @@ var options = {
   // apiKey: 'YOUR_API_KEY', // for Mapquest, OpenCage, Google Premier
   // formatter: null         // 'gpx', 'string', ...
 };
+
+if(get(Meteor, 'settings.public.google.maps.apiKey')){
+  options.provider.apiKey = get(Meteor, 'settings.public.google.maps.apiKey');
+}
+
+
 var geocoder = NodeGeocoder(options);
 
 Meteor.methods({

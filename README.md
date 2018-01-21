@@ -33,28 +33,7 @@ INITIALIZE=true Patients=true Practitioners=true meteor
 NODE_ENV=test INITIALIZE=true Patients=true Practitioners=true meteor --settings configs/settings.dev.json
 ```
 
-
-#### C. Testing    
-You may need to install [Java SDK 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) to run the latest version of Selenium.
-
-```sh
-cd meteor-on-fhir/webapp
-
-## install test tools
-git clone https://github.com/awatson1978/meteor-on-fhir-validation tests/nightwatch
-
-## install test tools
-meteor npm install
-
-## run validation tests (using nightwatch)
-meteor npm run-script nightwatch
-
-## running verfication test coverage (using mocha)
-COVERAGE_APP_FOLDER=/Users/abigailwatson/Code/GlassUI/fire-demo/ meteor npm run-script coverage
-# http://localhost:3000/coverage
-```
-
-#### D. Theme and Remove Licensed Media Assets
+#### C. Theme and Remove Licensed Media Assets
 Edit the `settings.dev.json` file, and update:
 ```
 {
@@ -95,12 +74,12 @@ scripts/remove_restricted_media_assets.sh
 ```
 
 
-#### E. Mobile Build   
+#### D. Mobile Build   
 
 ```sh
-
-# install meteor-desktop / electron
-meteor npm install meteor-desktop
+# don't include geodata 
+cd webapp
+mv public/geodata ..
 
 # development
 # this can be tricky, because http://localhost:3000 may need to be a local IP address
@@ -114,12 +93,14 @@ NODE_ENV=dev meteor run ios-device --mobile-server http://meteor-on-fhir.meteora
 ```    
 
 
-#### F. Desktop Build   
+#### E. Desktop Build   
 
 ```bash
  # build the executables and add them into the /public directory
 meteor add-platform ios
 meteor add omega:meteor-desktop-watcher@=0.11.1 omega:meteor-desktop-bundler@=0.11.1 omega:meteor-desktop-localstorage@=0.0.11
+
+# install meteor-desktop / electron
 meteor npm install --save meteor-desktop
 
 # add the .desktop directory, which has files needed by omega:meteor-desktop
@@ -133,7 +114,6 @@ NODE_ENV=dev meteor --mobile-server http://localhost:3000 --settings configs/set
 npm run desktop
 
 # or try the shortcut script
-
 meteor npm run-script desktop
 
 # If you want to build a production release, that connects to the main server, you'll need to specify a different URL
@@ -142,10 +122,11 @@ npm run desktop -- build-installer http://www.symptomatic.io
 ```    
 
 
-#### G. Deploy to Production  
+#### F. Deploy to Production  
 
 ```sh
 # remove the desktop pipeline before building for Galaxy
+meteor reset
 meteor remove-platform ios
 meteor remove omega:meteor-desktop-watcher omega:meteor-desktop-bundler omega:meteor-desktop-localstorage
 meteor npm remove meteor-desktop
@@ -158,7 +139,7 @@ TIMEOUT_SCALE_FACTOR=10 DEPLOY_HOSTNAME=us-east-1.galaxy-deploy.meteor.com MONGO
 ```   
 
 
-#### H. Synchronizing With Other Datalakes  
+#### G. Synchronizing With Other Datalakes  
 
 To enable network synchronizing, you'll need to specify an upstream sync partner in your `settings.json` file.  Afterwards, you can enable manual synchronization in the **Data Management* page.  
 
@@ -173,10 +154,10 @@ To enable network synchronizing, you'll need to specify an upstream sync partner
 }
 ```
 
-#### I. Connect to an External EMR   
+#### H. Connect to an External EMR   
 [HL7 v2 to FHIR Interface Mapping](https://medium.com/@awatson1978/hl7-v2-to-fhir-interface-mapping-f83c6ecf6bee)  
 
-#### J. Dockerfile  
+#### I. Dockerfile  
 Docker containers are pretty exciting, and we now support containerization and container composition of the Meteor on FHIR architecture.
 
 ```sh

@@ -95,51 +95,23 @@ export class LandingPage extends React.Component {
       <div id="LandingPage" >
         <FullPageCanvas width='wide' >
 
-          {/* <div style={{height: '100%', width: '100%', textAlign: 'center'}} onClick={this.scrollToDynamicText }>
-            <OrbitalGlyph />
-          </div> */}
-
-
-          <GlassCard id='dynamicText' style={{height: '100%'}} onClick={this.scrollToPremiumModule }>
-            <CardText style={{textAlign: 'center'}}>
-              <h1><ReactRotatingText items={[
-                'Interface Engine', 
-                'FHIR relay', 
-                'FHIR router',
-                'FHIR cache',
-                'FHIR database',
-                'FHIR datalake',
-                'Software as a Service',
-                'Cerner App Store',
-                'Epic App Orchard',
-                'Wordpress Business Model',
-                'Interoperability',
-                'Health Information Exchange',
-                'MACRA compliance',
-                'Mesh network',
-                'Blockhain',
-                'Distributed App',
-                'DApp'
-                ]} /></h1>
-
-            </CardText>
-          </GlassCard>     
-
-          <br />
-          <br />
-
-
           <GlassCard id='architectureCard' style={{height: '100%'}} onClick={this.scrollToMeaningfulUse }>
-            <CardTitle title="Insert Content Here" style={{textAlign: 'center'}} />
-            <CardText style={{textAlign: 'center', height: window.innerHeight - 400 }} >
+            <CardTitle title="Getting Started" subtitle="Welcome to Meteor on FHIR.  This is the default landing page.  Please read through the following materials to get started." style={{textAlign: 'center'}} />
+            <CardText style={{textAlign: 'center', height: window.innerHeight - 260 }} >
               <Row>
                 <Col mdOffset={3} md={6} style={{textAlign: 'center'}} >
-                  {/* <img src='/packages/clinical_plugin-default-landing-page/assets/mesh-network.png' style={{width: '100%'}} /> */}
+                    <ul style={{textAlign: 'left'}}>
+                      <li>Read the <a href="https://github.com/clinical-meteor/meteor-on-fhir">Meteor on FHIR README</a>.</li>
+                      <li>Read through the <a href="https://github.com/clinical-meteor/software-development-kit/blob/master/documentation/getting.started.md">Clinical Meteor Quickstart to set up your development environment.</a> </li>
+                      <li>Familiarize yourself with the <a href="https://guide.meteor.com/">Meteor Guide</a> to get started with developing Meteor.</li>
+                      <li>Reference the <a href="https://github.com/clinical-meteor/software-development-kit">Software Development Kit as needed.</a> </li>
+                      <li>Update the <a href="https://github.com/clinical-meteor/meteor-on-fhir/blob/development/webapp/packages/plugin-default-landing-page/client/FullPageCanvas.jsx">Landing Page</a> and replace with your custom content.</li>
+                      <li>Copy and modify the <a href="https://github.com/clinical-meteor/meteor-on-fhir/tree/development/webapp/packages/plugin-default-landing-page">Default Landing Page Plugin</a> to create your first plugin.</li>                      
+                    </ul>
                 </Col>
               </Row>
             </CardText>
           </GlassCard>
-
           
           <br />
           <br />

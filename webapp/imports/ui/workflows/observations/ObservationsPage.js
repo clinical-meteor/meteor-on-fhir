@@ -6,7 +6,7 @@ import Glass from '/imports/ui/Glass';
 import { GlassCard } from '/imports/ui/components/GlassCard';
 import { Meteor } from 'meteor/meteor';
 import ObservationDetail from '/imports/ui/workflows/observations/ObservationDetail';
-import ObservationTable from '/imports/ui/workflows/observations/ObservationTable';
+import ObservationsTable from '/imports/ui/workflows/observations/ObservationsTable';
 import ObservationsDeck  from '/imports/ui/workflows/observations/ObservationsDeck';
 import React  from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
@@ -98,7 +98,7 @@ export class ObservationsPage extends React.Component {
                 <ObservationDetail id='newObservation' />
               </Tab>
               <Tab className="observationListTab" label='Observations' onActive={this.handleActive} style={this.data.style.tab} value={1}>
-                <ObservationTable />
+                <ObservationsTable />
                </Tab>
                <Tab className="observationDetailsTab" label='Detail' onActive={this.handleActive} style={this.data.style.tab} value={2}>
                 <ObservationDetail id='observationDetails' />

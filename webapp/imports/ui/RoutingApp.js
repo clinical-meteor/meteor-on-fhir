@@ -128,7 +128,7 @@ export class App extends React.Component {
     if (Session.get('secondPanelVisible')) {
       if (Session.get('appWidth') > 1200) {
         data.style.secondary.visibility = 'visible';
-        data.style.secondary.left = '1024px';
+        data.style.secondary.left = '1200px';
       } else {
         data.style.secondary.visibility = 'hidden';
         data.style.secondary.left = '4048px';

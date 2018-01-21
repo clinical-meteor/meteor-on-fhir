@@ -73,7 +73,7 @@ export class VitalMeasurements extends React.Component {
                 id='bloodPressureInput'
                 ref='bloodPressure'
                 name='bloodPressure'
-                floatingLabelText="Blood Pressure (s/d))"
+                floatingLabelText="Blood Pressure (s/d)"
                 value={this.data.state.bloodPressure}
                 onChange={this.changePost.bind(this)}
                 fullWidth

@@ -56,11 +56,25 @@ test:
     #- sleep 60
 
     - cd webapp && meteor --version
-    - cd webapp && meteor npm install --production
+    - cd webapp && meteor npm install 
     - cd webapp && meteor npm install nightwatch chromedriver@2.19.0 phantomjs-prebuilt selenium-server-standalone-jar@2.45.0
 
-    #- we sometimes develop with proprietary packages; make sure we remove them for tests
-    - cd webapp && meteor remove clinical:landing-page
+    - cd webapp && cat .meteor/packages
+
+    # clone the relevant packages so we don't get errors
+    - cd webapp/packages && git clone https://github.com/awatson1978/symptomatic-blockchain-core 
+    - cd webapp/packages && git clone https://github.com/awatson1978/symptomatic-landing-page
+
+    # # and make sure that symptomatic packages aren't installed
+    # - if [ -e .meteor/local/build/programs/server/packages/symptomatic_blockchain-core ]; then cd webapp && meteor remove symptomatic:blockchain-core; fi;
+    - if [ "grep -Fxq symptomatic:blockchain-core webapp/.meteor/packages" ]; then echo "found symptomatic:blockchain-core" && cd webapp && meteor remove symptomatic:blockchain-core; fi;
+    - if [ "grep -Fxq symptomatic:landing-page webapp/.meteor/packages" ]; then echo "found symptomatic:landing-page" && cd webapp && meteor remove symptomatic:landing-page; fi;
+
+    # add the default packages back in
+    - if [ ! "grep -Fxq clinical:plugin-default-landing-page webapp/.meteor/packages" ]; then cd webapp && meteor add clinical:plugin-default-landing-page; fi;
+
+    #- before/after
+    - cd webapp && cat .meteor/packages
 
     #- make sure we have our tests
     - cd webapp/tests && ls -la

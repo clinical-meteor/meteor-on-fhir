@@ -22,10 +22,20 @@ Meteor.startup(function(){
   //BrowserPolicy.content.allowConnectOrigin('wss://meteor-on-fhir.meteorapp.com');
 
   if (process.env.INITIALIZE) {
-
     console.log("Initializing records...");
 
     Meteor.call('initializeSystem');
     Meteor.call('initializeAll');
   }
+
+  // initialize Symptomatic plugins, if licensed and installed
+  if(Package["symptomatic:blockchain-core"]){
+    console.log('Trying to initialize symptomatic:blockchain-core');
+    import { Ipfs } from 'meteor/symptomatic:blockchain-core';
+
+    if( typeof Ipfs == "object") {
+      Ipfs.loadOrganizations();
+    };
+  }
+
 });

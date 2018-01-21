@@ -55,7 +55,6 @@ clinical:user-model
 clinical:keybindings
 clinical:hipaa-logger
 clinical:autopublish
-clinical:accounts-housemd
 clinical:accounts-famous-dead-people
 awatson1978:accounts-muppets
 
@@ -72,6 +71,7 @@ clinical:hl7-resource-encounter
 #clinical:hl7-resource-endpoint
 clinical:hl7-resource-goal
 clinical:hl7-resource-immunization
+#clinical:hl7-resource-imaging-study
 clinical:hl7-resource-location
 clinical:hl7-resource-list
 clinical:hl7-resource-medication
@@ -87,8 +87,6 @@ clinical:hl7-resource-procedure
 clinical:hl7-resource-questionnaire
 clinical:hl7-resource-questionnaire-response
 clinical:hl7-resource-risk-assessment
-clinical:landing-page
-#clinical:plugin-default-landing-page
 #clinical:routing-algorithms
 
 # oauth server
@@ -105,6 +103,10 @@ percolate:synced-cron
 d3js:d3
 mousetrap:mousetrap@1.4.6
 
-omega:meteor-desktop-watcher@=0.11.1
-omega:meteor-desktop-bundler@=0.11.1
-omega:meteor-desktop-localstorage@=0.0.11
+
+### Remove these to deploy to mobile
+
+# clinical:plugin-default-landing-page
+symptomatic:blockchain-core
+symptomatic:landing-page
+clinical:accounts-housemd
