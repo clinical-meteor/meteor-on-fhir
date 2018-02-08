@@ -63,7 +63,7 @@
     "d3-scale": "^1.0.5",
     "faker": "^4.1.0",
     "fhir": "^3.1.0",
-    "fhir-schemas": "0.2.9",
+    "fhir-schemas": "^0.2.13",
     "geolib": "^2.0.24",
     "google-map-react": "^0.25.0",
     "google-maps": "^3.2.1",

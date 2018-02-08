@@ -1,4 +1,4 @@
-import { FhirApi } from 'fhir-schemas';
+import { FhirApi, FhirApi2 } from 'fhir-schemas';
 import { get, has } from 'lodash';
 import Ajv from 'ajv';
 
