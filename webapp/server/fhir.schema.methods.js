@@ -1,4 +1,4 @@
-import { FhirApi, FhirApi2 } from 'fhir-schemas';
+import { FhirApi, FhirApiLegacy } from 'fhir-schemas';
 import { get, has } from 'lodash';
 import Ajv from 'ajv';
 
@@ -9,9 +9,21 @@ Meteor.methods({
   },
   createTestPatient: function(){
 
-    var ajv = new Ajv({schemas: FhirApi });
+    console.log('createTestPatient2');
+
+    var ajv = new Ajv;
     
-    var validate = ajv.getSchema('http://hl7.org/fhir/json-schema/Patient');
+    // WORKS!  
+    //var validate = ajv.addSchema(FhirApi2, "http://hl7.org/fhir/json-schema").getSchema('http://hl7.org/fhir/json-schema#/definitions/Patient');
+
+    // Also works!  
+    //var validate = ajv.addSchema(FhirApi2, "FhirApi").getSchema('FhirApi#/definitions/Patient');
+
+
+    // perfect!
+    var validate = ajv.addSchema(FhirApi).getSchema('http://hl7.org/fhir/json-schema/Patient');
+
+    console.log('vaidate', validate)
     
     var newPatient = {
         "resourceType": "Patient",
@@ -41,6 +53,9 @@ Meteor.methods({
         console.log("newPatient isn't valid...");
         console.log(validate.errors);
     }
+    
+  },  
+  foo: function(){
     
   }
 })
