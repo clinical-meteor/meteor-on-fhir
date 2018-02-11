@@ -14,6 +14,8 @@ import {
 import React from 'react';
 import color from 'onecolor';
 
+import createReactClass from 'create-react-class';
+
 //import { circle14striped, circle34 } from './Shapes';
 
 
@@ -119,8 +121,11 @@ const {
   cssVendorPrefix
 } = utils;
 
-const OrbitalGlyph = React.createClass({
-  getInitialState() {
+
+
+//const OrbitalGlyph = React.createClass({
+const OrbitalGlyph = createReactClass({
+    getInitialState() {
     let state = {
       initialMount: false,
       showDemo: false,

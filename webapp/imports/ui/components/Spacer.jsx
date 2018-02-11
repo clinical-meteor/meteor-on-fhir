@@ -2,8 +2,12 @@ import React from 'react';
 import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
-const Spacer = React.createClass({
-  getMeteorData() {
+import createReactClass from 'create-react-class';
+
+
+//const Spacer = React.createClass({
+const Spacer = createReactClass({
+    getMeteorData() {
     let data = {
       style: {}
     };

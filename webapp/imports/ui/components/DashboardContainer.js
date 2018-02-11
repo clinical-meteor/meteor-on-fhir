@@ -1,9 +1,11 @@
 import React from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
 
+import createReactClass from 'create-react-class';
 
 
-DashboardContainer = React.createClass({
+//DashboardContainer = React.createClass({
+DashboardContainer = createReactClass({
   mixins: [ReactMeteorData],
   getMeteorData() {
     let data = {

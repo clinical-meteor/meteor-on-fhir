@@ -1,4 +1,5 @@
 
+if(Package['clinical:hl7-resource-practitioner']){
 // import { HTTP } from 'meteor/http';
 
 
@@ -35,3 +36,5 @@
 // Practitioners.after.remove(function (userId, doc) {
 //   // ...
 // });
+
+}

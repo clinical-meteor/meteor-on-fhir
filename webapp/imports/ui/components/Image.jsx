@@ -3,7 +3,11 @@ import ReactDom from 'react-dom';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
 
-export const Image = React.createClass({
+import createReactClass from 'create-react-class';
+
+
+//export const Image = React.createClass({
+export const Image = createReactClass({
   getInitialState: function() {
     return {
       wwwc: '',

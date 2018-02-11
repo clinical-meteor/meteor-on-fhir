@@ -1,8 +1,8 @@
 import { CardText, CardTitle } from 'material-ui/Card';
 import { Col, Grid, Row } from 'react-bootstrap';
 
-import {AreaChart} from 'react-easy-chart';
-import {BarChart} from 'react-easy-chart';
+import { AreaChart } from 'react-easy-chart';
+import { BarChart } from 'react-easy-chart';
 import { BarStackChart } from 'react-d3-basic';
 import { CollectionManagement } from '/imports/ui/components/CollectionManagement';
 import { GlassCard } from '/imports/ui/components/GlassCard';
@@ -175,7 +175,7 @@ export class DashboardPage extends React.Component {
                 <GlassCard >
                   <CardTitle title='Exercise Mix' subtitle={ moment(this.data.date).format('YYYY/MM/DD')} titleStyle={{color: 'black'}} style={{backgroundColor: '#eeeeee'}}  /> 
                   <CardText style={{backgroundColor: '#eeeeee', height: 300}}>
-                    <PieChart
+                    {/* <PieChart
                       id='averageNumBedsChart'
                       size={200}
                       innerHoleSize={160}
@@ -185,7 +185,7 @@ export class DashboardPage extends React.Component {
                         { key: 'C', value: 30, color: this.data.palette.colorC }
                       ]}
                       styles={{float: 'right', textAlign: 'center', marginLeft: '20px'}}
-                    />  
+                    />   */}
                   
                   </CardText>
                 </GlassCard>
@@ -199,7 +199,7 @@ export class DashboardPage extends React.Component {
                <GlassCard >
                   <CardTitle title='Weight History' subtitle='subtitle' titleStyle={{color: 'black' }} style={{backgroundColor: '#eeeeee'}}  />
                   <CardText style={{backgroundColor: '#eeeeee'}}>
-                    <AreaChart
+                    {/* <AreaChart
                       width={this.data.barchart.width}
                       height={260}
                       axes
@@ -244,7 +244,7 @@ export class DashboardPage extends React.Component {
                           {x: 9, y: 0},
                         ]    
                       ]}                      
-                      />
+                      /> */}
                   </CardText>
                 </GlassCard>                 
               

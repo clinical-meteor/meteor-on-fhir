@@ -61,7 +61,7 @@ import { NotificationsPage } from '/imports/ui/pages/NotificationsPage';
 import { ObservationsPage } from '/imports/ui/workflows/observations/ObservationsPage';
 import { OrganizationsPage } from '/imports/ui/workflows/organizations/OrganizationsPage';
 import { OutboundHeaderPage } from '/imports/ui/pages/OutboundHeaderPage';
-import { PatientsPage } from '/imports/ui/workflows/patients/PatientsPage';
+// import { PatientsPage } from '/imports/ui/workflows/patients/PatientsPage';
 import { PractitionerDashboard } from '/imports/ui/pages/PractitionerDashboard';
 import { PractitionersPage } from '/imports/ui/workflows/practitioners/PractitionersPage';
 import { PrivacyPage } from '/imports/ui/pages/PrivacyPage';
@@ -172,7 +172,7 @@ Meteor.startup(() => {
       
               <Route name="practitioners" path="/practitioners" component={ PractitionersPage } />
 
-              <Route name="patients" path="/patients" component={ PatientsPage } onEnter={ requireAuth } />
+              {/* <Route name="patients" path="/patients" component={ PatientsPage } onEnter={ requireAuth } /> */}
               <Route name="users" path="/users" component={ UsersPage } onEnter={ requireAuth } />
       
               {/* <Route name="support" path="/support" component={ ForumPage } />
