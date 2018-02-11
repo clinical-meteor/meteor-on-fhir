@@ -70,10 +70,10 @@ clinical:hl7-resource-datatypes
 clinical:hl7-resource-device
 clinical:hl7-resource-diagnostic-report
 clinical:hl7-resource-encounter
-clinical:hl7-resource-endpoint
+#clinical:hl7-resource-endpoint
 clinical:hl7-resource-goal
 clinical:hl7-resource-immunization
-clinical:hl7-resource-imaging-study
+#clinical:hl7-resource-imaging-study
 clinical:hl7-resource-location
 clinical:hl7-resource-list
 clinical:hl7-resource-medication
@@ -84,7 +84,7 @@ clinical:hl7-resource-organization
 clinical:hl7-resource-observation
 clinical:hl7-resource-patient
 clinical:hl7-resource-practitioner
-clinical:hl7-resource-practitioner-role
+#clinical:hl7-resource-practitioner-role
 clinical:hl7-resource-procedure
 clinical:hl7-resource-questionnaire
 clinical:hl7-resource-questionnaire-response
@@ -110,7 +110,7 @@ mousetrap:mousetrap@1.4.6
 
 # clinical:plugin-default-landing-page
 # symptomatic:blockchain-core
-symptomatic:landing-page
+# symptomatic:landing-page
 clinical:accounts-housemd
 
 
