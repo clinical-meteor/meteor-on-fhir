@@ -88,7 +88,6 @@
     "react-addons-css-transition-group": "^15.6.2",
     "react-addons-pure-render-mixin": "^15.6.2",
     "react-bootstrap": "^0.31.5",
-    "react-d3-basic": "^1.6.11",
     "react-dom": "15.6.1",
     "react-dropzone-component": "^3.0.0",
     "react-easy-chart": "1.0.0",

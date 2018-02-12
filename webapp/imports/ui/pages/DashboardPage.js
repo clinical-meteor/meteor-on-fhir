@@ -3,7 +3,6 @@ import { Col, Grid, Row } from 'react-bootstrap';
 
 import { AreaChart } from 'react-easy-chart';
 import { BarChart } from 'react-easy-chart';
-import { BarStackChart } from 'react-d3-basic';
 import { CollectionManagement } from '/imports/ui/components/CollectionManagement';
 import { GlassCard } from '/imports/ui/components/GlassCard';
 import { Meteor } from 'meteor/meteor';
