@@ -6,8 +6,9 @@ import { Card, CardMedia, CardTitle, CardText, CardActions } from 'material-ui/C
 import { Meteor } from 'meteor/meteor';
 
 import { Table } from 'react-bootstrap';
-import { Observations } from 'meteor/clinical:hl7-resource-observation';
 import Glass from '/imports/ui/Glass';
+
+//import { Observations } from 'meteor/clinical:hl7-resource-observation';
 
 export default class ObservationsTable extends React.Component {
 

@@ -12,36 +12,39 @@ Meteor.publish("MyGenotype", function (chromosomeNumber){
   return MyGenotype.find({}, {limit: 1000});
 });
 
+if(Package['clinical:hl7-resource-observation']){
+  Meteor.publish("Observations", function (){
+    return Observations.find();
+  });  
+}
 
-Meteor.publish("Observations", function (){
-  return Observations.find();
-});
+if(Package['clinical:hl7-resource-patient']){
+  Meteor.publish("Patients", function (query){
+    if (!query) {
+      query = {};
+    }
+  
+    var options = {
+      sort: {}
+    };
+  
+    options.sort["meta.lastUpdated"] = -1;
+  
+    if (Meteor.settings && Meteor.settings.public && Meteor.settings.public.defaults && Meteor.settings.public.defaults.subscriptionLimit) {
+      options.limit = Meteor.settings.public.defaults.subscriptionLimit;
+    }
+  
+    process.env.DEBUG && console.log("Patients.publication", query, options);
+  
+    // user is logged in
+    if (this.userId) {
+      return Patients.find(query, options);
+    } else {
+      return [];
+    }
+  });  
+}
 
-
-Meteor.publish("Patients", function (query){
-  if (!query) {
-    query = {};
-  }
-
-  var options = {
-    sort: {}
-  };
-
-  options.sort["meta.lastUpdated"] = -1;
-
-  if (Meteor.settings && Meteor.settings.public && Meteor.settings.public.defaults && Meteor.settings.public.defaults.subscriptionLimit) {
-    options.limit = Meteor.settings.public.defaults.subscriptionLimit;
-  }
-
-  process.env.DEBUG && console.log("Patients.publication", query, options);
-
-  // user is logged in
-  if (this.userId) {
-    return Patients.find(query, options);
-  } else {
-    return [];
-  }
-});
 
 
 

@@ -70,10 +70,11 @@ export class TimelineSidescrollPage extends React.Component {
             hour: 'ha'
           }
         },
-        start: '1978-01-25',
+        // TODO:  
+        start: '1990-07-04',
         end: moment().format("YYYY-MM-DD"),
-        min: '1977-04-25',
-        max: '2054-01-01', 
+        min: '1989-10-04',
+        max: '2066-07-04', 
         groupOrder: 'content'  // groupOrder can be a property name or a sorting function'
       },
       groups: [],
@@ -83,20 +84,30 @@ export class TimelineSidescrollPage extends React.Component {
     if(Meteor.userId()){
       var continuityOfCare = get(Meteor.user(), 'profile.continuityOfCare', {});
 
+      // in-utero
       data.items.push({
-        start: '1977-04-25',
-        end: '1978-01-25',
+        start: '1989-10-04',
+        end: '1990-07-04',
         type: 'background',
         style: 'background-color: #ecdcde; opacity: 0.5;'
       })   
 
+      // puberty
       data.items.push({
-        start: '1988-01-25',
-        end: '1995-01-25',
+        start: '2000-07-04',
+        end: '2007-07-04',
         type: 'background',
         style: 'background-color: #ecdcde; opacity: 0.5;'
       })   
 
+      // pregnancy
+      data.items.push({
+        start: '2017-04-15',
+        end: '2018-01-31',
+        type: 'background',
+        style: 'background-color: #ecdcde; opacity: 0.5;'
+      })   
+      
       if(continuityOfCare.allergyIntolerances){
         continuityOfCare.allergyIntolerances.forEach(function(allergy){
           data.items.push({

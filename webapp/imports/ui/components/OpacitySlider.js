@@ -2,10 +2,13 @@ import { Session } from 'meteor/session';
 import React  from 'react';
 import Slider from 'material-ui/Slider';
 
+import createReactClass from 'create-react-class';
+
 Session.setDefault('globalOpacity', 0.95);
 
-OpacitySlider = React.createClass({
-  mixins: [ReactMeteorData],
+// OpacitySlider = React.createClass({
+OpacitySlider = createReactClass({
+    mixins: [ReactMeteorData],
   getMeteorData() {
     let data = {
       style: {

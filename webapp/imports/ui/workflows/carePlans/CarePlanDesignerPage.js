@@ -2,7 +2,6 @@ import { Card, CardHeader, CardText, CardTitle } from 'material-ui/Card';
 
 import AccountCircle from 'material-ui/svg-icons/action/account-circle';
 import ActivitiesTable from '/imports/ui/workflows/carePlans/ActivitiesTable';
-import { CarePlans } from 'meteor/clinical:hl7-resource-careplan';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import { GlassCard } from '/imports/ui/components/GlassCard';
@@ -18,6 +17,8 @@ import Spacer from '/imports/ui/components/Spacer';
 import TextField from 'material-ui/TextField';
 import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 import { browserHistory } from 'react-router';
+
+//import { CarePlans } from 'meteor/clinical:hl7-resource-careplan';
 
 Session.setDefault('patientDialogOpen', false);
 export class CarePlanDesignerPage extends React.Component {
