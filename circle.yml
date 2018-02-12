@@ -74,7 +74,8 @@ test:
 
     #- before/after
     - cd webapp && cat .meteor/packages
-
+    - cd webapp && ls -la packages
+    
     #- make sure we have our tests
     - cd webapp/tests && ls -la
     - cd webapp && git clone https://github.com/awatson1978/meteor-on-fhir-validation tests/nightwatch
