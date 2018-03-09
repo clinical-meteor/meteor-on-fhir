@@ -5,7 +5,7 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 import { IndexLinkContainer } from 'react-router-bootstrap';
 import FlatButton from 'material-ui/FlatButton';
 
-export class PublicNavigation extends React.Component {
+export default class PublicNavigation extends React.Component {
   getMeteorData() {
     let data = {
       style: {

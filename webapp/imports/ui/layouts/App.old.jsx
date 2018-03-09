@@ -16,8 +16,6 @@ import { SciFiOrbital } from '/imports/ui/components/SciFiOrbital';
 import { Session } from 'meteor/session';
 import { SinglePanelLayout } from '/imports/ui/layouts/SinglePanelLayout';
 
-
-// Material UI Theming
 import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
@@ -27,8 +25,6 @@ import Dialog from 'material-ui/Dialog';
 import { Meteor } from 'meteor/meteor';
 
 import { get, has } from 'lodash';
-// import { RouteTransition } from 'react-router-transition';
-// import injectTapEventPlugin from 'react-tap-event-plugin';
 
 const muiTheme = getMuiTheme({
   palette: {
@@ -94,10 +90,6 @@ export class App extends React.Component {
       },
       user: Meteor.user()
     };
-
-    // if(get(Meteor.user(), 'profile.youHaveMail')){
-    //   data.catchDialog.open = true;
-    // }
 
     if(Session.get('catchDialogOpen')){
       data.catchDialog.open = Session.get('catchDialogOpen');

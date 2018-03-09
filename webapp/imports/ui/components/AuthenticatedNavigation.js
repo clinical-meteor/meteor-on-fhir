@@ -29,7 +29,7 @@ let style = {
   }
 };
 
-export class AuthenticatedNavigation extends React.Component {
+export default class AuthenticatedNavigation extends React.Component {
   getMeteorData() {
     let data = {
       style: {

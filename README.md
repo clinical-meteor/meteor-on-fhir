@@ -15,10 +15,15 @@ Yes, the above is a live screenshot of the app, which supports a theming engine 
 ```sh
 # get the application
 git clone http://github.com/clinical-meteor/meteor-on-fhir
+
+# move into the webapp directory
 cd meteor-on-fhir/webapp
 
-# #install dependencies
-# meteor npm install --save jquery bootstrap react react-dom react-router react-bootstrap react-komposer react-router-bootstrap faker jquery-validation react-addons-css-transition-group react-addons-pure-render-mixin react-mixin faker react-highcharts eslint-plugin-react eslint-plugin-meteor eslint-config-eslint react-scroll-box
+# clone the example plugin
+git clone http://github.com/clinical-meteor/example-plugin packages/example-plugin
+
+# install the example plugin
+meteor add clinical:example-plugin
 
 # install the app
 meteor npm install

@@ -1,4 +1,5 @@
 import { List, ListItem } from 'material-ui/List';
+import MenuItem from '/imports/ui/components/MenuItem';
 
 import { IndexLinkContainer } from 'react-router-bootstrap';
 import { Meteor } from 'meteor/meteor';
@@ -23,7 +24,7 @@ Object.keys(Package).forEach(function(packageName){
   }
 });
 
-export class PatientSidebar extends React.Component {
+export default class PatientSidebar extends React.Component {
   getMeteorData() {
     let data = {
       style: {
