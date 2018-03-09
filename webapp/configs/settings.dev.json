@@ -1,0 +1,119 @@
+{
+  "public": {
+    "title": "Meteor on FHIR",
+    "theme": {
+      "showVideoBackground": false,
+      "darkroomTextEnabled": false,
+      "defaultVideo": "/VideoBackgrounds/GrayWaves.mp4",
+      "backgroundImagePath": "/backgrounds/Gradient.png"      
+    },
+    "home": {
+      "showUnderConstruction": true,
+      "showExperimental": false,
+      "showApps": true,      
+      "showFhirMenu": true
+    },
+    "defaults": {
+      "avatars": true,
+      "barcodes": true,
+      "hexgridMenu": false,
+      "nfcOrbital": false,
+      "notificationMenu": true,
+      "searchbarVisible": true,
+      "displayNavbars": true,
+      "disableHeader": false,
+      "disableFooter": false,
+      "darkroom": false,
+      "iFrameEnabled": false,
+      "iFrameUrl": "https://www.wikipedia.org/",
+      "paginationLimit": 100,
+      "subscriptionLimit": 1000,
+      "cards": {
+        "height": "auto",
+        "opacity": 0.95
+      },
+      "sidebar": {
+        "hidden": [
+          "/allergies",
+          "/conditions",
+          "/care-plans",
+          "/goals",
+          "/devices",
+          "/medications",
+          "/medication-orders",
+          "/organizations",
+          "/observations",
+          "/patients",
+          "/practitioners",
+          "/procedures",
+          "/risk-assessments"
+        ]
+      }      
+    },
+    "interfaces": {
+      "default": {
+        "status": "inactive",
+        "channel": {
+          "endpoint": "http://localhost:80"
+        },
+        "auth": {
+          "username": "foo",
+          "password": "bar"
+        }
+      }
+    },
+    "meshNetwork": {
+      "upstreamSync": "http://meteor-on-fhir.meteorapp.com/fhir-3.0.0", 
+      "autosync": false
+    },
+    "modules": {
+      "data": true,
+      "forum": true,
+      "genome": true,
+      "healthlog": true,
+      "dermatograms": true,
+      "telemedicine": true,
+      "inbound": true,
+      "outbound": true,
+      "epic": true,
+      "statisticsLogging": true,
+      "apps": {
+        "ChecklistManifesto": false,
+        "ContinuityOfCare": false,
+        "Videoconferencing": false        
+      },
+      "fhir": {
+        "AllergyIntolerances": false,
+        "AuditEvents": false,
+        "BodySites": false,
+        "CarePlans": false,
+        "Conditions": false,
+        "Devices": false,
+        "DiagnosticReports": false,
+        "Goals": false,
+        "ImagingStudies": false,
+        "Immunizations": false,
+        "Locations": false,
+        "Lists": false,
+        "Medications": false,
+        "MedicationOrders": false,
+        "MedicationStatements": false,
+        "Organizations": false,
+        "Observations": false,
+        "Patients": false,
+        "Practitioners": false,
+        "Procedures": false,
+        "Questionnaires": false,
+        "RiskAssessments": false
+      }
+    }
+  },
+  "private": {
+    "practitionerAccessCode": "hippocrates",
+    "sysadminAccessCode": "rootaccess",
+    "disableOauth": true,
+    "demo": {
+      "nightlyDatabaseDrop": true
+    }
+  }
+}

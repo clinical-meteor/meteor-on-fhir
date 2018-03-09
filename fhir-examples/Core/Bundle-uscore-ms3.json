@@ -1,0 +1,71 @@
+{
+  "resourceType": "Bundle",
+  "id": "uscore-ms3",
+  "meta": {
+    "lastUpdated": "2017-03-01T17:46:08.490-05:00"
+  },
+  "type": "searchset",
+  "total": 1,
+  "link": [
+    {
+      "relation": "self",
+      "url": "http://fhirtest.uhn.ca/baseDstu3/MedicationStatement?_id=uscore-ms3&_include=MedicationStatement%3Amedication"
+    }
+  ],
+  "entry": [
+    {
+      "fullUrl": "http://fhir3.healthintersections.com.au/open/MedicationStatement/uscore-ms3",
+      "resource": {
+        "resourceType": "MedicationStatement",
+        "id": "uscore-ms3",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-medicationstatement"
+          ]
+        },
+        "status": "active",
+        "medicationReference": {
+          "reference": "Medication/uscore-med1",
+          "display": "lisinopril oral 10 mg"
+        },
+        "effectivePeriod": {
+          "start": "2010-05-01"
+        },
+        "dateAsserted": "2016-05-01T16:13:03Z",
+        "subject": {
+          "reference": "Patient/example",
+          "display": "Amy Shaw"
+        },
+        "taken": "y"
+      },
+      "search": {
+        "mode": "match"
+      }
+    },
+    {
+      "fullUrl": "/Medication/uscore-med2",
+      "resource": {
+        "resourceType": "Medication",
+        "id": "uscore-med2",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-medication"
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "582620",
+              "display": "Nizatidine 15 MG/ML Oral Solution [Axid]"
+            }
+          ],
+          "text": "Nizatidine 15 MG/ML Oral Solution [Axid]"
+        }
+      },
+      "search": {
+        "mode": "include"
+      }
+    }
+  ]
+}
