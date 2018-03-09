@@ -1,7 +1,7 @@
 # Meteor on FHIR
 For my Masters of Science in Biomedical Informatics, we are required to create a Capstone Project.  So I decided to write a Health Information Exchange infrastructure.  The technical infrastructure uses MongoDB (a modern hierarchical database, similar to the MUMPS/Cache database what Epic uses), a full-stack isomorphic javascript framework called [Meteor](https://www.meteor.com/), and Facebook's user interface layer React.  The HIE uses a wordpress business model, and is intended to be a distributed and federated peer-to-peer network.  We use [HL7 Fast Healthcare Interoperability Resources (FHIR)](https://www.hl7.org/fhir/) for data exchange and interoperability.  
 
-> **NOTE: We have recently refactored the codebase.  We removed a ton of clutter, stale prototypes, dead code, and binary files that were tying Meteor on FHIR to Mac/Linux.  Meteor on FHIR should now run on Azure, and is configured as a community build by default.  You may notice some missing functionality, such as theming, geomapping, timelines, and other features.  Please contact demos@symptomatic.io if you need access to those features.  
+> NOTE: We have recently refactored the codebase.  We removed a ton of clutter, stale prototypes, dead code, and binary files that were tying Meteor on FHIR to Mac/Linux.  Meteor on FHIR should now run on Azure, and is configured as a community build by default.  You may notice some missing functionality, such as theming, geomapping, timelines, and other features.  Please contact demos@symptomatic.io if you need access to those features.  
 
 [![CircleCI](https://circleci.com/gh/clinical-meteor/meteor-on-fhir/tree/master.svg?style=svg)](https://circleci.com/gh/clinical-meteor/meteor-on-fhir/tree/master)  
 
