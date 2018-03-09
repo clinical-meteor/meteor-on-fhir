@@ -1,6 +1,5 @@
 import { AdminSidebar }  from '/imports/ui/components/AdminSidebar';
-import { CardHeader } from 'material-ui/Card';
-import Drawer from 'material-ui/Drawer';
+import { CardHeader, Drawer } from 'material-ui';
 import { IndexLinkContainer, LinkContainer } from 'react-router-bootstrap';
 import { Meteor } from 'meteor/meteor';
 import { PatientSidebar }  from '/imports/ui/components/PatientSidebar';
@@ -11,6 +10,7 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin  from 'react-mixin';
 import { Session } from 'meteor/session';
 import User from '/imports/api/User';
+import MenuItem from '/imports/ui/components/MenuItem';
 
 import { has, get } from 'lodash';
 
@@ -51,7 +51,8 @@ export default class SinglePanelLayout extends React.Component {
         title: 'Please log in',
         subtitle: 'Basic User',
         avatar: '/noAvatar.png'
-      }
+      },
+      isAdmin: false
     };
 
     if (Meteor.user()) {
@@ -99,7 +100,7 @@ export default class SinglePanelLayout extends React.Component {
       if (isAdmin) {
         return <AdminSidebar /> ;
       } else {
-        if (Meteor.user() && Meteor.user().roles && Meteor.user().roles[0] && (Meteor.user().roles[0] === 'practitioner')) {
+        if (get(Meteor.user(), 'roles[0]') === 'practitioner') {
           return <PractitionerSidebar /> ;
         } else {
           return <PatientSidebar /> ;
@@ -126,17 +127,19 @@ export default class SinglePanelLayout extends React.Component {
           >
 
           <div onClick={ this.closeOpenedSidebar }>
+
               <LinkContainer id="userIdentification" to='/myprofile' >
-                 <div>
+                 <MenuItem>
                   <CardHeader
                     title={this.data.card.title}
                     subtitle={this.data.card.subtitle}
                     style={{cursor: 'pointer'}}
                   />
-                </div>
+                </MenuItem>
               </LinkContainer>
 
                { this.renderSidebar(this.data.state.isAdmin) }
+
           </div>
         </Drawer>
 

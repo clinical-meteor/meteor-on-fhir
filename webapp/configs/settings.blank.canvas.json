@@ -1,6 +1,6 @@
 {
   "public": {
-    "title": "Blank Canvas (Build Your Own Plugin)",
+    "title": "Your App Name Here",
     "baseUrl":"https://meteor-on-fhir.meteorapp.com/",
     "theme": {
       "showVideoBackground": false,
@@ -15,7 +15,7 @@
       "showFhirMenu": false
     },
     "defaults": {
-      "route": "/example-route",
+      "route": "/hello-world",
       "avatars": true,
       "barcodes": true,
       "hexgridMenu": false,

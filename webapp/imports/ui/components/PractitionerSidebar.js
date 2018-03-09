@@ -1,11 +1,12 @@
 import { List, ListItem } from 'material-ui/List';
+import MenuItem from '/imports/ui/components/MenuItem';
 
 import { IndexLinkContainer } from 'react-router-bootstrap';
 import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
 
-export class PractitionerSidebar extends React.Component {
+export default class PractitionerSidebar extends React.Component {
   getMeteorData() {
     let data = {
       style: {

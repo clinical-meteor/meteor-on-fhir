@@ -5,7 +5,7 @@ import { IndexRoute, Route, Router, browserHistory } from 'react-router';
 
 import { render } from 'react-dom';
 
-import { App } from '/imports/ui/RoutingApp';
+import { App } from '/imports/ui/layouts/App';
 
 import { AboutPage } from '/imports/ui/pages/AboutPage';
 import { AppInfoPage } from '/imports/ui/pages/AppInfoPage';

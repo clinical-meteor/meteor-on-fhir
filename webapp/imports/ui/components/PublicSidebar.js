@@ -1,4 +1,5 @@
-import { List, ListItem } from 'material-ui/List';
+import { List, ListItem } from 'material-ui';
+import MenuItem from '/imports/ui/components/MenuItem';
 
 import { IndexLinkContainer } from 'react-router-bootstrap';
 import React from 'react';
@@ -17,8 +18,6 @@ Object.keys(Package).forEach(function(packageName){
     });    
   }
 });
-
-//console.log('publicModules', publicModules)
 
 
 export class PublicSidebar extends React.Component {
@@ -48,7 +47,7 @@ export class PublicSidebar extends React.Component {
     var index;
     // if(get(Meteor, 'settings.public.defaults.sidebar.showIndex')){
     //   index = <IndexLinkContainer to='/signup'>
-    //     <ListItem primaryText='Register' href='/signup' />
+    //     <MenuItem primaryText='Register' href='/signup' />
     //    </IndexLinkContainer>
     // }
 
@@ -61,7 +60,7 @@ export class PublicSidebar extends React.Component {
       // the excludes array will hide routes
       if(!get(Meteor, 'settings.public.defaults.sidebar.hidden', []).includes(element.to)){
         publicElements.push(<IndexLinkContainer to={element.to} key={index}>
-          <ListItem primaryText={element.primaryText} href={element.href} />
+          <MenuItem primaryText={element.primaryText} href={element.href} />
         </IndexLinkContainer>);
       }
     });
@@ -70,11 +69,11 @@ export class PublicSidebar extends React.Component {
     if(get(Meteor, 'settings.public.home.showRegistration')){
       registrationLinks = <div>
         <IndexLinkContainer to='/signin'>
-           <ListItem primaryText='Sign In' href='/signin' />
+           <MenuItem primaryText='Sign In' href='/signin' />
         </IndexLinkContainer>
 
         <IndexLinkContainer to='/signup'>
-           <ListItem primaryText='Register' href='/signup' />
+           <MenuItem primaryText='Register' href='/signup' />
         </IndexLinkContainer>
       </div>
     }
@@ -86,11 +85,11 @@ export class PublicSidebar extends React.Component {
         { registrationLinks }
 
         <IndexLinkContainer to='/about'>
-           <ListItem primaryText='About' href='/about' />
+           <MenuItem primaryText='About' href='/about' />
         </IndexLinkContainer>
 
         <IndexLinkContainer to='/privacy'>
-           <ListItem primaryText='Privacy Page' href='/privacy' />
+           <MenuItem primaryText='Privacy Page' href='/privacy' />
         </IndexLinkContainer>
 
       </List>
@@ -99,3 +98,4 @@ export class PublicSidebar extends React.Component {
 }
 
 ReactMixin(PublicSidebar.prototype, ReactMeteorData);
+export default PublicSidebar; 

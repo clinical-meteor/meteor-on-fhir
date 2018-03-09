@@ -7,7 +7,7 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 
 import { AppInfoPage } from '/imports/ui/pages/AppInfoPage';
 
-export class AdminSidebar extends React.Component {
+export default class AdminSidebar extends React.Component {
   getMeteorData() {
     let data = {
       style: {
