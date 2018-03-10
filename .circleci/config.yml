@@ -79,6 +79,8 @@ jobs:
         command: cd webapp && meteor run --settings configs/settings.circle.json
         background: true
 
+    - run: sleep 300
+
     - run: 
         name: Running tests
         command: cd webapp && meteor npm run-script circle-nightwatch
