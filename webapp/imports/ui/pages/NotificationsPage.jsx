@@ -223,3 +223,4 @@ export class NotificationsPage extends React.Component {
 
 
 ReactMixin(NotificationsPage.prototype, ReactMeteorData);
+export default NotificationsPage;

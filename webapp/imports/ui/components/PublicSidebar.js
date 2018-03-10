@@ -45,11 +45,11 @@ export class PublicSidebar extends React.Component {
   render () {
 
     var index;
-    // if(get(Meteor, 'settings.public.defaults.sidebar.showIndex')){
-    //   index = <IndexLinkContainer to='/signup'>
-    //     <MenuItem primaryText='Register' href='/signup' />
-    //    </IndexLinkContainer>
-    // }
+    if(get(Meteor, 'settings.public.defaults.sidebar.showIndex')){
+      index = <IndexLinkContainer to='/signup'>
+        <MenuItem primaryText='Register' href='/signup' />
+       </IndexLinkContainer>
+    }
 
     //----------------------------------------------------------------------
     // Public Modules  

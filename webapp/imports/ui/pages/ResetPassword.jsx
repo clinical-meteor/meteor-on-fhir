@@ -54,3 +54,6 @@ export class ResetPassword extends React.Component {
 ResetPassword.propTypes = {
   params: PropTypes.object,
 };
+
+
+export default ResetPassword;

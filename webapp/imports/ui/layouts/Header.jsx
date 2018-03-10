@@ -1,13 +1,15 @@
 import ActionAccountCircle from 'material-ui/svg-icons/action/account-circle';
 import ActionReorder from 'material-ui/svg-icons/action/reorder';
 import AppBar from '/imports/ui/layouts/AppBar';
+
 import { AuthenticatedNavigation } from '../components/AuthenticatedNavigation';
-import FlatButton from 'material-ui/FlatButton';
+import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 import { Glass } from 'meteor/clinical:glass-ui';
 
 // header
-import IconButton from 'material-ui/IconButton';
+import { FlatButton, IconButton, TextField } from 'material-ui';
 import { Meteor } from 'meteor/meteor';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import { PublicNavigation } from '../components/PublicNavigation';
@@ -15,7 +17,6 @@ import React  from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
 import { Session } from 'meteor/session';
-import TextField from 'material-ui/TextField';
 import { browserHistory } from 'react-router';
 
 import { get } from 'lodash';
@@ -113,8 +114,8 @@ export class Header extends React.Component {
       data.style.searchbar.top = '0px';
     }
 
-    if (Meteor.settings && Meteor.settings.public && Meteor.settings.public.title) {
-      data.app.title = Meteor.settings.public.title;
+    if (get(Meteor, 'settings.public.title')) {
+      data.app.title = get(Meteor, 'settings.public.title');
     }
 
     if (Meteor.userId()) {
@@ -136,7 +137,9 @@ export class Header extends React.Component {
 
     return data;
   }
-
+  getChildContext() {
+    return { muiTheme: getMuiTheme(baseTheme) };
+  }
 
   clickOnBackdropBlurButton(){
     Session.toggle('backgroundBlurEnabled');
@@ -157,7 +160,7 @@ export class Header extends React.Component {
   renderNavigation(hasUser) {
     if(get(Meteor, 'settings.public.home.showRegistration')){
       if (hasUser) {
-        return <AuthenticatedNavigation />;
+        // return <AuthenticatedNavigation />;
       } else {
         return <PublicNavigation />;
       }  
@@ -193,7 +196,7 @@ export class Header extends React.Component {
             />
         </AppBar>
 
-        <AppBar
+        {/* <AppBar
           id="appSearchBar"
           title={<div>
               <TextField
@@ -201,13 +204,12 @@ export class Header extends React.Component {
               style={this.data.style.searchbarInput}
               fullWidth
             />
-            {/*<FlatButton label="Search" />*/}
           </div>}
           style={this.data.style.searchbar}
           showMenuIconButton={false}
         >
           
-        </AppBar>      
+        </AppBar>       */}
 
       </div>
 
@@ -215,5 +217,9 @@ export class Header extends React.Component {
     );
   }
 }
-
+Header.childContextTypes = {
+  muiTheme: React.PropTypes.object
+};
 ReactMixin(Header.prototype, ReactMeteorData);
+
+export default Header;

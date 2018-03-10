@@ -154,3 +154,5 @@ export class Signin extends React.Component {
   }
 }
 ReactMixin(Signin.prototype, ReactMeteorData);
+
+export default Signin;

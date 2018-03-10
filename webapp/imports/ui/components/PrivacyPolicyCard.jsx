@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardMedia, CardTitle, CardText, CardActions } from 'material-ui/Card';
 
-export default class PrivacyPolicyCard extends React.Component {
+export class PrivacyPolicyCard extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -19,3 +19,4 @@ export default class PrivacyPolicyCard extends React.Component {
     );
   }
 }
+export default PrivacyPolicyCard;

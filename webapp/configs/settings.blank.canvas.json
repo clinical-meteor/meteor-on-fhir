@@ -12,7 +12,8 @@
       "showUnderConstruction": false,
       "showExperimental": false,
       "showApps": false,      
-      "showFhirMenu": false
+      "showFhirMenu": false,
+      "showRegistration": true
     },
     "defaults": {
       "route": "/hello-world",

@@ -1,6 +1,7 @@
 {
   "public": {
     "title": "Meteor on FHIR",
+    "baseUrl":"https://meteor-on-fhir.meteorapp.com/",
     "theme": {
       "showVideoBackground": false,
       "darkroomTextEnabled": false,
@@ -14,6 +15,7 @@
       "showFhirMenu": true
     },
     "defaults": {
+      "route": "/",
       "avatars": true,
       "barcodes": true,
       "hexgridMenu": false,
@@ -31,6 +33,27 @@
       "cards": {
         "height": "auto",
         "opacity": 0.95
+      },
+      "registration": {
+        "displayAccessCode": true
+      },
+      "sidebar": {
+        "hidden": [
+          "/allergies",
+          "/conditions",
+          "/care-plans",
+          "/goals",
+          "/devices",
+          "/medications",
+          "/medication-orders",
+          "/medication-statements",
+          "/organizations",
+          "/observations",
+          "/patients",
+          "/practitioners",
+          "/procedures",
+          "/risk-assessments"
+        ]
       }
     },
     "interfaces": {

@@ -45,7 +45,7 @@ getMeteorData() {
     return (
       <div>
         <CardTitle
-          title="Features"
+          title="About"
         />
          <CardText>
 

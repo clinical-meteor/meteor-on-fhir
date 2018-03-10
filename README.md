@@ -37,7 +37,7 @@ meteor npm install
 INITIALIZE=true Patients=true Practitioners=true meteor
 
 ## general development
-NODE_ENV=test INITIALIZE=true Patients=true Practitioners=true meteor --settings configs/settings.dev.json
+meteor --settings configs/settings.blank.canvas.json
 ```
 
 #### C. Theme and Remove Licensed Media Assets
