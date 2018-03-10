@@ -79,23 +79,23 @@ jobs:
     - run: cd webapp/tests && ls -la
     - run: cd webapp && git clone https://github.com/awatson1978/meteor-on-fhir-validation tests/nightwatch
 
+    - run:
+        name: Download Selenium
+        command: |
+          curl -O http://selenium-release.storage.googleapis.com/3.5/selenium-server-standalone-3.5.3.jar
+
+    - run:
+        name: Start Selenium
+        command: |
+          java -jar selenium-server-standalone-3.5.3.jar -log test-reports/selenium.log
+        background: true
+
     #- run the app
     - run: 
         name: Starting Meteor
         no_output_timeout: 10m
         command: cd webapp && meteor run --settings configs/settings.circle.json 
         background: true
-
-    # - run:
-    #     name: Download Selenium
-    #     command: |
-    #       curl -O http://selenium-release.storage.googleapis.com/3.5/selenium-server-standalone-3.5.3.jar
-
-    # - run:
-    #     name: Start Selenium
-    #     command: |
-    #       java -jar selenium-server-standalone-3.5.3.jar -log test-reports/selenium.log
-    #     background: true
 
     - run: 
         name: Running tests
