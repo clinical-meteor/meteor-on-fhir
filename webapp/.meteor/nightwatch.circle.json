@@ -30,7 +30,7 @@
       "selenium_host": "selenium",
       "selenium_port": 4444,
       "pathname": "/wd/hub",
-      "silent": false,
+      "silent": true,
       "disable_colors": false,
       "firefox_profile": false,
       "ie_driver": "",
