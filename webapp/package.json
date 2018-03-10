@@ -14,6 +14,7 @@
     "nightwatch": "nightwatch -c .meteor/nightwatch.json --tag circle",
     "phantom": "nightwatch -c .meteor/nightwatch.json --env phantom",
     "circle-nightwatch": "nightwatch -c .meteor/nightwatch.circle.json --tag circle",
+    "circle-hello": "nightwatch -c .meteor/nightwatch.circle.json --tag hello",
     "desktop": "meteor-desktop",
     "dockerize": "../scripts/generate_docker_compose_file.sh",
     "push_to_circle_ci": "../scripts/push_to_circle_ci.sh",
