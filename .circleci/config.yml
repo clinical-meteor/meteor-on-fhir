@@ -76,6 +76,7 @@ jobs:
     #- run the app
     - run: 
         name: Starting Meteor
+        no_output_timeout: 10m
         command: cd webapp && meteor run --settings configs/settings.circle.json 
         background: true
 
