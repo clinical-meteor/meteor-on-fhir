@@ -76,12 +76,8 @@ jobs:
     #- run the app
     - run: 
         name: Starting Meteor
-        command: cd webapp && meteor run --settings configs/settings.circle.json
+        command: cd webapp && meteor run --settings configs/settings.circle.json && sleep 300
         background: true
-
-    - run: 
-        name: Wait for Meteor
-        command: sleep 300
 
     - run: 
         name: Running tests
