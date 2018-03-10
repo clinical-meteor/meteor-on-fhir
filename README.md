@@ -33,11 +33,19 @@ meteor npm install
 #### B. Running Local
 
 ```sh
-## Initialize with FHIR test data
-INITIALIZE=true Patients=true Practitioners=true meteor
-
 ## general development
 meteor --settings configs/settings.blank.canvas.json
+```
+
+
+#### C. Install Test Data
+
+```sh
+# install sample doctors and nurses
+meteor add clinical:accounts-housemd
+
+# run with initialization variables
+INITIALIZE=true Patients=true Practitioners=true meteor
 ```
 
 #### C. Theme and Remove Licensed Media Assets
