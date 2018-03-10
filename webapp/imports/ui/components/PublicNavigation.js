@@ -4,8 +4,9 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 
 import { IndexLinkContainer } from 'react-router-bootstrap';
 import FlatButton from 'material-ui/FlatButton';
+import MenuItem from '/imports/ui/components/MenuItem';
 
-export default class PublicNavigation extends React.Component {
+export class PublicNavigation extends React.Component {
   getMeteorData() {
     let data = {
       style: {
@@ -34,3 +35,4 @@ export default class PublicNavigation extends React.Component {
 }
 
 ReactMixin(PublicNavigation.prototype, ReactMeteorData);
+export default PublicNavigation;

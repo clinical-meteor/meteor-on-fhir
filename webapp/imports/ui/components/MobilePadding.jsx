@@ -3,7 +3,7 @@ import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
 
-export default class MobilePadding extends React.Component {
+export class MobilePadding extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -34,3 +34,5 @@ export default class MobilePadding extends React.Component {
 }
 
 ReactMixin(MobilePadding.prototype, ReactMeteorData);
+
+export default MobilePadding;

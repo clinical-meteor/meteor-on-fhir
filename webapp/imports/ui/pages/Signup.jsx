@@ -20,7 +20,6 @@ import { has, get } from 'lodash';
 if(process.env.NODE_ENV === "test") console.log("Signup[lightBaseTheme]", lightBaseTheme);
 if(process.env.NODE_ENV === "test") console.log("Signup[darkBaseTheme]", darkBaseTheme);
 
-
 export class Signup extends React.Component {
   componentDidMount() {
     //handleSignup({ component: this });
@@ -52,7 +51,7 @@ export class Signup extends React.Component {
       }
     };
 
-    if (get(Meteor, 'settings.theme.darkroomTextEnabled')) {
+    if (get(Meteor, 'settings.public.theme.darkroomTextEnabled')) {
       data.style.textColor.color = darkBaseTheme.palette.textColor;
       data.style.inputStyle.color = darkBaseTheme.palette.textColor;
       data.style.errorStyle.color = darkBaseTheme.palette.accent1Color;
@@ -235,3 +234,5 @@ export class Signup extends React.Component {
   }
 }
 ReactMixin(Signup.prototype, ReactMeteorData);
+
+export default Signup;

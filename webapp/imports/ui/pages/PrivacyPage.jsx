@@ -12,7 +12,7 @@ export class PrivacyPage extends React.Component {
     return(
       <div id="privacyPage">
         <VerticalCanvas>
-          <GlassCard>
+          <GlassCard height='auto'>
             <PrivacyPolicyCard />            
           </GlassCard>
         </VerticalCanvas>
@@ -20,3 +20,4 @@ export class PrivacyPage extends React.Component {
     );
   }
 }
+export default PrivacyPage;
