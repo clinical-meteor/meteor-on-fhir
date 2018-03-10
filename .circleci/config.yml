@@ -36,6 +36,7 @@ jobs:
     # To see the list of pre-built images that CircleCI provides for most common languages see
     # https://circleci.com/docs/2.0/circleci-images/
     docker:
+    - image: selenium/standalone-chrome:3.1.0
     - image: circleci/build-image:ubuntu-14.04-XXL-upstart-1189-5614f37
       command: /sbin/init
     steps:
@@ -79,16 +80,16 @@ jobs:
     - run: cd webapp/tests && ls -la
     - run: cd webapp && git clone https://github.com/awatson1978/meteor-on-fhir-validation tests/nightwatch
 
-    - run:
-        name: Download Selenium
-        command: |
-          curl -O http://selenium-release.storage.googleapis.com/3.0/selenium-server-standalone-3.0.1.jar
+    # - run:
+    #     name: Download Selenium
+    #     command: |
+    #       curl -O http://selenium-release.storage.googleapis.com/3.0/selenium-server-standalone-3.0.1.jar
 
-    - run:
-        name: Start Selenium
-        command: |
-          java -jar selenium-server-standalone-3.0.1.jar -log test-reports/selenium.log
-        background: true
+    # - run:
+    #     name: Start Selenium
+    #     command: |
+    #       java -jar selenium-server-standalone-3.0.1.jar -log test-reports/selenium.log
+    #     background: true
 
     #- run the app
     - run: 
