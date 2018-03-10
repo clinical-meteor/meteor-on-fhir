@@ -79,15 +79,13 @@ jobs:
         command: cd webapp && meteor run --settings configs/settings.circle.json
         background: true
 
-  - run: 
+    - run: 
         name: Wait for Meteor
         command: sleep 300
 
     - run: 
         name: Running tests
         command: cd webapp && meteor npm run-script circle-nightwatch
-
-
 
     # Dependencies
     #   This would typically go in either a build or a build-and-test job when using workflows
