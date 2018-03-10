@@ -75,12 +75,12 @@ jobs:
 
     #- run the app
     - run: 
-        background: Starting Meteor
+        name: Starting Meteor
         command: cd webapp && meteor run --settings configs/settings.circle.json
         background: true
 
     - run: 
-        background: Running tests
+        name: Running tests
         command: cd webapp && meteor npm run-script circle-nightwatch
 
 
