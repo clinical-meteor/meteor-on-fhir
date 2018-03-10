@@ -44,6 +44,7 @@ jobs:
     # 'See docs on artifact collection here https://circleci.com/docs/2.0/artifacts/'
     - run: mkdir -p $CIRCLE_ARTIFACTS $CIRCLE_TEST_REPORTS
 
+    - run: pwd
     - run: cd webapp && cat .meteor/nightwatch.json
     - run: cd webapp && cat .meteor/packages
     - run: cd webapp && meteor --version
