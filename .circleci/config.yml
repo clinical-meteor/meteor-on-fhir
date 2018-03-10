@@ -56,10 +56,34 @@ jobs:
     # Lets see if we can get some config info 
     - run: cd webapp && cat .meteor/nightwatch.json
     - run: cd webapp && cat .meteor/packages
-
-
-
     - run: cd webapp && meteor --version
+
+    # Install the actual app...
+    - run: cd webapp && meteor npm install 
+    - run: cd webapp && meteor npm install nightwatch chromedriver@2.19.0 phantomjs-prebuilt selenium-server-standalone-jar@2.45.0
+
+    # clone the relevant packages so we don't get errors
+    # - cd webapp/packages && git clone https://github.com/awatson1978/symptomatic-blockchain-core 
+    # - cd webapp/packages && git clone https://github.com/awatson1978/symptomatic-landing-page
+
+    #- before/after
+    - run: cd webapp && cat .meteor/packages
+
+    #- make sure we have our tests
+    - run: cd webapp/tests && ls -la
+    - run: cd webapp && git clone https://github.com/awatson1978/meteor-on-fhir-validation tests/nightwatch
+
+    #- run the app
+    - run: 
+        background: Starting Meteor
+        command: cd webapp && meteor run --settings configs/settings.circle.json
+        background: true
+
+    - run: 
+        background: Running tests
+        command: cd webapp && meteor npm run-script circle-nightwatch
+
+
 
     # Dependencies
     #   This would typically go in either a build or a build-and-test job when using workflows
