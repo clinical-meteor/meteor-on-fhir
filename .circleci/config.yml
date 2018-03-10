@@ -37,7 +37,7 @@ jobs:
     # https://circleci.com/docs/2.0/circleci-images/
     docker:
     - image: selenium/standalone-chrome:3.0.1
-    - image: circleci/build-image:ubuntu-14.04-XXL-upstart-1189-5614f37
+    # - image: circleci/build-image:ubuntu-14.04-XXL-upstart-1189-5614f37
       command: /sbin/init
       environment:
         CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
