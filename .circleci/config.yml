@@ -14,6 +14,18 @@ jobs:
     parallelism: 1
     shell: /bin/bash --login
 
+    # CircleCI 2.0 does not support environment variables that refer to each other the same way as 1.0 did.
+    # If any of these refer to each other, rewrite them so that they don't or see https://circleci.com/docs/2.0/env-vars/#interpolating-environment-variables-to-set-other-environment-variables .
+    environment:
+      CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
+      CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
+      TZ: "/usr/share/zoneinfo/America/Los_Angeles"
+      CIRCLE_ENV: test
+      NODE_ENV: test
+      CXX: g++-4.8
+      DISPLAY: :99.0
+      NPM_PREFIX: /home/ubuntu/nvm/v0.10.33
+      
     # In CircleCI 1.0 we used a pre-configured image with a large number of languages and other packages.
     # In CircleCI 2.0 you can now specify your own image, or use one of our pre-configured images.
     # The following configuration line tells CircleCI to use the specified docker image as the runtime environment for you job.
@@ -24,20 +36,8 @@ jobs:
     # To see the list of pre-built images that CircleCI provides for most common languages see
     # https://circleci.com/docs/2.0/circleci-images/
     docker:
-    - image: selenium/standalone-chrome:3.0.1
     - image: circleci/build-image:ubuntu-14.04-XXL-upstart-1189-5614f37
       command: /sbin/init
-      # CircleCI 2.0 does not support environment variables that refer to each other the same way as 1.0 did.
-      # If any of these refer to each other, rewrite them so that they don't or see https://circleci.com/docs/2.0/env-vars/#interpolating-environment-variables-to-set-other-environment-variables .
-      environment:
-        CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
-        CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
-        TZ: "/usr/share/zoneinfo/America/Los_Angeles"
-        CIRCLE_ENV: test
-        NODE_ENV: test
-        CXX: g++-4.8
-        DISPLAY: :99.0
-        NPM_PREFIX: /home/ubuntu/nvm/v0.10.33
     steps:
 
     # Machine Setup
@@ -79,23 +79,23 @@ jobs:
     - run: cd webapp/tests && ls -la
     - run: cd webapp && git clone https://github.com/awatson1978/meteor-on-fhir-validation tests/nightwatch
 
-    # - run:
-    #     name: Download Selenium
-    #     command: |
-    #       curl -O http://selenium-release.storage.googleapis.com/3.0/selenium-server-standalone-3.0.1.jar
-
-    # - run:
-    #     name: Start Selenium
-    #     command: |
-    #       java -jar selenium-server-standalone-3.0.1.jar -log test-reports/selenium.log
-    #     background: true
-
     #- run the app
     - run: 
         name: Starting Meteor
         no_output_timeout: 10m
         command: cd webapp && meteor run --settings configs/settings.circle.json 
         background: true
+
+    # - run:
+    #     name: Download Selenium
+    #     command: |
+    #       curl -O http://selenium-release.storage.googleapis.com/3.5/selenium-server-standalone-3.5.3.jar
+
+    # - run:
+    #     name: Start Selenium
+    #     command: |
+    #       java -jar selenium-server-standalone-3.5.3.jar -log test-reports/selenium.log
+    #     background: true
 
     - run: 
         name: Running tests
