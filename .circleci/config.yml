@@ -19,7 +19,13 @@ jobs:
     environment:
       CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
       CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
-
+      TZ: "/usr/share/zoneinfo/America/Los_Angeles"
+      CIRCLE_ENV: test
+      NODE_ENV: test
+      CXX: g++-4.8
+      DISPLAY: :99.0
+      NPM_PREFIX: /home/ubuntu/nvm/v0.10.33
+      
     # In CircleCI 1.0 we used a pre-configured image with a large number of languages and other packages.
     # In CircleCI 2.0 you can now specify your own image, or use one of our pre-configured images.
     # The following configuration line tells CircleCI to use the specified docker image as the runtime environment for you job.
@@ -30,8 +36,7 @@ jobs:
     # To see the list of pre-built images that CircleCI provides for most common languages see
     # https://circleci.com/docs/2.0/circleci-images/
     docker:
-    #- image: circleci/build-image:ubuntu-14.04-XXL-upstart-1189-5614f37
-    - image: selenium/standalone-chrome:3.1.0
+    - image: circleci/build-image:ubuntu-14.04-XXL-upstart-1189-5614f37
       command: /sbin/init
     steps:
 
@@ -80,6 +85,17 @@ jobs:
         no_output_timeout: 10m
         command: cd webapp && meteor run --settings configs/settings.circle.json 
         background: true
+
+    # - run:
+    #     name: Download Selenium
+    #     command: |
+    #       curl -O http://selenium-release.storage.googleapis.com/3.5/selenium-server-standalone-3.5.3.jar
+
+    # - run:
+    #     name: Start Selenium
+    #     command: |
+    #       java -jar selenium-server-standalone-3.5.3.jar -log test-reports/selenium.log
+    #     background: true
 
     - run: 
         name: Running tests
