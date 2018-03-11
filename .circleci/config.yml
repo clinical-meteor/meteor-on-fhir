@@ -97,7 +97,7 @@ jobs:
     - run:
         name: Download Selenium
         command: |
-            curl -O http://selenium-release.storage.googleapis.com/3.0/selenium-server-standalone-3.0.1.jar
+            curl -O http://selenium-release.storage.googleapis.com/3.5/selenium-server-standalone-3.5.1.jar
     - run:
         name: Start Selenium
         background: true
@@ -150,6 +150,8 @@ jobs:
         path: /tmp/circleci-test-results
 
     # Save artifacts
+    - store_artifacts:
+        path: ./test-reports
     - store_artifacts:
         path: ./tests/nightwatch/screenshots
     - store_artifacts:
