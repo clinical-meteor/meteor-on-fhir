@@ -87,8 +87,8 @@ clinical:hipaa-logger
 clinical:autopublish
 clinical:glass-ui
 clinical:example-plugin
+clinical:default-landing-page
 #clinical:accounts-famous-dead-people
-#clinical:default-landing-page
 
 # fhir resources
 clinical:hl7-resource-allergy-intolerance
