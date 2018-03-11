@@ -42,8 +42,7 @@ jobs:
         CXX: g++-4.8
         DISPLAY: :99.0
         NPM_PREFIX: /home/ubuntu/nvm/v0.10.33
-      ports:
-        4444:4444
+
     # - image: selenium/standalone-chrome:3.0.1
     #   name: selenium
     steps:
@@ -72,43 +71,21 @@ jobs:
     - run: cd webapp && cat .meteor/packages
     - run: cd webapp && meteor --version
 
-
     # Install the actual app...
     - run: cd webapp && meteor npm install 
     - run: cd webapp && meteor npm install nightwatch@0.9.19 chromedriver@2.35.0 selenium-standalone-jar@3.0.1
 
-    - run: ls -la webapp/node_modules/selenium-server-standalone-jar/jar
-
-    # clone the relevant packages so we don't get errors
-    # - cd webapp/packages && git clone https://github.com/awatson1978/symptomatic-blockchain-core 
-    # - cd webapp/packages && git clone https://github.com/awatson1978/symptomatic-landing-page
-
     #- before/after
     - run: cd webapp && cat .meteor/packages
+    - run: cd webapp && locale
 
     #- make sure we have our tests
     - run: cd webapp/tests && ls -la
     - run: cd webapp && git clone https://github.com/awatson1978/meteor-on-fhir-validation tests/nightwatch
 
-    # - run: mkdir test-reports
-    # - run:
-    #     name: Download Selenium
-    #     command: |
-    #         curl -O http://selenium-release.storage.googleapis.com/3.5/selenium-server-standalone-3.5.1.jar
-
-    # - run: pwd
-    # - run: locate selenium-server-standalone
-
-    # - run:
-    #     name: Start Selenium
-    #     background: true
-    #     command: |
-    #         java -jar selenium-server-standalone-3.0.1.jar -log test-reports/selenium.log
-
     #- run the app
     - run: 
         name: Starting Meteor
-        no_output_timeout: 10m
         command: cd webapp && meteor run --settings configs/settings.circle.json 
         background: true
 
