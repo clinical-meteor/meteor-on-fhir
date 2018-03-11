@@ -114,7 +114,7 @@ jobs:
 
     - run: 
         name: Running tests
-        command: sleep 300 && cd webapp && meteor npm run-script circle-nightwatch -- --tag accounts
+        command: sleep 330 && cd webapp && meteor npm run-script circle-nightwatch -- --tag accounts
 
     # Dependencies
     #   This would typically go in either a build or a build-and-test job when using workflows
