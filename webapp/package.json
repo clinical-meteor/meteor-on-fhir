@@ -57,7 +57,7 @@
     "xml2js": "0.4.19"
   },
   "devDependencies": {
-    "chromedriver": "2.25.1",
+    "chromedriver": "2.36.0",
     "babel-eslint": "^6.1.2",
     "enzyme": "^2.4.1",
     "eslint": "^3.5.0",
@@ -70,7 +70,7 @@
     "meteor-node-stubs": "^0.2.3",
     "react-addons-test-utils": "^15.3.1",
     "shelljs": "^0.7.4",
-    "nightwatch": "0.9.8",
+    "nightwatch": "0.9.20",
     "selenium-standalone-jar": "3.0.1"
   },
   "eslintConfig": {
