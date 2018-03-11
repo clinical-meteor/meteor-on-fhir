@@ -44,8 +44,8 @@ jobs:
         NPM_PREFIX: /home/ubuntu/nvm/v0.10.33
       ports:
         4444:4444
-    - image: selenium/standalone-chrome:3.0.1
-      name: selenium
+    # - image: selenium/standalone-chrome:3.0.1
+    #   name: selenium
     steps:
 
     # Machine Setup
@@ -75,7 +75,7 @@ jobs:
 
     # Install the actual app...
     - run: cd webapp && meteor npm install 
-    - run: cd webapp && meteor npm install nightwatch chromedriver@2.36.0 selenium-server-standalone-jar@3.4.0
+    - run: cd webapp && meteor npm install nightwatch chromedriver@2.25.0 selenium-server-standalone-jar@3.5.0
 
     - run: ls -la webapp/node_modules/selenium-server-standalone-jar/jar
 
