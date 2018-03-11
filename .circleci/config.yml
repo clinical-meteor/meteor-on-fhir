@@ -60,6 +60,11 @@ jobs:
     # 'See docs on artifact collection here https://circleci.com/docs/2.0/artifacts/'
     - run: mkdir -p $CIRCLE_ARTIFACTS $CIRCLE_TEST_REPORTS
 
+    # install locale for mongodb?
+    - run: locale-gen en_US.UTF-8
+    - run: localedef -i en_US -f UTF-8 en_US.UTF-8
+    - run: echo $LC_ALL
+
     # Install  Meteor
     - run: mkdir -p .meteor
     
