@@ -6,7 +6,7 @@ import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
 
-export default class PractitionerSidebar extends React.Component {
+export class PractitionerSidebar extends React.Component {
   getMeteorData() {
     let data = {
       style: {
@@ -81,3 +81,4 @@ export default class PractitionerSidebar extends React.Component {
 
 
 ReactMixin(PractitionerSidebar.prototype, ReactMeteorData);
+export default PractitionerSidebar;

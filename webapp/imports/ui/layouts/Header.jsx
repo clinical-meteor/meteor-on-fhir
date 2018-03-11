@@ -160,7 +160,7 @@ export class Header extends React.Component {
   renderNavigation(hasUser) {
     if(get(Meteor, 'settings.public.home.showRegistration')){
       if (hasUser) {
-        // return <AuthenticatedNavigation />;
+        return <AuthenticatedNavigation />;
       } else {
         return <PublicNavigation />;
       }  
@@ -196,7 +196,7 @@ export class Header extends React.Component {
             />
         </AppBar>
 
-        {/* <AppBar
+        <AppBar
           id="appSearchBar"
           title={<div>
               <TextField
@@ -209,7 +209,7 @@ export class Header extends React.Component {
           showMenuIconButton={false}
         >
           
-        </AppBar>       */}
+        </AppBar>      
 
       </div>
 

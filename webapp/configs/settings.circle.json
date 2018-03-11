@@ -12,10 +12,12 @@
       "showUnderConstruction": false,
       "showExperimental": false,
       "showApps": true,      
-      "showFhirMenu": true
+      "showFhirMenu": true,
+      "showRegistration": true
     },
     "defaults": {
       "route": "/",
+      "requireAuthorization": true,
       "avatars": true,
       "barcodes": true,
       "hexgridMenu": false,

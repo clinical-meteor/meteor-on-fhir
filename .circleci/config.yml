@@ -110,7 +110,7 @@ jobs:
 
     - run: 
         name: Running tests
-        command: sleep 240 && cd webapp && meteor npm run-script circle-hello
+        command: sleep 240 && cd webapp && meteor npm run-script circle-hello -- --tag circle
 
     # Dependencies
     #   This would typically go in either a build or a build-and-test job when using workflows

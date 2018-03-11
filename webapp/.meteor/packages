@@ -110,3 +110,4 @@ simple:json-routes
 
 percolate:synced-cron
 d3js:d3
+clinical:default-landing-page

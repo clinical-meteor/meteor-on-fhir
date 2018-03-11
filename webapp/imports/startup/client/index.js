@@ -5,7 +5,9 @@ import './routes.js';
 import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session';
 
+import { Bert } from 'meteor/themeteorchef:bert';
 
+Bert.defaults.style = 'growl-top-right';
 
 Meteor.startup(function (){
   // global session variables

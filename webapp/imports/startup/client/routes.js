@@ -62,13 +62,22 @@ const requireAuth = (nextState, replace) => {
           state: { nextPathname: nextState.location.pathname }
         });  
       } else {
+
         // we're in the general use case
         // user is trying to access a route that requires authorization, but isn't signed in
         // redirect them to the landing page
-        replace({
-          pathname: '/landing-page',
-          state: { nextPathname: nextState.location.pathname }
-        });  
+        if(get(Meteor, 'settings.public.defaults.landingPage')){
+          replace({
+            pathname: get(Meteor, 'settings.public.defaults.landingPage'),
+            state: { nextPathname: nextState.location.pathname }
+          });    
+        } else {
+          replace({
+            pathname: '/landing-page',
+            state: { nextPathname: nextState.location.pathname }
+          });    
+        }
+
       }
     }
 
