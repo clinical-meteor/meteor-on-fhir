@@ -75,7 +75,7 @@ jobs:
 
     # Install the actual app...
     - run: cd webapp && meteor npm install 
-    - run: cd webapp && meteor npm install nightwatch chromedriver@2.25.0 selenium-server-standalone-jar@3.5.0
+    - run: cd webapp && meteor npm install nightwatch@0.9.19 chromedriver@2.25.0 selenium-server-standalone-jar@3.5.0
 
     - run: ls -la webapp/node_modules/selenium-server-standalone-jar/jar
 
