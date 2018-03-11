@@ -7,7 +7,7 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 
 import { AppInfoPage } from '/imports/ui/pages/AppInfoPage';
 
-export default class AdminSidebar extends React.Component {
+export class AdminSidebar extends React.Component {
   getMeteorData() {
     let data = {
       style: {
@@ -75,3 +75,5 @@ export default class AdminSidebar extends React.Component {
 AdminSidebar.propTypes = {};
 AdminSidebar.defaultProps = {};
 ReactMixin(AdminSidebar.prototype, ReactMeteorData);
+
+export default AdminSidebar;

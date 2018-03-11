@@ -17,6 +17,7 @@
     },
     "defaults": {
       "route": "/hello-world",
+      "requireAuthorization": true,      
       "avatars": true,
       "barcodes": true,
       "hexgridMenu": false,
