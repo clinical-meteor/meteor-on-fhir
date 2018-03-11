@@ -99,7 +99,7 @@ jobs:
 
     - run: 
         name: Running tests
-        command: sleep 240 && cd webapp && meteor npm run-script circle-hello -- --tag accounts
+        command: sleep 240 && cd webapp && meteor npm run-script circle-hello
 
     # Dependencies
     #   This would typically go in either a build or a build-and-test job when using workflows
@@ -135,10 +135,6 @@ jobs:
         path: /tmp/circleci-test-results
 
     # Save artifacts
-    - store_artifacts:
-        path: /tmp/circleci-artifacts
-    - store_artifacts:
-        path: /tmp/circleci-test-results
     - store_artifacts:
         path: ./tests/nightwatch/screenshots
     - store_artifacts:
