@@ -96,7 +96,10 @@ clinical:hl7-resource-condition
 clinical:hl7-resource-careplan
 clinical:hl7-resource-datatypes
 clinical:hl7-resource-device
+clinical:hl7-resource-diagnostic-report
 clinical:hl7-resource-goal
+clinical:hl7-resource-immunization
+# clinical:hl7-resource-location
 clinical:hl7-resource-medication
 clinical:hl7-resource-medication-order
 clinical:hl7-resource-medication-statement
