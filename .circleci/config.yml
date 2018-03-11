@@ -75,7 +75,7 @@ jobs:
 
     # Install the actual app...
     - run: cd webapp && meteor npm install 
-    - run: cd webapp && meteor npm install nightwatch chromedriver@2.19.0 "elenium-server-standalone-jar@3.9.1
+    - run: cd webapp && meteor npm install nightwatch chromedriver@2.19.0 selenium-server-standalone-jar@3.9.1
 
     - run: ls -la webapp/node_modules/selenium-server-standalone-jar/jar
 
@@ -114,7 +114,7 @@ jobs:
 
     - run: 
         name: Running tests
-        command: sleep 240 && cd webapp && meteor npm run-script circle-nightwatch -- --tag hello
+        command: sleep 240 && cd webapp && meteor npm run-script circle-nightwatch -- --tag accounts
 
     # Dependencies
     #   This would typically go in either a build or a build-and-test job when using workflows
