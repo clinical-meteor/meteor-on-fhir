@@ -42,6 +42,7 @@ jobs:
         CXX: g++-4.8
         DISPLAY: :99.0
         NPM_PREFIX: /home/ubuntu/nvm/v0.10.33
+        LC_ALL: en_US.UTF-8
 
     # - image: selenium/standalone-chrome:3.0.1
     #   name: selenium
