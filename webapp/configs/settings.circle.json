@@ -1,7 +1,6 @@
 {
   "public": {
     "title": "Meteor on FHIR",
-    "baseUrl":"https://meteor-on-fhir.meteorapp.com/",
     "theme": {
       "showVideoBackground": false,
       "darkroomTextEnabled": false,
