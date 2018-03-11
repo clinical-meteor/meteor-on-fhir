@@ -98,6 +98,10 @@ jobs:
         name: Download Selenium
         command: |
             curl -O http://selenium-release.storage.googleapis.com/3.5/selenium-server-standalone-3.5.1.jar
+
+    - run: pwd
+    - run: locate selenium-server-standalone
+
     - run:
         name: Start Selenium
         background: true
