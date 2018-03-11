@@ -63,8 +63,6 @@ jobs:
     # install locale for mongodb?
     # - run: localedef -i en_US -f UTF-8 en_US.UTF-8
     - run: echo $LC_ALL
-    - run: dpkg-reconfigure locales
-    - run: echo $LC_ALL
 
     # Install  Meteor
     - run: mkdir -p .meteor
