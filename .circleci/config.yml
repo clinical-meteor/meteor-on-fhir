@@ -77,7 +77,7 @@ jobs:
 
     # Install the actual app...
     - run: cd webapp && meteor npm install 
-    - run: cd webapp && meteor npm install nightwatch chromedriver@2.19.0 selenium-server-standalone-jar@2.45.0
+    - run: cd webapp && meteor npm install nightwatch chromedriver@2.19.0 phantomjs-prebuilt selenium-server-standalone-jar@2.45.0
 
     # clone the relevant packages so we don't get errors
     # - cd webapp/packages && git clone https://github.com/awatson1978/symptomatic-blockchain-core 
