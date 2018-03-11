@@ -66,7 +66,7 @@ jobs:
 
     # Install  Meteor
     - run: mkdir -p .meteor
-
+    
     # If Meteor is already cached, do not need to build it again.
     - run: if [ ! -e .meteor/meteor ]; then curl https://install.meteor.com?=release=1.4.2.3 | /bin/sh; else echo "Meteor seems to be cached"; fi;
 
@@ -93,7 +93,7 @@ jobs:
     - run: cd webapp/tests && ls -la
     - run: cd webapp && git clone https://github.com/awatson1978/meteor-on-fhir-validation tests/nightwatch
 
-
+    - run: mkdir test-reports
     - run:
         name: Download Selenium
         command: |
