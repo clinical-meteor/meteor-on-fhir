@@ -61,8 +61,9 @@ jobs:
     - run: mkdir -p $CIRCLE_ARTIFACTS $CIRCLE_TEST_REPORTS
 
     # install locale for mongodb?
-    - run: locale-gen en_US.UTF-8
     - run: localedef -i en_US -f UTF-8 en_US.UTF-8
+    - run: echo $LC_ALL
+    - run: dpkg-reconfigure locales
     - run: echo $LC_ALL
 
     # Install  Meteor
