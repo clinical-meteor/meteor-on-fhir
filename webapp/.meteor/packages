@@ -88,6 +88,7 @@ clinical:autopublish
 clinical:glass-ui
 clinical:example-plugin
 #clinical:accounts-famous-dead-people
+#clinical:default-landing-page
 
 # fhir resources
 clinical:hl7-resource-allergy-intolerance
@@ -110,4 +111,3 @@ simple:json-routes
 
 percolate:synced-cron
 d3js:d3
-clinical:default-landing-page
