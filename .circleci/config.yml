@@ -45,7 +45,8 @@ jobs:
         OS_LOCALE: en_US.UTF-8
         LANG: en_US.UTF-8
         LANGUAGE: en_US:en 
-
+        LC_ALL: en_US.UTF-8
+    
     # - image: selenium/standalone-chrome:3.0.1
     #   name: selenium
     steps:
