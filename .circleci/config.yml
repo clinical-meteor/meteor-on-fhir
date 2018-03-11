@@ -19,12 +19,6 @@ jobs:
     environment:
       CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
       CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
-      TZ: "/usr/share/zoneinfo/America/Los_Angeles"
-      CIRCLE_ENV: test
-      NODE_ENV: test
-      CXX: g++-4.8
-      DISPLAY: :99.0
-      NPM_PREFIX: /home/ubuntu/nvm/v0.10.33
       
     # In CircleCI 1.0 we used a pre-configured image with a large number of languages and other packages.
     # In CircleCI 2.0 you can now specify your own image, or use one of our pre-configured images.
@@ -45,11 +39,11 @@ jobs:
         TZ: "/usr/share/zoneinfo/America/Los_Angeles"
         CIRCLE_ENV: test
         NODE_ENV: test
-        PORT: 3000
-        EXPOSE: 3000
         CXX: g++-4.8
         DISPLAY: :99.0
         NPM_PREFIX: /home/ubuntu/nvm/v0.10.33
+      ports:
+        4444:4444
     - image: selenium/standalone-chrome:3.0.1
       name: selenium
     steps:
@@ -78,9 +72,12 @@ jobs:
     - run: cd webapp && cat .meteor/packages
     - run: cd webapp && meteor --version
 
+
     # Install the actual app...
     - run: cd webapp && meteor npm install 
-    - run: cd webapp && meteor npm install nightwatch chromedriver@2.19.0 
+    - run: cd webapp && meteor npm install nightwatch chromedriver@2.19.0 "elenium-server-standalone-jar@3.9.1
+
+    - run: ls -la webapp/node_modules/selenium-server-standalone-jar/jar
 
     # clone the relevant packages so we don't get errors
     # - cd webapp/packages && git clone https://github.com/awatson1978/symptomatic-blockchain-core 
