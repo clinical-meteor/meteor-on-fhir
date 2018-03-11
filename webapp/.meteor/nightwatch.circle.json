@@ -18,7 +18,7 @@
     "start_process": true,
     "server_path": "./node_modules/selenium-standalone-jar/bin/selenium-server-standalone-3.0.1.jar",
     "log_path": "./tests/nightwatch/logs",
-    "host": "127.0.0.1",
+    "host": "localhost",
     "port": 4444,
     "cli_args": {
       "webdriver.chrome.driver": "./node_modules/chromedriver/bin/chromedriver"
