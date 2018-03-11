@@ -45,6 +45,7 @@ jobs:
         TZ: "/usr/share/zoneinfo/America/Los_Angeles"
         CIRCLE_ENV: test
         NODE_ENV: test
+        PORT: 3000
         CXX: g++-4.8
         DISPLAY: :99.0
         NPM_PREFIX: /home/ubuntu/nvm/v0.10.33
