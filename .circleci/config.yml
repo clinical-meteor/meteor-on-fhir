@@ -42,7 +42,6 @@ jobs:
         CXX: g++-4.8
         DISPLAY: :99.0
         NPM_PREFIX: /home/ubuntu/nvm/v0.10.33
-        LC_ALL: en_US.UTF-8
         OS_LOCALE: en_US.UTF-8
         LANG: en_US.UTF-8
         LANGUAGE: en_US:en 
