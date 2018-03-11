@@ -93,21 +93,20 @@ jobs:
     - run: cd webapp/tests && ls -la
     - run: cd webapp && git clone https://github.com/awatson1978/meteor-on-fhir-validation tests/nightwatch
 
-    - run: mkdir test-reports
-    - run:
-        name: Download Selenium
-        command: |
-            curl -O http://selenium-release.storage.googleapis.com/3.5/selenium-server-standalone-3.5.1.jar
+    # - run: mkdir test-reports
+    # - run:
+    #     name: Download Selenium
+    #     command: |
+    #         curl -O http://selenium-release.storage.googleapis.com/3.5/selenium-server-standalone-3.5.1.jar
 
-    - run: pwd
-    - run: locate selenium-server-standalone
+    # - run: pwd
+    # - run: locate selenium-server-standalone
 
-    - run:
-        name: Start Selenium
-        background: true
-        command: |
-            java -jar selenium-server-standalone-3.0.1.jar -log test-reports/selenium.log
-
+    # - run:
+    #     name: Start Selenium
+    #     background: true
+    #     command: |
+    #         java -jar selenium-server-standalone-3.0.1.jar -log test-reports/selenium.log
 
     #- run the app
     - run: 
