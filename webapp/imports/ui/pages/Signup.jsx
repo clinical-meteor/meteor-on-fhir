@@ -156,7 +156,7 @@ export class Signup extends React.Component {
                         underlineStyle={this.data.style.underlineStyle}
                         floatingLabelStyle={this.data.style.floatingLabelStyle}
                         floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
-                        onKeyPress={this.handleKeyPress}
+                        onKeyPress={this.handleKeyPress.bind(this)}
                         fullWidth
                         /><br/>
                     </Col>
@@ -173,7 +173,7 @@ export class Signup extends React.Component {
                         underlineStyle={this.data.style.underlineStyle}
                         floatingLabelStyle={this.data.style.floatingLabelStyle}
                         floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
-                        onKeyPress={this.handleKeyPress}
+                        onKeyPress={this.handleKeyPress.bind(this)}
                         fullWidth
                         /><br/>
                     </Col>
@@ -190,6 +190,7 @@ export class Signup extends React.Component {
                       underlineStyle={this.data.style.underlineStyle}
                       floatingLabelStyle={this.data.style.floatingLabelStyle}
                       floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
+                      onKeyPress={this.handleKeyPress.bind(this)}
                       fullWidth
                       /><br/>
                     <TextField
@@ -204,6 +205,7 @@ export class Signup extends React.Component {
                       underlineStyle={this.data.style.underlineStyle}
                       floatingLabelStyle={this.data.style.floatingLabelStyle}
                       floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
+                      onKeyPress={this.handleKeyPress.bind(this)}
                       fullWidth
                       /><br/>
 

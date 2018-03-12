@@ -10,7 +10,7 @@
     "home": {
       "showUnderConstruction": false,
       "showExperimental": false,
-      "showApps": true,      
+      "showApps": false,      
       "showFhirMenu": true,
       "showRegistration": true
     },
@@ -77,9 +77,9 @@
       "epic": true,
       "statisticsLogging": true,
       "apps": {
-        "ChecklistManifesto": true,
-        "ContinuityOfCare": true,
-        "Videoconferencing": true        
+        "ChecklistManifesto": false,
+        "ContinuityOfCare": false,
+        "Videoconferencing": false        
       },
       "fhir": {
         "AllergyIntolerances": true,
