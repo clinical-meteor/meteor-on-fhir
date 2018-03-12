@@ -121,3 +121,16 @@ if (Meteor.isServer) {
     connectionId() { return true; },
   }, 2, 5000);
 }
+
+
+// Security notifications
+if(Package['autopublish']){
+  console.log("*****************************************************************************")
+  console.log("HIPAA WARNING:  DO NOT STORE PROTECTED HEALTH INFORMATION IN THIS APP. ");  
+  console.log("Your application has the 'autopublish' package installed.  Please uninstall.");
+  console.log("");  
+  console.log("meteor remove autopublish");  
+  console.log("meteor add clinical:autopublish");  
+  console.log("");  
+}
+
