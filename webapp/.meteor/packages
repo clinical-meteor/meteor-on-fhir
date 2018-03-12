@@ -88,7 +88,8 @@ clinical:autopublish
 clinical:glass-ui
 clinical:example-plugin
 clinical:default-landing-page
-#clinical:accounts-famous-dead-people
+clinical:accounts-famous-dead-people
+clinical:accounts-housemd
 
 # fhir resources
 clinical:hl7-resource-allergy-intolerance
