@@ -1,6 +1,6 @@
 {
   "nightwatch": {
-    "version": "0.9.19"
+    "version": "0.9.20"
   },
   "src_folders": [
     "./tests/nightwatch/walkthroughs"

@@ -3,8 +3,8 @@ import ReactMixin from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
 import { IndexLinkContainer } from 'react-router-bootstrap';
-import FlatButton from 'material-ui/FlatButton';
 import MenuItem from '/imports/ui/components/MenuItem';
+import MenuButton from '/imports/ui/components/MenuButton';
 
 export class PublicNavigation extends React.Component {
   getMeteorData() {
@@ -24,11 +24,11 @@ export class PublicNavigation extends React.Component {
     return(
       <div id="publicNavigation">
         <IndexLinkContainer to="signin">
-          <FlatButton id='signinLink' label="Signin" style={this.data.style.title} href='/signin' />
+          <MenuButton id='signinLink' label="Signin" style={this.data.style.title} href='/signin' />
         </IndexLinkContainer>
         <IndexLinkContainer to="signup">
-          <FlatButton id='signupLink' label="Register" style={this.data.style.title} href='/signup' />
-        </IndexLinkContainer>
+          <MenuButton id='signupLink' label="Register" style={this.data.style.title} href='/signup' />
+      </IndexLinkContainer>
       </div>
     );
   }

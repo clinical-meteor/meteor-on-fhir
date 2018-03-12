@@ -46,7 +46,7 @@ export class WelcomePatientPage extends React.Component {
                 # meteor remove clinical:autopublish <br />
                 # MONGO_URL=mongodb://[username]:[password]hostname.com:27017/databasename meteor --settings settings.prod.json
               </pre>
-              <p>Please note that Mongo encrypted data at rest is an enterprise grade feature.  Please contact abigail@symptomatic.io for licensing details.</p>
+              <p>Please note that Mongo encrypted data at rest is an enterprise grade feature.  Please contact sales@symptomatic.io for licensing details.</p>
               <p>
                 All software is provided 'as is'.  This is a work in progress, and some features are still under construction or marked experimental.
               </p>

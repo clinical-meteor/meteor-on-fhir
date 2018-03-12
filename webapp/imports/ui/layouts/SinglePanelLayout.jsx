@@ -11,6 +11,7 @@ import ReactMixin  from 'react-mixin';
 import { Session } from 'meteor/session';
 import User from '/imports/api/User';
 import MenuItem from '/imports/ui/components/MenuItem';
+import MenuPatientSummary from '/imports/ui/components/MenuPatientSummary';
 
 import { has, get } from 'lodash';
 
@@ -24,7 +25,7 @@ Session.setDefault('drawerActive', false);
 Session.setDefault('drawerActive', false);
 
 
-export default class SinglePanelLayout extends React.Component {
+export class SinglePanelLayout extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -98,10 +99,10 @@ export default class SinglePanelLayout extends React.Component {
   renderSidebar(isAdmin) {
     if (Meteor.user()) {
       if (isAdmin) {
-        return <AdminSidebar /> ;
+        // return <AdminSidebar /> ;
       } else {
         if (get(Meteor.user(), 'roles[0]') === 'practitioner') {
-          return <PractitionerSidebar /> ;
+          // return <PractitionerSidebar /> ;
         } else {
           return <PatientSidebar /> ;
         }
@@ -128,17 +129,18 @@ export default class SinglePanelLayout extends React.Component {
 
           <div onClick={ this.closeOpenedSidebar }>
 
-              <LinkContainer id="userIdentification" to='/myprofile' >
-                 <MenuItem>
+              <IndexLinkContainer id="userIdentification" to='/myprofile' >
+                 <MenuPatientSummary>
                   <CardHeader
+                    id='patientSummaryCard'
                     title={this.data.card.title}
                     subtitle={this.data.card.subtitle}
                     style={{cursor: 'pointer'}}
                   />
-                </MenuItem>
-              </LinkContainer>
+                </MenuPatientSummary>
+              </IndexLinkContainer>
 
-               { this.renderSidebar(this.data.state.isAdmin) }
+              { this.renderSidebar(this.data.state.isAdmin) }
 
           </div>
         </Drawer>
@@ -153,6 +155,5 @@ export default class SinglePanelLayout extends React.Component {
   }
 }
 
-
-
 ReactMixin(SinglePanelLayout.prototype, ReactMeteorData);
+export default SinglePanelLayout;

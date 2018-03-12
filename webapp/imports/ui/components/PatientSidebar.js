@@ -1,7 +1,7 @@
 import { List, ListItem } from 'material-ui/List';
 import MenuItem from '/imports/ui/components/MenuItem';
 
-import { IndexLinkContainer } from 'react-router-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 import { Meteor } from 'meteor/meteor';
 import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
@@ -24,7 +24,7 @@ Object.keys(Package).forEach(function(packageName){
   }
 });
 
-export default class PatientSidebar extends React.Component {
+export class PatientSidebar extends React.Component {
   getMeteorData() {
     let data = {
       style: {
@@ -65,9 +65,9 @@ export default class PatientSidebar extends React.Component {
 
     var index;
     if(!get(Meteor, 'settings.public.defaults.sidebar.hideIndex')){
-      index = <IndexLinkContainer to={ this.data.indexRoute }>
-        <ListItem className="indexItem" href={ this.data.indexRoute } primaryText='Index' />
-      </IndexLinkContainer>;
+      index = <LinkContainer to={ this.data.indexRoute }>
+        <MenuItem className="indexItem" href={ this.data.indexRoute } primaryText='Index' />
+      </LinkContainer>;
     }
     
     //----------------------------------------------------------------------
@@ -76,9 +76,9 @@ export default class PatientSidebar extends React.Component {
     var healthlog;
 
     if(get(Meteor, 'settings.public.modules.healthlog')){
-      allergies = <IndexLinkContainer to='/weblog'>
-        <ListItem primaryText='Healthlog' href='/weblog' />
-      </IndexLinkContainer>;
+      allergies = <LinkContainer to='/weblog'>
+        <MenuItem primaryText='Healthlog' href='/weblog' />
+      </LinkContainer>;
     }
 
     //----------------------------------------------------------------------
@@ -89,9 +89,9 @@ export default class PatientSidebar extends React.Component {
 
       // the excludes array will hide routes
       if(!get(Meteor, 'settings.public.defaults.sidebar.hidden', []).includes(element.to)){
-        dynamicElements.push(<IndexLinkContainer to={element.to} key={index}>
-          <ListItem primaryText={element.primaryText} href={element.href} />
-        </IndexLinkContainer>);
+        dynamicElements.push(<LinkContainer to={element.to} key={index}>
+          <MenuItem primaryText={element.primaryText} href={element.href} />
+        </LinkContainer>);
       }
     });
 
@@ -110,18 +110,17 @@ export default class PatientSidebar extends React.Component {
 
           <hr />
 
+          <LinkContainer to='/theming'>
+             <MenuItem primaryText='Theming' href='/theming' />
+          </LinkContainer>
 
-          <IndexLinkContainer to='/theming'>
-             <ListItem primaryText='Theming' href='/theming' />
-          </IndexLinkContainer>
+          <LinkContainer to='/about'>
+             <MenuItem primaryText='About' href='/about' />
+          </LinkContainer>
 
-          <IndexLinkContainer to='/about'>
-             <ListItem primaryText='About' href='/about' />
-          </IndexLinkContainer>
-
-          <IndexLinkContainer to='/signin'>
-             <ListItem className='logoutMenuItem' primaryText='Logout' href='/signin' onClick={this.handleLogout} />
-          </IndexLinkContainer>
+          <LinkContainer to='/signin'>
+             <MenuItem id='logoutMenuItem' className='logoutMenuItem' primaryText='Logout' href='/signin' onClick={this.handleLogout} />
+          </LinkContainer>
         </List>
       </div>
     );
@@ -130,3 +129,4 @@ export default class PatientSidebar extends React.Component {
 PatientSidebar.propTypes = {};
 PatientSidebar.defaultProps = {};
 ReactMixin(PatientSidebar.prototype, ReactMeteorData);
+export default PatientSidebar;

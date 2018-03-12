@@ -90,9 +90,9 @@ export class Signup extends React.Component {
     Accounts.createUser(newUserData, function(error, result){
       if (error) {
         // for some reason, we're getting an "Email already exists!" on signup
-        //if (!error.reason.includes("Email already exists.")) {
+        if (!error.reason.includes("Email already exists.")) {
           Bert.alert(error.reason, 'danger');
-        //}
+        }
       }
       if (result) {
         console.log("Accounts.createUser[result]", result);
@@ -156,7 +156,7 @@ export class Signup extends React.Component {
                         underlineStyle={this.data.style.underlineStyle}
                         floatingLabelStyle={this.data.style.floatingLabelStyle}
                         floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
-                        onKeyPress={this.handleKeyPress}
+                        onKeyPress={this.handleKeyPress.bind(this)}
                         fullWidth
                         /><br/>
                     </Col>
@@ -173,7 +173,7 @@ export class Signup extends React.Component {
                         underlineStyle={this.data.style.underlineStyle}
                         floatingLabelStyle={this.data.style.floatingLabelStyle}
                         floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
-                        onKeyPress={this.handleKeyPress}
+                        onKeyPress={this.handleKeyPress.bind(this)}
                         fullWidth
                         /><br/>
                     </Col>
@@ -190,6 +190,7 @@ export class Signup extends React.Component {
                       underlineStyle={this.data.style.underlineStyle}
                       floatingLabelStyle={this.data.style.floatingLabelStyle}
                       floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
+                      onKeyPress={this.handleKeyPress.bind(this)}
                       fullWidth
                       /><br/>
                     <TextField
@@ -204,6 +205,7 @@ export class Signup extends React.Component {
                       underlineStyle={this.data.style.underlineStyle}
                       floatingLabelStyle={this.data.style.floatingLabelStyle}
                       floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
+                      onKeyPress={this.handleKeyPress.bind(this)}
                       fullWidth
                       /><br/>
 
