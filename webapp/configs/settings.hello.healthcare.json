@@ -12,10 +12,13 @@
       "showUnderConstruction": false,
       "showExperimental": false,
       "showApps": false,      
-      "showFhirMenu": false
+      "showFhirMenu": false,
+      "showRegistration": true      
     },
     "defaults": {
       "route": "/hello-world",
+      "landingPage": "/landing-page",
+      "requireAuthorization": true,
       "avatars": true,
       "barcodes": true,
       "hexgridMenu": false,

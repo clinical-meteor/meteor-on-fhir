@@ -83,7 +83,7 @@ test:
     #- run the app
     - "cd webapp && meteor run --settings configs/settings.circle.json":
           background: true
-    - sleep 300
+    - sleep 330
 
   #- the run our tests
   override:

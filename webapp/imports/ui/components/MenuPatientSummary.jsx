@@ -1,17 +1,16 @@
 import React from 'react';
-import { ListItem } from 'material-ui';
+import { ListItem } from 'material-ui/List';
 
-export class MenuItem extends React.Component {
+export default class MenuPatientSummary extends React.Component {
   constructor(props) {
     super(props);
   }
   render(){
     const { active, ...otherProps } = this.props;
     return (
-      <ListItem {...otherProps} >
+      <div id='menuPatientSummary' {...otherProps} >
         { this.props.children }
-      </ListItem>
+      </div>
     );
   }
 }
-export default MenuItem;

@@ -8,12 +8,15 @@
       "backgroundImagePath": "/backgrounds/Gradient.png"      
     },
     "home": {
-      "showUnderConstruction": true,
+      "showUnderConstruction": false,
       "showExperimental": false,
-      "showApps": true,      
-      "showFhirMenu": true
+      "showApps": false,      
+      "showFhirMenu": false,
+      "showRegistration": true      
     },
     "defaults": {
+      "route": "/hello-world",
+      "requireAuthorization": true,
       "avatars": true,
       "barcodes": true,
       "hexgridMenu": false,

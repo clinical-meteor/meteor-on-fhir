@@ -15,6 +15,10 @@ import ReactMixin from 'react-mixin';
 import { Session } from 'meteor/session';
 import { browserHistory } from 'react-router';
 import { get } from 'lodash';
+import MenuButton from '/imports/ui/components/MenuButton';
+import NorthEastMenu from '/imports/ui/components/NorthEastMenu';
+
+
 
 Session.get('showNotificationMenu', true);
 
@@ -29,7 +33,7 @@ let style = {
   }
 };
 
-export default class AuthenticatedNavigation extends React.Component {
+export class AuthenticatedNavigation extends React.Component {
   getMeteorData() {
     let data = {
       style: {
@@ -69,7 +73,6 @@ export default class AuthenticatedNavigation extends React.Component {
       isIncomingCall: false
     };
 
-
     if (Meteor.user()) {
       data.user = Meteor.user().fullName();
 
@@ -80,7 +83,6 @@ export default class AuthenticatedNavigation extends React.Component {
     } else {
       data.user = '';
     }
-
 
     if(data.notificationCount > 0){
       data.notificationColor = 'orange';
@@ -93,7 +95,6 @@ export default class AuthenticatedNavigation extends React.Component {
       }
     }
     console.log("AuthenticatedNavigation[data]", data);
-
 
     return data;
   }
@@ -117,18 +118,16 @@ export default class AuthenticatedNavigation extends React.Component {
       currentIcon = <ActionAccountCircle onClick={this.openNotifications} style={{color: this.data.notificationColor}} />      
     }
 
-
     return(
       <div id='authenticatedUserMenuToggle' onTouchTap={this.toggleNotificationMenu } style={this.data.glassText}>
         <ToolbarGroup >
-
           <IconMenu
             id='authenticatedUserMenu'
             anchorOrigin={{horizontal: 'right', vertical: 'bottom'}}
             targetOrigin={{horizontal: 'right', vertical: 'top'}}
             open={false}
             iconButtonElement={
-              <div>
+              <NorthEastMenu>
                 <ToolbarTitle
                   id='notificationCount'
                   text={ this.data.notificationCount.toString() }
@@ -143,11 +142,10 @@ export default class AuthenticatedNavigation extends React.Component {
                   style={this.data.glassText}
                   onTouchTap={this.showProfile }
                 />
-              </div>
+              </NorthEastMenu>
             }
           >
           </IconMenu>
-
         </ToolbarGroup>
       </div>
     );
@@ -172,5 +170,5 @@ export default class AuthenticatedNavigation extends React.Component {
   }
 }
 
-
 ReactMixin(AuthenticatedNavigation.prototype, ReactMeteorData);
+export default AuthenticatedNavigation;

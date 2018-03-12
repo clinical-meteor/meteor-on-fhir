@@ -3,13 +3,14 @@ import { Col, Grid, Row } from 'react-bootstrap';
 import { Tab, Tabs } from 'material-ui/Tabs';
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
 import { has, get } from 'lodash';
-import { VerticalCanvas, GlassCard, Glass, DynamicSpacer } from 'meteor/clinical:glass-ui';
 
 import { Accounts } from 'meteor/accounts-base';
 import Avatar from 'material-ui/Avatar';
 import Divider from 'material-ui/Divider';
 import FlatButton from 'material-ui/FlatButton';
 import { FontIcon } from 'material-ui/FontIcon';
+
+import { VerticalCanvas, GlassCard, Glass, DynamicSpacer } from 'meteor/clinical:glass-ui';
 import { Meteor } from 'meteor/meteor';
 import RaisedButton from 'material-ui/RaisedButton';
 import React from 'react';
@@ -18,7 +19,7 @@ import ReactMixin from 'react-mixin';
 import TextField from 'material-ui/TextField';
 
 import { browserHistory } from 'react-router';
-import { removeUserById } from '../../api/users/methods';
+import { removeUserById } from '/imports/api/users/methods';
 
 let defaultState = {
   index: 0,

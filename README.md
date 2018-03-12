@@ -33,14 +33,23 @@ meteor npm install
 #### B. Running Local
 
 ```sh
-## Initialize with FHIR test data
-INITIALIZE=true Patients=true Practitioners=true meteor
-
 ## general development
 meteor --settings configs/settings.blank.canvas.json
 ```
 
-#### C. Theme and Remove Licensed Media Assets
+
+#### C. Install Test Data
+
+```sh
+# install sample doctors and nurses
+meteor add clinical:accounts-housemd
+
+# run with initialization variables
+INITIALIZE=true Patients=true Practitioners=true meteor
+```
+
+
+#### D. Theme and Remove Licensed Media Assets
 Edit the `settings.dev.json` file, and update:
 ```
 {
@@ -81,7 +90,7 @@ scripts/remove_restricted_media_assets.sh
 ```
 
 
-#### D. Mobile Build   
+#### E. Mobile Build   
 
 ```sh
 # don't include geodata 
@@ -100,7 +109,7 @@ NODE_ENV=dev meteor run ios-device --mobile-server http://meteor-on-fhir.meteora
 ```    
 
 
-#### E. Desktop Build   
+#### F. Desktop Build   
 
 ```bash
  # build the executables and add them into the /public directory
@@ -129,7 +138,7 @@ npm run desktop -- build-installer http://www.symptomatic.io
 ```    
 
 
-#### F. Deploy to Galaxy  
+#### G. Deploy to Galaxy  
 
 ```sh
 # remove the desktop pipeline before building for Galaxy
@@ -145,7 +154,7 @@ meteor npm install
 TIMEOUT_SCALE_FACTOR=10 DEPLOY_HOSTNAME=us-east-1.galaxy-deploy.meteor.com MONGO_URL=mongodb://<dbuser>:<dbpassword>@ds019638.mlab.com:19638/clinical-meteor meteor deploy --settings configs/settings.galaxy.json meteor-on-fhir.meteorapp.com
 ```   
 
-#### G. Azure Configuration  
+#### H. Azure Configuration  
 
 ```sh
 az webapp deployment user set --user-name admin --password password
@@ -156,7 +165,7 @@ az webapp create --resource-group appResourceGroup --plan appServicePlan --name 
 git remote add azure https://admin@appname.scm.azurewebsites.net/appname.git
 ```    
 
-#### H. Azure Deployment 
+#### I. Azure Deployment 
 
 ```sh
 # prepare environment variables
@@ -191,7 +200,7 @@ curl -u admin https://appname.scm.azurewebsites.net/api/logstream/kudu/deploymen
 ```
 
 
-#### I. Synchronizing With Other Datalakes  
+#### J. Synchronizing With Other Datalakes  
 
 To enable network synchronizing, you'll need to specify an upstream sync partner in your `settings.json` file.  Afterwards, you can enable manual synchronization in the **Data Management* page.  
 
@@ -206,11 +215,13 @@ To enable network synchronizing, you'll need to specify an upstream sync partner
 }
 ```
 
-#### J. Connect to an External EMR   
+
+#### K. Connect to an External EMR   
 [HL7 v2 to FHIR Interface Mapping](https://medium.com/@awatson1978/hl7-v2-to-fhir-interface-mapping-f83c6ecf6bee)  
 
 
-#### K. Dockerfile  
+
+#### L. Dockerfile  
 Docker containers are pretty exciting, and we now support containerization and container composition of the Meteor on FHIR architecture.
 
 ```sh
@@ -239,7 +250,8 @@ docker inspect
 For more details on running Dockerized Meteor apps in production, see:
 https://projectricochet.com/blog/production-meteor-and-node-using-docker-part-vi
 
-### References
+
+
 
 
 #### Miscellaneous References    
