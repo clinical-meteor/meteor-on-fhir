@@ -5,7 +5,7 @@ export class NorthEastMenu extends React.Component {
     super(props);
   }
   render(){
-    const { active, ...otherProps } = this.props;
+    const { active, onKeyboardFocus, ...otherProps } = this.props;
     return (
       <div {...otherProps} >
         { this.props.children }
