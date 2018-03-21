@@ -35,7 +35,6 @@ browser-policy@1.1.0
 browser-policy-common@1.0.11
 browser-policy-content@1.1.0
 browser-policy-framing@1.1.0
-force-ssl
 
 # i18n
 universe:i18n
@@ -86,32 +85,40 @@ clinical:keybindings
 clinical:hipaa-logger
 clinical:autopublish
 clinical:glass-ui
-clinical:example-plugin
-clinical:default-landing-page
-clinical:accounts-famous-dead-people
-clinical:accounts-housemd
+# clinical:example-plugin
+# clinical:default-landing-page
+# clinical:accounts-famous-dead-people
+# clinical:accounts-housemd
 
 # fhir resources
-clinical:hl7-resource-allergy-intolerance
-clinical:hl7-resource-condition
-clinical:hl7-resource-careplan
 clinical:hl7-resource-datatypes
-clinical:hl7-resource-device
-clinical:hl7-resource-diagnostic-report
-clinical:hl7-resource-goal
-clinical:hl7-resource-immunization
-# clinical:hl7-resource-location
-clinical:hl7-resource-medication
-clinical:hl7-resource-medication-order
-clinical:hl7-resource-medication-statement
 clinical:hl7-resource-organization
 clinical:hl7-resource-observation
 clinical:hl7-resource-patient
-clinical:hl7-resource-practitioner
-clinical:hl7-resource-procedure
 clinical:hl7-resource-risk-assessment
+
+# clinical:hl7-resource-allergy-intolerance
+# clinical:hl7-resource-condition
+# clinical:hl7-resource-careplan
+# clinical:hl7-resource-device
+# clinical:hl7-resource-diagnostic-report
+# clinical:hl7-resource-goal
+# clinical:hl7-resource-immunization
+# clinical:hl7-resource-location
+# clinical:hl7-resource-medication
+# clinical:hl7-resource-medication-order
+# clinical:hl7-resource-medication-statement
+# clinical:hl7-resource-practitioner
+# clinical:hl7-resource-procedure
+
+clinical:hl7-resource-consent
+clinical:hl7-resource-contract
+clinical:accounts-famous-dead-people
 
 simple:json-routes
 
 percolate:synced-cron
 d3js:d3
+
+pcci:sepsis-risk-model
+digilord:faker
