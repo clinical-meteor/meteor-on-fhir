@@ -54,12 +54,11 @@ export class MyProfilePage extends React.Component {
         avatar: {
           position: 'relative',
           zIndex: 10,
-          //display: 'inline-flex',
-          borderRadius: '4px',
-          //border: '2px solid orange',
           transition: '1s',
           left: '0px',
-          top: '0px'
+          top: '0px',
+          width: '100%',
+          height: '100%'
         },
         photo: {
           position: 'absolute'         
@@ -413,7 +412,7 @@ export class MyProfilePage extends React.Component {
       <div id='myProfilePage'>
         <VerticalCanvas style={{paddingBottom: '80px'}}> 
           <Card zDepth={2} style={this.data.style.photo}>
-            <img id='avatarImage' ref='avatarImage' onError={this.imgError.bind(this)} style={this.data.style.avatar} />
+            <img id='avatarImage' ref='avatarImage' onError={this.imgError.bind(this)} src={this.data.user.profileImage}  style={this.data.style.avatar} />
           </Card>
           <GlassCard>
             <CardTitle
@@ -593,6 +592,12 @@ export class MyProfilePage extends React.Component {
                 noDataMessage={false}
               />
             </CardText>
+            <CardActions>
+              <FlatButton 
+                label='Edit' 
+                onClick={this.editAuthorizations.bind(this)}
+                />
+            </CardActions>
           </GlassCard>
 
 
@@ -855,6 +860,9 @@ export class MyProfilePage extends React.Component {
     Meteor.users.update({  _id: Meteor.userId()}, {$set:{
       'profile.locations.home.address.country': value
     }});
+  }
+  editAuthorizations(){
+    browserHistory.push('/oauth-grants');
   }
   geocode(){
     console.log('lets try geocoding something...');
