@@ -95,7 +95,7 @@ export class PatientSidebar extends React.Component {
       }
     });
 
-    console.log('dynamicElements', dynamicElements);
+    //console.log('dynamicElements', dynamicElements);
 
     return(
       <div id='patientSidebar'>
