@@ -13,7 +13,6 @@ import { FontIcon } from 'material-ui/FontIcon';
 
 import { VerticalCanvas, GlassCard, Glass, DynamicSpacer } from 'meteor/clinical:glass-ui';
 import { Meteor } from 'meteor/meteor';
-import RaisedButton from 'material-ui/RaisedButton';
 import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
@@ -406,7 +405,27 @@ export class MyProfilePage extends React.Component {
         <TableRowColumn>Sequences</TableRowColumn>
       </TableRow>);
     }    
+    let continuityOfCareCard;
     
+    if(ccdResources.length > 0){
+      continuityOfCareCard = <div>
+        <GlassCard>
+          <CardTitle title="Continuity of Care" subtitle='Healthcare data is attached to your profile via resources.' />
+          <CardText>
+            <Table  >
+              <TableBody displayRowCheckbox={false} showRowHover={false}>
+                <TableRow style={{fontWeight: 'bold'}}>
+                  <TableRowColumn style={{width: '20%'}}>Count</TableRowColumn>
+                  <TableRowColumn style={{width: '80%'}}>Resource</TableRowColumn>
+                </TableRow>
+                { ccdResources }      
+              </TableBody>
+            </Table>
+          </CardText>
+        </GlassCard>
+        <DynamicSpacer />
+      </div>
+    }
 
     return(
       <div id='myProfilePage'>
@@ -579,10 +598,9 @@ export class MyProfilePage extends React.Component {
                 />
             </CardActions>
           </GlassCard>
-
-
-
           <DynamicSpacer />
+
+
           <GlassCard>
             <CardTitle title="Consents & Authorizations" subtitle='OAuth tokens, HIPAA consents, Advanced Directives, etc.' />
             <CardText>
@@ -599,26 +617,12 @@ export class MyProfilePage extends React.Component {
                 />
             </CardActions>
           </GlassCard>
-
-
           <DynamicSpacer />
-          <GlassCard>
-            <CardTitle title="Continuity of Care" subtitle='Healthcare data is attached to your profile via resources.' />
-            <CardText>
-              <Table  >
-                <TableBody displayRowCheckbox={false} showRowHover={false}>
-                  <TableRow style={{fontWeight: 'bold'}}>
-                    <TableRowColumn style={{width: '20%'}}>Count</TableRowColumn>
-                    <TableRowColumn style={{width: '80%'}}>Resource</TableRowColumn>
-                  </TableRow>
-                  { ccdResources }      
-                </TableBody>
-              </Table>
-            </CardText>
-          </GlassCard>
 
 
-          <DynamicSpacer />
+          { continuityOfCareCard }
+
+
           <GlassCard>
             <CardTitle title="Preferences" subtitle='Application preferences.' />
             <CardText>
@@ -732,12 +736,11 @@ export class MyProfilePage extends React.Component {
 
 
 
-                <RaisedButton
+                <FlatButton
                   id='changePasswordButton'
                   label='Change Password'
                   onClick={this.changePassword.bind(this)}
                   className="muidocs-icon-action-delete"
-                  primary={true}
                   />
               </div>
             </CardText>
@@ -769,12 +772,11 @@ export class MyProfilePage extends React.Component {
             onChange={this.handleConfirm.bind(this)}
             /><br/><br/>
 
-          <RaisedButton
+          <FlatButton
             id='confirmDeleteUserButton'
             label='Confirm Delete'
             onClick={this.confirmDelete.bind(this) }
-            className="muidocs-icon-action-delete"
-            primary={true}
+            className="muidocs-icon-action-delete"            
             style={{backgroundColor: 'red'}}
             />
         </div>
@@ -784,8 +786,8 @@ export class MyProfilePage extends React.Component {
         <div>
           <Divider />
           <br />
-          <RaisedButton id='resetPreferencesButton' label='Reset Preferences' onClick={this.resetPreferences } primary={true} style={{marginRight: '20px'}} />
-          <RaisedButton id='deleteUserButton' className="muidocs-icon-action-delete" label='Delete User' onClick={this.handleDelete } primary={true} />
+          <FlatButton id='resetPreferencesButton' label='Reset Preferences' onClick={this.resetPreferences } style={{marginRight: '20px'}} />
+          <FlatButton id='deleteUserButton' className="muidocs-icon-action-delete" label='Delete User' onClick={this.handleDelete } />
         </div>
       );
     }
