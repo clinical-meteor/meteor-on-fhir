@@ -4,8 +4,18 @@ import '/imports/api/users/methods';
 import { BrowserPolicy } from 'meteor/browser-policy-common';
 
 Meteor.startup(function(){
+  console.log('Meteor app framework is initializing....');
 
-    console.log('Configuring content-security-policy:');
+  // pick up version info
+  try {
+    var version = {};
+    version = JSON.parse(Assets.getText("version.json"));    
+    Meteor.settings.public.version = version;
+  } catch(e) { 
+    Meteor.settings.public.version = {};
+  }
+
+  console.log('Configuring content-security-policy:');
   BrowserPolicy.content.allowSameOriginForAll();
   BrowserPolicy.content.allowDataUrlForAll()
   BrowserPolicy.content.allowOriginForAll('self');

@@ -24,6 +24,11 @@ import { VerticalCanvas } from 'meteor/clinical:glass-ui';
 import { WelcomePatientPage } from '/imports/ui/pages/WelcomePatientPage';
 import { MyProfilePage } from '/imports/ui/pages/MyProfilePage';
 
+import { PreferencesPage } from '/imports/ui/pages/PreferencesPage';
+import { PasswordManagementPage } from '/imports/ui/pages/PasswordManagementPage';
+import { AuthorizationGrantsPage } from '/imports/ui/pages/AuthorizationGrantsPage';
+
+
 import { ChecklistsPage } from '/imports/ui/workflows/lists/ChecklistsPage';
 import { get } from 'lodash';
 
@@ -141,6 +146,10 @@ Meteor.startup(() => {
 
         <Route name="checklists" path="/checklists" component={ ChecklistsPage }  onEnter={ requireAuth }/>
         <Route name="notifications" path="/notifications" component={ NotificationsPage }  onEnter={ requireAuth }/>
+
+        <Route name="password" path="/password" component={ PasswordManagementPage }  onEnter={ requireAuth }/>
+        <Route name="preferences" path="/preferences" component={ PreferencesPage }  onEnter={ requireAuth }/>
+        <Route name="oauthgrants" path="/oauth-grants" component={ AuthorizationGrantsPage }  onEnter={ requireAuth }/>
         
         { dynamicRoutes.map(route => <Route name={route.name} key={route.name} path={route.path} component={ route.component } />) }
               
