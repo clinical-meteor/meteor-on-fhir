@@ -32,6 +32,7 @@
     "classnames": "^2.2.5",
     "faker": "^3.1.0",
     "fhir-schemas": "^0.3.1",
+    "ipfs": "^0.27.7",
     "jquery": "^3.3.1",
     "jquery-validation": "^1.17.0",
     "lodash": "^4.17.4",

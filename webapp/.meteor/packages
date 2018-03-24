@@ -40,7 +40,11 @@ browser-policy-framing@1.1.0
 universe:i18n
 
 # accounts
+accounts-base
 accounts-password@1.5.0
+accounts-oauth
+accounts-ui@1.1.9
+oauth
 
 # mobile
 crosswalk@1.7.1
@@ -55,6 +59,7 @@ ddp-rate-limiter@1.0.7
 # rest apis
 simple:rest-accounts-password
 simple:rest
+http
 
 # testing
 xolvio:cleaner
@@ -85,6 +90,8 @@ clinical:keybindings
 clinical:hipaa-logger
 clinical:autopublish
 clinical:glass-ui
+clinical:fhir-vault-client
+
 # clinical:example-plugin
 # clinical:default-landing-page
 # clinical:accounts-famous-dead-people
@@ -96,6 +103,7 @@ clinical:hl7-resource-organization
 clinical:hl7-resource-observation
 clinical:hl7-resource-patient
 clinical:hl7-resource-risk-assessment
+clinical:hl7-resource-practitioner
 
 # clinical:hl7-resource-allergy-intolerance
 # clinical:hl7-resource-condition
@@ -108,12 +116,13 @@ clinical:hl7-resource-risk-assessment
 # clinical:hl7-resource-medication
 # clinical:hl7-resource-medication-order
 # clinical:hl7-resource-medication-statement
-# clinical:hl7-resource-practitioner
 # clinical:hl7-resource-procedure
 
 clinical:hl7-resource-consent
 clinical:hl7-resource-contract
 clinical:accounts-famous-dead-people
+
+symptomatic:blockchain-core
 
 simple:json-routes
 
