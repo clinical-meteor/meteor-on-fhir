@@ -10,6 +10,7 @@ import { Bert } from 'meteor/themeteorchef:bert';
 Bert.defaults.style = 'growl-top-right';
 
 Meteor.startup(function (){
+  
   // global session variables
   Session.set('showNavbars', true);
   Session.set('showSearchbar', false);
@@ -20,6 +21,26 @@ Meteor.startup(function (){
 
   Meteor.subscribe('Observations');
   Meteor.subscribe('Patients');
+
+
+  Accounts.ui.config({
+    requestPermissions: {
+      facebook: ['user_likes'],
+      github: ['user', 'repo'],
+      epic: [
+        'OBSERVATION.READ', 
+        'OBSERVATION.SEARCH', 
+        'PATIENT.READ', 
+        'PATIENT.SEARCH', 
+        'PRACTITIONER.READ', 
+        'PRACTITIONER.SEARCH'
+      ]
+    },
+    requestOfflineToken: {
+      google: true
+    },
+    passwordSignupFields: 'USERNAME_AND_OPTIONAL_EMAIL'
+  });  
 });
 
 

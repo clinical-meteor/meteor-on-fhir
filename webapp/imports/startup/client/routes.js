@@ -27,6 +27,8 @@ import { MyProfilePage } from '/imports/ui/pages/MyProfilePage';
 import { PreferencesPage } from '/imports/ui/pages/PreferencesPage';
 import { PasswordManagementPage } from '/imports/ui/pages/PasswordManagementPage';
 import { AuthorizationGrantsPage } from '/imports/ui/pages/AuthorizationGrantsPage';
+import { OAuthClientPage } from '/imports/ui/pages/OAuthClientPage';
+
 
 
 import { ChecklistsPage } from '/imports/ui/workflows/lists/ChecklistsPage';
@@ -149,7 +151,8 @@ Meteor.startup(() => {
 
         <Route name="password" path="/password" component={ PasswordManagementPage }  onEnter={ requireAuth }/>
         <Route name="preferences" path="/preferences" component={ PreferencesPage }  onEnter={ requireAuth }/>
-        <Route name="oauthgrants" path="/oauth-grants" component={ AuthorizationGrantsPage }  onEnter={ requireAuth }/>
+        <Route name="oauthGrants" path="/oauth-grants" component={ AuthorizationGrantsPage }  onEnter={ requireAuth }/>
+        <Route name="oauthClient" path="/oauth-client" component={ OAuthClientPage }  onEnter={ requireAuth }/>
         
         { dynamicRoutes.map(route => <Route name={route.name} key={route.name} path={route.path} component={ route.component } />) }
               
