@@ -55,8 +55,7 @@
     "react-router-dom": "^4.2.2",
     "react-scifi": "0.1.0-alpha",
     "react-tap-event-plugin": "^2.0.1",
-    "react-tappable": "^1.0.2",
-    "xml2js": "0.4.19"
+    "react-tappable": "^1.0.2"
   },
   "devDependencies": {
     "babel-eslint": "^6.1.2",
