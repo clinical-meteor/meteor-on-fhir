@@ -29,7 +29,7 @@ Meteor.startup(function(){
   BrowserPolicy.content.allowEval();
   BrowserPolicy.content.allowInlineScripts()
   BrowserPolicy.content.allowInlineStyles()  
-
+  
   BrowserPolicy.content.allowOriginForAll('*.ourcarewishes.org');
 
 })

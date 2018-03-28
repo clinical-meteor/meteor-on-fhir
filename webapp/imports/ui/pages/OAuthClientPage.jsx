@@ -41,18 +41,17 @@ import { Promise } from 'meteor/promise';
 import { Meteor } from 'meteor/meteor';
 import { HTTP } from 'meteor/http';
 
-import { PatientDetail, PatientTable } from 'meteor/clinical:hl7-resource-patient';
-
-// import Fhir from 'fhir';
+import { PatientDetail, PatientTable, PatientCard } from 'meteor/clinical:hl7-resource-patient';
+import { ObservationsTable } from 'meteor/clinical:hl7-resource-observation';
 
 import { get } from 'lodash';
-// import { parseString } from 'xml2js';
 
-// var fhir = new Fhir();
+
 
 var getUserIdResult = new ReactiveVar(null);
 var getUserData = new ReactiveVar(null);
 var getPatientData = new ReactiveVar(null);
+let formatSuffix = '?_format=application/json';
 
 const defaultOAuthState = {
     conformance: {},
@@ -79,7 +78,10 @@ const defaultOAuthState = {
         birthdate: '',
         identifier: ''
     },
-    patientData: ''
+    accessToken: '',
+    patientData: '',
+    patient: {},
+    observations: []
   };
 
 export class OAuthClientPage extends React.Component {
@@ -90,11 +92,6 @@ export class OAuthClientPage extends React.Component {
   componentDidMount() {
       this.setState(defaultOAuthState);
   }
-
-
-          
-
-        
   getMeteorData() {
 
     let data = {
@@ -164,8 +161,6 @@ export class OAuthClientPage extends React.Component {
         <VerticalCanvas >
 
 
-
-
             <GlassCard width='768px' zDepth={2} >
                 <CardTitle
                     title='0.  Autoscan FHIR Server'
@@ -178,9 +173,9 @@ export class OAuthClientPage extends React.Component {
                                     type="text"
                                     ref="url"
                                     name="url"
-                                    floatingLabelText="Url"
+                                    floatingLabelText="Base Url"
                                     hintText="https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/"
-                                    value={ this.state.baseUrl }
+                                    defaultValue={ this.state.baseUrl }
                                     onChange={ this.updateBaseUrl.bind(this) }
                                     fullWidth
                                 />      
@@ -484,156 +479,199 @@ export class OAuthClientPage extends React.Component {
             <DynamicSpacer />
 
 
-            <GlassCard width='768px' zDepth={2} >
-                <CardTitle
-                    title='7.  Access Token'
-                    subtitle='The following button will scan a FHIR Server and autodetect and configure the OAuth connection, based on the FHIR conformance statement located at <code>/metadata</code>' />
-                <CardText style={{textAlign: 'center'}}>
-                    <h3 style={{width: '100%', textAlign: 'center'}}>{accessToken}</h3>
-                </CardText>
-            </GlassCard>
-            <DynamicSpacer />
+            <div style={{paddingLeft: '40px'}}>
+                <GlassCard width='768px' zDepth={2} >
+                    <CardTitle
+                        title='7.  Access Token'
+                        subtitle='The following button will scan a FHIR Server and autodetect and configure the OAuth connection, based on the FHIR conformance statement located at <code>/metadata</code>' />
+                    <CardText style={{textAlign: 'center'}}>
+                        <h3 style={{width: '100%', textAlign: 'center'}}>{ this.state.accessToken }</h3>
+                    </CardText>
+                    <CardActions>
+                    <FlatButton 
+                            label="Fetch Access Token" 
+                            id="fetchAccessToken" 
+                            onClick={this.fetchAccessToken.bind(this)}
+                            primary={false} />
+                    </CardActions>
+                </GlassCard>
+                <DynamicSpacer />
 
 
 
-
-
-
-
-
-
-
-            <GlassCard width='768px' zDepth={2} >
-                <CardTitle
-                    title='8.  Search Patients'                    
-                    subtitle={<span style={{color: 'rgb(38, 166, 154)'}}> { this.state.baseUrl + '/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB' } </span>} />
-                    {/* subtitle={<span style={{color: 'rgb(38, 166, 154)'}}> https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB </span>} /> */}
-                <CardText> 
-                    <Grid>
+                <GlassCard width='768px' zDepth={2} >
+                    <CardTitle
+                        title='8.  Patient Data!' 
+                        subtitle={<span style={{color: 'rgb(38, 166, 154)'}}> { this.state.baseUrl + '/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB' } </span>} />
+                        />
+                    <CardText>
                         <Row>
+                            <Col md={12}>
+                                <pre style={{ overflowY: 'scroll', height: '250px' }}>
+                                    { this.state.patientData }
+                                </pre>
+                            </Col>
+                        </Row>
+                    </CardText>
+                    <CardActions>
+                        <FlatButton 
+                            label="Fetch Patient Data" 
+                            id="fetchPatientData" 
+                            onClick={this.fetchPatientData.bind(this)}
+                            primary={false} />
+                    </CardActions>
+                </GlassCard>
+                <DynamicSpacer />
+
+
+                <PatientCard
+                    patient={ this.state.patient }                    
+                    />
+
+
+                <GlassCard width='768px' zDepth={2} >
+                    <CardTitle
+                        title='10.  Observations' 
+                        subtitle={<span style={{color: 'rgb(38, 166, 154)'}}> { this.state.baseUrl + '/Observation/' } </span>} />
+                        />
+                    <CardText>
+                        <ObservationsTable
+                                data={ this.state.observations } 
+                                limit={10}
+                                />
+                    </CardText>
+                    <CardActions>
+                        <FlatButton 
+                            label="Search Observations" 
+                            id="searchObservations" 
+                            onClick={this.searchObservations.bind(this)}
+                            primary={false} />
+                        <FlatButton 
+                            label="Cache in Browser" 
+                            id="cacheObservations" 
+                            onClick={this.cacheObservations.bind(this)}
+                            primary={false} />
+                    </CardActions>
+                </GlassCard>
+                <DynamicSpacer />
+
+
+
+                <GlassCard width='768px' zDepth={2} >
+                    <CardTitle
+                        title='11.  Search Patients'                    
+                        subtitle={<span style={{color: 'rgb(38, 166, 154)'}}> { this.state.baseUrl + '/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB' } </span>} />
+                        {/* subtitle={<span style={{color: 'rgb(38, 166, 154)'}}> https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB </span>} /> */}
+                    <CardText> 
+                        <Grid>
+                            <Row>
+                                
+                                <br />
+                            </Row>
+                            <Row>
+                                <Col md={6}>
+                                    <TextField
+                                        type="text"
+                                        ref="name"
+                                        name="name"
+                                        floatingLabelText="Full Name"
+                                        hintText="Jane Doe"
+                                        floatingLabelFixed={true}
+                                        fullWidth
+                                    />      
+                                </Col>
+                                <Col md={2}>
+                                <TextField
+                                        type="text"
+                                        ref="birthdate"
+                                        name="birthdate"
+                                        floatingLabelText="Birthdate"
+                                        hintText="1960-01-01"
+                                        floatingLabelFixed={true}
+                                        fullWidth
+                                    />    
+                                </Col>                            
+                                <Col md={2}>
+                                    <TextField
+                                        type="text"
+                                        ref="gender"
+                                        name="gender"
+                                        floatingLabelText="Gender"
+                                        hintText="female"
+                                        floatingLabelFixed={true}
+                                        fullWidth
+                                    />      
+                                </Col>
+                                <Col md={2}>
+                                    <TextField
+                                        type="text"
+                                        ref="identifier"
+                                        name="identifier"
+                                        floatingLabelText="Identifier"
+                                        hintText="12345"
+                                        floatingLabelFixed={true}
+                                        fullWidth
+                                    />      
+                                </Col>                              
+                            </Row>
+                            <Row>
+                                <Col md={3}>
+                                    <TextField
+                                        type="text"
+                                        ref="given"
+                                        name="given"
+                                        floatingLabelText="Given"
+                                        hintText="Jane"
+                                        floatingLabelFixed={true}
+                                        fullWidth
+                                    />      
+                                </Col>
+                                <Col md={3}>
+                                    <TextField
+                                        type="text"
+                                        ref="family"
+                                        name="family"
+                                        floatingLabelText="Family"
+                                        hintText="Doe"
+                                        floatingLabelFixed={true}
+                                        fullWidth
+                                    />      
+                                </Col>
                             
-                            <br />
-                        </Row>
-                        <Row>
-                            <Col md={6}>
-                                <TextField
-                                    type="text"
-                                    ref="name"
-                                    name="name"
-                                    floatingLabelText="Full Name"
-                                    hintText="Jane Doe"
-                                    floatingLabelFixed={true}
-                                    fullWidth
-                                />      
-                            </Col>
-                            <Col md={2}>
-                              <TextField
-                                    type="text"
-                                    ref="birthdate"
-                                    name="birthdate"
-                                    floatingLabelText="Birthdate"
-                                    hintText="1960-01-01"
-                                    floatingLabelFixed={true}
-                                    fullWidth
-                                />    
-                            </Col>                            
-                            <Col md={2}>
-                                <TextField
-                                    type="text"
-                                    ref="gender"
-                                    name="gender"
-                                    floatingLabelText="Gender"
-                                    hintText="female"
-                                    floatingLabelFixed={true}
-                                    fullWidth
-                                />      
-                            </Col>
-                            <Col md={2}>
-                                <TextField
-                                    type="text"
-                                    ref="identifier"
-                                    name="identifier"
-                                    floatingLabelText="Identifier"
-                                    hintText="12345"
-                                    floatingLabelFixed={true}
-                                    fullWidth
-                                />      
-                            </Col>                              
-                        </Row>
-                        <Row>
-                            <Col md={3}>
-                                <TextField
-                                    type="text"
-                                    ref="given"
-                                    name="given"
-                                    floatingLabelText="Given"
-                                    hintText="Jane"
-                                    floatingLabelFixed={true}
-                                    fullWidth
-                                />      
-                            </Col>
-                            <Col md={3}>
-                                <TextField
-                                    type="text"
-                                    ref="family"
-                                    name="family"
-                                    floatingLabelText="Family"
-                                    hintText="Doe"
-                                    floatingLabelFixed={true}
-                                    fullWidth
-                                />      
-                            </Col>
-                        
-                        </Row>
-                    </Grid>
+                            </Row>
+                        </Grid>
 
 
-                </CardText>
-                <CardActions>
-                  <FlatButton 
-                        label="Search" 
-                        id="searchPatients" 
-                        onClick={this.searchPatients.bind(this)}
-                        primary={false} />
-                </CardActions>
-          </GlassCard>
-          <DynamicSpacer />
-
-          <GlassCard width='768px' zDepth={2} >
-            <CardTitle
-                title='9.  Patient Data!' />
-            <CardText>
-                <Row>
-                    <Col md={12}>
-                        <pre style={{ overflowY: 'scroll', height: '250px' }}>
-                            { this.state.patientData }
-                        </pre>
-                    </Col>
-                </Row>
-            </CardText>
-          </GlassCard>
-          <DynamicSpacer />
+                    </CardText>
+                    <CardActions>
+                    <FlatButton 
+                            label="Search" 
+                            id="searchPatients" 
+                            onClick={this.searchPatients.bind(this)}
+                            primary={false} />
+                    </CardActions>
+                </GlassCard>
+                <DynamicSpacer />
 
 
-          <GlassCard width='768px' zDepth={2} >
-            <CardTitle
-                title='10.  Patient Detail Card' />
-            <CardText>
-                <PatientDetail />
-            </CardText>
-          </GlassCard>
-          <DynamicSpacer />
+
+                <GlassCard width='768px' zDepth={2} >
+                    <CardTitle
+                        title='12.  Patient Table' 
+                        subtitle={<span style={{color: 'rgb(38, 166, 154)'}}> { this.state.baseUrl + '/Patient/' } </span>} />
+                        />
+                    <CardText>
+                        <PatientTable
+                                data={[]} 
+                                limit={10}
+                                />
+                    </CardText>
+                </GlassCard>
+                <DynamicSpacer />
 
 
-          <GlassCard width='768px' zDepth={2} >
-            <CardTitle
-                title='11.  Patient Table' />
-            <CardText>
-                   <PatientTable
-                        data={[]} />
-            </CardText>
-          </GlassCard>
-          <DynamicSpacer />
+
+            </div>
 
 
           <DynamicSpacer />
@@ -700,9 +738,6 @@ export class OAuthClientPage extends React.Component {
         'formData': newFormData
     });
   }
-
-
-  
   changeState(field, event, value){
     const formData = this.state.formData;
     formData[field] = value;
@@ -710,10 +745,13 @@ export class OAuthClientPage extends React.Component {
         formData: formData
     });
   }
-  updateBaseUrl(field, event, value){
-    this.setState({
-        'baseUrl': value
-    });
+  updateBaseUrl(event, value){
+    console.log('updateBaseUrl', event, value)
+
+    var newState = this.state;
+    newState.baseUrl = value;
+
+    this.setState(newState);
   }
   
   saveConfiguration(){
@@ -725,7 +763,10 @@ export class OAuthClientPage extends React.Component {
       console.log('autoscan')
       var self = this;
 
-      HTTP.get(this.state.baseUrl + '/metadata?_format=application/json', function(error, result){
+      var metadataRoute = this.state.baseUrl + '/metadata' + formatSuffix;
+      console.log('metadata route', metadataRoute)
+
+      HTTP.get(metadataRoute, function(error, result){
           if(error){
               console.log('error', error)
           }
@@ -782,24 +823,10 @@ export class OAuthClientPage extends React.Component {
     console.log('newState', newState)
     this.setState(newState)
 
-
-
-    // // don't know if we need this.  Probably not.  
-    // 
-    // var newMethodName = 'loginWith' + newState.formData.serviceName
-    // Meteor[newMethodName] = function (options, callback) {
-    //     if (!callback && typeof options === "function") {
-    //         callback = options;
-    //         options = null;
-    //     }
-
-    //     var credentialRequestCompleteCallback = Accounts.oauth.credentialRequestCompleteHandler(callback);
-    //     OAuth2.requestCredential(options, credentialRequestCompleteCallback);
-    // };
-
   }
-  signInWith(service){
-    console.log('signInWith', service)
+  signInWith(serviceName){
+    console.log('signInWith', serviceName)
+
     var options = {
           requestPermissions: [
             'OBSERVATION.READ', 
@@ -810,7 +837,12 @@ export class OAuthClientPage extends React.Component {
             'PRACTITIONER.SEARCH',
             'patient/*.read',
             'patient/*.search',
-            'openid'
+            'openid',
+            'profile',
+            'user/*.*',
+            'launch',
+            'online_access'
+            
           ]
         }
 
@@ -825,8 +857,10 @@ export class OAuthClientPage extends React.Component {
         });
 
         //console.log('credentialRequestCompleteCallback', credentialRequestCompleteCallback)
-        OAuth2.requestCredential(options, credentialRequestCompleteCallback);
+        OAuth2.serviceName = serviceName;
 
+        var credentialResult = OAuth2.requestCredential(options, credentialRequestCompleteCallback);
+        console.log('credentialResult', credentialResult)
 
 
         // OAuth2.requestCredential(
@@ -868,13 +902,60 @@ export class OAuthClientPage extends React.Component {
   resetServiceConfiguration(){
     console.log('resetServiceConfiguration')
   }
-  searchPatients(){
-    console.log('searchPatients')
-    //alert('searchPatients')
+  fetchAccessToken(){
+    console.log('fetchAccessToken')
+    var self = this;
+    Meteor.call('fetchAccessToken', function(err, result){
+        if(result){
+            console.log(result)
+            var newState = self.state;
+            newState.accessToken = result.accessToken
+            self.setState(newState)
+        }
+    })
+  }
+  fetchPatientData(){
+    var fetchUrl = this.state.baseUrl + '/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB' + formatSuffix;
+    console.log('fetchPatientData', fetchUrl)
+
     var self = this    
-    var formatString = '?_format=application/json';
-    var baseUrl = 'https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB';
-    HTTP.get(baseUrl + formatString, function(err, result){
+
+    HTTP.get(fetchUrl, {
+        // data: {
+        //   summaryLength: "500",
+        //   entryPoint: "main"
+        // },
+        headers: {
+            'Authorization': 'Bearer ' + this.state.accessToken
+        }
+      }, function(err, result){
+        if(result){
+            console.log(JSON.parse(result.content));
+
+            var patientData = JSON.parse(result.content);
+            console.log('patientData', patientData)
+
+            var newState = self.state;
+            newState.patientData = EJSON.stringify(patientData, {indent: 2});
+            newState.patient = patientData;
+
+            self.setState(newState);
+        }
+        if(err){
+            console.error(err)
+        }
+    })
+  }
+  searchPatients(){
+    console.log('searchPatients', this.state)
+    var self = this;    
+    var patientId = 'Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB'
+    var baseUrl = this.state.baseUrl + '/Patient/' + patientId + formatSuffix;
+    HTTP.get(baseUrl + formatSuffix, {
+        headers: {
+            'Authorization': 'Bearer ' + this.state.accessToken
+        }
+      }, function(err, result){
         if(result){
             console.log(JSON.parse(result.content));
 
@@ -884,13 +965,51 @@ export class OAuthClientPage extends React.Component {
                 patientData: EJSON.stringify(patientData, {indent: 2}),
                 patient: patientData
             })
-
-
         }
     });
-  
-
   }
+  searchObservations(){
+    var self = this    
+    var patientId = 'Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB'
+    var observationUrl = this.state.baseUrl + '/Observation/_search?patient=' + patientId + '&category=vital-signs' + '&_format=application/json';
+
+    console.log('observationUrl', observationUrl);
+
+    HTTP.post(observationUrl, {
+        headers: {
+            'Authorization': 'Bearer ' + this.state.accessToken
+        }
+      }, function(err, result){
+        if(result){
+            //console.log('result', result)
+            console.log(JSON.parse(result.content));
+
+            var bundle = JSON.parse(result.content);
+            console.log('bundle', bundle)
+
+            var observationData = [];
+            bundle.entry.forEach(function(resource){
+                observationData.push(resource.resource)
+            });
+
+            console.log('observationData', observationData)
+            var newState = self.state;
+
+            //newState.observationData = EJSON.stringify(observationData, {indent: 2});
+            newState.observations = observationData;
+
+            console.log('newState', newState)
+
+            self.setState(newState)
+        }
+        if (err){
+            console.log('error', err)
+        }
+    });
+    cacheObservations(){
+        console.log('cacheObservations');
+        
+    }
 }
 
 
