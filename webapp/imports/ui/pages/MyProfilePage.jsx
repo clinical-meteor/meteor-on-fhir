@@ -21,7 +21,9 @@ import TextField from 'material-ui/TextField';
 import { browserHistory } from 'react-router';
 import { removeUserById } from '/imports/api/users/methods';
 
-import { ConsentTable } from 'meteor/clinical:hl7-resource-consent'
+import { ConsentTable } from 'meteor/clinical:hl7-resource-consent';
+import { PatientCard } from 'meteor/clinical:hl7-resource-patient';
+
 
 let defaultState = {
   index: 0,
@@ -134,20 +136,20 @@ export class MyProfilePage extends React.Component {
     if (Meteor.user()) {
       data.user = {
         _id: Meteor.userId(),
-        email: Meteor.user().emails[0].address,
-        avatar: Meteor.user().profile.avatar,
+        email: get(Meteor.user(), 'emails[0].address'),
+        avatar: get(Meteor.user(), 'profile.avatar'),
         gender: '',
         birthdate: '',
         zip: '',
         longitude: '',
         latitude: '',
-        profileImage: Meteor.user().profile.avatar
+        profileImage: get(Meteor.user(), 'profile.avatar')
       };      
 
       // if (Meteor.user().profile && Meteor.user().profile.avatar) {
       if(get(Meteor.user(), 'profile.avatar')) {
-        data.user.profileImage = Meteor.user().profile.avatar;
-        data.header.avatar = Meteor.user().profile.avatar;
+        data.user.profileImage = get(Meteor.user(), 'profile.avatar');
+        data.header.avatar = get(Meteor.user(), 'profile.avatar');
       } else {
         data.user.profileImage = 'thumbnail.png';
         data.header.avatar = 'thumbnail.png';
@@ -430,7 +432,22 @@ export class MyProfilePage extends React.Component {
     return(
       <div id='myProfilePage'>
         <VerticalCanvas style={{paddingBottom: '80px'}}> 
-          <Card zDepth={2} style={this.data.style.photo}>
+          <PatientCard
+            fullName={ get(this, 'data.user.fullName', '') }
+            email={ get(this, 'data.user.email', '') }
+            givenName={ get(this, 'data.user.givenName', '') }
+            familyName={ get(this, 'data.user.familyName', '') }
+            birthdate={this.data.user.birthdate}
+            gender={ get(this, 'data.user.gender', '') }
+            avatar={ get(this, 'data.user.avatar', '') }
+            updateGivenName={ this.updateGivenName }
+            updateFamilyName={ this.updateFamilyName }
+            updateBirthdate={ this.updateBirthdate }
+            updateGender={ this.updateGender }
+            updateAvatar={ this.updateAvatar }
+            />
+
+          {/* <Card zDepth={2} style={this.data.style.photo}>
             <img id='avatarImage' ref='avatarImage' onError={this.imgError.bind(this)} src={this.data.user.profileImage}  style={this.data.style.avatar} />
           </Card>
           <GlassCard>
@@ -476,7 +493,7 @@ export class MyProfilePage extends React.Component {
                         floatingLabelText='date of birth (yyyy-mm-dd)'
                         floatingLabelFixed={true}
                         value={this.data.user.birthdate}                          
-                        onChange={ this.handleChangeBirthdate.bind(this) }
+                        onChange={ this.updateBirthdate.bind(this) }
                         fullWidth
                         /><br/>
                     </Col>
@@ -488,7 +505,7 @@ export class MyProfilePage extends React.Component {
                         type='text'
                         floatingLabelText='gender'
                         value={this.data.user.gender}
-                        onChange={ this.handleChangeGender.bind(this) }
+                        onChange={ this.updateGender.bind(this) }
                         fullWidth
                         /><br/>
 
@@ -501,7 +518,7 @@ export class MyProfilePage extends React.Component {
                         type='text'
                         floatingLabelText='avatar'
                         value={this.data.user.avatar}
-                        onChange={ this.handleChangeAvatar.bind(this) }
+                        onChange={ this.updateAvatar.bind(this) }
                         fullWidth
                         /><br/>
 
@@ -510,8 +527,9 @@ export class MyProfilePage extends React.Component {
                 </div>
             </CardText>
           </GlassCard>
+          <DynamicSpacer /> */}
 
-          <DynamicSpacer />
+
           <GlassCard>
             <CardTitle title="Home Address" subtitle='last updated: yyyy/mm/dd' style={{float: 'left'}} />
             <CardTitle subtitle={this.data.address.latlng} style={{position: 'relative', right: '0px', top: '0px', float: 'right'}}/>
@@ -821,19 +839,29 @@ export class MyProfilePage extends React.Component {
     Session.set('myProfileState', state);
   }
 
+  updateGivenName(event, value) {
+    Meteor.users.update({  _id: Meteor.userId()}, {$set:{
+      'profile.name[0].given': value
+    }});
+  }
+  updateFamilyName(event, value) {
+    Meteor.users.update({  _id: Meteor.userId()}, {$set:{
+      'profile.name[0].family': value
+    }});
+  }
 
-  handleChangeBirthdate(event, value) {
+  updateBirthdate(event, value) {
     Meteor.users.update({  _id: Meteor.userId()}, {$set:{
       'profile.birthdate': value
     }});
   }
-  handleChangeGender(event, value) {
+  updateGender(event, value) {
     Meteor.users.update({  _id: Meteor.userId()}, {$set:{
       'profile.gender': value
     }});
   }
 
-  handleChangeAvatar(event, value) {
+  updateAvatar(event, value) {
     Meteor.users.update({  _id: Meteor.userId()}, {$set:{
       'profile.avatar': value
     }});

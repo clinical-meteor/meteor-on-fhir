@@ -36,18 +36,11 @@ Meteor.startup(function (){
         'PRACTITIONER.SEARCH',
         'patient/*.read',
         'patient/*.search',
-        'openid'
-      ],
-      SmartOnFhir: [
-        'OBSERVATION.READ', 
-        'OBSERVATION.SEARCH', 
-        'PATIENT.READ', 
-        'PATIENT.SEARCH', 
-        'PRACTITIONER.READ', 
-        'PRACTITIONER.SEARCH',
-        'patient/*.read',
-        'patient/*.search',
-        'openid'
+        'openid',
+        'profile',
+        'user/*.*',
+        'launch',
+        'online_access'
       ]
     },
     requestOfflineToken: {

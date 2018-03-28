@@ -90,7 +90,7 @@ clinical:keybindings
 clinical:hipaa-logger
 clinical:autopublish
 clinical:glass-ui
-clinical:fhir-vault-client
+clinical:smart-on-fhir-client
 
 # clinical:example-plugin
 # clinical:default-landing-page
@@ -104,6 +104,7 @@ clinical:hl7-resource-observation
 clinical:hl7-resource-patient
 clinical:hl7-resource-risk-assessment
 clinical:hl7-resource-practitioner
+clinical:hl7-resource-communication
 
 # clinical:hl7-resource-allergy-intolerance
 # clinical:hl7-resource-condition

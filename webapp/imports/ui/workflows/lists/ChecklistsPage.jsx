@@ -41,7 +41,7 @@ export class ChecklistsPage extends React.Component {
       lists: []
     };
 
-    if (Lists.find().count() > 0) {
+    if ((typeof Lists === "object") && Lists.find().count() > 0) {
       data.lists = Lists.find().map(function(list){
         var result = {
           _id: list._id,
