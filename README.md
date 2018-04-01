@@ -169,7 +169,7 @@ git remote add azure https://admin@appname.scm.azurewebsites.net/appname.git
 
 ```sh
 # prepare environment variables
-export METEOR_SETTINGS="$(cat ../../webapp/packages/example-package/configs/settings.blank.json )"
+export METEOR_SETTINGS="$(cat ../../webapp/packages/example-plugin/configs/settings.blank.json )"
 export ROOT_URL=https://appname.azurewebsites.net
 export MONGO_URL=mongodb://user:password@cosmodb.documents.azure.com:10255/?ssl=true
 
@@ -177,10 +177,10 @@ export MONGO_URL=mongodb://user:password@cosmodb.documents.azure.com:10255/?ssl=
 cd webapp
 
 # stringify the settings.json file; and add to Azure METEOR_SETTINGS
-cat packages/example-package/configs/settings.json | tr -d ' ' | tr -d '\n'
+cat packages/example-plugin/configs/settings.json | tr -d ' ' | tr -d '\n'
 
 # add required packages
-meteor add clinical:example-package
+meteor add clinical:example-plugin
 
 # remove unnecessary packages
 meteor remove-platform ios
@@ -190,7 +190,7 @@ npm install
 node start
 
 # meteor-azure
-meteor-azure --settings packages/example-package/configs/settings.blank.json
+meteor-azure --settings packages/example-plugin/configs/settings.blank.json
 
 # debugging
 curl -u admin https://appname.scm.azurewebsites.net/api/logstream
