@@ -162,7 +162,6 @@ az appservice list-locations
 az group create --name appName --location 'Central US'
 az appservice plan create --name appServicePlan --resource-group appName --sku S1 
 az webapp create --resource-group appResourceGroup --plan appServicePlan --name appname 
-git remote add azure https://admin@appname.scm.azurewebsites.net/appname.git
 ```    
 
 #### I. Azure Deployment 
@@ -174,9 +173,12 @@ export ROOT_URL=https://appname.azurewebsites.net
 export MONGO_URL=mongodb://user:password@cosmodb.documents.azure.com:10255/?ssl=true
 
 # go to application
+cd webapp/packages
+git clone https://github.com/clinical-meteor/example-plugin
 cd webapp
 
-# stringify the settings.json file; and add to Azure METEOR_SETTINGS
+# stringify the settings.json file
+# add to Azure > AppName > Application Settings > METEOR_SETTINGS
 cat packages/example-package/configs/settings.json | tr -d ' ' | tr -d '\n'
 
 # add required packages
