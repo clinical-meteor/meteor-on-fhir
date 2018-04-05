@@ -94,8 +94,9 @@ clinical:smart-on-fhir-client
 
 # clinical:example-plugin
 # clinical:default-landing-page
-# clinical:accounts-famous-dead-people
-# clinical:accounts-housemd
+
+clinical:accounts-famous-dead-people
+clinical:accounts-housemd
 
 # fhir resources
 clinical:hl7-resource-datatypes
@@ -104,7 +105,9 @@ clinical:hl7-resource-observation
 clinical:hl7-resource-patient
 clinical:hl7-resource-risk-assessment
 clinical:hl7-resource-practitioner
-clinical:hl7-resource-communication
+clinical:hl7-resource-endpoint
+# clinical:hl7-resource-communication
+# clinical:hl7-resource-subscription
 
 # clinical:hl7-resource-allergy-intolerance
 # clinical:hl7-resource-condition
@@ -119,9 +122,9 @@ clinical:hl7-resource-communication
 # clinical:hl7-resource-medication-statement
 # clinical:hl7-resource-procedure
 
-clinical:hl7-resource-consent
-clinical:hl7-resource-contract
-clinical:accounts-famous-dead-people
+# clinical:hl7-resource-consent
+# clinical:hl7-resource-contract
+# clinical:accounts-famous-dead-people
 
 symptomatic:blockchain-core
 
@@ -130,6 +133,10 @@ simple:json-routes
 percolate:synced-cron
 d3js:d3
 
-pcci:sepsis-risk-model
+# pcci:sepsis-risk-model
 digilord:faker
 base64
+
+clinical:hl7-resource-consent
+clinical:hl7-resource-contract
+symptomatic:hacknights
