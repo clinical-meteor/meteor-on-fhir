@@ -1,18 +1,21 @@
 import { Bert } from 'meteor/themeteorchef:bert';
 import { Meteor } from 'meteor/meteor';
+import { Session } from 'meteor/session';
 import { MobilePadding } from '/imports/ui/components/MobilePadding';
 import React  from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin  from 'react-mixin';
 
 import { VerticalCanvas, FullPageCanvas, Theme, GlassCard } from 'meteor/clinical:glass-ui';
-import { CardText, CardActions, TextField, FlatButton, RaisedButton } from 'material-ui'
+import { CardText, CardActions, CardHeader, CardTitle, TextField, FlatButton, RaisedButton } from 'material-ui'
 
 import { browserHistory } from 'react-router';
 import { Row, Col } from 'react-bootstrap';
 
 import { lightBaseTheme, darkBaseTheme } from 'material-ui/styles';
 import { has, get } from 'lodash';
+
+Session.setDefault('signinWithSearch', '');
 
 export class Signin extends React.Component {
   getMeteorData() {
@@ -39,8 +42,19 @@ export class Signin extends React.Component {
         floatingLabelFocusStyle: {
           color: lightBaseTheme.palette.secondaryTextColor
         }
-      }
+      },
+      endpoints: []
     };
+
+    if( Endpoints.find().count() > 0){
+      data.endpoints = Endpoints.find({
+        'name': {
+          $regex: Session.get( 'signinWithSearch' ),
+          $options: 'i'
+        }
+      }).fetch()
+    }
+
 
     if (get(Meteor, 'settings.theme.darkroomTextEnabled')) {
       data.style.textColor.color = darkBaseTheme.palette.textColor;
@@ -61,8 +75,51 @@ export class Signin extends React.Component {
   forgotPasswordRoute(){
     browserHistory.push('/recover-password');
   }
-  handleTouchTap(){
+  signInWith(serviceName, event){
+    console.log('Signin.signInWith', serviceName)
+    let self = this;
+
+    var options = {
+      requestPermissions: [
+        'OBSERVATION.READ', 
+        'OBSERVATION.SEARCH', 
+        'PATIENT.READ', 
+        'PATIENT.SEARCH', 
+        'PRACTITIONER.READ', 
+        'PRACTITIONER.SEARCH',
+        'patient/*.read',
+        'patient/*.search',
+        'openid',
+        'profile',
+        'user/*.*',
+        'launch',
+        'online_access'        
+      ]
+    }
+
+    console.log('Accounts.oauth.serviceNames', Accounts.oauth.serviceNames());
+
+    //console.log('Accounts.oauth.credentialRequestCompleteHandler()');
+    var credentialRequestCompleteCallback = Accounts.oauth.credentialRequestCompleteHandler(function(error, result){
+        console.log('foo?')
+        console.log('error', error)
+        console.log('result', result)
+        console.log('foo!')            
+    });
+
+    //console.log('credentialRequestCompleteCallback', credentialRequestCompleteCallback)
+    OAuth2.serviceName = serviceName;
+
+    var credentialResult = OAuth2.requestCredential(options, credentialRequestCompleteCallback);
+    console.log('credentialResult', credentialResult)
+
+
+
+  }
+  handleTouchTap(event, foo, value){    
     if(process.env.NODE_ENV === "test") console.log("this", this);
+    console.log('Signin.handleTouchTap', event, foo, value)
+
     let self = this;
 
     Meteor.loginWithPassword(
@@ -95,7 +152,36 @@ export class Signin extends React.Component {
       this.handleTouchTap(e);
     }
   }
+  handleSearch(event, serviceName, foo) {
+    console.log('Signin.handleSearch', serviceName)
+
+    Session.set('signinWithSearch', serviceName);
+  }
   render() {
+    var signinButtons = [];
+    var self = this;
+
+    if (this.data.endpoints.length > 0){
+      this.data.endpoints.forEach(function(endpoint){
+        signinButtons.push(
+          <RaisedButton 
+            key={endpoint.name}
+            label={endpoint.name}
+            id={endpoint.name + "Button"}
+            defaultValue={ Session.get('signinWithSearch') }
+            onTouchTap={self.signInWith.bind(self, endpoint.name)} 
+            style={{width: '100%', textAlign: 'left', marginLeft: '40px', marginBottom: '20px' }}
+            buttonStyle={{ textAlign: 'left', fontWeight: '300' }}
+            primary={true} />
+        );  
+      });
+    }
+    
+    var buttons = <div>
+      { signinButtons }
+    </div>
+
+
     return (
       <div id="signinPage">
         <MobilePadding>
@@ -146,30 +232,30 @@ export class Signin extends React.Component {
                   <br/>
                   <br/>
                 </Col>                
-                <Col lgOffset={5} mdOffset={2} xl={2} lg={2} md={4}>
+                <Col lgOffset={4} mdOffset={2} lg={2} md={3}>
                   <GlassCard zDepth={3} height="auto" >
+                    <CardTitle
+                      title="Sign in with..."
+                      />
                     <CardText>
-                      
+                      <TextField
+                          type="searchSignIns"
+                          ref="searchSignIns"
+                          name="searchSignIns"
+                          floatingLabelText="Search..."
+                          onKeyPress={this.handleKeyPress.bind(this)}
+                          onChange={this.handleSearch.bind(this)}
+                          inputStyle={this.data.style.inputStyle}
+                          hintStyle={this.data.style.hintStyle}
+                          errorStyle={this.data.style.errorStyle}
+                          underlineStyle={this.data.style.underlineStyle}
+                          floatingLabelStyle={this.data.style.floatingLabelStyle}
+                          floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
+                          fullWidth
+                        />         
                     </CardText>
-                    <CardActions>
-                        <FlatButton 
-                          label="Sign in with Epic" 
-                          id="signinButton" 
-                          onTouchTap={this.handleTouchTap.bind(this)} 
-                          style={{width: '100%'}}
-                          primary={false} /><br/><br/>
-                        <FlatButton 
-                          label="Sign in with Our Care Wishes" 
-                          id="signinButton" 
-                          onTouchTap={this.handleTouchTap.bind(this)} 
-                          style={{width: '100%'}}
-                          primary={false} /><br/><br/>
-                        <FlatButton 
-                          label="Sign in with MyPennMedicine" 
-                          id="signinButton" 
-                          onTouchTap={this.handleTouchTap.bind(this)} 
-                          style={{width: '100%'}}
-                          primary={false} />
+                      <CardActions>
+                        { buttons }
                       </CardActions>
                     </GlassCard>                  
                 </Col>

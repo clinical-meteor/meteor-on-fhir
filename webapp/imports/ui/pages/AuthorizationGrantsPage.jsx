@@ -4,8 +4,11 @@ import { AboutAppCard } from '/imports/ui/components/AboutAppCard';
 import { VerticalCanvas, GlassCard, DynamicSpacer } from 'meteor/clinical:glass-ui';
 import { CardActions, CardHeader, CardText, CardTitle } from 'material-ui/Card';
 
-import { ConsentTable } from 'meteor/clinical:hl7-resource-consent'
 import RaisedButton from 'material-ui/RaisedButton';
+
+if(Package['clinical:hl7-resource-consent']){
+  import { ConsentTable } from 'meteor/clinical:hl7-resource-consent';
+}
 
 export class AuthorizationGrantsPage extends React.Component {
   constructor(props) {
@@ -13,6 +16,16 @@ export class AuthorizationGrantsPage extends React.Component {
   }
 
   render(){
+
+    var consentElement;
+    if(Package['clinical:hl7-resource-consent']){
+      consentElement = <ConsentTable
+        simplified={ true }
+        patient="Jane Doe"
+        noDataMessage={false}
+      />
+    }
+
     return(
       <div id="authorizationGrantsPage">
         <VerticalCanvas >
@@ -90,10 +103,7 @@ export class AuthorizationGrantsPage extends React.Component {
           <GlassCard width='768px'>
             <CardTitle title="Consents & Authorizations" subtitle='OAuth tokens, HIPAA consents, Advanced Directives, etc.' />
               <CardText>
-                <ConsentTable
-                  simplified={ true }
-                  patient="Jane Doe"
-                />
+                { consentElement }
             </CardText>              
           </GlassCard>
 

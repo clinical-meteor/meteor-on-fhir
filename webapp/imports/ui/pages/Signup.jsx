@@ -82,10 +82,13 @@ export class Signup extends React.Component {
           given: this.refs.givenName.input.value,
           family: this.refs.familyName.input.value,
           text: this.refs.givenName.input.value + ' ' + this.refs.familyName.input.value
-        },
-        accessCode: this.refs.accessCode.input.value
+        }
       }
     };
+
+    if(this.refs.accessCode){
+      newUserData.accessCode = this.refs.accessCode.input.value;
+    }
 
     Accounts.createUser(newUserData, function(error, result){
       if (error) {

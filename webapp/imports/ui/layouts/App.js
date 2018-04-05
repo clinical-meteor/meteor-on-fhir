@@ -11,12 +11,13 @@ import React, { Component } from 'react';
 
 import { Footer } from '/imports/ui/layouts/Footer';
 import { GlassApp } from '/imports/ui/layouts/GlassApp';
-import { GlassCard, VerticalCanvas } from 'meteor/clinical:glass-ui';
+import { GlassCard, VerticalCanvas, FullPageCanvas } from 'meteor/clinical:glass-ui';
 import { Header } from '/imports/ui/layouts/Header';
 import { Image } from '/imports/ui/components/Image';
 import { SciFiOrbital } from '/imports/ui/components/SciFiOrbital';
 import { Session } from 'meteor/session';
 import SinglePanelLayout from '/imports/ui/layouts/SinglePanelLayout';
+import { EdgeBundlePage } from '/imports/ui/pages/EdgeBundlePage';
 
 import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import { get, has } from 'lodash';
@@ -72,6 +73,14 @@ export class App extends React.Component {
         </GlassCard>
       );
 
+    } else if (Meteor.userId() && Session.equals('pathname', '/endpoints')) {
+      return (
+        <GlassCard style={this.data.style.card} height='auto'>
+          <CardText>
+            <EdgeBundlePage />
+          </CardText>
+        </GlassCard>
+      );
 
     // Website
     } else if (Meteor.userId() && get(Meteor.settings, 'public.defaults.iFrameUrl')) {
@@ -111,7 +120,7 @@ export class App extends React.Component {
         },
         content: {
           minHeight: '728px',
-          width: '970px',
+          width: '100%',
           height: Session.get('appHeight') - 280 + 'px'
         }
       },
@@ -127,7 +136,9 @@ export class App extends React.Component {
     if (Session.get('secondPanelVisible')) {
       if (Session.get('appWidth') > 1200) {
         data.style.secondary.visibility = 'visible';
-        data.style.secondary.left = '1200px';
+        data.style.secondary.left = '1280px';
+        data.style.secondary.width = (Session.get('appWidth') - (1280 + 80)) + 'px';
+        data.style.card.width = '100%';
       } else {
         data.style.secondary.visibility = 'hidden';
         data.style.secondary.left = '4048px';
@@ -137,13 +148,13 @@ export class App extends React.Component {
       data.style.secondary.left = '4048px';
     }
 
-    if(process.env.NODE_ENV === "test") console.log("GenomePage[data]", data);
+    if(process.env.NODE_ENV === "test") console.log("App[data]", data);
     return data;
   }
 
   render(){
     var orbital;
-    if(Meteor.settings && Meteor.settings.public && Meteor.settings.public.defaults && Meteor.settings.public.defaults.nfcOrbital){
+    if(get(Meteor, 'settings.public.defaults.nfcOrbital')){
       orbital = <SciFiPage />;
     }
     return (
@@ -157,9 +168,9 @@ export class App extends React.Component {
                   { this.props.children }
                 </div>
                 <div className='secondaryFlexPanel' style={this.data.style.secondary}>
-                  <VerticalCanvas>
+                  <FullPageCanvas>
                     { this.renderSecondaryPanel() }
-                  </VerticalCanvas>
+                  </FullPageCanvas>
                 </div>
               <Footer />
             </SinglePanelLayout>

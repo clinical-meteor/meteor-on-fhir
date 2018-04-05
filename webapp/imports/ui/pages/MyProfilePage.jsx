@@ -18,11 +18,18 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
 import TextField from 'material-ui/TextField';
 
+import MenuItem from '/imports/ui/components/MenuItem';
+
+
 import { browserHistory } from 'react-router';
 import { removeUserById } from '/imports/api/users/methods';
 
-import { ConsentTable } from 'meteor/clinical:hl7-resource-consent';
+
 import { PatientCard } from 'meteor/clinical:hl7-resource-patient';
+
+//if(Package['clinical:hl7-resource-consent']){
+  import { ConsentTable } from 'meteor/clinical:hl7-resource-consent';
+//}
 
 
 let defaultState = {
@@ -429,6 +436,29 @@ export class MyProfilePage extends React.Component {
       </div>
     }
 
+    var consentElement;
+    //if(Package['clinical:hl7-resource-consent']){
+      consentElement = <div>
+        <GlassCard>
+          <CardTitle title="Consents & Authorizations" subtitle='OAuth tokens, HIPAA consents, Advanced Directives, etc.' />
+          <CardText>
+            <ConsentTable
+              patient="Jane Doe"
+              simplified={true}
+              noDataMessage={false}
+            />
+          </CardText>
+          <CardActions>
+            <FlatButton 
+              label='Edit' 
+              onClick={this.editAuthorizations.bind(this)}
+              />
+          </CardActions>
+        </GlassCard>
+        <DynamicSpacer />
+      </div>
+    //}
+
     return(
       <div id='myProfilePage'>
         <VerticalCanvas style={{paddingBottom: '80px'}}> 
@@ -619,24 +649,7 @@ export class MyProfilePage extends React.Component {
           <DynamicSpacer />
 
 
-          <GlassCard>
-            <CardTitle title="Consents & Authorizations" subtitle='OAuth tokens, HIPAA consents, Advanced Directives, etc.' />
-            <CardText>
-              <ConsentTable
-                patient="Jane Doe"
-                simplified={true}
-                noDataMessage={false}
-              />
-            </CardText>
-            <CardActions>
-              <FlatButton 
-                label='Edit' 
-                onClick={this.editAuthorizations.bind(this)}
-                />
-            </CardActions>
-          </GlassCard>
-          <DynamicSpacer />
-
+          { consentElement }
 
           { continuityOfCareCard }
 
