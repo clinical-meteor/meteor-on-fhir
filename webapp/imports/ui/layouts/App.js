@@ -7,7 +7,6 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin  from 'react-mixin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import React, { Component } from 'react';
-// import { BrowserRouter} from 'react-router-bootstrap';
 
 import { Footer } from '/imports/ui/layouts/Footer';
 import { GlassApp } from '/imports/ui/layouts/GlassApp';

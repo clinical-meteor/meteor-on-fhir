@@ -24,12 +24,12 @@ import MenuItem from '/imports/ui/components/MenuItem';
 import { browserHistory } from 'react-router';
 import { removeUserById } from '/imports/api/users/methods';
 
-
+import { CollectionManagement } from '/imports/ui/components/CollectionManagement';
 import { PatientCard } from 'meteor/clinical:hl7-resource-patient';
 
-//if(Package['clinical:hl7-resource-consent']){
+if(Package['clinical:hl7-resource-consent']){
   import { ConsentTable } from 'meteor/clinical:hl7-resource-consent';
-//}
+}
 
 
 let defaultState = {
@@ -43,6 +43,7 @@ let defaultState = {
   confirmPassword: ''
 };
 Session.setDefault('myProfileState', defaultState);
+
 
 export class MyProfilePage extends React.Component {
   constructor(props) {
@@ -130,7 +131,8 @@ export class MyProfilePage extends React.Component {
         Procedures: 0,
         RelatedPersons: 0,
         Sequences: 0
-      }
+      },
+      accessToken: Session.get('accessToken')
     };
 
     data.style.tab = Glass.darkroom(data.style.tab);
@@ -442,11 +444,7 @@ export class MyProfilePage extends React.Component {
         <GlassCard>
           <CardTitle title="Consents & Authorizations" subtitle='OAuth tokens, HIPAA consents, Advanced Directives, etc.' />
           <CardText>
-            <ConsentTable
-              patient="Jane Doe"
-              simplified={true}
-              noDataMessage={false}
-            />
+            { consentTable }
           </CardText>
           <CardActions>
             <FlatButton 
@@ -458,6 +456,15 @@ export class MyProfilePage extends React.Component {
         <DynamicSpacer />
       </div>
     //}
+
+    var consentTable;
+    if(Package['clinical:hl7-resource-consent']){
+      consentTable = <ConsentTable
+        patient="Jane Doe"
+        simplified={true}
+        noDataMessage={false}
+      />
+    }
 
     return(
       <div id='myProfilePage'>
@@ -651,8 +658,15 @@ export class MyProfilePage extends React.Component {
 
           { consentElement }
 
-          { continuityOfCareCard }
+          <GlassCard>
+            <CardTitle title="Collection Management" subtitle='Reset your password.' />
+            <CardText>
+              <CollectionManagement accessToken={this.data.accessToken} />
+            </CardText>
+          </GlassCard>                    
+          <DynamicSpacer />
 
+          { continuityOfCareCard }
 
           <GlassCard>
             <CardTitle title="Preferences" subtitle='Application preferences.' />
@@ -776,6 +790,51 @@ export class MyProfilePage extends React.Component {
               </div>
             </CardText>
           </GlassCard>                    
+
+
+
+
+
+
+
+
+          <DynamicSpacer />
+          <GlassCard>
+            <CardTitle title="Delete Account" subtitle='Danger.  This will delete the entire account from this system.' />
+            <CardText>
+              <div id='profilePasswordPane' style={{position: 'relative'}} >
+                <Row>
+                  <Col md={6}>
+                    <TextField
+                      id='deleteAccountInput'
+                      ref='deleteAccount'
+                      name='deleteAccount'
+                      type='text'
+                      floatingLabelText='Please type your full name to sign and approve.'
+                      floatingLabelFixed={true}
+                      // value={this.data.state.newPassword}
+                      // onChange={ this.rememberNewPassword.bind(this) }
+                      fullWidth
+                      /><br/>
+                  </Col>
+                </Row>
+
+                <FlatButton
+                  id='deleteAccountButton'
+                  label='Delete Account'
+                  onClick={this.deleteAccount.bind(this)}
+                  className="muidocs-icon-action-delete"
+                  />
+              </div>
+            </CardText>
+          </GlassCard>                    
+
+
+
+
+
+
+
 
           <DynamicSpacer />
           <DynamicSpacer />
@@ -948,6 +1007,9 @@ export class MyProfilePage extends React.Component {
     } else {
       console.log('Hmmm...  yeah, lets wait a bit and make sure we have the right user.');
     }
+  }
+  deleteAccount(){
+    console.log('deleteAccount')
   }
   changePassword() {
     let state = Session.get('myProfileState');

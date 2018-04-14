@@ -9,6 +9,9 @@ import { Bert } from 'meteor/themeteorchef:bert';
 
 Bert.defaults.style = 'growl-top-right';
 
+// OAuth Access Token
+Session.setDefault('accessToken', '');
+
 Meteor.startup(function (){
 
   // global session variables
@@ -21,6 +24,13 @@ Meteor.startup(function (){
 
   Meteor.subscribe('Observations');
   Meteor.subscribe('Patients');
+
+  Meteor.call('fetchAccessToken', function(err, result){
+    if(result){
+        console.log(result)
+        Session.set('accessToken', result.accessToken);
+    }
+  })
 
 
   Accounts.ui.config({

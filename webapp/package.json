@@ -49,6 +49,7 @@
     "react-addons-pure-render-mixin": "^15.3.1",
     "react-bootstrap": "^0.31.5",
     "react-dom": "^15.3.1",
+    "react-dropzone-component": "^3.0.0",
     "react-fontawesome": "^1.6.1",
     "react-icons": "^2.2.7",
     "react-mixin": "^4.0.0",
