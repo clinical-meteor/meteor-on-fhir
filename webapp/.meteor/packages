@@ -129,8 +129,6 @@ clinical:hl7-resource-questionnaire
 
 # clinical:accounts-famous-dead-people
 
-symptomatic:blockchain-core
-
 simple:json-routes
 
 percolate:synced-cron
@@ -140,4 +138,5 @@ pcci:sepsis-risk-model
 digilord:faker
 base64
 
+# symptomatic:blockchain-core
 # symptomatic:hacknights
