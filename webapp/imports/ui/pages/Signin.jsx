@@ -15,6 +15,8 @@ import { Row, Col } from 'react-bootstrap';
 import { lightBaseTheme, darkBaseTheme } from 'material-ui/styles';
 import { has, get } from 'lodash';
 
+import { OAuth } from 'meteor/clinical:smart-on-fhir-client';
+
 Session.setDefault('signinWithSearch', '');
 
 export class Signin extends React.Component {
@@ -43,7 +45,8 @@ export class Signin extends React.Component {
           color: lightBaseTheme.palette.secondaryTextColor
         }
       },
-      endpoints: []
+      endpoints: [],
+      services: []
     };
 
     if( Endpoints.find().count() > 0){
@@ -54,6 +57,10 @@ export class Signin extends React.Component {
         }
       }).fetch()
     }
+
+    if(ServiceConfiguration){
+      data.services = ServiceConfiguration.configurations.find().fetch()
+  }   
 
 
     if (get(Meteor, 'settings.theme.darkroomTextEnabled')) {
@@ -101,19 +108,22 @@ export class Signin extends React.Component {
 
     //console.log('Accounts.oauth.credentialRequestCompleteHandler()');
     var credentialRequestCompleteCallback = Accounts.oauth.credentialRequestCompleteHandler(function(error, result){
-        console.log('foo?')
+      if(error){
         console.log('error', error)
-        console.log('result', result)
-        console.log('foo!')            
+      }
+
+      browserHistory.push('/sepsis-risk-model');
+      console.log('foo!')            
     });
 
-    //console.log('credentialRequestCompleteCallback', credentialRequestCompleteCallback)
-    OAuth2.serviceName = serviceName;
-
-    var credentialResult = OAuth2.requestCredential(options, credentialRequestCompleteCallback);
+    var credentialResult = OAuth.requestCredential(options, credentialRequestCompleteCallback);
     console.log('credentialResult', credentialResult)
 
-
+    Meteor.call('fetchAccessToken', serviceName, function(err, result){
+        if(result){
+          console.log('result.accessToken', result.accessToken)
+        }
+    })
 
   }
   handleTouchTap(event, foo, value){    
@@ -161,22 +171,40 @@ export class Signin extends React.Component {
     var signinButtons = [];
     var self = this;
 
-    if (this.data.endpoints.length > 0){
-      this.data.endpoints.forEach(function(endpoint){
+    // if (this.data.endpoints.length > 0){
+    //   this.data.endpoints.forEach(function(endpoint){
+    //     signinButtons.push(
+    //       <RaisedButton 
+    //         key={endpoint.name}
+    //         label={endpoint.name}
+    //         id={endpoint.name + "Button"}
+    //         defaultValue={ Session.get('signinWithSearch') }
+    //         onTouchTap={self.signInWith.bind(self, endpoint.name)} 
+    //         style={{width: '100%', textAlign: 'left', marginLeft: '40px', marginBottom: '20px' }}
+    //         buttonStyle={{ textAlign: 'left', fontWeight: '300' }}
+    //         primary={true} />
+    //     );  
+    //   });
+    // }
+    
+    if (this.data.services.length > 0){
+      this.data.services.forEach(function(service){
         signinButtons.push(
-          <RaisedButton 
-            key={endpoint.name}
-            label={endpoint.name}
-            id={endpoint.name + "Button"}
-            defaultValue={ Session.get('signinWithSearch') }
-            onTouchTap={self.signInWith.bind(self, endpoint.name)} 
-            style={{width: '100%', textAlign: 'left', marginLeft: '40px', marginBottom: '20px' }}
-            buttonStyle={{ textAlign: 'left', fontWeight: '300' }}
-            primary={true} />
+          <div key={service.service}>
+            <RaisedButton 
+              label={ service.service } 
+              id={ service.service + "Button" }
+              primary={true}
+              onClick={ self.signInWith.bind(this, service.service) }
+              fullWidth
+              />    
+              <br />
+              <br />
+          </div>
         );  
       });
     }
-    
+
     var buttons = <div>
       { signinButtons }
     </div>
