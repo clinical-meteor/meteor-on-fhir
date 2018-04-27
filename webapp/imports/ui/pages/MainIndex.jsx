@@ -3,15 +3,19 @@
 
 import { Container, Col, Row } from 'react-bootstrap';
 
-import { CardTitle } from 'material-ui/Card';
+import { CardTitle, Card, CardText, CardActions } from 'material-ui';
 import { Glass, GlassCard, FullPageCanvas, VerticalCanvas } from 'meteor/clinical:glass-ui';
 import { Meteor } from 'meteor/meteor';
+
 import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
 import { browserHistory } from 'react-router';
 import { has, get } from 'lodash';
 import PropTypes from 'prop-types';
+
+import { MenuTile } from '/imports/ui/components/MenuTile';
+
 
 import StreetView from 'react-icons/lib/fa/street-view';
 import Heartbeat from 'react-icons/lib/fa/heartbeat';
@@ -51,6 +55,7 @@ import MdFingerprint from 'react-icons/lib/md/fingerprint';
 import MdHearing from 'react-icons/lib/md/hearing';
 import MdImportantDevices from 'react-icons/lib/md/important-devices';
 
+
 export class MainIndex extends React.Component {
   constructor(props) {
     super(props);
@@ -61,34 +66,9 @@ export class MainIndex extends React.Component {
         sectionTitle: {
           display: 'inline-block'
         },
-        inactiveIndexCard: {
-          opacity: .5,
-          width: '100%',
-          display: 'inline-block',
-          paddingBottom: '20px'
-        },
-        indexCard: {
-          cursor: 'pointer',
-          height: '240px',
-          minHeight: '140px'          
-        },
-        indexCardPadding: {
-          width: '100%',
-          display: 'inline-block',
-          paddingBottom: '20px'
-        },
         spacer: {
           display: 'block'
         },
-        title: Glass.darkroom({
-          marginTop: '20px',
-          textAlign: 'center',
-          fontSize: '48px'
-        }),
-        subtitle: Glass.darkroom({
-          textAlign: 'center',
-          marginTop: '20px'
-        }),
         column: {
           paddingLeft: '5px',
           paddingRight: '5px'
@@ -100,8 +80,75 @@ export class MainIndex extends React.Component {
         isPatient: true
       },
       showUnderConstruction: true,
-      showExperimental: true
+      showExperimental: true,
+      local: {
+        allergies: 0,
+        carePlans: 0,
+        conditions: 0,
+        devices: 0,
+        diagnosticReports: 0,
+        goals: 0,
+        immunizations: 0,
+        locations: 0,
+        medications: 0,
+        medicationOrders: 0,
+        medicationStatements: 0,
+        observations: 0,
+        organizations: 0,
+        practitioners: 0,
+        procedures: 0,
+        riskAssessments: 0
+      }
     };
+
+    if( typeof AllergyIntolerances === "object" ){
+      data.local.allergies = AllergyIntolerances.find().count();
+    }
+    if( typeof CarePlans === "object" ){
+      data.local.carePlans = CarePlans.find().count();
+    }
+    if( typeof Conditions === "object" ){
+      data.local.conditions = Conditions.find().count();
+    }
+    if( typeof Devices === "object" ){
+      data.local.devices = Devices.find().count();
+    }
+    if( typeof DiagnosticReports === "object" ){
+      data.local.diagnosticReports = DiagnosticReports.find().count();
+    }
+    if( typeof Goals === "object" ){
+      data.local.goals = Goals.find().count();
+    }
+    if( typeof Immunizations === "object" ){
+      data.local.immunizations = Immunizations.find().count();
+    }
+    if( typeof Locations === "object" ){
+      data.local.locations = Locations.find().count();
+    }
+    if( typeof Medicaitons === "object" ){
+      data.local.medications = Medicaitons.find().count();
+    }
+    if( typeof MedicationOrders === "object" ){
+      data.local.medicationOrders = MedicationOrders.find().count();
+    }
+    if( typeof MedicationStatements === "object" ){
+      data.local.medicationStatements = MedicationStatements.find().count();
+    }
+    if( typeof Observations === "object" ){
+      data.local.observations = Observations.find().count();
+    }
+    if( typeof Organizations === "object" ){
+      data.local.organizations = Organizations.find().count();
+    }
+    if( typeof Practitioners === "object" ){
+      data.local.practitioners = Practitioners.find().count();
+    }
+    if( typeof Procedures === "object" ){
+      data.local.procedures = Procedures.find().count();
+    }
+    if( typeof RiskAssessments === "object" ){
+      data.local.riskAssessments = RiskAssessments.find().count();
+    }
 
     data.style.indexCard = Glass.darkroom(data.style.indexCard);
 
@@ -129,21 +176,21 @@ export class MainIndex extends React.Component {
     }
 
 
-    if (Session.get('appWidth') < 768) {
-      data.style.indexCardPadding.width = '100%';
-      data.style.indexCardPadding.marginBottom = '10px';
-      data.style.indexCardPadding.paddingBottom = '10px';
-      data.style.indexCardPadding.paddingLeft = '0px';
-      data.style.indexCardPadding.paddingRight = '0px';
+    // if (Session.get('appWidth') < 768) {
+    //   data.style.indexCardPadding.width = '100%';
+    //   data.style.indexCardPadding.marginBottom = '10px';
+    //   data.style.indexCardPadding.paddingBottom = '10px';
+    //   data.style.indexCardPadding.paddingLeft = '0px';
+    //   data.style.indexCardPadding.paddingRight = '0px';
 
-      data.style.inactiveIndexCard.width = '100%';
-      data.style.inactiveIndexCard.marginBottom = '10px';
-      data.style.inactiveIndexCard.paddingBottom = '10px';
-      data.style.inactiveIndexCard.paddingLeft = '0px';
-      data.style.inactiveIndexCard.paddingRight = '0px';
+    //   data.style.inactiveIndexCard.width = '100%';
+    //   data.style.inactiveIndexCard.marginBottom = '10px';
+    //   data.style.inactiveIndexCard.paddingBottom = '10px';
+    //   data.style.inactiveIndexCard.paddingLeft = '0px';
+    //   data.style.inactiveIndexCard.paddingRight = '0px';
 
-      data.style.spacer.display = 'none';
-    }
+    //   data.style.spacer.display = 'none';
+    // }
 
     data.style = Glass.blur(data.style);
     data.style.appbar = Glass.darkroom(data.style.appbar);
@@ -330,47 +377,54 @@ export class MainIndex extends React.Component {
           <CardTitle title="Admin Functionality" style={this.data.style.sectionTitle} />  
           <br />  
 
-          <div id='inboundMessagesTile' style={this.data.style.indexCardPadding} onClick={ this.openInboundMessages.bind(this) } >
-            <GlassCard style={this.data.style.indexCard} >
-              <CardTitle
-                subtitle='Inbound Messages'
-                titleStyle={this.data.style.title}
-                  subtitleStyle={this.data.style.subtitle}
-              />
-            </GlassCard>
-          </div>
-          <div id="outboundMessagesTile" style={this.data.style.indexCardPadding} onClick={ this.openOutboundMessages.bind(this) } >
-            <GlassCard style={this.data.style.indexCard} >
-              <CardTitle
-                subtitle='Outbound Messages'
-                titleStyle={this.data.style.title}
-                  subtitleStyle={this.data.style.subtitle}
-              />
-            </GlassCard>
-          </div>
-
-          <div id='dataManagementTile' style={this.data.style.indexCardPadding} onClick={ this.openDataManagement.bind(this) } >
-            <GlassCard style={this.data.style.indexCard} >
-              <CardTitle
-                subtitle='Data Management'
-                titleStyle={this.data.style.title}
-                  subtitleStyle={this.data.style.subtitle}
-              />
-            </GlassCard>
-          </div>
-
-          <div id="hipaaLogTile" style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/hipaa-log') } >
-            <GlassCard style={this.data.style.indexCard} >
-              <CardTitle
+          <Row>
+            <Col sm={3} style={this.data.style.column}>
+              <MenuTile          
+                id='oauthConfigTile'
+                active={true}
+                path='/oauth-client'
+                icon='Clipboard'
+                iconSize={65}
+                subtitle='Authorization Grants'
+              />  
+            </Col>
+            <Col sm={3} style={this.data.style.column}>
+              <MenuTile          
+                id='hipaaLogTile'
+                active={true}
+                path='/hipaa-log'
+                icon='Clipboard'
+                iconSize={65}
                 subtitle='Audit Events'
-                titleStyle={this.data.style.title}
-                subtitleStyle={this.data.style.subtitle}
-              />
-            </GlassCard>
-          </div>
-          
+              />  
+            </Col>
+            <Col sm={3} style={this.data.style.column} >
+              <MenuTile          
+                id='inboundMessagesTile'
+                active={true}
+                path='/inbound-messages'
+                iconSize={65}
+                subtitle='Inbound Messages' />  
+            </Col>
+            <Col sm={3} style={this.data.style.column}>
+              <MenuTile          
+                id='outboundMessagesTile'
+                active={true}
+                path='/outbound-messages'
+                iconSize={65}
+                subtitle='Outbound Messages' />  
+            </Col>
+            {/* <Col sm={3} style={this.data.style.column}>
+              <MenuTile          
+                id='dataManagementTile'
+                active={true}
+                path='/data-management'
+                iconSize={65}
+                subtitle='Data Management' />  
+            </Col> */}
+          </Row>         
         </div>
-      );
+      )
     }
   }
 
@@ -512,16 +566,15 @@ export class MainIndex extends React.Component {
     if (get(Meteor, 'settings.public.modules.fhir.Immunizations')) {
       if (user.isPractitioner || user.isAdmin || user.isPatient) {
         return (
-          <div id='immunizationsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/immunizations') } >
-            <GlassCard style={this.data.style.indexCard} >
-              <CardTitle
-                title={<EyeDropper />}
-                subtitle='Immunizations'
-                titleStyle={this.data.style.title}
-                subtitleStyle={this.data.style.subtitle}
-              />
-            </GlassCard>
-          </div>
+          <MenuTile          
+            id='immunizationsTile'
+            active={true}
+            path='/immunizations'
+            icon='EyeDropper'
+            iconSize={65}
+            title={ this.data.local.immunizations  }
+            subtitle='Immunizations'
+          />              
         );
       }
     }
@@ -532,16 +585,15 @@ export class MainIndex extends React.Component {
     if (get(Meteor, 'settings.public.modules.fhir.AllergyIntolerances')) {
       if (user.isPractitioner || user.isAdmin || user.isPatient) {
         return (
-          <div id='allergyIntollerancesTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/allergies') } >
-            <GlassCard style={this.data.style.indexCard} >
-              <CardTitle
-                title={<StreetView />}
-                subtitle='Allergy Intollerances'
-                titleStyle={this.data.style.title}
-                subtitleStyle={this.data.style.subtitle}
-              />
-            </GlassCard>
-          </div>
+          <MenuTile          
+            id='allergyIntoleranceTile'
+            active={true}
+            path='/allergies'
+            icon='StreetView'
+            iconSize={65}
+            title={ this.data.local.allergies  }
+            subtitle='Allergy Intolerances'
+          />          
         );
       }
     }
@@ -551,16 +603,15 @@ export class MainIndex extends React.Component {
     if (get(Meteor, 'settings.public.modules.fhir.Procedures')) {
       if (user.isPractitioner || user.isAdmin || user.isPatient) {
         return (
-          <div id='proceduresTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/procedures') } >
-            <GlassCard style={this.data.style.indexCard} >
-              <CardTitle
-                title={<Nuclear />}
-                subtitle='Procedures'
-                titleStyle={this.data.style.title}
-                subtitleStyle={this.data.style.subtitle}
-              />
-            </GlassCard>
-          </div>
+          <MenuTile          
+            id='proceduresTile'
+            active={true}
+            path='/procedures'
+            icon='Nuclear'
+            iconSize={65}
+            title={ this.data.local.procedures  }
+            subtitle='Procedures'
+          /> 
         );
       }
     }
@@ -569,16 +620,15 @@ export class MainIndex extends React.Component {
     if (get(Meteor, 'settings.public.modules.fhir.Patients')) {
       if (user.isPractitioner || user.isAdmin) {
         return (
-          <div id='patientsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/patients') } >
-            <GlassCard style={this.data.style.indexCard} >
-              <CardTitle
-                title={<Person />}
-                subtitle='Patients'
-                titleStyle={this.data.style.title}
-                subtitleStyle={this.data.style.subtitle}
-              />
-            </GlassCard>
-          </div>
+          <MenuTile          
+            id='patientsTile'
+            active={true}
+            path='/patients'
+            icon='Person'
+            iconSize={65}
+            title={ this.data.local.patients  }
+            subtitle='Patients'
+          />               
         );
       }
     }
@@ -587,16 +637,15 @@ export class MainIndex extends React.Component {
     if (get(Meteor, 'settings.public.modules.fhir.Practitioners')) {
       if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
-          <div id="practitionersTile" style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/practitioners') } >
-            <GlassCard style={this.data.style.indexCard} >
-              <CardTitle
-                title={<Person />}
-                subtitle='Practitioners'
-                titleStyle={this.data.style.title}
-                  subtitleStyle={this.data.style.subtitle}
-              />
-            </GlassCard>
-          </div>
+          <MenuTile          
+            id='practitionersTile'
+            active={true}
+            path='/practitioners'
+            icon='Person'
+            iconSize={65}
+            title={ this.data.local.practitioners  }
+            subtitle='Practitioners'
+          />                
         );
       }
     }
@@ -605,16 +654,29 @@ export class MainIndex extends React.Component {
     if (get(Meteor, 'settings.public.modules.fhir.Observations')) {
       if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
-          <div id='observationsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/observations') } >
-            <GlassCard style={this.data.style.indexCard} >
-              <CardTitle
-                title={<Pulse />}
-                subtitle='Observations'
-                titleStyle={this.data.style.title}
-                  subtitleStyle={this.data.style.subtitle}
-              />
-            </GlassCard>
-          </div>
+          <MenuTile          
+            id='observationsTile'
+            active={true}
+            path='/observations'
+            icon='Pulse'
+            iconSize={85}
+            title={ Observations.find().count()  }
+            subtitle='Observations'
+          />
+
+          // <div id='observationsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/observations') } >
+          //   <Card id='observationThumbnail' className='thumbnail' style={this.data.style.thumbnail} zDepth={1} >
+          //     <Pulse size={85} />
+          //   </Card>
+          //   <GlassCard className='tile' style={this.data.style.indexCard} >
+          //     <CardTitle
+          //       title={ Observations.find().count()  }
+          //       subtitle='Observations'
+          //       titleStyle={this.data.style.title}
+          //       subtitleStyle={this.data.style.subtitle}
+          //     />
+          //   </GlassCard>
+          // </div>
         );
       }
     }
@@ -623,16 +685,15 @@ export class MainIndex extends React.Component {
     if (get(Meteor, 'settings.public.modules.fhir.Organizations')) {
       if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
-          <div id='organizationsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/organizations') } >
-            <GlassCard style={this.data.style.indexCard} >
-              <CardTitle
-                title={<Building />}
-                subtitle='Organizations'
-                titleStyle={this.data.style.title}
-                subtitleStyle={this.data.style.subtitle}
-              />
-            </GlassCard>
-          </div>
+          <MenuTile          
+            id='organizationsTile'
+            active={true}
+            path='/organizations'
+            icon='Building'
+            iconSize={65}
+            title={ this.data.local.organizations  }
+            subtitle='Organizations'
+          />
         );
       }
     }
@@ -641,16 +702,15 @@ export class MainIndex extends React.Component {
     if (get(Meteor, 'settings.public.modules.fhir.Locations')) {
       if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
-          <div id="locationsTile" style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/locations') } >
-            <GlassCard style={this.data.style.indexCard} >
-              <CardTitle
-                title={<MapMarker />}
-                subtitle='Locations'
-                titleStyle={this.data.style.title}
-                subtitleStyle={this.data.style.subtitle}
-              />
-            </GlassCard>
-          </div>
+            <MenuTile          
+              id='locationsTile'
+              active={true}
+              path='/locations'
+              icon='MapMarker'
+              iconSize={65}
+              title={ this.data.local.locations  }
+              subtitle='Locations'
+            />
         );
       }
     }
@@ -659,16 +719,16 @@ export class MainIndex extends React.Component {
     if (get(Meteor, 'settings.public.modules.fhir.Medications')) {
       if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
-          <div id="medicationsTile" style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/medications') } >
-            <GlassCard style={this.data.style.indexCard} >
-              <CardTitle
-                title={<Flask />}
-                subtitle='Medications'
-                titleStyle={this.data.style.title}
-                subtitleStyle={this.data.style.subtitle}
-              />
-            </GlassCard>
-          </div>
+          
+          <MenuTile          
+            id='medicationsTile'
+            active={true}
+            path='/medications'
+            icon='Flask'
+            iconSize={65}
+            title={ this.data.local.medications  }
+            subtitle='Medications'
+          />
         );
       }
     }
@@ -677,16 +737,15 @@ export class MainIndex extends React.Component {
     if (get(Meteor, 'settings.public.modules.fhir.Devices')) {
       if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
-          <div id='devicesTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/devices') } >
-            <GlassCard style={this.data.style.indexCard} >
-              <CardTitle
-                title={<Mobile />}
-                subtitle='Devices'
-                titleStyle={this.data.style.title}
-                subtitleStyle={this.data.style.subtitle}
-              />
-            </GlassCard>
-          </div>
+          <MenuTile          
+            id='devicesTile'
+            active={true}
+            path='/devices'
+            icon='Mobile'
+            iconSize={65}
+            title={ this.data.local.devices  }
+            subtitle='Devices'
+          />          
         );
       }
     }
@@ -695,16 +754,15 @@ export class MainIndex extends React.Component {
     if (get(Meteor, 'settings.public.modules.apps.ChecklistManifesto')) {
       if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
-          <div id='checklistsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/checklists') } >
-            <GlassCard style={this.data.style.indexCard} >
-              <CardTitle
-                title={<MdList />}
-                subtitle='Checklist Manifesto'
-                titleStyle={this.data.style.title}
-                subtitleStyle={this.data.style.subtitle}
-              />
-            </GlassCard>
-          </div>
+          <MenuTile          
+            id='checklistsTile'
+            active={true}
+            path='/checklists'
+            icon='MdList'
+            iconSize={85}
+            subtitle='Checklist Manifesto'
+          />
+
         );
       }
     }
@@ -713,16 +771,16 @@ export class MainIndex extends React.Component {
     if (get(Meteor, 'settings.public.modules.apps.ZygoteAvatar')) {
       if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
-          <div id='zygoteAvatarTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/zygote') } >
-            <GlassCard style={this.data.style.indexCard} >
-              <CardTitle
-                title={<MdFingerprint />}
-                subtitle='Medical Avatar'
-                titleStyle={this.data.style.title}
-                subtitleStyle={this.data.style.subtitle}
-              />
-            </GlassCard>
-          </div>
+
+          <MenuTile          
+            id='zygoteAvatarTile'
+            active={true}
+            path='/zygote'
+            icon='MdFingerprint'
+            iconSize={85}
+            subtitle='Zygote'
+          />
+
         );
       }
     }
@@ -731,16 +789,14 @@ export class MainIndex extends React.Component {
     if (get(Meteor, 'settings.public.modules.apps.Videoconferencing')) {
       if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
-          <div id='videoconferencingTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/videoconferencing') } >
-            <GlassCard style={this.data.style.indexCard} >
-              <CardTitle
-                title={<MdImportantDevices />}
-                subtitle='Telemedicine'
-                titleStyle={this.data.style.title}
-                subtitleStyle={this.data.style.subtitle}
-              />
-            </GlassCard>
-          </div>
+          <MenuTile          
+            id='videoconferencingTile'
+            active={true}
+            path='/videoconferencing'
+            icon='MdImportantDevices'
+            iconSize={85}
+            subtitle='Telemedicine'
+          />
         );
       }
     }
@@ -749,16 +805,14 @@ export class MainIndex extends React.Component {
     if (get(Meteor, 'settings.public.modules.apps.ContinuityOfCare')) {
       if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
-          <div id='continuityOfCareTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/continuity-of-care') } >
-            <GlassCard style={this.data.style.indexCard} >
-              <CardTitle
-                title={<Heartbeat />}
-                subtitle='Continuity of Care'
-                titleStyle={this.data.style.title}
-                subtitleStyle={this.data.style.subtitle}
-              />
-            </GlassCard>
-          </div>
+          <MenuTile          
+            id='continuityOfCareTile'
+            active={true}
+            path='/continuity-of-care'
+            icon='Heartbeat'
+            iconSize={85}
+            subtitle='Continuity of Care'
+          />
         );
       }
     }
@@ -768,16 +822,15 @@ export class MainIndex extends React.Component {
     if (get(Meteor, 'settings.public.modules.fhir.RiskAssessments')) {
       if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
-          <div id='riskAssessmentsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/risk-assessments') } >
-            <GlassCard style={this.data.style.indexCard} >
-              <CardTitle
-                title={<MdAddAlert />}
-                subtitle='Risk Assessments'
-                titleStyle={this.data.style.title}
-                  subtitleStyle={this.data.style.subtitle}
-              />
-            </GlassCard>
-          </div>
+          <MenuTile          
+            id='riskAssessmentsTile'
+            active={true}
+            path='/risk-assessments'
+            icon='MdAddAlert'
+            iconSize={65}
+            title={ this.data.local.riskAssessments  }
+            subtitle='Risk Assessments'
+          />   
         );
       }
     }
@@ -787,53 +840,50 @@ export class MainIndex extends React.Component {
     if (get(Meteor, 'settings.public.modules.fhir.Conditions')) {
       if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
-          <div id='conditionsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/conditions') } >
-            <GlassCard style={this.data.style.indexCard} >
-              <CardTitle
-                title={<Heartbeat />}
-                subtitle='Conditions'
-                titleStyle={this.data.style.title}
-                subtitleStyle={this.data.style.subtitle}
-              />
-            </GlassCard>
-          </div>
+          <MenuTile          
+            id='conditionsTile'
+            active={true}
+            path='/conditions'
+            icon='Heartbeat'
+            iconSize={65}
+            title={ this.data.local.conditions  }
+            subtitle='Conditions'
+          /> 
         );
       }
     }
   }  
 
-  renderAllergyIntolerance(user){
-    if (get(Meteor, 'settings.public.modules.fhir.AllergyIntolerances')) {
-      if (user.isPatient || user.isPractitioner || user.isAdmin) {
-        return (
-            <div id='allergyIntoleranceTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/allergies') } >
-              <GlassCard style={this.data.style.indexCard} >
-                <CardTitle
-                  title={<Heartbeat />}
-                  subtitle='Allergy Intolerances'
-                  titleStyle={this.data.style.title}
-                  subtitleStyle={this.data.style.subtitle}
-                />
-              </GlassCard>
-            </div>
-        );
-      }
-    }
-  }   
+  // renderAllergyIntolerance(user){
+  //   if (get(Meteor, 'settings.public.modules.fhir.AllergyIntolerances')) {
+  //     if (user.isPatient || user.isPractitioner || user.isAdmin) {
+  //       return (
+  //         <MenuTile          
+  //           id='allergyIntoleranceTile'
+  //           active={true}
+  //           path='/allergies'
+  //           icon='Heartbeat'
+  //           iconSize={65}
+  //           title={ this.data.local.allergies  }
+  //           subtitle='Allergy Intolerances'
+  //         /> 
+  //       );
+  //     }
+  //   }
+  // }   
   renderMedicationStatements(user){
     if (get(Meteor, 'settings.public.modules.fhir.MedicationStatements')) {
       if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
-            <div id='medicationStatementsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/medication-statements') } >
-              <GlassCard style={this.data.style.indexCard} >
-                <CardTitle
-                  title={<MdLocalPhramacy />}
-                  subtitle='Medication Statements'
-                  titleStyle={this.data.style.title}
-                  subtitleStyle={this.data.style.subtitle}
-                />
-              </GlassCard>
-            </div>
+          <MenuTile          
+            id='medicationStatementsTile'
+            active={true}
+            path='/medication-statements'
+            icon='MdLocalPhramacy'
+            iconSize={65}
+            title={ this.data.local.medicationStatements  }
+            subtitle='Medication Statements'
+          />             
         );
       }
     }
@@ -845,16 +895,15 @@ export class MainIndex extends React.Component {
     if (get(Meteor, 'settings.public.modules.fhir.ImagingStudies')) {
       if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
-            <div id='imagingStudiesTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/radiology') } >
-              <GlassCard style={this.data.style.indexCard} >
-                <CardTitle
-                  title={<Heartbeat />}
-                  subtitle='Imaging Studies'
-                  titleStyle={this.data.style.title}
-                  subtitleStyle={this.data.style.subtitle}
-                />
-              </GlassCard>
-            </div>
+          <MenuTile          
+            id='imagingStudiesTile'
+            active={true}
+            path='/radiology'
+            icon='Heartbeat'
+            iconSize={65}
+            title={ this.data.local.imagingStudies  }
+            subtitle='Imaging Studies'
+          />             
         );
       }
     }
@@ -865,16 +914,15 @@ export class MainIndex extends React.Component {
     if (get(Meteor, 'settings.public.modules.fhir.DiagnosticReports')) {
       if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
-            <div id='diagnosticReportsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/diagnostic-reports') } >
-              <GlassCard style={this.data.style.indexCard} >
-                <CardTitle
-                  title={<Clipboard />}
-                  subtitle='Diagnostic Report'
-                  titleStyle={this.data.style.title}
-                  subtitleStyle={this.data.style.subtitle}
-                />
-              </GlassCard>
-            </div>
+          <MenuTile          
+            id='diagnosticReportsTile'
+            active={true}
+            path='/diagnostic-reports'
+            icon='Clipboard'
+            iconSize={85}
+            title={  this.data.local.diagnosticReports }
+            subtitle='Diagnostic Reports'
+          />           
         );
       }
     }
@@ -884,16 +932,15 @@ export class MainIndex extends React.Component {
     if (get(Meteor, 'settings.public.modules.fhir.Goals')) {
       if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
-          <div id='goalsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/goals') } >
-            <GlassCard style={this.data.style.indexCard} >
-              <CardTitle
-                title={<NoSmoking />}
-                subtitle='Goals'
-                titleStyle={this.data.style.title}
-                subtitleStyle={this.data.style.subtitle}
-              />
-            </GlassCard>
-          </div>
+          <MenuTile          
+            id='goalsTile'
+            active={true}
+            path='/goals'
+            icon='NoSmoking'
+            iconSize={65}
+            title={ this.data.local.goals  }
+            subtitle='Goals'
+          />       
         );
       }
     }
@@ -906,16 +953,15 @@ export class MainIndex extends React.Component {
     if (get(Meteor, 'settings.public.modules.fhir.CarePlans')) {
       if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
-          <div id="carePlansTile" style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/care-plans') } >
-            <GlassCard style={this.data.style.indexCard} >
-              <CardTitle
-                title={<Clipboard />}
-                subtitle='CarePlans'
-                titleStyle={this.data.style.title}
-                subtitleStyle={this.data.style.subtitle}
-              />
-            </GlassCard>
-          </div>
+          <MenuTile          
+            id='carePlansTile'
+            active={true}
+            path='/care-plans'
+            icon='Clipboard'
+            iconSize={65}
+            title={ this.data.local.carePlans  }
+            subtitle='Care Plans'
+          />            
         );
       }
     }
@@ -925,16 +971,15 @@ export class MainIndex extends React.Component {
     if (get(Meteor, 'settings.public.modules.fhir.MedicationOrders')) {
       if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
-          <div id='medicationOrderTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/medication-orders') } >
-            <GlassCard style={this.data.style.indexCard} >
-              <CardTitle
-                title={<MdLocalPhramacy />}
-                subtitle='Medication Orders'
-                titleStyle={this.data.style.title}
-                subtitleStyle={this.data.style.subtitle}
-              />
-            </GlassCard>
-          </div>    
+          <MenuTile          
+            id='medicationOrderTile'
+            active={true}
+            path='/medication-orders'
+            icon='MdLocalPhramacy'
+            iconSize={65}
+            title={ this.data.local.medicationOrders  }
+            subtitle='Medication Orders'
+          />              
         );
       }
     }
