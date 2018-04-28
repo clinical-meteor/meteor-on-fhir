@@ -1,6 +1,6 @@
 {
   "public": {
-    "title": "Hello Healthcare!",
+    "title": "FHIR Cache",
     "baseUrl":"https://meteor-on-fhir.meteorapp.com/",
     "theme": {
       "showVideoBackground": false,
@@ -45,8 +45,10 @@
           "/allergies",
           "/conditions",
           "/care-plans",
-          "/goals",
           "/devices",
+          "/diagnostic-reports",
+          "/goals",
+          "/immunizations",
           "/medications",
           "/medication-orders",
           "/medication-statements",
