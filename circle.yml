@@ -62,7 +62,7 @@ test:
     - cd webapp && cat .meteor/packages
 
     # clone the relevant packages so we don't get errors
-    - cd webapp/packages && git clone https://github.com/awatson1978/symptomatic-blockchain-core 
+    # - cd webapp/packages && git clone https://github.com/awatson1978/symptomatic-blockchain-core 
     - cd webapp/packages && git clone https://github.com/awatson1978/symptomatic-landing-page
 
     # # and make sure that symptomatic packages aren't installed
