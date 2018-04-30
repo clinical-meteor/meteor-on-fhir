@@ -1,34 +1,36 @@
 {
   "public": {
-    "title": "Meteor on FHIR",
+    "title": "FHIR Cache",
+    "baseUrl":"https://meteor-on-fhir.meteorapp.com/",
     "theme": {
       "showVideoBackground": false,
       "darkroomTextEnabled": false,
-      "defaultVideo": "/VideoBackgrounds/Circulation.mp4",
-      "backgroundImagePath": "/backgrounds/Gradient.png"     
+      "defaultVideo": "/VideoBackgrounds/GrayWaves.mp4",
+      "backgroundImagePath": "/backgrounds/Gradient.png"      
     },
     "home": {
       "showUnderConstruction": false,
       "showExperimental": false,
       "showApps": false,      
-      "showFhirMenu": true,
-      "showRegistration": true
+      "showFhirMenu": false,
+      "showRegistration": true      
     },
     "defaults": {
       "route": "/",
+      "landingPage": "/landing-page",
       "requireAuthorization": true,
       "avatars": true,
       "barcodes": true,
       "hexgridMenu": false,
       "nfcOrbital": false,
-      "notificationMenu": false,
+      "notificationMenu": true,
       "searchbarVisible": true,
       "displayNavbars": true,
       "disableHeader": false,
       "disableFooter": false,
       "darkroom": false,
       "iFrameEnabled": false,
-      "iFrameUrl": "https://www.wikipedia.org",
+      "iFrameUrl": "https://www.wikipedia.org/",
       "paginationLimit": 100,
       "subscriptionLimit": 1000,
       "cards": {
@@ -64,8 +66,16 @@
         "status": "inactive",
         "channel": {
           "endpoint": "http://localhost:80"
+        },
+        "auth": {
+          "username": "foo",
+          "password": "bar"
         }
       }
+    },
+    "meshNetwork": {
+      "upstreamSync": "http://meteor-on-fhir.meteorapp.com/fhir-3.0.0", 
+      "autosync": false
     },
     "modules": {
       "data": true,
@@ -92,7 +102,7 @@
         "Devices": true,
         "DiagnosticReports": true,
         "Goals": true,
-        "ImagingStudies": false,
+        "ImagingStudies": true,
         "Immunizations": true,
         "Locations": true,
         "Lists": true,
@@ -112,6 +122,18 @@
   "private": {
     "practitionerAccessCode": "hippocrates",
     "sysadminAccessCode": "rootaccess",
-    "disableOauth": true
-  }
+    "disableOauth": true,
+    "demo": {
+      "nightlyDatabaseDrop": true
+    }
+  },
+  "galaxy.meteor.com": {
+    "env": {
+      "MONGO_URL": "mongodb://username:password@server.mlab.com:25389/database",
+      "NODE_ENV": "prod",
+      "DEBUG": 1,
+      "TRACE": 1,
+      "Practitioners": 1
+    }
+  }  
 }
