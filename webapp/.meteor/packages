@@ -54,12 +54,12 @@ standard-minifier-js@2.2.0
 ddp-rate-limiter@1.0.7
 
 # rest apis
-simple:rest-accounts-password
-simple:rest
+# simple:rest-accounts-password
+# simple:rest
 
 # testing
-xolvio:cleaner
-dispatch:mocha-phantomjs
+# xolvio:cleaner
+# dispatch:mocha-phantomjs
 practicalmeteor:mocha
 practicalmeteor:chai
 practicalmeteor:sinon
@@ -89,6 +89,7 @@ clinical:glass-ui
 clinical:default-landing-page
 clinical:accounts-famous-dead-people
 clinical:accounts-housemd
+clinical:oauth
 
 # fhir resources
 clinical:hl7-resource-allergy-intolerance
@@ -115,5 +116,7 @@ simple:json-routes
 percolate:synced-cron
 d3js:d3
 
-symptomatic:continuity-of-care
 symptomatic:theming
+symptomatic:continuity-of-care
+
+clinical:smart-on-fhir-client

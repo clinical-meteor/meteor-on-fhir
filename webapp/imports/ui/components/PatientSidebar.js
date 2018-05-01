@@ -95,8 +95,6 @@ export class PatientSidebar extends React.Component {
       }
     });
 
-    console.log('dynamicElements', dynamicElements);
-
     return(
       <div id='patientSidebar'>
         <List style={{paddingLeft: '20px', position: 'static'}}>

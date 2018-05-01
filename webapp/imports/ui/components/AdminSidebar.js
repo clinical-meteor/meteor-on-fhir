@@ -1,11 +1,23 @@
-import { IndexLinkContainer } from 'react-router-bootstrap';
+import { IndexLinkContainer, LinkContainer } from 'react-router-bootstrap';
 import { List, ListItem } from 'material-ui/List';
 import React from 'react';
 import ReactMixin from 'react-mixin';
 
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
-import { AppInfoPage } from '/imports/ui/pages/AppInfoPage';
+import { MenuItem } from '/imports/ui/components/MenuItem';
+import { get } from 'lodash';
+
+// Pick up any dynamic routes that are specified in packages, and include them
+var dynamicModules = [];
+Object.keys(Package).forEach(function(packageName){
+  if(Package[packageName].AdminSidebarElements){
+    // we try to build up a route from what's specified in the package
+    Package[packageName].AdminSidebarElements.forEach(function(element){
+      dynamicModules.push(element);      
+    });    
+  }
+});
 
 export class AdminSidebar extends React.Component {
   getMeteorData() {
@@ -32,6 +44,21 @@ export class AdminSidebar extends React.Component {
   }
 
   render () {
+
+    //----------------------------------------------------------------------
+    // Dynamic Modules  
+
+    var dynamicElements = [];
+    dynamicModules.map(function(element, index){ 
+
+      // the excludes array will hide routes
+      if(!get(Meteor, 'settings.public.defaults.sidebar.hidden', []).includes(element.to)){
+        dynamicElements.push(<LinkContainer to={element.to} key={index}>
+          <MenuItem primaryText={element.primaryText} href={element.href} />
+        </LinkContainer>);
+      }
+    });
+
     return(
       <div id="adminSidebar">
         <List style={{paddingLeft: '20px', position: 'static', width: '100%'}}>
@@ -40,21 +67,7 @@ export class AdminSidebar extends React.Component {
              <ListItem primaryText='Admin Index' href='/' />
           </IndexLinkContainer>
 
-          <IndexLinkContainer to='/dashboard'>
-             <ListItem primaryText='Dashboard' href='/dashboard' />
-          </IndexLinkContainer>
-
-          <IndexLinkContainer to='/users'>
-             <ListItem primaryText='Users' href='/users' />
-          </IndexLinkContainer>
-
-          <IndexLinkContainer to='/patients'>
-             <ListItem primaryText='Patients' href='/patients' />
-          </IndexLinkContainer>
-
-          <IndexLinkContainer to='/practitioners'>
-             <ListItem primaryText='Practitioners' href='/practitioners' />
-          </IndexLinkContainer>
+          { dynamicElements }
 
           <IndexLinkContainer to='/info'>
              <ListItem primaryText='Info' href='/info' />
