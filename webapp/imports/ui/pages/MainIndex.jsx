@@ -54,6 +54,7 @@ import MdDataUsage from 'react-icons/lib/md/data-usage';
 import MdFingerprint from 'react-icons/lib/md/fingerprint';
 import MdHearing from 'react-icons/lib/md/hearing';
 import MdImportantDevices from 'react-icons/lib/md/important-devices';
+import MdClearAll from 'react-icons/lib/md/clear-all';
 
 
 export class MainIndex extends React.Component {
@@ -222,10 +223,11 @@ export class MainIndex extends React.Component {
                   {this.renderChecklists(this.data.user)}
                 </Col>
                 <Col sm={3} style={this.data.style.column}>
-                  {this.renderVideoconferencing(this.data.user)}
+                  {this.renderContinuityOfCare(this.data.user)}
                 </Col>
                 <Col sm={3} style={this.data.style.column}>
-                  {this.renderContinuityOfCare(this.data.user)}
+                  {this.renderTimeline(this.data.user)}
+                  {/* {this.renderVideoconferencing(this.data.user)} */}
                 </Col>
                 <Col sm={3} style={this.data.style.column}>
                   {this.renderZygote(this.data.user)}
@@ -822,6 +824,22 @@ export class MainIndex extends React.Component {
             icon='Heartbeat'
             iconSize={85}
             subtitle='Continuity of Care'
+          />
+        );
+      }
+    }
+  }
+  renderTimeline(user){
+    if (get(Meteor, 'settings.public.modules.apps.Timeline')) {
+      if (user.isPatient || user.isPractitioner || user.isAdmin) {
+        return (
+          <MenuTile          
+            id='timelineTile'
+            active={true}
+            path='/timeline-sidescroll'
+            icon='MdClearAll'
+            iconSize={85}
+            subtitle='Timeline'
           />
         );
       }

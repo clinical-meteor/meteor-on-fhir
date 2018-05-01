@@ -114,3 +114,6 @@ simple:json-routes
 
 percolate:synced-cron
 d3js:d3
+
+symptomatic:continuity-of-care
+symptomatic:theming
