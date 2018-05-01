@@ -157,13 +157,10 @@ export class MainIndex extends React.Component {
       user.roles.forEach(function(role){
         if (role == "sysadmin") {
           data.user.isAdmin = true;
-          // data.style.sectionTitle.display = 'inline-block';
         } else if (role == "practitioner") {
           data.user.isPractitioner = true;
-          // data.style.sectionTitle.display = 'inline-block';
         } else if (role == "patient") {
           data.user.isPatient = true;
-          // data.style.sectionTitle.display = 'inline-block';
         }
       });
     }
@@ -176,21 +173,7 @@ export class MainIndex extends React.Component {
     }
 
 
-    // if (Session.get('appWidth') < 768) {
-    //   data.style.indexCardPadding.width = '100%';
-    //   data.style.indexCardPadding.marginBottom = '10px';
-    //   data.style.indexCardPadding.paddingBottom = '10px';
-    //   data.style.indexCardPadding.paddingLeft = '0px';
-    //   data.style.indexCardPadding.paddingRight = '0px';
 
-    //   data.style.inactiveIndexCard.width = '100%';
-    //   data.style.inactiveIndexCard.marginBottom = '10px';
-    //   data.style.inactiveIndexCard.paddingBottom = '10px';
-    //   data.style.inactiveIndexCard.paddingLeft = '0px';
-    //   data.style.inactiveIndexCard.paddingRight = '0px';
-
-    //   data.style.spacer.display = 'none';
-    // }
 
     data.style = Glass.blur(data.style);
     data.style.appbar = Glass.darkroom(data.style.appbar);
@@ -199,6 +182,33 @@ export class MainIndex extends React.Component {
     return data;
   }
   render() {
+
+    var tilesToRender = [];
+    // first we need to figure out which tiles to render
+    if(get(Meteor, 'settings.public.modules.fhir')){
+      var fhirResources = get(Meteor, 'settings.public.modules.fhir');
+      Object.keys(fhirResources).forEach(function(key){
+        if(fhirResources[key] === true){
+          // and put them in an array
+          tilesToRender.push();
+        }
+      })
+    }
+    
+    // // now we start laying 
+    // var rowsToRender = [];
+    // var currentRow = false;
+    // tilesToRender.forEach(function(tile){
+    //   // if(!currentRow){
+    //   //   currentRow = <Row>
+    //   //   <Row>
+    //   // }
+    // })
+
+
+    // and columns
+
+
     return (
       <div id='indexPage'>
         <VerticalCanvas>
