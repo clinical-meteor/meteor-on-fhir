@@ -98,6 +98,7 @@ clinical:hl7-resource-careplan
 clinical:hl7-resource-datatypes
 clinical:hl7-resource-device
 clinical:hl7-resource-diagnostic-report
+clinical:hl7-resource-endpoint
 clinical:hl7-resource-goal
 clinical:hl7-resource-immunization
 # clinical:hl7-resource-location

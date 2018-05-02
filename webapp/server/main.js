@@ -5,7 +5,12 @@ import { BrowserPolicy } from 'meteor/browser-policy-common';
 
 Meteor.startup(function(){
 
-    console.log('Configuring content-security-policy:');
+  // if OAuth is configured, load oauth configs into active memory
+  if(Package['clinical:smart-on-fhir-client']){
+    Meteor.call('resyncConfiguration');
+  }
+
+  console.log('Configuring content-security-policy:');
   BrowserPolicy.content.allowSameOriginForAll();
   BrowserPolicy.content.allowDataUrlForAll()
   BrowserPolicy.content.allowOriginForAll('self');
