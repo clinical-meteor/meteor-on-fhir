@@ -124,20 +124,20 @@ export class MyProfilePage extends React.Component {
     if (Meteor.user()) {
       data.user = {
         _id: Meteor.userId(),
-        email: Meteor.user().emails[0].address,
-        avatar: Meteor.user().profile.avatar,
+        email: get(Meteor.user(), 'emails[0].address', ''),
+        avatar: get(Meteor.user(), 'profile.avatar', ''),
         gender: '',
         birthdate: '',
         zip: '',
         longitude: '',
         latitude: '',
-        profileImage: Meteor.user().profile.avatar
+        profileImage: get(Meteor.user(), 'profile.avatar', '')
       };      
 
       // if (Meteor.user().profile && Meteor.user().profile.avatar) {
       if(get(Meteor.user(), 'profile.avatar')) {
-        data.user.profileImage = Meteor.user().profile.avatar;
-        data.header.avatar = Meteor.user().profile.avatar;
+        data.user.profileImage = get(Meteor.user(), 'profile.avatar');
+        data.header.avatar = get(Meteor.user(), 'profile.avatar');
       } else {
         data.user.profileImage = 'thumbnail.png';
         data.header.avatar = 'thumbnail.png';
@@ -408,7 +408,7 @@ export class MyProfilePage extends React.Component {
               <img id='avatarImage' ref='avatarImage' src={this.data.user.profileImage} onError={this.imgError.bind(this)} style={this.data.style.avatar} />
               </CardHeader>
             <CardText>
-              <Tabs id="profilePageTabs" index={this.data.state.index} onChange={this.handleTabChange} initialSelectedIndex={this.data.state.index} value={this.data.state.index} >
+              <Tabs id="profilePageTabs" onChange={this.handleTabChange} initialSelectedIndex={this.data.state.index} value={this.data.state.index} >
 
                 <Tab className='demographicsTab' label='Demographics' style={this.data.style.tab} value={0} >
                   <div id='profileDemographicsPane' style={{position: 'relative'}}>
