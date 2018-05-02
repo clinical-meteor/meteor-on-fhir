@@ -42,9 +42,9 @@ universe:i18n
 # accounts
 accounts-base
 accounts-password@1.5.0
-accounts-oauth
 accounts-ui@1.1.9
-oauth
+# oauth
+# accounts-oauth
 
 # mobile
 crosswalk@1.7.1
@@ -57,8 +57,8 @@ standard-minifier-js@2.2.0
 ddp-rate-limiter@1.0.7
 
 # rest apis
-simple:rest-accounts-password
-simple:rest
+# simple:rest-accounts-password
+# simple:rest
 http
 
 # testing
