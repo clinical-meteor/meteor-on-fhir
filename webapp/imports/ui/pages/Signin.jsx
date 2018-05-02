@@ -1,19 +1,23 @@
 import { Bert } from 'meteor/themeteorchef:bert';
 import { Meteor } from 'meteor/meteor';
+import { Session } from 'meteor/session';
 import { MobilePadding } from '/imports/ui/components/MobilePadding';
-import RaisedButton from 'material-ui/RaisedButton';
 import React  from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin  from 'react-mixin';
-import TextField from 'material-ui/TextField';
 
-import { VerticalCanvas, Theme } from 'meteor/clinical:glass-ui';
+import { VerticalCanvas, FullPageCanvas, Theme, GlassCard } from 'meteor/clinical:glass-ui';
+import { CardText, CardActions, CardHeader, CardTitle, TextField, FlatButton, RaisedButton } from 'material-ui'
 
 import { browserHistory } from 'react-router';
 import { Row, Col } from 'react-bootstrap';
 
 import { lightBaseTheme, darkBaseTheme } from 'material-ui/styles';
 import { has, get } from 'lodash';
+
+import { OAuth } from 'meteor/clinical:smart-on-fhir-client';
+
+Session.setDefault('signinWithSearch', '');
 
 export class Signin extends React.Component {
   getMeteorData() {
@@ -40,8 +44,24 @@ export class Signin extends React.Component {
         floatingLabelFocusStyle: {
           color: lightBaseTheme.palette.secondaryTextColor
         }
-      }
+      },
+      endpoints: [],
+      services: []
     };
+
+    if( Endpoints.find().count() > 0){
+      data.endpoints = Endpoints.find({
+        'name': {
+          $regex: Session.get( 'signinWithSearch' ),
+          $options: 'i'
+        }
+      }).fetch()
+    }
+
+    if(ServiceConfiguration){
+      data.services = ServiceConfiguration.configurations.find().fetch()
+  }   
+
 
     if (get(Meteor, 'settings.theme.darkroomTextEnabled')) {
       data.style.textColor.color = darkBaseTheme.palette.textColor;
@@ -62,8 +82,53 @@ export class Signin extends React.Component {
   forgotPasswordRoute(){
     browserHistory.push('/recover-password');
   }
-  handleTouchTap(){
+  signInWith(serviceName, event){
+    console.log('Signin.signInWith', serviceName)
+    let self = this;
+
+    var options = {
+      requestPermissions: [
+        'OBSERVATION.READ', 
+        'OBSERVATION.SEARCH', 
+        'PATIENT.READ', 
+        'PATIENT.SEARCH', 
+        'PRACTITIONER.READ', 
+        'PRACTITIONER.SEARCH',
+        'patient/*.read',
+        'patient/*.search',
+        'openid',
+        'profile',
+        'user/*.*',
+        'launch',
+        'online_access'        
+      ]
+    }
+
+    console.log('Accounts.oauth.serviceNames', Accounts.oauth.serviceNames());
+
+    //console.log('Accounts.oauth.credentialRequestCompleteHandler()');
+    var credentialRequestCompleteCallback = Accounts.oauth.credentialRequestCompleteHandler(function(error, result){
+      if(error){
+        console.log('error', error)
+      }
+
+      browserHistory.push(get(Meteor, 'settings.public.defaults.route', '/'));
+    });
+
+    var credentialResult = OAuth.requestCredential(options, credentialRequestCompleteCallback);
+    console.log('credentialResult', credentialResult)
+
+    Meteor.call('fetchAccessToken', serviceName, function(err, result){
+        if(result){
+          console.log('result.accessToken', result.accessToken)
+        }
+    })
+
+  }
+  handleTouchTap(event, foo, value){    
     if(process.env.NODE_ENV === "test") console.log("this", this);
+    console.log('Signin.handleTouchTap', event, foo, value)
+
     let self = this;
 
     Meteor.loginWithPassword(
@@ -96,58 +161,139 @@ export class Signin extends React.Component {
       this.handleTouchTap(e);
     }
   }
+  handleSearch(event, serviceName, foo) {
+    console.log('Signin.handleSearch', serviceName)
+
+    Session.set('signinWithSearch', serviceName);
+  }
   render() {
+    var signinButtons = [];
+    var self = this;
+
+    // if (this.data.endpoints.length > 0){
+    //   this.data.endpoints.forEach(function(endpoint){
+    //     signinButtons.push(
+    //       <RaisedButton 
+    //         key={endpoint.name}
+    //         label={endpoint.name}
+    //         id={endpoint.name + "Button"}
+    //         defaultValue={ Session.get('signinWithSearch') }
+    //         onTouchTap={self.signInWith.bind(self, endpoint.name)} 
+    //         style={{width: '100%', textAlign: 'left', marginLeft: '40px', marginBottom: '20px' }}
+    //         buttonStyle={{ textAlign: 'left', fontWeight: '300' }}
+    //         primary={true} />
+    //     );  
+    //   });
+    // }
+    
+    if (this.data.services.length > 0){
+      this.data.services.forEach(function(service){
+        signinButtons.push(
+          <div key={service.service}>
+            <RaisedButton 
+              label={ service.service } 
+              id={ service.service + "Button" }
+              primary={true}
+              onClick={ self.signInWith.bind(this, service.service) }
+              fullWidth
+              />    
+              <br />
+              <br />
+          </div>
+        );  
+      });
+    }
+
+    var buttons = <div>
+      { signinButtons }
+    </div>
+
+    var signInWith;
+
+    if(Package['clinical:smart-on-fhir-client']){
+      signInWith = <Col lgOffset={4} mdOffset={2} lg={2} md={3}>
+        <GlassCard zDepth={3} height="auto" >
+          <CardTitle
+            title="Sign in with..."
+            />
+          <CardText>
+            <TextField
+                type="searchSignIns"
+                ref="searchSignIns"
+                name="searchSignIns"
+                floatingLabelText="Search..."
+                onKeyPress={this.handleKeyPress.bind(this)}
+                onChange={this.handleSearch.bind(this)}
+                inputStyle={this.data.style.inputStyle}
+                hintStyle={this.data.style.hintStyle}
+                errorStyle={this.data.style.errorStyle}
+                underlineStyle={this.data.style.underlineStyle}
+                floatingLabelStyle={this.data.style.floatingLabelStyle}
+                floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
+                fullWidth
+              />         
+          </CardText>
+            <CardActions>
+              { buttons }
+            </CardActions>
+          </GlassCard>                  
+      </Col>
+    }
+
     return (
       <div id="signinPage">
         <MobilePadding>
-          <VerticalCanvas>
-            <h4 className="page-header" style={this.data.style.underlineStyle}>Sign In</h4>
-            <form ref="signin" className="signin" >
+          <FullPageCanvas>
               <Row>
-                <Col xs={ 6 } sm={ 6 }>
-                  <TextField
-                    type="email"
-                    ref="emailAddress"
-                    name="emailAddress"
-                    floatingLabelText="Email Address"
-                    onKeyPress={this.handleKeyPress.bind(this)}
-                    inputStyle={this.data.style.inputStyle}
-                    hintStyle={this.data.style.hintStyle}
-                    errorStyle={this.data.style.errorStyle}
-                    underlineStyle={this.data.style.underlineStyle}
-                    floatingLabelStyle={this.data.style.floatingLabelStyle}
-                    floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
-                    fullWidth
-                  />
-                </Col>
+                <Col lg={5} md={ 6 } sm={ 12 }>
+                  <h4 className="page-header" style={this.data.style.underlineStyle}>Sign In</h4>
+                  <Row>
+                    <Col mdOffset={2} md={10}>
+                      <form ref="signin" className="signin" >
+                        <TextField
+                          type="email"
+                          ref="emailAddress"
+                          name="emailAddress"
+                          floatingLabelText="Email Address"
+                          onKeyPress={this.handleKeyPress.bind(this)}
+                          inputStyle={this.data.style.inputStyle}
+                          hintStyle={this.data.style.hintStyle}
+                          errorStyle={this.data.style.errorStyle}
+                          underlineStyle={this.data.style.underlineStyle}
+                          floatingLabelStyle={this.data.style.floatingLabelStyle}
+                          floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
+                          fullWidth
+                        />              
+                        <br/>
+                        <br/>    
+                        <TextField
+                          type="password"
+                          ref="password"
+                          name="password"
+                          floatingLabelText="Password"
+                          onKeyPress={this.handleKeyPress.bind(this)}
+                          inputStyle={this.data.style.inputStyle}
+                          hintStyle={this.data.style.hintStyle}
+                          errorStyle={this.data.style.errorStyle}
+                          underlineStyle={this.data.style.underlineStyle}
+                          floatingLabelStyle={this.data.style.floatingLabelStyle}
+                          floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
+                          fullWidth
+                        />
+                        <br/>
+                        <br/>
+                        <RaisedButton id="signinButton" onTouchTap={this.handleTouchTap.bind(this)} label="Signin" primary={true} />
+                        <RaisedButton id="forgotPasswordButton" onTouchTap={this.forgotPasswordRoute } label="Forgot password?" style={{marginLeft: "20px"}} />
+                      </form>
+                    </Col>
+                  </Row>
+                  <br/>
+                  <br/>
+                </Col>                
+                { signInWith }
               </Row>
-              <Row>
-                <Col xs={ 6 } sm={ 6 }>
-                  <TextField
-                    type="password"
-                    ref="password"
-                    name="password"
-                    floatingLabelText="Password"
-                    onKeyPress={this.handleKeyPress.bind(this)}
-                    inputStyle={this.data.style.inputStyle}
-                    hintStyle={this.data.style.hintStyle}
-                    errorStyle={this.data.style.errorStyle}
-                    underlineStyle={this.data.style.underlineStyle}
-                    floatingLabelStyle={this.data.style.floatingLabelStyle}
-                    floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
-                    fullWidth
-                  />
-                </Col>
-              </Row>
-              <br/>
-              <br/>
-              <br/>
-              <br/>
-              <RaisedButton id="signinButton" onTouchTap={this.handleTouchTap.bind(this)} label="Signin" primary={true} />
-              <RaisedButton id="forgotPasswordButton" onTouchTap={this.forgotPasswordRoute } label="Forgot password?" style={{marginLeft: "20px"}} />
-            </form>
 
-          </VerticalCanvas>
+          </FullPageCanvas>
         </MobilePadding>
       </div>
     );
