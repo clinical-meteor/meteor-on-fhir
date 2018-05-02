@@ -1,10 +1,11 @@
-import { CardActions, CardHeader, CardText, CardTitle } from 'material-ui/Card';
+import { Card, CardActions, CardHeader, CardText, CardTitle } from 'material-ui/Card';
 import { Col, Grid, Row } from 'react-bootstrap';
 import { Tab, Tabs } from 'material-ui/Tabs';
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
 import { has, get } from 'lodash';
 
 import { Accounts } from 'meteor/accounts-base';
+import Paper from 'material-ui/Paper';
 import Avatar from 'material-ui/Avatar';
 import Divider from 'material-ui/Divider';
 import FlatButton from 'material-ui/FlatButton';
@@ -12,14 +13,24 @@ import { FontIcon } from 'material-ui/FontIcon';
 
 import { VerticalCanvas, GlassCard, Glass, DynamicSpacer } from 'meteor/clinical:glass-ui';
 import { Meteor } from 'meteor/meteor';
-import RaisedButton from 'material-ui/RaisedButton';
 import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
 import TextField from 'material-ui/TextField';
 
+import MenuItem from '/imports/ui/components/MenuItem';
+
+
 import { browserHistory } from 'react-router';
 import { removeUserById } from '/imports/api/users/methods';
+
+
+import { PatientCard } from 'meteor/clinical:hl7-resource-patient';
+
+//if(Package['clinical:hl7-resource-consent']){
+  import { ConsentTable } from 'meteor/clinical:hl7-resource-consent';
+//}
+
 
 let defaultState = {
   index: 0,
@@ -42,19 +53,27 @@ export class MyProfilePage extends React.Component {
 
     let data = {
       style: {
-        //opacity: Session.get('globalOpacity')
         tab: {
           borderBottom: '1px solid lightgray'
         },
         title: {
-          left: '0px'
+          left: '160px'
         },
         avatar: {
-          position: 'absolute',
+          position: 'relative',
           zIndex: 10,
-          display: 'inline-flex',
-          borderRadius: '50%',
-          transition: '1s'
+          transition: '1s',
+          left: '0px',
+          top: '0px',
+          width: '100%',
+          height: '100%'
+        },
+        photo: {
+          position: 'absolute'         
+        },
+        synopsis: {
+          //position: 'relative',         
+          paddingLeft: '160px'
         }
       },
       state: {
@@ -124,14 +143,14 @@ export class MyProfilePage extends React.Component {
     if (Meteor.user()) {
       data.user = {
         _id: Meteor.userId(),
-        email: get(Meteor.user(), 'emails[0].address', ''),
-        avatar: get(Meteor.user(), 'profile.avatar', ''),
+        email: get(Meteor.user(), 'emails[0].address'),
+        avatar: get(Meteor.user(), 'profile.avatar'),
         gender: '',
         birthdate: '',
         zip: '',
         longitude: '',
         latitude: '',
-        profileImage: get(Meteor.user(), 'profile.avatar', '')
+        profileImage: get(Meteor.user(), 'profile.avatar')
       };      
 
       // if (Meteor.user().profile && Meteor.user().profile.avatar) {
@@ -254,26 +273,27 @@ export class MyProfilePage extends React.Component {
         if(get(Meteor.user(), 'profile.continuityOfCare.sequences')){
           data.ccd.Sequences = get(Meteor.user(), 'profile.continuityOfCare.sequences').length;
         }           
-
       }
     }
 
     if (Session.get('appWidth') > 768) {
-      data.style.avatar.height = '120px';
-      data.style.avatar.width = '120px';
-      data.style.avatar.left = '-120px';
-      data.style.avatar.top = '-20px';
-      data.style.avatar.position = 'absolute';
-      data.style.avatar.zIndex = 10;
-      data.style.title.left = '100px';
-      //data.header.avatar = null;
+      data.style.photo.height = '160px';
+      data.style.photo.width = '160px';
+      data.style.photo.left = '0px';
+      data.style.photo.top = '74px';
+      data.style.photo.position = 'absolute';
+      data.style.photo.zIndex = 10;
+      data.style.synopsis.marginLeft = '160px;'
+      //data.header.photo = null;
     } else {
-      //data.style.avatar.display = 'none';
-      data.style.avatar.height = '50px';
-      data.style.avatar.width = '50px';
-      data.style.avatar.left = '-50px';
-      data.style.avatar.top = '15px';
+      //data.style.photo.display = 'none';
+      data.style.photo.height = '50px';
+      data.style.photo.width = '50px';
+      data.style.photo.left = '-50px';
+      data.style.photo.top = '15px';
       data.style.title.left = '70px';
+
+      data.style.synopsis.marginLeft = '0px;'
     }
 
     if(process.env.NODE_ENV === "test") console.log("MyProfilePage[data]" , data);
@@ -394,208 +414,152 @@ export class MyProfilePage extends React.Component {
         <TableRowColumn>Sequences</TableRowColumn>
       </TableRow>);
     }    
+    let continuityOfCareCard;
     
+    if(ccdResources.length > 0){
+      continuityOfCareCard = <div>
+        <GlassCard>
+          <CardTitle title="Continuity of Care" subtitle='Healthcare data is attached to your profile via resources.' />
+          <CardText>
+            <Table  >
+              <TableBody displayRowCheckbox={false} showRowHover={false}>
+                <TableRow style={{fontWeight: 'bold'}}>
+                  <TableRowColumn style={{width: '20%'}}>Count</TableRowColumn>
+                  <TableRowColumn style={{width: '80%'}}>Resource</TableRowColumn>
+                </TableRow>
+                { ccdResources }      
+              </TableBody>
+            </Table>
+          </CardText>
+        </GlassCard>
+        <DynamicSpacer />
+      </div>
+    }
+
+    var consentElement;
+    //if(Package['clinical:hl7-resource-consent']){
+      consentElement = <div>
+        <GlassCard>
+          <CardTitle title="Consents & Authorizations" subtitle='OAuth tokens, HIPAA consents, Advanced Directives, etc.' />
+          <CardText>
+            <ConsentTable
+              patient="Jane Doe"
+              simplified={true}
+              noDataMessage={false}
+            />
+          </CardText>
+          <CardActions>
+            <FlatButton 
+              label='Edit' 
+              onClick={this.editAuthorizations.bind(this)}
+              />
+          </CardActions>
+        </GlassCard>
+        <DynamicSpacer />
+      </div>
+    //}
 
     return(
       <div id='myProfilePage'>
-        <VerticalCanvas>
+        <VerticalCanvas style={{paddingBottom: '80px'}}> 
+          <PatientCard
+            fullName={ get(this, 'data.user.fullName', '') }
+            email={ get(this, 'data.user.email', '') }
+            givenName={ get(this, 'data.user.givenName', '') }
+            familyName={ get(this, 'data.user.familyName', '') }
+            birthdate={this.data.user.birthdate}
+            gender={ get(this, 'data.user.gender', '') }
+            avatar={ get(this, 'data.user.avatar', '') }
+            updateGivenName={ this.updateGivenName }
+            updateFamilyName={ this.updateFamilyName }
+            updateBirthdate={ this.updateBirthdate }
+            updateGender={ this.updateGender }
+            updateAvatar={ this.updateAvatar }
+            />
+
+          {/* <Card zDepth={2} style={this.data.style.photo}>
+            <img id='avatarImage' ref='avatarImage' onError={this.imgError.bind(this)} src={this.data.user.profileImage}  style={this.data.style.avatar} />
+          </Card>
           <GlassCard>
-              <CardHeader
+            <CardTitle
                 title={this.data.user.fullName}
                 subtitle={this.data.user.email}
                 style={this.data.style.title}
               >
-              <img id='avatarImage' ref='avatarImage' src={this.data.user.profileImage} onError={this.imgError.bind(this)} style={this.data.style.avatar} />
-              </CardHeader>
+              </CardTitle>
             <CardText>
-              <Tabs id="profilePageTabs" onChange={this.handleTabChange} initialSelectedIndex={this.data.state.index} value={this.data.state.index} >
+                <div id='profileDemographicsPane' style={{position: 'relative'}}>
+                  <Row style={this.data.style.synopsis}>
+                    <Col md={6}>
+                      <TextField
+                        id='givenNameInput'
+                        ref='given'
+                        name='given'
+                        type='text'
+                        floatingLabelText='given name'
+                        value={this.data.user.given}
+                        fullWidth
+                        /><br/>
+                    </Col>
+                    <Col md={6}>
+                      <TextField
+                        id='familyNameInput'
+                        ref='family'
+                        name='family'
+                        type='text'
+                        floatingLabelText='family name'
+                        value={this.data.user.family}
+                        fullWidth
+                        /><br/>
+                    </Col>
+                  </Row>
+                  <Row style={this.data.style.synopsis}>
+                    <Col md={3}>
+                      <TextField
+                        id='birthdateInput'
+                        ref='birthdate'
+                        name='birthdate'
+                        type='date'
+                        floatingLabelText='date of birth (yyyy-mm-dd)'
+                        floatingLabelFixed={true}
+                        value={this.data.user.birthdate}                          
+                        onChange={ this.updateBirthdate.bind(this) }
+                        fullWidth
+                        /><br/>
+                    </Col>
+                    <Col md={3}>
+                      <TextField
+                        id='genderInput'
+                        ref='gender'
+                        name='gender'
+                        type='text'
+                        floatingLabelText='gender'
+                        value={this.data.user.gender}
+                        onChange={ this.updateGender.bind(this) }
+                        fullWidth
+                        /><br/>
 
-                <Tab className='demographicsTab' label='Demographics' style={this.data.style.tab} value={0} >
-                  <div id='profileDemographicsPane' style={{position: 'relative'}}>
-                    <Row>
-                      <Col md={6}>
-                        <TextField
-                          id='givenNameInput'
-                          ref='given'
-                          name='given'
-                          type='text'
-                          floatingLabelText='given name'
-                          value={this.data.user.given}
-                          fullWidth
-                          /><br/>
-                      </Col>
-                      <Col md={6}>
-                        <TextField
-                          id='familyNameInput'
-                          ref='family'
-                          name='family'
-                          type='text'
-                          floatingLabelText='family name'
-                          value={this.data.user.family}
-                          fullWidth
-                          /><br/>
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col md={3}>
-                        <TextField
-                          id='birthdateInput'
-                          ref='birthdate'
-                          name='birthdate'
-                          type='date'
-                          floatingLabelText='date of birth (yyyy-mm-dd)'
-                          floatingLabelFixed={true}
-                          value={this.data.user.birthdate}                          
-                          onChange={ this.handleChangeBirthdate.bind(this) }
-                          fullWidth
-                          /><br/>
-                      </Col>
-                      <Col md={3}>
-                        <TextField
-                          id='genderInput'
-                          ref='gender'
-                          name='gender'
-                          type='text'
-                          floatingLabelText='gender'
-                          value={this.data.user.gender}
-                          onChange={ this.handleChangeGender.bind(this) }
-                          fullWidth
-                          /><br/>
+                    </Col>
+                    <Col md={6}>
+                      <TextField
+                        id='avatarInput'
+                        ref='avatar'
+                        name='avatar'
+                        type='text'
+                        floatingLabelText='avatar'
+                        value={this.data.user.avatar}
+                        onChange={ this.updateAvatar.bind(this) }
+                        fullWidth
+                        /><br/>
 
-                      </Col>
-                      <Col md={6}>
-                        <TextField
-                          id='avatarInput'
-                          ref='avatar'
-                          name='avatar'
-                          type='text'
-                          floatingLabelText='avatar'
-                          value={this.data.user.avatar}
-                          onChange={ this.handleChangeAvatar.bind(this) }
-                          fullWidth
-                          /><br/>
-
-                      </Col>
-                    </Row>
-                  </div>
-                </Tab>
-
-
-
-                <Tab className='passwordTab' label='Password' style={this.data.style.tab} value={2} >
-                  <div id='profilePasswordPane' style={{position: 'relative'}} >
-                    <TextField
-                      id='oldPasswordInput'
-                      ref='oldPassword'
-                      name='oldPassword'
-                      type='text'
-                      floatingLabelText='oldPassword'
-                      floatingLabelFixed={true}
-                      value={this.data.state.oldPassword}
-                      onChange={ this.rememberOldPassword.bind(this) }
-                      fullWidth
-                      /><br/>
-                    <TextField
-                      id='newPasswordInput'
-                      ref='newPassword'
-                      name='newPassword'
-                      type='text'
-                      floatingLabelText='newPassword'
-                      floatingLabelFixed={true}
-                      value={this.data.state.newPassword}
-                      onChange={ this.rememberNewPassword.bind(this) }
-                      fullWidth
-                      /><br/>
-                    <TextField
-                      id='confirmPasswordInput'
-                      ref='confirmPassword'
-                      name='confirmPassword'
-                      type='text'
-                      floatingLabelText='confirmPassword'
-                      floatingLabelFixed={true}
-                      value={this.data.state.confirmPassword}
-                      onChange={ this.rememberConfirmPassword.bind(this) }
-                      fullWidth
-                      /><br/>
-
-                    <RaisedButton
-                      id='changePasswordButton'
-                      label='Change Password'
-                      onClick={this.changePassword.bind(this)}
-                      className="muidocs-icon-action-delete"
-                      primary={true}
-                      />
-                  </div>
-                </Tab>
-
-                <Tab className="systemTab" label='Preferences' style={this.data.style.tab} value={3}>
-                  <div id="profileSystemPane" style={{position: "relative"}}>
-                    <Table>
-                    <TableBody displayRowCheckbox={false} showRowHover={true}>>
-                      <TableRow>
-                        <TableRowColumn style={{width: '200px'}}>
-                          <FlatButton label='Show Navbars' />
-                        </TableRowColumn>
-                        <TableRowColumn>Display the header and footer navbars.</TableRowColumn>
-                      </TableRow>
-                      <TableRow>
-                        <TableRowColumn>
-                          <FlatButton label='Show Search' />
-                        </TableRowColumn>
-                        <TableRowColumn>Display the search ribbon.</TableRowColumn>
-                      </TableRow>
-                      <TableRow>
-                        <TableRowColumn>
-                          <FlatButton label='Autoheight' />
-                        </TableRowColumn>
-                        <TableRowColumn>Fit to use the available spaec.  Otherwise, use veritical scroll.</TableRowColumn>
-                      </TableRow>
-                      <TableRow>
-                        <TableRowColumn>
-                          <FlatButton label='Margins' />
-                        </TableRowColumn>
-                        <TableRowColumn>Layout with or without border margins.</TableRowColumn>
-                      </TableRow>
-
-                      <TableRow>
-                        <TableRowColumn>
-                          <FlatButton label='Card/Panel' />
-                        </TableRowColumn>
-                        <TableRowColumn>Card layout or Panel layout</TableRowColumn>
-                      </TableRow>
-                      <TableRow>
-                        <TableRowColumn>
-                          <FlatButton label='Secondary' />
-                        </TableRowColumn>
-                        <TableRowColumn>Display the secondary iframe panel</TableRowColumn>
-                      </TableRow>
-                      <TableRow>
-                        <TableRowColumn>
-                          <FlatButton label='Docks' />
-                        </TableRowColumn>
-                        <TableRowColumn>Display inbox dock</TableRowColumn>
-                      </TableRow>
-                      <TableRow>
-                        <TableRowColumn>
-                          <FlatButton label='Narrow Navs' />
-                        </TableRowColumn>
-                        <TableRowColumn>Use narrow navbars</TableRowColumn>
-                      </TableRow>
-                    </TableBody>
-                    </Table>
-
-                    <br />
-                    <br />
-                    { this.renderConfirmDelete(this.data.state.wantsToDelete) }
-                  </div>
-                </Tab>
-
-              </Tabs>
-
+                    </Col>
+                  </Row>
+                </div>
             </CardText>
           </GlassCard>
+          <DynamicSpacer /> */}
 
-          <DynamicSpacer />
+
           <GlassCard>
             <CardTitle title="Home Address" subtitle='last updated: yyyy/mm/dd' style={{float: 'left'}} />
             <CardTitle subtitle={this.data.address.latlng} style={{position: 'relative', right: '0px', top: '0px', float: 'right'}}/>
@@ -682,24 +646,140 @@ export class MyProfilePage extends React.Component {
                 />
             </CardActions>
           </GlassCard>
+          <DynamicSpacer />
 
+
+          { consentElement }
+
+          { continuityOfCareCard }
+
+
+          <GlassCard>
+            <CardTitle title="Preferences" subtitle='Application preferences.' />
+            <CardText>
+              <div id="profileSystemPane" style={{position: "relative"}}>
+                <Table>
+                <TableBody displayRowCheckbox={false} showRowHover={true}>>
+                  <TableRow>
+                    <TableRowColumn style={{width: '200px'}}>
+                      <FlatButton label='Show Navbars' />
+                    </TableRowColumn>
+                    <TableRowColumn>Display the header and footer navbars.</TableRowColumn>
+                  </TableRow>
+                  <TableRow>
+                    <TableRowColumn>
+                      <FlatButton label='Show Search' />
+                    </TableRowColumn>
+                    <TableRowColumn>Display the search ribbon.</TableRowColumn>
+                  </TableRow>
+                  <TableRow>
+                    <TableRowColumn>
+                      <FlatButton label='Autoheight' />
+                    </TableRowColumn>
+                    <TableRowColumn>Fit to use the available spaec.  Otherwise, use veritical scroll.</TableRowColumn>
+                  </TableRow>
+                  <TableRow>
+                    <TableRowColumn>
+                      <FlatButton label='Margins' />
+                    </TableRowColumn>
+                    <TableRowColumn>Layout with or without border margins.</TableRowColumn>
+                  </TableRow>
+
+                  <TableRow>
+                    <TableRowColumn>
+                      <FlatButton label='Card/Panel' />
+                    </TableRowColumn>
+                    <TableRowColumn>Card layout or Panel layout</TableRowColumn>
+                  </TableRow>
+                  <TableRow>
+                    <TableRowColumn>
+                      <FlatButton label='Secondary' />
+                    </TableRowColumn>
+                    <TableRowColumn>Display the secondary iframe panel</TableRowColumn>
+                  </TableRow>
+                  <TableRow>
+                    <TableRowColumn>
+                      <FlatButton label='Docks' />
+                    </TableRowColumn>
+                    <TableRowColumn>Display inbox dock</TableRowColumn>
+                  </TableRow>
+                  <TableRow>
+                    <TableRowColumn>
+                      <FlatButton label='Narrow Navs' />
+                    </TableRowColumn>
+                    <TableRowColumn>Use narrow navbars</TableRowColumn>
+                  </TableRow>
+                </TableBody>
+                </Table>
+
+                <br />
+                <br />
+                { this.renderConfirmDelete(this.data.state.wantsToDelete) }
+              </div>
+            </CardText>
+          </GlassCard>
 
 
           <DynamicSpacer />
           <GlassCard>
-            <CardTitle title="Continuity of Care" subtitle='Healthcare data is attached to your profile via resources.' />
+            <CardTitle title="Password Management" subtitle='Reset your password.' />
             <CardText>
-              <Table  >
-                <TableBody displayRowCheckbox={false} showRowHover={false}>
-                  <TableRow style={{fontWeight: 'bold'}}>
-                    <TableRowColumn style={{width: '20%'}}>Count</TableRowColumn>
-                    <TableRowColumn style={{width: '80%'}}>Resource</TableRowColumn>
-                  </TableRow>
-                  { ccdResources }      
-                </TableBody>
-              </Table>
+              <div id='profilePasswordPane' style={{position: 'relative'}} >
+                <TextField
+                  id='oldPasswordInput'
+                  ref='oldPassword'
+                  name='oldPassword'
+                  type='text'
+                  floatingLabelText='oldPassword'
+                  floatingLabelFixed={true}
+                  value={this.data.state.oldPassword}
+                  onChange={ this.rememberOldPassword.bind(this) }
+                  fullWidth
+                  /><br/>
+                <Row>
+                  <Col md={6}>
+                    <TextField
+                      id='newPasswordInput'
+                      ref='newPassword'
+                      name='newPassword'
+                      type='text'
+                      floatingLabelText='newPassword'
+                      floatingLabelFixed={true}
+                      value={this.data.state.newPassword}
+                      onChange={ this.rememberNewPassword.bind(this) }
+                      fullWidth
+                      /><br/>
+                  </Col>
+                  <Col md={6}>
+                    <TextField
+                      id='confirmPasswordInput'
+                      ref='confirmPassword'
+                      name='confirmPassword'
+                      type='text'
+                      floatingLabelText='confirmPassword'
+                      floatingLabelFixed={true}
+                      value={this.data.state.confirmPassword}
+                      onChange={ this.rememberConfirmPassword.bind(this) }
+                      fullWidth
+                      /><br/>
+                  </Col>
+                </Row>
+
+
+
+                <FlatButton
+                  id='changePasswordButton'
+                  label='Change Password'
+                  onClick={this.changePassword.bind(this)}
+                  className="muidocs-icon-action-delete"
+                  />
+              </div>
             </CardText>
-          </GlassCard>
+          </GlassCard>                    
+
+          <DynamicSpacer />
+          <DynamicSpacer />
+
         </VerticalCanvas>
       </div>
     );
@@ -723,12 +803,11 @@ export class MyProfilePage extends React.Component {
             onChange={this.handleConfirm.bind(this)}
             /><br/><br/>
 
-          <RaisedButton
+          <FlatButton
             id='confirmDeleteUserButton'
             label='Confirm Delete'
             onClick={this.confirmDelete.bind(this) }
-            className="muidocs-icon-action-delete"
-            primary={true}
+            className="muidocs-icon-action-delete"            
             style={{backgroundColor: 'red'}}
             />
         </div>
@@ -738,8 +817,8 @@ export class MyProfilePage extends React.Component {
         <div>
           <Divider />
           <br />
-          <RaisedButton id='resetPreferencesButton' label='Reset Preferences' onClick={this.resetPreferences } primary={true} style={{marginRight: '20px'}} />
-          <RaisedButton id='deleteUserButton' className="muidocs-icon-action-delete" label='Delete User' onClick={this.handleDelete } primary={true} />
+          <FlatButton id='resetPreferencesButton' label='Reset Preferences' onClick={this.resetPreferences } style={{marginRight: '20px'}} />
+          <FlatButton id='deleteUserButton' className="muidocs-icon-action-delete" label='Delete User' onClick={this.handleDelete } />
         </div>
       );
     }
@@ -773,19 +852,29 @@ export class MyProfilePage extends React.Component {
     Session.set('myProfileState', state);
   }
 
+  updateGivenName(event, value) {
+    Meteor.users.update({  _id: Meteor.userId()}, {$set:{
+      'profile.name[0].given': value
+    }});
+  }
+  updateFamilyName(event, value) {
+    Meteor.users.update({  _id: Meteor.userId()}, {$set:{
+      'profile.name[0].family': value
+    }});
+  }
 
-  handleChangeBirthdate(event, value) {
+  updateBirthdate(event, value) {
     Meteor.users.update({  _id: Meteor.userId()}, {$set:{
       'profile.birthdate': value
     }});
   }
-  handleChangeGender(event, value) {
+  updateGender(event, value) {
     Meteor.users.update({  _id: Meteor.userId()}, {$set:{
       'profile.gender': value
     }});
   }
 
-  handleChangeAvatar(event, value) {
+  updateAvatar(event, value) {
     Meteor.users.update({  _id: Meteor.userId()}, {$set:{
       'profile.avatar': value
     }});
@@ -814,6 +903,9 @@ export class MyProfilePage extends React.Component {
     Meteor.users.update({  _id: Meteor.userId()}, {$set:{
       'profile.locations.home.address.country': value
     }});
+  }
+  editAuthorizations(){
+    browserHistory.push('/oauth-grants');
   }
   geocode(){
     console.log('lets try geocoding something...');
