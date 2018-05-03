@@ -66,7 +66,6 @@ export class Signin extends React.Component {
       }   
     }
 
-
     if (get(Meteor, 'settings.theme.darkroomTextEnabled')) {
       data.style.textColor.color = darkBaseTheme.palette.textColor;
       data.style.inputStyle.color = darkBaseTheme.palette.textColor;
