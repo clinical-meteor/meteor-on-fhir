@@ -15,7 +15,9 @@ import { Row, Col } from 'react-bootstrap';
 import { lightBaseTheme, darkBaseTheme } from 'material-ui/styles';
 import { has, get } from 'lodash';
 
-import { OAuth } from 'meteor/clinical:smart-on-fhir-client';
+if(Package['clinical:smart-on-fhir-client']){
+  import { OAuth } from 'meteor/clinical:smart-on-fhir-client';
+}
 
 Session.setDefault('signinWithSearch', '');
 
@@ -58,9 +60,11 @@ export class Signin extends React.Component {
       }).fetch()
     }
 
-    if(ServiceConfiguration){
-      data.services = ServiceConfiguration.configurations.find().fetch()
-  }   
+    if(Package['clinical:smart-on-fhir-client']){
+      if(ServiceConfiguration){
+        data.services = ServiceConfiguration.configurations.find().fetch()
+      }   
+    }
 
 
     if (get(Meteor, 'settings.theme.darkroomTextEnabled')) {
