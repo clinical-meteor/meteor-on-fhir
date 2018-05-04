@@ -124,6 +124,7 @@ export class Signin extends React.Component {
     Meteor.call('fetchAccessToken', serviceName, function(err, result){
         if(result){
           console.log('result.accessToken', result.accessToken)
+          Session.set('oauthAccessToken', result.accessToken)
         }
     })
 
