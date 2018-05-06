@@ -148,6 +148,9 @@ export class Footer extends React.Component {
       Session.set('gender', 'Pink');
     }
   }
+  toggleFilterMainTiles(){
+    Session.toggle('filterMainTiles');
+  }
   renderWestNavbar(displayThemeNavbar){
     if (displayThemeNavbar) {
       // the user has pressed ctrl-cmd-t and is looking at theming controls
@@ -164,8 +167,8 @@ export class Footer extends React.Component {
         // the user is logged in as a normal user
         return (
           <div style={{marginTop: '-8px'}}>
-            {/* <FlatButton label='privacy screen' className='blurButton' ref='blurButton' onClick={this.clickOnBlurButton} style={this.data.style.buttonText} ></FlatButton>
-            <FlatButton label='darkroom' className='darkroomButton' ref='darkroomButton' onClick={this.clickOnDarkroomButton} style={this.data.style.buttonText} ></FlatButton>
+            <FlatButton label='filter tiles' className='filterTileButton' ref='filterTileButton' onClick={this.toggleFilterMainTiles} style={this.data.style.buttonText} ></FlatButton>
+            {/* <FlatButton label='darkroom' className='darkroomButton' ref='darkroomButton' onClick={this.clickOnDarkroomButton} style={this.data.style.buttonText} ></FlatButton>
             <FlatButton label='theming' className='themingButton' ref='themingButton' onClick={this.clickOnThemingButton} style={this.data.style.buttonText} ></FlatButton> */}
           </div>
         );
@@ -260,6 +263,15 @@ export class Footer extends React.Component {
     } else {
       return (
         <div>
+          {/* <FlatButton label='privacy screen' className='blurButton' ref='blurButton' onClick={this.clickOnBlurButton} style={this.data.style.buttonText} ></FlatButton> */}
+
+          <ToolbarTitle
+            id='privacyScreen'
+            text='privacy | '
+            style={{fontSize: '18px', top: '-4px', cursor: 'pointer'}}
+            onTouchTap={this.clickOnBlurButton }
+          />
+
           <ToolbarTitle
             id='connectionStatus'
             text={this.data.status}

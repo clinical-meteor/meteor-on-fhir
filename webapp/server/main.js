@@ -24,4 +24,11 @@ Meteor.startup(function(){
   BrowserPolicy.content.allowEval();
   BrowserPolicy.content.allowInlineScripts()
   BrowserPolicy.content.allowInlineStyles()  
+
+  BrowserPolicy.content.allowObjectOrigin( 'zygotebody.com' );
+  BrowserPolicy.content.allowFrameOrigin('zygotebody.com');
+  BrowserPolicy.content.allowObjectDataUrl('zygotebody.com');
+  BrowserPolicy.content.allowOriginForAll('zygotebody.com');
+  BrowserPolicy.content.allowConnectOrigin("zygotebody.com")
+  BrowserPolicy.content.allowImageOrigin("zygotebody.com")   
 })
