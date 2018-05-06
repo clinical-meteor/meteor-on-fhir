@@ -1,0 +1,1 @@
+meteor remove-platform ios

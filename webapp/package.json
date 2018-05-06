@@ -18,7 +18,8 @@
     "desktop": "meteor-desktop",
     "dockerize": "../scripts/generate_docker_compose_file.sh",
     "push_to_circle_ci": "../scripts/push_to_circle_ci.sh",
-    "prep_for_symptomatic_dev": "../scripts/prep_for_symptomatic_dev.sh"
+    "prep_for_symptomatic_dev": "../scripts/prep_for_symptomatic_dev.sh",
+    "version": "../scripts/version.sh"
   },
   "dependencies": {
     "ajv": "6.1.1",
