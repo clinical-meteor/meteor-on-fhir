@@ -186,7 +186,6 @@ export class MainIndex extends React.Component {
     var self = this;
 
     var tilesToRender = [];
-
             
     var tileConfigs = [{
       collection: "Immunizations",
@@ -279,13 +278,6 @@ export class MainIndex extends React.Component {
       path: '/medication-statements',
       icon: 'MdLocalPhramacy',
       subtitle: 'Medication Statements'
-    }, {
-      collection: "ImagingStudies",
-      id: 'imagingStudiesTile',
-      active: true,
-      path: '/radiology',
-      icon: 'Nuclear',
-      subtitle: 'Imaging Studies'
     }, {
       collection: "DiagnosticReports",
       id: 'diagnosticReportsTile',
