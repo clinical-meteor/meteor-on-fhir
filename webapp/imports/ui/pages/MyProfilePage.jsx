@@ -833,7 +833,7 @@ export class MyProfilePage extends React.Component {
     );
   }
   imgError() {
-    this.refs.avatarImage.src = '/noAvatar.png';
+    this.refs.avatarImage.src = 'noAvatar.png';
   }
   renderConfirmDelete(wantsToDelete){
     if (wantsToDelete) {
