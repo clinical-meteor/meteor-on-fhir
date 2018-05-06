@@ -103,7 +103,7 @@ clinical:hl7-resource-endpoint
 clinical:hl7-resource-goal
 clinical:hl7-resource-immunization
 # clinical:hl7-resource-location
-clinical:hl7-resource-list
+# clinical:hl7-resource-list
 clinical:hl7-resource-medication
 clinical:hl7-resource-medication-order
 clinical:hl7-resource-medication-statement
@@ -119,7 +119,7 @@ simple:json-routes
 percolate:synced-cron
 d3js:d3
 
-clinical:smart-on-fhir-client
-symptomatic:blockchain-core
-symptomatic:continuity-of-care
-symptomatic:theming
+# clinical:smart-on-fhir-client
+# symptomatic:blockchain-core
+# symptomatic:continuity-of-care
+# symptomatic:theming

@@ -3,12 +3,11 @@ import { Col, Grid, Row } from 'react-bootstrap';
 import {blue500, orange500} from 'material-ui/styles/colors';
 
 import { AboutAppCard } from '/imports/ui/components/AboutAppCard';
-import { GlassCard } from '/imports/ui/components/GlassCard';
+import { GlassCard, VerticalCanvas } from 'meteor/clinical:glass-ui';
 import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
 import TextField from 'material-ui/TextField';
-import { VerticalCanvas } from '/imports/ui/components/VerticalCanvas';
 
 import { get } from 'lodash';
 
