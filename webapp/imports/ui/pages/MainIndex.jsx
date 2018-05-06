@@ -6,6 +6,7 @@ import { Container, Col, Row } from 'react-bootstrap';
 import { CardTitle, Card, CardText, CardActions } from 'material-ui';
 import { Glass, GlassCard, FullPageCanvas, VerticalCanvas } from 'meteor/clinical:glass-ui';
 import { Meteor } from 'meteor/meteor';
+import { Session } from 'meteor/session';
 
 import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
@@ -15,7 +16,6 @@ import { has, get } from 'lodash';
 import PropTypes from 'prop-types';
 
 import { MenuTile } from '/imports/ui/components/MenuTile';
-
 
 import StreetView from 'react-icons/lib/fa/street-view';
 import Heartbeat from 'react-icons/lib/fa/heartbeat';
@@ -57,6 +57,7 @@ import MdImportantDevices from 'react-icons/lib/md/important-devices';
 import MdClearAll from 'react-icons/lib/md/clear-all';
 
 
+Session.setDefault('filterMainTiles', false);
 export class MainIndex extends React.Component {
   constructor(props) {
     super(props);
@@ -99,7 +100,9 @@ export class MainIndex extends React.Component {
         practitioners: 0,
         procedures: 0,
         riskAssessments: 0
-      }
+      },
+      filterMainTiles: Session.get('filterMainTiles'),
+      glassBlurEnabled: Session.get('glassBlurEnabled')
     };
 
     if( typeof AllergyIntolerances === "object" ){
@@ -180,31 +183,207 @@ export class MainIndex extends React.Component {
     return data;
   }
   render() {
+    var self = this;
 
     var tilesToRender = [];
+
+            
+    var tileConfigs = [{
+      collection: "Immunizations",
+      id: 'immunizationsTile',
+      active: true,
+      path: '/immunizations',
+      icon: 'EyeDropper',
+      subtitle: 'Immunizations',
+    }, {
+      collection: "AllergyIntolerances",
+      id: 'allergyIntoleranceTile',
+      active: true,
+      path: '/allergies',
+      icon: 'StreetView',
+      subtitle: 'Allergy Intolerances'
+    }, {
+      collection: "Procedures",
+      id: 'proceduresTile',
+      active: true,
+      path: '/procedures',
+      icon: 'Nuclear',
+      subtitle: 'Procedures'
+    }, {
+      collection: "Patients",
+      id: 'patientsTile',
+      active: true,
+      path: '/patients',
+      icon: 'Person',
+      subtitle: 'Patients'
+    }, {
+      collection: "Practitioners",
+      id: 'practitionersTile',
+      active: true,
+      path: '/practitioners',
+      icon: 'Person',
+      subtitle: 'Practitioners'
+    }, {
+      collection: "Observations",
+      id: 'observationsTile',
+      active: true,
+      path: '/observations',
+      icon: 'Pulse',
+      subtitle: 'Observations'
+    }, {
+      collection: "Organizations",
+      id: 'organizationsTile',
+      active: true,
+      path: '/organizations',
+      icon: 'Building',
+      subtitle: 'Organizations'
+    }, {
+      collection: "Locations",
+      id: 'locationsTile',
+      active: true,
+      path: '/locations',
+      icon: 'MapMarker',
+      subtitle: 'Locations'
+    }, {
+      collection: "Medications",
+      id: 'medicationsTile',
+      active: true,
+      path: '/medications',
+      icon: 'Flask',
+      subtitle: 'Medications'
+    }, {
+      collection: "Devices",
+      id: 'devicesTile',
+      active: true,
+      path: '/devices',
+      icon: 'Mobile',
+      subtitle: 'Devices'
+    }, {
+      collection: "RiskAssessments",
+      id: 'riskAssessmentsTile',
+      active: true,
+      path: '/risk-assessments',
+      icon: 'MdAddAlert',
+      subtitle: 'Risk Assessments'
+    }, {
+      collection: "Conditions",
+      id: 'conditionsTile',
+      active: true,
+      path: '/conditions',
+      icon: 'Heartbeat',
+      subtitle: 'Conditions'
+    }, {
+      collection: "MedicationStatements",
+      id: 'medicationStatementsTile',
+      active: true,
+      path: '/medication-statements',
+      icon: 'MdLocalPhramacy',
+      subtitle: 'Medication Statements'
+    }, {
+      collection: "ImagingStudies",
+      id: 'imagingStudiesTile',
+      active: true,
+      path: '/radiology',
+      icon: 'Nuclear',
+      subtitle: 'Imaging Studies'
+    }, {
+      collection: "DiagnosticReports",
+      id: 'diagnosticReportsTile',
+      active: true,
+      path: '/diagnostic-reports',
+      icon: 'Clipboard',
+      subtitle: 'Diagnostic Reports'
+    }, {
+      collection: "Goals",
+      id: 'goalsTile',
+      active: true,
+      path: '/goals',
+      icon: 'NoSmoking',
+      subtitle: 'Goals'
+    }, {
+      collection: "CarePlans",
+      id: 'carePlansTile',
+      active: true,
+      path: '/care-plans',
+      icon: 'Clipboard',
+      subtitle: 'Care Plan'
+    }, {
+      collection: "MedicationOrders",
+      id: 'medicationOrderTile',
+      active: true,
+      path: '/medication-orders',
+      icon: 'MdLocalPhramacy',
+      subtitle: 'Medication Orders'
+    } ];
+
+
+
+
     // first we need to figure out which tiles to render
     if(get(Meteor, 'settings.public.modules.fhir')){
       var fhirResources = get(Meteor, 'settings.public.modules.fhir');
+
+      var count = 0;
       Object.keys(fhirResources).forEach(function(key){
         if(fhirResources[key] === true){
-          // and put them in an array
-          tilesToRender.push();
+
+          if(Mongo.Collection.get(key)){
+              var selectedConfig = {
+                id: '',
+                active: true,
+                path: '/',
+                icon: '',
+                title: 0,
+                subtitle: ''
+              }
+  
+              tileConfigs.forEach(function(config){
+                if(config.collection === key){
+                  selectedConfig = config;
+                }
+              })
+              
+              selectedConfig.title = Mongo.Collection.get(key).find().count();
+
+              var newTile = <Col sm={3} style={self.data.style.column} key={key}>
+                {self.renderTile(self.data.user, selectedConfig)}
+              </Col>
+
+              if(self.data.filterMainTiles){
+                if(Mongo.Collection.get(key).find().count() > 0){
+                  tilesToRender.push(newTile);
+                } 
+              } else {
+                tilesToRender.push(newTile);
+              }
+
+          };
         }
+        count++;
       })
     }
+
+    //console.log('tilesToRender', tilesToRender)
     
-    // // now we start laying 
-    // var rowsToRender = [];
-    // var currentRow = false;
-    // tilesToRender.forEach(function(tile){
-    //   // if(!currentRow){
-    //   //   currentRow = <Row>
-    //   //   <Row>
-    //   // }
-    // })
 
-
-    // and columns
+    var appRow = <Row>
+      <Col sm={3} style={this.data.style.column} >
+        {this.renderImportChart(this.data.user)}
+      </Col>
+      <Col sm={3} style={this.data.style.column} >
+        {this.renderChecklists(this.data.user)}
+      </Col>
+      <Col sm={3} style={this.data.style.column}>
+        {this.renderContinuityOfCare(this.data.user)}
+      </Col>
+      <Col sm={3} style={this.data.style.column}>
+        {this.renderTimeline(this.data.user)}
+        {/* {this.renderVideoconferencing(this.data.user)} */}
+      </Col>
+      {/* <Col sm={3} style={this.data.style.column}>
+        {this.renderZygote(this.data.user)}
+      </Col> */}
+    </Row>
 
 
     return (
@@ -215,101 +394,12 @@ export class MainIndex extends React.Component {
             {this.renderAdminTiles(this.data.user)}
 
             {this.renderAppsSection(this.data.user)}
-              <Row>
-                <Col sm={3} style={this.data.style.column} >
-                  {this.renderChecklists(this.data.user)}
-                </Col>
-                <Col sm={3} style={this.data.style.column}>
-                  {this.renderContinuityOfCare(this.data.user)}
-                </Col>
-                <Col sm={3} style={this.data.style.column}>
-                  {this.renderTimeline(this.data.user)}
-                  {/* {this.renderVideoconferencing(this.data.user)} */}
-                </Col>
-                <Col sm={3} style={this.data.style.column}>
-                  {this.renderZygote(this.data.user)}
-                </Col>
-              </Row>
-
+            { appRow }
 
             {this.renderFhirSection(this.data.user)}
-              <Row>
-                <Col sm={3} style={this.data.style.column}>
-                  {this.renderAllergies(this.data.user)}
-                </Col>
-                <Col sm={3} style={this.data.style.column}>
-                  {this.renderCarePlans(this.data.user)}
-                </Col>
-                <Col sm={3} style={this.data.style.column}>
-                  {this.renderConditions(this.data.user)}
-                </Col>
-                <Col sm={3} style={this.data.style.column}>
-                {this.renderDevices(this.data.user)}
-                </Col>
-              </Row>
-
-
-              <Row>
-                <Col sm={3} style={this.data.style.column}>
-                  {this.renderDiagnosticReport(this.data.user)}
-                </Col>
-                <Col sm={3} style={this.data.style.column}>
-                  {this.renderGoals(this.data.user)}
-                </Col>
-                <Col sm={3} style={this.data.style.column}>
-                  {this.renderImmunizations(this.data.user)}
-                </Col>
-                <Col sm={3} style={this.data.style.column}>
-                  {this.renderLocations(this.data.user)}
-                </Col>
-              </Row>
-
-              <Row>
-                <Col sm={3} style={this.data.style.column}>
-                {this.renderOrganizations(this.data.user)}
-                </Col>
-                <Col sm={3} style={this.data.style.column}>
-                  {this.renderMedications(this.data.user)}
-                </Col>
-                <Col sm={3} style={this.data.style.column}>
-                  {this.renderMedicationOrders(this.data.user)}
-                </Col>
-                <Col sm={3} style={this.data.style.column}>
-                  {this.renderMedicationStatements(this.data.user)}
-                </Col>
-              </Row>
-
-
-              <Row>
-                <Col sm={3} style={this.data.style.column}>
-                  {this.renderObservations(this.data.user)}
-                </Col>
-                <Col sm={3} style={this.data.style.column}>
-                  {this.renderPractitioners(this.data.user)}
-                </Col>
-                <Col sm={3} style={this.data.style.column}>
-                  {this.renderProcedures(this.data.user)}
-                </Col>
-                <Col sm={3} style={this.data.style.column}>
-                  {this.renderRiskAssessments(this.data.user)}
-                </Col>
-              </Row>
-              <Row>
-                <Col sm={3} style={this.data.style.column}>
-                  {this.renderPatients(this.data.user)}
-                </Col>
-                <Col sm={3} style={this.data.style.column}>
-                </Col>
-                <Col sm={3} style={this.data.style.column}>
-                </Col>
-                <Col sm={3} style={this.data.style.column}>
-                </Col>
-              </Row>
-
-
-
-
-
+            <Row>
+              { tilesToRender }
+            </Row>
 
             <br/>
             {this.renderUnderConstructionSection(this.data.user)}          
@@ -321,7 +411,35 @@ export class MainIndex extends React.Component {
       </div>
     );
   }
+  // renderTile()
+  // // id, active, path, icon, subtitle
+  // {
+  //   id: 'immunizationsTile',
+  //   active: true,
+  //   path: '/immunizations',
+  //   icon: 'EyeDropper',
+  //   title: this.data.local.immunizations,
+  //   subtitle: 'Immunizations'
+  // }
 
+  renderTile(user, tileConfig){
+    if (get(Meteor, 'settings.public.modules.apps.ImportChart')) {
+      if (user.isPatient || user.isPractitioner || user.isAdmin) {
+        return (
+          <MenuTile          
+            id={ tileConfig.id }
+            active={ tileConfig.active }
+            path={ tileConfig.path }
+            icon={ tileConfig.icon }
+            iconSize={ 85 }
+            title={ tileConfig.title }
+            subtitle={ tileConfig.subtitle }
+          />
+
+        );
+      }
+    }    
+  }
   renderExperimentalSection(user){
     if (get(Meteor, 'settings.public.home.showExperimental')) {
       if (user.isAdmin || user.isPractitioner) {
@@ -571,193 +689,22 @@ export class MainIndex extends React.Component {
   }
 
 
-  renderImmunizations(user){
-    if (get(Meteor, 'settings.public.modules.fhir.Immunizations')) {
-      if (user.isPractitioner || user.isAdmin || user.isPatient) {
-        return (
-          <MenuTile          
-            id='immunizationsTile'
-            active={true}
-            path='/immunizations'
-            icon='EyeDropper'
-            iconSize={65}
-            title={ this.data.local.immunizations  }
-            subtitle='Immunizations'
-          />              
-        );
-      }
-    }
-  }
-
-
-  renderAllergies(user){
-    if (get(Meteor, 'settings.public.modules.fhir.AllergyIntolerances')) {
-      if (user.isPractitioner || user.isAdmin || user.isPatient) {
-        return (
-          <MenuTile          
-            id='allergyIntoleranceTile'
-            active={true}
-            path='/allergies'
-            icon='StreetView'
-            iconSize={65}
-            title={ this.data.local.allergies  }
-            subtitle='Allergy Intolerances'
-          />          
-        );
-      }
-    }
-  }
-
-  renderProcedures(user){
-    if (get(Meteor, 'settings.public.modules.fhir.Procedures')) {
-      if (user.isPractitioner || user.isAdmin || user.isPatient) {
-        return (
-          <MenuTile          
-            id='proceduresTile'
-            active={true}
-            path='/procedures'
-            icon='Nuclear'
-            iconSize={65}
-            title={ this.data.local.procedures  }
-            subtitle='Procedures'
-          /> 
-        );
-      }
-    }
-  }
-  renderPatients(user){
-    if (get(Meteor, 'settings.public.modules.fhir.Patients')) {
-      if (user.isPractitioner || user.isAdmin) {
-        return (
-          <MenuTile          
-            id='patientsTile'
-            active={true}
-            path='/patients'
-            icon='Person'
-            iconSize={65}
-            title={ this.data.local.patients  }
-            subtitle='Patients'
-          />               
-        );
-      }
-    }
-  }
-  renderPractitioners(user){
-    if (get(Meteor, 'settings.public.modules.fhir.Practitioners')) {
+  renderImportChart(user){
+    if (get(Meteor, 'settings.public.modules.apps.ImportChart')) {
       if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
           <MenuTile          
-            id='practitionersTile'
+            id='importChartTile'
             active={true}
-            path='/practitioners'
-            icon='Person'
-            iconSize={65}
-            title={ this.data.local.practitioners  }
-            subtitle='Practitioners'
-          />                
-        );
-      }
-    }
-  }
-  renderObservations(user){
-    if (get(Meteor, 'settings.public.modules.fhir.Observations')) {
-      if (user.isPatient || user.isPractitioner || user.isAdmin) {
-        return (
-          <MenuTile          
-            id='observationsTile'
-            active={true}
-            path='/observations'
-            icon='Pulse'
+            path='/import-chart'
+            icon='MdList'
             iconSize={85}
-            title={ Observations.find().count()  }
-            subtitle='Observations'
+            subtitle='Import Chart'
           />
 
-          // <div id='observationsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/observations') } >
-          //   <Card id='observationThumbnail' className='thumbnail' style={this.data.style.thumbnail} zDepth={1} >
-          //     <Pulse size={85} />
-          //   </Card>
-          //   <GlassCard className='tile' style={this.data.style.indexCard} >
-          //     <CardTitle
-          //       title={ Observations.find().count()  }
-          //       subtitle='Observations'
-          //       titleStyle={this.data.style.title}
-          //       subtitleStyle={this.data.style.subtitle}
-          //     />
-          //   </GlassCard>
-          // </div>
         );
       }
-    }
-  }
-  renderOrganizations(user){
-    if (get(Meteor, 'settings.public.modules.fhir.Organizations')) {
-      if (user.isPatient || user.isPractitioner || user.isAdmin) {
-        return (
-          <MenuTile          
-            id='organizationsTile'
-            active={true}
-            path='/organizations'
-            icon='Building'
-            iconSize={65}
-            title={ this.data.local.organizations  }
-            subtitle='Organizations'
-          />
-        );
-      }
-    }
-  }
-  renderLocations(user){
-    if (get(Meteor, 'settings.public.modules.fhir.Locations')) {
-      if (user.isPatient || user.isPractitioner || user.isAdmin) {
-        return (
-            <MenuTile          
-              id='locationsTile'
-              active={true}
-              path='/locations'
-              icon='MapMarker'
-              iconSize={65}
-              title={ this.data.local.locations  }
-              subtitle='Locations'
-            />
-        );
-      }
-    }
-  }
-  renderMedications(user){
-    if (get(Meteor, 'settings.public.modules.fhir.Medications')) {
-      if (user.isPatient || user.isPractitioner || user.isAdmin) {
-        return (
-          
-          <MenuTile          
-            id='medicationsTile'
-            active={true}
-            path='/medications'
-            icon='Flask'
-            iconSize={65}
-            title={ this.data.local.medications  }
-            subtitle='Medications'
-          />
-        );
-      }
-    }
-  }
-  renderDevices(user){
-    if (get(Meteor, 'settings.public.modules.fhir.Devices')) {
-      if (user.isPatient || user.isPractitioner || user.isAdmin) {
-        return (
-          <MenuTile          
-            id='devicesTile'
-            active={true}
-            path='/devices'
-            icon='Mobile'
-            iconSize={65}
-            title={ this.data.local.devices  }
-            subtitle='Devices'
-          />          
-        );
-      }
-    }
+    }    
   }
   renderChecklists(user){
     if (get(Meteor, 'settings.public.modules.apps.ChecklistManifesto')) {
@@ -834,7 +781,7 @@ export class MainIndex extends React.Component {
             id='timelineTile'
             active={true}
             path='/timeline-sidescroll'
-            icon='MdClearAll'
+            icon='Pulse'
             iconSize={85}
             subtitle='Timeline'
           />
@@ -843,172 +790,7 @@ export class MainIndex extends React.Component {
     }
   }
 
-  renderRiskAssessments(user){
-    if (get(Meteor, 'settings.public.modules.fhir.RiskAssessments')) {
-      if (user.isPatient || user.isPractitioner || user.isAdmin) {
-        return (
-          <MenuTile          
-            id='riskAssessmentsTile'
-            active={true}
-            path='/risk-assessments'
-            icon='MdAddAlert'
-            iconSize={65}
-            title={ this.data.local.riskAssessments  }
-            subtitle='Risk Assessments'
-          />   
-        );
-      }
-    }
-  }
 
-  renderConditions(user){
-    if (get(Meteor, 'settings.public.modules.fhir.Conditions')) {
-      if (user.isPatient || user.isPractitioner || user.isAdmin) {
-        return (
-          <MenuTile          
-            id='conditionsTile'
-            active={true}
-            path='/conditions'
-            icon='Heartbeat'
-            iconSize={65}
-            title={ this.data.local.conditions  }
-            subtitle='Conditions'
-          /> 
-        );
-      }
-    }
-  }  
-
-  // renderAllergyIntolerance(user){
-  //   if (get(Meteor, 'settings.public.modules.fhir.AllergyIntolerances')) {
-  //     if (user.isPatient || user.isPractitioner || user.isAdmin) {
-  //       return (
-  //         <MenuTile          
-  //           id='allergyIntoleranceTile'
-  //           active={true}
-  //           path='/allergies'
-  //           icon='Heartbeat'
-  //           iconSize={65}
-  //           title={ this.data.local.allergies  }
-  //           subtitle='Allergy Intolerances'
-  //         /> 
-  //       );
-  //     }
-  //   }
-  // }   
-  renderMedicationStatements(user){
-    if (get(Meteor, 'settings.public.modules.fhir.MedicationStatements')) {
-      if (user.isPatient || user.isPractitioner || user.isAdmin) {
-        return (
-          <MenuTile          
-            id='medicationStatementsTile'
-            active={true}
-            path='/medication-statements'
-            icon='MdLocalPhramacy'
-            iconSize={65}
-            title={ this.data.local.medicationStatements  }
-            subtitle='Medication Statements'
-          />             
-        );
-      }
-    }
-  }   
-  
-
-
-  renderImagingStudy(user){
-    if (get(Meteor, 'settings.public.modules.fhir.ImagingStudies')) {
-      if (user.isPatient || user.isPractitioner || user.isAdmin) {
-        return (
-          <MenuTile          
-            id='imagingStudiesTile'
-            active={true}
-            path='/radiology'
-            icon='Heartbeat'
-            iconSize={65}
-            title={ this.data.local.imagingStudies  }
-            subtitle='Imaging Studies'
-          />             
-        );
-      }
-    }
-  }   
-
-
-  renderDiagnosticReport(user){
-    if (get(Meteor, 'settings.public.modules.fhir.DiagnosticReports')) {
-      if (user.isPatient || user.isPractitioner || user.isAdmin) {
-        return (
-          <MenuTile          
-            id='diagnosticReportsTile'
-            active={true}
-            path='/diagnostic-reports'
-            icon='Clipboard'
-            iconSize={85}
-            title={  this.data.local.diagnosticReports }
-            subtitle='Diagnostic Reports'
-          />           
-        );
-      }
-    }
-  }    
-  
-  renderGoals(user){
-    if (get(Meteor, 'settings.public.modules.fhir.Goals')) {
-      if (user.isPatient || user.isPractitioner || user.isAdmin) {
-        return (
-          <MenuTile          
-            id='goalsTile'
-            active={true}
-            path='/goals'
-            icon='NoSmoking'
-            iconSize={65}
-            title={ this.data.local.goals  }
-            subtitle='Goals'
-          />       
-        );
-      }
-    }
-  }      
-
-
-  
-  
-  renderCarePlans(user){
-    if (get(Meteor, 'settings.public.modules.fhir.CarePlans')) {
-      if (user.isPatient || user.isPractitioner || user.isAdmin) {
-        return (
-          <MenuTile          
-            id='carePlansTile'
-            active={true}
-            path='/care-plans'
-            icon='Clipboard'
-            iconSize={65}
-            title={ this.data.local.carePlans  }
-            subtitle='Care Plans'
-          />            
-        );
-      }
-    }
-  }      
-
-  renderMedicationOrders(user){
-    if (get(Meteor, 'settings.public.modules.fhir.MedicationOrders')) {
-      if (user.isPatient || user.isPractitioner || user.isAdmin) {
-        return (
-          <MenuTile          
-            id='medicationOrderTile'
-            active={true}
-            path='/medication-orders'
-            icon='MdLocalPhramacy'
-            iconSize={65}
-            title={ this.data.local.medicationOrders  }
-            subtitle='Medication Orders'
-          />              
-        );
-      }
-    }
-  }   
 
 
 
