@@ -978,7 +978,6 @@ export class MyProfilePage extends React.Component {
   }
   clearLocalCache(){
     if(confirm("Are you absolutely sure?")){
-      alert('deleting...')
 
       var resourceTypes = [
         'AllergyIntolerances',
@@ -990,10 +989,12 @@ export class MyProfilePage extends React.Component {
         'Immunizations',
         'Medications',
         'MedicationOrders',
+        'MedicationStatements',
         'Organizations',
         'Observations',
         'Practitioners',
-        'Procedures'
+        'Procedures',
+        'RiskAssessments'
       ];
 
       resourceTypes.forEach(function(resourceType){
