@@ -119,7 +119,8 @@ export class Checklist extends React.Component {
 
     return (
       <div className="checklist">
-        <Table hover onRowSelection={this.toggleTask.bind(this)}>
+        {/* <Table hover onRowSelection={this.toggleTask.bind(this)}> */}
+        <Table hover>
           <thead>
             <tr >
               <th>Checkbox</th>

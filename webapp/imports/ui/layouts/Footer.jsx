@@ -16,10 +16,12 @@ import { browserHistory } from 'react-router';
 import { has, get } from 'lodash';
 
 Session.setDefault('showThemingControls', false);
+Session.setDefault('gender', 'Pink');
 
 export class Footer extends React.Component {
   getMeteorData() {
     let data = {
+      gender: Session.get('gender'),
       footerStyle: {
         position: 'fixed',
         bottom: '0px',
@@ -41,7 +43,10 @@ export class Footer extends React.Component {
       displayThemeNavbar: false,
       status: '',
       style: {
-        buttonText: Glass.darkroom({marginLeft: '20px'})
+        buttonText: Glass.darkroom({marginLeft: '20px'}),
+        disabledButtonText: {
+          color: 'lightgray'
+        }
       }
     };
 
@@ -135,6 +140,14 @@ export class Footer extends React.Component {
       'profile.inbox': true
     }});
   }
+  pinkBlueToggle(){
+    console.log('pinkBlueToggle');
+    if(Session.get('gender') === "Pink"){
+      Session.set('gender', 'BabyBlue');
+    } else if (Session.get('gender') == 'BabyBlue'){
+      Session.set('gender', 'Pink');
+    }
+  }
   renderWestNavbar(displayThemeNavbar){
     if (displayThemeNavbar) {
       // the user has pressed ctrl-cmd-t and is looking at theming controls
@@ -147,7 +160,18 @@ export class Footer extends React.Component {
       );
     } else {
       // PATIENTS
-      if (Meteor.userId() && (Session.equals('pathname', '/patients')) && Meteor.settings.public && Meteor.settings.public.modules && Meteor.settings.public.modules.epic) {
+      if (Meteor.userId() && (Session.equals('pathname', '/')) ) {
+        // the user is logged in as a normal user
+        return (
+          <div style={{marginTop: '-8px'}}>
+            {/* <FlatButton label='privacy screen' className='blurButton' ref='blurButton' onClick={this.clickOnBlurButton} style={this.data.style.buttonText} ></FlatButton>
+            <FlatButton label='darkroom' className='darkroomButton' ref='darkroomButton' onClick={this.clickOnDarkroomButton} style={this.data.style.buttonText} ></FlatButton>
+            <FlatButton label='theming' className='themingButton' ref='themingButton' onClick={this.clickOnThemingButton} style={this.data.style.buttonText} ></FlatButton> */}
+          </div>
+        );
+
+        // PATIENTS
+      } else if (Meteor.userId() && (Session.equals('pathname', '/patients')) && get(Meteor, 'settings.public.modules.epic')) {
         // the user is logged in as a normal user
         return (
           <div>
@@ -190,12 +214,13 @@ export class Footer extends React.Component {
         // the user is logged in as a normal user
         return (
           <div>
-            <FlatButton label='Import' className='importData' ref='importCcd' onClick={this.openLink.bind(this, '/data-import')} style={this.data.style.buttonText} ></FlatButton>
+            <FlatButton label='Import' disabled={true} className='importData' ref='importCcd' onClick={this.openLink.bind(this, '/data-import')} style={this.data.style.disabledButtonText} ></FlatButton>
             <FlatButton label='Continuity of Care' className='ccdPage' ref='ccdPage' onClick={this.openLink.bind(this, '/continuity-of-care')} style={this.data.style.buttonText} ></FlatButton>
-            <FlatButton label='Timeline' className='verticalTimeline' ref='verticalTimeline' onClick={this.openLink.bind(this, '/timeline')} style={this.data.style.buttonText} ></FlatButton>
+            <FlatButton label='Timeline' disabled={true} className='verticalTimeline' ref='verticalTimeline' onClick={this.openLink.bind(this, '/timeline')} style={this.data.style.disabledButtonText} ></FlatButton>
             <FlatButton label='Sidescroll Timeline' className='horizontalTimeline' ref='horizontalTimeline' onClick={this.openLink.bind(this, '/timeline-sidescroll')} style={this.data.style.buttonText} ></FlatButton>
-            <FlatButton label='Export CCD' id="exportContinuityOfCareDoc" className='exportCcd' ref='exportContinuityOfCareDoc' style={this.data.style.buttonText} onClick={this.exportContinuityOfCareDoc}></FlatButton>
-            <FlatButton label='Clear' id="clearContinuityOfCareDoc" className='clearCcd' ref='clearContinuityOfCareDoc' style={this.data.style.buttonText} onClick={this.clearContinuityOfCareDoc}></FlatButton>
+            <FlatButton label='Export CCD' disabled={true} id="exportContinuityOfCareDoc" className='exportCcd' ref='exportContinuityOfCareDoc' style={this.data.style.disabledButtonText} onClick={this.exportContinuityOfCareDoc}></FlatButton>
+            <FlatButton label='Clear' disabled={true} id="clearContinuityOfCareDoc" className='clearCcd' ref='clearContinuityOfCareDoc' style={this.data.style.disabledButtonText} onClick={this.clearContinuityOfCareDoc}></FlatButton>
+            <FlatButton label={this.data.gender} id="pinkBlueToggle" className='clearCcd' ref='pinkBlueToggle' style={this.data.style.disabledButtonText} onClick={this.pinkBlueToggle}></FlatButton>
             <a id="downloadAnchorElement" style={{display: "none"}}></a>
           </div>
         );

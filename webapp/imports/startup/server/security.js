@@ -21,6 +21,11 @@ AllergyIntolerances.allow({
   insert() { return true; },
   remove() { return true; }
 });
+CarePlans.allow({
+  update() { return true; },
+  insert() { return true; },
+  remove() { return true; }
+});
 Conditions.allow({
   update() { return true; },
   insert() { return true; },
@@ -52,6 +57,11 @@ Immunizations.allow({
 //   remove() { return true; }
 // });
 Medications.allow({
+  update() { return true; },
+  insert() { return true; },
+  remove() { return true; }
+});
+MedicationOrders.allow({
   update() { return true; },
   insert() { return true; },
   remove() { return true; }

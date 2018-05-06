@@ -173,9 +173,6 @@ export class MainIndex extends React.Component {
       data.showExperimental = get(Meteor, 'settings.public.app.showExperimental');
     }
 
-
-
-
     data.style = Glass.blur(data.style);
     data.style.appbar = Glass.darkroom(data.style.appbar);
 
