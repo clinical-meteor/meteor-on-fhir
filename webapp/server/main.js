@@ -5,6 +5,15 @@ import { BrowserPolicy } from 'meteor/browser-policy-common';
 
 Meteor.startup(function(){
 
+    // pick up version info
+    try {
+      var version = {};
+      version = JSON.parse(Assets.getText("version.json"));    
+      Meteor.settings.public.version = version;
+    } catch(e) { 
+      Meteor.settings.public.version = {};
+    }
+
   // if OAuth is configured, load oauth configs into active memory
   if(Package['clinical:smart-on-fhir-client']){
     Meteor.call('resyncConfiguration');
