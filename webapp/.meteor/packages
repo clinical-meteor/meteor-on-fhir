@@ -119,7 +119,6 @@ simple:json-routes
 percolate:synced-cron
 d3js:d3
 
-symptomatic:theming
-symptomatic:continuity-of-care
-
-clinical:smart-on-fhir-client
+# symptomatic:theming
+# symptomatic:continuity-of-care
+# clinical:smart-on-fhir-client
