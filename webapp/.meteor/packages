@@ -119,7 +119,11 @@ simple:json-routes
 percolate:synced-cron
 d3js:d3
 
-# clinical:smart-on-fhir-client
-# symptomatic:blockchain-core
-# symptomatic:continuity-of-care
-# symptomatic:theming
+clinical:smart-on-fhir-client
+symptomatic:blockchain-core
+symptomatic:continuity-of-care
+symptomatic:theming
+
+fhirblocks:core
+clinical:hl7-resource-consent
+clinical:hl7-resource-contract
