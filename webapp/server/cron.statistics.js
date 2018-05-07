@@ -98,7 +98,7 @@ SyncedCron.add({
   name: 'Crunch some important numbers for the marketing department',
   schedule: function(parser) {
     // return parser.text('at 12:00 am');
-    return parser.text('every 1 hour');
+    return parser.text('every 1 day');
   },
   job: function() {
     DailyStats.generate();

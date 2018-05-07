@@ -17,6 +17,7 @@ import { has, get } from 'lodash';
 
 Session.setDefault('showThemingControls', false);
 Session.setDefault('gender', 'Pink');
+Session.setDefault('timelineBackground', false);
 
 export class Footer extends React.Component {
   getMeteorData() {
@@ -148,6 +149,9 @@ export class Footer extends React.Component {
       Session.set('gender', 'Pink');
     }
   }
+  toggleBackground(){ 
+    Session.toggle('timelineBackground');    
+  }
   toggleFilterMainTiles(){
     Session.toggle('filterMainTiles');
   }
@@ -223,7 +227,8 @@ export class Footer extends React.Component {
             <FlatButton label='Sidescroll Timeline' className='horizontalTimeline' ref='horizontalTimeline' onClick={this.openLink.bind(this, '/timeline-sidescroll')} style={this.data.style.buttonText} ></FlatButton>
             <FlatButton label='Export CCD' disabled={true} id="exportContinuityOfCareDoc" className='exportCcd' ref='exportContinuityOfCareDoc' style={this.data.style.disabledButtonText} onClick={this.exportContinuityOfCareDoc}></FlatButton>
             <FlatButton label='Clear' disabled={true} id="clearContinuityOfCareDoc" className='clearCcd' ref='clearContinuityOfCareDoc' style={this.data.style.disabledButtonText} onClick={this.clearContinuityOfCareDoc}></FlatButton>
-            <FlatButton label={this.data.gender} id="pinkBlueToggle" className='clearCcd' ref='pinkBlueToggle' style={this.data.style.disabledButtonText} onClick={this.pinkBlueToggle}></FlatButton>
+            <FlatButton label={this.data.gender} id="pinkBlueToggle" className='clearCcd' ref='pinkBlueToggle' style={this.data.style.buttonText} onClick={this.pinkBlueToggle}></FlatButton>
+            <FlatButton label='Background' id="toggleBackground" className='clearCcd' ref='toggleBackground' style={this.data.style.buttonText} onClick={this.toggleBackground}></FlatButton>
             <a id="downloadAnchorElement" style={{display: "none"}}></a>
           </div>
         );

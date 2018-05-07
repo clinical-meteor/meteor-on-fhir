@@ -36,7 +36,7 @@ browser-policy@1.1.0
 browser-policy-common@1.0.11
 browser-policy-content@1.1.0
 browser-policy-framing@1.1.0
-force-ssl
+
 
 # i18n
 universe:i18n
@@ -103,7 +103,7 @@ clinical:hl7-resource-endpoint
 clinical:hl7-resource-goal
 clinical:hl7-resource-immunization
 # clinical:hl7-resource-location
-# clinical:hl7-resource-list
+clinical:hl7-resource-list
 clinical:hl7-resource-medication
 clinical:hl7-resource-medication-order
 clinical:hl7-resource-medication-statement
@@ -119,11 +119,13 @@ simple:json-routes
 percolate:synced-cron
 d3js:d3
 
+### Timeline
 clinical:smart-on-fhir-client
-symptomatic:blockchain-core
 symptomatic:continuity-of-care
 symptomatic:theming
 
-fhirblocks:core
-clinical:hl7-resource-consent
-clinical:hl7-resource-contract
+### Blockchains
+# symptomatic:blockchain-core
+# fhirblocks:core
+# clinical:hl7-resource-consent
+# clinical:hl7-resource-contract
