@@ -9,6 +9,7 @@ import Paper from 'material-ui/Paper';
 import Avatar from 'material-ui/Avatar';
 import Divider from 'material-ui/Divider';
 import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
 import { FontIcon } from 'material-ui/FontIcon';
 
 import { VerticalCanvas, GlassCard, Glass, DynamicSpacer } from 'meteor/clinical:glass-ui';
@@ -833,43 +834,25 @@ export class MyProfilePage extends React.Component {
     );
   }
   imgError() {
-    this.refs.avatarImage.src = 'noAvatar.png';
+    this.refs.avatarImage.src = Meteor.absoluteUrl() + 'noAvatar.png';
   }
   renderConfirmDelete(wantsToDelete){
-    if (wantsToDelete) {
+    // if (wantsToDelete) {
       return(
         <div>
-          <br />
-          <br />
-          <TextField
-            id='confirmInput'
-            ref='confirm'
-            name='confirm'
-            type='text'
-            floatingLabelText='confirm email or _id'
-            defaultValue={this.data.user.confirm}
-            onChange={this.handleConfirm.bind(this)}
-            /><br/><br/>
-
-          <FlatButton
-            id='confirmDeleteUserButton'
-            label='Confirm Delete'
-            onClick={this.confirmDelete.bind(this) }
-            className="muidocs-icon-action-delete"            
-            style={{backgroundColor: 'red'}}
-            />
+          <FlatButton id='deleteUserButton' className="muidocs-icon-action-delete" label='Delete User' onClick={this.confirmDelete.bind(this) } />
         </div>
       );
-    } else {
-      return(
-        <div>
-          <Divider />
-          <br />
-          <FlatButton id='resetPreferencesButton' label='Reset Preferences' onClick={this.resetPreferences } style={{marginRight: '20px'}} />
-          <FlatButton id='deleteUserButton' className="muidocs-icon-action-delete" label='Delete User' onClick={this.handleDelete } />
-        </div>
-      );
-    }
+    // } else {
+    //   return(
+    //     <div>
+    //       <Divider />
+    //       <br />
+    //       <FlatButton id='resetPreferencesButton' label='Reset Preferences' onClick={this.resetPreferences } style={{marginRight: '20px'}} />
+    //       <FlatButton id='deleteUserButton' className="muidocs-icon-action-delete" label='Delete User' onClick={this.handleDelete } />
+    //     </div>
+    //   );
+    // }
   }
   resetPreferences(){
     //alert('reset!')
@@ -1007,24 +990,26 @@ export class MyProfilePage extends React.Component {
     }
   }
   confirmDelete() {
-    let state = Session.get('myProfileState');
+    if(confirm("Are you sure you want to delete your entire account?  This decision is permanent and can't be reversed.")){
+      let state = Session.get('myProfileState');
 
-    // janky, but it works, i guess
-    if ((state.confirm === Meteor.userId()) || (state.confirm === Meteor.user().emails[0].address)) {
-      if(process.env.NODE_ENV === "test") console.log('Confirm _id match.  Removing.');
-
-      removeUserById.call({
-        _id:  Meteor.userId()
-      }, (error) => {
-        if (error) {
-          Bert.alert(error.reason, 'danger');
-        } else {
-          Bert.alert('User removed!', 'success');
-          browserHistory.push('/signin');
-        }
-      });
-    } else {
-      console.log('Hmmm...  yeah, lets wait a bit and make sure we have the right user.');
+      // janky, but it works, i guess
+      if ((state.confirm === Meteor.userId()) || (state.confirm === Meteor.user().emails[0].address)) {
+        if(process.env.NODE_ENV === "test") console.log('Confirm _id match.  Removing.');
+  
+        removeUserById.call({
+          _id:  Meteor.userId()
+        }, (error) => {
+          if (error) {
+            Bert.alert(error.reason, 'danger');
+          } else {
+            Bert.alert('User removed!', 'success');
+            browserHistory.push('/signin');
+          }
+        });
+      } else {
+        console.log('Hmmm...  yeah, lets wait a bit and make sure we have the right user.');
+      }    
     }
   }
   changePassword() {
