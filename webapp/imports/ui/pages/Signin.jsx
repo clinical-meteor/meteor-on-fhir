@@ -130,7 +130,9 @@ export class Signin extends React.Component {
 
   }
   handleTouchTap(event, foo, value){    
-    if(process.env.NODE_ENV === "test") console.log("this", this);
+    if(process.env.NODE_ENV === "test") {
+      console.log("this", this);
+    }
     console.log('Signin.handleTouchTap', event, foo, value)
 
     let self = this;
