@@ -1,7 +1,7 @@
 {
     "basic": "oauthdiagnostics",
-    "complete": "oauthdiagnostics",
+    "complete": "oauthdiagnostics-1-g304f45d",
     "branch": "mainindex",
-    "commit": "4bcc1522570fb4df68fbec739340b7cfd9adc3d0",
-    "timestamp": "2018-05-10"
+    "commit": "304f45d9a3f32e297859590c550d8805c16e47cb",
+    "timestamp": "2018-05-11"
 }
