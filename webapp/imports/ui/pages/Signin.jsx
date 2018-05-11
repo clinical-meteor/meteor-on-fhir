@@ -116,6 +116,7 @@ export class Signin extends React.Component {
       }
 
       browserHistory.push(get(Meteor, 'settings.public.defaults.route', '/'));
+      console.log('Callback complete!');
     });
 
     var credentialResult = OAuth.requestCredential(options, credentialRequestCompleteCallback);
