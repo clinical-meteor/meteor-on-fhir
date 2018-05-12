@@ -5,8 +5,6 @@ import ReactMixin from 'react-mixin';
 
 import createReactClass from 'create-react-class';
 
-
-//export const Image = React.createClass({
 export const Image = createReactClass({
   getInitialState: function() {
     return {
@@ -93,23 +91,25 @@ export const Image = createReactClass({
     window.addEventListener('resize', this.handleResize);
 
 
-
-    cornerstone.enable(element);
-    var imageId = "example://1";
-    cornerstone.loadImage(imageId).then(function(image) {
-        cornerstone.displayImage(element, image);
-        cornerstoneTools.mouseInput.enable(element);
-        cornerstoneTools.mouseWheelInput.enable(element);
-        cornerstoneTools.wwwc.activate(element, 1); // ww/wc is the default tool for left mouse button
-        cornerstoneTools.pan.activate(element, 2); // pan is the default tool for middle mouse button
-        cornerstoneTools.zoom.activate(element, 4); // zoom is the default tool for right mouse button
-        cornerstoneTools.zoomWheel.activate(element); // zoom is the default tool for middle mouse wheel
-
-        cornerstoneTools.touchInput.enable(element);
-        cornerstoneTools.panTouchDrag.activate(element);
-        cornerstoneTools.zoomTouchPinch.activate(element);
-    });
-
+    if(typeof cornerstone === "object"){
+      cornerstone.enable(element);
+      var imageId = "example://1";
+      cornerstone.loadImage(imageId).then(function(image) {
+          cornerstone.displayImage(element, image);
+          cornerstoneTools.mouseInput.enable(element);
+          cornerstoneTools.mouseWheelInput.enable(element);
+          cornerstoneTools.wwwc.activate(element, 1); // ww/wc is the default tool for left mouse button
+          cornerstoneTools.pan.activate(element, 2); // pan is the default tool for middle mouse button
+          cornerstoneTools.zoom.activate(element, 4); // zoom is the default tool for right mouse button
+          cornerstoneTools.zoomWheel.activate(element); // zoom is the default tool for middle mouse wheel
+  
+          cornerstoneTools.touchInput.enable(element);
+          cornerstoneTools.panTouchDrag.activate(element);
+          cornerstoneTools.zoomTouchPinch.activate(element);
+      });  
+    } else {
+      console.info('Cornerstone.js not loaded.  DICOM Viewing is not currently supported.')
+    }
 
     // start a new React render tree with our node and the children
     // passed in from above, this is the other side of the portal.

@@ -80,13 +80,13 @@ if(Package['clinical:hl7-resource-location']){
   });
 }
 
-// if(Package['clinical:hl7-resource-medication']){
-//   Medications.allow({
-//     update() { return true; },
-//     insert() { return true; },
-//     remove() { return true; }
-//   });
-// }
+if(Package['clinical:hl7-resource-medication']){
+  Medications.allow({
+    update() { return true; },
+    insert() { return true; },
+    remove() { return true; }
+  });
+}
 
 if(Package['clinical:hl7-resource-medication-order']){
   MedicationOrders.allow({
