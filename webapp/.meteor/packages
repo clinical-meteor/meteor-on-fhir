@@ -120,9 +120,9 @@ percolate:synced-cron
 d3js:d3
 
 ### Timeline
-clinical:smart-on-fhir-client
-symptomatic:continuity-of-care
-symptomatic:theming
+# clinical:smart-on-fhir-client
+# symptomatic:continuity-of-care
+# symptomatic:theming
 
 ### Blockchains
 # symptomatic:blockchain-core
