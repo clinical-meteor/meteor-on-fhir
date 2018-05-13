@@ -316,9 +316,11 @@ export class MainIndex extends React.Component {
       var fhirResources = get(Meteor, 'settings.public.modules.fhir');
 
       var count = 0;
+      // parse through each FHIR module specified in the Settings file
       Object.keys(fhirResources).forEach(function(key){
+        // is it enabled?
         if(fhirResources[key] === true){
-
+          // if so, see if there's a collection loaded up
           if(Mongo.Collection.get(key)){
               var selectedConfig = {
                 id: '',
@@ -328,24 +330,30 @@ export class MainIndex extends React.Component {
                 title: 0,
                 subtitle: ''
               }
-  
+              // parse through our config objects
               tileConfigs.forEach(function(config){
+                // if we find a config object that matches the current key, assign it
                 if(config.collection === key){
                   selectedConfig = config;
                 }
               })
               
+              // grab the count
               selectedConfig.title = Mongo.Collection.get(key).find().count();
 
+              // render out a tile
               var newTile = <Col sm={3} style={self.data.style.column} key={key}>
                 {self.renderTile(self.data.user, selectedConfig)}
               </Col>
 
+              // and add it to the array of tiles to render
+              // check whether we want to limit tiles to just those that have records on the client
               if(self.data.filterMainTiles){
                 if(Mongo.Collection.get(key).find().count() > 0){
                   tilesToRender.push(newTile);
                 } 
               } else {
+                // or display them all (including tiles with 0 records)
                 tilesToRender.push(newTile);
               }
 
