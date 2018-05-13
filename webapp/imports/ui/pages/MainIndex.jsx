@@ -705,7 +705,7 @@ export class MainIndex extends React.Component {
     }    
   }
   renderChecklists(user){
-    if (get(Meteor, 'settings.public.modules.apps.ChecklistManifesto')) {
+    if (get(Meteor, 'settings.public.modules.apps.ChecklistManifesto') && get(Meteor, 'settings.public.modules.fhir.Lists')) {
       if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
           <MenuTile          
