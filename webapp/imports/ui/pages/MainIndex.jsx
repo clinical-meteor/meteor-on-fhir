@@ -415,22 +415,20 @@ export class MainIndex extends React.Component {
   // }
 
   renderTile(user, tileConfig){
-    if (get(Meteor, 'settings.public.modules.apps.ImportChart')) {
-      if (user.isPatient || user.isPractitioner || user.isAdmin) {
-        return (
-          <MenuTile          
-            id={ tileConfig.id }
-            active={ tileConfig.active }
-            path={ tileConfig.path }
-            icon={ tileConfig.icon }
-            iconSize={ 85 }
-            title={ tileConfig.title }
-            subtitle={ tileConfig.subtitle }
-          />
+    if (user.isPatient || user.isPractitioner || user.isAdmin) {
+      return (
+        <MenuTile          
+          id={ tileConfig.id }
+          active={ tileConfig.active }
+          path={ tileConfig.path }
+          icon={ tileConfig.icon }
+          iconSize={ 85 }
+          title={ tileConfig.title }
+          subtitle={ tileConfig.subtitle }
+        />
 
-        );
-      }
-    }    
+      );
+    }
   }
   renderExperimentalSection(user){
     if (get(Meteor, 'settings.public.home.showExperimental')) {
