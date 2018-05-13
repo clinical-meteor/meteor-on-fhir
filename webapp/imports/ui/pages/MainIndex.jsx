@@ -244,6 +244,13 @@ export class MainIndex extends React.Component {
       icon: 'MapMarker',
       subtitle: 'Locations'
     }, {
+      collection: "Lists",
+      id: 'listsTile',
+      active: true,
+      path: '/checklists',
+      icon: 'MapMarker',
+      subtitle: 'Lists'
+    }, {
       collection: "Medications",
       id: 'medicationsTile',
       active: true,

@@ -102,7 +102,7 @@ clinical:hl7-resource-diagnostic-report
 clinical:hl7-resource-endpoint
 clinical:hl7-resource-goal
 clinical:hl7-resource-immunization
-# clinical:hl7-resource-location
+clinical:hl7-resource-location
 clinical:hl7-resource-list
 clinical:hl7-resource-medication
 clinical:hl7-resource-medication-order
@@ -123,6 +123,7 @@ d3js:d3
 clinical:smart-on-fhir-client
 symptomatic:continuity-of-care
 symptomatic:theming
+symptomatic:geomapping
 
 ### Blockchains
 # symptomatic:blockchain-core
