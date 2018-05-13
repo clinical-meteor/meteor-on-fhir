@@ -128,7 +128,7 @@ Meteor.startup(() => {
         <Route name="reset-password" path="/reset-password/:token" component={ ResetPassword } />
         <Route name="signup" path="/signup" component={ Signup } />
 
-        <Route name="about" path="/about" component={ AboutPage } />
+        <Route name="about" path="/about" component={ AppInfoPage } />
         <Route name="privacy" path="/privacy" component={ PrivacyPage } />
         <Route name="theming" path="/theming" component={ ThemePage } onEnter={ requireAuth } />
         <Route name="myprofile" path="/myprofile" component={ MyProfilePage } onEnter={ requireAuth } />
@@ -137,7 +137,7 @@ Meteor.startup(() => {
 
         <Route name="welcomePatient" path="/welcome/patient" component={ WelcomePatientPage } onEnter={ requireAuth }/>
 
-        <Route name="appInfo" path="/info" component={ AppInfoPage } />
+        {/* <Route name="appInfo" path="/info" component={ AppInfoPage } /> */}
 
         <Route name="checklists" path="/checklists" component={ ChecklistsPage }  onEnter={ requireAuth }/>
         <Route name="notifications" path="/notifications" component={ NotificationsPage }  onEnter={ requireAuth }/>

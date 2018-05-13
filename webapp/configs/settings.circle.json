@@ -1,10 +1,11 @@
 {
   "public": {
-    "title": "Meteor on FHIR",
+    "title": "Meteor on FHIR",      
+    "baseUrl":"https://fhir-timeline.meteorapp.com/",
+    "logging": "debug",
     "theme": {
       "showVideoBackground": false,
       "darkroomTextEnabled": false,
-      "defaultVideo": "/VideoBackgrounds/Circulation.mp4",
       "backgroundImagePath": "/backgrounds/Gradient.png"     
     },
     "home": {
@@ -81,7 +82,14 @@
       "apps": {
         "ChecklistManifesto": false,
         "ContinuityOfCare": false,
-        "Videoconferencing": false        
+        "Videoconferencing": false,
+        "ZygoteAvatar": false,
+        "Radiology": false,
+        "SmartExamRoom": false,
+        "VitalSignsTracking": false,
+        "HealthDashboard": false,
+        "ImportChart": false,
+        "Timeline": false
       },
       "fhir": {
         "AllergyIntolerances": true,
@@ -94,8 +102,8 @@
         "Goals": true,
         "ImagingStudies": false,
         "Immunizations": true,
-        "Locations": true,
-        "Lists": true,
+        "Locations": false,
+        "Lists": false,
         "Medications": true,
         "MedicationOrders": true,
         "MedicationStatements": true,

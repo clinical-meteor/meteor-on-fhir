@@ -29,13 +29,14 @@ dburles:collection-helpers
 reywood:publish-composite
 mdg:validated-method
 mdg:validation-error
+dburles:mongo-collection-instances
 
 # security
 browser-policy@1.1.0
 browser-policy-common@1.0.11
 browser-policy-content@1.1.0
 browser-policy-framing@1.1.0
-force-ssl
+
 
 # i18n
 universe:i18n
@@ -54,12 +55,12 @@ standard-minifier-js@2.2.0
 ddp-rate-limiter@1.0.7
 
 # rest apis
-simple:rest-accounts-password
-simple:rest
+# simple:rest-accounts-password
+# simple:rest
 
 # testing
-xolvio:cleaner
-dispatch:mocha-phantomjs
+# xolvio:cleaner
+# dispatch:mocha-phantomjs
 practicalmeteor:mocha
 practicalmeteor:chai
 practicalmeteor:sinon
@@ -89,6 +90,7 @@ clinical:glass-ui
 clinical:default-landing-page
 clinical:accounts-famous-dead-people
 clinical:accounts-housemd
+clinical:oauth
 
 # fhir resources
 clinical:hl7-resource-allergy-intolerance
@@ -97,9 +99,11 @@ clinical:hl7-resource-careplan
 clinical:hl7-resource-datatypes
 clinical:hl7-resource-device
 clinical:hl7-resource-diagnostic-report
+clinical:hl7-resource-endpoint
 clinical:hl7-resource-goal
 clinical:hl7-resource-immunization
 # clinical:hl7-resource-location
+# clinical:hl7-resource-list@1.3.0
 clinical:hl7-resource-medication
 clinical:hl7-resource-medication-order
 clinical:hl7-resource-medication-statement
@@ -114,3 +118,14 @@ simple:json-routes
 
 percolate:synced-cron
 d3js:d3
+
+### Timeline
+# clinical:smart-on-fhir-client
+# symptomatic:continuity-of-care
+# symptomatic:theming
+
+### Blockchains
+# symptomatic:blockchain-core
+# fhirblocks:core
+# clinical:hl7-resource-consent
+# clinical:hl7-resource-contract

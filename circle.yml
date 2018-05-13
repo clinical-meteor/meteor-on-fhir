@@ -31,7 +31,7 @@ general:
 ## Customize dependencies
 dependencies:
   cache_directories:
-    - "~/.meteor" # relative to the user's home directory
+    #- "~/.meteor" # relative to the user's home directory
     #- ~/nvm/v0.10.33/lib/node_modules/starrynight
     #- ~/nvm/v0.10.33/bin/starrynight
 
@@ -40,7 +40,7 @@ dependencies:
     - mkdir -p .meteor
 
     # If Meteor is already cached, do not need to build it again.
-    - if [ ! -e .meteor/meteor ]; then curl https://install.meteor.com?=release=1.4.2.3 | /bin/sh; else echo "Meteor seems to be cached"; fi;
+    - if [ ! -e .meteor/meteor ]; then curl https://install.meteor.com?=release=1.6.1.1 | /bin/sh; else echo "Meteor seems to be cached"; fi;
 
     # Link the meteor executable into /usr/bin
     - sudo ln -s .meteor/meteor /usr/bin/meteor
@@ -64,6 +64,7 @@ test:
     # clone the relevant packages so we don't get errors
     # - cd webapp/packages && git clone https://github.com/awatson1978/symptomatic-blockchain-core 
     - cd webapp/packages && git clone https://github.com/awatson1978/symptomatic-landing-page
+    - cd webapp/packages && git clone https://github.com/awatson1978/symptomatic-theming
 
     # # and make sure that symptomatic packages aren't installed
     # - if [ -e .meteor/local/build/programs/server/packages/symptomatic_blockchain-core ]; then cd webapp && meteor remove symptomatic:blockchain-core; fi;

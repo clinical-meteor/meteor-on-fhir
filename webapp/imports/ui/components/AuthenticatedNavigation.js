@@ -19,7 +19,6 @@ import MenuButton from '/imports/ui/components/MenuButton';
 import NorthEastMenu from '/imports/ui/components/NorthEastMenu';
 
 
-
 Session.get('showNotificationMenu', true);
 
 let style = {
@@ -105,7 +104,7 @@ export class AuthenticatedNavigation extends React.Component {
 
   openNotifications(){
     // not every wants the notification menu, so we make sure it's configurable in the Meteor.settings file
-    if(Meteor.settings && Meteor.settings.public && Meteor.settings.public.defaults && Meteor.settings.public.defaults.notificationMenu){
+    if(get(Meteor, 'settings.public.defaults.notificationMenu')){
       browserHistory.push('/notifications');
     }    
   }
@@ -160,13 +159,8 @@ export class AuthenticatedNavigation extends React.Component {
   }
 
   toggleNotificationMenu(){
-    console.log("showNotificationMenu", Session.get('showNotificationMenu'));
-
-    if (Session.get('showNotificationMenu')) {
-      Session.set('showNotificationMenu', false);
-    } else {
-      Session.set('showNotificationMenu', true);
-    }
+    // console.log("showNotificationMenu", Session.get('showNotificationMenu'));
+    Sesion.toggle('showNotificationMenu');
   }
 }
 
