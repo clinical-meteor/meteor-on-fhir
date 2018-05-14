@@ -29,6 +29,9 @@ import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
 import { get } from 'lodash';
 
+// import { SwipeEventExample } from '/imports/ui/components/SwipeEventExample';
+import Swipeable from 'react-swipeable'
+
 const sampleNotifications = [{
   primaryText:"Record copied",
   secondaryText:"Jan 20, 2014",                
@@ -148,7 +151,24 @@ export class NotificationsPage extends React.Component {
     }});
 
   }  
-
+  swiping(e, deltaX, deltaY, absX, absY, velocity) {
+    console.log("You're Swiping...", e, deltaX, deltaY, absX, absY, velocity)
+    alert("You're Swiping...", e, deltaX, deltaY, absX, absY, velocity)
+  }
+ 
+  swipingLeft(e, absX) {
+    console.log("You're Swiping to the Left...", e, absX)
+    alert("You're Swiping to the Left...", e, absX)
+  }
+ 
+  swiped(e, deltaX, deltaY, isFlick, velocity) {
+    console.log("You Swiped...", e, deltaX, deltaY, isFlick, velocity)
+  }
+ 
+  swipedUp(e, deltaY, isFlick) {
+    console.log("You Swiped Up...", e, deltaY, isFlick)
+    alert("You Swiped Up...", e, deltaY, isFlick)
+  }
   render() {
     var self = this;
     var notificationItems = [];
@@ -189,32 +209,39 @@ export class NotificationsPage extends React.Component {
 
     return (
       <div id='notificationsPage' >
-        <VerticalCanvas>
-          <GlassCard height='auto'>
-            <CardTitle title="Notifications" titleStyle={this.data.style.title} />
-            <CardText>
-              <List>
-                {notificationItems}
-                <Dialog
-                  title="Catch!"
-                  actions={catchActions}
-                  modal={false}
-                  open={this.data.catchDialog.open}
-                  onRequestClose={this.handleCloseCatch}
-                >
-                    <CardHeader title="Incoming Patient Chart" />
-                    <CardText>
-                      Patient Chart
-                    </CardText>
-                </Dialog>
+          <VerticalCanvas>
+            <Swipeable
+              onSwiping={this.swiping}
+              onSwipingLeft={this.swipingLeft}
+              onSwiped={this.swiped}
+              onSwipedUp={this.swipedUp} 
+            >
+              <GlassCard height='auto'>
+                <CardTitle title="Notifications" titleStyle={this.data.style.title} />
+                <CardText>
+                  <List>
+                    {notificationItems}
+                    <Dialog
+                      title="Catch!"
+                      actions={catchActions}
+                      modal={false}
+                      open={this.data.catchDialog.open}
+                      onRequestClose={this.handleCloseCatch}
+                    >
+                        <CardHeader title="Incoming Patient Chart" />
+                        <CardText>
+                          Patient Chart
+                        </CardText>
+                    </Dialog>
 
 
 
 
-              
-              </List>
-            </CardText>
-          </GlassCard>
+                  
+                  </List>
+                </CardText>
+              </GlassCard>
+          </Swipeable>
         </VerticalCanvas>
       </div>
     );
