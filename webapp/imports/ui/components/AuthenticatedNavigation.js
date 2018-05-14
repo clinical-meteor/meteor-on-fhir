@@ -160,7 +160,7 @@ export class AuthenticatedNavigation extends React.Component {
 
   toggleNotificationMenu(){
     // console.log("showNotificationMenu", Session.get('showNotificationMenu'));
-    Sesion.toggle('showNotificationMenu');
+    Session.toggle('showNotificationMenu');
   }
 }
 

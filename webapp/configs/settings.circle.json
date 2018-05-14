@@ -103,7 +103,7 @@
         "ImagingStudies": false,
         "Immunizations": true,
         "Locations": false,
-        "Lists": false,
+        "Lists": true,
         "Medications": true,
         "MedicationOrders": true,
         "MedicationStatements": true,
