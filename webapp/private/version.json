@@ -1,7 +1,7 @@
 {
     "basic": "oauthdiagnostics",
-    "complete": "oauthdiagnostics-20-g65701a3",
+    "complete": "oauthdiagnostics-21-ga10e2bf",
     "branch": "iaas",
-    "commit": "65701a35925be61f25042c90a8a1f99c80dd9740",
+    "commit": "a10e2bff69e7bdff9a644a5643507b1154d111e3",
     "timestamp": "2018-05-17"
 }
