@@ -59,7 +59,7 @@ clinical:hl7-resource-procedure@1.4.2
 clinical:hl7-resource-risk-assessment@1.4.7
 clinical:keybindings@1.4.6
 clinical:oauth@1.2.19
-clinical:smart-on-fhir-client@0.1.30
+clinical:smart-on-fhir-client@0.1.31
 clinical:theming@0.4.10
 clinical:user-model@1.6.0
 coffeescript@1.0.17
