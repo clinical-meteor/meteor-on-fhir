@@ -136,10 +136,37 @@ export class Footer extends React.Component {
       'profile.continuityOfCare': ''
     }});
   }
-  sendNotification(){
-    Meteor.users.update({_id: Meteor.userId()}, {$set: {
-      'profile.inbox': true
-    }});
+  transferCurrentPatient(){
+    console.log('Transferring patient...');
+    console.log('selectedPractitioner:  ', Session.get('selectedPractitioner'));
+
+
+    var practitionerName = '';
+    var selectedPractitioner = Practitioners.findOne({_id: Session.get('selectedPractitioner')})
+    if(selectedPractitioner){
+      practitionerName = selectedPractitioner.displayName();
+    }
+    console.log('Practitioner Name:     ', practitionerName);
+
+
+    console.log('selectedPatient:       ', Session.get('selectedPatient'));
+
+    var displayText = '';
+    var currentPatient = Patients.findOne({_id: Session.get('selectedPatient')})
+    if(currentPatient){
+      displayText = currentPatient.displayName();
+    }
+    console.log('Patient Name:          ', displayText);
+
+    if(Session.get('selectedPractitioner')){
+      Meteor.users.update({_id: Session.get('selectedPractitioner')}, {$set: {
+        'profile.inbox': true,
+        'profile.incomingPatient': {
+          display: displayText,
+          reference: Session.get('selectedPatient')
+        }     
+      }});  
+    }
   }
   pinkBlueToggle(){
     console.log('pinkBlueToggle');
@@ -247,7 +274,7 @@ export class Footer extends React.Component {
       // the user is logged in as a normal user
       return (
         <div>
-          <FlatButton label='Send Notifcation' className='querySystemButton' ref='querySystemButton' onClick={this.sendNotification.bind(this)} style={this.data.style.buttonText} ></FlatButton>
+          <FlatButton label='Transfer Current Patient' className='querySystemButton' ref='querySystemButton' onClick={this.transferCurrentPatient.bind(this)} style={this.data.style.buttonText} ></FlatButton>
         </div>
       );
 
