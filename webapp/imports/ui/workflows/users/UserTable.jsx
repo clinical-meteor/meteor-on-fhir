@@ -192,7 +192,11 @@ export class UserTable extends React.Component {
     if (isAdmin) {
       return (
         <td>
-          <IconButton iconClassName="muidocs-icon-content-clear" onClick={ this.removeUser.bind(this, this.data.users[i]._id) } />
+          <FlatButton
+            label="Remove"
+            primary={true}
+            onTouchTap={ this.removeUser.bind(this, this.data.users[i]._id) }
+          />
         </td>
       );
     }
@@ -200,7 +204,7 @@ export class UserTable extends React.Component {
   renderAdminHeaders(isAdmin) {
     if (isAdmin) {
       return (
-        <th>Remove</th>
+        <th>remove</th>
       );
     }
   }
