@@ -64,22 +64,28 @@ export class GlassApp extends React.Component {
     if (Meteor.user()) {
       // play a video if no background image or color has been set
       // and we're on a tablet or larger device (no phone)
-      if (Meteor.user() && Meteor.user().profile && Meteor.user().profile.theme) {
+      if (get(Meteor.user(), 'profile.theme')) {
 
-        if (Meteor.user().profile.theme.backgroundColor) {
-          data.app.style.background = Meteor.user().profile.theme.backgroundColor;
+        if (get(Meteor.user(), 'profile.theme.backgroundColor')) {
+          data.app.style.background = get(Meteor.user(), 'profile.theme.backgroundColor');
         } else {
           data.app.style.background = 'inherit';
         }
 
         if (Meteor.user().profile.theme.backgroundImagePath) {
-          data.app.style = {
-            backgroundImage: 'url(' + Meteor.user().profile.theme.backgroundImagePath + ')',
-            WebkitBackgroundSize: 'cover',
-            MozBackgroundSize: 'cover',
-            OBackgroundSize: 'cover',
-            backgroundSize: 'cover'
-          };
+          if(Session.get('timelineBackground')){
+            data.app.style = {
+              background: get(Meteor.user(), 'profile.theme.backgroundColor')
+            }
+          } else {
+            data.app.style = {
+              backgroundImage: 'url(' + Meteor.user().profile.theme.backgroundImagePath + ')',
+              WebkitBackgroundSize: 'cover',
+              MozBackgroundSize: 'cover',
+              OBackgroundSize: 'cover',
+              backgroundSize: 'cover'
+            };  
+          }
         }
 
         // if (!Meteor.user().profile.theme.backgroundColor && !Meteor.user().profile.theme.backgroundImagePath && (Session.get('appWidth') > 768)) {
@@ -134,11 +140,7 @@ export class GlassApp extends React.Component {
           <source src={videoSrc} type='video/mp4'></source>
         </video>
       );
-    } else {
-      return(
-        <div id='backgroundLayer' style={this.data.app.style}></div>
-      );
-    }
+    } 
   }
 
   render(){

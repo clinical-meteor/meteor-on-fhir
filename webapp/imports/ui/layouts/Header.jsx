@@ -35,23 +35,6 @@ Sidebar = {
   }
 }
 
-
-// Styling of the search bar in previous incarnations
-// #globalInput{
-//   width: 60%;
-//   min-width: 500px;
-//   position: absolute;
-//   z-index: 5;
-//   left: 0px;
-//   input{
-//     padding-left: 20px;
-//     height: 50px;
-//     background-color: rgba(0,0,0,0);
-//     width: 100%;
-//   }
-// }
-
-
 export class Header extends React.Component {
   getMeteorData() {
     let data = {
@@ -210,10 +193,7 @@ export class Header extends React.Component {
         >
           
         </AppBar>      
-
       </div>
-
-      
     );
   }
 }
