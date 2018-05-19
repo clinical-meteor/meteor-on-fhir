@@ -32,10 +32,10 @@ mdg:validation-error
 dburles:mongo-collection-instances
 
 # security
-browser-policy@1.1.0
-browser-policy-common@1.0.11
-browser-policy-content@1.1.0
-browser-policy-framing@1.1.0
+# browser-policy@1.1.0
+# browser-policy-common@1.0.11
+# browser-policy-content@1.1.0
+# browser-policy-framing@1.1.0
 
 
 # i18n
@@ -129,3 +129,7 @@ d3js:d3
 # fhirblocks:core
 # clinical:hl7-resource-consent
 # clinical:hl7-resource-contract
+
+
+clinical:example-plugin
+clinical:hl7-resource-location
