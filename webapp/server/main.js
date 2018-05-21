@@ -1,7 +1,6 @@
 import '/imports/startup/server';
 import '/imports/api/users/methods';
 
-import { BrowserPolicy } from 'meteor/browser-policy-common';
 
 Meteor.startup(function(){
 
@@ -19,25 +18,36 @@ Meteor.startup(function(){
     Meteor.call('resyncConfiguration');
   }
 
-  console.log('Configuring content-security-policy:');
-  BrowserPolicy.content.allowSameOriginForAll();
-  BrowserPolicy.content.allowDataUrlForAll()
-  BrowserPolicy.content.allowOriginForAll('self');
-  BrowserPolicy.content.allowObjectOrigin('self')
-  BrowserPolicy.content.allowOriginForAll('font src');
-  BrowserPolicy.content.allowOriginForAll('*.wikipedia.com');
-  BrowserPolicy.content.allowOriginForAll('*.wikipedia.org');
-  BrowserPolicy.content.allowOriginForAll('fonts.googleapis.com');
-  BrowserPolicy.content.allowOriginForAll('fonts.gstatic.com');
-  BrowserPolicy.content.allowImageOrigin("*")
-  BrowserPolicy.content.allowEval();
-  BrowserPolicy.content.allowInlineScripts()
-  BrowserPolicy.content.allowInlineStyles()  
+  // browser content policies are an important security measure 
+  // to only allow connections to specific websites
+  // we keep this section optional, because some people want to use 
+  // meteor-on-fhir during hackathons, research, and various
+  // projects where HIPAA grade security isn't always needed
+  if(Package['browser-policy-common']){
 
-  BrowserPolicy.content.allowObjectOrigin( 'zygotebody.com' );
-  BrowserPolicy.content.allowFrameOrigin('zygotebody.com');
-  BrowserPolicy.content.allowObjectDataUrl('zygotebody.com');
-  BrowserPolicy.content.allowOriginForAll('zygotebody.com');
-  BrowserPolicy.content.allowConnectOrigin("zygotebody.com")
-  BrowserPolicy.content.allowImageOrigin("zygotebody.com")   
+    // dynamic import
+    import { BrowserPolicy } from 'meteor/browser-policy-common';
+
+    console.log('Configuring content-security-policy.');
+    BrowserPolicy.content.allowSameOriginForAll();
+    BrowserPolicy.content.allowDataUrlForAll()
+    BrowserPolicy.content.allowOriginForAll('self');
+    BrowserPolicy.content.allowObjectOrigin('self')
+    BrowserPolicy.content.allowOriginForAll('font src');
+    BrowserPolicy.content.allowOriginForAll('*.wikipedia.com');
+    BrowserPolicy.content.allowOriginForAll('*.wikipedia.org');
+    BrowserPolicy.content.allowOriginForAll('fonts.googleapis.com');
+    BrowserPolicy.content.allowOriginForAll('fonts.gstatic.com');
+    BrowserPolicy.content.allowImageOrigin("*")
+    BrowserPolicy.content.allowEval();
+    BrowserPolicy.content.allowInlineScripts()
+    BrowserPolicy.content.allowInlineStyles()  
+  
+    BrowserPolicy.content.allowObjectOrigin( 'zygotebody.com' );
+    BrowserPolicy.content.allowFrameOrigin('zygotebody.com');
+    BrowserPolicy.content.allowObjectDataUrl('zygotebody.com');
+    BrowserPolicy.content.allowOriginForAll('zygotebody.com');
+    BrowserPolicy.content.allowConnectOrigin("zygotebody.com")
+    BrowserPolicy.content.allowImageOrigin("zygotebody.com")   
+  }
 })
