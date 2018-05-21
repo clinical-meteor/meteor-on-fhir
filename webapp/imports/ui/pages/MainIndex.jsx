@@ -73,7 +73,8 @@ export class MainIndex extends React.Component {
         },
         column: {
           paddingLeft: '5px',
-          paddingRight: '5px'
+          paddingRight: '5px',
+          //border: '1px solid orange'
         }
       },
       user: {
