@@ -40,6 +40,7 @@ export class PractitionerSidebar extends React.Component {
              <MenuItem primaryText='Index' href='/' />
           </LinkContainer>
 
+          <hr />
           <LinkContainer to='/provider-directory'>
              <MenuItem primaryText='Provider Directory' href='/provider-directory' />
           </LinkContainer>
@@ -48,25 +49,14 @@ export class PractitionerSidebar extends React.Component {
              <MenuItem primaryText='Careplan Designer' href='/careplan-designer' />
           </LinkContainer>          
 
-          <LinkContainer to='/dashboard'>
-             <MenuItem primaryText='Dashboard' href='/dashboard' />
+          <hr />
+          <LinkContainer to='/data-management'>
+             <MenuItem primaryText='Data Management' href='/theming' />
           </LinkContainer>
-
-          <LinkContainer to='/patients'>
-             <MenuItem primaryText='Patients' href='/patients' />
-          </LinkContainer>
-
-          <LinkContainer to='/practitioners'>
-             <MenuItem primaryText='Practitioners' href='/practitioners' />
-          </LinkContainer>
-
-          <LinkContainer to='/medications'>
-             <MenuItem primaryText='Medications' href='/medications' />
-          </LinkContainer>
-
           <LinkContainer to='/users'>
              <MenuItem primaryText='Users' href='/users' />
           </LinkContainer>
+          <hr />
 
           <LinkContainer to='/signin'>
              <MenuItem className='logoutMenuItem' primaryText='Logout' href='/signin' onClick={this.handleLogout} />

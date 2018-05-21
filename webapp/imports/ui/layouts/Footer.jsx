@@ -118,11 +118,136 @@ export class Footer extends React.Component {
   exportContinuityOfCareDoc(){
     console.log('exportContinuityOfCareDoc');
 
-    var continuityOfCareDoc = {}
+    var continuityOfCareDoc = {
+      resourceType: "Bundle",
+      entry: []
+    }
 
-    if(Meteor.user()){
-      continuityOfCareDoc = get(Meteor.user(), 'profile.continuityOfCare');
-    }    
+    if(typeof AllergyIntollerances === "object"){
+      AllergyIntollerances.find().forEach(function(allergy){
+        continuityOfCareDoc.entry.push({
+          fullUrl: "/AllergyIntolerance/" + allergy._id,
+          resourcec: allergy
+        })
+      })
+    }
+    if(typeof CarePlans === "object"){
+      CarePlans.find().forEach(function(careplan){
+        continuityOfCareDoc.entry.push({
+          fullUrl: "/CarePlan/" + careplan._id,
+          resourcec: careplan
+        })
+      })
+    }
+    if(typeof Conditions === "object"){
+      Conditions.find().forEach(function(condition){
+        continuityOfCareDoc.entry.push({
+          fullUrl: "/Condition/" + condition._id,
+          resourcec: condition
+        })
+      })
+    }
+    if(typeof Devices === "object"){
+      Devices.find().forEach(function(device){
+        continuityOfCareDoc.entry.push({
+          fullUrl: "/Device/" + device._id,
+          resourcec: device
+        })
+      })
+    }
+    if(typeof Goals === "object"){
+      Goals.find().forEach(function(goal){
+        continuityOfCareDoc.entry.push({
+          fullUrl: "/Goal/" + goal._id,
+          resourcec: goal
+        })
+      })
+    }
+    if(typeof Immunizations === "object"){
+      Immunizations.find().forEach(function(immunization){
+        continuityOfCareDoc.entry.push({
+          fullUrl: "/Immunization/" + immunization._id,
+          resourcec: immunization
+        })
+      })
+    }
+    if(typeof Medications === "object"){
+      Medications.find().forEach(function(medication){
+        continuityOfCareDoc.entry.push({
+          fullUrl: "/Medication/" + medication._id,
+          resourcec: medication
+        })
+      })
+    }
+    if(typeof MedicationOrders === "object"){
+      MedicationOrders.find().forEach(function(medicationOrder){
+        continuityOfCareDoc.entry.push({
+          fullUrl: "/MedicationOrder/" + medicationOrder._id,
+          resourcec: medicationOrder
+        })
+      })
+    }
+    if(typeof MedicationStatements === "object"){
+      MedicationStatements.find().forEach(function(medicationStatement){
+        continuityOfCareDoc.entry.push({
+          fullUrl: "/MedicationStatement/" + medicationStatement._id,
+          resourcec: medicationStatement
+        })
+      })
+    }
+    if(typeof Observations === "object"){
+      Observations.find().forEach(function(observation){
+        continuityOfCareDoc.entry.push({
+          fullUrl: "/Observation/" + observation._id,
+          resourcec: observation
+        })
+      })
+    }
+    if(typeof Organizations === "object"){
+      Organizations.find().forEach(function(organization){
+        continuityOfCareDoc.entry.push({
+          fullUrl: "/Organization/" + organization._id,
+          resourcec: organization
+        })
+      })
+    }
+    if(typeof Patients === "object"){
+      Patients.find().forEach(function(patient){
+        continuityOfCareDoc.entry.push({
+          fullUrl: "/Patient/" + patient._id,
+          resourcec: patient
+        })
+      })
+    }
+    if(typeof Practitioners === "object"){
+      Practitioners.find().forEach(function(practitioner){
+        continuityOfCareDoc.entry.push({
+          fullUrl: "/Practitioner/" + practitioner._id,
+          resourcec: practitioner
+        })
+      })
+    }
+    if(typeof Procedures === "object"){
+      Procedures.find().forEach(function(procedure){
+        continuityOfCareDoc.entry.push({
+          fullUrl: "/Procedure/" + procedure._id,
+          resourcec: procedure
+        })
+      })
+    }
+    if(typeof RiskAssessments === "object"){
+      RiskAssessments.find().forEach(function(riskAssessment){
+        continuityOfCareDoc.entry.push({
+          fullUrl: "/RiskAssessment/" + riskAssessment._id,
+          resourcec: riskAssessment
+        })
+      })
+    }
+    // if(Meteor.user()){
+    //   continuityOfCareDoc = get(Meteor.user(), 'profile.continuityOfCare');
+    // }    
+
+
 
     var dataString = 'data:text/csv;charset=utf-8,' + encodeURIComponent(JSON.stringify(continuityOfCareDoc, null, 2));  
     var downloadlAnchorElement = document.getElementById('downloadAnchorElement');
@@ -244,21 +369,39 @@ export class Footer extends React.Component {
         );
 
       // CONTINUITY OF CARE
-      } else if (Meteor.userId() && (Session.equals('pathname', '/continuity-of-care') || Session.equals('pathname', '/data-import') || Session.equals('pathname', '/timeline') || Session.equals('pathname', '/timeline-sidescroll'))) {
+      } else if (Meteor.userId() && (Session.equals('pathname', '/continuity-of-care') )) {
         // the user is logged in as a normal user
         return (
           <div>
-            <FlatButton label='Import' disabled={true} className='importData' ref='importCcd' onClick={this.openLink.bind(this, '/data-import')} style={this.data.style.disabledButtonText} ></FlatButton>
-            <FlatButton label='Continuity of Care' className='ccdPage' ref='ccdPage' onClick={this.openLink.bind(this, '/continuity-of-care')} style={this.data.style.buttonText} ></FlatButton>
-            <FlatButton label='Timeline' disabled={true} className='verticalTimeline' ref='verticalTimeline' onClick={this.openLink.bind(this, '/timeline')} style={this.data.style.disabledButtonText} ></FlatButton>
             <FlatButton label='Sidescroll Timeline' className='horizontalTimeline' ref='horizontalTimeline' onClick={this.openLink.bind(this, '/timeline-sidescroll')} style={this.data.style.buttonText} ></FlatButton>
-            <FlatButton label='Export CCD' disabled={true} id="exportContinuityOfCareDoc" className='exportCcd' ref='exportContinuityOfCareDoc' style={this.data.style.disabledButtonText} onClick={this.exportContinuityOfCareDoc}></FlatButton>
-            <FlatButton label='Clear' disabled={true} id="clearContinuityOfCareDoc" className='clearCcd' ref='clearContinuityOfCareDoc' style={this.data.style.disabledButtonText} onClick={this.clearContinuityOfCareDoc}></FlatButton>
+            <FlatButton label='Import' className='importData' ref='importCcd' onClick={this.openLink.bind(this, '/data-management')} style={this.data.style.buttonText} ></FlatButton>
+            <FlatButton label='Export CCD' id="exportContinuityOfCareDoc" className='exportCcd' ref='exportContinuityOfCareDoc' style={this.data.style.buttonText} onClick={this.exportContinuityOfCareDoc}></FlatButton>
+            <a id="downloadAnchorElement" style={{display: "none"}}></a>
+          </div>
+        );
+
+      // TIMELINE
+      } else if (Meteor.userId() && (Session.equals('pathname', '/timeline') || Session.equals('pathname', '/timeline-sidescroll'))) {
+        // the user is logged in as a normal user
+        return (
+          <div>
+            <FlatButton label='Continuity of Care' className='ccdPage' ref='ccdPage' onClick={this.openLink.bind(this, '/continuity-of-care')} style={this.data.style.buttonText} ></FlatButton>
             <FlatButton label={this.data.gender} id="pinkBlueToggle" className='clearCcd' ref='pinkBlueToggle' style={this.data.style.buttonText} onClick={this.pinkBlueToggle}></FlatButton>
             <FlatButton label='Background' id="toggleBackground" className='clearCcd' ref='toggleBackground' style={this.data.style.buttonText} onClick={this.toggleBackground}></FlatButton>
             <a id="downloadAnchorElement" style={{display: "none"}}></a>
           </div>
         );
+
+      // DATA Management
+      } else if (Meteor.userId() && (Session.equals('pathname', '/data-management'))) {
+        // the user is logged in as a normal user
+        return (
+          <div>
+            <FlatButton label='Export CCD' id="exportContinuityOfCareDoc" className='exportCcd' ref='exportContinuityOfCareDoc' style={this.data.style.buttonText} onClick={this.exportContinuityOfCareDoc}></FlatButton>
+            <FlatButton label='Clear' disabled={true} id="clearContinuityOfCareDoc" className='clearCcd' ref='clearContinuityOfCareDoc' style={this.data.style.disabledButtonText} onClick={this.clearContinuityOfCareDoc}></FlatButton>
+          </div>
+        );
+
 
       // CONDITIONS
       } else if (Meteor.userId() && (Session.equals('pathname', '/conditions')) && Meteor.settings.public && Meteor.settings.public.modules && Meteor.settings.public.modules.epic) {
