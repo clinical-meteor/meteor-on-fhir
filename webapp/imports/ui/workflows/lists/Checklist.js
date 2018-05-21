@@ -106,7 +106,7 @@ export class Checklist extends React.Component {
     let listRows = [];
     for (var i = 0; i < this.data.entry.length; i++) {
       listRows.push(
-        <tr key={i} style={this.data.style.rowText} selected={ this.data.entry[i].selected } selectable={true} onClick={this.rowClick.bind(this)}>
+        <tr key={i} style={this.data.style.rowText} selected={ this.data.entry[i].selected } onClick={this.rowClick.bind(this)}>
           <td style={this.data.style.cell}>
             <Checkbox checked={this.data.entry[i].selected} onClick={this.toggleTask.bind('this', i)} />
           </td>
