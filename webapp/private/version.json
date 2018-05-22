@@ -1,7 +1,7 @@
 {
-    "basic": "oauthdiagnostics",
-    "complete": "oauthdiagnostics-20-g65701a3",
+    "basic": "v1.0-prerelease",
+    "complete": "v1.0-prerelease-11-gabea568",
     "branch": "hackathon-prep",
-    "commit": "65701a35925be61f25042c90a8a1f99c80dd9740",
-    "timestamp": "2018-05-17"
+    "commit": "abea5686e42bfe9a4c0074841d5754eacd1faafe",
+    "timestamp": "2018-05-22"
 }
