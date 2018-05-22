@@ -160,8 +160,8 @@ export class UserTable extends React.Component {
     Session.set('transferPatientDialogOpen', false);
   }  
   swiping(e, deltaX, deltaY, absX, absY, velocity) {
-    console.log("You're Swiping...", e, deltaX, deltaY, absX, absY, velocity)
-    alert("You're Swiping...", e, deltaX, deltaY, absX, absY, velocity)
+    //console.log("You're Swiping...", e, deltaX, deltaY, absX, absY, velocity)
+    //alert("You're Swiping...", e, deltaX, deltaY, absX, absY, velocity)
   }
  
   swipingLeft(e, absX) {
@@ -186,7 +186,8 @@ export class UserTable extends React.Component {
   }
   swipedUp(e, deltaY, isFlick) {
     console.log("You Swiped Up...", e, deltaY, isFlick)
-    this.transferPatient();
+    //this.transferPatient();
+    this.confirmTransfer();
   }
   renderAdminControls(isAdmin, i) {
     if (isAdmin) {
