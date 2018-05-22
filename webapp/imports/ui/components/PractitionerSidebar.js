@@ -57,6 +57,9 @@ export class PractitionerSidebar extends React.Component {
              <MenuItem primaryText='Users' href='/users' />
           </LinkContainer>
           <hr />
+          <LinkContainer to='/theming'>
+             <MenuItem primaryText='Theming' href='/theming' />
+          </LinkContainer>
 
           <LinkContainer to='/signin'>
              <MenuItem className='logoutMenuItem' primaryText='Logout' href='/signin' onClick={this.handleLogout} />
