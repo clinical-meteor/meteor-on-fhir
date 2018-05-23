@@ -50,13 +50,20 @@ Meteor.startup(function(){
     BrowserPolicy.content.allowConnectOrigin("zygotebody.com")
     BrowserPolicy.content.allowImageOrigin("zygotebody.com")   
 
-    // BrowserPolicy.content.allowOriginForAll('fhir-timeline.meteorapp.com');
-    // BrowserPolicy.content.allowFrameOrigin('fhir-timeline.meteorapp.com');
-    // BrowserPolicy.content.allowObjectDataUrl('fhir-timeline.meteorapp.com');
-    // BrowserPolicy.content.allowOriginForAll('fhir-timeline.meteorapp.com');
-    // BrowserPolicy.content.allowConnectOrigin("fhir-timeline.meteorapp.com")
-    // BrowserPolicy.content.allowImageOrigin("fhir-timeline.meteorapp.com")  
+    BrowserPolicy.content.allowOriginForAll('fhir-timeline.meteorapp.com');
+    BrowserPolicy.content.allowFrameOrigin('fhir-timeline.meteorapp.com');
+    BrowserPolicy.content.allowObjectDataUrl('fhir-timeline.meteorapp.com');
+    BrowserPolicy.content.allowOriginForAll('fhir-timeline.meteorapp.com');
+    BrowserPolicy.content.allowConnectOrigin("fhir-timeline.meteorapp.com")
+    BrowserPolicy.content.allowImageOrigin("fhir-timeline.meteorapp.com")  
+    BrowserPolicy.content.allowObjectOrigin('fhir-timeline.meteorapp.com')
 
-    // BrowserPolicy.content.allowOriginForAll('open-ic-epic.com');
+    BrowserPolicy.content.allowOriginForAll('open-ic-epic.com');
+    BrowserPolicy.content.allowFrameOrigin('open-ic-epic.com');
+    BrowserPolicy.content.allowObjectDataUrl('open-ic-epic.com');
+    BrowserPolicy.content.allowOriginForAll('open-ic-epic.com');
+    BrowserPolicy.content.allowConnectOrigin("open-ic-epic.com")
+    BrowserPolicy.content.allowImageOrigin("open-ic-epic.com")  
+    BrowserPolicy.content.allowObjectOrigin('open-ic-epic.com')
   }
 })
