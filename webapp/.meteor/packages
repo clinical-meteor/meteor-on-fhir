@@ -120,9 +120,9 @@ d3js:d3
 
 ### Timeline
 clinical:smart-on-fhir-client
-symptomatic:continuity-of-care
-symptomatic:theming
-symptomatic:geomapping
+#symptomatic:continuity-of-care
+#symptomatic:theming
+#symptomatic:geomapping
 
 ### Blockchains
 # symptomatic:blockchain-core
