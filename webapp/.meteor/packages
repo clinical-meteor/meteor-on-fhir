@@ -36,6 +36,9 @@ dburles:mongo-collection-instances
 # browser-policy-common@1.0.11
 # browser-policy-content@1.1.0
 # browser-policy-framing@1.1.0
+# force-ssl
+audit-argument-checks@1.0.7
+dynamic-import
 
 
 # i18n
@@ -73,10 +76,6 @@ fourseven:scss
 momentjs:moment
 
 simple:dev-error-overlay
-
-# security
-audit-argument-checks@1.0.7
-dynamic-import
 
 clinical:fonts
 clinical:extended-api
