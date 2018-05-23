@@ -49,5 +49,7 @@ Meteor.startup(function(){
     BrowserPolicy.content.allowOriginForAll('zygotebody.com');
     BrowserPolicy.content.allowConnectOrigin("zygotebody.com")
     BrowserPolicy.content.allowImageOrigin("zygotebody.com")   
+
+    BrowserPolicy.content.allowOriginForAll('fhir-timeline.meteorapp.com');
   }
 })
