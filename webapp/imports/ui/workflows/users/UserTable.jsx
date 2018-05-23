@@ -166,7 +166,7 @@ export class UserTable extends React.Component {
  
   swipingLeft(e, absX) {
     console.log("You're Swiping to the Left...", e, absX)
-    alert("You're Swiping to the Left...", e, absX)
+    //alert("You're Swiping to the Left...", e, absX)
   }
  
   swiped(e, deltaX, deltaY, isFlick, velocity) {
@@ -185,9 +185,19 @@ export class UserTable extends React.Component {
     Session.set('transferPatientDialogOpen', false);
   }
   swipedUp(e, deltaY, isFlick) {
+    //alert("You Swiped Up...", e, deltaY, isFlick)
     console.log("You Swiped Up...", e, deltaY, isFlick)
     //this.transferPatient();
-    this.confirmTransfer();
+
+    var outgoingPatient = Session.get('outgoingPatient');
+    var receivingUser = Session.get('receivingUser');
+
+    Meteor.call('transferPatient', 
+      outgoingPatient,
+      receivingUser
+    );
+    Session.set('transferPatientDialogOpen', false);
+
   }
   renderAdminControls(isAdmin, i) {
     if (isAdmin) {
