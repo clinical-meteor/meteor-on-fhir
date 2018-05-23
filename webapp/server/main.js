@@ -51,5 +51,6 @@ Meteor.startup(function(){
     BrowserPolicy.content.allowImageOrigin("zygotebody.com")   
 
     BrowserPolicy.content.allowOriginForAll('fhir-timeline.meteorapp.com');
+    BrowserPolicy.content.allowOriginForAll('open-ic-epic.com');
   }
 })
