@@ -50,7 +50,13 @@ Meteor.startup(function(){
     BrowserPolicy.content.allowConnectOrigin("zygotebody.com")
     BrowserPolicy.content.allowImageOrigin("zygotebody.com")   
 
-    BrowserPolicy.content.allowOriginForAll('fhir-timeline.meteorapp.com');
-    BrowserPolicy.content.allowOriginForAll('open-ic-epic.com');
+    // BrowserPolicy.content.allowOriginForAll('fhir-timeline.meteorapp.com');
+    // BrowserPolicy.content.allowFrameOrigin('fhir-timeline.meteorapp.com');
+    // BrowserPolicy.content.allowObjectDataUrl('fhir-timeline.meteorapp.com');
+    // BrowserPolicy.content.allowOriginForAll('fhir-timeline.meteorapp.com');
+    // BrowserPolicy.content.allowConnectOrigin("fhir-timeline.meteorapp.com")
+    // BrowserPolicy.content.allowImageOrigin("fhir-timeline.meteorapp.com")  
+
+    // BrowserPolicy.content.allowOriginForAll('open-ic-epic.com');
   }
 })
