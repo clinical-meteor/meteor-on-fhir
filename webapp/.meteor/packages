@@ -129,3 +129,7 @@ symptomatic:geomapping
 # fhirblocks:core
 # clinical:hl7-resource-consent
 # clinical:hl7-resource-contract
+
+
+clinical:example-plugin
+clinical:hl7-resource-location
