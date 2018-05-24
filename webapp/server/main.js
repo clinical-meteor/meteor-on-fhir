@@ -18,9 +18,15 @@ Meteor.startup(function(){
     Meteor.call('resyncConfiguration');
   }
 
-  console.log('Configuring content-security-policy:');
+  // browser content policies are an important security measure 
+  // to only allow connections to specific websites
+  // we keep this section optional, because some people want to use 
+  // meteor-on-fhir during hackathons, research, and various
+  // projects where HIPAA grade security isn't always needed
 
   if(Package['browser-policy-common']){
+    console.log('Configuring content-security-policy.');
+
     import { BrowserPolicy } from 'meteor/browser-policy-common';
 
     BrowserPolicy.content.allowSameOriginForAll();
@@ -42,6 +48,22 @@ Meteor.startup(function(){
     BrowserPolicy.content.allowObjectDataUrl('zygotebody.com');
     BrowserPolicy.content.allowOriginForAll('zygotebody.com');
     BrowserPolicy.content.allowConnectOrigin("zygotebody.com")
-    BrowserPolicy.content.allowImageOrigin("zygotebody.com");
+    BrowserPolicy.content.allowImageOrigin("zygotebody.com")   
+
+    // BrowserPolicy.content.allowOriginForAll('fhir-timeline.meteorapp.com');
+    // BrowserPolicy.content.allowFrameOrigin('fhir-timeline.meteorapp.com');
+    // BrowserPolicy.content.allowObjectDataUrl('fhir-timeline.meteorapp.com');
+    // BrowserPolicy.content.allowOriginForAll('fhir-timeline.meteorapp.com');
+    // BrowserPolicy.content.allowConnectOrigin("fhir-timeline.meteorapp.com")
+    // BrowserPolicy.content.allowImageOrigin("fhir-timeline.meteorapp.com")  
+    // BrowserPolicy.content.allowObjectOrigin('fhir-timeline.meteorapp.com')
+
+    // BrowserPolicy.content.allowOriginForAll('open-ic-epic.com');
+    // BrowserPolicy.content.allowFrameOrigin('open-ic-epic.com');
+    // BrowserPolicy.content.allowObjectDataUrl('open-ic-epic.com');
+    // BrowserPolicy.content.allowOriginForAll('open-ic-epic.com');
+    // BrowserPolicy.content.allowConnectOrigin("open-ic-epic.com")
+    // BrowserPolicy.content.allowImageOrigin("open-ic-epic.com")  
+    // BrowserPolicy.content.allowObjectOrigin('open-ic-epic.com')
   }
 })
