@@ -67,7 +67,13 @@ export class AdminSidebar extends React.Component {
              <ListItem primaryText='Admin Index' href='/' />
           </IndexLinkContainer>
 
+          <IndexLinkContainer to='/users'>
+             <ListItem primaryText='Users' href='/users' />
+          </IndexLinkContainer>
+
+
           { dynamicElements }
+
 
           <IndexLinkContainer to='/info'>
              <ListItem primaryText='Info' href='/info' />

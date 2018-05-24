@@ -29,6 +29,8 @@ export class GlassApp extends React.Component {
     let data = {
       app: {
         style: {
+          // default setting in case the theming package isn't loaded
+          background: 'rgb(238, 238, 238)', 
           width: '100%',
           height: '100%',
           position: 'fixed',

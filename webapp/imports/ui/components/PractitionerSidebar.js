@@ -1,7 +1,7 @@
 import { List, ListItem } from 'material-ui/List';
 import MenuItem from '/imports/ui/components/MenuItem';
 
-import { IndexLinkContainer } from 'react-router-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
@@ -36,41 +36,34 @@ export class PractitionerSidebar extends React.Component {
       <div id="practitionerSidebar">
         <List style={{paddingLeft: '20px', position: 'static'}}>
 
-          <IndexLinkContainer to='/'>
-             <ListItem primaryText='Index' href='/' />
-          </IndexLinkContainer>
+          <LinkContainer to='/'>
+             <MenuItem primaryText='Index' href='/' />
+          </LinkContainer>
 
-          <IndexLinkContainer to='/provider-directory'>
-             <ListItem primaryText='Provider Directory' href='/provider-directory' />
-          </IndexLinkContainer>
+          <hr />
+          <LinkContainer to='/provider-directory'>
+             <MenuItem primaryText='Provider Directory' href='/provider-directory' />
+          </LinkContainer>
 
-          <IndexLinkContainer to='/careplan-designer'>
-             <ListItem primaryText='Careplan Designer' href='/careplan-designer' />
-          </IndexLinkContainer>          
+          <LinkContainer to='/careplan-designer'>
+             <MenuItem primaryText='Careplan Designer' href='/careplan-designer' />
+          </LinkContainer>          
 
-          <IndexLinkContainer to='/dashboard'>
-             <ListItem primaryText='Dashboard' href='/dashboard' />
-          </IndexLinkContainer>
+          <hr />
+          <LinkContainer to='/data-management'>
+             <MenuItem primaryText='Data Management' href='/theming' />
+          </LinkContainer>
+          <LinkContainer to='/users'>
+             <MenuItem primaryText='Users' href='/users' />
+          </LinkContainer>
+          <hr />
+          <LinkContainer to='/theming'>
+             <MenuItem primaryText='Theming' href='/theming' />
+          </LinkContainer>
 
-          <IndexLinkContainer to='/patients'>
-             <ListItem primaryText='Patients' href='/patients' />
-          </IndexLinkContainer>
-
-          <IndexLinkContainer to='/practitioners'>
-             <ListItem primaryText='Practitioners' href='/practitioners' />
-          </IndexLinkContainer>
-
-          <IndexLinkContainer to='/medications'>
-             <ListItem primaryText='Medications' href='/medications' />
-          </IndexLinkContainer>
-
-          <IndexLinkContainer to='/users'>
-             <ListItem primaryText='Users' href='/users' />
-          </IndexLinkContainer>
-
-          <IndexLinkContainer to='/signin'>
-             <ListItem className='logoutMenuItem' primaryText='Logout' href='/signin' onClick={this.handleLogout} />
-          </IndexLinkContainer>
+          <LinkContainer to='/signin'>
+             <MenuItem className='logoutMenuItem' primaryText='Logout' href='/signin' onClick={this.handleLogout} />
+          </LinkContainer>
 
         </List>
 

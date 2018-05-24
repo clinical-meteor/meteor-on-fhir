@@ -73,7 +73,8 @@ export class MainIndex extends React.Component {
         },
         column: {
           paddingLeft: '5px',
-          paddingRight: '5px'
+          paddingRight: '5px',
+          //border: '1px solid orange'
         }
       },
       user: {
@@ -243,6 +244,13 @@ export class MainIndex extends React.Component {
       path: '/locations',
       icon: 'MapMarker',
       subtitle: 'Locations'
+    }, {
+      collection: "Lists",
+      id: 'listsTile',
+      active: true,
+      path: '/checklists',
+      icon: 'MapMarker',
+      subtitle: 'Lists'
     }, {
       collection: "Medications",
       id: 'medicationsTile',
@@ -705,7 +713,7 @@ export class MainIndex extends React.Component {
     }    
   }
   renderChecklists(user){
-    if (get(Meteor, 'settings.public.modules.apps.ChecklistManifesto')) {
+    if (get(Meteor, 'settings.public.modules.apps.ChecklistManifesto') && get(Meteor, 'settings.public.modules.fhir.Lists')) {
       if (user.isPatient || user.isPractitioner || user.isAdmin) {
         return (
           <MenuTile          

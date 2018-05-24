@@ -72,6 +72,13 @@ if(Package['clinical:hl7-resource-immunization']){
   });
 }
 
+if(Package['clinical:hl7-resource-list']){
+  Lists.allow({
+    update() { return true; },
+    insert() { return true; },
+    remove() { return true; }
+  });
+}
 if(Package['clinical:hl7-resource-location']){
   Locations.allow({
     update() { return true; },
