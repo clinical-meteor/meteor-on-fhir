@@ -1,7 +1,7 @@
 {
     "basic": "v1.0-prerelease",
-    "complete": "v1.0-prerelease-31-g3edaa53",
-    "branch": "upenn-oauth",
-    "commit": "3edaa5330e66ee04f3f48c6957d5268c46362b96",
-    "timestamp": "2018-05-23"
+    "complete": "v1.0-prerelease-48-g7204a3b",
+    "branch": "pcci-oauth",
+    "commit": "7204a3bd3e1e4fbce94d3d828d12144b1847cd98",
+    "timestamp": "2018-05-25"
 }
