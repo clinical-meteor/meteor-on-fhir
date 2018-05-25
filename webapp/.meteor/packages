@@ -31,12 +31,23 @@ mdg:validated-method
 mdg:validation-error
 dburles:mongo-collection-instances
 
+<<<<<<< HEAD
 ### security
 ### browser-policy seems to be broken on Azure
+=======
+# security
+>>>>>>> development
 # browser-policy@1.1.0
 # browser-policy-common@1.0.11
 # browser-policy-content@1.1.0
 # browser-policy-framing@1.1.0
+<<<<<<< HEAD
+=======
+# force-ssl
+audit-argument-checks@1.0.7
+dynamic-import
+
+>>>>>>> development
 
 # i18n
 universe:i18n
@@ -59,13 +70,18 @@ standard-minifier-js@2.2.0
 ddp-rate-limiter@1.0.7
 
 # rest apis
+<<<<<<< HEAD
 # simple:rest-accounts-password         # where did this come from?
 # simple:rest
 http
+=======
+# simple:rest-accounts-password
+# simple:rest
+>>>>>>> development
 
 # testing
-xolvio:cleaner
-dispatch:mocha-phantomjs
+# xolvio:cleaner
+# dispatch:mocha-phantomjs
 practicalmeteor:mocha
 practicalmeteor:chai
 practicalmeteor:sinon
@@ -79,10 +95,6 @@ momentjs:moment
 
 simple:dev-error-overlay
 
-# security
-audit-argument-checks@1.0.7
-dynamic-import
-
 clinical:fonts
 clinical:extended-api
 clinical:auto-resizing
@@ -92,13 +104,18 @@ clinical:keybindings
 clinical:hipaa-logger
 clinical:autopublish
 clinical:glass-ui
+<<<<<<< HEAD
 clinical:smart-on-fhir-client
 
 # clinical:example-plugin
 # clinical:default-landing-page
 
+=======
+clinical:default-landing-page
+>>>>>>> development
 clinical:accounts-famous-dead-people
 clinical:accounts-housemd
+clinical:oauth
 
 # fhir resources
 clinical:hl7-resource-datatypes
@@ -118,10 +135,16 @@ clinical:hl7-resource-careplan
 # clinical:hl7-resource-contract
 clinical:hl7-resource-device
 clinical:hl7-resource-diagnostic-report
+clinical:hl7-resource-endpoint
 clinical:hl7-resource-goal
 clinical:hl7-resource-immunization
+<<<<<<< HEAD
 # clinical:hl7-resource-location
 clinical:hl7-resource-message-header
+=======
+clinical:hl7-resource-location
+clinical:hl7-resource-list
+>>>>>>> development
 clinical:hl7-resource-medication
 clinical:hl7-resource-medication-order
 clinical:hl7-resource-medication-statement
@@ -136,6 +159,7 @@ simple:json-routes
 percolate:synced-cron
 d3js:d3
 
+<<<<<<< HEAD
 pcci:sepsis-risk-model
 digilord:faker
 base64
@@ -144,3 +168,19 @@ base64
 # symptomatic:hacknights
 
 disable-oplog
+=======
+### Timeline
+#clinical:smart-on-fhir-client
+#symptomatic:continuity-of-care
+#symptomatic:theming
+#symptomatic:geomapping
+
+### Blockchains
+# symptomatic:blockchain-core
+# fhirblocks:core
+# clinical:hl7-resource-consent
+# clinical:hl7-resource-contract
+
+
+clinical:example-plugin
+>>>>>>> development

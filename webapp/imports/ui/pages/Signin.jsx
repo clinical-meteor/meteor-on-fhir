@@ -15,7 +15,9 @@ import { Row, Col } from 'react-bootstrap';
 import { lightBaseTheme, darkBaseTheme } from 'material-ui/styles';
 import { has, get } from 'lodash';
 
-import { OAuth } from 'meteor/clinical:smart-on-fhir-client';
+if(Package['clinical:smart-on-fhir-client']){
+  import { OAuth } from 'meteor/clinical:smart-on-fhir-client';
+}
 
 Session.setDefault('signinWithSearch', '');
 
@@ -58,10 +60,11 @@ export class Signin extends React.Component {
       }).fetch()
     }
 
-    if(ServiceConfiguration){
-      data.services = ServiceConfiguration.configurations.find().fetch()
-  }   
-
+    if(Package['clinical:smart-on-fhir-client']){
+      if(ServiceConfiguration){
+        data.services = ServiceConfiguration.configurations.find().fetch()
+      }   
+    }
 
     if (get(Meteor, 'settings.theme.darkroomTextEnabled')) {
       data.style.textColor.color = darkBaseTheme.palette.textColor;
@@ -112,8 +115,8 @@ export class Signin extends React.Component {
         console.log('error', error)
       }
 
-      browserHistory.push('/sepsis-risk-model');
-      console.log('foo!')            
+      browserHistory.push(get(Meteor, 'settings.public.defaults.route', '/'));
+      console.log('Callback complete!');
     });
 
     var credentialResult = OAuth.requestCredential(options, credentialRequestCompleteCallback);
@@ -122,13 +125,16 @@ export class Signin extends React.Component {
     Meteor.call('fetchAccessToken', serviceName, function(err, result){
         if(result){
           console.log('result.accessToken', result.accessToken)
+          Session.set('oauthAccessToken', result.accessToken)
         }
     })
 
   }
   handleTouchTap(event, foo, value){    
-    if(process.env.NODE_ENV === "test") console.log("this", this);
-    console.log('Signin.handleTouchTap', event, foo, value)
+    if(process.env.NODE_ENV === "test") {
+      console.log('Signin.handleTouchTap', event, foo, value)
+      console.log("this", this);
+    }
 
     let self = this;
 
@@ -209,6 +215,37 @@ export class Signin extends React.Component {
       { signinButtons }
     </div>
 
+    var signInWith;
+
+    if(Package['clinical:smart-on-fhir-client']){
+      signInWith = <Col lgOffset={4} mdOffset={2} lg={2} md={3}>
+        <GlassCard zDepth={3} height="auto" >
+          <CardTitle
+            title="Sign in with..."
+            />
+          <CardText>
+            <TextField
+                type="searchSignIns"
+                ref="searchSignIns"
+                name="searchSignIns"
+                floatingLabelText="Search..."
+                onKeyPress={this.handleKeyPress.bind(this)}
+                onChange={this.handleSearch.bind(this)}
+                inputStyle={this.data.style.inputStyle}
+                hintStyle={this.data.style.hintStyle}
+                errorStyle={this.data.style.errorStyle}
+                underlineStyle={this.data.style.underlineStyle}
+                floatingLabelStyle={this.data.style.floatingLabelStyle}
+                floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
+                fullWidth
+              />         
+          </CardText>
+            <CardActions>
+              { buttons }
+            </CardActions>
+          </GlassCard>                  
+      </Col>
+    }
 
     return (
       <div id="signinPage">
@@ -260,33 +297,7 @@ export class Signin extends React.Component {
                   <br/>
                   <br/>
                 </Col>                
-                <Col lgOffset={4} mdOffset={2} lg={2} md={3}>
-                  <GlassCard zDepth={3} height="auto" >
-                    <CardTitle
-                      title="Sign in with..."
-                      />
-                    <CardText>
-                      <TextField
-                          type="searchSignIns"
-                          ref="searchSignIns"
-                          name="searchSignIns"
-                          floatingLabelText="Search..."
-                          onKeyPress={this.handleKeyPress.bind(this)}
-                          onChange={this.handleSearch.bind(this)}
-                          inputStyle={this.data.style.inputStyle}
-                          hintStyle={this.data.style.hintStyle}
-                          errorStyle={this.data.style.errorStyle}
-                          underlineStyle={this.data.style.underlineStyle}
-                          floatingLabelStyle={this.data.style.floatingLabelStyle}
-                          floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
-                          fullWidth
-                        />         
-                    </CardText>
-                      <CardActions>
-                        { buttons }
-                      </CardActions>
-                    </GlassCard>                  
-                </Col>
+                { signInWith }
               </Row>
 
           </FullPageCanvas>

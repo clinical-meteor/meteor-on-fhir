@@ -98,7 +98,7 @@ export class ChecklistsPage extends React.Component {
     for (var i = 0; i < this.data.lists.length; i++) {
       listRows.push(
         <ChecklistTableRow key={i} style={this.data.style.rowText} onClick={this.fooClick.bind('this', this.data.lists[i]._id)} >
-          <TableRowColumn>{this.data.lists[i].status}</TableRowColumn>
+          <TableRowColumn style={{width: '100px'}}>{this.data.lists[i].status}</TableRowColumn>
           <TableRowColumn>{this.data.lists[i].date}</TableRowColumn>
           <TableRowColumn>{this.data.lists[i].code}</TableRowColumn>
           <TableRowColumn>{this.data.lists[i].note}</TableRowColumn>
@@ -118,7 +118,7 @@ export class ChecklistsPage extends React.Component {
                   <Table onCellClick={this.rowClick.bind(this)}>
                     <TableHeader displaySelectAll={false} adjustForCheckbox={false} style={this.data.style.rowText} >
                       <TableRow >
-                        <TableHeaderColumn>Status</TableHeaderColumn>
+                        <TableHeaderColumn style={{width: '100px'}}>Status</TableHeaderColumn>
                         <TableHeaderColumn>Created At</TableHeaderColumn>
                         <TableHeaderColumn>Name</TableHeaderColumn>
                         <TableHeaderColumn>Note</TableHeaderColumn>

@@ -62,6 +62,20 @@ export class App extends React.Component {
           <Image />
         </GlassCard>
       );
+
+      // Conditions (Zygote)
+    } else if (Meteor.userId() && Session.equals('pathname', '/conditions')) {
+      return (
+        <GlassCard style={this.data.style.card} height='auto'>
+          <CardText>
+            <object id="iframe" type="text/html" data='https://www.zygotebody.com/' style={this.data.style.content}>
+              <p>unable to load </p>
+            </object>
+          </CardText>
+        </GlassCard>
+      );
+
+
       // Website
     } else if (Meteor.userId() && Session.equals('pathname', '/videoconferencing')) {
       return (

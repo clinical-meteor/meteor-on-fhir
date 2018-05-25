@@ -45,26 +45,27 @@ const style = {
   indexCardPadding: {
     width: '100%',
     display: 'inline-block',
-    padding: '10px',
-    paddingBottom: '20px'
+    paddingLeft: '10px',
+    paddingRight: '10px',
+    paddingBottom: '30px'
   },
   indexCard: {
     cursor: 'pointer',
     height: '240px',
-    minHeight: '140px'          
+    minHeight: '155px'          
   },
   inactiveIndexCard: {
     opacity: .5,
     width: '100%',
     display: 'inline-block',
-    paddingBottom: '20px'
+    paddingBottom: '30px'
   },
   thumbnail: {
     width: '85px',
-    height: '140px',
+    minHeight: '155px',
     position: 'absolute',
     left: '15px',
-    top: '10px',
+    top: '0px',
     color: 'white',
     backgroundColor: 'lightgray',
     padding: '10px',
