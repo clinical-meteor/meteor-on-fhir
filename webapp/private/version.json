@@ -1,7 +1,7 @@
 {
     "basic": "v1.0-prerelease",
-    "complete": "v1.0-prerelease-48-g7204a3b",
+    "complete": "v1.0-prerelease-49-g575e73d",
     "branch": "pcci-oauth",
-    "commit": "7204a3bd3e1e4fbce94d3d828d12144b1847cd98",
+    "commit": "575e73da70a54b61c0efe4c7daafee741bd269ef",
     "timestamp": "2018-05-25"
 }

@@ -36,7 +36,6 @@ dburles:mongo-collection-instances
 # browser-policy-common@1.0.11
 # browser-policy-content@1.1.0
 # browser-policy-framing@1.1.0
-# force-ssl
 audit-argument-checks@1.0.7
 dynamic-import
 
@@ -45,11 +44,13 @@ dynamic-import
 universe:i18n
 
 # accounts
-clinical:accounts-oauth
 accounts-base
 accounts-password@1.5.0
 accounts-ui@1.1.9
 clinical:oauth
+clinical:accounts-oauth
+clinical:accounts-famous-dead-people
+clinical:accounts-housemd
 
 # mobile
 crosswalk@1.7.1
@@ -91,9 +92,6 @@ clinical:hipaa-logger
 clinical:autopublish
 clinical:glass-ui
 clinical:default-landing-page
-clinical:accounts-famous-dead-people
-clinical:accounts-housemd
-clinical:oauth
 
 # fhir resources
 clinical:hl7-resource-datatypes
@@ -113,7 +111,6 @@ clinical:hl7-resource-careplan
 # clinical:hl7-resource-contract
 clinical:hl7-resource-device
 clinical:hl7-resource-diagnostic-report
-clinical:hl7-resource-endpoint
 clinical:hl7-resource-goal
 clinical:hl7-resource-immunization
 clinical:hl7-resource-location
@@ -144,5 +141,5 @@ d3js:d3
 # clinical:hl7-resource-consent
 # clinical:hl7-resource-contract
 
-
-clinical:example-plugin
+# clinical:example-plugin
+# pcci:sepsis-risk-model
