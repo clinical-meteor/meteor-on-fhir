@@ -104,7 +104,7 @@ export class SinglePanelLayout extends React.Component {
         return <AdminSidebar /> ;
       } else {
         if (get(Meteor.user(), 'roles[0]') === 'practitioner') {
-          // return <PractitionerSidebar /> ;
+          return <PractitionerSidebar /> ;
         } else {
           if (Meteor.userId() && ['/myprofile', '/preferences', 'oauth-grants', '/password'].includes(Session.get('pathname'))) {
             return <ProfileSidebar /> ;

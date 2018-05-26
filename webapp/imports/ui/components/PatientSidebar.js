@@ -95,8 +95,6 @@ export class PatientSidebar extends React.Component {
       }
     });
 
-    //console.log('dynamicElements', dynamicElements);
-
     return(
       <div id='patientSidebar'>
         <List style={{paddingLeft: '20px', position: 'static'}}>
@@ -109,7 +107,10 @@ export class PatientSidebar extends React.Component {
           { dynamicElements }
 
           <hr />
-
+          <LinkContainer to='/data-management'>
+             <MenuItem primaryText='Data Management' href='/theming' />
+          </LinkContainer>
+          <hr />
           <LinkContainer to='/theming'>
              <MenuItem primaryText='Theming' href='/theming' />
           </LinkContainer>

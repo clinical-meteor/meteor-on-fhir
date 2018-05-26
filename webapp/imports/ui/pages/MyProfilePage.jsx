@@ -9,6 +9,7 @@ import Paper from 'material-ui/Paper';
 import Avatar from 'material-ui/Avatar';
 import Divider from 'material-ui/Divider';
 import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
 import { FontIcon } from 'material-ui/FontIcon';
 
 import { VerticalCanvas, GlassCard, Glass, DynamicSpacer } from 'meteor/clinical:glass-ui';
@@ -28,7 +29,7 @@ import { removeUserById } from '/imports/api/users/methods';
 import { PatientCard } from 'meteor/clinical:hl7-resource-patient';
 
 //if(Package['clinical:hl7-resource-consent']){
-  import { ConsentTable } from 'meteor/clinical:hl7-resource-consent';
+  // import { ConsentTable } from 'meteor/clinical:hl7-resource-consent';
 //}
 
 
@@ -112,6 +113,26 @@ export class MyProfilePage extends React.Component {
         latlng: '0.0, 0.0'
       },
       ccd: {
+        AllergyIntolerances: 0,
+        CarePlans: 0,
+        Conditions: 0,
+        Devices: 0,
+        DiagnosticReports: 0,
+        Goals: 0,
+        ImagingStudies: 0,
+        Immunizations: 0,
+        Locations: 0,
+        Medications: 0,
+        MedicationStatements: 0,
+        Observations: 0,
+        Patients: 0,
+        Persons: 0,
+        Practitioners: 0,
+        Procedures: 0,
+        RelatedPersons: 0,
+        Sequences: 0
+      },
+      minimongo: {
         AllergyIntolerances: 0,
         CarePlans: 0,
         Conditions: 0,
@@ -274,6 +295,28 @@ export class MyProfilePage extends React.Component {
           data.ccd.Sequences = get(Meteor.user(), 'profile.continuityOfCare.sequences').length;
         }           
       }
+      
+      var resourceTypes = [
+        'AllergyIntolerances',
+        'CarePlans',
+        'Conditions',
+        'Devices',
+        'DiagnosticReports',
+        'Goals',
+        'Immunizations',
+        'Medications',
+        'MedicationOrders',
+        'Organizations',
+        'Observations',
+        'Practitioners',
+        'Procedures'
+      ];
+
+      resourceTypes.forEach(function(resourceType){
+        if(Mongo.Collection.get(resourceType)){
+          data.minimongo[resourceType] = Mongo.Collection.get(resourceType).find().count();
+        }
+      })
     }
 
     if (Session.get('appWidth') > 768) {
@@ -307,116 +350,116 @@ export class MyProfilePage extends React.Component {
 
     if(get(this, 'data.ccd.AllergyIntolerances')){
       ccdResources.push(<TableRow key=''>
-        <TableRowColumn>{this.data.ccd.AllergyIntolerances}</TableRowColumn>
+        <TableRowColumn>{this.data.minimongo.AllergyIntolerances}</TableRowColumn>
         <TableRowColumn>Allergies</TableRowColumn>
       </TableRow>);
     }
-    if(get(this, 'data.ccd.CarePlans')){
+    if(get(this, 'data.minimongo.CarePlans')){
       ccdResources.push(<TableRow key='CarePlans'>
-        <TableRowColumn>{this.data.ccd.CarePlans}</TableRowColumn>
+        <TableRowColumn>{this.data.minimongo.CarePlans}</TableRowColumn>
         <TableRowColumn>CarePlans</TableRowColumn>
       </TableRow>);
     }
-    if(get(this, 'data.ccd.Conditions')){
+    if(get(this, 'data.minimongo.Conditions')){
       ccdResources.push(<TableRow key='Conditions'>
-        <TableRowColumn>{this.data.ccd.Conditions}</TableRowColumn>
+        <TableRowColumn>{this.data.minimongo.Conditions}</TableRowColumn>
         <TableRowColumn>Conditions</TableRowColumn>
       </TableRow>);
     }
-    if(get(this, 'data.ccd.Devices')){
+    if(get(this, 'data.minimongo.Devices')){
       ccdResources.push(<TableRow key='Devices'>
-        <TableRowColumn>{this.data.ccd.Devices}</TableRowColumn>
+        <TableRowColumn>{this.data.minimongo.Devices}</TableRowColumn>
         <TableRowColumn>Devices</TableRowColumn>
       </TableRow>);
     }
-    if(get(this, 'data.ccd.DiagnosticReports')){
+    if(get(this, 'data.minimongo.DiagnosticReports')){
       ccdResources.push(<TableRow key='DiagnosticReports'>
-        <TableRowColumn>{this.data.ccd.DiagnosticReports}</TableRowColumn>
+        <TableRowColumn>{this.data.minimongo.DiagnosticReports}</TableRowColumn>
         <TableRowColumn>DiagnosticReports</TableRowColumn>
       </TableRow>);
     }
-    if(get(this, 'data.ccd.Goals')){
+    if(get(this, 'data.minimongo.Goals')){
       ccdResources.push(<TableRow key='Goals'>
-        <TableRowColumn>{this.data.ccd.Goals}</TableRowColumn>
+        <TableRowColumn>{this.data.minimongo.Goals}</TableRowColumn>
         <TableRowColumn>Goals</TableRowColumn>
       </TableRow>);
     }
-    if(get(this, 'data.ccd.ImagingStudies')){
+    if(get(this, 'data.minimongo.ImagingStudies')){
       ccdResources.push(<TableRow key='ImagingStudies'>
-        <TableRowColumn>{this.data.ccd.ImagingStudies}</TableRowColumn>
+        <TableRowColumn>{this.data.minimongo.ImagingStudies}</TableRowColumn>
         <TableRowColumn>ImagingStudies</TableRowColumn>
       </TableRow>);
     }
-    if(get(this, 'data.ccd.Immunizations')){
+    if(get(this, 'data.minimongo.Immunizations')){
       ccdResources.push(<TableRow key='Immunizations'>
-        <TableRowColumn>{this.data.ccd.Immunizations}</TableRowColumn>
+        <TableRowColumn>{this.data.minimongo.Immunizations}</TableRowColumn>
         <TableRowColumn>Immunizations</TableRowColumn>
       </TableRow>);
     }
-    if(get(this, 'data.ccd.Locations')){
+    if(get(this, 'data.minimongo.Locations')){
       ccdResources.push(<TableRow key='Locations'>
-        <TableRowColumn>{this.data.ccd.Locations}</TableRowColumn>
+        <TableRowColumn>{this.data.minimongo.Locations}</TableRowColumn>
         <TableRowColumn>Locations</TableRowColumn>
       </TableRow>);
     }    
-    if(get(this, 'data.ccd.Medications')){
+    if(get(this, 'data.minimongo.Medications')){
       ccdResources.push(<TableRow key='Medications'>
-        <TableRowColumn>{this.data.ccd.Medications}</TableRowColumn>
+        <TableRowColumn>{this.data.minimongo.Medications}</TableRowColumn>
         <TableRowColumn>Medications</TableRowColumn>
       </TableRow>);
     }
-    if(get(this, 'data.ccd.MedicationStatements')){
+    if(get(this, 'data.minimongo.MedicationStatements')){
       ccdResources.push(<TableRow key='MedicationStatements'>
-        <TableRowColumn>{this.data.ccd.MedicationStatements}</TableRowColumn>
+        <TableRowColumn>{this.data.minimongo.MedicationStatements}</TableRowColumn>
         <TableRowColumn>MedicationStatements</TableRowColumn>
       </TableRow>);
     }
-    if(get(this, 'data.ccd.Observations')){
+    if(get(this, 'data.minimongo.Observations')){
       ccdResources.push(<TableRow key='Observations'>
-        <TableRowColumn>{this.data.ccd.Observations}</TableRowColumn>
+        <TableRowColumn>{this.data.minimongo.Observations}</TableRowColumn>
         <TableRowColumn>Observations</TableRowColumn>
       </TableRow>);
     }
-    if(get(this, 'data.ccd.Patients')){
+    if(get(this, 'data.minimongo.Patients')){
       ccdResources.push(<TableRow key='Patients'>
-        <TableRowColumn>{this.data.ccd.Patients}</TableRowColumn>
+        <TableRowColumn>{this.data.minimongo.Patients}</TableRowColumn>
         <TableRowColumn>Patients</TableRowColumn>
       </TableRow>);
     }
   
-    if(get(this, 'data.ccd.Persons')){
+    if(get(this, 'data.minimongo.Persons')){
       ccdResources.push(<TableRow key='Persons'>
-        <TableRowColumn>{this.data.ccd.Persons}</TableRowColumn>
+        <TableRowColumn>{this.data.minimongo.Persons}</TableRowColumn>
         <TableRowColumn>Persons</TableRowColumn>
       </TableRow>);
     }
-    if(get(this, 'data.ccd.Practitioners')){
+    if(get(this, 'data.minimongo.Practitioners')){
       ccdResources.push(<TableRow key='Practitioners'>
-        <TableRowColumn>{this.data.ccd.Practitioners}</TableRowColumn>
+        <TableRowColumn>{this.data.minimongo.Practitioners}</TableRowColumn>
         <TableRowColumn>Practitioners</TableRowColumn>
       </TableRow>);
     }            
-    if(get(this, 'data.ccd.Procedures')){
+    if(get(this, 'data.minimongo.Procedures')){
       ccdResources.push(<TableRow key='Procedures'>
-        <TableRowColumn>{this.data.ccd.Procedures}</TableRowColumn>
+        <TableRowColumn>{this.data.minimongo.Procedures}</TableRowColumn>
         <TableRowColumn>Procedures</TableRowColumn>
       </TableRow>);
     }    
-    if(get(this, 'data.ccd.RelatedPersons')){
+    if(get(this, 'data.minimongo.RelatedPersons')){
       ccdResources.push(<TableRow key='RelatedPersons'>
-        <TableRowColumn>{this.data.ccd.RelatedPersons}</TableRowColumn>
+        <TableRowColumn>{this.data.minimongo.RelatedPersons}</TableRowColumn>
         <TableRowColumn>RelatedPersons</TableRowColumn>
       </TableRow>);
     }
-    if(get(this, 'data.ccd.Sequences')){
+    if(get(this, 'data.minimongo.Sequences')){
       ccdResources.push(<TableRow key='Sequences'>
-        <TableRowColumn>{this.data.ccd.Sequences}</TableRowColumn>
+        <TableRowColumn>{this.data.minimongo.Sequences}</TableRowColumn>
         <TableRowColumn>Sequences</TableRowColumn>
       </TableRow>);
     }    
     let continuityOfCareCard;
     
-    if(ccdResources.length > 0){
+    //if(ccdResources.length > 0){
       continuityOfCareCard = <div>
         <GlassCard>
           <CardTitle title="Continuity of Care" subtitle='Healthcare data is attached to your profile via resources.' />
@@ -431,33 +474,39 @@ export class MyProfilePage extends React.Component {
               </TableBody>
             </Table>
           </CardText>
-        </GlassCard>
-        <DynamicSpacer />
-      </div>
-    }
-
-    var consentElement;
-    //if(Package['clinical:hl7-resource-consent']){
-      consentElement = <div>
-        <GlassCard>
-          <CardTitle title="Consents & Authorizations" subtitle='OAuth tokens, HIPAA consents, Advanced Directives, etc.' />
-          <CardText>
-            <ConsentTable
-              patient="Jane Doe"
-              simplified={true}
-              noDataMessage={false}
-            />
-          </CardText>
           <CardActions>
             <FlatButton 
-              label='Edit' 
-              onClick={this.editAuthorizations.bind(this)}
+              label='Clear Local Cache' 
+              onClick={this.clearLocalCache.bind(this)}
               />
           </CardActions>
         </GlassCard>
         <DynamicSpacer />
       </div>
     //}
+
+    // var consentElement;
+    // //if(Package['clinical:hl7-resource-consent']){
+    //   consentElement = <div>
+    //     <GlassCard>
+    //       <CardTitle title="Consents & Authorizations" subtitle='OAuth tokens, HIPAA consents, Advanced Directives, etc.' />
+    //       <CardText>
+    //         <ConsentTable
+    //           patient="Jane Doe"
+    //           simplified={true}
+    //           noDataMessage={false}
+    //         />
+    //       </CardText>
+    //       <CardActions>
+    //         <FlatButton 
+    //           label='Edit' 
+    //           onClick={this.editAuthorizations.bind(this)}
+    //           />
+    //       </CardActions>
+    //     </GlassCard>
+    //     <DynamicSpacer />
+    //   </div>
+    // //}
 
     return(
       <div id='myProfilePage'>
@@ -649,7 +698,7 @@ export class MyProfilePage extends React.Component {
           <DynamicSpacer />
 
 
-          { consentElement }
+          {/* { consentElement } */}
 
           { continuityOfCareCard }
 
@@ -785,43 +834,25 @@ export class MyProfilePage extends React.Component {
     );
   }
   imgError() {
-    this.refs.avatarImage.src = '/noAvatar.png';
+    this.refs.avatarImage.src = Meteor.absoluteUrl() + 'noAvatar.png';
   }
   renderConfirmDelete(wantsToDelete){
-    if (wantsToDelete) {
+    // if (wantsToDelete) {
       return(
         <div>
-          <br />
-          <br />
-          <TextField
-            id='confirmInput'
-            ref='confirm'
-            name='confirm'
-            type='text'
-            floatingLabelText='confirm email or _id'
-            defaultValue={this.data.user.confirm}
-            onChange={this.handleConfirm.bind(this)}
-            /><br/><br/>
-
-          <FlatButton
-            id='confirmDeleteUserButton'
-            label='Confirm Delete'
-            onClick={this.confirmDelete.bind(this) }
-            className="muidocs-icon-action-delete"            
-            style={{backgroundColor: 'red'}}
-            />
+          <FlatButton id='deleteUserButton' className="muidocs-icon-action-delete" label='Delete User' onClick={this.confirmDelete.bind(this) } />
         </div>
       );
-    } else {
-      return(
-        <div>
-          <Divider />
-          <br />
-          <FlatButton id='resetPreferencesButton' label='Reset Preferences' onClick={this.resetPreferences } style={{marginRight: '20px'}} />
-          <FlatButton id='deleteUserButton' className="muidocs-icon-action-delete" label='Delete User' onClick={this.handleDelete } />
-        </div>
-      );
-    }
+    // } else {
+    //   return(
+    //     <div>
+    //       <Divider />
+    //       <br />
+    //       <FlatButton id='resetPreferencesButton' label='Reset Preferences' onClick={this.resetPreferences } style={{marginRight: '20px'}} />
+    //       <FlatButton id='deleteUserButton' className="muidocs-icon-action-delete" label='Delete User' onClick={this.handleDelete } />
+    //     </div>
+    //   );
+    // }
   }
   resetPreferences(){
     //alert('reset!')
@@ -928,25 +959,57 @@ export class MyProfilePage extends React.Component {
     state.confirm = value;
     Session.set('myProfileState', state);
   }
-  confirmDelete() {
-    let state = Session.get('myProfileState');
+  clearLocalCache(){
+    if(confirm("Are you absolutely sure?")){
 
-    // janky, but it works, i guess
-    if ((state.confirm === Meteor.userId()) || (state.confirm === Meteor.user().emails[0].address)) {
-      if(process.env.NODE_ENV === "test") console.log('Confirm _id match.  Removing.');
+      var resourceTypes = [
+        'AllergyIntolerances',
+        'CarePlans',
+        'Conditions',
+        'Devices',
+        'DiagnosticReports',
+        'Goals',
+        'Immunizations',
+        'Medications',
+        'MedicationOrders',
+        'MedicationStatements',
+        'Organizations',
+        'Observations',
+        'Practitioners',
+        'Procedures',
+        'RiskAssessments'
+      ];
 
-      removeUserById.call({
-        _id:  Meteor.userId()
-      }, (error) => {
-        if (error) {
-          Bert.alert(error.reason, 'danger');
-        } else {
-          Bert.alert('User removed!', 'success');
-          browserHistory.push('/signin');
+      resourceTypes.forEach(function(resourceType){
+        if(Mongo.Collection.get(resourceType)){
+          Mongo.Collection.get(resourceType).find().forEach(function(record){
+            Mongo.Collection.get(resourceType).remove({_id: record._id})
+          })
         }
-      });
-    } else {
-      console.log('Hmmm...  yeah, lets wait a bit and make sure we have the right user.');
+      })
+    }
+  }
+  confirmDelete() {
+    if(confirm("Are you sure you want to delete your entire account?  This decision is permanent and can't be reversed.")){
+      let state = Session.get('myProfileState');
+
+      // janky, but it works, i guess
+      if ((state.confirm === Meteor.userId()) || (state.confirm === Meteor.user().emails[0].address)) {
+        if(process.env.NODE_ENV === "test") console.log('Confirm _id match.  Removing.');
+  
+        removeUserById.call({
+          _id:  Meteor.userId()
+        }, (error) => {
+          if (error) {
+            Bert.alert(error.reason, 'danger');
+          } else {
+            Bert.alert('User removed!', 'success');
+            browserHistory.push('/signin');
+          }
+        });
+      } else {
+        console.log('Hmmm...  yeah, lets wait a bit and make sure we have the right user.');
+      }    
     }
   }
   changePassword() {
