@@ -15,9 +15,9 @@ import { browserHistory } from 'react-router';
 import { has, get } from 'lodash';
 import DeviceWifiTethering from 'material-ui/svg-icons/device/wifi-tethering';
 
-if(Package['clinical:hl7-resource-practitioner']){
-  import { Practitioners } from 'meteor/clinical:hl7-resource-practitioner'
-}
+// if(Package['clinical:hl7-resource-practitioner']){
+//   import { Practitioners } from 'meteor/clinical:hl7-resource-practitioner'
+// }
 
 Session.setDefault('showThemingControls', false);
 Session.setDefault('gender', 'Pink');
@@ -381,6 +381,13 @@ export class Footer extends React.Component {
   showOrbital(){
     Session.toggle('showOrbital');
   }
+  clearEndpoints(){
+    Meteor.call('dropEndpoints');
+    Session.set('edgeBundle', []);
+  }
+  initEndpoints(){
+    Meteor.call('initializeEndpoint');
+  }
   renderWestNavbar(displayThemeNavbar){
     if (displayThemeNavbar) {
       // the user has pressed ctrl-cmd-t and is looking at theming controls
@@ -392,33 +399,22 @@ export class Footer extends React.Component {
         </div>
       );
     } else {
-      // PATIENTS
-<<<<<<< HEAD
-      if (Meteor.userId() && (Session.equals('pathname', '/patients')) && get(Meteor, 'settings.public.modules.epic')) {
-=======
+      // HOME ROUTE
       if (Meteor.userId() && (Session.equals('pathname', '/')) ) {
-        // the user is logged in as a normal user
         return (
           <div style={{marginTop: '-8px'}}>
             <FlatButton label='filter tiles' className='filterTileButton' ref='filterTileButton' onClick={this.toggleFilterMainTiles} style={this.data.style.buttonText} ></FlatButton>
-            {/* <FlatButton label='darkroom' className='darkroomButton' ref='darkroomButton' onClick={this.clickOnDarkroomButton} style={this.data.style.buttonText} ></FlatButton>
-            <FlatButton label='theming' className='themingButton' ref='themingButton' onClick={this.clickOnThemingButton} style={this.data.style.buttonText} ></FlatButton> */}
           </div>
         );
 
         // PATIENTS
       } else if (Meteor.userId() && (Session.equals('pathname', '/patients')) && get(Meteor, 'settings.public.modules.epic')) {
->>>>>>> blockchain-vis
-        // the user is logged in as a normal user
         return (
-          <div>
-            {/* <FlatButton label='query open.epic.com' className='querySystemButton' ref='querySystemButton' onClick={this.querySystemButton.bind(this, 'Patients')} style={this.data.style.buttonText} ></FlatButton> */}
-          </div>
+          <div></div>
         );
 
       // PRACTITIONERS
       } else if (Meteor.userId() && (Session.equals('pathname', '/practitioners')) && get(Meteor, 'settings.public.modules.fhir.Practitioners')) {
-
         if(Package["symptomatic:blockchain-core"]){          
           return (
             <div>
@@ -427,8 +423,7 @@ export class Footer extends React.Component {
             </div>
           );
         }
-      
-      
+            
       // OBSERVATIONS
     } else if (Meteor.userId() && (Session.equals('pathname', '/observations')) && get(Meteor, 'settings.public.modules.fhir.Observations')) {
       // the user is logged in as a normal user
@@ -448,7 +443,6 @@ export class Footer extends React.Component {
     
       // ORGANIZATIONS
       } else if (Meteor.userId() && (Session.equals('pathname', '/organizations')) && get(Meteor, 'settings.public.modules.fhir.Organizations')) {
-        // the user is logged in as a normal user
         return (
           <div>
             {/* <FlatButton label='GET open.epic.com/Organization' className='querySystemButton' ref='querySystemButton' onClick={this.querySystemButton.bind(this, 'Organization')} style={this.data.style.buttonText} ></FlatButton> */}
@@ -457,7 +451,6 @@ export class Footer extends React.Component {
 
       // CONTINUITY OF CARE
       } else if (Meteor.userId() && (Session.equals('pathname', '/continuity-of-care') )) {
-        // the user is logged in as a normal user
         return (
           <div>
             <FlatButton label='Sidescroll Timeline' className='horizontalTimeline' ref='horizontalTimeline' onClick={this.openLink.bind(this, '/timeline-sidescroll')} style={this.data.style.buttonText} ></FlatButton>
@@ -468,7 +461,6 @@ export class Footer extends React.Component {
 
       // TIMELINE
       } else if (Meteor.userId() && (Session.equals('pathname', '/timeline') || Session.equals('pathname', '/timeline-sidescroll'))) {
-        // the user is logged in as a normal user
         return (
           <div>
             <FlatButton label='Continuity of Care' className='ccdPage' ref='ccdPage' onClick={this.openLink.bind(this, '/continuity-of-care')} style={this.data.style.buttonText} ></FlatButton>
@@ -479,7 +471,6 @@ export class Footer extends React.Component {
 
       // DATA Management
       } else if (Meteor.userId() && (Session.equals('pathname', '/data-management'))) {
-        // the user is logged in as a normal user
         return (
           <div>
             <FlatButton label='Prepare CCD' id="exportContinuityOfCareDoc" className='exportCcd' ref='exportContinuityOfCareDoc' style={this.data.style.buttonText} onClick={this.exportContinuityOfCareDoc}></FlatButton>
@@ -489,45 +480,47 @@ export class Footer extends React.Component {
           </div>
         );
 
-
       // CONDITIONS
       } else if (Meteor.userId() && (Session.equals('pathname', '/conditions')) && get(Meteor, 'settings.public.modules.epic')) {
-        // the user is logged in as a normal user
+        return (
+          <div></div>
+        );
+
+      // ZYGOTE
+      } else if (Meteor.userId() && (Session.equals('pathname', '/zygote'))) {
         return (
           <div>
-            {/* <FlatButton label='GET open.epic.com/Condition' className='querySystemButton' ref='querySystemButton' onClick={this.querySystemButton.bind(this, 'Condition')} style={this.data.style.buttonText} ></FlatButton> */}
+            <FlatButton label='Rotate' className='querySystemButton' ref='querySystemButton' onClick={this.rotateZygote.bind(this, 'Condition')} style={this.data.style.buttonText} ></FlatButton>
           </div>
         );
 
-    // ZYGOTE
-    } else if (Meteor.userId() && (Session.equals('pathname', '/zygote'))) {
-      // the user is logged in as a normal user
-      return (
-        <div>
-          <FlatButton label='Rotate' className='querySystemButton' ref='querySystemButton' onClick={this.rotateZygote.bind(this, 'Condition')} style={this.data.style.buttonText} ></FlatButton>
-        </div>
-      );
+      // VIDEOCONFERENCING
+      } else if (Meteor.userId() && (Session.equals('pathname', '/videoconferencing'))) {
+        return (
+          <div>
+            <FlatButton label='Phonebook' className='querySystemButton' ref='querySystemButton' onClick={this.showPhonebook.bind(this, 'Condition')} style={this.data.style.buttonText} ></FlatButton>
+            <FlatButton label='Fullscreen' className='querySystemButton' ref='querySystemButton' onClick={this.fullscreenVideo.bind(this)} style={this.data.style.buttonText} ></FlatButton>
+            <FlatButton label='Orbital' className='querySystemButton' ref='querySystemButton' onClick={this.showOrbital.bind(this)} style={this.data.style.buttonText} ></FlatButton>
+          </div>
+        );
 
-    // VIDEOCONFERENCING
-    } else if (Meteor.userId() && (Session.equals('pathname', '/videoconferencing'))) {
-      // the user is logged in as a normal user
-      return (
-        <div>
-          <FlatButton label='Phonebook' className='querySystemButton' ref='querySystemButton' onClick={this.showPhonebook.bind(this, 'Condition')} style={this.data.style.buttonText} ></FlatButton>
-          <FlatButton label='Fullscreen' className='querySystemButton' ref='querySystemButton' onClick={this.fullscreenVideo.bind(this)} style={this.data.style.buttonText} ></FlatButton>
-          <FlatButton label='Orbital' className='querySystemButton' ref='querySystemButton' onClick={this.showOrbital.bind(this)} style={this.data.style.buttonText} ></FlatButton>
-        </div>
-      );
+        // ENDPOINTS
+      } else if (Meteor.userId() && (Session.equals('pathname', '/endpoints'))) {
+        return (
+          <div>
+            <FlatButton label='Clear' className='clearEndpoints' ref='querySystemButton' onClick={this.clearEndpoints} style={this.data.style.buttonText} ></FlatButton>
+            <FlatButton label='Initialize' className='initializeEndpoints' ref='querySystemButton' onClick={this.initEndpoints} style={this.data.style.buttonText} ></FlatButton>
+          </div>
+        );
 
 
-      // NOTIFICATIONS
-    } else if (Meteor.userId() && (Session.equals('pathname', '/notifications')) && get(Meteor, 'settings.public.defaults.notificationMenu')) {
-      // the user is logged in as a normal user
-      return (
-        <div>
-          <FlatButton label='Transfer Current Patient' className='querySystemButton' ref='querySystemButton' onClick={this.transferCurrentPatient.bind(this)} style={this.data.style.buttonText} ></FlatButton>
-        </div>
-      );
+        // NOTIFICATIONS
+      } else if (Meteor.userId() && (Session.equals('pathname', '/notifications')) && get(Meteor, 'settings.public.defaults.notificationMenu')) {
+        return (
+          <div>
+            <FlatButton label='Transfer Current Patient' className='querySystemButton' ref='querySystemButton' onClick={this.transferCurrentPatient.bind(this)} style={this.data.style.buttonText} ></FlatButton>
+          </div>
+        );
 
       } else {
         // anything else
@@ -545,14 +538,6 @@ export class Footer extends React.Component {
       );
     } else {
       return (
-<<<<<<< HEAD
-        <div>                
-          <DeviceWifiTethering 
-            id='toggleOrbital'
-            style={{top: '-4', marginRight: '10px', cursor: 'pointer'}}
-            onTouchTap={this.showOrbital }
-            />
-=======
         <div>
           {/* <FlatButton label='privacy screen' className='blurButton' ref='blurButton' onClick={this.clickOnBlurButton} style={this.data.style.buttonText} ></FlatButton> */}
 
@@ -563,7 +548,6 @@ export class Footer extends React.Component {
             onTouchTap={this.clickOnBlurButton }
           />
 
->>>>>>> blockchain-vis
           <ToolbarTitle
             id='connectionStatus'
             text={this.data.status}
@@ -594,3 +578,4 @@ export class Footer extends React.Component {
 }
 
 ReactMixin(Footer.prototype, ReactMeteorData);
+export default Footer;
