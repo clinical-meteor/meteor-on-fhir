@@ -113,10 +113,9 @@ clinical:hl7-resource-medication-statement
 clinical:hl7-resource-organization
 clinical:hl7-resource-observation
 clinical:hl7-resource-patient
-clinical:hl7-resource-procedure\
+clinical:hl7-resource-procedure
 clinical:hl7-resource-risk-assessment
 clinical:hl7-resource-practitioner
-clinical:hl7-resource-endpoint
 # clinical:hl7-resource-communication
 # clinical:hl7-resource-subscription
 
@@ -125,7 +124,6 @@ clinical:hl7-resource-endpoint
 # clinical:hl7-resource-contract
 # clinical:accounts-famous-dead-people
 
-symptomatic:blockchain-core
 
 simple:json-routes
 

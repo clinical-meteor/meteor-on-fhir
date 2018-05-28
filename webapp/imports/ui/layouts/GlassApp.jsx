@@ -158,3 +158,4 @@ export class GlassApp extends React.Component {
 }
 
 ReactMixin(GlassApp.prototype, ReactMeteorData);
+export default GlassApp;

@@ -26,7 +26,7 @@ Session.setDefault('drawerActive', false);
 Session.setDefault('drawerActive', false);
 
 
-export class SinglePanelLayout extends React.Component {
+export class SidebarTray extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -126,7 +126,7 @@ export class SinglePanelLayout extends React.Component {
   render(){
 
     return (
-      <div id='SinglePanelLayout'>
+      <div id='SidebarTray'>
         <Drawer
           open={this.data.state.drawerActive}
           docked={this.data.state.dockedSidebar}
@@ -161,5 +161,5 @@ export class SinglePanelLayout extends React.Component {
   }
 }
 
-ReactMixin(SinglePanelLayout.prototype, ReactMeteorData);
-export default SinglePanelLayout;
+ReactMixin(SidebarTray.prototype, ReactMeteorData);
+export default SidebarTray;

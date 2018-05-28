@@ -201,5 +201,4 @@ Header.childContextTypes = {
   muiTheme: React.PropTypes.object
 };
 ReactMixin(Header.prototype, ReactMeteorData);
-
 export default Header;

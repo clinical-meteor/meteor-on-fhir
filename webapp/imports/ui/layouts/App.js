@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin  from 'react-mixin';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import React, { Component } from 'react';
 // import { BrowserRouter} from 'react-router-bootstrap';
 
@@ -16,13 +15,15 @@ import { Header } from '/imports/ui/layouts/Header';
 import { Image } from '/imports/ui/components/Image';
 import { SciFiOrbital } from '/imports/ui/components/SciFiOrbital';
 import { Session } from 'meteor/session';
-import SinglePanelLayout from '/imports/ui/layouts/SinglePanelLayout';
+import SidebarTray from '/imports/ui/layouts/SidebarTray';
 import { EdgeBundlePage } from '/imports/ui/pages/EdgeBundlePage';
 
-import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import { get, has } from 'lodash';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+
+import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 const muiTheme = getMuiTheme({
   palette: {
@@ -48,7 +49,8 @@ export class App extends React.Component {
   }
   getChildContext() {
     return {
-      muiTheme: getMuiTheme(baseTheme)
+      // muiTheme: getMuiTheme(baseTheme)
+      muiTheme: muiTheme
     };
   }
   componentWillMount() {
@@ -87,14 +89,14 @@ export class App extends React.Component {
         </GlassCard>
       );
 
-    } else if (Meteor.userId() && Session.equals('pathname', '/endpoints')) {
-      return (
-        <GlassCard style={this.data.style.card} height='auto'>
-          <CardText>
-            <EdgeBundlePage />
-          </CardText>
-        </GlassCard>
-      );
+    // } else if (Meteor.userId() && Session.equals('pathname', '/endpoints')) {
+    //   return (
+    //     <GlassCard style={this.data.style.card} height='auto'>
+    //       <CardText>
+    //         <EdgeBundlePage />
+    //       </CardText>
+    //     </GlassCard>
+    //   );
 
     // Website
     } else if (Meteor.userId() && get(Meteor.settings, 'public.defaults.iFrameUrl')) {
@@ -168,14 +170,13 @@ export class App extends React.Component {
 
   render(){
     var orbital;
-    if(get(Meteor, 'settings.public.defaults.nfcOrbital')){
-      orbital = <SciFiPage />;
-    }
+    // if(get(Meteor, 'settings.public.defaults.nfcOrbital')){
+    //   orbital = <SciFiPage />;
+    // }
     return (
-      // <BrowserRouter>
         <MuiThemeProvider muiTheme={muiTheme}>
           <GlassApp>
-            <SinglePanelLayout>
+            <SidebarTray>
               {orbital}
               <Header />
                 <div className='primaryFlexPanel' >
@@ -187,10 +188,9 @@ export class App extends React.Component {
                   </FullPageCanvas>
                 </div>
               <Footer />
-            </SinglePanelLayout>
+            </SidebarTray>
           </GlassApp>
         </MuiThemeProvider>
-      // </BrowserRouter>
     );
   }
 }
@@ -204,3 +204,4 @@ App.childContextTypes = {
 App.defaultProps = {};
 
 ReactMixin(App.prototype, ReactMeteorData);
+// export default App;
