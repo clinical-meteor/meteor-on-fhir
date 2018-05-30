@@ -382,20 +382,42 @@ export class Footer extends React.Component {
     Session.toggle('showOrbital');
   }
   clearEndpoints(){
+    console.log('Droping endpoints.....')
     Meteor.call('dropEndpoints');
     Session.set('edgeBundle', []);
   }
-  initEndpoints(){
-    Meteor.call('initializeEndpoint');
+  initBlockchainGraph(){
+    Session.set('edgeBundle', Endpoints.find().map(function(endpoint){
+      var result = {
+        name: endpoint.name,
+        size: 1000,
+        status: endpoint.status,
+        managingOrganization: endpoint.managingOrganization,
+        imports: []
+      }
+      if(endpoint.contact){
+        endpoint.contact.forEach(function(contact){
+          result.imports.push(contact.value)
+        })  
+      }
+      return result;
+    }));
+    browserHistory.push('/blockchain-graphs')
+  }
+  configBlockchain(){
+    browserHistory.push('/blockchain-graph-config')    
+  }
+  showLines(){
+    Session.toggle('showEdgeBundleLines');
   }
   renderWestNavbar(displayThemeNavbar){
     if (displayThemeNavbar) {
       // the user has pressed ctrl-cmd-t and is looking at theming controls
       return (
         <div style={{marginTop: '-8px'}}>
-          <FlatButton label='privacy screen' className='blurButton' ref='blurButton' onClick={this.clickOnBlurButton} style={this.data.style.buttonText} ></FlatButton>
+          {/* <FlatButton label='privacy screen' className='blurButton' ref='blurButton' onClick={this.clickOnBlurButton} style={this.data.style.buttonText} ></FlatButton>
           <FlatButton label='darkroom' className='darkroomButton' ref='darkroomButton' onClick={this.clickOnDarkroomButton} style={this.data.style.buttonText} ></FlatButton>
-          <FlatButton label='theming' className='themingButton' ref='themingButton' onClick={this.clickOnThemingButton} style={this.data.style.buttonText} ></FlatButton>
+          <FlatButton label='theming' className='themingButton' ref='themingButton' onClick={this.clickOnThemingButton} style={this.data.style.buttonText} ></FlatButton> */}
         </div>
       );
     } else {
@@ -509,7 +531,16 @@ export class Footer extends React.Component {
         return (
           <div>
             <FlatButton label='Clear' className='clearEndpoints' ref='querySystemButton' onClick={this.clearEndpoints} style={this.data.style.buttonText} ></FlatButton>
-            <FlatButton label='Initialize' className='initializeEndpoints' ref='querySystemButton' onClick={this.initEndpoints} style={this.data.style.buttonText} ></FlatButton>
+            <FlatButton label='Init Graph' ref='querySystemButton' onClick={this.initBlockchainGraph} style={this.data.style.buttonText} ></FlatButton>
+          </div>
+        );
+
+      // GRAPHS
+      } else if (Meteor.userId() && (Session.equals('pathname', '/blockchain-graphs'))) {
+        return (
+          <div>
+            <FlatButton label='Config' className='configGraph' ref='querySystemButton' onClick={ this.configBlockchain } style={this.data.style.buttonText} ></FlatButton>
+            <FlatButton label='Lines' className='configGraph' ref='querySystemButton' onClick={ this.showLines } style={this.data.style.buttonText} ></FlatButton>
           </div>
         );
 
@@ -533,8 +564,9 @@ export class Footer extends React.Component {
   }
   renderEastNavbar(displayThemeNavbar){
     if (displayThemeNavbar) {
-      return (
-        <OpacitySlider style={this.data.eastStyle} />
+      return (<div>
+          {/* <OpacitySlider style={this.data.eastStyle} /> */}
+        </div>
       );
     } else {
       return (

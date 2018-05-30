@@ -16,7 +16,6 @@ import { Image } from '/imports/ui/components/Image';
 import { SciFiOrbital } from '/imports/ui/components/SciFiOrbital';
 import { Session } from 'meteor/session';
 import SidebarTray from '/imports/ui/layouts/SidebarTray';
-import { EdgeBundlePage } from '/imports/ui/pages/EdgeBundlePage';
 
 import { get, has } from 'lodash';
 import injectTapEventPlugin from 'react-tap-event-plugin';
@@ -78,7 +77,6 @@ export class App extends React.Component {
         </GlassCard>
       );
 
-
       // Website
     } else if (Meteor.userId() && Session.equals('pathname', '/videoconferencing')) {
       return (
@@ -88,15 +86,6 @@ export class App extends React.Component {
           </CardText>
         </GlassCard>
       );
-
-    // } else if (Meteor.userId() && Session.equals('pathname', '/endpoints')) {
-    //   return (
-    //     <GlassCard style={this.data.style.card} height='auto'>
-    //       <CardText>
-    //         <EdgeBundlePage />
-    //       </CardText>
-    //     </GlassCard>
-    //   );
 
     // Website
     } else if (Meteor.userId() && get(Meteor.settings, 'public.defaults.iFrameUrl')) {

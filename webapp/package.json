@@ -48,6 +48,7 @@
     "react-addons-css-transition-group": "^15.3.1",
     "react-addons-pure-render-mixin": "^15.3.1",
     "react-bootstrap": "^0.31.5",
+    "react-color": "^2.14.1",
     "react-dom": "^15.3.1",
     "react-fontawesome": "^1.6.1",
     "react-icons": "^2.2.7",
