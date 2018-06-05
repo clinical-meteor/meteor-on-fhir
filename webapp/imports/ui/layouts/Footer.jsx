@@ -410,6 +410,13 @@ export class Footer extends React.Component {
   showLines(){
     Session.toggle('showEdgeBundleLines');
   }
+  toggleStates(){
+    if(Session.equals('powerOfAttorneyState', 'Illinois')){
+      Session.set('powerOfAttorneyState', 'North Carolina');
+    } else if(Session.equals('powerOfAttorneyState', 'North Carolina')){
+      Session.set('powerOfAttorneyState', 'Illinois');      
+    }
+  }
   renderWestNavbar(displayThemeNavbar){
     if (displayThemeNavbar) {
       // the user has pressed ctrl-cmd-t and is looking at theming controls
@@ -543,6 +550,15 @@ export class Footer extends React.Component {
             <FlatButton label='Lines' className='configGraph' ref='querySystemButton' onClick={ this.showLines } style={this.data.style.buttonText} ></FlatButton>
           </div>
         );
+
+
+      // Power of Attorney
+    } else if (Meteor.userId() && (Session.equals('pathname', '/power-of-attorney'))) {
+      return (
+        <div>
+          <FlatButton label='State' className='configGraph' ref='querySystemButton' onClick={ this.toggleStates } style={this.data.style.buttonText} ></FlatButton>
+        </div>
+      );        
 
 
         // NOTIFICATIONS
