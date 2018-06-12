@@ -122,10 +122,10 @@ percolate:synced-cron
 d3js:d3
 
 ### Timeline
-#clinical:smart-on-fhir-client
-#symptomatic:continuity-of-care
-#symptomatic:theming
-#symptomatic:geomapping
+# clinical:smart-on-fhir-client
+symptomatic:continuity-of-care
+symptomatic:theming
+symptomatic:geomapping
 
 ### Blockchains
 # symptomatic:blockchain-core
@@ -135,3 +135,5 @@ clinical:hl7-resource-consent
 
 
 clinical:example-plugin
+
+upenn:innovation
