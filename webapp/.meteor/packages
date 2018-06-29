@@ -84,6 +84,7 @@ clinical:theming
 clinical:user-model
 clinical:keybindings
 clinical:hipaa-logger
+clinical:hipaa-audit-log
 clinical:autopublish
 clinical:glass-ui
 clinical:default-landing-page
@@ -93,6 +94,7 @@ clinical:oauth
 
 # fhir resources
 clinical:hl7-resource-allergy-intolerance
+clinical:hl7-resource-audit-event
 clinical:hl7-resource-condition
 clinical:hl7-resource-careplan
 clinical:hl7-resource-datatypes
@@ -112,6 +114,7 @@ clinical:hl7-resource-patient
 clinical:hl7-resource-practitioner
 clinical:hl7-resource-procedure
 clinical:hl7-resource-risk-assessment
+clinical:hl7-resource-subscription
 
 simple:json-routes
 
@@ -119,15 +122,15 @@ percolate:synced-cron
 d3js:d3
 
 ### Timeline
-#clinical:smart-on-fhir-client
-#symptomatic:continuity-of-care
-#symptomatic:theming
-#symptomatic:geomapping
+# clinical:smart-on-fhir-client
+# symptomatic:continuity-of-care
+# symptomatic:theming
+# symptomatic:geomapping
 
 ### Blockchains
 # symptomatic:blockchain-core
 # fhirblocks:core
-# clinical:hl7-resource-consent
+clinical:hl7-resource-consent
 # clinical:hl7-resource-contract
 
 
