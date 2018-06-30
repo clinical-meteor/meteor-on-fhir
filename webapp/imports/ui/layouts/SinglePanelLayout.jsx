@@ -99,10 +99,10 @@ export class SinglePanelLayout extends React.Component {
   renderSidebar(isAdmin) {
     if (Meteor.user()) {
       if (isAdmin) {
-        // return <AdminSidebar /> ;
+        return <AdminSidebar /> ;
       } else {
         if (get(Meteor.user(), 'roles[0]') === 'practitioner') {
-          // return <PractitionerSidebar /> ;
+          return <PractitionerSidebar /> ;
         } else {
           return <PatientSidebar /> ;
         }

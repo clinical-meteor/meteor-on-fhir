@@ -1,11 +1,23 @@
-import { IndexLinkContainer } from 'react-router-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 import { List, ListItem } from 'material-ui/List';
 import React from 'react';
 import ReactMixin from 'react-mixin';
 
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
-import { AppInfoPage } from '/imports/ui/pages/AppInfoPage';
+import { MenuItem } from '/imports/ui/components/MenuItem';
+import { get } from 'lodash';
+
+// Pick up any dynamic routes that are specified in packages, and include them
+var dynamicModules = [];
+Object.keys(Package).forEach(function(packageName){
+  if(Package[packageName].AdminSidebarElements){
+    // we try to build up a route from what's specified in the package
+    Package[packageName].AdminSidebarElements.forEach(function(element){
+      dynamicModules.push(element);      
+    });    
+  }
+});
 
 export class AdminSidebar extends React.Component {
   getMeteorData() {
@@ -32,41 +44,48 @@ export class AdminSidebar extends React.Component {
   }
 
   render () {
+
+    //----------------------------------------------------------------------
+    // Dynamic Modules  
+
+    var dynamicElements = [];
+    dynamicModules.map(function(element, index){ 
+
+      // the excludes array will hide routes
+      if(!get(Meteor, 'settings.public.defaults.sidebar.hidden', []).includes(element.to)){
+        dynamicElements.push(<LinkContainer to={element.to} key={index}>
+          <MenuItem primaryText={element.primaryText} href={element.href} />
+        </LinkContainer>);
+      }
+    });
+
     return(
       <div id="adminSidebar">
         <List style={{paddingLeft: '20px', position: 'static', width: '100%'}}>
 
-          <IndexLinkContainer to='/'>
-             <ListItem primaryText='Admin Index' href='/' />
-          </IndexLinkContainer>
+          <LinkContainer to='/'>
+             <MenuItem primaryText='Admin Index' href='/' />
+          </LinkContainer>
 
-          <IndexLinkContainer to='/dashboard'>
-             <ListItem primaryText='Dashboard' href='/dashboard' />
-          </IndexLinkContainer>
+          <LinkContainer to='/users'>
+             <MenuItem primaryText='Users' href='/users' />
+          </LinkContainer>
 
-          <IndexLinkContainer to='/users'>
-             <ListItem primaryText='Users' href='/users' />
-          </IndexLinkContainer>
 
-          <IndexLinkContainer to='/patients'>
-             <ListItem primaryText='Patients' href='/patients' />
-          </IndexLinkContainer>
+          { dynamicElements }
 
-          <IndexLinkContainer to='/practitioners'>
-             <ListItem primaryText='Practitioners' href='/practitioners' />
-          </IndexLinkContainer>
 
-          <IndexLinkContainer to='/info'>
-             <ListItem primaryText='Info' href='/info' />
-          </IndexLinkContainer>
+          <LinkContainer to='/info'>
+             <MenuItem primaryText='Info' href='/info' />
+          </LinkContainer>
 
-          <IndexLinkContainer to='/metadata'>
-             <ListItem primaryText='Metadata' href='/metadata' />
-          </IndexLinkContainer>
+          <LinkContainer to='/metadata'>
+             <MenuItem primaryText='Metadata' href='/metadata' />
+          </LinkContainer>
 
-          <IndexLinkContainer to='/signin'>
-             <ListItem className='logoutMenuItem' primaryText='Logout' href='/signin' onClick={this.handleLogout} />
-          </IndexLinkContainer>
+          <LinkContainer to='/signin'>
+             <MenuItem className='logoutMenuItem' primaryText='Logout' href='/signin' onClick={this.handleLogout} />
+          </LinkContainer>
         </List>
       </div>
     );
