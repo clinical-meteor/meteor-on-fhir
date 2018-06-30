@@ -134,8 +134,6 @@ jobs:
         path: /tmp/circleci-test-results
 
     # Save artifacts
-    - store_artifacts: 
-        path: ./meteor-output.log
     - store_artifacts:
         path: ./test-reports
     - store_artifacts:
@@ -146,3 +144,5 @@ jobs:
         path: ./webapp/tests/nightwatch/screenshots
     - store_artifacts:
         path: ./webapp/tests/nightwatch/logs
+    - store_artifacts: 
+        path: ./webapp/meteor-output.log
