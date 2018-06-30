@@ -138,12 +138,12 @@ var AppBar = function (_Component) {
     }
 
     return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = AppBar.__proto__ || (0, _getPrototypeOf2.default)(AppBar)).call.apply(_ref, [this].concat(args))), _this), _this.handleTouchTapLeftIconButton = function (event) {
-      if (_this.props.onLeftIconButtonClick) {
-        _this.props.onLeftIconButtonClick(event);
+      if (_this.props.onLeftIconButtonTouchTap) {
+        _this.props.onLeftIconButtonTouchTap(event);
       }
     }, _this.handleTouchTapRightIconButton = function (event) {
-      if (_this.props.onRightIconButtonClick) {
-        _this.props.onRightIconButtonClick(event);
+      if (_this.props.onRightIconButtonTouchTap) {
+        _this.props.onRightIconButtonTouchTap(event);
       }
     }, _this.handleTitleTouchTap = function (event) {
       if (_this.props.onTitleTouchTap) {
@@ -174,13 +174,13 @@ var AppBar = function (_Component) {
           iconElementRight = _props.iconElementRight,
           iconClassNameLeft = _props.iconClassNameLeft,
           iconClassNameRight = _props.iconClassNameRight,
-          onLeftIconButtonClick = _props.onLeftIconButtonClick,
-          onRightIconButtonClick = _props.onRightIconButtonClick,
+          onLeftIconButtonTouchTap = _props.onLeftIconButtonTouchTap,
+          onRightIconButtonTouchTap = _props.onRightIconButtonTouchTap,
           className = _props.className,
           style = _props.style,
           zDepth = _props.zDepth,
           children = _props.children,
-          other = (0, _objectWithoutProperties3.default)(_props, ['title', 'titleStyle', 'titleId', 'iconStyleLeft', 'iconStyleRight', 'onTitleTouchTap', 'showMenuIconButton', 'iconElementLeft', 'iconElementRight', 'iconClassNameLeft', 'iconClassNameRight', 'onLeftIconButtonClick', 'onRightIconButtonClick', 'className', 'style', 'zDepth', 'children']);
+          other = (0, _objectWithoutProperties3.default)(_props, ['title', 'titleStyle', 'titleId', 'iconStyleLeft', 'iconStyleRight', 'onTitleTouchTap', 'showMenuIconButton', 'iconElementLeft', 'iconElementRight', 'iconClassNameLeft', 'iconClassNameRight', 'onLeftIconButtonTouchTap', 'onRightIconButtonTouchTap', 'className', 'style', 'zDepth', 'children']);
       var prepareStyles = this.context.muiTheme.prepareStyles;
 
       var styles = getStyles(this.props, this.context);
@@ -212,7 +212,7 @@ var AppBar = function (_Component) {
             iconElementLeftProps.iconStyle = (0, _simpleAssign2.default)({}, iconButtonIconStyle, iconElementLeft.props.iconStyle);
           }
 
-          if (!iconElementLeft.props.onClick && this.props.onLeftIconButtonClick) {
+          if (!iconElementLeft.props.onClick && this.props.onLeftIconButtonTouchTap) {
             iconElementLeftProps.onClick = this.handleTouchTapLeftIconButton;
           }
 
@@ -259,7 +259,7 @@ var AppBar = function (_Component) {
           default:
         }
 
-        if (!iconElementRight.props.onClick && this.props.onRightIconButtonClick) {
+        if (!iconElementRight.props.onClick && this.props.onRightIconButtonTouchTap) {
           iconElementRightProps.onClick = this.handleTouchTapRightIconButton;
         }
 
@@ -345,13 +345,13 @@ process.env.NODE_ENV !== "production" ? AppBar.propTypes = {
    *
    * @param {object} event TouchTap event targeting the left `IconButton`.
    */
-  onLeftIconButtonClick: PropTypes.func,
+  onLeftIconButtonTouchTap: PropTypes.func,
   /**
    * Callback function for when the right icon is selected via a touch tap.
    *
    * @param {object} event TouchTap event targeting the right `IconButton`.
    */
-  onRightIconButtonClick: PropTypes.func,
+  onRightIconButtonTouchTap: PropTypes.func,
   /**
    * Callback function for when the title text is selected via a touch tap.
    *
