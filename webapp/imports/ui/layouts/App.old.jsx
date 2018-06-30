@@ -170,12 +170,12 @@ export class App extends React.Component {
         label="Accept"
         primary={true}
         keyboardFocused={true}
-        onTouchTap={this.handleCloseCatch}
+        onClick={this.handleCloseCatch}
       />,
       <FlatButton
         label="Dismiss"
         primary={true}
-        onTouchTap={this.handleCloseCatch}
+        onClick={this.handleCloseCatch}
       />
     ];
 

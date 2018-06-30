@@ -185,7 +185,7 @@ export class Signin extends React.Component {
     //         label={endpoint.name}
     //         id={endpoint.name + "Button"}
     //         defaultValue={ Session.get('signinWithSearch') }
-    //         onTouchTap={self.signInWith.bind(self, endpoint.name)} 
+    //         onClick={self.signInWith.bind(self, endpoint.name)} 
     //         style={{width: '100%', textAlign: 'left', marginLeft: '40px', marginBottom: '20px' }}
     //         buttonStyle={{ textAlign: 'left', fontWeight: '300' }}
     //         primary={true} />
@@ -289,8 +289,8 @@ export class Signin extends React.Component {
                         />
                         <br/>
                         <br/>
-                        <RaisedButton id="signinButton" onTouchTap={this.handleTouchTap.bind(this)} label="Signin" primary={true} />
-                        <RaisedButton id="forgotPasswordButton" onTouchTap={this.forgotPasswordRoute } label="Forgot password?" style={{marginLeft: "20px"}} />
+                        <RaisedButton id="signinButton" onClick={this.handleTouchTap.bind(this)} label="Signin" primary={true} />
+                        <RaisedButton id="forgotPasswordButton" onClick={this.forgotPasswordRoute } label="Forgot password?" style={{marginLeft: "20px"}} />
                       </form>
                     </Col>
                   </Row>
