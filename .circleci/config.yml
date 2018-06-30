@@ -105,12 +105,16 @@ jobs:
     #- run the app
     - run: 
         name: Starting Meteor
-        command: cd webapp && meteor run --settings configs/settings.circle.json 
+        command: cd webapp && meteor run --settings configs/settings.circle.json | tee meteor-output.log
         background: true
+        no_output_timeout: 10m
+        when: on_success    # always, on_success, on_fail 
 
     - run: 
         name: Running tests
         command: sleep 400 && cd webapp && meteor npm run-script circle-nightwatch -- --tag circle
+        no_output_timeout: 10m
+        when: on_success    # always, on_success, on_fail 
 
 
 
@@ -130,6 +134,8 @@ jobs:
         path: /tmp/circleci-test-results
 
     # Save artifacts
+    - store_artifacts: 
+        path: ./meteor-output.log
     - store_artifacts:
         path: ./test-reports
     - store_artifacts:
