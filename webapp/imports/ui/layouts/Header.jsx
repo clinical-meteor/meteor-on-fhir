@@ -18,6 +18,7 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
 import { Session } from 'meteor/session';
 import { browserHistory } from 'react-router';
+import PropTypes from 'prop-types';
 
 import { get } from 'lodash';
 
@@ -198,8 +199,9 @@ export class Header extends React.Component {
   }
 }
 Header.childContextTypes = {
-  muiTheme: React.PropTypes.object
+  muiTheme: PropTypes.object
 };
+
 ReactMixin(Header.prototype, ReactMeteorData);
 
 export default Header;
