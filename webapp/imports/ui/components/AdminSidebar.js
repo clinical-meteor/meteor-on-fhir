@@ -1,4 +1,4 @@
-import { IndexLinkContainer, LinkContainer } from 'react-router-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 import { List, ListItem } from 'material-ui/List';
 import React from 'react';
 import ReactMixin from 'react-mixin';
@@ -63,29 +63,29 @@ export class AdminSidebar extends React.Component {
       <div id="adminSidebar">
         <List style={{paddingLeft: '20px', position: 'static', width: '100%'}}>
 
-          <IndexLinkContainer to='/'>
-             <ListItem primaryText='Admin Index' href='/' />
-          </IndexLinkContainer>
+          <LinkContainer to='/'>
+             <MenuItem primaryText='Admin Index' href='/' />
+          </LinkContainer>
 
-          <IndexLinkContainer to='/users'>
-             <ListItem primaryText='Users' href='/users' />
-          </IndexLinkContainer>
+          <LinkContainer to='/users'>
+             <MenuItem primaryText='Users' href='/users' />
+          </LinkContainer>
 
 
           { dynamicElements }
 
 
-          <IndexLinkContainer to='/info'>
-             <ListItem primaryText='Info' href='/info' />
-          </IndexLinkContainer>
+          <LinkContainer to='/info'>
+             <MenuItem primaryText='Info' href='/info' />
+          </LinkContainer>
 
-          <IndexLinkContainer to='/metadata'>
-             <ListItem primaryText='Metadata' href='/metadata' />
-          </IndexLinkContainer>
+          <LinkContainer to='/metadata'>
+             <MenuItem primaryText='Metadata' href='/metadata' />
+          </LinkContainer>
 
-          <IndexLinkContainer to='/signin'>
-             <ListItem className='logoutMenuItem' primaryText='Logout' href='/signin' onClick={this.handleLogout} />
-          </IndexLinkContainer>
+          <LinkContainer to='/signin'>
+             <MenuItem className='logoutMenuItem' primaryText='Logout' href='/signin' onClick={this.handleLogout} />
+          </LinkContainer>
         </List>
       </div>
     );
