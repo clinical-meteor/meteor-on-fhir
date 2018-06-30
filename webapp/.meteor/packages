@@ -130,14 +130,14 @@ clinical:hl7-resource-risk-assessment
 d3js:d3
 
 ### Infrastructure as a Service
-symptomatic:fhir-caching-layer
+# symptomatic:fhir-caching-layer
 percolate:synced-cron
 
 
 ### Premium Modules
-symptomatic:theming
-symptomatic:continuity-of-care
-#symptomatic:geomapping
+# symptomatic:theming
+# symptomatic:continuity-of-care
+# symptomatic:geomapping
 
 
 ### Blockchains
@@ -150,4 +150,3 @@ symptomatic:continuity-of-care
 ### GitHub Community Versions
 # clinical:example-plugin
 
-upenn:innovation
