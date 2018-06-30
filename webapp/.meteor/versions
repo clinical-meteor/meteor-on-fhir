@@ -53,7 +53,7 @@ clinical:hl7-resource-patient@3.2.26
 clinical:hl7-resource-practitioner@3.2.7
 clinical:hl7-resource-procedure@1.4.2
 clinical:hl7-resource-risk-assessment@1.4.7
-clinical:hl7-resource-subscription@3.3.7
+clinical:hl7-resource-subscription@3.3.8
 clinical:keybindings@1.4.6
 clinical:oauth@1.2.26
 clinical:theming@0.4.10
