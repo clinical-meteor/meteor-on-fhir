@@ -4,7 +4,7 @@
 # 'meteor add' and 'meteor remove' will edit this file for you
 # but you can also edit it by hand.
 
-# meteor libraries
+### Meteor Web Application
 meteor-base@1.2.0
 ecmascript@0.9.0
 es5-shim@4.6.15
@@ -12,16 +12,18 @@ check@1.2.5
 tracker@1.1.3
 session@1.1.7
 
-# standard libraries
-jquery@1.11.10
+### Standard Utilities
+jquery@1.11.10      
 underscore@1.0.10
-less@2.7.11
+momentjs:moment
 
-# ui
+### User Interface
 # static-html@1.1.12_1
 react-meteor-data@0.2.15
+fourseven:scss
+less@2.7.11
 
-# data
+# Data Layer
 mongo@1.3.1
 aldeed:simple-schema
 aldeed:collection2
@@ -31,7 +33,8 @@ mdg:validated-method
 mdg:validation-error
 dburles:mongo-collection-instances
 
-# security
+
+### Security and HIPAA Compliance
 # browser-policy@1.1.0
 # browser-policy-common@1.0.11
 # browser-policy-content@1.1.0
@@ -41,27 +44,34 @@ audit-argument-checks@1.0.7
 dynamic-import
 
 
-# i18n
+### Internationalization
 universe:i18n
 
-# accounts
-accounts-password@1.5.0
 
-# mobile
+### Accounts
+accounts-password@1.5.0
+alanning:roles
+
+
+### Mobile 
 crosswalk@1.7.1
 mobile-experience@1.0.5
 chriswessels:hammer
 
-# production
+
+### Production
 juliancwirko:postcss@1.0.0-beta.11
 standard-minifier-js@2.2.0
 ddp-rate-limiter@1.0.7
 
-# rest apis
+
+### Internet Standard APIs
 # simple:rest-accounts-password
 # simple:rest
+simple:json-routes
 
-# testing
+
+### Quality Control
 # xolvio:cleaner
 # dispatch:mocha-phantomjs
 practicalmeteor:mocha
@@ -70,13 +80,13 @@ practicalmeteor:sinon
 hwillson:stub-collections
 shell-server@0.3.0
 
-alanning:roles
-themeteorchef:bert
-fourseven:scss
-momentjs:moment
 
+### Alerts and Error Reporting
 simple:dev-error-overlay
+themeteorchef:bert
 
+
+### Clinical Meteor Framework
 clinical:fonts
 clinical:extended-api
 clinical:auto-resizing
@@ -89,9 +99,10 @@ clinical:glass-ui
 clinical:default-landing-page
 clinical:accounts-famous-dead-people
 clinical:accounts-housemd
-clinical:oauth
+clinical:accounts-oauth
 
-# fhir resources
+
+### Fast Healthcare Interoperability Resources
 clinical:hl7-resource-allergy-intolerance
 clinical:hl7-resource-condition
 clinical:hl7-resource-careplan
@@ -112,17 +123,22 @@ clinical:hl7-resource-patient
 clinical:hl7-resource-practitioner
 clinical:hl7-resource-procedure
 clinical:hl7-resource-risk-assessment
+# clinical:smart-on-fhir-client
+# clinical:oauth
 
-simple:json-routes
 
-percolate:synced-cron
 d3js:d3
 
-### Timeline
-#clinical:smart-on-fhir-client
-#symptomatic:continuity-of-care
-#symptomatic:theming
-#symptomatic:geomapping
+### Infrastructure as a Service
+# symptomatic:fhir-caching-layer
+percolate:synced-cron
+
+
+### Premium Modules
+# symptomatic:theming
+# symptomatic:continuity-of-care
+# symptomatic:geomapping
+
 
 ### Blockchains
 # symptomatic:blockchain-core
@@ -131,4 +147,6 @@ d3js:d3
 # clinical:hl7-resource-contract
 
 
-clinical:example-plugin
+### GitHub Community Versions
+# clinical:example-plugin
+
