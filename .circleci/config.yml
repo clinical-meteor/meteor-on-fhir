@@ -109,7 +109,7 @@ jobs:
 
     - run: 
         name: Running tests
-        command: sleep 330 && cd webapp && meteor npm run-script circle-nightwatch -- --tag circle
+        command: sleep 400 && cd webapp && meteor npm run-script circle-nightwatch -- --tag circle
 
 
 
