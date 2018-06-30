@@ -144,5 +144,5 @@ jobs:
         path: ./webapp/tests/nightwatch/screenshots
     - store_artifacts:
         path: ./webapp/tests/nightwatch/logs
-    - store_artifacts: 
-        path: ./webapp/meteor-output.log
+    - store_artifacts: ./webapp/meteor-output.log
+        path: 
