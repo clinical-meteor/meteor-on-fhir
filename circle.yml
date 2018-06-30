@@ -12,6 +12,7 @@ machine:
     CXX: g++-4.8
     DISPLAY: :99.0
     NPM_PREFIX: /home/ubuntu/nvm/v0.10.33
+    DEBUG: true
 
 
 ## Customize checkout
@@ -84,7 +85,7 @@ test:
     #- run the app
     - "cd webapp && meteor run --settings configs/settings.circle.json":
           background: true
-    - sleep 330
+    - sleep 400
 
   #- the run our tests
   override:
