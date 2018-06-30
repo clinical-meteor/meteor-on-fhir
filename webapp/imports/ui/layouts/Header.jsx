@@ -174,7 +174,6 @@ export class Header extends React.Component {
           <ActionReorder 
             id='sidebarToggleButton'
             style={{marginTop: '20px', marginLeft: '25px', marginRight: '10px', left: '0px', position: 'absolute', cursor: 'pointer'}}
-            onTouchTap={this.toggleDrawerActive}
             onClick={this.toggleDrawerActive}
             />
         </AppBar>
