@@ -53,11 +53,6 @@
     "react-router-bootstrap": "^0.23.3",
     "react-router-dom": "^4.2.2",
     "react-scifi": "0.1.0-alpha",
-<<<<<<< HEAD
-    "react-swipeable": "4.2.1",
-    "react-tap-event-plugin": "^2.0.1",
-=======
->>>>>>> 14f900f... The react-event-tap-plugin was removed from line 55.
     "react-tappable": "^1.0.2",
     "xml2js": "0.4.19"
   },
