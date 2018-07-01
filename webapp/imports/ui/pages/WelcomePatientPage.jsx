@@ -108,7 +108,7 @@ export class WelcomePatientPage extends React.Component {
 
             </CardText>
             <CardActions>
-              <FlatButton id='acceptWelcomePageButton' label="Accept" onTouchTap={this.handleGo} />
+              <FlatButton id='acceptWelcomePageButton' label="Accept" onClick={this.handleGo} />
             </CardActions>
           </GlassCard>
         </VerticalCanvas>
