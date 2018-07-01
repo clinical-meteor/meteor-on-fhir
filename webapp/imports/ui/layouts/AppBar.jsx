@@ -195,7 +195,6 @@ var AppBar = function (_Component) {
       var titleElement = _react2.default.createElement(titleComponent, {
         id: titleId,
         onClick: this.handleTitleTouchTap,
-        onClick: this.handleTitleTouchTap,
         style: prepareStyles((0, _simpleAssign2.default)(styles.title, styles.mainElement, titleStyle))
       }, title);
 

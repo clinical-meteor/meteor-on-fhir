@@ -176,22 +176,6 @@ export class Signin extends React.Component {
   render() {
     var signinButtons = [];
     var self = this;
-
-    // if (this.data.endpoints.length > 0){
-    //   this.data.endpoints.forEach(function(endpoint){
-    //     signinButtons.push(
-    //       <RaisedButton 
-    //         key={endpoint.name}
-    //         label={endpoint.name}
-    //         id={endpoint.name + "Button"}
-    //         defaultValue={ Session.get('signinWithSearch') }
-    //         onClick={self.signInWith.bind(self, endpoint.name)} 
-    //         style={{width: '100%', textAlign: 'left', marginLeft: '40px', marginBottom: '20px' }}
-    //         buttonStyle={{ textAlign: 'left', fontWeight: '300' }}
-    //         primary={true} />
-    //     );  
-    //   });
-    // }
     
     if (this.data.services.length > 0){
       this.data.services.forEach(function(service){
