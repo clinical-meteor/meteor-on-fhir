@@ -96,130 +96,130 @@
 //     }
     
 
-//     if (Session.get('iFrameLocation')) {
-//       data.browserWindowLocation = Session.get('iFrameLocation');
-//     }
+    if (Session.get('iFrameLocation')) {
+      data.browserWindowLocation = Session.get('iFrameLocation');
+    }
 
-//     if (Session.get('secondPanelVisible')) {
-//       if (Session.get('appWidth') > 1200) {
-//         data.style.secondary.visibility = 'visible';
-//         data.style.secondary.left = '1024px';
-//       } else {
-//         data.style.secondary.visibility = 'hidden';
-//         data.style.secondary.left = '4048px';
-//       }
-//     } else {
-//       data.style.secondary.visibility = 'hidden';
-//       data.style.secondary.left = '4048px';
-//     }
+    if (Session.get('secondPanelVisible')) {
+      if (Session.get('appWidth') > 1200) {
+        data.style.secondary.visibility = 'visible';
+        data.style.secondary.left = '1024px';
+      } else {
+        data.style.secondary.visibility = 'hidden';
+        data.style.secondary.left = '4048px';
+      }
+    } else {
+      data.style.secondary.visibility = 'hidden';
+      data.style.secondary.left = '4048px';
+    }
 
-//     if(process.env.NODE_ENV === "test") console.log("App[data]", data);
-//     return data;
-//   }
-//   handleCloseCatch(){
-//     Session.set('catchDialogOpen', false);
-//   }  
+    if(process.env.NODE_ENV === "test") console.log("App[data]", data);
+    return data;
+  }
+  handleCloseCatch(){
+    Session.set('catchDialogOpen', false);
+  }  
 
-//   renderSecondaryPanel(){
-//     // RADIOLOGY
-//     if (Meteor.userId() && Session.equals('pathname', '/diagnostic-reports') && get(Meteor.settings, 'public.modules.fhir.DiagnosticReports')) {
-//       // the user is logged in as a normal user
-//       return (
-//         <GlassCard style={this.data.style.card} >
-//           <Image />
-//         </GlassCard>
-//       );
-//       // Website
-//     } else if (Meteor.userId() && Session.equals('pathname', '/videoconferencing')) {
-//       return (
-//         <GlassCard style={this.data.style.card} height='auto'>
-//           <CardText>
-//             Video!
-//           </CardText>
-//         </GlassCard>
-//       );
-
-
-//     // Website
-//     } else if (Meteor.userId() && get(Meteor.settings, 'public.defaults.iFrameUrl')) {
-//       return (
-//         <GlassCard style={this.data.style.card} height='auto'>
-//           <CardText>
-//             <object id="iframe" type="text/html" data={this.data.browserWindowLocation} style={this.data.style.content}>
-//               <p>unable to load </p>
-//             </object>
-//           </CardText>
-//         </GlassCard>
-//       );
-
-//     } else {
-//       // anything else
-//       return (
-//         <div></div>
-//       );
-
-//     }
-//   }
-//   render(){
-//     var orbital;
-//     if(get(Meteor, 'settings.public.defaults.nfcOrbital')){
-//       orbital = <SciFiPage />;
-//     }
-//     const catchActions = [
-//       <FlatButton
-//         label="Accept"
-//         primary={true}
-//         keyboardFocused={true}
-//         onClick={this.handleCloseCatch}
-//       />,
-//       <FlatButton
-//         label="Dismiss"
-//         primary={true}
-//         onClick={this.handleCloseCatch}
-//       />
-//     ];
+  renderSecondaryPanel(){
+    // RADIOLOGY
+    if (Meteor.userId() && Session.equals('pathname', '/diagnostic-reports') && get(Meteor.settings, 'public.modules.fhir.DiagnosticReports')) {
+      // the user is logged in as a normal user
+      return (
+        <GlassCard style={this.data.style.card} >
+          <Image />
+        </GlassCard>
+      );
+      // Website
+    } else if (Meteor.userId() && Session.equals('pathname', '/videoconferencing')) {
+      return (
+        <GlassCard style={this.data.style.card} height='auto'>
+          <CardText>
+            Video!
+          </CardText>
+        </GlassCard>
+      );
 
 
-//     return (
-//      <MuiThemeProvider muiTheme={muiTheme}>
-//       <GlassApp>
-//         <SinglePanelLayout>
-//           {orbital}
-//           <Header />
-//             <div className='primaryFlexPanel' >
-//               {/* { this.props.children } */}
+    // Website
+    } else if (Meteor.userId() && get(Meteor.settings, 'public.defaults.iFrameUrl')) {
+      return (
+        <GlassCard style={this.data.style.card} height='auto'>
+          <CardText>
+            <object id="iframe" type="text/html" data={this.data.browserWindowLocation} style={this.data.style.content}>
+              <p>unable to load </p>
+            </object>
+          </CardText>
+        </GlassCard>
+      );
 
-//               {/* <RouteTransition                  
-//                   pathname={this.props.location.pathname}
-//                   atEnter={pop.atEnter}
-//                   atLeave={pop.atLeave}
-//                   atActive={pop.atActive}
-//                   className="transition-wrapper"
-//                 > */}
-//                   {this.props.children}
-//                 {/* </RouteTransition> */}
+    } else {
+      // anything else
+      return (
+        <div></div>
+      );
 
-//             </div>
-//             <div className='secondaryFlexPanel' style={this.data.style.secondary}>
-//               <VerticalCanvas>
-//                 { this.renderSecondaryPanel() }
-//               </VerticalCanvas>
-//             </div>
-//           <Footer />
-//         </SinglePanelLayout>
+    }
+  }
+  render(){
+    var orbital;
+    if(get(Meteor, 'settings.public.defaults.nfcOrbital')){
+      orbital = <SciFiPage />;
+    }
+    const catchActions = [
+      <FlatButton
+        label="Accept"
+        primary={true}
+        keyboardFocused={true}
+        onClick={this.handleCloseCatch}
+      />,
+      <FlatButton
+        label="Dismiss"
+        primary={true}
+        onClick={this.handleCloseCatch}
+      />
+    ];
 
-//       </GlassApp>
-//      </MuiThemeProvider>
-//     );
-//   }
-// }
 
-// App.propTypes = {
-//   children: PropTypes.element.isRequired
-// };
-// App.childContextTypes = {
-//   muiTheme: PropTypes.object.isRequired
-// };
-// App.defaultProps = {};
+    return (
+     <MuiThemeProvider muiTheme={muiTheme}>
+      <GlassApp>
+        <SinglePanelLayout>
+          {orbital}
+          <Header />
+            <div className='primaryFlexPanel' >
+              {/* { this.props.children } */}
 
-// ReactMixin(App.prototype, ReactMeteorData);
+              {/* <RouteTransition                  
+                  pathname={this.props.location.pathname}
+                  atEnter={pop.atEnter}
+                  atLeave={pop.atLeave}
+                  atActive={pop.atActive}
+                  className="transition-wrapper"
+                > */}
+                  {this.props.children}
+                {/* </RouteTransition> */}
+
+            </div>
+            <div className='secondaryFlexPanel' style={this.data.style.secondary}>
+              <VerticalCanvas>
+                { this.renderSecondaryPanel() }
+              </VerticalCanvas>
+            </div>
+          <Footer />
+        </SinglePanelLayout>
+
+      </GlassApp>
+     </MuiThemeProvider>
+    );
+  }
+}
+
+App.propTypes = {
+  children: PropTypes.element.isRequired
+};
+App.childContextTypes = {
+  muiTheme: PropTypes.object.isRequired
+};
+App.defaultProps = {};
+
+ReactMixin(App.prototype, ReactMeteorData);

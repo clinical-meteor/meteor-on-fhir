@@ -5,6 +5,7 @@ import ListHeader from '../components/ListHeader.jsx';
 import TodoItem from '../components/TodoItem.jsx';
 import NotFoundPage from '../pages/NotFoundPage.jsx';
 import Message from '../components/Message.jsx';
+import PropTypes from 'prop-types';
 
 export default class ListPage extends BaseComponent {
   constructor(props) {
@@ -60,8 +61,8 @@ export default class ListPage extends BaseComponent {
 }
 
 ListPage.propTypes = {
-  list: React.PropTypes.object,
-  todos: React.PropTypes.array,
-  loading: React.PropTypes.bool,
-  listExists: React.PropTypes.bool,
+  list: PropTypes.object,
+  todos: PropTypes.array,
+  loading: PropTypes.bool,
+  listExists: PropTypes.bool
 };
