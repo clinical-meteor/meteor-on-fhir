@@ -194,7 +194,6 @@ var AppBar = function (_Component) {
 
       var titleElement = _react2.default.createElement(titleComponent, {
         id: titleId,
-        onTouchTap: this.handleTitleTouchTap,
         onClick: this.handleTitleTouchTap,
         style: prepareStyles((0, _simpleAssign2.default)(styles.title, styles.mainElement, titleStyle))
       }, title);
@@ -228,7 +227,7 @@ var AppBar = function (_Component) {
               style: iconLeftStyle,
               iconStyle: styles.iconButtonIconStyle,
               iconClassName: iconClassNameLeft,
-              onTouchTap: this.handleTouchTapLeftIconButton
+              onClick: this.handleTouchTapLeftIconButton
             },
             iconClassNameLeft ? '' : _react2.default.createElement(_menu2.default, { style: (0, _simpleAssign2.default)({}, styles.iconButtonIconStyle) })
           );
@@ -273,7 +272,7 @@ var AppBar = function (_Component) {
           style: iconRightStyle,
           iconStyle: styles.iconButtonIconStyle,
           iconClassName: iconClassNameRight,
-          onTouchTap: this.handleTouchTapRightIconButton
+          onClick: this.handleTouchTapRightIconButton
         });
       }
 
