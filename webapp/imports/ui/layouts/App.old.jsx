@@ -1,99 +1,99 @@
-// base layout
-import { VerticalCanvas, GlassCard } from 'meteor/clinical:glass-ui';
-import { CardHeader, CardText, CardTitle } from 'material-ui/Card';
-import {teal400, teal600} from 'material-ui/styles/colors';
-import PropTypes from 'prop-types';
+// // base layout
+// import { VerticalCanvas, GlassCard } from 'meteor/clinical:glass-ui';
+// import { CardHeader, CardText, CardTitle } from 'material-ui/Card';
+// import {teal400, teal600} from 'material-ui/styles/colors';
+// import PropTypes from 'prop-types';
 
-import { Footer } from '/imports/ui/layouts/Footer';
-import { GlassApp } from '/imports/ui/layouts/GlassApp';
-import { Header } from '/imports/ui/layouts/Header';
-import { Image } from '/imports/ui/components/Image';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import React  from 'react';
-import { ReactMeteorData } from 'meteor/react-meteor-data';
-import ReactMixin  from 'react-mixin';
-import { SciFiOrbital } from '/imports/ui/components/SciFiOrbital';
-import { Session } from 'meteor/session';
-import { SinglePanelLayout } from '/imports/ui/layouts/SinglePanelLayout';
+// import { Footer } from '/imports/ui/layouts/Footer';
+// import { GlassApp } from '/imports/ui/layouts/GlassApp';
+// import { Header } from '/imports/ui/layouts/Header';
+// import { Image } from '/imports/ui/components/Image';
+// import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+// import React  from 'react';
+// import { ReactMeteorData } from 'meteor/react-meteor-data';
+// import ReactMixin  from 'react-mixin';
+// import { SciFiOrbital } from '/imports/ui/components/SciFiOrbital';
+// import { Session } from 'meteor/session';
+// import { SinglePanelLayout } from '/imports/ui/layouts/SinglePanelLayout';
 
-import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
+// import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
+// import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
-import FlatButton from 'material-ui/FlatButton';
-import Dialog from 'material-ui/Dialog';
+// import FlatButton from 'material-ui/FlatButton';
+// import Dialog from 'material-ui/Dialog';
 
-import { Meteor } from 'meteor/meteor';
+// import { Meteor } from 'meteor/meteor';
 
-import { get, has } from 'lodash';
+// import { get, has } from 'lodash';
 
-const muiTheme = getMuiTheme({
-  palette: {
-    primary1Color: teal400,
-    primary2Color: teal600,
-    pickerHeaderColor: teal400
-  }
-});
+// const muiTheme = getMuiTheme({
+//   palette: {
+//     primary1Color: teal400,
+//     primary2Color: teal600,
+//     pickerHeaderColor: teal400
+//   }
+// });
 
-Session.setDefault('iFrameLocation', '');
-Session.setDefault('catchDialogOpen', false);
+// Session.setDefault('iFrameLocation', '');
+// Session.setDefault('catchDialogOpen', false);
 
-Meteor.startup(function (){
-  if (has(Meteor.settings, 'public.defaults.iFrameUrl')){
-    Session.set('iFrameLocation', get(Meteor.settings, 'public.defaults.iFrameUrl'));
-  }
-  if (has(Meteor.settings, 'public.defaults.iFrameEnabled')){
-    Session.set('secondPanelVisible', get(Meteor.settings, 'public.defaults.iFrameEnabled'));
-  }
-});
+// Meteor.startup(function (){
+//   if (has(Meteor.settings, 'public.defaults.iFrameUrl')){
+//     Session.set('iFrameLocation', get(Meteor.settings, 'public.defaults.iFrameUrl'));
+//   }
+//   if (has(Meteor.settings, 'public.defaults.iFrameEnabled')){
+//     Session.set('secondPanelVisible', get(Meteor.settings, 'public.defaults.iFrameEnabled'));
+//   }
+// });
 
 
-export class App extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  getChildContext() {
-    return {
-      muiTheme: getMuiTheme(baseTheme)
-    };
-  }
-  componentWillMount() {
-    injectTapEventPlugin();
-  }
+// export class App extends React.Component {
+//   constructor(props) {
+//     super(props);
+//   }
+//   getChildContext() {
+//     return {
+//       muiTheme: getMuiTheme(baseTheme)
+//     };
+//   }
+//   componentWillMount() {
+//     injectTapEventPlugin();
+//   }
 
-  getMeteorData() {
-    let data = {
-      style: {
-        secondary: {
-          position: 'absolute',
-          top: ' 0px',
-          width: '1024px',
-          left: '0',
-          transition: '1s'
-        },
-        card: {
-          position: 'relative',
-          width: '1024px'
-        },
-        content: {
-          minHeight: '728px',
-          width: '970px',
-          height: Session.get('appHeight') - 280 + 'px'
-        }
-      },
-      browserWindowLocation: 'https://www.ncbi.nlm.nih.gov', 
-      catchDialog: {
-        open: false,
-        patient: {
-          display: '',
-          reference: ''
-        }
-      },
-      user: Meteor.user()
-    };
+//   getMeteorData() {
+//     let data = {
+//       style: {
+//         secondary: {
+//           position: 'absolute',
+//           top: ' 0px',
+//           width: '1024px',
+//           left: '0',
+//           transition: '1s'
+//         },
+//         card: {
+//           position: 'relative',
+//           width: '1024px'
+//         },
+//         content: {
+//           minHeight: '728px',
+//           width: '970px',
+//           height: Session.get('appHeight') - 280 + 'px'
+//         }
+//       },
+//       browserWindowLocation: 'https://www.ncbi.nlm.nih.gov', 
+//       catchDialog: {
+//         open: false,
+//         patient: {
+//           display: '',
+//           reference: ''
+//         }
+//       },
+//       user: Meteor.user()
+//     };
 
-    if(Session.get('catchDialogOpen')){
-      data.catchDialog.open = Session.get('catchDialogOpen');
-    }
+//     if(Session.get('catchDialogOpen')){
+//       data.catchDialog.open = Session.get('catchDialogOpen');
+//     }
     
 
     if (Session.get('iFrameLocation')) {

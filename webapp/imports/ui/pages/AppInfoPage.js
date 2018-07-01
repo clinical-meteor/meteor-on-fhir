@@ -34,9 +34,9 @@ export class AppInfoPage extends React.Component {
   getMeteorData() {
     
     let data = {
-      environment: process.env.NODE_ENV,
-      userId: Meteor.userId(),
-      url: Meteor.absoluteUrl(),
+      environment: '',
+      userId: '',
+      url: '',
       onlineStatus: get(Meteor.status(), 'status', ''),
       version: get(Meteor, 'settings.public.version.complete', ''),
       branch: get(Meteor, 'settings.public.version.branch', ''),
@@ -45,7 +45,19 @@ export class AppInfoPage extends React.Component {
         paddingTop: '0px'
       }
     };    
-    
+
+    if(process.env.NODE_ENV){
+      data.environment = process.env.NODE_ENV;
+    }
+    if(Meteor.userId()){
+      data.environment = Meteor.userId();
+    }
+    if(Meteor.absoluteUrl()){
+      data.environment = Meteor.absoluteUrl()
+    }
+
+
+
     if (Session.get('appWidth') > 768) {
       data.environmentData.paddingTop = '140px';
     }
