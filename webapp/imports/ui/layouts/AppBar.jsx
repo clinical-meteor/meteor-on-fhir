@@ -211,8 +211,8 @@ var AppBar = function (_Component) {
             iconElementLeftProps.iconStyle = (0, _simpleAssign2.default)({}, iconButtonIconStyle, iconElementLeft.props.iconStyle);
           }
 
-          if (!iconElementLeft.props.onTouchTap && this.props.onLeftIconButtonTouchTap) {
-            iconElementLeftProps.onTouchTap = this.handleTouchTapLeftIconButton;
+          if (!iconElementLeft.props.onClick && this.props.onLeftIconButtonTouchTap) {
+            iconElementLeftProps.onClick = this.handleTouchTapLeftIconButton;
           }
 
           menuElementLeft = _react2.default.createElement(
@@ -258,8 +258,8 @@ var AppBar = function (_Component) {
           default:
         }
 
-        if (!iconElementRight.props.onTouchTap && this.props.onRightIconButtonTouchTap) {
-          iconElementRightProps.onTouchTap = this.handleTouchTapRightIconButton;
+        if (!iconElementRight.props.onClick && this.props.onRightIconButtonTouchTap) {
+          iconElementRightProps.onClick = this.handleTouchTapRightIconButton;
         }
 
         menuElementRight = _react2.default.createElement(
