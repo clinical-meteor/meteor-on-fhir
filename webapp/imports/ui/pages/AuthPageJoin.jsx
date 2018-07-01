@@ -5,6 +5,7 @@ import i18n from 'meteor/universe:i18n';
 import BaseComponent from '../components/BaseComponent.jsx';
 
 import AuthPage from './AuthPage.jsx';
+import PropTypes from 'prop-types';
 
 export default class JoinPage extends BaseComponent {
   constructor(props) {
@@ -121,5 +122,5 @@ export default class JoinPage extends BaseComponent {
 }
 
 JoinPage.contextTypes = {
-  router: React.PropTypes.object,
+  router: PropTypes.object
 };

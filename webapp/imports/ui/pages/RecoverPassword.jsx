@@ -94,7 +94,7 @@ export class RecoverPassword extends React.Component {
                   fullWidth
                   /><br/>
               </FormGroup>
-              <RaisedButton id='recoverPasswordButton' type="submit" onTouchTap={this.recoverPassword } label='Recover Password' primary={true} />
+              <RaisedButton id='recoverPasswordButton' type="submit" onClick={this.recoverPassword } label='Recover Password' primary={true} />
 
             </form>
           </VerticalCanvas>
