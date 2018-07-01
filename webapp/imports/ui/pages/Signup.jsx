@@ -220,13 +220,11 @@ export class Signup extends React.Component {
                   <br/>
                   <RaisedButton
                     id='signupButton'
-                    onTouchTap={this.handleTouchTap.bind(this)}
                     onClick={this.handleTouchTap.bind(this)}
                     label='Sign Up'
                     primary={true} />
                   <RaisedButton
                     id='alreadyHaveAccountButton'
-                    onTouchTap={this.signinRoute }
                     onClick={this.signinRoute }
                     label='Already have an account?'
                     style={{marginLeft: '20px'}} />

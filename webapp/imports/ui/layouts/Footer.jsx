@@ -548,14 +548,14 @@ export class Footer extends React.Component {
             id='privacyScreen'
             text='privacy | '
             style={{fontSize: '18px', top: '-4px', cursor: 'pointer'}}
-            onTouchTap={this.clickOnBlurButton }
+            onClick={this.clickOnBlurButton }
           />
 
           <ToolbarTitle
             id='connectionStatus'
             text={this.data.status}
             style={{fontSize: '18px', top: '-4px', cursor: 'pointer'}}
-            onTouchTap={this.openInfo }
+            onClick={this.openInfo }
           />
         </div>
       );
