@@ -7,7 +7,7 @@
 
 import { Button, ButtonGroup } from 'react-bootstrap';
 import { CardActions, CardHeader, CardText, CardTitle, TextField, LinearProgress } from 'material-ui';
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import {blue500, orange500} from 'material-ui/styles/colors';
 import { bundle, radialLine } from 'd3-shape';
 
@@ -16,6 +16,7 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
 
 import { VerticalCanvas, GlassCard } from 'meteor/clinical:glass-ui';
+import PropTypes from 'prop-types';
 
 export class EdgeBundlePage extends React.Component {
   constructor(props) {

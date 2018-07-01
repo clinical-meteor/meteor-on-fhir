@@ -20,7 +20,7 @@ import { EdgeBundlePage } from '/imports/ui/pages/EdgeBundlePage';
 
 import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import { get, has } from 'lodash';
-import injectTapEventPlugin from 'react-tap-event-plugin';
+// import injectTapEventPlugin from 'react-tap-event-plugin';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 const muiTheme = getMuiTheme({
@@ -50,9 +50,9 @@ export class App extends React.Component {
       muiTheme: getMuiTheme(baseTheme)
     };
   }
-  componentWillMount() {
-    injectTapEventPlugin();
-  }
+  // componentWillMount() {
+  //   injectTapEventPlugin();
+  // }
   renderSecondaryPanel(){
     // RADIOLOGY
     if (Meteor.userId() && Session.equals('pathname', '/diagnostic-reports') && get(Meteor.settings, 'public.modules.fhir.DiagnosticReports')) {

@@ -167,13 +167,8 @@ az webapp create --resource-group appResourceGroup --plan appServicePlan --name 
 #### I. Azure Deployment 
 
 ```sh
-# First we need to set up Azure
-# stringify the settings.json file
-# add to Azure > AppName > Application Settings > METEOR_SETTINGS
-cat packages/example-package/configs/settings.example.json | tr -d ' ' | tr -d '\n'
-
-# configure the environment variables
-export METEOR_SETTINGS="$(cat ../../webapp/packages/example-plugin/configs/settings.example.json )"
+# prepare environment variables
+export METEOR_SETTINGS="$(cat ../../webapp/packages/example-plugin/configs/settings.blank.json )"
 export ROOT_URL=https://appname.azurewebsites.net
 export MONGO_URL=mongodb://user:password@cosmodb.documents.azure.com:10255/?ssl=true
 
@@ -181,6 +176,9 @@ export MONGO_URL=mongodb://user:password@cosmodb.documents.azure.com:10255/?ssl=
 cd webapp/packages
 git clone https://github.com/clinical-meteor/example-plugin
 cd webapp
+
+# stringify the settings.json file; and add to Azure METEOR_SETTINGS
+cat packages/example-plugin/configs/settings.json | tr -d ' ' | tr -d '\n'
 
 # add required packages
 meteor add clinical:example-plugin
@@ -193,7 +191,7 @@ npm install
 node start
 
 # meteor-azure
-meteor-azure --settings packages/example-plugin/configs/settings.example.json
+meteor-azure --settings packages/example-plugin/configs/settings.blank.json
 
 # debugging
 curl -u admin https://appname.scm.azurewebsites.net/api/logstream
