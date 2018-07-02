@@ -5,15 +5,18 @@ import './routes.js';
 import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session';
 
-import { Bert } from 'meteor/themeteorchef:bert';
+import { Bert} from 'meteor/clinical:alert';
 import { get } from 'lodash';
 
-Bert.defaults.style = 'growl-top-right';
 
 // OAuth Access Token
 Session.setDefault('accessToken', '');
 
 Meteor.startup(function (){
+
+  console.log('Bert', Bert)
+  Bert.defaults.style = 'growl-top-right';
+
 
   // Global session variables for user interface elements
   Session.set('showNavbars', true);
