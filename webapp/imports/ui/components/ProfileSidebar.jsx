@@ -62,7 +62,10 @@ export class ProfileSidebar extends React.Component {
   handlePreferences() {
     browserHistory.push('/preferences');
   }
-
+  handleLogout() {
+    console.log("handleLogout");
+    Meteor.logout();
+  }
   render () {
 
     // var index;
@@ -100,7 +103,7 @@ export class ProfileSidebar extends React.Component {
     //console.log('dynamicElements', dynamicElements);
 
     return(
-      <div id='ProfileSidebar'>
+      <div id='profileSidebar'>
         <List style={{paddingLeft: '20px', position: 'static'}}>
 
           <LinkContainer to='/myprofile'>
@@ -117,7 +120,11 @@ export class ProfileSidebar extends React.Component {
 
           <LinkContainer to='/oauth-grants'>
              <MenuItem id='logoutMenuItem' primaryText='Authorization Grants' href='/oauth-grants' onClick={this.handlePreferences} />
-          </LinkContainer>          
+          </LinkContainer>       
+
+          <LinkContainer to='/signin'>
+             <MenuItem id='logoutMenuItem' className='logoutMenuItem' primaryText='Logout' href='/signin' onClick={this.handleLogout} />
+          </LinkContainer>   
         </List>
       </div>
     );

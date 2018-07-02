@@ -88,7 +88,6 @@ shell-server@0.3.0
 
 ### Alerts and Error Reporting
 simple:dev-error-overlay
-themeteorchef:bert
 
 
 ### Clinical Meteor Framework
@@ -102,7 +101,7 @@ clinical:hipaa-logger
 clinical:autopublish
 clinical:glass-ui
 clinical:default-landing-page
-
+clinical:alert
 
 ### Fast Healthcare Interoperability Resources
 clinical:hl7-resource-allergy-intolerance
@@ -132,9 +131,6 @@ clinical:hl7-resource-subscription
 
 # clinical:smart-on-fhir-client
 # clinical:oauth
-
-
-
 
 
 d3js:d3
