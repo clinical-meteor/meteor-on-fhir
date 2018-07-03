@@ -105,7 +105,7 @@ jobs:
     #- run the app
     - run: 
         name: Starting Meteor
-        command: cd webapp && meteor run --settings configs/settings.circle.json | tee meteor-output.log
+        command: cd webapp && meteor run --settings configs/settings.circle.json --allow-incompatible-update | tee meteor-output.log
         background: true
         no_output_timeout: 10m
         when: on_success    # always, on_success, on_fail 
