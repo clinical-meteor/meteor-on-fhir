@@ -3,7 +3,7 @@ import { Col, Grid, Row } from 'react-bootstrap';
 import {blue500, orange500} from 'material-ui/styles/colors';
 
 import { AboutAppCard } from '/imports/ui/components/AboutAppCard';
-import { GlassCard, VerticalCanvas } from 'meteor/clinical:glass-ui';
+import { GlassCard, VerticalCanvas, Glass } from 'meteor/clinical:glass-ui';
 import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
@@ -34,9 +34,9 @@ export class AppInfoPage extends React.Component {
   getMeteorData() {
     
     let data = {
-      environment: process.env.NODE_ENV,
-      userId: Meteor.userId(),
-      url: Meteor.absoluteUrl(),
+      environment: '',
+      userId: '',
+      url: '',
       onlineStatus: get(Meteor.status(), 'status', ''),
       version: get(Meteor, 'settings.public.version.complete', ''),
       branch: get(Meteor, 'settings.public.version.branch', ''),
@@ -45,7 +45,19 @@ export class AppInfoPage extends React.Component {
         paddingTop: '0px'
       }
     };    
-    
+
+    if(process.env.NODE_ENV){
+      data.environment = process.env.NODE_ENV;
+    }
+    if(Meteor.userId()){
+      data.environment = Meteor.userId();
+    }
+    if(Meteor.absoluteUrl()){
+      data.environment = Meteor.absoluteUrl()
+    }
+
+
+
     if (Session.get('appWidth') > 768) {
       data.environmentData.paddingTop = '140px';
     }

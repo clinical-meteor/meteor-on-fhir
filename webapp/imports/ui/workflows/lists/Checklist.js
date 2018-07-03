@@ -37,17 +37,19 @@ export class Checklist extends React.Component {
       entry: []
     };
 
-    var list = Lists.findOne({_id: Session.get('selectedChecklist')});
-    if (list) {
-      data.entry = [];
-      list.entry.forEach(function(task){
-        if (task.flag.text == "Completed") {
-          task.selected = true;
-        } else {
-          task.selected = false;
-        }
-        data.entry.push(task);
-      });
+    if(typeof Lists === "object"){
+      var list = Lists.findOne({_id: Session.get('selectedChecklist')});
+      if (list) {
+        data.entry = [];
+        list.entry.forEach(function(task){
+          if (task.flag.text == "Completed") {
+            task.selected = true;
+          } else {
+            task.selected = false;
+          }
+          data.entry.push(task);
+        });
+      }  
     }
 
     data.style = Glass.blur(data.style);
@@ -106,7 +108,7 @@ export class Checklist extends React.Component {
     let listRows = [];
     for (var i = 0; i < this.data.entry.length; i++) {
       listRows.push(
-        <tr key={i} style={this.data.style.rowText} selected={ this.data.entry[i].selected } selectable={true} onClick={this.rowClick.bind(this)}>
+        <tr key={i} style={this.data.style.rowText} selected={ this.data.entry[i].selected } onClick={this.rowClick.bind(this)}>
           <td style={this.data.style.cell}>
             <Checkbox checked={this.data.entry[i].selected} onClick={this.toggleTask.bind('this', i)} />
           </td>

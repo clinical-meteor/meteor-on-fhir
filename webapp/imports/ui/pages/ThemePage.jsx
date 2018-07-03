@@ -2,7 +2,7 @@ import { CardActions, CardText, CardTitle } from 'material-ui/Card';
 import { Tab, Tabs } from 'material-ui/Tabs';
 import { get, has } from 'lodash';
 
-import { Bert } from 'meteor/themeteorchef:bert';
+import { Bert } from 'meteor/clinical:alert';
 import FlatButton from 'material-ui/FlatButton';
 import FontIcon from 'material-ui/FontIcon';
 import { Image } from 'react-bootstrap';

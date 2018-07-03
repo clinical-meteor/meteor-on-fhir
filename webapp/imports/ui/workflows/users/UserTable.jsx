@@ -1,6 +1,6 @@
 import AvVideoCall from 'material-ui/svg-icons/av/video-call';
 import Avatar from 'material-ui/Avatar';
-import { Bert } from 'meteor/themeteorchef:bert';
+import { Bert } from 'meteor/clinical:alert';
 import CommunicationPhone from 'material-ui/svg-icons/communication/phone';
 import IconButton from 'material-ui/IconButton';
 import { Meteor } from 'meteor/meteor';
@@ -160,13 +160,13 @@ export class UserTable extends React.Component {
     Session.set('transferPatientDialogOpen', false);
   }  
   swiping(e, deltaX, deltaY, absX, absY, velocity) {
-    console.log("You're Swiping...", e, deltaX, deltaY, absX, absY, velocity)
-    alert("You're Swiping...", e, deltaX, deltaY, absX, absY, velocity)
+    //console.log("You're Swiping...", e, deltaX, deltaY, absX, absY, velocity)
+    //alert("You're Swiping...", e, deltaX, deltaY, absX, absY, velocity)
   }
  
   swipingLeft(e, absX) {
     console.log("You're Swiping to the Left...", e, absX)
-    alert("You're Swiping to the Left...", e, absX)
+    //alert("You're Swiping to the Left...", e, absX)
   }
  
   swiped(e, deltaX, deltaY, isFlick, velocity) {
@@ -185,14 +185,29 @@ export class UserTable extends React.Component {
     Session.set('transferPatientDialogOpen', false);
   }
   swipedUp(e, deltaY, isFlick) {
+    //alert("You Swiped Up...", e, deltaY, isFlick)
     console.log("You Swiped Up...", e, deltaY, isFlick)
-    this.transferPatient();
+    //this.transferPatient();
+
+    var outgoingPatient = Session.get('outgoingPatient');
+    var receivingUser = Session.get('receivingUser');
+
+    Meteor.call('transferPatient', 
+      outgoingPatient,
+      receivingUser
+    );
+    Session.set('transferPatientDialogOpen', false);
+
   }
   renderAdminControls(isAdmin, i) {
     if (isAdmin) {
       return (
         <td>
-          <IconButton iconClassName="muidocs-icon-content-clear" onClick={ this.removeUser.bind(this, this.data.users[i]._id) } />
+          <FlatButton
+            label="Remove"
+            primary={true}
+            onClick={ this.removeUser.bind(this, this.data.users[i]._id) }
+          />
         </td>
       );
     }
@@ -200,7 +215,7 @@ export class UserTable extends React.Component {
   renderAdminHeaders(isAdmin) {
     if (isAdmin) {
       return (
-        <th>Remove</th>
+        <th>remove</th>
       );
     }
   }
@@ -307,7 +322,7 @@ export class UserTable extends React.Component {
           <FlatButton
             label="Notify"
             primary={true}
-            onTouchTap={ this.notifyUser.bind(this, this.data.users[i]) }
+            onClick={ this.notifyUser.bind(this, this.data.users[i]) }
           />
           
         </td>
@@ -315,7 +330,7 @@ export class UserTable extends React.Component {
           <FlatButton
             label="Transfer"
             primary={true}
-            onTouchTap={ this.transferPatient.bind(this, this.data.users[i]) }
+            onClick={ this.transferPatient.bind(this, this.data.users[i]) }
           />
           
         </td>
@@ -328,12 +343,12 @@ export class UserTable extends React.Component {
         label="Confirm"
         primary={true}
         keyboardFocused={true}
-        onTouchTap={this.confirmTransfer}
+        onClick={this.confirmTransfer}
       />,
       <FlatButton
         label="Cancel"
         primary={true}
-        onTouchTap={this.handleCloseCatch}
+        onClick={this.handleCloseCatch}
       />
     ];
 

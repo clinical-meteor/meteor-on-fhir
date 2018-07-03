@@ -1,0 +1,18 @@
+$cardTypes: ahm, default;
+
+$ahm-background-color: linear-gradient(to right, #353535, #000000);
+$ahm-width: 70px;
+
+$default-width: 70px;
+
+@each $cardType in $cardTypes {
+  .react-health-card--#{$cardType} .react-health-card__front,
+  .react-health-card--#{$cardType} .react-health-card__back {
+    @if $cardType == ahm { background: $ahm-background-color }
+  }
+
+  .react-health-card__logo.react-health-card--#{$cardType} {
+    @if $cardType == ahm { width: $ahm-width; }
+    @if $cardType == default { width: $default-width; }
+  }
+};

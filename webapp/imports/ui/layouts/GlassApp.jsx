@@ -29,6 +29,8 @@ export class GlassApp extends React.Component {
     let data = {
       app: {
         style: {
+          // default setting in case the theming package isn't loaded
+          background: 'rgb(238, 238, 238)', 
           width: '100%',
           height: '100%',
           position: 'fixed',
@@ -114,7 +116,12 @@ export class GlassApp extends React.Component {
     if(has(Meteor.settings, 'public.theme.backgroundImagePath')){
       style.backgroundImage = 'url(' + get(Meteor.settings, 'public.theme.backgroundImagePath') + ')';
     } else {
-      style.backgroundImage = 'none';
+      if (get(Meteor.settings, 'public.theme.backgroundColor')) {
+        style.backgroundColor = get(Meteor.settings, 'public.theme.backgroundColor');
+        style.backgroundImage = 'none';      
+      } else {
+        style.backgroundImage = 'none';
+      }      
     }
     style.WebkitBackgroundSize = 'cover';
     style.MozBackgroundSize = 'cover';
@@ -156,3 +163,4 @@ export class GlassApp extends React.Component {
 }
 
 ReactMixin(GlassApp.prototype, ReactMeteorData);
+export default GlassApp;

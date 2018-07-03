@@ -1,4 +1,4 @@
-import { Bert } from 'meteor/themeteorchef:bert';
+import { Bert } from 'meteor/clinical:alert';
 import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session';
 import { MobilePadding } from '/imports/ui/components/MobilePadding';
@@ -176,22 +176,6 @@ export class Signin extends React.Component {
   render() {
     var signinButtons = [];
     var self = this;
-
-    // if (this.data.endpoints.length > 0){
-    //   this.data.endpoints.forEach(function(endpoint){
-    //     signinButtons.push(
-    //       <RaisedButton 
-    //         key={endpoint.name}
-    //         label={endpoint.name}
-    //         id={endpoint.name + "Button"}
-    //         defaultValue={ Session.get('signinWithSearch') }
-    //         onTouchTap={self.signInWith.bind(self, endpoint.name)} 
-    //         style={{width: '100%', textAlign: 'left', marginLeft: '40px', marginBottom: '20px' }}
-    //         buttonStyle={{ textAlign: 'left', fontWeight: '300' }}
-    //         primary={true} />
-    //     );  
-    //   });
-    // }
     
     if (this.data.services.length > 0){
       this.data.services.forEach(function(service){
@@ -289,8 +273,8 @@ export class Signin extends React.Component {
                         />
                         <br/>
                         <br/>
-                        <RaisedButton id="signinButton" onTouchTap={this.handleTouchTap.bind(this)} label="Signin" primary={true} />
-                        <RaisedButton id="forgotPasswordButton" onTouchTap={this.forgotPasswordRoute } label="Forgot password?" style={{marginLeft: "20px"}} />
+                        <RaisedButton id="signinButton" onClick={this.handleTouchTap.bind(this)} label="Signin" primary={true} />
+                        <RaisedButton id="forgotPasswordButton" onClick={this.forgotPasswordRoute } label="Forgot password?" style={{marginLeft: "20px"}} />
                       </form>
                     </Col>
                   </Row>
