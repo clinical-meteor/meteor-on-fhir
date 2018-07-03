@@ -147,7 +147,7 @@ percolate:synced-cron
 
 
 ### Blockchains
-symptomatic:blockchain-core
+# symptomatic:blockchain-core
 # fhirblocks:core
 clinical:hl7-resource-consent
 clinical:hl7-resource-contract
