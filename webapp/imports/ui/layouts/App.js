@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin  from 'react-mixin';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import React, { Component } from 'react';
 
 import { Footer } from '/imports/ui/layouts/Footer';
@@ -15,13 +14,12 @@ import { Header } from '/imports/ui/layouts/Header';
 import { Image } from '/imports/ui/components/Image';
 import { SciFiOrbital } from '/imports/ui/components/SciFiOrbital';
 import { Session } from 'meteor/session';
-import SinglePanelLayout from '/imports/ui/layouts/SinglePanelLayout';
-import { EdgeBundlePage } from '/imports/ui/pages/EdgeBundlePage';
+import SidebarTray from '/imports/ui/layouts/SidebarTray';
 
-import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import { get, has } from 'lodash';
 // import injectTapEventPlugin from 'react-tap-event-plugin';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 const muiTheme = getMuiTheme({
   palette: {
@@ -47,7 +45,8 @@ export class App extends React.Component {
   }
   getChildContext() {
     return {
-      muiTheme: getMuiTheme(baseTheme)
+      // muiTheme: getMuiTheme(baseTheme)
+      muiTheme: muiTheme
     };
   }
   // componentWillMount() {
@@ -75,22 +74,12 @@ export class App extends React.Component {
         </GlassCard>
       );
 
-
       // Website
     } else if (Meteor.userId() && Session.equals('pathname', '/videoconferencing')) {
       return (
         <GlassCard style={this.data.style.card} height='auto'>
           <CardText>
             Video!
-          </CardText>
-        </GlassCard>
-      );
-
-    } else if (Meteor.userId() && Session.equals('pathname', '/endpoints')) {
-      return (
-        <GlassCard style={this.data.style.card} height='auto'>
-          <CardText>
-            <EdgeBundlePage />
           </CardText>
         </GlassCard>
       );
@@ -167,29 +156,27 @@ export class App extends React.Component {
 
   render(){
     var orbital;
-    if(get(Meteor, 'settings.public.defaults.nfcOrbital')){
-      orbital = <SciFiPage />;
-    }
+    // if(get(Meteor, 'settings.public.defaults.nfcOrbital')){
+    //   orbital = <SciFiPage />;
+    // }
     return (
-      // <BrowserRouter>
         <MuiThemeProvider muiTheme={muiTheme}>
           <GlassApp>
-            <SinglePanelLayout>
+            <SidebarTray>
               {orbital}
               <Header />
-                <div className='primaryFlexPanel' >
+                <div id='primaryFlexPanel' className='primaryFlexPanel' >
                   { this.props.children }
                 </div>
-                <div className='secondaryFlexPanel' style={this.data.style.secondary}>
+                <div id='secondaryFlexPanel' className='secondaryFlexPanel' style={this.data.style.secondary}>
                   <FullPageCanvas>
                     { this.renderSecondaryPanel() }
                   </FullPageCanvas>
                 </div>
               <Footer />
-            </SinglePanelLayout>
+            </SidebarTray>
           </GlassApp>
         </MuiThemeProvider>
-      // </BrowserRouter>
     );
   }
 }
@@ -203,3 +190,4 @@ App.childContextTypes = {
 App.defaultProps = {};
 
 ReactMixin(App.prototype, ReactMeteorData);
+// export default App;

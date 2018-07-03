@@ -202,5 +202,4 @@ Header.childContextTypes = {
 };
 
 ReactMixin(Header.prototype, ReactMeteorData);
-
 export default Header;
