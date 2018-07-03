@@ -102,6 +102,9 @@ jobs:
     - run: cd webapp/tests && ls -la
     - run: cd webapp && git clone https://github.com/awatson1978/meteor-on-fhir-validation tests/nightwatch
 
+    #- what packages do we currently have loaded?
+    - run: cd webapp/packages && ls -la
+
     #- run the app
     - run: 
         name: Starting Meteor
