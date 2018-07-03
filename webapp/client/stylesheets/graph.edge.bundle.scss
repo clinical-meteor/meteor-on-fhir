@@ -1,6 +1,6 @@
 .node {
-  font: 300 11px "Helvetica Neue", Helvetica, Arial, sans-serif;
-  fill: #bbb;
+  font: 300 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  fill: #444444;
 }
 
 .node:hover {
@@ -31,7 +31,7 @@
 .link--source,
 .link--target {
   stroke-opacity: 1;
-  stroke-width: 2px;
+  stroke-width: 3px;
 }
 
 .link--source {

@@ -4,8 +4,7 @@ import React from 'react';
 import ReactMixin from 'react-mixin';
 
 import { ReactMeteorData } from 'meteor/react-meteor-data';
-
-import { MenuItem } from '/imports/ui/components/MenuItem';
+import MenuItem from '/imports/ui/components/MenuItem';
 import { get } from 'lodash';
 
 // Pick up any dynamic routes that are specified in packages, and include them
@@ -71,9 +70,21 @@ export class AdminSidebar extends React.Component {
              <MenuItem primaryText='Users' href='/users' />
           </LinkContainer>
 
+          <hr />
 
           { dynamicElements }
 
+          <hr />
+
+          <LinkContainer to='/theming'>
+             <MenuItem primaryText='Theming' href='/theming' />
+          </LinkContainer>
+
+          <hr />
+
+          <LinkContainer to='/info'>
+             <MenuItem primaryText='Info' href='/info' />
+          </LinkContainer>
 
           <LinkContainer to='/info'>
              <MenuItem primaryText='Info' href='/info' />
