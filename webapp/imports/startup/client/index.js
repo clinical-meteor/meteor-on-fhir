@@ -5,13 +5,20 @@ import './routes.js';
 import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session';
 
-import { Bert } from 'meteor/themeteorchef:bert';
+import { Bert} from 'meteor/clinical:alert';
+import { get } from 'lodash';
 
-Bert.defaults.style = 'growl-top-right';
+
+// OAuth Access Token
+Session.setDefault('accessToken', '');
 
 Meteor.startup(function (){
 
-  // global session variables
+  console.log('Bert', Bert)
+  Bert.defaults.style = 'growl-top-right';
+
+
+  // Global session variables for user interface elements
   Session.set('showNavbars', true);
   Session.set('showSearchbar', false);
   Session.set('hasPagePadding', true);
@@ -19,10 +26,19 @@ Meteor.startup(function (){
   Session.set('selectedChromosome', 1);
   Session.set('showOrbital', false);
 
-  Meteor.subscribe('Observations');
-  Meteor.subscribe('Patients');
+  // In some applications, we want a default OAuth provider and service name
+  // This is usually due to the app having a single parent organization.
+  // (i.e. not for AppOrchard apps)
+  if(get(Meteor, 'settings.private.defaultOauth.serviceName')){
+    Meteor.call('fetchAccessToken', get(Meteor, 'settings.private.defaultOauth.serviceName'), function(err, result){
+      if(result){
+          console.log(result)
+          Session.set('accessToken', result.accessToken);
+      }
+    })  
+  }
 
-
+  // Set the default scopes for different OAuth services  
   Accounts.ui.config({
     requestPermissions: {
       facebook: ['user_likes'],

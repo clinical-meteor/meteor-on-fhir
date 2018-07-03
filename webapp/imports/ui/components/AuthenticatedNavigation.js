@@ -118,7 +118,7 @@ export class AuthenticatedNavigation extends React.Component {
     }
 
     return(
-      <div id='authenticatedUserMenuToggle' onTouchTap={this.toggleNotificationMenu } style={this.data.glassText}>
+      <div id='authenticatedUserMenuToggle' onClick={this.toggleNotificationMenu } style={this.data.glassText}>
         <ToolbarGroup >
           <IconMenu
             id='authenticatedUserMenu'
@@ -139,7 +139,7 @@ export class AuthenticatedNavigation extends React.Component {
                   id='authenticatedUsername'
                   text={ this.data.user }
                   style={this.data.glassText}
-                  onTouchTap={this.showProfile }
+                  onClick={this.showProfile }
                 />
               </NorthEastMenu>
             }

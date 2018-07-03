@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin  from 'react-mixin';
 import React, { Component } from 'react';
-// import { BrowserRouter} from 'react-router-bootstrap';
 
 import { Footer } from '/imports/ui/layouts/Footer';
 import { GlassApp } from '/imports/ui/layouts/GlassApp';
@@ -18,9 +17,7 @@ import { Session } from 'meteor/session';
 import SidebarTray from '/imports/ui/layouts/SidebarTray';
 
 import { get, has } from 'lodash';
-import injectTapEventPlugin from 'react-tap-event-plugin';
-
-import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
+// import injectTapEventPlugin from 'react-tap-event-plugin';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
@@ -52,9 +49,9 @@ export class App extends React.Component {
       muiTheme: muiTheme
     };
   }
-  componentWillMount() {
-    injectTapEventPlugin();
-  }
+  // componentWillMount() {
+  //   injectTapEventPlugin();
+  // }
   renderSecondaryPanel(){
     // RADIOLOGY
     if (Meteor.userId() && Session.equals('pathname', '/diagnostic-reports') && get(Meteor.settings, 'public.modules.fhir.DiagnosticReports')) {

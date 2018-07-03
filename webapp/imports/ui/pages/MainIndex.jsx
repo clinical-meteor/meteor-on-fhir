@@ -797,9 +797,6 @@ export class MainIndex extends React.Component {
   }
 
 
-
-
-
   renderTilesUnderConstruction(user, showUnderConstruction){
     // if (showUnderConstruction) {
     if (true) {

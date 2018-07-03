@@ -428,7 +428,7 @@ export class Footer extends React.Component {
         </div>
       );
     } else {
-      // HOME ROUTE
+      // PATIENTS
       if (Meteor.userId() && (Session.equals('pathname', '/')) ) {
         return (
           <div style={{marginTop: '-8px'}}>
@@ -438,6 +438,7 @@ export class Footer extends React.Component {
 
         // PATIENTS
       } else if (Meteor.userId() && (Session.equals('pathname', '/patients')) && get(Meteor, 'settings.public.modules.epic')) {
+        // the user is logged in as a normal user
         return (
           <div></div>
         );
@@ -593,14 +594,14 @@ export class Footer extends React.Component {
             id='privacyScreen'
             text='privacy | '
             style={{fontSize: '18px', top: '-4px', cursor: 'pointer'}}
-            onTouchTap={this.clickOnBlurButton }
+            onClick={this.clickOnBlurButton }
           />
 
           <ToolbarTitle
             id='connectionStatus'
             text={this.data.status}
             style={{fontSize: '18px', top: '-4px', cursor: 'pointer'}}
-            onTouchTap={this.openInfo }
+            onClick={this.openInfo }
           />
         </div>
       );
