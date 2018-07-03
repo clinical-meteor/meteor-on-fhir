@@ -2,6 +2,7 @@ import { AdminSidebar }  from '/imports/ui/components/AdminSidebar';
 import { CardHeader, Drawer } from 'material-ui';
 import { IndexLinkContainer, LinkContainer } from 'react-router-bootstrap';
 import { Meteor } from 'meteor/meteor';
+import { ProfileSidebar }  from '/imports/ui/components/ProfileSidebar';
 import { PatientSidebar }  from '/imports/ui/components/PatientSidebar';
 import { PractitionerSidebar }  from '/imports/ui/components/PractitionerSidebar';
 import { PublicSidebar }  from '/imports/ui/components/PublicSidebar';
@@ -25,7 +26,7 @@ Session.setDefault('drawerActive', false);
 Session.setDefault('drawerActive', false);
 
 
-export class SinglePanelLayout extends React.Component {
+export class SidebarTray extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -97,6 +98,7 @@ export class SinglePanelLayout extends React.Component {
     }, 200);
   }
   renderSidebar(isAdmin) {
+    
     if (Meteor.user()) {
       if (isAdmin) {
         return <AdminSidebar /> ;
@@ -104,7 +106,11 @@ export class SinglePanelLayout extends React.Component {
         if (get(Meteor.user(), 'roles[0]') === 'practitioner') {
           return <PractitionerSidebar /> ;
         } else {
-          return <PatientSidebar /> ;
+          if (Meteor.userId() && ['/myprofile', '/preferences', 'oauth-grants', '/password'].includes(Session.get('pathname'))) {
+            return <ProfileSidebar /> ;
+          } else {
+            return <PatientSidebar /> ;
+          }
         }
       }
     } else {
@@ -120,7 +126,7 @@ export class SinglePanelLayout extends React.Component {
   render(){
 
     return (
-      <div id='SinglePanelLayout'>
+      <div id='SidebarTray'>
         <Drawer
           open={this.data.state.drawerActive}
           docked={this.data.state.dockedSidebar}
@@ -155,5 +161,5 @@ export class SinglePanelLayout extends React.Component {
   }
 }
 
-ReactMixin(SinglePanelLayout.prototype, ReactMeteorData);
-export default SinglePanelLayout;
+ReactMixin(SidebarTray.prototype, ReactMeteorData);
+export default SidebarTray;

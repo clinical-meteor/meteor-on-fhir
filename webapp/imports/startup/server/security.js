@@ -9,7 +9,7 @@ import { _ } from 'meteor/underscore';
 //   }
 // });
 
-// // Don't let people write arbitrary data to their 'profile' field from the client
+// Don't let people write arbitrary data to their 'profile' field from the client
 if(Package['clinical:hl7-resource-patient']){
   Patients.allow({
     update() { return true; },
@@ -72,6 +72,13 @@ if(Package['clinical:hl7-resource-immunization']){
   });
 }
 
+if(Package['clinical:hl7-resource-list']){
+  Lists.allow({
+    update() { return true; },
+    insert() { return true; },
+    remove() { return true; }
+  });
+}
 if(Package['clinical:hl7-resource-location']){
   Locations.allow({
     update() { return true; },
@@ -193,4 +200,3 @@ if(Package['autopublish']){
   console.log("meteor add clinical:autopublish");  
   console.log("");  
 }
-

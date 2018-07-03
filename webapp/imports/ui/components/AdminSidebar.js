@@ -1,11 +1,10 @@
-import { IndexLinkContainer, LinkContainer } from 'react-router-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 import { List, ListItem } from 'material-ui/List';
 import React from 'react';
 import ReactMixin from 'react-mixin';
 
 import { ReactMeteorData } from 'meteor/react-meteor-data';
-
-import { MenuItem } from '/imports/ui/components/MenuItem';
+import MenuItem from '/imports/ui/components/MenuItem';
 import { get } from 'lodash';
 
 // Pick up any dynamic routes that are specified in packages, and include them
@@ -63,23 +62,41 @@ export class AdminSidebar extends React.Component {
       <div id="adminSidebar">
         <List style={{paddingLeft: '20px', position: 'static', width: '100%'}}>
 
-          <IndexLinkContainer to='/'>
-             <ListItem primaryText='Admin Index' href='/' />
-          </IndexLinkContainer>
+          <LinkContainer to='/'>
+             <MenuItem primaryText='Admin Index' href='/' />
+          </LinkContainer>
+
+          <LinkContainer to='/users'>
+             <MenuItem primaryText='Users' href='/users' />
+          </LinkContainer>
+
+          <hr />
 
           { dynamicElements }
 
-          <IndexLinkContainer to='/info'>
-             <ListItem primaryText='Info' href='/info' />
-          </IndexLinkContainer>
+          <hr />
 
-          <IndexLinkContainer to='/metadata'>
-             <ListItem primaryText='Metadata' href='/metadata' />
-          </IndexLinkContainer>
+          <LinkContainer to='/theming'>
+             <MenuItem primaryText='Theming' href='/theming' />
+          </LinkContainer>
 
-          <IndexLinkContainer to='/signin'>
-             <ListItem className='logoutMenuItem' primaryText='Logout' href='/signin' onClick={this.handleLogout} />
-          </IndexLinkContainer>
+          <hr />
+
+          <LinkContainer to='/info'>
+             <MenuItem primaryText='Info' href='/info' />
+          </LinkContainer>
+
+          <LinkContainer to='/info'>
+             <MenuItem primaryText='Info' href='/info' />
+          </LinkContainer>
+
+          <LinkContainer to='/metadata'>
+             <MenuItem primaryText='Metadata' href='/metadata' />
+          </LinkContainer>
+
+          <LinkContainer to='/signin'>
+             <MenuItem className='logoutMenuItem' primaryText='Logout' href='/signin' onClick={this.handleLogout} />
+          </LinkContainer>
         </List>
       </div>
     );

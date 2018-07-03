@@ -43,6 +43,7 @@ jobs:
         DISPLAY: :99.0
         NPM_PREFIX: /home/ubuntu/nvm/v0.10.33
         MONGO_URL: mongodb://mongo:27017/meteor
+        DEBUG: true
     - image: mongo:3.4.4
       name: mongo
 
@@ -104,13 +105,16 @@ jobs:
     #- run the app
     - run: 
         name: Starting Meteor
-        command: cd webapp && meteor run --settings configs/settings.circle.json 
+        command: cd webapp && meteor run --settings configs/settings.circle.json | tee meteor-output.log
         background: true
+        no_output_timeout: 10m
+        when: on_success    # always, on_success, on_fail 
 
     - run: 
         name: Running tests
         command: sleep 330 && cd webapp && meteor npm run-script circle-nightwatch -- --tag circle
-
+        no_output_timeout: 10m
+        when: on_success    # always, on_success, on_fail 
 
 
     # # Save dependency cache
@@ -139,3 +143,5 @@ jobs:
         path: ./webapp/tests/nightwatch/screenshots
     - store_artifacts:
         path: ./webapp/tests/nightwatch/logs
+    - store_artifacts: 
+        path: ./webapp/meteor-output.log

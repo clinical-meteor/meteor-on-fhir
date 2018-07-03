@@ -158,17 +158,17 @@ export class NotificationsPage extends React.Component {
 
   }  
   swiping(e, deltaX, deltaY, absX, absY, velocity) {
-    console.log("You're Swiping...", e, deltaX, deltaY, absX, absY, velocity)
-    alert("You're Swiping...", e, deltaX, deltaY, absX, absY, velocity)
+    //console.log("You're Swiping...", e, deltaX, deltaY, absX, absY, velocity)
+    //alert("You're Swiping...", e, deltaX, deltaY, absX, absY, velocity)
   }
  
   swipingLeft(e, absX) {
     console.log("You're Swiping to the Left...", e, absX)
-    alert("You're Swiping to the Left...", e, absX)
+    //alert("You're Swiping to the Left...", e, absX)
   }
  
   swiped(e, deltaX, deltaY, isFlick, velocity) {
-    console.log("You Swiped...", e, deltaX, deltaY, isFlick, velocity)
+    //console.log("You Swiped...", e, deltaX, deltaY, isFlick, velocity)
   }
  
   swipedUp(e, deltaY, isFlick) {
@@ -192,7 +192,7 @@ export class NotificationsPage extends React.Component {
         rightIcon={<Clear />}
         primaryText={notification.primaryText}
         secondaryText={notification.secondaryText}
-        style={self.data.style.notification}
+        style={self.data.style.notification}Sidebar
         onClick={self.onNotificationClick.bind(this, notification.primaryText)}
       />;
 
@@ -204,16 +204,28 @@ export class NotificationsPage extends React.Component {
         label="Accept"
         primary={true}
         keyboardFocused={true}
-        onTouchTap={this.handleCloseCatch}
+        onClick={this.handleCloseCatch}
       />,
       <FlatButton
         label="Dismiss"
         primary={true}
-        onTouchTap={this.handleCloseCatch}
+        onClick={this.handleCloseCatch}
       />
     ];
 
     console.log('notificationItems', notificationItems);
+
+    var notificationPanel;
+    if(this.data.notifications.length > 0){
+      notificationPanel = <GlassCard height='auto'>
+        <CardTitle title="Notifications" titleStyle={this.data.style.title} />
+          <CardText>
+            <List>
+              {notificationItems}
+            </List>
+          </CardText>
+        </GlassCard>  
+    }
 
     return (
       <div id='notificationsPage' >
@@ -224,35 +236,20 @@ export class NotificationsPage extends React.Component {
               onSwiped={this.swiped}
               onSwipedUp={this.swipedUp} 
             >
-              <GlassCard height='auto'>
-                <CardTitle title="Notifications" titleStyle={this.data.style.title} />
-                <CardText>
-                  <List>
-                    {notificationItems}
-                    <Dialog
-                      //title="Patient Transfer"
-                      actions={catchActions}
-                      modal={false}
-                      open={this.data.catchDialog.open}
-                      onRequestClose={this.handleCloseCatch}
-                    >
-                        {/* <CardHeader 
-                          title={ get(this, 'data.catchDialog.patient.display') } 
-                          subtitle={ get(this, 'data.catchDialog.patient.reference') } 
-                        /> */}
-                        <CardText>
-                          <h2>{ get(this, 'data.catchDialog.patient.display') }</h2>
-                          <h4 className='barcode'>{ get(this, 'data.catchDialog.patient.reference') }</h4>
-                        </CardText>
-                    </Dialog>
+              { notificationPanel }
 
+              <Dialog
+                actions={catchActions}
+                modal={false}
+                open={this.data.catchDialog.open}
+                onRequestClose={this.handleCloseCatch}
+              >
+                  <CardText>
+                    <h2>{ get(this, 'data.catchDialog.patient.display') }</h2>
+                    <h4 className='barcode'>{ get(this, 'data.catchDialog.patient.reference') }</h4>
+                  </CardText>
+              </Dialog>
 
-
-
-                  
-                  </List>
-                </CardText>
-              </GlassCard>
           </Swipeable>
         </VerticalCanvas>
       </div>

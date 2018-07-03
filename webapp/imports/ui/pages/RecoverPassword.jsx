@@ -8,7 +8,7 @@ import { handleRecoverPassword } from '/imports/client/entry/handleRecoverPasswo
 import { MobilePadding } from '/imports/ui/components/MobilePadding';
 import { browserHistory } from 'react-router';
 import { Accounts } from 'meteor/accounts-base';
-import { Bert } from 'meteor/themeteorchef:bert';
+import { Bert } from 'meteor/clinical:alert';
 
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
@@ -94,7 +94,7 @@ export class RecoverPassword extends React.Component {
                   fullWidth
                   /><br/>
               </FormGroup>
-              <RaisedButton id='recoverPasswordButton' type="submit" onTouchTap={this.recoverPassword } label='Recover Password' primary={true} />
+              <RaisedButton id='recoverPasswordButton' type="submit" onClick={this.recoverPassword } label='Recover Password' primary={true} />
 
             </form>
           </VerticalCanvas>

@@ -25,12 +25,8 @@ import MenuItem from '/imports/ui/components/MenuItem';
 import { browserHistory } from 'react-router';
 import { removeUserById } from '/imports/api/users/methods';
 
-
 import { PatientCard } from 'meteor/clinical:hl7-resource-patient';
 
-//if(Package['clinical:hl7-resource-consent']){
-  // import { ConsentTable } from 'meteor/clinical:hl7-resource-consent';
-//}
 
 
 let defaultState = {
@@ -44,6 +40,7 @@ let defaultState = {
   confirmPassword: ''
 };
 Session.setDefault('myProfileState', defaultState);
+
 
 export class MyProfilePage extends React.Component {
   constructor(props) {
@@ -697,11 +694,9 @@ export class MyProfilePage extends React.Component {
           </GlassCard>
           <DynamicSpacer />
 
-
           {/* { consentElement } */}
 
           { continuityOfCareCard }
-
 
           <GlassCard>
             <CardTitle title="Preferences" subtitle='Application preferences.' />
@@ -837,25 +832,14 @@ export class MyProfilePage extends React.Component {
     this.refs.avatarImage.src = Meteor.absoluteUrl() + 'noAvatar.png';
   }
   renderConfirmDelete(wantsToDelete){
-    // if (wantsToDelete) {
-      return(
-        <div>
-          <FlatButton id='deleteUserButton' className="muidocs-icon-action-delete" label='Delete User' onClick={this.confirmDelete.bind(this) } />
-        </div>
-      );
-    // } else {
-    //   return(
-    //     <div>
-    //       <Divider />
-    //       <br />
-    //       <FlatButton id='resetPreferencesButton' label='Reset Preferences' onClick={this.resetPreferences } style={{marginRight: '20px'}} />
-    //       <FlatButton id='deleteUserButton' className="muidocs-icon-action-delete" label='Delete User' onClick={this.handleDelete } />
-    //     </div>
-    //   );
-    // }
+    return(
+      <div>
+        <FlatButton id='deleteUserButton' className="muidocs-icon-action-delete" label='Delete User' onClick={this.confirmDelete.bind(this) } />
+      </div>
+    );
   }
   resetPreferences(){
-    //alert('reset!')
+
   }
   rememberOldPassword(event, value){
     let state = Session.get('myProfileState');
@@ -1011,6 +995,9 @@ export class MyProfilePage extends React.Component {
         console.log('Hmmm...  yeah, lets wait a bit and make sure we have the right user.');
       }    
     }
+  }
+  deleteAccount(){
+    console.log('deleteAccount')
   }
   changePassword() {
     let state = Session.get('myProfileState');
