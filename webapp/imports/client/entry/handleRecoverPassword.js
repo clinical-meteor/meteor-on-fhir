@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import 'jquery-validation';
 import { Accounts } from 'meteor/accounts-base';
-import { Bert } from 'meteor/themeteorchef:bert';
+import { Bert } from 'meteor/clinical:alert';
 import { getInputValue } from './getInputValue';
 
 let component;

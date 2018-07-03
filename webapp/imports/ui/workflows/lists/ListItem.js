@@ -1,6 +1,6 @@
 import React from 'react';
 import { Row, Col, ListGroupItem, FormControl, Button } from 'react-bootstrap';
-import { Bert } from 'meteor/themeteorchef:bert';
+import { Bert } from 'meteor/clinical:alert';
 import { updateListItem, removeListItem } from '../../../api/observations/methods.js';
 
 import { GlassCard } from '/imports/ui/components/GlassCard';

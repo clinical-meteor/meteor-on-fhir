@@ -1,5 +1,5 @@
 import { LinkContainer } from 'react-router-bootstrap';
-import { List } from 'material-ui/List';
+import { List, ListItem } from 'material-ui/List';
 import React from 'react';
 import ReactMixin from 'react-mixin';
 
@@ -86,11 +86,13 @@ export class AdminSidebar extends React.Component {
              <MenuItem primaryText='Info' href='/info' />
           </LinkContainer>
 
+          <LinkContainer to='/info'>
+             <MenuItem primaryText='Info' href='/info' />
+          </LinkContainer>
+
           <LinkContainer to='/metadata'>
              <MenuItem primaryText='Metadata' href='/metadata' />
           </LinkContainer>
-
-          <hr />
 
           <LinkContainer to='/signin'>
              <MenuItem className='logoutMenuItem' primaryText='Logout' href='/signin' onClick={this.handleLogout} />

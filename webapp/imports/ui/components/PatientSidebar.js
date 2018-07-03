@@ -60,14 +60,16 @@ export class PatientSidebar extends React.Component {
   handleProfile() {
     browserHistory.push('/myprofile');
   }
-
   render () {
 
     var index;
     if(!get(Meteor, 'settings.public.defaults.sidebar.hideIndex')){
-      index = <LinkContainer to={ this.data.indexRoute }>
-        <MenuItem className="indexItem" href={ this.data.indexRoute } primaryText='Index' />
+      index = <LinkContainer to={ this.data.indexRoute } >
+        <MenuItem id="indexPageItem" className="indexItem" href={ this.data.indexRoute } primaryText='Index' />
       </LinkContainer>;
+      // index = <LinkContainer to='/'>
+      //   <MenuItem className="indexItem" href='/' primaryText='Index' />
+      // </LinkContainer>;
     }
     
     //----------------------------------------------------------------------
@@ -100,6 +102,10 @@ export class PatientSidebar extends React.Component {
         <List style={{paddingLeft: '20px', position: 'static'}}>
 
          { index }
+
+          {/* <LinkContainer to='/'>
+            <MenuItem id="indexPageItem" className="indexItem" href='/' primaryText='Index' />
+          </LinkContainer> */}
 
           <hr />
 

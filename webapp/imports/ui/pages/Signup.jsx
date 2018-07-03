@@ -11,7 +11,7 @@ import { MobilePadding } from '/imports/ui/components/MobilePadding';
 
 import { browserHistory } from 'react-router';
 import { Accounts } from 'meteor/accounts-base';
-import { Bert } from 'meteor/themeteorchef:bert';
+import { Bert } from 'meteor/clinical:alert';
 
 import RaisedButton from 'material-ui/RaisedButton';
 import { lightBaseTheme, darkBaseTheme } from 'material-ui/styles';
@@ -48,6 +48,13 @@ export class Signup extends React.Component {
         floatingLabelFocusStyle: {
           color: lightBaseTheme.palette.secondaryTextColor
         }
+      },
+      errorText: {
+        accessCode: '',
+        givenName: '', 
+        familyName: '', 
+        emailAddress: '', 
+        password: ''
       }
     };
 
@@ -60,8 +67,32 @@ export class Signup extends React.Component {
       data.style.floatingLabelStyle.color = darkBaseTheme.palette.secondaryTextColor;
       data.style.floatingLabelFocusStyle.color = darkBaseTheme.palette.secondaryTextColor;
     }
-    if(process.env.NODE_ENV === "test") console.log("Signup[data]", data);
 
+    
+    switch(Session.get('signUpErrorMessage')) {
+      case 'Password may not be empty':
+        data.errorText.accessCode = '';
+        data.errorText.givenName = '';
+        data.errorText.familyName = '';
+        data.errorText.emailAddress = '';
+        data.errorText.password = 'Password may not be empty';
+        break;
+      case 'Email already exists.':
+        data.errorText.accessCode = '';
+        data.errorText.givenName = '';
+        data.errorText.familyName = '';
+        data.errorText.emailAddress = 'Email already exists.';
+        data.errorText.password = '';
+        break;
+      default:
+        data.errorText.accessCode = '';
+        data.errorText.givenName = '';
+        data.errorText.familyName = '';
+        data.errorText.emailAddress = '';
+        data.errorText.password = '';
+    }
+
+    if(process.env.NODE_ENV === "test") console.log("Signup[data]", data);
     return data;
   }
 
@@ -72,8 +103,6 @@ export class Signup extends React.Component {
     browserHistory.push('/signin');
   }
   handleTouchTap(){
-    //console.log('this', this);
-
     let newUserData = {
       email: this.refs.emailAddress.input.value,
       password: this.refs.password.input.value,
@@ -90,8 +119,14 @@ export class Signup extends React.Component {
       newUserData.accessCode = this.refs.accessCode.input.value;
     }
 
+    console.log('SignUp.handleTouchTap', this, newUserData);
+
     Accounts.createUser(newUserData, function(error, result){
       if (error) {
+        console.log('Accounts.createUser().error', error)
+
+        Session.set('signUpErrorMessage', error.reason);
+
         // for some reason, we're getting an "Email already exists!" on signup
         if (!error.reason.includes("Email already exists.")) {
           Bert.alert(error.reason, 'danger');
@@ -99,22 +134,21 @@ export class Signup extends React.Component {
       }
       if (result) {
         console.log("Accounts.createUser[result]", result);
-      }
 
-      // if this is a patient's first visit, we want to send them to a welcome screen
-      // where they can fill out HIPAA
-      if (Roles.userIsInRole(Meteor.userId(), 'patient') && get(Meteor.user(), 'profile.firstTimeVisit')) {
-        browserHistory.push('/welcome/patient');
-      } else {
-        // otherwise we go to the default route specified in the settings.json file
-        if(get(Meteor, 'settings.public.defaults.route')){
-          browserHistory.push(get(Meteor, 'settings.public.defaults.route', '/'));
+        // if this is a patient's first visit, we want to send them to a welcome screen
+        // where they can fill out HIPAA
+        if (Roles.userIsInRole(Meteor.userId(), 'patient') && get(Meteor.user(), 'profile.firstTimeVisit')) {
+          browserHistory.push('/welcome/patient');
         } else {
-          // and if all else fails, just go to the root 
-          browserHistory.push('/');      
-        }  
+          // otherwise we go to the default route specified in the settings.json file
+          if(get(Meteor, 'settings.public.defaults.route')){
+            browserHistory.push(get(Meteor, 'settings.public.defaults.route', '/'));
+          } else {
+            // and if all else fails, just go to the root 
+            browserHistory.push('/');      
+          }  
+        }
       }
-
     });
   }
   handleKeyPress(e) {
@@ -133,13 +167,13 @@ export class Signup extends React.Component {
         floatingLabelText='Have an access code?'
         inputStyle={this.data.style.inputStyle}
         hintStyle={this.data.style.hintStyle}
+        errorText={this.data.errorText.accessCode}
         errorStyle={this.data.style.errorStyle}
         underlineStyle={this.data.style.underlineStyle}
         floatingLabelStyle={this.data.style.floatingLabelStyle}
         floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
       />;
     }
-
     return (
       <div id='signupPage'>
         <MobilePadding>
@@ -155,6 +189,7 @@ export class Signup extends React.Component {
                         floatingLabelText='Given Name'
                         inputStyle={this.data.style.inputStyle}
                         hintStyle={this.data.style.hintStyle}
+                        errorText={this.data.errorText.givenName}
                         errorStyle={this.data.style.errorStyle}
                         underlineStyle={this.data.style.underlineStyle}
                         floatingLabelStyle={this.data.style.floatingLabelStyle}
@@ -172,6 +207,7 @@ export class Signup extends React.Component {
                         floatingLabelText='Family Name'
                         inputStyle={this.data.style.inputStyle}
                         hintStyle={this.data.style.hintStyle}
+                        errorText={this.data.errorText.familyName}
                         errorStyle={this.data.style.errorStyle}
                         underlineStyle={this.data.style.underlineStyle}
                         floatingLabelStyle={this.data.style.floatingLabelStyle}
@@ -188,6 +224,7 @@ export class Signup extends React.Component {
                       type='text'
                       floatingLabelText='Email Address'
                       inputStyle={this.data.style.inputStyle}
+                      errorText={this.data.errorText.emailAddress}
                       errorStyle={this.data.style.errorStyle}
                       hintStyle={this.data.style.hintStyle}
                       underlineStyle={this.data.style.underlineStyle}
@@ -203,6 +240,7 @@ export class Signup extends React.Component {
                       type='password'
                       floatingLabelText='Password'
                       inputStyle={this.data.style.inputStyle}
+                      errorText={this.data.errorText.password}
                       errorStyle={this.data.style.errorStyle}
                       hintStyle={this.data.style.hintStyle}
                       underlineStyle={this.data.style.underlineStyle}
@@ -220,13 +258,11 @@ export class Signup extends React.Component {
                   <br/>
                   <RaisedButton
                     id='signupButton'
-                    onTouchTap={this.handleTouchTap.bind(this)}
                     onClick={this.handleTouchTap.bind(this)}
                     label='Sign Up'
                     primary={true} />
                   <RaisedButton
                     id='alreadyHaveAccountButton'
-                    onTouchTap={this.signinRoute }
                     onClick={this.signinRoute }
                     label='Already have an account?'
                     style={{marginLeft: '20px'}} />

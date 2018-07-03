@@ -116,7 +116,12 @@ export class GlassApp extends React.Component {
     if(has(Meteor.settings, 'public.theme.backgroundImagePath')){
       style.backgroundImage = 'url(' + get(Meteor.settings, 'public.theme.backgroundImagePath') + ')';
     } else {
-      style.backgroundImage = 'none';
+      if (get(Meteor.settings, 'public.theme.backgroundColor')) {
+        style.backgroundColor = get(Meteor.settings, 'public.theme.backgroundColor');
+        style.backgroundImage = 'none';      
+      } else {
+        style.backgroundImage = 'none';
+      }      
     }
     style.WebkitBackgroundSize = 'cover';
     style.MozBackgroundSize = 'cover';
