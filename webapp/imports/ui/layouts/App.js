@@ -165,10 +165,10 @@ export class App extends React.Component {
             <SidebarTray>
               {orbital}
               <Header />
-                <div className='primaryFlexPanel' >
+                <div id='primaryFlexPanel' className='primaryFlexPanel' >
                   { this.props.children }
                 </div>
-                <div className='secondaryFlexPanel' style={this.data.style.secondary}>
+                <div id='secondaryFlexPanel' className='secondaryFlexPanel' style={this.data.style.secondary}>
                   <FullPageCanvas>
                     { this.renderSecondaryPanel() }
                   </FullPageCanvas>
