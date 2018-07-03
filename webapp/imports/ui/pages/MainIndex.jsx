@@ -695,6 +695,7 @@ export class MainIndex extends React.Component {
   }
 
 
+
   renderImportChart(user){
     if (get(Meteor, 'settings.public.modules.apps.ImportChart')) {
       if (user.isPatient || user.isPractitioner || user.isAdmin) {
@@ -795,10 +796,6 @@ export class MainIndex extends React.Component {
       }
     }
   }
-
-
-
-
 
 
   renderTilesUnderConstruction(user, showUnderConstruction){

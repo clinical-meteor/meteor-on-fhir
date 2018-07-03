@@ -3,7 +3,6 @@ import AppBar from 'material-ui/AppBar';
 import FlatButton from 'material-ui/FlatButton';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import { Glass } from 'meteor/clinical:glass-ui';
-
 import ImageBlurOn from 'material-ui/svg-icons/image/blur-on';
 import ImageExposure from 'material-ui/svg-icons/image/exposure';
 import OpacitySlider from '../components/OpacitySlider';
@@ -14,6 +13,11 @@ import {Session} from 'meteor/session';
 import { ToolbarTitle } from 'material-ui/Toolbar';
 import { browserHistory } from 'react-router';
 import { has, get } from 'lodash';
+import DeviceWifiTethering from 'material-ui/svg-icons/device/wifi-tethering';
+
+if(Package['clinical:hl7-resource-practitioner']){
+  import { Practitioners } from 'meteor/clinical:hl7-resource-practitioner'
+}
 
 Session.setDefault('showThemingControls', false);
 Session.setDefault('gender', 'Pink');
@@ -69,9 +73,7 @@ export class Footer extends React.Component {
       data.westStyle.visibility = 'hidden';
     }
 
-    if (Meteor.settings && Meteor.settings.public && Meteor.settings.public.defaults && Meteor.settings.public.defaults.disableFooter) {
-      //console.log("Meteor.settings.defaults.disableFooter");
-
+    if (get(Meteor, 'settings.public.defaults.disableFooter')) {
       data.footerStyle.display = 'none !important';
       data.footerStyle.visibility = 'hidden !important';
     } else {
@@ -104,15 +106,12 @@ export class Footer extends React.Component {
       }
     });
   }
-  queryBigchain(){
-    console.log("queryBigchain");
-
-    Meteor.call('searchBigchainMetadata', function(error, data){
-      console.log(data)
-    });
-  }
-  openLink(url){
+  openLink(url, callback){
     console.log("openLink", url);
+
+    if(typeof callback === "function"){
+      callback();
+    }
 
     browserHistory.push(url);
   }
@@ -318,6 +317,70 @@ export class Footer extends React.Component {
   toggleFilterMainTiles(){
     Session.toggle('filterMainTiles');
   }
+  searchBigchainForPractitioner(){
+    console.log("searchBigchainForPractitioner", Session.get('selectedPractitioner'));
+
+    var practitioner = Practitioners.findOne({_id: Session.get('selectedPractitioner')});
+    var searchTerm = '';
+
+    // console.log('practitioner.name', practitioner.name)
+
+    if(get(practitioner, 'name[0].text')){
+      searchTerm = get(practitioner, 'name[0].text');
+      console.log('searchTerm', searchTerm);
+
+      Meteor.call('searchBigchainForPractitioner', searchTerm, function(error, data){
+        if(error) console.log('error', error);
+        if(data){
+          var parsedResults = [];
+
+          data.forEach(function(result){
+            parsedResults.push(result.data);
+          });
+
+          console.log('parsedResults', parsedResults)
+          
+          Session.set('practitionerBlockchainData', parsedResults);  
+        }
+      });
+    }
+
+
+  }
+  readPractitionersFromBlockchain(){
+    //console.log("readPractitionersFromBlockchain");
+    Meteor.call('readPractitionersFromBlockchain', function(error, data){
+      if(error) console.log('error', error);
+      if(data){
+        var parsedResults = [];
+        console.log('data', data)
+
+        data.forEach(function(result){
+          delete result.data._document;
+          parsedResults.push(result.data);
+        });
+
+        console.log('parsedResults', parsedResults)
+
+        Session.set('blockchainPractitionerData', parsedResults);  
+      }
+    });
+  }
+  rotateZygote(){
+    console.log('rotateZygote')
+    Session.toggle('rotated');
+  }
+  showPhonebook(){
+    console.log('showPhonebook')
+    Session.toggle('showPhonebook');    
+  }
+  fullscreenVideo(){
+    console.log('fullscreenVideo')
+    Session.toggle('fullscreenVideo');    
+  }
+  showOrbital(){
+    Session.toggle('showOrbital');
+  }
   renderWestNavbar(displayThemeNavbar){
     if (displayThemeNavbar) {
       // the user has pressed ctrl-cmd-t and is looking at theming controls
@@ -355,7 +418,8 @@ export class Footer extends React.Component {
         if(Package["symptomatic:blockchain-core"]){          
           return (
             <div>
-              <FlatButton label='Query Practitioners on Bigchain' className='querySystemButton' ref='querySystemButton' onClick={this.queryBigchain.bind(this)} style={this.data.style.buttonText} ></FlatButton>
+              <FlatButton label='Read Practitioners on Bigchain' className='querySystemButton' ref='querySystemButton' onClick={this.readPractitionersFromBlockchain.bind(this)} style={this.data.style.buttonText} ></FlatButton>
+              <FlatButton label='Query Practitioner History' className='querySystemButton' ref='querySystemButton' onClick={this.searchBigchainForPractitioner.bind(this)} style={this.data.style.buttonText} ></FlatButton>
             </div>
           );
         }
@@ -366,12 +430,20 @@ export class Footer extends React.Component {
       // the user is logged in as a normal user
       return (
         <div>
-          <FlatButton label='Record Vitals' className='querySystemButton' ref='querySystemButton' onClick={this.openLink.bind(this, '/vitals-tracking')}  style={this.data.style.buttonText} ></FlatButton>
+          <FlatButton label='Record Vitals' className='querySystemButton' ref='querySystemButton' onClick={this.openLink.bind(this, '/vitals-tracking', function(){
+            Session.set('vitalsForm', {
+              pulse: '',
+              temperature: '',
+              respiration: '',
+              bloodPressure: '',
+              notes: ''
+            });
+          })}  style={this.data.style.buttonText} ></FlatButton>
         </div>
       );
     
       // ORGANIZATIONS
-      } else if (Meteor.userId() && (Session.equals('pathname', '/organizations')) && Meteor.settings.public && Meteor.settings.public.modules && Meteor.settings.public.modules.fhir && Meteor.settings.public.modules.fhir.Organizations) {
+      } else if (Meteor.userId() && (Session.equals('pathname', '/organizations')) && get(Meteor, 'settings.public.modules.fhir.Organizations')) {
         // the user is logged in as a normal user
         return (
           <div>
@@ -415,13 +487,34 @@ export class Footer extends React.Component {
 
 
       // CONDITIONS
-      } else if (Meteor.userId() && (Session.equals('pathname', '/conditions')) && Meteor.settings.public && Meteor.settings.public.modules && Meteor.settings.public.modules.epic) {
+      } else if (Meteor.userId() && (Session.equals('pathname', '/conditions')) && get(Meteor, 'settings.public.modules.epic')) {
         // the user is logged in as a normal user
         return (
           <div>
             {/* <FlatButton label='GET open.epic.com/Condition' className='querySystemButton' ref='querySystemButton' onClick={this.querySystemButton.bind(this, 'Condition')} style={this.data.style.buttonText} ></FlatButton> */}
           </div>
         );
+
+    // ZYGOTE
+    } else if (Meteor.userId() && (Session.equals('pathname', '/zygote'))) {
+      // the user is logged in as a normal user
+      return (
+        <div>
+          <FlatButton label='Rotate' className='querySystemButton' ref='querySystemButton' onClick={this.rotateZygote.bind(this, 'Condition')} style={this.data.style.buttonText} ></FlatButton>
+        </div>
+      );
+
+    // VIDEOCONFERENCING
+    } else if (Meteor.userId() && (Session.equals('pathname', '/videoconferencing'))) {
+      // the user is logged in as a normal user
+      return (
+        <div>
+          <FlatButton label='Phonebook' className='querySystemButton' ref='querySystemButton' onClick={this.showPhonebook.bind(this, 'Condition')} style={this.data.style.buttonText} ></FlatButton>
+          <FlatButton label='Fullscreen' className='querySystemButton' ref='querySystemButton' onClick={this.fullscreenVideo.bind(this)} style={this.data.style.buttonText} ></FlatButton>
+          <FlatButton label='Orbital' className='querySystemButton' ref='querySystemButton' onClick={this.showOrbital.bind(this)} style={this.data.style.buttonText} ></FlatButton>
+        </div>
+      );
+
 
       // NOTIFICATIONS
     } else if (Meteor.userId() && (Session.equals('pathname', '/notifications')) && get(Meteor, 'settings.public.defaults.notificationMenu')) {

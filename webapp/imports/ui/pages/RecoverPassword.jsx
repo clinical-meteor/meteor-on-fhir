@@ -8,7 +8,7 @@ import { handleRecoverPassword } from '/imports/client/entry/handleRecoverPasswo
 import { MobilePadding } from '/imports/ui/components/MobilePadding';
 import { browserHistory } from 'react-router';
 import { Accounts } from 'meteor/accounts-base';
-import { Bert } from 'meteor/themeteorchef:bert';
+import { Bert } from 'meteor/clinical:alert';
 
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';

@@ -1,6 +1,6 @@
 import AvVideoCall from 'material-ui/svg-icons/av/video-call';
 import Avatar from 'material-ui/Avatar';
-import { Bert } from 'meteor/themeteorchef:bert';
+import { Bert } from 'meteor/clinical:alert';
 import CommunicationPhone from 'material-ui/svg-icons/communication/phone';
 import IconButton from 'material-ui/IconButton';
 import { Meteor } from 'meteor/meteor';

@@ -5,18 +5,18 @@
       "showVideoBackground": false,
       "darkroomTextEnabled": false,
       "defaultVideo": "/VideoBackgrounds/GrayWaves.mp4",
-      "backgroundImagePath": "/backgrounds/Gradient.png"      
+      "backgroundImagePath": "/backgrounds/Gradient.png"
     },
     "home": {
       "showUnderConstruction": true,
       "showExperimental": false,
-      "showApps": true,      
+      "showApps": true,
       "showFhirMenu": true
     },
     "defaults": {
       "avatars": true,
       "barcodes": true,
-      "hexgridMenu": false,
+      "hexgridMenu": true,
       "nfcOrbital": false,
       "notificationMenu": true,
       "searchbarVisible": true,

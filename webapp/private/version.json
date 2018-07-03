@@ -1,7 +1,14 @@
 {
     "basic": "v1.0-prerelease",
+<<<<<<< HEAD
+    "complete": "v1.0-prerelease-49-g575e73d",
+    "branch": "pcci-oauth",
+    "commit": "575e73da70a54b61c0efe4c7daafee741bd269ef",
+    "timestamp": "2018-05-25"
+=======
     "complete": "v1.0-prerelease-44-g3470117",
     "branch": "upenn-oauth",
     "commit": "34701178682d2233f5253c429eff2e6c0214ad48",
     "timestamp": "2018-06-13"
+>>>>>>> development
 }
