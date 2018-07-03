@@ -37,17 +37,19 @@ export class Checklist extends React.Component {
       entry: []
     };
 
-    var list = Lists.findOne({_id: Session.get('selectedChecklist')});
-    if (list) {
-      data.entry = [];
-      list.entry.forEach(function(task){
-        if (task.flag.text == "Completed") {
-          task.selected = true;
-        } else {
-          task.selected = false;
-        }
-        data.entry.push(task);
-      });
+    if(typeof Lists === "object"){
+      var list = Lists.findOne({_id: Session.get('selectedChecklist')});
+      if (list) {
+        data.entry = [];
+        list.entry.forEach(function(task){
+          if (task.flag.text == "Completed") {
+            task.selected = true;
+          } else {
+            task.selected = false;
+          }
+          data.entry.push(task);
+        });
+      }  
     }
 
     data.style = Glass.blur(data.style);

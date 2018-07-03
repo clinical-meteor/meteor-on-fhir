@@ -39,7 +39,6 @@ dburles:mongo-collection-instances
 # browser-policy-common@1.0.11
 # browser-policy-content@1.1.0
 # browser-policy-framing@1.1.0
-# force-ssl
 audit-argument-checks@1.0.7
 dynamic-import
 
@@ -47,10 +46,16 @@ dynamic-import
 ### Internationalization
 universe:i18n
 
-
 ### Accounts
-accounts-password@1.5.0
 alanning:roles
+accounts-base
+accounts-password@1.5.0
+accounts-ui@1.1.9
+clinical:oauth
+clinical:accounts-oauth
+clinical:accounts-famous-dead-people
+clinical:accounts-housemd
+
 
 
 ### Mobile 
@@ -83,7 +88,6 @@ shell-server@0.3.0
 
 ### Alerts and Error Reporting
 simple:dev-error-overlay
-themeteorchef:bert
 
 
 ### Clinical Meteor Framework
@@ -97,16 +101,15 @@ clinical:hipaa-logger
 clinical:autopublish
 clinical:glass-ui
 clinical:default-landing-page
-clinical:accounts-famous-dead-people
-clinical:accounts-housemd
-clinical:accounts-oauth
-
+clinical:alert
 
 ### Fast Healthcare Interoperability Resources
 clinical:hl7-resource-allergy-intolerance
 clinical:hl7-resource-condition
 clinical:hl7-resource-careplan
-clinical:hl7-resource-datatypes
+clinical:hl7-resource-communication
+# clinical:hl7-resource-consent
+# clinical:hl7-resource-contract
 clinical:hl7-resource-device
 clinical:hl7-resource-diagnostic-report
 clinical:hl7-resource-endpoint
@@ -122,7 +125,10 @@ clinical:hl7-resource-observation
 clinical:hl7-resource-patient
 clinical:hl7-resource-practitioner
 clinical:hl7-resource-procedure
+clinical:hl7-resource-questionnaire
 clinical:hl7-resource-risk-assessment
+clinical:hl7-resource-subscription
+
 # clinical:smart-on-fhir-client
 # clinical:oauth
 
@@ -145,7 +151,6 @@ percolate:synced-cron
 # fhirblocks:core
 # clinical:hl7-resource-consent
 # clinical:hl7-resource-contract
-
 
 ### GitHub Community Versions
 # clinical:example-plugin

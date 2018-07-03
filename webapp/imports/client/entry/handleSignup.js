@@ -2,7 +2,7 @@ import $ from 'jquery';
 import 'jquery-validation';
 import { browserHistory } from 'react-router';
 import { Accounts } from 'meteor/accounts-base';
-import { Bert } from 'meteor/themeteorchef:bert';
+import { Bert } from 'meteor/clinical:alert';
 import { getInputValue } from './getInputValue';
 
 let component;
@@ -19,17 +19,22 @@ const getUserData = () => ({
   }
 });
 
+
+
 const signUp = () => {
   const user = getUserData();
+  console.log('signUp.user', user)
 
   Accounts.createUser(user, (error) => {
     if (error) {
+      console.log('error')
       Bert.alert(error.reason, 'danger');
     } else {
       browserHistory.push('/');
       Bert.alert('Welcome!', 'success');
     }
   });
+
 };
 
 const validate = () => {

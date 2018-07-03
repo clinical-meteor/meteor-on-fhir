@@ -3,6 +3,7 @@ import '/imports/api/users/methods';
 
 
 Meteor.startup(function(){
+  console.log('Meteor app framework is initializing....');
 
     // pick up version info
     try {

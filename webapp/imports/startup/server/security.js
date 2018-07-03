@@ -9,7 +9,7 @@ import { _ } from 'meteor/underscore';
 //   }
 // });
 
-// // Don't let people write arbitrary data to their 'profile' field from the client
+// Don't let people write arbitrary data to their 'profile' field from the client
 if(Package['clinical:hl7-resource-patient']){
   Patients.allow({
     update() { return true; },
@@ -200,4 +200,3 @@ if(Package['autopublish']){
   console.log("meteor add clinical:autopublish");  
   console.log("");  
 }
-
