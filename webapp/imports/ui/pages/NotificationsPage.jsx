@@ -29,6 +29,15 @@ import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
 import { get } from 'lodash';
 
+
+Session.setDefault('currentPatientReference', {
+  display: '',
+  reference: ''
+});
+
+// import { SwipeEventExample } from '/imports/ui/components/SwipeEventExample';
+import Swipeable from 'react-swipeable'
+
 const sampleNotifications = [{
   primaryText:"Record copied",
   secondaryText:"Jan 20, 2014",                
@@ -118,19 +127,20 @@ export class NotificationsPage extends React.Component {
           reference: ''
         }
       },
-      notifications: sampleNotifications
+      notifications: []
+      // notifications: sampleNotifications
     };
 
-    // if(Session.get('catchDialogOpen')){
-    //   data.catchDialog.open = Session.get('catchDialogOpen');
-    // }
 
-
+    if(Session.get('currentPatientReference')){
+      data.catchDialog.patient = Session.get('currentPatientReference')
+    }
+    if(get(Meteor.user(), 'profile.incomingPatient')){
+      data.catchDialog.patient = get(Meteor.user(), 'profile.incomingPatient');
+      data.catchDialog.open = true;
+    }
     if(get(Meteor.user(), 'profile.notifications')){
       data.notifications = get(Meteor.user(), 'profile.notifications');
-    }
-    if(get(Meteor.user(), 'profile.inbox')){
-      data.catchDialog.open = get(Meteor.user(), 'profile.inbox');
     }
 
     return data;
@@ -142,21 +152,39 @@ export class NotificationsPage extends React.Component {
     Meteor.call('removeSpecificNotification', message)
   }
   handleCloseCatch(){
-    // Session.set('catchDialogOpen', false);
-    Meteor.users.update({_id: Meteor.userId()}, {$set: {
-      'profile.inbox': false
+    Meteor.users.update({_id: Meteor.userId()}, {$unset: {
+      'profile.incomingPatient': ''
     }});
 
   }  
-
+  swiping(e, deltaX, deltaY, absX, absY, velocity) {
+    //console.log("You're Swiping...", e, deltaX, deltaY, absX, absY, velocity)
+    //alert("You're Swiping...", e, deltaX, deltaY, absX, absY, velocity)
+  }
+ 
+  swipingLeft(e, absX) {
+    console.log("You're Swiping to the Left...", e, absX)
+    //alert("You're Swiping to the Left...", e, absX)
+  }
+ 
+  swiped(e, deltaX, deltaY, isFlick, velocity) {
+    //console.log("You Swiped...", e, deltaX, deltaY, isFlick, velocity)
+  }
+ 
+  swipedUp(e, deltaY, isFlick) {
+    console.log("You Swiped Up...", e, deltaY, isFlick)
+    Meteor.users.update({_id: Meteor.userId()}, {$set: {
+      'profile.inbox': true,
+      'profile.incomingPatient': {
+        reference: Meteor.userId(),
+        display: Meteor.user().fullName()
+      }      
+    }});
+  }
   render() {
     var self = this;
     var notificationItems = [];
     this.data.notifications.forEach(function(notification, index){
-      // let notificationIcon;
-      // if(notification.type === 'message'){
-
-      // }
 
       let newNotification = <ListItem
         key={index}
@@ -164,7 +192,7 @@ export class NotificationsPage extends React.Component {
         rightIcon={<Clear />}
         primaryText={notification.primaryText}
         secondaryText={notification.secondaryText}
-        style={self.data.style.notification}
+        style={self.data.style.notification}Sidebar
         onClick={self.onNotificationClick.bind(this, notification.primaryText)}
       />;
 
@@ -176,45 +204,53 @@ export class NotificationsPage extends React.Component {
         label="Accept"
         primary={true}
         keyboardFocused={true}
-        onTouchTap={this.handleCloseCatch}
+        onClick={this.handleCloseCatch}
       />,
       <FlatButton
         label="Dismiss"
         primary={true}
-        onTouchTap={this.handleCloseCatch}
+        onClick={this.handleCloseCatch}
       />
     ];
 
     console.log('notificationItems', notificationItems);
 
+    var notificationPanel;
+    if(this.data.notifications.length > 0){
+      notificationPanel = <GlassCard height='auto'>
+        <CardTitle title="Notifications" titleStyle={this.data.style.title} />
+          <CardText>
+            <List>
+              {notificationItems}
+            </List>
+          </CardText>
+        </GlassCard>  
+    }
+
     return (
       <div id='notificationsPage' >
-        <VerticalCanvas>
-          <GlassCard height='auto'>
-            <CardTitle title="Notifications" titleStyle={this.data.style.title} />
-            <CardText>
-              <List>
-                {notificationItems}
-                <Dialog
-                  title="Catch!"
-                  actions={catchActions}
-                  modal={false}
-                  open={this.data.catchDialog.open}
-                  onRequestClose={this.handleCloseCatch}
-                >
-                    <CardHeader title="Incoming Patient Chart" />
-                    <CardText>
-                      Patient Chart
-                    </CardText>
-                </Dialog>
+          <VerticalCanvas>
+            <Swipeable
+              onSwiping={this.swiping}
+              onSwipingLeft={this.swipingLeft}
+              onSwiped={this.swiped}
+              onSwipedUp={this.swipedUp} 
+            >
+              { notificationPanel }
 
+              <Dialog
+                actions={catchActions}
+                modal={false}
+                open={this.data.catchDialog.open}
+                onRequestClose={this.handleCloseCatch}
+              >
+                  <CardText>
+                    <h2>{ get(this, 'data.catchDialog.patient.display') }</h2>
+                    <h4 className='barcode'>{ get(this, 'data.catchDialog.patient.reference') }</h4>
+                  </CardText>
+              </Dialog>
 
-
-
-              
-              </List>
-            </CardText>
-          </GlassCard>
+          </Swipeable>
         </VerticalCanvas>
       </div>
     );

@@ -24,6 +24,13 @@ import { VerticalCanvas } from 'meteor/clinical:glass-ui';
 import { WelcomePatientPage } from '/imports/ui/pages/WelcomePatientPage';
 import { MyProfilePage } from '/imports/ui/pages/MyProfilePage';
 
+import { PreferencesPage } from '/imports/ui/pages/PreferencesPage';
+import { PasswordManagementPage } from '/imports/ui/pages/PasswordManagementPage';
+import { AuthorizationGrantsPage } from '/imports/ui/pages/AuthorizationGrantsPage';
+// import { OAuthClientPage } from '/imports/ui/pages/OAuthClientPage';
+
+
+
 import { ChecklistsPage } from '/imports/ui/workflows/lists/ChecklistsPage';
 import { get } from 'lodash';
 
@@ -128,7 +135,7 @@ Meteor.startup(() => {
         <Route name="reset-password" path="/reset-password/:token" component={ ResetPassword } />
         <Route name="signup" path="/signup" component={ Signup } />
 
-        <Route name="about" path="/about" component={ AboutPage } />
+        <Route name="about" path="/about" component={ AppInfoPage } />
         <Route name="privacy" path="/privacy" component={ PrivacyPage } />
         <Route name="theming" path="/theming" component={ ThemePage } onEnter={ requireAuth } />
         <Route name="myprofile" path="/myprofile" component={ MyProfilePage } onEnter={ requireAuth } />
@@ -137,10 +144,15 @@ Meteor.startup(() => {
 
         <Route name="welcomePatient" path="/welcome/patient" component={ WelcomePatientPage } onEnter={ requireAuth }/>
 
-        <Route name="appInfo" path="/info" component={ AppInfoPage } />
+        {/* <Route name="appInfo" path="/info" component={ AppInfoPage } /> */}
 
         <Route name="checklists" path="/checklists" component={ ChecklistsPage }  onEnter={ requireAuth }/>
         <Route name="notifications" path="/notifications" component={ NotificationsPage }  onEnter={ requireAuth }/>
+
+        <Route name="password" path="/password" component={ PasswordManagementPage }  onEnter={ requireAuth }/>
+        <Route name="preferences" path="/preferences" component={ PreferencesPage }  onEnter={ requireAuth }/>
+        <Route name="oauthGrants" path="/oauth-grants" component={ AuthorizationGrantsPage }  onEnter={ requireAuth }/>
+        {/* <Route name="oauthClient" path="/oauth-client" component={ OAuthClientPage }  onEnter={ requireAuth }/> */}
         
         { dynamicRoutes.map(route => <Route name={route.name} key={route.name} path={route.path} component={ route.component } />) }
               

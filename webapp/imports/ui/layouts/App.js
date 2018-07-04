@@ -5,23 +5,21 @@ import PropTypes from 'prop-types';
 
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin  from 'react-mixin';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import React, { Component } from 'react';
-// import { BrowserRouter} from 'react-router-bootstrap';
 
 import { Footer } from '/imports/ui/layouts/Footer';
 import { GlassApp } from '/imports/ui/layouts/GlassApp';
-import { GlassCard, VerticalCanvas } from 'meteor/clinical:glass-ui';
+import { GlassCard, VerticalCanvas, FullPageCanvas } from 'meteor/clinical:glass-ui';
 import { Header } from '/imports/ui/layouts/Header';
 import { Image } from '/imports/ui/components/Image';
 import { SciFiOrbital } from '/imports/ui/components/SciFiOrbital';
 import { Session } from 'meteor/session';
-import SinglePanelLayout from '/imports/ui/layouts/SinglePanelLayout';
+import SidebarTray from '/imports/ui/layouts/SidebarTray';
 
-import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import { get, has } from 'lodash';
-import injectTapEventPlugin from 'react-tap-event-plugin';
+// import injectTapEventPlugin from 'react-tap-event-plugin';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 const muiTheme = getMuiTheme({
   palette: {
@@ -47,12 +45,13 @@ export class App extends React.Component {
   }
   getChildContext() {
     return {
-      muiTheme: getMuiTheme(baseTheme)
+      // muiTheme: getMuiTheme(baseTheme)
+      muiTheme: muiTheme
     };
   }
-  componentWillMount() {
-    injectTapEventPlugin();
-  }
+  // componentWillMount() {
+  //   injectTapEventPlugin();
+  // }
   renderSecondaryPanel(){
     // RADIOLOGY
     if (Meteor.userId() && Session.equals('pathname', '/diagnostic-reports') && get(Meteor.settings, 'public.modules.fhir.DiagnosticReports')) {
@@ -62,6 +61,19 @@ export class App extends React.Component {
           <Image />
         </GlassCard>
       );
+
+      // Conditions (Zygote)
+    } else if (Meteor.userId() && Session.equals('pathname', '/conditions')) {
+      return (
+        <GlassCard style={this.data.style.card} height='auto'>
+          <CardText>
+            <object id="iframe" type="text/html" data='https://www.zygotebody.com/' style={this.data.style.content}>
+              <p>unable to load </p>
+            </object>
+          </CardText>
+        </GlassCard>
+      );
+
       // Website
     } else if (Meteor.userId() && Session.equals('pathname', '/videoconferencing')) {
       return (
@@ -71,7 +83,6 @@ export class App extends React.Component {
           </CardText>
         </GlassCard>
       );
-
 
     // Website
     } else if (Meteor.userId() && get(Meteor.settings, 'public.defaults.iFrameUrl')) {
@@ -111,7 +122,7 @@ export class App extends React.Component {
         },
         content: {
           minHeight: '728px',
-          width: '970px',
+          width: '100%',
           height: Session.get('appHeight') - 280 + 'px'
         }
       },
@@ -127,7 +138,9 @@ export class App extends React.Component {
     if (Session.get('secondPanelVisible')) {
       if (Session.get('appWidth') > 1200) {
         data.style.secondary.visibility = 'visible';
-        data.style.secondary.left = '1200px';
+        data.style.secondary.left = '1280px';
+        data.style.secondary.width = (Session.get('appWidth') - (1280 + 80)) + 'px';
+        data.style.card.width = '100%';
       } else {
         data.style.secondary.visibility = 'hidden';
         data.style.secondary.left = '4048px';
@@ -137,35 +150,33 @@ export class App extends React.Component {
       data.style.secondary.left = '4048px';
     }
 
-    if(process.env.NODE_ENV === "test") console.log("GenomePage[data]", data);
+    if(process.env.NODE_ENV === "test") console.log("App[data]", data);
     return data;
   }
 
   render(){
     var orbital;
-    if(Meteor.settings && Meteor.settings.public && Meteor.settings.public.defaults && Meteor.settings.public.defaults.nfcOrbital){
-      orbital = <SciFiPage />;
-    }
+    // if(get(Meteor, 'settings.public.defaults.nfcOrbital')){
+    //   orbital = <SciFiPage />;
+    // }
     return (
-      // <BrowserRouter>
         <MuiThemeProvider muiTheme={muiTheme}>
           <GlassApp>
-            <SinglePanelLayout>
+            <SidebarTray>
               {orbital}
               <Header />
-                <div className='primaryFlexPanel' >
+                <div id='primaryFlexPanel' className='primaryFlexPanel' >
                   { this.props.children }
                 </div>
-                <div className='secondaryFlexPanel' style={this.data.style.secondary}>
-                  <VerticalCanvas>
+                <div id='secondaryFlexPanel' className='secondaryFlexPanel' style={this.data.style.secondary}>
+                  <FullPageCanvas>
                     { this.renderSecondaryPanel() }
-                  </VerticalCanvas>
+                  </FullPageCanvas>
                 </div>
               <Footer />
-            </SinglePanelLayout>
+            </SidebarTray>
           </GlassApp>
         </MuiThemeProvider>
-      // </BrowserRouter>
     );
   }
 }
@@ -179,3 +190,4 @@ App.childContextTypes = {
 App.defaultProps = {};
 
 ReactMixin(App.prototype, ReactMeteorData);
+// export default App;

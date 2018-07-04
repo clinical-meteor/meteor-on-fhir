@@ -18,6 +18,7 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
 import { Session } from 'meteor/session';
 import { browserHistory } from 'react-router';
+import PropTypes from 'prop-types';
 
 import { get } from 'lodash';
 
@@ -34,23 +35,6 @@ Sidebar = {
     this.lastUpdate = currentUpdate;
   }
 }
-
-
-// Styling of the search bar in previous incarnations
-// #globalInput{
-//   width: 60%;
-//   min-width: 500px;
-//   position: absolute;
-//   z-index: 5;
-//   left: 0px;
-//   input{
-//     padding-left: 20px;
-//     height: 50px;
-//     background-color: rgba(0,0,0,0);
-//     width: 100%;
-//   }
-// }
-
 
 export class Header extends React.Component {
   getMeteorData() {
@@ -191,7 +175,6 @@ export class Header extends React.Component {
           <ActionReorder 
             id='sidebarToggleButton'
             style={{marginTop: '20px', marginLeft: '25px', marginRight: '10px', left: '0px', position: 'absolute', cursor: 'pointer'}}
-            onTouchTap={this.toggleDrawerActive}
             onClick={this.toggleDrawerActive}
             />
         </AppBar>
@@ -210,16 +193,13 @@ export class Header extends React.Component {
         >
           
         </AppBar>      
-
       </div>
-
-      
     );
   }
 }
 Header.childContextTypes = {
-  muiTheme: React.PropTypes.object
+  muiTheme: PropTypes.object
 };
-ReactMixin(Header.prototype, ReactMeteorData);
 
+ReactMixin(Header.prototype, ReactMeteorData);
 export default Header;

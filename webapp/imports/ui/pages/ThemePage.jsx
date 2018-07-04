@@ -2,7 +2,7 @@ import { CardActions, CardText, CardTitle } from 'material-ui/Card';
 import { Tab, Tabs } from 'material-ui/Tabs';
 import { get, has } from 'lodash';
 
-import { Bert } from 'meteor/themeteorchef:bert';
+import { Bert } from 'meteor/clinical:alert';
 import FlatButton from 'material-ui/FlatButton';
 import FontIcon from 'material-ui/FontIcon';
 import { Image } from 'react-bootstrap';
@@ -106,6 +106,20 @@ export class ThemePage extends React.Component {
     var whiteTile = JSON.parse(JSON.stringify(backgroundThumbnail));
     whiteTile.background = '#FFFFFF';
 
+
+    // Pick up any dynamic routes that are specified in packages, and include them
+    var themingAssets = [];
+    Object.keys(Package).forEach(function(packageName){
+      if(Package[packageName].ThemingAssets){
+        // we try to build up a route from what's specified in the package
+        Package[packageName].ThemingAssets.forEach(function(asset){
+          themingAssets.push(asset);      
+        });    
+      }
+    });
+
+
+
     return(
       <div id='aboutPage'>
         <VerticalCanvas>
@@ -114,38 +128,14 @@ export class ThemePage extends React.Component {
               title='Theme'
               subtitle='Pick a background and color!'
             />
-            <Tabs index={this.data.state.index} onChange={this.handleTabChange}>
+            <Tabs onChange={this.handleTabChange}>
 
               <Tab label='Backgrounds' onActive={this.handleActive} style={{backgroundColor: 'white', color: 'black', borderBottom: '1px solid lightgray'}}>
                 <div style={{position: 'relative'}}>
 
                   <div id='backgroundImageGallary' style={{display: 'inline-block', paddingLeft: '4px', paddingTop: '4px'}}>
-                    <Image src='/backgrounds/medical/BambooIllustration.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
-                    <Image src='/backgrounds/medical/Zen.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
-                    <Image src='/backgrounds/medical/Zen-Rocks.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
-                    <Image src='/backgrounds/medical/LargeZenRocks.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
-                    <Image src='/backgrounds/medical/Yoga-Gray.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
-                    <Image src='/backgrounds/medical/Yoga-Ocean.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
-                    <Image src='/backgrounds/medical/Massage.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
 
-                    <Image src='/backgrounds/medical/BathPetals.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
-
-                    <Image src='/backgrounds/medical/SaltScrub-Pink.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
-                    <Image src='/backgrounds/medical/SaltScrub-Horizontal.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
-
-                    <Image src='/backgrounds/medical/SpaBeds.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
-                    <Image src='/backgrounds/medical/Candles.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
-                    <Image src='/backgrounds/medical/Sauna.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
-
-                    <Image src='/backgrounds/medical/PlasmidRed.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
-                    <Image src='/backgrounds/medical/PlasmidBlue.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
-
-                    <Image src='/backgrounds/medical/Radiograph-Chest-Portable.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
-                    <Image src='/backgrounds/medical/EmergencyRoom.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
-
-                    <Image src='/backgrounds/medical/StarTrek-Medbay.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
-                    <Image src='/backgrounds/medical/MedBay.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
-                    <Image src='/backgrounds/medical/Gradient.jpg' style={backgroundThumbnail} responsive onClick={this.onImageClick} />
+                    { themingAssets.map(asset => <Image name={asset.name} src={asset.src} style={backgroundThumbnail} responsive onClick={this.onImageClick.bind(this, asset.src)} />) }
 
                     <Image responsive style={purpleTile} onClick={this.onColorClick} />
                     <Image responsive style={orangeTile} onClick={this.onColorClick} />
@@ -261,15 +251,18 @@ export class ThemePage extends React.Component {
     });
   }
 
-  onImageClick(event){
-    //console.log("onImageClick", 'backgrounds/medical/' + event.currentTarget['src'].split('/')[5]);
+  onImageClick(path, event){
+    console.log('onImageClick', path, event)
+    if(!path){
+      path = 'backgrounds/medical/' + event.currentTarget['src'].split('/')[5];
+    }
 
     Session.set('backgroundColor', false);
-    Session.set('backgroundImagePath', 'backgrounds/medical/' + event.currentTarget['src'].split('/')[5]);
+    Session.set('backgroundImagePath', path);
 
     setUserTheme.call({
       _id:  Meteor.userId(),
-      backgroundImagePath: 'backgrounds/medical/' + event.currentTarget['src'].split('/')[5]
+      backgroundImagePath: path
     }, (error) => {
       if (error) {
         Bert.alert(error.reason, 'danger');

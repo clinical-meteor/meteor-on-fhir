@@ -1,4 +1,5 @@
 import { Meteor } from 'meteor/meteor';
+import { get } from 'lodash';
 
 let DailyStats = {
   generate: function(){
@@ -88,17 +89,18 @@ let DailyStats = {
       newDailyStat.counts.schedules = Schedules.find().count();
     }
 
-    process.env.DEBUG && console.log('newDailyStat', newDailyStat);
+    process.env.DEBUG && console.log('Cron Job: Generating daily statistics');
+    process.env.VERBOSE && console.log(newDailyStat);
 
     return newDailyStat;
   }
 };
 
 SyncedCron.add({
-  name: 'Crunch some important numbers for the marketing department',
+  name: 'Cron Job: Crunch some important numbers for the marketing department',
   schedule: function(parser) {
     // return parser.text('at 12:00 am');
-    return parser.text('every 1 hour');
+    return parser.text('every 1 day');
   },
   job: function() {
     DailyStats.generate();
@@ -108,7 +110,9 @@ SyncedCron.add({
 
 Meteor.methods({
   generateDailyStat:function (){
-    if (Meteor.settings && Meteor.settings.public && Meteor.settings.public.modules && Meteor.settings.public.modules.statisticsLogging) {
+    process.env.DEBUG && console.log('Meteor Method: Generating daily statistics');
+
+    if (get(Meteor, 'settings.public.modules.statisticsLogging')) {
       return Statistics.insert(DailyStats.generate());
     }
   },

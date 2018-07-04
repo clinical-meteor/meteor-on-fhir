@@ -2,3 +2,10 @@ settings.galaxy.json
 
 webapp/tests/nightwatch
 packages/module-landing-page-symptomatic
+
+scrap
+scrap/*
+
+build
+build/*
+

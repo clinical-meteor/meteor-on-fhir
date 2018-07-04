@@ -2,12 +2,13 @@
 /* eslint-disable quote-props */
 
 App.info({
-  name: 'Todos',
-  description: 'A simple todo list app built in Meteor.',
-  author: 'Percolate Studio Team',
-  email: 'us@percolatestudio.com',
-  website: 'http://percolatestudio.com',
-  version: '0.0.1',
+  id: 'io.sympatomatic.fhir-timeline',
+  name: 'Symptomatic',
+  description: 'Continuity of Care Document Viewer.',
+  author: 'Abigail Watson',
+  email: 'abigail@symptomatic.io',
+  website: 'http://fhir-timeline.meteorapp.com',
+  version: '0.4.0'
 });
 
 App.icons({
@@ -45,5 +46,24 @@ App.launchScreens({
   'android_xhdpi_landscape': 'resources/splash/splash-1280x720.png',
 });
 
-App.setPreference('StatusBarOverlaysWebView', 'false');
+// Set PhoneGap/Cordova preferences
 App.setPreference('StatusBarBackgroundColor', '#000000');
+App.setPreference('StatusBarOverlaysWebView', 'false');
+App.setPreference('BackgroundColor', '0xff0000ff');
+App.setPreference('HideKeyboardFormAccessoryBar', true);
+App.setPreference('Orientation', 'default');
+App.setPreference('Orientation', 'all', 'ios');
+App.setPreference('DisallowOverscroll', 'true');
+
+// Set PhoneGap/Cordova access rules
+App.accessRule('http://localhost', { type: 'navigation' } );
+App.accessRule('http://localhost:3000', { type: 'navigation' } );
+App.accessRule('http://www.symptomatic.io', { type: 'navigation' } );
+App.accessRule('http://fhir-timeline.meteorapp.com', { type: 'navigation' } );
+
+App.setPreference("BackupWebStorage", "local");
+// // Pass preferences for a particular PhoneGap/Cordova plugin
+// App.configurePlugin('com.phonegap.plugins.facebookconnect', {
+//   APP_ID: '1234567890',
+//   API_KEY: 'supersecretapikey'
+// });

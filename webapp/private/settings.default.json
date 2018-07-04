@@ -1,0 +1,143 @@
+{
+    "meteor-azure": {
+      "siteName": "Default Site",
+      "resourceGroup": "DefaultResourceGroup",
+      "subscriptionId": "2f71802d-a985-4132-8c2a-0w20101c4h8k",
+      "tenantId": "defaultdirectory.onmicrosoft.com",
+      "deploymentCreds": {
+        "username": "username",
+        "password": "password"
+      },
+      "envVariables": {
+        "ROOT_URL": "https://defaultname.azurewebsites.net",
+        "MONGO_URL": "mongodb://username:password@cosmodb.documents.azure.com:10255/?ssl=true"
+      }
+    },
+    "public": {
+      "title": "Default Settings",
+      "theme": {
+        "showVideoBackground": false,
+        "darkroomTextEnabled": false,
+        "defaultVideo": "/VideoBackgrounds/GrayWaves.mp4",
+        "backgroundImagePath": "/backgrounds/Gradient.png"      
+      },
+      "home": {
+        "showUnderConstruction": false,
+        "showExperimental": false,
+        "showApps": false,      
+        "showFhirMenu": false,
+        "showRegistration": false
+      },    
+      "defaults": {
+        "route": "/landing-page",
+        "requireAuthorization": true,
+        "avatars": true,
+        "barcodes": true,
+        "hexgridMenu": false,
+        "nfcOrbital": false,
+        "notificationMenu": true,
+        "searchbarVisible": true,
+        "displayNavbars": true,
+        "disableHeader": false,
+        "disableFooter": false,
+        "darkroom": false,
+        "iFrameEnabled": false,
+        "iFrameUrl": "https://www.wikipedia.org/",
+        "paginationLimit": 100,
+        "subscriptionLimit": 1000,
+        "cards": {
+          "height": "auto",
+          "opacity": 0.95
+        },
+        "sidebar": {
+          "docked": false,
+          "persistent": false,
+          "hideIndex": true,
+          "hideTheming": true,
+          "hidden": [
+            "/allergies",
+            "/care-plans",
+            "/conditions",
+            "/devices",
+            "/diagnostic-reports",
+            "/goals",
+            "/immunizations",
+            "/locations",
+            "/medication-orders",
+            "/medication-statements",
+            "/medications",
+            "/procedures",
+            "/practitioners",
+            "/provider-directory"
+          ]
+        }
+      },
+      "interfaces": {
+        "default": {
+          "status": "inactive",
+          "channel": {
+            "endpoint": "http://localhost:80"
+          },
+          "auth": {
+            "username": "foo",
+            "password": "bar"
+          }
+        }
+      },
+      "meshNetwork": {
+        "upstreamSync": "http://meteor-on-fhir.meteorapp.com/fhir-3.0.0", 
+        "autosync": false
+      },
+      "modules": {
+        "data": true,
+        "forum": false,
+        "genome": false,
+        "healthlog": false,
+        "dermatograms": false,
+        "telemedicine": false,
+        "inbound": true,
+        "outbound": true,
+        "epic": true,
+        "statisticsLogging": true,
+        "apps": {
+          "ChecklistManifesto": false,
+          "ContinuityOfCare": false,
+          "Videoconferencing": false,
+          "ProviderDirectory": false        
+        },
+        "fhir": {
+          "AllergyIntolerances": false,
+          "AuditEvents": false,
+          "BodySites": false,
+          "CarePlans": false,
+          "Conditions": false,
+          "Devices": false,
+          "DiagnosticReports": false,
+          "Goals": false,
+          "ImagingStudies": false,
+          "Immunizations": false,
+          "Locations": false,
+          "Lists": false,
+          "Medications": false,
+          "MedicationOrders": false,
+          "MedicationStatements": false,
+          "Organizations": true,
+          "Observations": true,
+          "Patients": true,
+          "Practitioners": false,
+          "Procedures": false,
+          "Questionnaires": false,
+          "RiskAssessments": true
+        }
+      }
+    },
+    "private": {
+      "practitionerAccessCode": "hippocrates",
+      "sysadminAccessCode": "rootaccess",
+      "disableOauth": true,
+      "demo": {
+        "nightlyDatabaseDrop": true
+      }
+    }
+  }
+  
