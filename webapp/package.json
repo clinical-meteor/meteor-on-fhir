@@ -49,6 +49,7 @@
     "react": "^16.0.0",
     "react-addons-pure-render-mixin": "^15.3.1",
     "react-bootstrap": "^0.31.5",
+    "react-color": "2.14.1",
     "react-dom": "^16.4.1",
     "react-dom-factories": "1.0.2",
     "react-dropzone-component": "^3.0.0",

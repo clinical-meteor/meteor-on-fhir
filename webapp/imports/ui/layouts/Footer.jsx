@@ -9,7 +9,8 @@ import OpacitySlider from '../components/OpacitySlider';
 import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
-import {Session} from 'meteor/session';
+import { Session } from 'meteor/session';
+import { Random } from 'meteor/random';
 import { ToolbarTitle } from 'material-ui/Toolbar';
 import { browserHistory } from 'react-router';
 import { has, get } from 'lodash';
@@ -115,161 +116,248 @@ export class Footer extends React.Component {
 
     browserHistory.push(url);
   }
-  exportContinuityOfCareDoc(){
-    console.log('exportContinuityOfCareDoc');
+  // exportContinuityOfCareDoc(){
+  //   console.log('exportContinuityOfCareDoc');
 
-    var continuityOfCareDoc = {
-      resourceType: "Bundle",
-      entry: []
-    }
+  //   let fhirEntries = [];
+  //   let continuityOfCareDoc = {
+  //     resourceType: "Bundle",
+  //     entry: []
+  //   }
 
-    if(typeof AllergyIntollerances === "object"){
-      AllergyIntollerances.find().forEach(function(allergy){
-        continuityOfCareDoc.entry.push({
-          fullUrl: "/AllergyIntolerance/" + allergy._id,
-          resource: allergy
-        })
-      })
-    }
-    if(typeof CarePlans === "object"){
-      CarePlans.find().forEach(function(careplan){
-        continuityOfCareDoc.entry.push({
-          fullUrl: "/CarePlan/" + careplan._id,
-          resource: careplan
-        })
-      })
-    }
-    if(typeof Conditions === "object"){
-      Conditions.find().forEach(function(condition){
-        continuityOfCareDoc.entry.push({
-          fullUrl: "/Condition/" + condition._id,
-          resource: condition
-        })
-      })
-    }
-    if(typeof Devices === "object"){
-      Devices.find().forEach(function(device){
-        continuityOfCareDoc.entry.push({
-          fullUrl: "/Device/" + device._id,
-          resource: device
-        })
-      })
-    }
-    if(typeof Goals === "object"){
-      Goals.find().forEach(function(goal){
-        continuityOfCareDoc.entry.push({
-          fullUrl: "/Goal/" + goal._id,
-          resource: goal
-        })
-      })
-    }
-    if(typeof Immunizations === "object"){
-      Immunizations.find().forEach(function(immunization){
-        continuityOfCareDoc.entry.push({
-          fullUrl: "/Immunization/" + immunization._id,
-          resource: immunization
-        })
-      })
-    }
-    if(typeof Medications === "object"){
-      Medications.find().forEach(function(medication){
-        continuityOfCareDoc.entry.push({
-          fullUrl: "/Medication/" + medication._id,
-          resource: medication
-        })
-      })
-    }
-    if(typeof MedicationOrders === "object"){
-      MedicationOrders.find().forEach(function(medicationOrder){
-        continuityOfCareDoc.entry.push({
-          fullUrl: "/MedicationOrder/" + medicationOrder._id,
-          resource: medicationOrder
-        })
-      })
-    }
-    if(typeof MedicationStatements === "object"){
-      MedicationStatements.find().forEach(function(medicationStatement){
-        continuityOfCareDoc.entry.push({
-          fullUrl: "/MedicationStatement/" + medicationStatement._id,
-          resource: medicationStatement
-        })
-      })
-    }
-    if(typeof Observations === "object"){
-      Observations.find().forEach(function(observation){
-        continuityOfCareDoc.entry.push({
-          fullUrl: "/Observation/" + observation._id,
-          resource: observation
-        })
-      })
-    }
-    if(typeof Organizations === "object"){
-      Organizations.find().forEach(function(organization){
-        continuityOfCareDoc.entry.push({
-          fullUrl: "/Organization/" + organization._id,
-          resource: organization
-        })
-      })
-    }
-    if(typeof Patients === "object"){
-      Patients.find().forEach(function(patient){
-        continuityOfCareDoc.entry.push({
-          fullUrl: "/Patient/" + patient._id,
-          resource: patient
-        })
-      })
-    }
-    if(typeof Practitioners === "object"){
-      Practitioners.find().forEach(function(practitioner){
-        continuityOfCareDoc.entry.push({
-          fullUrl: "/Practitioner/" + practitioner._id,
-          resource: practitioner
-        })
-      })
-    }
-    if(typeof Procedures === "object"){
-      Procedures.find().forEach(function(procedure){
-        continuityOfCareDoc.entry.push({
-          fullUrl: "/Procedure/" + procedure._id,
-          resource: procedure
-        })
-      })
-    }
-    if(typeof RiskAssessments === "object"){
-      RiskAssessments.find().forEach(function(riskAssessment){
-        continuityOfCareDoc.entry.push({
-          fullUrl: "/RiskAssessment/" + riskAssessment._id,
-          resource: riskAssessment
-        })
-      })
-    }
-    // if(Meteor.user()){
-    //   continuityOfCareDoc = get(Meteor.user(), 'profile.continuityOfCare');
-    // }    
-    Session.set('continuityOfCareDoc', continuityOfCareDoc)
-  }
-  downloadContinuityOfCareDoc(){
-    var continuityOfCareDoc = Session.get('continuityOfCareDoc');
+  //   let newComposition = {
+  //     fullUrl: "/Composition/" + Random.id(),
+  //     resource: {
+  //       "resourceType": "Composition",
+  //       "identifier" : {}, 
+  //       "status" : "preliminary", 
+  //       "type" : {}, 
+  //       "class" : {}, 
+  //       "subject" : { 
+  //         "display": Meteor.user().fullName(),
+  //         "reference": Meteor.userId()  
+  //       }, 
+  //       "encounter" : { 
+  //         "display": '',
+  //         "reference": ''
+  //        }, 
+  //       "date" : "<dateTime>", 
+  //       "author" : [{ 
+  //         "display": Meteor.user().fullName(),
+  //         "reference": Meteor.userId()  
+  //       }], 
+  //       "title" : "Continuity of Care Document", 
+  //       "confidentiality" : "0", 
+  //       "attester" : [],
+  //       "custodian" : { 
+  //         "display": '',
+  //         "reference": ''
+  //       }, 
+  //       "relatesTo" : [],
+  //       "event" : [],
+  //       "section" : []
+  //     }
+  //   };
 
-    var dataString = 'data:text/csv;charset=utf-8,' + encodeURIComponent(JSON.stringify(continuityOfCareDoc, null, 2));  
-    var downloadAnchorElement = document.getElementById('downloadAnchorElement');
-    if(downloadAnchorElement){
-      downloadAnchorElement.setAttribute("href", dataString );
 
-      var patientName = Meteor.user().displayName();
-      console.log('Generating CCD for ', patientName)
+  //   if(typeof AllergyIntollerances === "object"){
+  //     AllergyIntollerances.find().forEach(function(allergy){
+  //       fhirEntries.push({
+  //         fullUrl: "/AllergyIntolerance/" + allergy._id,
+  //         resource: allergy
+  //       })
+  //       newComposition.resource.section.push({
+  //         entry: [{
+  //           reference: "/AllergyIntolerance/" + allergy._id
+  //         }]
+  //       })
+  //     })
+  //   }
+  //   if(typeof CarePlans === "object"){
+  //     CarePlans.find().forEach(function(careplan){
+  //       fhirEntries.push({
+  //         fullUrl: "/CarePlan/" + careplan._id,
+  //         resource: careplan
+  //       })
+  //       newComposition.resource.section.push({
+  //         reference: "/CarePlan/" + careplan._id
+  //       })
+  //     })
+  //   }
+  //   if(typeof Conditions === "object"){
+  //     Conditions.find().forEach(function(condition){
+  //       fhirEntries.push({
+  //         fullUrl: "/Condition/" + condition._id,
+  //         resource: condition
+  //       })
+  //       newComposition.resource.section.push({
+  //         reference: "/Condition/" + condition._id
+  //       })
+  //     })
+  //   }
+  //   if(typeof Devices === "object"){
+  //     Devices.find().forEach(function(device){
+  //       fhirEntries.push({
+  //         fullUrl: "/Device/" + device._id,
+  //         resource: device
+  //       })
+  //       newComposition.resource.section.push({
+  //         reference: "/Device/" + device._id
+  //       })
+  //     })
+  //   }
+  //   if(typeof Goals === "object"){
+  //     Goals.find().forEach(function(goal){
+  //       fhirEntries.push({
+  //         fullUrl: "/Goal/" + goal._id,
+  //         resource: goal
+  //       })
+  //       newComposition.resource.section.push({
+  //         reference: "/Goal/" + goal._id
+  //       })
+  //     })
+  //   }
+  //   if(typeof Immunizations === "object"){
+  //     Immunizations.find().forEach(function(immunization){
+  //       fhirEntries.push({
+  //         fullUrl: "/Immunization/" + immunization._id,
+  //         resource: immunization
+  //       })
+  //       newComposition.resource.section.push({
+  //         reference: "/Immunization/" + immunization._id
+  //       })
+  //     })
+  //   }
+  //   if(typeof Medications === "object"){
+  //     Medications.find().forEach(function(medication){
+  //       fhirEntries.push({
+  //         fullUrl: "/Medication/" + medication._id,
+  //         resource: medication
+  //       })
+  //       newComposition.resource.section.push({
+  //         reference: "/Medication/" + medication._id
+  //       })
+  //     })
+  //   }
+  //   if(typeof MedicationOrders === "object"){
+  //     MedicationOrders.find().forEach(function(medicationOrder){
+  //       fhirEntries.push({
+  //         fullUrl: "/MedicationOrder/" + medicationOrder._id,
+  //         resource: medicationOrder
+  //       })
+  //       newComposition.resource.section.push({
+  //         reference: "/MedicationOrder/" + medicationOrder._id
+  //       })
+  //     })
+  //   }
+  //   if(typeof MedicationStatements === "object"){
+  //     MedicationStatements.find().forEach(function(medicationStatement){
+  //       fhirEntries.push({
+  //         fullUrl: "/MedicationStatement/" + medicationStatement._id,
+  //         resource: medicationStatement
+  //       })
+  //       newComposition.resource.section.push({
+  //         reference: "/MedicationStatement/" + medicationStatement._id
+  //       })
+  //     })
+  //   }
+  //   if(typeof Observations === "object"){
+  //     Observations.find().forEach(function(observation){
+  //       fhirEntries.push({
+  //         fullUrl: "/Observation/" + observation._id,
+  //         resource: observation
+  //       })
+  //       newComposition.resource.section.push({
+  //         reference: "/Observation/" + observation._id
+  //       })
+  //     })
+  //   }
+  //   if(typeof Organizations === "object"){
+  //     Organizations.find().forEach(function(organization){
+  //       fhirEntries.push({
+  //         fullUrl: "/Organization/" + organization._id,
+  //         resource: organization
+  //       })
+  //       newComposition.resource.section.push({
+  //         reference: "/Organization/" + organization._id
+  //       })
+  //     })
+  //   }
+  //   if(typeof Patients === "object"){
+  //     Patients.find().forEach(function(patient){
+  //       fhirEntries.push({
+  //         fullUrl: "/Patient/" + patient._id,
+  //         resource: patient
+  //       })
+  //       newComposition.resource.section.push({
+  //         reference: "/Patient/" + patient._id
+  //       })
+  //     })
+  //   }
+  //   if(typeof Practitioners === "object"){
+  //     Practitioners.find().forEach(function(practitioner){
+  //       fhirEntries.push({
+  //         fullUrl: "/Practitioner/" + practitioner._id,
+  //         resource: practitioner
+  //       })
+  //       newComposition.resource.section.push({
+  //         reference: "/Practitioner/" + practitioner._id
+  //       })
+  //     })
+  //   }
+  //   if(typeof Procedures === "object"){
+  //     Procedures.find().forEach(function(procedure){
+  //       fhirEntries.push({
+  //         fullUrl: "/Procedure/" + procedure._id,
+  //         resource: procedure
+  //       })
+  //       newComposition.resource.section.push({
+  //         reference: "/Procedure/" + procedure._id
+  //       })
+  //     })
+  //   }
+  //   if(typeof RiskAssessments === "object"){
+  //     RiskAssessments.find().forEach(function(riskAssessment){
+  //       fhirEntries.push({
+  //         fullUrl: "/RiskAssessment/" + riskAssessment._id,
+  //         resource: riskAssessment
+  //       })
+  //       newComposition.resource.section.push({
+  //         reference: "/RiskAssessment/" + riskAssessment._id
+  //       })
+  //     })
+  //   }
+
+  //   continuityOfCareDoc.entry.push(newComposition);
+
+  //   fhirEntries.forEach(function(fhirResource){
+  //     continuityOfCareDoc.entry.push(fhirResource);
+  //   })
+
+  //   Session.set('continuityOfCareDoc', continuityOfCareDoc)
+  // }
+  // downloadContinuityOfCareDoc(){
+  //   var continuityOfCareDoc = Session.get('continuityOfCareDoc');
+
+  //   var dataString = 'data:text/csv;charset=utf-8,' + encodeURIComponent(JSON.stringify(continuityOfCareDoc, null, 2));  
+  //   var downloadAnchorElement = document.getElementById('downloadAnchorElement');
+  //   if(downloadAnchorElement){
+  //     downloadAnchorElement.setAttribute("href", dataString );
+
+  //     var patientName = Meteor.user().displayName();
+  //     console.log('Generating CCD for ', patientName)
   
-      downloadAnchorElement.setAttribute("download", "continuity-of-care.fhir.ccd");
-      downloadAnchorElement.click();
-      // window.open('data:text/csv;charset=utf-8,' + escape(continuityOfCareDoc), '_self');    
-    } else {
-      console.log('Couldnt find anchor element.')
-    }
-  }
+  //     downloadAnchorElement.setAttribute("download", "continuity-of-care.fhir.ccd");
+  //     downloadAnchorElement.click();
+  //     // window.open('data:text/csv;charset=utf-8,' + escape(continuityOfCareDoc), '_self');    
+  //   } else {
+  //     console.log('Couldnt find anchor element.')
+  //   }
+  // }
   clearContinuityOfCareDoc(){
-    Meteor.users.update({_id: Meteor.userId()}, {$unset: {
-      'profile.continuityOfCare': ''
-    }});
+    // Meteor.users.update({_id: Meteor.userId()}, {$unset: {
+    //   'profile.continuityOfCare': ''
+    // }});
   }
   transferCurrentPatient(){
     console.log('Transferring patient...');
@@ -499,16 +587,16 @@ export class Footer extends React.Component {
           </div>
         );
 
-      // DATA Management
-      } else if (Meteor.userId() && (Session.equals('pathname', '/data-management'))) {
-        return (
-          <div>
-            <FlatButton label='Prepare CCD' id="exportContinuityOfCareDoc" className='exportCcd' ref='exportContinuityOfCareDoc' style={this.data.style.buttonText} onClick={this.exportContinuityOfCareDoc}></FlatButton>
-            <FlatButton label='Download' id="downloadContinuityOfCareDoc" className='exportCcd' ref='exportContinuityOfCareDoc' style={this.data.style.buttonText} onClick={this.downloadContinuityOfCareDoc}></FlatButton>
-            <FlatButton label='Clear' disabled={true} id="clearContinuityOfCareDoc" className='clearCcd' ref='clearContinuityOfCareDoc' style={this.data.style.disabledButtonText} onClick={this.clearContinuityOfCareDoc}></FlatButton>
-            <a id="downloadAnchorElement" style={{display: "none"}} ></a>            
-          </div>
-        );
+      // // DATA Management
+      // } else if (Meteor.userId() && (Session.equals('pathname', '/data-management'))) {
+      //   return (
+      //     <div>
+      //       <FlatButton label='Prepare CCD' id="exportContinuityOfCareDoc" className='exportCcd' ref='exportContinuityOfCareDoc' style={this.data.style.buttonText} onClick={this.exportContinuityOfCareDoc}></FlatButton>
+      //       <FlatButton label='Download' id="downloadContinuityOfCareDoc" className='exportCcd' ref='exportContinuityOfCareDoc' style={this.data.style.buttonText} onClick={this.downloadContinuityOfCareDoc}></FlatButton>
+      //       <FlatButton label='Clear' disabled={true} id="clearContinuityOfCareDoc" className='clearCcd' ref='clearContinuityOfCareDoc' style={this.data.style.disabledButtonText} onClick={this.clearContinuityOfCareDoc}></FlatButton>
+      //       <a id="downloadAnchorElement" style={{display: "none"}} ></a>            
+      //     </div>
+      //   );
 
       // CONDITIONS
       } else if (Meteor.userId() && (Session.equals('pathname', '/conditions')) && get(Meteor, 'settings.public.modules.epic')) {

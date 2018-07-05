@@ -5,7 +5,7 @@ import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import React from 'react';
 
-import { VerticalCanvas, GlassCard } from 'meteor/clinical:glass-ui';
+import { VerticalCanvas, GlassCard, DynamicSpacer } from 'meteor/clinical:glass-ui';
 import { browserHistory } from 'react-router';
 
 export class WelcomePatientPage extends React.Component {
@@ -26,7 +26,7 @@ export class WelcomePatientPage extends React.Component {
         <VerticalCanvas>
           <GlassCard>
             <CardTitle
-              title="Privacy Policy"
+              title="Privacy & Security"
             />
             <CardText>
               <p>
@@ -51,6 +51,10 @@ export class WelcomePatientPage extends React.Component {
                 All software is provided 'as is'.  This is a work in progress, and some features are still under construction or marked experimental.
               </p>
             </CardText>
+          </GlassCard>
+          <DynamicSpacer />
+
+          <GlassCard>
             <CardTitle
               title="End User License Agreement"
             />
@@ -84,6 +88,8 @@ export class WelcomePatientPage extends React.Component {
               <FlatButton id='acceptWelcomePageButton' label="Accept" onClick={this.handleGo} />
             </CardActions>
           </GlassCard>
+          <DynamicSpacer />
+          <DynamicSpacer />
         </VerticalCanvas>
       </div>
     );

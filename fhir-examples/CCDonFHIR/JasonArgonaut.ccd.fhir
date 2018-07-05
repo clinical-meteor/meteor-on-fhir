@@ -1,0 +1,6147 @@
+{
+  "resourceType": "Bundle",
+  "entry": [
+    {
+      "fullUrl": "/Composition/kSWPxJD5odxNvJsZD",
+      "resource": {
+        "resourceType": "Composition",
+        "identifier": {},
+        "status": "preliminary",
+        "type": {},
+        "class": {},
+        "subject": {
+          "display": "JasonArgonaut",
+          "reference": "CZM3JTGsikdPSQkNE"
+        },
+        "encounter": {
+          "display": "",
+          "reference": ""
+        },
+        "date": "<dateTime>",
+        "author": [
+          {
+            "display": "JasonArgonaut",
+            "reference": "CZM3JTGsikdPSQkNE"
+          }
+        ],
+        "title": "Continuity of Care Document",
+        "confidentiality": "0",
+        "attester": [],
+        "custodian": {
+          "display": "",
+          "reference": ""
+        },
+        "relatesTo": [],
+        "event": [],
+        "section": [
+          {
+            "reference": "/CarePlan/Lw3iFvgPQqxFCSYKJ"
+          },
+          {
+            "reference": "/Condition/EhouMiN42j7h5XJzT"
+          },
+          {
+            "reference": "/Condition/qoPptd8zoFPKL5dzE"
+          },
+          {
+            "reference": "/Condition/eQbwvjy3o9SyMRLDt"
+          },
+          {
+            "reference": "/Condition/YdJgz6YvdJE4uGqWT"
+          },
+          {
+            "reference": "/Condition/f6oHwXcqqRT5LgP9h"
+          },
+          {
+            "reference": "/Condition/doZvcHYE75Sj2PKMw"
+          },
+          {
+            "reference": "/Goal/JXSux4n4sG577zYpE"
+          },
+          {
+            "reference": "/Goal/ZqHz84xYBdqFPRhhs"
+          },
+          {
+            "reference": "/Immunization/pAvgtyvsn4nyP4nFv"
+          },
+          {
+            "reference": "/Immunization/m2j7z2Er2qL2foXsS"
+          },
+          {
+            "reference": "/MedicationOrder/4WDjmKqRAEi9Lb4NN"
+          },
+          {
+            "reference": "/MedicationOrder/g2EAjDJ2K93ny33By"
+          },
+          {
+            "reference": "/MedicationOrder/wjCFAWijFyCS7SLd4"
+          },
+          {
+            "reference": "/MedicationOrder/r2RcRksApBysKknzJ"
+          },
+          {
+            "reference": "/MedicationOrder/YzzaKgZRAzAzic3Qd"
+          },
+          {
+            "reference": "/MedicationOrder/pMk3zu8Eri8QFMxYm"
+          },
+          {
+            "reference": "/MedicationOrder/z8Qb5ih2MXxW2Wze9"
+          },
+          {
+            "reference": "/MedicationOrder/NxxXu68AZ5W7osMYg"
+          },
+          {
+            "reference": "/MedicationOrder/b7b9wHriimMjfb94J"
+          },
+          {
+            "reference": "/Observation/qKvr96eNvR64Kqvew"
+          },
+          {
+            "reference": "/Observation/WCBt5Eau3ghW896jv"
+          },
+          {
+            "reference": "/Observation/rfNg9QT37eCDx3zHu"
+          },
+          {
+            "reference": "/Observation/9nSWvhMkRvc9BC6iy"
+          },
+          {
+            "reference": "/Observation/EA2wRWPQRwvdBYD9e"
+          },
+          {
+            "reference": "/Observation/kNbZ45ccuSkCwQWHv"
+          },
+          {
+            "reference": "/Observation/Xh5wzHLdp8aZY4Ez9"
+          },
+          {
+            "reference": "/Observation/M4gnjWeF8t8DHsb45"
+          },
+          {
+            "reference": "/Observation/37Ce9KGztsXbpp3xw"
+          },
+          {
+            "reference": "/Observation/9WZrLaqqstzmSzhTb"
+          },
+          {
+            "reference": "/Observation/vvDmLXWPwXmqoviYS"
+          },
+          {
+            "reference": "/Observation/bQ2HcDv3bKxwMPJDs"
+          },
+          {
+            "reference": "/Observation/ef8fmBcJcwrwQSWtP"
+          },
+          {
+            "reference": "/Observation/42DyY6xAbMfs33NkN"
+          },
+          {
+            "reference": "/Observation/nKnuhKQxHKiSQmvcT"
+          },
+          {
+            "reference": "/Observation/mZSoGqShpt2XfJhEF"
+          },
+          {
+            "reference": "/Observation/SfprvjeDPrp7SQiyt"
+          },
+          {
+            "reference": "/Observation/PimCfgTGabyxMY6oX"
+          },
+          {
+            "reference": "/Observation/t4u8RLBzuCsFsnXjR"
+          },
+          {
+            "reference": "/Observation/Qav3Xi65kFfExQD8K"
+          },
+          {
+            "reference": "/Observation/vAYfvTErJ6bYrKcX5"
+          },
+          {
+            "reference": "/Observation/bxFe3JmenfWRPfPcu"
+          },
+          {
+            "reference": "/Observation/oPMFiwnrwG4pbjCWq"
+          },
+          {
+            "reference": "/Observation/7hZiFoMK9YgEh7MSE"
+          },
+          {
+            "reference": "/Observation/Atdy8xJsTHwp6xNht"
+          },
+          {
+            "reference": "/Observation/L4NH7CxHqZuWNzdzk"
+          },
+          {
+            "reference": "/Observation/BhSDHvHRyPin8jPcn"
+          },
+          {
+            "reference": "/Patient/qysyDhx6ortYJ3gnW"
+          },
+          {
+            "reference": "/Procedure/AL2i7TiPR6k2eCJ8a"
+          },
+          {
+            "reference": "/Procedure/kRgRavxa7Q27dZcnu"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "/CarePlan/Lw3iFvgPQqxFCSYKJ",
+      "resource": {
+        "_id": "Lw3iFvgPQqxFCSYKJ",
+        "resourceType": "CarePlan",
+        "status": "active",
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "addresses": [
+          {
+            "display": "Agoraphobia",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Condition/T1kK.xqvU20cEJe860G4aKgB"
+          },
+          {
+            "display": "Chronic cough",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Condition/ToXGIl7BNrvoF6BVybVSoawB"
+          },
+          {
+            "display": "Asthma",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Condition/T14QqO8NyASby4jGtzuSA6gB"
+          },
+          {
+            "display": "Hemoglobin A1c above reference range",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Condition/TOVSAAQTrMr9e45nCzc8S5wB"
+          },
+          {
+            "display": "TB (pulmonary tuberculosis)",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Condition/TajPohVuPYfDdU-wGcm.KMgB"
+          },
+          {
+            "display": "Zika virus disease",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Condition/T-HzNQh62IyOLOuPFOaTtDgB"
+          }
+        ],
+        "goal": [
+          {
+            "display": "Hemoglobin A1c below 7.0",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Goal/T20lh4qYCPP9sg31ZDfMLcwB"
+          },
+          {
+            "display": "Reduce the need for your rescue inhaler to less than once each month",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Goal/TbtW9qZPjDclmbmGLLcZkRAB"
+          }
+        ],
+        "activity": [
+          {
+            "detail": {
+              "prohibited": false,
+              "category": {
+                "text": "other",
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/care-plan-activity-category",
+                    "code": "other",
+                    "display": "Other"
+                  }
+                ]
+              },
+              "code": {
+                "text": "Referral for: CT ABDOMEN W IV CONTRAST"
+              },
+              "scheduledTiming": {
+                "resourceType": "Timing"
+              }
+            }
+          },
+          {
+            "detail": {
+              "prohibited": false,
+              "category": {
+                "text": "procedure",
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/care-plan-activity-category",
+                    "code": "procedure",
+                    "display": "Procedure"
+                  }
+                ]
+              },
+              "code": {
+                "text": "CBC W/ AUTO DIFFERENTIAL"
+              },
+              "scheduledTiming": {
+                "resourceType": "Timing"
+              }
+            }
+          },
+          {
+            "detail": {
+              "prohibited": false,
+              "category": {
+                "text": "procedure",
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/care-plan-activity-category",
+                    "code": "procedure",
+                    "display": "Procedure"
+                  }
+                ]
+              },
+              "code": {
+                "text": "TYPE & SCREEN"
+              },
+              "scheduledTiming": {
+                "resourceType": "Timing"
+              }
+            }
+          }
+        ],
+        "category": [
+          {
+            "text": "Longitudinal",
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "38717003",
+                "display": "Longitudinal"
+              }
+            ]
+          }
+        ],
+        "_document": {
+          "_id": "Lw3iFvgPQqxFCSYKJ",
+          "resourceType": "CarePlan",
+          "status": "active",
+          "subject": {
+            "display": "Jason Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+          },
+          "addresses": [
+            {
+              "display": "Agoraphobia",
+              "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Condition/T1kK.xqvU20cEJe860G4aKgB"
+            },
+            {
+              "display": "Chronic cough",
+              "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Condition/ToXGIl7BNrvoF6BVybVSoawB"
+            },
+            {
+              "display": "Asthma",
+              "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Condition/T14QqO8NyASby4jGtzuSA6gB"
+            },
+            {
+              "display": "Hemoglobin A1c above reference range",
+              "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Condition/TOVSAAQTrMr9e45nCzc8S5wB"
+            },
+            {
+              "display": "TB (pulmonary tuberculosis)",
+              "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Condition/TajPohVuPYfDdU-wGcm.KMgB"
+            },
+            {
+              "display": "Zika virus disease",
+              "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Condition/T-HzNQh62IyOLOuPFOaTtDgB"
+            }
+          ],
+          "goal": [
+            {
+              "display": "Hemoglobin A1c below 7.0",
+              "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Goal/T20lh4qYCPP9sg31ZDfMLcwB"
+            },
+            {
+              "display": "Reduce the need for your rescue inhaler to less than once each month",
+              "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Goal/TbtW9qZPjDclmbmGLLcZkRAB"
+            }
+          ],
+          "activity": [
+            {
+              "detail": {
+                "prohibited": false,
+                "category": {
+                  "text": "other",
+                  "coding": [
+                    {
+                      "system": "http://hl7.org/fhir/care-plan-activity-category",
+                      "code": "other",
+                      "display": "Other"
+                    }
+                  ]
+                },
+                "code": {
+                  "text": "Referral for: CT ABDOMEN W IV CONTRAST"
+                },
+                "scheduledTiming": {
+                  "resourceType": "Timing"
+                }
+              }
+            },
+            {
+              "detail": {
+                "prohibited": false,
+                "category": {
+                  "text": "procedure",
+                  "coding": [
+                    {
+                      "system": "http://hl7.org/fhir/care-plan-activity-category",
+                      "code": "procedure",
+                      "display": "Procedure"
+                    }
+                  ]
+                },
+                "code": {
+                  "text": "CBC W/ AUTO DIFFERENTIAL"
+                },
+                "scheduledTiming": {
+                  "resourceType": "Timing"
+                }
+              }
+            },
+            {
+              "detail": {
+                "prohibited": false,
+                "category": {
+                  "text": "procedure",
+                  "coding": [
+                    {
+                      "system": "http://hl7.org/fhir/care-plan-activity-category",
+                      "code": "procedure",
+                      "display": "Procedure"
+                    }
+                  ]
+                },
+                "code": {
+                  "text": "TYPE & SCREEN"
+                },
+                "scheduledTiming": {
+                  "resourceType": "Timing"
+                }
+              }
+            }
+          ],
+          "category": [
+            {
+              "text": "Longitudinal",
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "38717003",
+                  "display": "Longitudinal"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "/Condition/EhouMiN42j7h5XJzT",
+      "resource": {
+        "_id": "EhouMiN42j7h5XJzT",
+        "resourceType": "Condition",
+        "dateRecorded": "2015-08-24T00:00:00.000Z",
+        "clinicalStatus": "active",
+        "onsetDateTime": "2015-08-24T00:00:00.000Z",
+        "verificationStatus": "confirmed",
+        "patient": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "asserter": {
+          "display": "MOORE, SEAN",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+        },
+        "code": {
+          "text": "Asthma",
+          "coding": [
+            {
+              "system": "urn:oid:2.16.840.1.113883.6.90",
+              "code": "J45.909",
+              "display": "Asthma"
+            },
+            {
+              "system": "http://snomed.info/sct",
+              "code": "195967001",
+              "display": "Asthma (disorder)"
+            }
+          ]
+        },
+        "category": {
+          "text": "Diagnosis - Health Concern",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "29308-4",
+              "display": "Diagnosis"
+            },
+            {
+              "system": "http://snomed.info/sct",
+              "code": "439401001",
+              "display": "Diagnosis"
+            },
+            {
+              "system": "http://hl7.org/fhir/condition-category",
+              "code": "diagnosis",
+              "display": "Diagnosis"
+            },
+            {
+              "system": "http://argonautwiki.hl7.org/extension-codes",
+              "code": "problem",
+              "display": "Problem"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "75310-3",
+              "display": "Health concerns"
+            },
+            {
+              "system": "http://argonautwiki.hl7.org/extension-codes",
+              "code": "health-concern",
+              "display": "Health Concern"
+            }
+          ]
+        },
+        "severity": {
+          "text": "Low"
+        },
+        "_document": {
+          "_id": "EhouMiN42j7h5XJzT",
+          "resourceType": "Condition",
+          "dateRecorded": "2015-08-24T00:00:00.000Z",
+          "clinicalStatus": "active",
+          "onsetDateTime": "2015-08-24T00:00:00.000Z",
+          "verificationStatus": "confirmed",
+          "patient": {
+            "display": "Jason Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+          },
+          "asserter": {
+            "display": "MOORE, SEAN",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          },
+          "code": {
+            "text": "Asthma",
+            "coding": [
+              {
+                "system": "urn:oid:2.16.840.1.113883.6.90",
+                "code": "J45.909",
+                "display": "Asthma"
+              },
+              {
+                "system": "http://snomed.info/sct",
+                "code": "195967001",
+                "display": "Asthma (disorder)"
+              }
+            ]
+          },
+          "category": {
+            "text": "Diagnosis - Health Concern",
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "29308-4",
+                "display": "Diagnosis"
+              },
+              {
+                "system": "http://snomed.info/sct",
+                "code": "439401001",
+                "display": "Diagnosis"
+              },
+              {
+                "system": "http://hl7.org/fhir/condition-category",
+                "code": "diagnosis",
+                "display": "Diagnosis"
+              },
+              {
+                "system": "http://argonautwiki.hl7.org/extension-codes",
+                "code": "problem",
+                "display": "Problem"
+              },
+              {
+                "system": "http://loinc.org",
+                "code": "75310-3",
+                "display": "Health concerns"
+              },
+              {
+                "system": "http://argonautwiki.hl7.org/extension-codes",
+                "code": "health-concern",
+                "display": "Health Concern"
+              }
+            ]
+          },
+          "severity": {
+            "text": "Low"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "/Condition/qoPptd8zoFPKL5dzE",
+      "resource": {
+        "_id": "qoPptd8zoFPKL5dzE",
+        "resourceType": "Condition",
+        "dateRecorded": "2015-08-24T00:00:00.000Z",
+        "clinicalStatus": "active",
+        "onsetDateTime": "2015-08-24T00:00:00.000Z",
+        "verificationStatus": "confirmed",
+        "patient": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "asserter": {
+          "display": "MOORE, SEAN",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+        },
+        "code": {
+          "text": "Chronic cough",
+          "coding": [
+            {
+              "system": "urn:oid:2.16.840.1.113883.6.90",
+              "code": "R05",
+              "display": "Chronic cough"
+            },
+            {
+              "system": "http://snomed.info/sct",
+              "code": "68154008",
+              "display": "Chronic cough (finding)"
+            }
+          ]
+        },
+        "category": {
+          "text": "Diagnosis",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "29308-4",
+              "display": "Diagnosis"
+            },
+            {
+              "system": "http://snomed.info/sct",
+              "code": "439401001",
+              "display": "Diagnosis"
+            },
+            {
+              "system": "http://hl7.org/fhir/condition-category",
+              "code": "diagnosis",
+              "display": "Diagnosis"
+            },
+            {
+              "system": "http://argonautwiki.hl7.org/extension-codes",
+              "code": "problem",
+              "display": "Problem"
+            }
+          ]
+        },
+        "severity": {
+          "text": "Medium"
+        },
+        "_document": {
+          "_id": "qoPptd8zoFPKL5dzE",
+          "resourceType": "Condition",
+          "dateRecorded": "2015-08-24T00:00:00.000Z",
+          "clinicalStatus": "active",
+          "onsetDateTime": "2015-08-24T00:00:00.000Z",
+          "verificationStatus": "confirmed",
+          "patient": {
+            "display": "Jason Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+          },
+          "asserter": {
+            "display": "MOORE, SEAN",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          },
+          "code": {
+            "text": "Chronic cough",
+            "coding": [
+              {
+                "system": "urn:oid:2.16.840.1.113883.6.90",
+                "code": "R05",
+                "display": "Chronic cough"
+              },
+              {
+                "system": "http://snomed.info/sct",
+                "code": "68154008",
+                "display": "Chronic cough (finding)"
+              }
+            ]
+          },
+          "category": {
+            "text": "Diagnosis",
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "29308-4",
+                "display": "Diagnosis"
+              },
+              {
+                "system": "http://snomed.info/sct",
+                "code": "439401001",
+                "display": "Diagnosis"
+              },
+              {
+                "system": "http://hl7.org/fhir/condition-category",
+                "code": "diagnosis",
+                "display": "Diagnosis"
+              },
+              {
+                "system": "http://argonautwiki.hl7.org/extension-codes",
+                "code": "problem",
+                "display": "Problem"
+              }
+            ]
+          },
+          "severity": {
+            "text": "Medium"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "/Condition/eQbwvjy3o9SyMRLDt",
+      "resource": {
+        "_id": "eQbwvjy3o9SyMRLDt",
+        "resourceType": "Condition",
+        "dateRecorded": "2015-08-24T00:00:00.000Z",
+        "clinicalStatus": "active",
+        "onsetDateTime": "2015-08-24T00:00:00.000Z",
+        "verificationStatus": "confirmed",
+        "patient": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "asserter": {
+          "display": "MOORE, SEAN",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+        },
+        "code": {
+          "text": "Agoraphobia",
+          "coding": [
+            {
+              "system": "urn:oid:2.16.840.1.113883.6.90",
+              "code": "F40.00",
+              "display": "Agoraphobia"
+            },
+            {
+              "system": "http://snomed.info/sct",
+              "code": "70691001",
+              "display": "Agoraphobia (disorder)"
+            }
+          ]
+        },
+        "category": {
+          "text": "Diagnosis",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "29308-4",
+              "display": "Diagnosis"
+            },
+            {
+              "system": "http://snomed.info/sct",
+              "code": "439401001",
+              "display": "Diagnosis"
+            },
+            {
+              "system": "http://hl7.org/fhir/condition-category",
+              "code": "diagnosis",
+              "display": "Diagnosis"
+            },
+            {
+              "system": "http://argonautwiki.hl7.org/extension-codes",
+              "code": "problem",
+              "display": "Problem"
+            }
+          ]
+        },
+        "severity": {
+          "text": "Medium"
+        },
+        "_document": {
+          "_id": "eQbwvjy3o9SyMRLDt",
+          "resourceType": "Condition",
+          "dateRecorded": "2015-08-24T00:00:00.000Z",
+          "clinicalStatus": "active",
+          "onsetDateTime": "2015-08-24T00:00:00.000Z",
+          "verificationStatus": "confirmed",
+          "patient": {
+            "display": "Jason Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+          },
+          "asserter": {
+            "display": "MOORE, SEAN",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          },
+          "code": {
+            "text": "Agoraphobia",
+            "coding": [
+              {
+                "system": "urn:oid:2.16.840.1.113883.6.90",
+                "code": "F40.00",
+                "display": "Agoraphobia"
+              },
+              {
+                "system": "http://snomed.info/sct",
+                "code": "70691001",
+                "display": "Agoraphobia (disorder)"
+              }
+            ]
+          },
+          "category": {
+            "text": "Diagnosis",
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "29308-4",
+                "display": "Diagnosis"
+              },
+              {
+                "system": "http://snomed.info/sct",
+                "code": "439401001",
+                "display": "Diagnosis"
+              },
+              {
+                "system": "http://hl7.org/fhir/condition-category",
+                "code": "diagnosis",
+                "display": "Diagnosis"
+              },
+              {
+                "system": "http://argonautwiki.hl7.org/extension-codes",
+                "code": "problem",
+                "display": "Problem"
+              }
+            ]
+          },
+          "severity": {
+            "text": "Medium"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "/Condition/YdJgz6YvdJE4uGqWT",
+      "resource": {
+        "_id": "YdJgz6YvdJE4uGqWT",
+        "resourceType": "Condition",
+        "dateRecorded": "2016-02-11T00:00:00.000Z",
+        "clinicalStatus": "active",
+        "onsetDateTime": "2016-02-11T00:00:00.000Z",
+        "verificationStatus": "confirmed",
+        "patient": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "asserter": {
+          "display": "MOORE, SEAN",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+        },
+        "code": {
+          "text": "Hemoglobin A1c above reference range",
+          "coding": [
+            {
+              "system": "urn:oid:2.16.840.1.113883.6.90",
+              "code": "R79.89",
+              "display": "Hemoglobin A1c above reference range"
+            },
+            {
+              "system": "http://snomed.info/sct",
+              "code": "444751005",
+              "display": "Hemoglobin A1c above reference range (finding)"
+            }
+          ]
+        },
+        "category": {
+          "text": "Diagnosis",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "29308-4",
+              "display": "Diagnosis"
+            },
+            {
+              "system": "http://snomed.info/sct",
+              "code": "439401001",
+              "display": "Diagnosis"
+            },
+            {
+              "system": "http://hl7.org/fhir/condition-category",
+              "code": "diagnosis",
+              "display": "Diagnosis"
+            },
+            {
+              "system": "http://argonautwiki.hl7.org/extension-codes",
+              "code": "problem",
+              "display": "Problem"
+            }
+          ]
+        },
+        "_document": {
+          "_id": "YdJgz6YvdJE4uGqWT",
+          "resourceType": "Condition",
+          "dateRecorded": "2016-02-11T00:00:00.000Z",
+          "clinicalStatus": "active",
+          "onsetDateTime": "2016-02-11T00:00:00.000Z",
+          "verificationStatus": "confirmed",
+          "patient": {
+            "display": "Jason Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+          },
+          "asserter": {
+            "display": "MOORE, SEAN",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          },
+          "code": {
+            "text": "Hemoglobin A1c above reference range",
+            "coding": [
+              {
+                "system": "urn:oid:2.16.840.1.113883.6.90",
+                "code": "R79.89",
+                "display": "Hemoglobin A1c above reference range"
+              },
+              {
+                "system": "http://snomed.info/sct",
+                "code": "444751005",
+                "display": "Hemoglobin A1c above reference range (finding)"
+              }
+            ]
+          },
+          "category": {
+            "text": "Diagnosis",
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "29308-4",
+                "display": "Diagnosis"
+              },
+              {
+                "system": "http://snomed.info/sct",
+                "code": "439401001",
+                "display": "Diagnosis"
+              },
+              {
+                "system": "http://hl7.org/fhir/condition-category",
+                "code": "diagnosis",
+                "display": "Diagnosis"
+              },
+              {
+                "system": "http://argonautwiki.hl7.org/extension-codes",
+                "code": "problem",
+                "display": "Problem"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "/Condition/f6oHwXcqqRT5LgP9h",
+      "resource": {
+        "_id": "f6oHwXcqqRT5LgP9h",
+        "resourceType": "Condition",
+        "dateRecorded": "2016-04-23T00:00:00.000Z",
+        "clinicalStatus": "active",
+        "onsetDateTime": "2016-04-23T00:00:00.000Z",
+        "verificationStatus": "confirmed",
+        "patient": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "asserter": {
+          "display": "MOORE, SEAN",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+        },
+        "code": {
+          "text": "TB (pulmonary tuberculosis)",
+          "coding": [
+            {
+              "system": "urn:oid:2.16.840.1.113883.6.90",
+              "code": "A15.0",
+              "display": "TB (pulmonary tuberculosis)"
+            },
+            {
+              "system": "http://snomed.info/sct",
+              "code": "154283005",
+              "display": "Pulmonary tuberculosis (disorder)"
+            }
+          ]
+        },
+        "category": {
+          "text": "Diagnosis",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "29308-4",
+              "display": "Diagnosis"
+            },
+            {
+              "system": "http://snomed.info/sct",
+              "code": "439401001",
+              "display": "Diagnosis"
+            },
+            {
+              "system": "http://hl7.org/fhir/condition-category",
+              "code": "diagnosis",
+              "display": "Diagnosis"
+            },
+            {
+              "system": "http://argonautwiki.hl7.org/extension-codes",
+              "code": "problem",
+              "display": "Problem"
+            }
+          ]
+        },
+        "_document": {
+          "_id": "f6oHwXcqqRT5LgP9h",
+          "resourceType": "Condition",
+          "dateRecorded": "2016-04-23T00:00:00.000Z",
+          "clinicalStatus": "active",
+          "onsetDateTime": "2016-04-23T00:00:00.000Z",
+          "verificationStatus": "confirmed",
+          "patient": {
+            "display": "Jason Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+          },
+          "asserter": {
+            "display": "MOORE, SEAN",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          },
+          "code": {
+            "text": "TB (pulmonary tuberculosis)",
+            "coding": [
+              {
+                "system": "urn:oid:2.16.840.1.113883.6.90",
+                "code": "A15.0",
+                "display": "TB (pulmonary tuberculosis)"
+              },
+              {
+                "system": "http://snomed.info/sct",
+                "code": "154283005",
+                "display": "Pulmonary tuberculosis (disorder)"
+              }
+            ]
+          },
+          "category": {
+            "text": "Diagnosis",
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "29308-4",
+                "display": "Diagnosis"
+              },
+              {
+                "system": "http://snomed.info/sct",
+                "code": "439401001",
+                "display": "Diagnosis"
+              },
+              {
+                "system": "http://hl7.org/fhir/condition-category",
+                "code": "diagnosis",
+                "display": "Diagnosis"
+              },
+              {
+                "system": "http://argonautwiki.hl7.org/extension-codes",
+                "code": "problem",
+                "display": "Problem"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "/Condition/doZvcHYE75Sj2PKMw",
+      "resource": {
+        "_id": "doZvcHYE75Sj2PKMw",
+        "resourceType": "Condition",
+        "dateRecorded": "2016-04-23T00:00:00.000Z",
+        "clinicalStatus": "active",
+        "onsetDateTime": "2016-04-23T00:00:00.000Z",
+        "verificationStatus": "confirmed",
+        "patient": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "asserter": {
+          "display": "MOORE, SEAN",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+        },
+        "code": {
+          "text": "Zika virus disease",
+          "coding": [
+            {
+              "system": "urn:oid:2.16.840.1.113883.6.90",
+              "code": "A92.8",
+              "display": "Zika virus disease"
+            },
+            {
+              "system": "http://snomed.info/sct",
+              "code": "3928002",
+              "display": "Zika virus disease (disorder)"
+            }
+          ]
+        },
+        "category": {
+          "text": "Diagnosis",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "29308-4",
+              "display": "Diagnosis"
+            },
+            {
+              "system": "http://snomed.info/sct",
+              "code": "439401001",
+              "display": "Diagnosis"
+            },
+            {
+              "system": "http://hl7.org/fhir/condition-category",
+              "code": "diagnosis",
+              "display": "Diagnosis"
+            },
+            {
+              "system": "http://argonautwiki.hl7.org/extension-codes",
+              "code": "problem",
+              "display": "Problem"
+            }
+          ]
+        },
+        "_document": {
+          "_id": "doZvcHYE75Sj2PKMw",
+          "resourceType": "Condition",
+          "dateRecorded": "2016-04-23T00:00:00.000Z",
+          "clinicalStatus": "active",
+          "onsetDateTime": "2016-04-23T00:00:00.000Z",
+          "verificationStatus": "confirmed",
+          "patient": {
+            "display": "Jason Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+          },
+          "asserter": {
+            "display": "MOORE, SEAN",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          },
+          "code": {
+            "text": "Zika virus disease",
+            "coding": [
+              {
+                "system": "urn:oid:2.16.840.1.113883.6.90",
+                "code": "A92.8",
+                "display": "Zika virus disease"
+              },
+              {
+                "system": "http://snomed.info/sct",
+                "code": "3928002",
+                "display": "Zika virus disease (disorder)"
+              }
+            ]
+          },
+          "category": {
+            "text": "Diagnosis",
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "29308-4",
+                "display": "Diagnosis"
+              },
+              {
+                "system": "http://snomed.info/sct",
+                "code": "439401001",
+                "display": "Diagnosis"
+              },
+              {
+                "system": "http://hl7.org/fhir/condition-category",
+                "code": "diagnosis",
+                "display": "Diagnosis"
+              },
+              {
+                "system": "http://argonautwiki.hl7.org/extension-codes",
+                "code": "problem",
+                "display": "Problem"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "/Goal/JXSux4n4sG577zYpE",
+      "resource": {
+        "_id": "JXSux4n4sG577zYpE",
+        "resourceType": "Goal",
+        "startDate": "2016-03-26T00:00:00.000Z",
+        "description": "Reduce the need for your rescue inhaler to less than once each month",
+        "status": "in-progress",
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "category": [
+          {
+            "text": "Contingency",
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.737184.20005",
+                "code": "7",
+                "display": "Contingency"
+              }
+            ]
+          }
+        ],
+        "author": {
+          "display": "MOORE, SEAN",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+        },
+        "addresses": [
+          {
+            "display": "Asthma",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Condition/T14QqO8NyASby4jGtzuSA6gB"
+          }
+        ],
+        "note": [
+          {
+            "text": "Remove pet dander from your life."
+          }
+        ],
+        "_document": {
+          "_id": "JXSux4n4sG577zYpE",
+          "resourceType": "Goal",
+          "startDate": "2016-03-26T00:00:00.000Z",
+          "description": "Reduce the need for your rescue inhaler to less than once each month",
+          "status": "in-progress",
+          "subject": {
+            "display": "Jason Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+          },
+          "category": [
+            {
+              "text": "Contingency",
+              "coding": [
+                {
+                  "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.737184.20005",
+                  "code": "7",
+                  "display": "Contingency"
+                }
+              ]
+            }
+          ],
+          "author": {
+            "display": "MOORE, SEAN",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          },
+          "addresses": [
+            {
+              "display": "Asthma",
+              "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Condition/T14QqO8NyASby4jGtzuSA6gB"
+            }
+          ],
+          "note": [
+            {
+              "text": "Remove pet dander from your life."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "/Goal/ZqHz84xYBdqFPRhhs",
+      "resource": {
+        "_id": "ZqHz84xYBdqFPRhhs",
+        "resourceType": "Goal",
+        "startDate": "2016-03-26T00:00:00.000Z",
+        "description": "Hemoglobin A1c below 7.0",
+        "status": "in-progress",
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "category": [
+          {
+            "text": "Result Component",
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.737184.20005",
+                "code": "5",
+                "display": "Result Component"
+              }
+            ]
+          }
+        ],
+        "author": {
+          "display": "MOORE, SEAN",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+        },
+        "addresses": [
+          {
+            "display": "Hemoglobin A1c above reference range",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Condition/TOVSAAQTrMr9e45nCzc8S5wB"
+          }
+        ],
+        "note": [
+          {
+            "text": "Regularly monitor A1C levels toward overall goal of 6.0."
+          }
+        ],
+        "_document": {
+          "_id": "ZqHz84xYBdqFPRhhs",
+          "resourceType": "Goal",
+          "startDate": "2016-03-26T00:00:00.000Z",
+          "description": "Hemoglobin A1c below 7.0",
+          "status": "in-progress",
+          "subject": {
+            "display": "Jason Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+          },
+          "category": [
+            {
+              "text": "Result Component",
+              "coding": [
+                {
+                  "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.737184.20005",
+                  "code": "5",
+                  "display": "Result Component"
+                }
+              ]
+            }
+          ],
+          "author": {
+            "display": "MOORE, SEAN",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          },
+          "addresses": [
+            {
+              "display": "Hemoglobin A1c above reference range",
+              "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Condition/TOVSAAQTrMr9e45nCzc8S5wB"
+            }
+          ],
+          "note": [
+            {
+              "text": "Regularly monitor A1C levels toward overall goal of 6.0."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "/Immunization/pAvgtyvsn4nyP4nFv",
+      "resource": {
+        "_id": "pAvgtyvsn4nyP4nFv",
+        "resourceType": "Immunization",
+        "status": "completed",
+        "date": "2016-01-09T00:00:00.000Z",
+        "wasNotGiven": false,
+        "reported": true,
+        "lotNumber": "12321",
+        "vaccineCode": {
+          "text": "DTP-Hib-Hep B",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/cvx",
+              "code": "102",
+              "display": "DTP-HIB-HEP B"
+            }
+          ]
+        },
+        "patient": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "_document": {
+          "_id": "pAvgtyvsn4nyP4nFv",
+          "resourceType": "Immunization",
+          "status": "completed",
+          "date": "2016-01-09T00:00:00.000Z",
+          "wasNotGiven": false,
+          "reported": true,
+          "lotNumber": "12321",
+          "vaccineCode": {
+            "text": "DTP-Hib-Hep B",
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/sid/cvx",
+                "code": "102",
+                "display": "DTP-HIB-HEP B"
+              }
+            ]
+          },
+          "patient": {
+            "display": "Jason Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "/Immunization/m2j7z2Er2qL2foXsS",
+      "resource": {
+        "_id": "m2j7z2Er2qL2foXsS",
+        "resourceType": "Immunization",
+        "status": "completed",
+        "date": "2016-03-02T00:00:00.000Z",
+        "wasNotGiven": false,
+        "reported": true,
+        "vaccineCode": {
+          "text": "Cholera",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/cvx",
+              "code": "26",
+              "display": "CHOLERA"
+            }
+          ]
+        },
+        "patient": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "site": {
+          "text": "Left arm",
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.768076.4040",
+              "code": "14",
+              "display": "Left arm"
+            }
+          ]
+        },
+        "route": {
+          "text": "Intravenous",
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.768076.4030",
+              "code": "6",
+              "display": "Intravenous"
+            }
+          ]
+        },
+        "_document": {
+          "_id": "m2j7z2Er2qL2foXsS",
+          "resourceType": "Immunization",
+          "status": "completed",
+          "date": "2016-03-02T00:00:00.000Z",
+          "wasNotGiven": false,
+          "reported": true,
+          "vaccineCode": {
+            "text": "Cholera",
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/sid/cvx",
+                "code": "26",
+                "display": "CHOLERA"
+              }
+            ]
+          },
+          "patient": {
+            "display": "Jason Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+          },
+          "site": {
+            "text": "Left arm",
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.768076.4040",
+                "code": "14",
+                "display": "Left arm"
+              }
+            ]
+          },
+          "route": {
+            "text": "Intravenous",
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.10.768076.4030",
+                "code": "6",
+                "display": "Intravenous"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "/MedicationOrder/4WDjmKqRAEi9Lb4NN",
+      "resource": {
+        "_id": "4WDjmKqRAEi9Lb4NN",
+        "resourceType": "MedicationOrder",
+        "dateWritten": "2015-11-07T00:00:00.000Z",
+        "status": "active",
+        "identifier": [
+          {
+            "use": "usual",
+            "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+            "value": "971103"
+          },
+          {
+            "use": "usual",
+            "system": "urn:oid:1.2.840.114350.1.13.0.1.7.3.798268.801",
+            "value": "971103:2802249019"
+          }
+        ],
+        "patient": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "prescriber": {
+          "display": "Inpatient Physician CDR, MD",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TJIwbotDwiZ6wgU-.V1OgUAB"
+        },
+        "dosageInstruction": [
+          {
+            "text": "Take 1 capsule (15 mg total) by mouth every morning. Max Daily Amount: 15 mg",
+            "asNeededBoolean": false,
+            "route": {
+              "text": "Oral",
+              "coding": [
+                {
+                  "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.698288.330",
+                  "code": "15",
+                  "display": "Oral"
+                }
+              ]
+            },
+            "method": {
+              "text": "Take",
+              "coding": [
+                {
+                  "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.798268.8600",
+                  "code": "11",
+                  "display": "Take"
+                }
+              ]
+            },
+            "timing": {
+              "repeat": {
+                "frequency": 1,
+                "period": 1,
+                "boundsPeriod": {
+                  "start": "2015-11-07T00:00:00.000Z",
+                  "end": "2015-12-07T00:00:00.000Z"
+                }
+              },
+              "resourceType": "Timing"
+            },
+            "doseQuantity": {
+              "value": 1,
+              "unit": "capsule"
+            }
+          }
+        ],
+        "dispenseRequest": {
+          "numberOfRepeatsAllowed": 0,
+          "expectedSupplyDuration": {
+            "value": 30,
+            "unit": "days",
+            "code": "d",
+            "system": "urn:oid:2.16.840.1.113883.6.8"
+          },
+          "quantity": {
+            "value": 30,
+            "unit": "capsule"
+          }
+        },
+        "_document": {
+          "_id": "4WDjmKqRAEi9Lb4NN",
+          "resourceType": "MedicationOrder",
+          "dateWritten": "2015-11-07T00:00:00.000Z",
+          "status": "active",
+          "identifier": [
+            {
+              "use": "usual",
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+              "value": "971103"
+            },
+            {
+              "use": "usual",
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.3.798268.801",
+              "value": "971103:2802249019"
+            }
+          ],
+          "patient": {
+            "display": "Jason Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+          },
+          "prescriber": {
+            "display": "Inpatient Physician CDR, MD",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TJIwbotDwiZ6wgU-.V1OgUAB"
+          },
+          "dosageInstruction": [
+            {
+              "text": "Take 1 capsule (15 mg total) by mouth every morning. Max Daily Amount: 15 mg",
+              "asNeededBoolean": false,
+              "route": {
+                "text": "Oral",
+                "coding": [
+                  {
+                    "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.698288.330",
+                    "code": "15",
+                    "display": "Oral"
+                  }
+                ]
+              },
+              "method": {
+                "text": "Take",
+                "coding": [
+                  {
+                    "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.798268.8600",
+                    "code": "11",
+                    "display": "Take"
+                  }
+                ]
+              },
+              "timing": {
+                "repeat": {
+                  "frequency": 1,
+                  "period": 1,
+                  "boundsPeriod": {
+                    "start": "2015-11-07T00:00:00.000Z",
+                    "end": "2015-12-07T00:00:00.000Z"
+                  }
+                },
+                "resourceType": "Timing"
+              },
+              "doseQuantity": {
+                "value": 1,
+                "unit": "capsule"
+              }
+            }
+          ],
+          "dispenseRequest": {
+            "numberOfRepeatsAllowed": 0,
+            "expectedSupplyDuration": {
+              "value": 30,
+              "unit": "days",
+              "code": "d",
+              "system": "urn:oid:2.16.840.1.113883.6.8"
+            },
+            "quantity": {
+              "value": 30,
+              "unit": "capsule"
+            }
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "/MedicationOrder/g2EAjDJ2K93ny33By",
+      "resource": {
+        "_id": "g2EAjDJ2K93ny33By",
+        "resourceType": "MedicationOrder",
+        "dateWritten": "2016-11-13T00:00:00.000Z",
+        "status": "active",
+        "identifier": [
+          {
+            "use": "usual",
+            "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+            "value": "988736"
+          },
+          {
+            "use": "usual",
+            "system": "urn:oid:1.2.840.114350.1.13.0.1.7.3.798268.801",
+            "value": "988736:2150291843"
+          }
+        ],
+        "patient": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "prescriber": {
+          "display": "Historical Provider, MD",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/T-kmjPGEVPAmnBfmx56HsKgB"
+        },
+        "dosageInstruction": [
+          {
+            "text": "Take 10 mg by mouth nightly.",
+            "asNeededBoolean": false,
+            "route": {
+              "text": "Oral",
+              "coding": [
+                {
+                  "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.698288.330",
+                  "code": "15",
+                  "display": "Oral"
+                }
+              ]
+            },
+            "method": {
+              "text": "Take",
+              "coding": [
+                {
+                  "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.798268.8600",
+                  "code": "11",
+                  "display": "Take"
+                }
+              ]
+            },
+            "timing": {
+              "repeat": {
+                "frequency": 1,
+                "period": 1,
+                "boundsPeriod": {
+                  "start": "2016-11-15T00:00:00.000Z",
+                  "end": "2016-11-23T00:00:00.000Z"
+                }
+              },
+              "resourceType": "Timing"
+            },
+            "doseQuantity": {
+              "value": 10,
+              "unit": "mg",
+              "code": "mg",
+              "system": "http://unitsofmeasure.org"
+            }
+          }
+        ],
+        "dispenseRequest": {},
+        "_document": {
+          "_id": "g2EAjDJ2K93ny33By",
+          "resourceType": "MedicationOrder",
+          "dateWritten": "2016-11-13T00:00:00.000Z",
+          "status": "active",
+          "identifier": [
+            {
+              "use": "usual",
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+              "value": "988736"
+            },
+            {
+              "use": "usual",
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.3.798268.801",
+              "value": "988736:2150291843"
+            }
+          ],
+          "patient": {
+            "display": "Jason Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+          },
+          "prescriber": {
+            "display": "Historical Provider, MD",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/T-kmjPGEVPAmnBfmx56HsKgB"
+          },
+          "dosageInstruction": [
+            {
+              "text": "Take 10 mg by mouth nightly.",
+              "asNeededBoolean": false,
+              "route": {
+                "text": "Oral",
+                "coding": [
+                  {
+                    "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.698288.330",
+                    "code": "15",
+                    "display": "Oral"
+                  }
+                ]
+              },
+              "method": {
+                "text": "Take",
+                "coding": [
+                  {
+                    "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.798268.8600",
+                    "code": "11",
+                    "display": "Take"
+                  }
+                ]
+              },
+              "timing": {
+                "repeat": {
+                  "frequency": 1,
+                  "period": 1,
+                  "boundsPeriod": {
+                    "start": "2016-11-15T00:00:00.000Z",
+                    "end": "2016-11-23T00:00:00.000Z"
+                  }
+                },
+                "resourceType": "Timing"
+              },
+              "doseQuantity": {
+                "value": 10,
+                "unit": "mg",
+                "code": "mg",
+                "system": "http://unitsofmeasure.org"
+              }
+            }
+          ],
+          "dispenseRequest": {}
+        }
+      }
+    },
+    {
+      "fullUrl": "/MedicationOrder/wjCFAWijFyCS7SLd4",
+      "resource": {
+        "_id": "wjCFAWijFyCS7SLd4",
+        "resourceType": "MedicationOrder",
+        "dateWritten": "2016-11-13T00:00:00.000Z",
+        "status": "active",
+        "identifier": [
+          {
+            "use": "usual",
+            "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+            "value": "988737"
+          },
+          {
+            "use": "usual",
+            "system": "urn:oid:1.2.840.114350.1.13.0.1.7.3.798268.801",
+            "value": "988737:2133514224"
+          }
+        ],
+        "patient": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "prescriber": {
+          "display": "Historical Provider, MD",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/T-kmjPGEVPAmnBfmx56HsKgB"
+        },
+        "dosageInstruction": [
+          {
+            "text": "Take 500 mg by mouth daily.",
+            "asNeededBoolean": false,
+            "route": {
+              "text": "Oral",
+              "coding": [
+                {
+                  "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.698288.330",
+                  "code": "15",
+                  "display": "Oral"
+                }
+              ]
+            },
+            "method": {
+              "text": "Take",
+              "coding": [
+                {
+                  "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.798268.8600",
+                  "code": "11",
+                  "display": "Take"
+                }
+              ]
+            },
+            "timing": {
+              "repeat": {
+                "frequency": 1,
+                "period": 1,
+                "boundsPeriod": {
+                  "start": "2016-11-15T00:00:00.000Z"
+                }
+              },
+              "resourceType": "Timing"
+            },
+            "doseQuantity": {
+              "value": 500,
+              "unit": "mg",
+              "code": "mg",
+              "system": "http://unitsofmeasure.org"
+            }
+          }
+        ],
+        "dispenseRequest": {},
+        "_document": {
+          "_id": "wjCFAWijFyCS7SLd4",
+          "resourceType": "MedicationOrder",
+          "dateWritten": "2016-11-13T00:00:00.000Z",
+          "status": "active",
+          "identifier": [
+            {
+              "use": "usual",
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+              "value": "988737"
+            },
+            {
+              "use": "usual",
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.3.798268.801",
+              "value": "988737:2133514224"
+            }
+          ],
+          "patient": {
+            "display": "Jason Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+          },
+          "prescriber": {
+            "display": "Historical Provider, MD",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/T-kmjPGEVPAmnBfmx56HsKgB"
+          },
+          "dosageInstruction": [
+            {
+              "text": "Take 500 mg by mouth daily.",
+              "asNeededBoolean": false,
+              "route": {
+                "text": "Oral",
+                "coding": [
+                  {
+                    "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.698288.330",
+                    "code": "15",
+                    "display": "Oral"
+                  }
+                ]
+              },
+              "method": {
+                "text": "Take",
+                "coding": [
+                  {
+                    "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.798268.8600",
+                    "code": "11",
+                    "display": "Take"
+                  }
+                ]
+              },
+              "timing": {
+                "repeat": {
+                  "frequency": 1,
+                  "period": 1,
+                  "boundsPeriod": {
+                    "start": "2016-11-15T00:00:00.000Z"
+                  }
+                },
+                "resourceType": "Timing"
+              },
+              "doseQuantity": {
+                "value": 500,
+                "unit": "mg",
+                "code": "mg",
+                "system": "http://unitsofmeasure.org"
+              }
+            }
+          ],
+          "dispenseRequest": {}
+        }
+      }
+    },
+    {
+      "fullUrl": "/MedicationOrder/r2RcRksApBysKknzJ",
+      "resource": {
+        "_id": "r2RcRksApBysKknzJ",
+        "resourceType": "MedicationOrder",
+        "dateWritten": "2015-09-18T00:00:00.000Z",
+        "status": "active",
+        "identifier": [
+          {
+            "use": "usual",
+            "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+            "value": "971101"
+          },
+          {
+            "use": "usual",
+            "system": "urn:oid:1.2.840.114350.1.13.0.1.7.3.798268.801",
+            "value": "971101:2835804257"
+          }
+        ],
+        "patient": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "prescriber": {
+          "display": "Physician Allergy, MD",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TIY9FQ1OkFbokwyIOagncLAB"
+        },
+        "dosageInstruction": [
+          {
+            "text": "Take 1 tablet (80 mg total) by mouth daily.",
+            "asNeededBoolean": false,
+            "route": {
+              "text": "Oral",
+              "coding": [
+                {
+                  "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.698288.330",
+                  "code": "15",
+                  "display": "Oral"
+                }
+              ]
+            },
+            "method": {
+              "text": "Take",
+              "coding": [
+                {
+                  "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.798268.8600",
+                  "code": "11",
+                  "display": "Take"
+                }
+              ]
+            },
+            "timing": {
+              "repeat": {
+                "frequency": 1,
+                "period": 1,
+                "boundsPeriod": {
+                  "start": "2015-09-18T00:00:00.000Z",
+                  "end": "2016-09-17T00:00:00.000Z"
+                }
+              },
+              "resourceType": "Timing"
+            },
+            "doseQuantity": {
+              "value": 1,
+              "unit": "tablet"
+            }
+          }
+        ],
+        "dispenseRequest": {
+          "numberOfRepeatsAllowed": 11,
+          "expectedSupplyDuration": {
+            "value": 30,
+            "unit": "days",
+            "code": "d",
+            "system": "urn:oid:2.16.840.1.113883.6.8"
+          },
+          "quantity": {
+            "value": 30,
+            "unit": "tablet"
+          }
+        },
+        "_document": {
+          "_id": "r2RcRksApBysKknzJ",
+          "resourceType": "MedicationOrder",
+          "dateWritten": "2015-09-18T00:00:00.000Z",
+          "status": "active",
+          "identifier": [
+            {
+              "use": "usual",
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+              "value": "971101"
+            },
+            {
+              "use": "usual",
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.3.798268.801",
+              "value": "971101:2835804257"
+            }
+          ],
+          "patient": {
+            "display": "Jason Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+          },
+          "prescriber": {
+            "display": "Physician Allergy, MD",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TIY9FQ1OkFbokwyIOagncLAB"
+          },
+          "dosageInstruction": [
+            {
+              "text": "Take 1 tablet (80 mg total) by mouth daily.",
+              "asNeededBoolean": false,
+              "route": {
+                "text": "Oral",
+                "coding": [
+                  {
+                    "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.698288.330",
+                    "code": "15",
+                    "display": "Oral"
+                  }
+                ]
+              },
+              "method": {
+                "text": "Take",
+                "coding": [
+                  {
+                    "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.798268.8600",
+                    "code": "11",
+                    "display": "Take"
+                  }
+                ]
+              },
+              "timing": {
+                "repeat": {
+                  "frequency": 1,
+                  "period": 1,
+                  "boundsPeriod": {
+                    "start": "2015-09-18T00:00:00.000Z",
+                    "end": "2016-09-17T00:00:00.000Z"
+                  }
+                },
+                "resourceType": "Timing"
+              },
+              "doseQuantity": {
+                "value": 1,
+                "unit": "tablet"
+              }
+            }
+          ],
+          "dispenseRequest": {
+            "numberOfRepeatsAllowed": 11,
+            "expectedSupplyDuration": {
+              "value": 30,
+              "unit": "days",
+              "code": "d",
+              "system": "urn:oid:2.16.840.1.113883.6.8"
+            },
+            "quantity": {
+              "value": 30,
+              "unit": "tablet"
+            }
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "/MedicationOrder/YzzaKgZRAzAzic3Qd",
+      "resource": {
+        "_id": "YzzaKgZRAzAzic3Qd",
+        "resourceType": "MedicationOrder",
+        "dateWritten": "2016-11-10T00:00:00.000Z",
+        "status": "active",
+        "identifier": [
+          {
+            "use": "usual",
+            "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+            "value": "988738"
+          },
+          {
+            "use": "usual",
+            "system": "urn:oid:1.2.840.114350.1.13.0.1.7.3.798268.801",
+            "value": "988738:2385178509"
+          }
+        ],
+        "patient": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "prescriber": {
+          "display": "Historical Provider, MD",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/T-kmjPGEVPAmnBfmx56HsKgB"
+        },
+        "dosageInstruction": [
+          {
+            "text": "Take 125 mcg by mouth daily.",
+            "asNeededBoolean": false,
+            "route": {
+              "text": "Oral",
+              "coding": [
+                {
+                  "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.698288.330",
+                  "code": "15",
+                  "display": "Oral"
+                }
+              ]
+            },
+            "method": {
+              "text": "Take",
+              "coding": [
+                {
+                  "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.798268.8600",
+                  "code": "11",
+                  "display": "Take"
+                }
+              ]
+            },
+            "timing": {
+              "repeat": {
+                "frequency": 1,
+                "period": 1,
+                "boundsPeriod": {
+                  "start": "2016-11-10T00:00:00.000Z"
+                }
+              },
+              "resourceType": "Timing"
+            },
+            "doseQuantity": {
+              "value": 125,
+              "unit": "ug",
+              "code": "ug",
+              "system": "http://unitsofmeasure.org"
+            }
+          }
+        ],
+        "dispenseRequest": {},
+        "_document": {
+          "_id": "YzzaKgZRAzAzic3Qd",
+          "resourceType": "MedicationOrder",
+          "dateWritten": "2016-11-10T00:00:00.000Z",
+          "status": "active",
+          "identifier": [
+            {
+              "use": "usual",
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+              "value": "988738"
+            },
+            {
+              "use": "usual",
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.3.798268.801",
+              "value": "988738:2385178509"
+            }
+          ],
+          "patient": {
+            "display": "Jason Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+          },
+          "prescriber": {
+            "display": "Historical Provider, MD",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/T-kmjPGEVPAmnBfmx56HsKgB"
+          },
+          "dosageInstruction": [
+            {
+              "text": "Take 125 mcg by mouth daily.",
+              "asNeededBoolean": false,
+              "route": {
+                "text": "Oral",
+                "coding": [
+                  {
+                    "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.698288.330",
+                    "code": "15",
+                    "display": "Oral"
+                  }
+                ]
+              },
+              "method": {
+                "text": "Take",
+                "coding": [
+                  {
+                    "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.798268.8600",
+                    "code": "11",
+                    "display": "Take"
+                  }
+                ]
+              },
+              "timing": {
+                "repeat": {
+                  "frequency": 1,
+                  "period": 1,
+                  "boundsPeriod": {
+                    "start": "2016-11-10T00:00:00.000Z"
+                  }
+                },
+                "resourceType": "Timing"
+              },
+              "doseQuantity": {
+                "value": 125,
+                "unit": "ug",
+                "code": "ug",
+                "system": "http://unitsofmeasure.org"
+              }
+            }
+          ],
+          "dispenseRequest": {}
+        }
+      }
+    },
+    {
+      "fullUrl": "/MedicationOrder/pMk3zu8Eri8QFMxYm",
+      "resource": {
+        "_id": "pMk3zu8Eri8QFMxYm",
+        "resourceType": "MedicationOrder",
+        "dateWritten": "2016-04-14T00:00:00.000Z",
+        "status": "active",
+        "identifier": [
+          {
+            "use": "usual",
+            "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+            "value": "981975"
+          },
+          {
+            "use": "usual",
+            "system": "urn:oid:1.2.840.114350.1.13.0.1.7.3.798268.801",
+            "value": "981975:1244187637"
+          }
+        ],
+        "patient": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "prescriber": {
+          "display": "Physician Family Medicine",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/T3Mz3KLBDVXXgaRoee3EKAAB"
+        },
+        "dosageInstruction": [
+          {
+            "text": "Take 1 tablet (5 mg total) by mouth daily.",
+            "asNeededBoolean": false,
+            "route": {
+              "text": "Oral",
+              "coding": [
+                {
+                  "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.698288.330",
+                  "code": "15",
+                  "display": "Oral"
+                }
+              ]
+            },
+            "method": {
+              "text": "Take",
+              "coding": [
+                {
+                  "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.798268.8600",
+                  "code": "11",
+                  "display": "Take"
+                }
+              ]
+            },
+            "timing": {
+              "repeat": {
+                "frequency": 1,
+                "period": 1,
+                "boundsPeriod": {
+                  "start": "2016-04-14T00:00:00.000Z",
+                  "end": "2017-04-14T00:00:00.000Z"
+                }
+              },
+              "resourceType": "Timing"
+            },
+            "doseQuantity": {
+              "value": 1,
+              "unit": "tablet"
+            }
+          }
+        ],
+        "dispenseRequest": {
+          "numberOfRepeatsAllowed": 11,
+          "expectedSupplyDuration": {
+            "value": 30,
+            "unit": "days",
+            "code": "d",
+            "system": "urn:oid:2.16.840.1.113883.6.8"
+          },
+          "quantity": {
+            "value": 30,
+            "unit": "tablet"
+          }
+        },
+        "_document": {
+          "_id": "pMk3zu8Eri8QFMxYm",
+          "resourceType": "MedicationOrder",
+          "dateWritten": "2016-04-14T00:00:00.000Z",
+          "status": "active",
+          "identifier": [
+            {
+              "use": "usual",
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+              "value": "981975"
+            },
+            {
+              "use": "usual",
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.3.798268.801",
+              "value": "981975:1244187637"
+            }
+          ],
+          "patient": {
+            "display": "Jason Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+          },
+          "prescriber": {
+            "display": "Physician Family Medicine",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/T3Mz3KLBDVXXgaRoee3EKAAB"
+          },
+          "dosageInstruction": [
+            {
+              "text": "Take 1 tablet (5 mg total) by mouth daily.",
+              "asNeededBoolean": false,
+              "route": {
+                "text": "Oral",
+                "coding": [
+                  {
+                    "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.698288.330",
+                    "code": "15",
+                    "display": "Oral"
+                  }
+                ]
+              },
+              "method": {
+                "text": "Take",
+                "coding": [
+                  {
+                    "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.798268.8600",
+                    "code": "11",
+                    "display": "Take"
+                  }
+                ]
+              },
+              "timing": {
+                "repeat": {
+                  "frequency": 1,
+                  "period": 1,
+                  "boundsPeriod": {
+                    "start": "2016-04-14T00:00:00.000Z",
+                    "end": "2017-04-14T00:00:00.000Z"
+                  }
+                },
+                "resourceType": "Timing"
+              },
+              "doseQuantity": {
+                "value": 1,
+                "unit": "tablet"
+              }
+            }
+          ],
+          "dispenseRequest": {
+            "numberOfRepeatsAllowed": 11,
+            "expectedSupplyDuration": {
+              "value": 30,
+              "unit": "days",
+              "code": "d",
+              "system": "urn:oid:2.16.840.1.113883.6.8"
+            },
+            "quantity": {
+              "value": 30,
+              "unit": "tablet"
+            }
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "/MedicationOrder/z8Qb5ih2MXxW2Wze9",
+      "resource": {
+        "_id": "z8Qb5ih2MXxW2Wze9",
+        "resourceType": "MedicationOrder",
+        "dateWritten": "2016-04-24T00:00:00.000Z",
+        "status": "active",
+        "identifier": [
+          {
+            "use": "usual",
+            "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+            "value": "988734"
+          },
+          {
+            "use": "usual",
+            "system": "urn:oid:1.2.840.114350.1.13.0.1.7.3.798268.801",
+            "value": "988734:2183847081"
+          }
+        ],
+        "patient": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "prescriber": {
+          "display": "Physician Family Medicine",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TFPkggBo9HaiYYMHToL5QwAB"
+        },
+        "dosageInstruction": [
+          {
+            "text": "Take 1 capsule (30 mg total) by mouth 2 (two) times a day.",
+            "asNeededBoolean": false,
+            "route": {
+              "text": "Oral",
+              "coding": [
+                {
+                  "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.698288.330",
+                  "code": "15",
+                  "display": "Oral"
+                }
+              ]
+            },
+            "method": {
+              "text": "Take",
+              "coding": [
+                {
+                  "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.798268.8600",
+                  "code": "11",
+                  "display": "Take"
+                }
+              ]
+            },
+            "timing": {
+              "repeat": {
+                "frequency": 1,
+                "period": 12,
+                "boundsPeriod": {
+                  "start": "2016-04-24T00:00:00.000Z",
+                  "end": "2016-05-24T00:00:00.000Z"
+                }
+              },
+              "resourceType": "Timing"
+            },
+            "doseQuantity": {
+              "value": 1,
+              "unit": "capsule"
+            }
+          }
+        ],
+        "dispenseRequest": {
+          "numberOfRepeatsAllowed": 0,
+          "expectedSupplyDuration": {
+            "value": 30,
+            "unit": "days",
+            "code": "d",
+            "system": "urn:oid:2.16.840.1.113883.6.8"
+          },
+          "quantity": {
+            "value": 60,
+            "unit": "capsule"
+          }
+        },
+        "_document": {
+          "_id": "z8Qb5ih2MXxW2Wze9",
+          "resourceType": "MedicationOrder",
+          "dateWritten": "2016-04-24T00:00:00.000Z",
+          "status": "active",
+          "identifier": [
+            {
+              "use": "usual",
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+              "value": "988734"
+            },
+            {
+              "use": "usual",
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.3.798268.801",
+              "value": "988734:2183847081"
+            }
+          ],
+          "patient": {
+            "display": "Jason Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+          },
+          "prescriber": {
+            "display": "Physician Family Medicine",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TFPkggBo9HaiYYMHToL5QwAB"
+          },
+          "dosageInstruction": [
+            {
+              "text": "Take 1 capsule (30 mg total) by mouth 2 (two) times a day.",
+              "asNeededBoolean": false,
+              "route": {
+                "text": "Oral",
+                "coding": [
+                  {
+                    "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.698288.330",
+                    "code": "15",
+                    "display": "Oral"
+                  }
+                ]
+              },
+              "method": {
+                "text": "Take",
+                "coding": [
+                  {
+                    "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.798268.8600",
+                    "code": "11",
+                    "display": "Take"
+                  }
+                ]
+              },
+              "timing": {
+                "repeat": {
+                  "frequency": 1,
+                  "period": 12,
+                  "boundsPeriod": {
+                    "start": "2016-04-24T00:00:00.000Z",
+                    "end": "2016-05-24T00:00:00.000Z"
+                  }
+                },
+                "resourceType": "Timing"
+              },
+              "doseQuantity": {
+                "value": 1,
+                "unit": "capsule"
+              }
+            }
+          ],
+          "dispenseRequest": {
+            "numberOfRepeatsAllowed": 0,
+            "expectedSupplyDuration": {
+              "value": 30,
+              "unit": "days",
+              "code": "d",
+              "system": "urn:oid:2.16.840.1.113883.6.8"
+            },
+            "quantity": {
+              "value": 60,
+              "unit": "capsule"
+            }
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "/MedicationOrder/NxxXu68AZ5W7osMYg",
+      "resource": {
+        "_id": "NxxXu68AZ5W7osMYg",
+        "resourceType": "MedicationOrder",
+        "dateWritten": "2016-11-09T00:00:00.000Z",
+        "status": "active",
+        "identifier": [
+          {
+            "use": "usual",
+            "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+            "value": "988739"
+          },
+          {
+            "use": "usual",
+            "system": "urn:oid:1.2.840.114350.1.13.0.1.7.3.798268.801",
+            "value": "988739:2368400890"
+          }
+        ],
+        "patient": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "prescriber": {
+          "display": "Historical Provider, MD",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/T-kmjPGEVPAmnBfmx56HsKgB"
+        },
+        "dosageInstruction": [
+          {
+            "text": "Take 1 tablet by mouth daily.",
+            "asNeededBoolean": false,
+            "route": {
+              "text": "Oral",
+              "coding": [
+                {
+                  "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.698288.330",
+                  "code": "15",
+                  "display": "Oral"
+                }
+              ]
+            },
+            "method": {
+              "text": "Take",
+              "coding": [
+                {
+                  "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.798268.8600",
+                  "code": "11",
+                  "display": "Take"
+                }
+              ]
+            },
+            "timing": {
+              "repeat": {
+                "frequency": 1,
+                "period": 1,
+                "boundsPeriod": {
+                  "start": "2016-11-09T00:00:00.000Z"
+                }
+              },
+              "resourceType": "Timing"
+            },
+            "doseQuantity": {
+              "value": 1,
+              "unit": "tablet"
+            }
+          }
+        ],
+        "dispenseRequest": {},
+        "_document": {
+          "_id": "NxxXu68AZ5W7osMYg",
+          "resourceType": "MedicationOrder",
+          "dateWritten": "2016-11-09T00:00:00.000Z",
+          "status": "active",
+          "identifier": [
+            {
+              "use": "usual",
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+              "value": "988739"
+            },
+            {
+              "use": "usual",
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.3.798268.801",
+              "value": "988739:2368400890"
+            }
+          ],
+          "patient": {
+            "display": "Jason Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+          },
+          "prescriber": {
+            "display": "Historical Provider, MD",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/T-kmjPGEVPAmnBfmx56HsKgB"
+          },
+          "dosageInstruction": [
+            {
+              "text": "Take 1 tablet by mouth daily.",
+              "asNeededBoolean": false,
+              "route": {
+                "text": "Oral",
+                "coding": [
+                  {
+                    "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.698288.330",
+                    "code": "15",
+                    "display": "Oral"
+                  }
+                ]
+              },
+              "method": {
+                "text": "Take",
+                "coding": [
+                  {
+                    "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.798268.8600",
+                    "code": "11",
+                    "display": "Take"
+                  }
+                ]
+              },
+              "timing": {
+                "repeat": {
+                  "frequency": 1,
+                  "period": 1,
+                  "boundsPeriod": {
+                    "start": "2016-11-09T00:00:00.000Z"
+                  }
+                },
+                "resourceType": "Timing"
+              },
+              "doseQuantity": {
+                "value": 1,
+                "unit": "tablet"
+              }
+            }
+          ],
+          "dispenseRequest": {}
+        }
+      }
+    },
+    {
+      "fullUrl": "/MedicationOrder/b7b9wHriimMjfb94J",
+      "resource": {
+        "_id": "b7b9wHriimMjfb94J",
+        "resourceType": "MedicationOrder",
+        "dateWritten": "2015-11-07T00:00:00.000Z",
+        "status": "active",
+        "identifier": [
+          {
+            "use": "usual",
+            "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+            "value": "971104"
+          },
+          {
+            "use": "usual",
+            "system": "urn:oid:1.2.840.114350.1.13.0.1.7.3.798268.801",
+            "value": "971104:2886137114"
+          }
+        ],
+        "patient": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "prescriber": {
+          "display": "Inpatient Physician CDR, MD",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TJIwbotDwiZ6wgU-.V1OgUAB"
+        },
+        "dosageInstruction": [
+          {
+            "text": "Take 1 tablet (2 mg total) by mouth 2 (two) times a day before meals.",
+            "asNeededBoolean": false,
+            "route": {
+              "text": "Oral",
+              "coding": [
+                {
+                  "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.698288.330",
+                  "code": "15",
+                  "display": "Oral"
+                }
+              ]
+            },
+            "method": {
+              "text": "Take",
+              "coding": [
+                {
+                  "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.798268.8600",
+                  "code": "11",
+                  "display": "Take"
+                }
+              ]
+            },
+            "timing": {
+              "repeat": {
+                "frequency": 1,
+                "period": 12,
+                "boundsPeriod": {
+                  "start": "2015-11-07T00:00:00.000Z",
+                  "end": "2016-11-06T00:00:00.000Z"
+                }
+              },
+              "resourceType": "Timing"
+            },
+            "doseQuantity": {
+              "value": 1,
+              "unit": "tablet"
+            }
+          }
+        ],
+        "dispenseRequest": {
+          "numberOfRepeatsAllowed": 11,
+          "expectedSupplyDuration": {
+            "value": 30,
+            "unit": "days",
+            "code": "d",
+            "system": "urn:oid:2.16.840.1.113883.6.8"
+          },
+          "quantity": {
+            "value": 60,
+            "unit": "tablet"
+          }
+        },
+        "_document": {
+          "_id": "b7b9wHriimMjfb94J",
+          "resourceType": "MedicationOrder",
+          "dateWritten": "2015-11-07T00:00:00.000Z",
+          "status": "active",
+          "identifier": [
+            {
+              "use": "usual",
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+              "value": "971104"
+            },
+            {
+              "use": "usual",
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.3.798268.801",
+              "value": "971104:2886137114"
+            }
+          ],
+          "patient": {
+            "display": "Jason Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+          },
+          "prescriber": {
+            "display": "Inpatient Physician CDR, MD",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TJIwbotDwiZ6wgU-.V1OgUAB"
+          },
+          "dosageInstruction": [
+            {
+              "text": "Take 1 tablet (2 mg total) by mouth 2 (two) times a day before meals.",
+              "asNeededBoolean": false,
+              "route": {
+                "text": "Oral",
+                "coding": [
+                  {
+                    "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.698288.330",
+                    "code": "15",
+                    "display": "Oral"
+                  }
+                ]
+              },
+              "method": {
+                "text": "Take",
+                "coding": [
+                  {
+                    "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.798268.8600",
+                    "code": "11",
+                    "display": "Take"
+                  }
+                ]
+              },
+              "timing": {
+                "repeat": {
+                  "frequency": 1,
+                  "period": 12,
+                  "boundsPeriod": {
+                    "start": "2015-11-07T00:00:00.000Z",
+                    "end": "2016-11-06T00:00:00.000Z"
+                  }
+                },
+                "resourceType": "Timing"
+              },
+              "doseQuantity": {
+                "value": 1,
+                "unit": "tablet"
+              }
+            }
+          ],
+          "dispenseRequest": {
+            "numberOfRepeatsAllowed": 11,
+            "expectedSupplyDuration": {
+              "value": 30,
+              "unit": "days",
+              "code": "d",
+              "system": "urn:oid:2.16.840.1.113883.6.8"
+            },
+            "quantity": {
+              "value": 60,
+              "unit": "tablet"
+            }
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "/Observation/qKvr96eNvR64Kqvew",
+      "resource": {
+        "_id": "qKvr96eNvR64Kqvew",
+        "resourceType": "Observation",
+        "effectiveDateTime": "2016-12-22T22:37:00.000Z",
+        "status": "final",
+        "code": {
+          "text": "Blood Pressure",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "55284-4",
+              "display": "Blood pressure systolic and diastolic"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            }
+          ]
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "component": [
+          {
+            "code": {
+              "text": "Systolic blood pressure",
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8480-6",
+                  "display": "Systolic blood pressure"
+                }
+              ]
+            },
+            "valueQuantity": {
+              "value": 120,
+              "unit": "mm[Hg]",
+              "code": "mm[Hg]",
+              "system": "http://unitsofmeasure.org"
+            }
+          },
+          {
+            "code": {
+              "text": "Diastolic blood pressure",
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8462-4",
+                  "display": "Diastolic blood pressure"
+                }
+              ]
+            },
+            "valueQuantity": {
+              "value": 80,
+              "unit": "mm[Hg]",
+              "code": "mm[Hg]",
+              "system": "http://unitsofmeasure.org"
+            }
+          }
+        ],
+        "_document": {
+          "_id": "qKvr96eNvR64Kqvew",
+          "resourceType": "Observation",
+          "effectiveDateTime": "2016-12-22T22:37:00.000Z",
+          "status": "final",
+          "code": {
+            "text": "Blood Pressure",
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "55284-4",
+                "display": "Blood pressure systolic and diastolic"
+              },
+              {
+                "system": "http://loinc.org",
+                "code": "8716-3",
+                "display": "Vital Signs grouping"
+              }
+            ]
+          },
+          "subject": {
+            "display": "Jason Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+          },
+          "category": {
+            "text": "Vital Signs",
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          },
+          "component": [
+            {
+              "code": {
+                "text": "Systolic blood pressure",
+                "coding": [
+                  {
+                    "system": "http://loinc.org",
+                    "code": "8480-6",
+                    "display": "Systolic blood pressure"
+                  }
+                ]
+              },
+              "valueQuantity": {
+                "value": 120,
+                "unit": "mm[Hg]",
+                "code": "mm[Hg]",
+                "system": "http://unitsofmeasure.org"
+              }
+            },
+            {
+              "code": {
+                "text": "Diastolic blood pressure",
+                "coding": [
+                  {
+                    "system": "http://loinc.org",
+                    "code": "8462-4",
+                    "display": "Diastolic blood pressure"
+                  }
+                ]
+              },
+              "valueQuantity": {
+                "value": 80,
+                "unit": "mm[Hg]",
+                "code": "mm[Hg]",
+                "system": "http://unitsofmeasure.org"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "/Observation/WCBt5Eau3ghW896jv",
+      "resource": {
+        "_id": "WCBt5Eau3ghW896jv",
+        "resourceType": "Observation",
+        "effectiveDateTime": "2016-04-19T15:02:00.000Z",
+        "status": "final",
+        "code": {
+          "text": "Blood Pressure",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "55284-4",
+              "display": "Blood pressure systolic and diastolic"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            }
+          ]
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "performer": [
+          {
+            "display": "MOORE, SEAN",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          }
+        ],
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "component": [
+          {
+            "code": {
+              "text": "Systolic blood pressure",
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8480-6",
+                  "display": "Systolic blood pressure"
+                }
+              ]
+            },
+            "valueQuantity": {
+              "value": 122,
+              "unit": "mm[Hg]",
+              "code": "mm[Hg]",
+              "system": "http://unitsofmeasure.org"
+            }
+          },
+          {
+            "code": {
+              "text": "Diastolic blood pressure",
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8462-4",
+                  "display": "Diastolic blood pressure"
+                }
+              ]
+            },
+            "valueQuantity": {
+              "value": 80,
+              "unit": "mm[Hg]",
+              "code": "mm[Hg]",
+              "system": "http://unitsofmeasure.org"
+            }
+          }
+        ],
+        "_document": {
+          "_id": "WCBt5Eau3ghW896jv",
+          "resourceType": "Observation",
+          "effectiveDateTime": "2016-04-19T15:02:00.000Z",
+          "status": "final",
+          "code": {
+            "text": "Blood Pressure",
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "55284-4",
+                "display": "Blood pressure systolic and diastolic"
+              },
+              {
+                "system": "http://loinc.org",
+                "code": "8716-3",
+                "display": "Vital Signs grouping"
+              }
+            ]
+          },
+          "subject": {
+            "display": "Jason Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+          },
+          "performer": [
+            {
+              "display": "MOORE, SEAN",
+              "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+            }
+          ],
+          "category": {
+            "text": "Vital Signs",
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          },
+          "component": [
+            {
+              "code": {
+                "text": "Systolic blood pressure",
+                "coding": [
+                  {
+                    "system": "http://loinc.org",
+                    "code": "8480-6",
+                    "display": "Systolic blood pressure"
+                  }
+                ]
+              },
+              "valueQuantity": {
+                "value": 122,
+                "unit": "mm[Hg]",
+                "code": "mm[Hg]",
+                "system": "http://unitsofmeasure.org"
+              }
+            },
+            {
+              "code": {
+                "text": "Diastolic blood pressure",
+                "coding": [
+                  {
+                    "system": "http://loinc.org",
+                    "code": "8462-4",
+                    "display": "Diastolic blood pressure"
+                  }
+                ]
+              },
+              "valueQuantity": {
+                "value": 80,
+                "unit": "mm[Hg]",
+                "code": "mm[Hg]",
+                "system": "http://unitsofmeasure.org"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "/Observation/rfNg9QT37eCDx3zHu",
+      "resource": {
+        "_id": "rfNg9QT37eCDx3zHu",
+        "resourceType": "Observation",
+        "effectiveDateTime": "2015-08-26T22:00:00.000Z",
+        "status": "final",
+        "code": {
+          "text": "Blood Pressure",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "55284-4",
+              "display": "Blood pressure systolic and diastolic"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            }
+          ]
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "performer": [
+          {
+            "display": "MOORE, SEAN",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          }
+        ],
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "component": [
+          {
+            "code": {
+              "text": "Systolic blood pressure",
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8480-6",
+                  "display": "Systolic blood pressure"
+                }
+              ]
+            },
+            "valueQuantity": {
+              "value": 120,
+              "unit": "mm[Hg]",
+              "code": "mm[Hg]",
+              "system": "http://unitsofmeasure.org"
+            }
+          },
+          {
+            "code": {
+              "text": "Diastolic blood pressure",
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8462-4",
+                  "display": "Diastolic blood pressure"
+                }
+              ]
+            },
+            "valueQuantity": {
+              "value": 72,
+              "unit": "mm[Hg]",
+              "code": "mm[Hg]",
+              "system": "http://unitsofmeasure.org"
+            }
+          }
+        ],
+        "_document": {
+          "_id": "rfNg9QT37eCDx3zHu",
+          "resourceType": "Observation",
+          "effectiveDateTime": "2015-08-26T22:00:00.000Z",
+          "status": "final",
+          "code": {
+            "text": "Blood Pressure",
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "55284-4",
+                "display": "Blood pressure systolic and diastolic"
+              },
+              {
+                "system": "http://loinc.org",
+                "code": "8716-3",
+                "display": "Vital Signs grouping"
+              }
+            ]
+          },
+          "subject": {
+            "display": "Jason Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+          },
+          "performer": [
+            {
+              "display": "MOORE, SEAN",
+              "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+            }
+          ],
+          "category": {
+            "text": "Vital Signs",
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          },
+          "component": [
+            {
+              "code": {
+                "text": "Systolic blood pressure",
+                "coding": [
+                  {
+                    "system": "http://loinc.org",
+                    "code": "8480-6",
+                    "display": "Systolic blood pressure"
+                  }
+                ]
+              },
+              "valueQuantity": {
+                "value": 120,
+                "unit": "mm[Hg]",
+                "code": "mm[Hg]",
+                "system": "http://unitsofmeasure.org"
+              }
+            },
+            {
+              "code": {
+                "text": "Diastolic blood pressure",
+                "coding": [
+                  {
+                    "system": "http://loinc.org",
+                    "code": "8462-4",
+                    "display": "Diastolic blood pressure"
+                  }
+                ]
+              },
+              "valueQuantity": {
+                "value": 72,
+                "unit": "mm[Hg]",
+                "code": "mm[Hg]",
+                "system": "http://unitsofmeasure.org"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "/Observation/9nSWvhMkRvc9BC6iy",
+      "resource": {
+        "_id": "9nSWvhMkRvc9BC6iy",
+        "resourceType": "Observation",
+        "effectiveDateTime": "2016-04-19T15:02:00.000Z",
+        "status": "final",
+        "code": {
+          "text": "Temperature",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8310-5",
+              "display": "Body temperature"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 37,
+          "unit": "Cel",
+          "code": "Cel",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "performer": [
+          {
+            "display": "MOORE, SEAN",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          }
+        ],
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "_document": {
+          "_id": "9nSWvhMkRvc9BC6iy",
+          "resourceType": "Observation",
+          "effectiveDateTime": "2016-04-19T15:02:00.000Z",
+          "status": "final",
+          "code": {
+            "text": "Temperature",
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "8310-5",
+                "display": "Body temperature"
+              },
+              {
+                "system": "http://loinc.org",
+                "code": "8716-3",
+                "display": "Vital Signs grouping"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "value": 37,
+            "unit": "Cel",
+            "code": "Cel",
+            "system": "http://unitsofmeasure.org"
+          },
+          "subject": {
+            "display": "Jason Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+          },
+          "performer": [
+            {
+              "display": "MOORE, SEAN",
+              "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+            }
+          ],
+          "category": {
+            "text": "Vital Signs",
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "/Observation/EA2wRWPQRwvdBYD9e",
+      "resource": {
+        "_id": "EA2wRWPQRwvdBYD9e",
+        "resourceType": "Observation",
+        "effectiveDateTime": "2015-08-25T22:46:00.000Z",
+        "status": "final",
+        "code": {
+          "text": "Blood Pressure",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "55284-4",
+              "display": "Blood pressure systolic and diastolic"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            }
+          ]
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "performer": [
+          {
+            "display": "MOORE, SEAN",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          }
+        ],
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "component": [
+          {
+            "code": {
+              "text": "Systolic blood pressure",
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8480-6",
+                  "display": "Systolic blood pressure"
+                }
+              ]
+            },
+            "valueQuantity": {
+              "value": 120,
+              "unit": "mm[Hg]",
+              "code": "mm[Hg]",
+              "system": "http://unitsofmeasure.org"
+            }
+          },
+          {
+            "code": {
+              "text": "Diastolic blood pressure",
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8462-4",
+                  "display": "Diastolic blood pressure"
+                }
+              ]
+            },
+            "valueQuantity": {
+              "value": 70,
+              "unit": "mm[Hg]",
+              "code": "mm[Hg]",
+              "system": "http://unitsofmeasure.org"
+            }
+          }
+        ],
+        "_document": {
+          "_id": "EA2wRWPQRwvdBYD9e",
+          "resourceType": "Observation",
+          "effectiveDateTime": "2015-08-25T22:46:00.000Z",
+          "status": "final",
+          "code": {
+            "text": "Blood Pressure",
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "55284-4",
+                "display": "Blood pressure systolic and diastolic"
+              },
+              {
+                "system": "http://loinc.org",
+                "code": "8716-3",
+                "display": "Vital Signs grouping"
+              }
+            ]
+          },
+          "subject": {
+            "display": "Jason Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+          },
+          "performer": [
+            {
+              "display": "MOORE, SEAN",
+              "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+            }
+          ],
+          "category": {
+            "text": "Vital Signs",
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          },
+          "component": [
+            {
+              "code": {
+                "text": "Systolic blood pressure",
+                "coding": [
+                  {
+                    "system": "http://loinc.org",
+                    "code": "8480-6",
+                    "display": "Systolic blood pressure"
+                  }
+                ]
+              },
+              "valueQuantity": {
+                "value": 120,
+                "unit": "mm[Hg]",
+                "code": "mm[Hg]",
+                "system": "http://unitsofmeasure.org"
+              }
+            },
+            {
+              "code": {
+                "text": "Diastolic blood pressure",
+                "coding": [
+                  {
+                    "system": "http://loinc.org",
+                    "code": "8462-4",
+                    "display": "Diastolic blood pressure"
+                  }
+                ]
+              },
+              "valueQuantity": {
+                "value": 70,
+                "unit": "mm[Hg]",
+                "code": "mm[Hg]",
+                "system": "http://unitsofmeasure.org"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "/Observation/kNbZ45ccuSkCwQWHv",
+      "resource": {
+        "_id": "kNbZ45ccuSkCwQWHv",
+        "resourceType": "Observation",
+        "effectiveDateTime": "2015-08-26T22:00:00.000Z",
+        "status": "final",
+        "code": {
+          "text": "Temperature",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8310-5",
+              "display": "Body temperature"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 36.7,
+          "unit": "Cel",
+          "code": "Cel",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "performer": [
+          {
+            "display": "MOORE, SEAN",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          }
+        ],
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "_document": {
+          "_id": "kNbZ45ccuSkCwQWHv",
+          "resourceType": "Observation",
+          "effectiveDateTime": "2015-08-26T22:00:00.000Z",
+          "status": "final",
+          "code": {
+            "text": "Temperature",
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "8310-5",
+                "display": "Body temperature"
+              },
+              {
+                "system": "http://loinc.org",
+                "code": "8716-3",
+                "display": "Vital Signs grouping"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "value": 36.7,
+            "unit": "Cel",
+            "code": "Cel",
+            "system": "http://unitsofmeasure.org"
+          },
+          "subject": {
+            "display": "Jason Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+          },
+          "performer": [
+            {
+              "display": "MOORE, SEAN",
+              "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+            }
+          ],
+          "category": {
+            "text": "Vital Signs",
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "/Observation/Xh5wzHLdp8aZY4Ez9",
+      "resource": {
+        "_id": "Xh5wzHLdp8aZY4Ez9",
+        "resourceType": "Observation",
+        "effectiveDateTime": "2016-12-22T22:37:00.000Z",
+        "status": "final",
+        "code": {
+          "text": "Pulse",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4",
+              "display": "Heart rate"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 55,
+          "unit": "/min",
+          "code": "/min",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "_document": {
+          "_id": "Xh5wzHLdp8aZY4Ez9",
+          "resourceType": "Observation",
+          "effectiveDateTime": "2016-12-22T22:37:00.000Z",
+          "status": "final",
+          "code": {
+            "text": "Pulse",
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "8716-3",
+                "display": "Vital Signs grouping"
+              },
+              {
+                "system": "http://loinc.org",
+                "code": "8867-4",
+                "display": "Heart rate"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "value": 55,
+            "unit": "/min",
+            "code": "/min",
+            "system": "http://unitsofmeasure.org"
+          },
+          "subject": {
+            "display": "Jason Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+          },
+          "category": {
+            "text": "Vital Signs",
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "/Observation/M4gnjWeF8t8DHsb45",
+      "resource": {
+        "_id": "M4gnjWeF8t8DHsb45",
+        "resourceType": "Observation",
+        "effectiveDateTime": "2015-08-25T22:46:00.000Z",
+        "status": "final",
+        "code": {
+          "text": "Temperature",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8310-5",
+              "display": "Body temperature"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 36.7,
+          "unit": "Cel",
+          "code": "Cel",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "performer": [
+          {
+            "display": "MOORE, SEAN",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          }
+        ],
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "_document": {
+          "_id": "M4gnjWeF8t8DHsb45",
+          "resourceType": "Observation",
+          "effectiveDateTime": "2015-08-25T22:46:00.000Z",
+          "status": "final",
+          "code": {
+            "text": "Temperature",
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "8310-5",
+                "display": "Body temperature"
+              },
+              {
+                "system": "http://loinc.org",
+                "code": "8716-3",
+                "display": "Vital Signs grouping"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "value": 36.7,
+            "unit": "Cel",
+            "code": "Cel",
+            "system": "http://unitsofmeasure.org"
+          },
+          "subject": {
+            "display": "Jason Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+          },
+          "performer": [
+            {
+              "display": "MOORE, SEAN",
+              "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+            }
+          ],
+          "category": {
+            "text": "Vital Signs",
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "/Observation/37Ce9KGztsXbpp3xw",
+      "resource": {
+        "_id": "37Ce9KGztsXbpp3xw",
+        "resourceType": "Observation",
+        "effectiveDateTime": "2015-08-25T22:46:00.000Z",
+        "status": "final",
+        "code": {
+          "text": "Pulse",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4",
+              "display": "Heart rate"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 70,
+          "unit": "/min",
+          "code": "/min",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "performer": [
+          {
+            "display": "MOORE, SEAN",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          }
+        ],
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "_document": {
+          "_id": "37Ce9KGztsXbpp3xw",
+          "resourceType": "Observation",
+          "effectiveDateTime": "2015-08-25T22:46:00.000Z",
+          "status": "final",
+          "code": {
+            "text": "Pulse",
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "8716-3",
+                "display": "Vital Signs grouping"
+              },
+              {
+                "system": "http://loinc.org",
+                "code": "8867-4",
+                "display": "Heart rate"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "value": 70,
+            "unit": "/min",
+            "code": "/min",
+            "system": "http://unitsofmeasure.org"
+          },
+          "subject": {
+            "display": "Jason Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+          },
+          "performer": [
+            {
+              "display": "MOORE, SEAN",
+              "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+            }
+          ],
+          "category": {
+            "text": "Vital Signs",
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "/Observation/9WZrLaqqstzmSzhTb",
+      "resource": {
+        "_id": "9WZrLaqqstzmSzhTb",
+        "resourceType": "Observation",
+        "effectiveDateTime": "2016-04-19T15:02:00.000Z",
+        "status": "final",
+        "code": {
+          "text": "Pulse",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4",
+              "display": "Heart rate"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 71,
+          "unit": "/min",
+          "code": "/min",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "performer": [
+          {
+            "display": "MOORE, SEAN",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          }
+        ],
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "_document": {
+          "_id": "9WZrLaqqstzmSzhTb",
+          "resourceType": "Observation",
+          "effectiveDateTime": "2016-04-19T15:02:00.000Z",
+          "status": "final",
+          "code": {
+            "text": "Pulse",
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "8716-3",
+                "display": "Vital Signs grouping"
+              },
+              {
+                "system": "http://loinc.org",
+                "code": "8867-4",
+                "display": "Heart rate"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "value": 71,
+            "unit": "/min",
+            "code": "/min",
+            "system": "http://unitsofmeasure.org"
+          },
+          "subject": {
+            "display": "Jason Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+          },
+          "performer": [
+            {
+              "display": "MOORE, SEAN",
+              "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+            }
+          ],
+          "category": {
+            "text": "Vital Signs",
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "/Observation/vvDmLXWPwXmqoviYS",
+      "resource": {
+        "_id": "vvDmLXWPwXmqoviYS",
+        "resourceType": "Observation",
+        "effectiveDateTime": "2015-08-26T22:00:00.000Z",
+        "status": "final",
+        "code": {
+          "text": "Pulse",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4",
+              "display": "Heart rate"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 55,
+          "unit": "/min",
+          "code": "/min",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "performer": [
+          {
+            "display": "MOORE, SEAN",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          }
+        ],
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "_document": {
+          "_id": "vvDmLXWPwXmqoviYS",
+          "resourceType": "Observation",
+          "effectiveDateTime": "2015-08-26T22:00:00.000Z",
+          "status": "final",
+          "code": {
+            "text": "Pulse",
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "8716-3",
+                "display": "Vital Signs grouping"
+              },
+              {
+                "system": "http://loinc.org",
+                "code": "8867-4",
+                "display": "Heart rate"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "value": 55,
+            "unit": "/min",
+            "code": "/min",
+            "system": "http://unitsofmeasure.org"
+          },
+          "subject": {
+            "display": "Jason Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+          },
+          "performer": [
+            {
+              "display": "MOORE, SEAN",
+              "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+            }
+          ],
+          "category": {
+            "text": "Vital Signs",
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "/Observation/bQ2HcDv3bKxwMPJDs",
+      "resource": {
+        "_id": "bQ2HcDv3bKxwMPJDs",
+        "resourceType": "Observation",
+        "effectiveDateTime": "2015-08-26T22:00:00.000Z",
+        "status": "final",
+        "code": {
+          "text": "Respirations",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "9279-1",
+              "display": "Respiratory rate"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 15,
+          "unit": "/min",
+          "code": "/min",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "performer": [
+          {
+            "display": "MOORE, SEAN",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          }
+        ],
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "_document": {
+          "_id": "bQ2HcDv3bKxwMPJDs",
+          "resourceType": "Observation",
+          "effectiveDateTime": "2015-08-26T22:00:00.000Z",
+          "status": "final",
+          "code": {
+            "text": "Respirations",
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "8716-3",
+                "display": "Vital Signs grouping"
+              },
+              {
+                "system": "http://loinc.org",
+                "code": "9279-1",
+                "display": "Respiratory rate"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "value": 15,
+            "unit": "/min",
+            "code": "/min",
+            "system": "http://unitsofmeasure.org"
+          },
+          "subject": {
+            "display": "Jason Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+          },
+          "performer": [
+            {
+              "display": "MOORE, SEAN",
+              "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+            }
+          ],
+          "category": {
+            "text": "Vital Signs",
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "/Observation/ef8fmBcJcwrwQSWtP",
+      "resource": {
+        "_id": "ef8fmBcJcwrwQSWtP",
+        "resourceType": "Observation",
+        "effectiveDateTime": "2015-08-25T22:46:00.000Z",
+        "status": "final",
+        "code": {
+          "text": "Respirations",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "9279-1",
+              "display": "Respiratory rate"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 20,
+          "unit": "/min",
+          "code": "/min",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "performer": [
+          {
+            "display": "MOORE, SEAN",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          }
+        ],
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "_document": {
+          "_id": "ef8fmBcJcwrwQSWtP",
+          "resourceType": "Observation",
+          "effectiveDateTime": "2015-08-25T22:46:00.000Z",
+          "status": "final",
+          "code": {
+            "text": "Respirations",
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "8716-3",
+                "display": "Vital Signs grouping"
+              },
+              {
+                "system": "http://loinc.org",
+                "code": "9279-1",
+                "display": "Respiratory rate"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "value": 20,
+            "unit": "/min",
+            "code": "/min",
+            "system": "http://unitsofmeasure.org"
+          },
+          "subject": {
+            "display": "Jason Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+          },
+          "performer": [
+            {
+              "display": "MOORE, SEAN",
+              "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+            }
+          ],
+          "category": {
+            "text": "Vital Signs",
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "/Observation/42DyY6xAbMfs33NkN",
+      "resource": {
+        "_id": "42DyY6xAbMfs33NkN",
+        "resourceType": "Observation",
+        "effectiveDateTime": "2015-08-25T22:46:00.000Z",
+        "status": "final",
+        "code": {
+          "text": "SpO2",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "2710-2",
+              "display": "Oxygen saturation in Capillary blood by Oximetry"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "59408-5",
+              "display": "Oxygen saturation in Arterial blood by Pulse oximetry"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 98,
+          "unit": "%",
+          "code": "%",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "performer": [
+          {
+            "display": "MOORE, SEAN",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          }
+        ],
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "_document": {
+          "_id": "42DyY6xAbMfs33NkN",
+          "resourceType": "Observation",
+          "effectiveDateTime": "2015-08-25T22:46:00.000Z",
+          "status": "final",
+          "code": {
+            "text": "SpO2",
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "2710-2",
+                "display": "Oxygen saturation in Capillary blood by Oximetry"
+              },
+              {
+                "system": "http://loinc.org",
+                "code": "59408-5",
+                "display": "Oxygen saturation in Arterial blood by Pulse oximetry"
+              },
+              {
+                "system": "http://loinc.org",
+                "code": "8716-3",
+                "display": "Vital Signs grouping"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "value": 98,
+            "unit": "%",
+            "code": "%",
+            "system": "http://unitsofmeasure.org"
+          },
+          "subject": {
+            "display": "Jason Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+          },
+          "performer": [
+            {
+              "display": "MOORE, SEAN",
+              "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+            }
+          ],
+          "category": {
+            "text": "Vital Signs",
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "/Observation/nKnuhKQxHKiSQmvcT",
+      "resource": {
+        "_id": "nKnuhKQxHKiSQmvcT",
+        "resourceType": "Observation",
+        "effectiveDateTime": "2015-08-26T22:00:00.000Z",
+        "status": "final",
+        "code": {
+          "text": "SpO2",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "2710-2",
+              "display": "Oxygen saturation in Capillary blood by Oximetry"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "59408-5",
+              "display": "Oxygen saturation in Arterial blood by Pulse oximetry"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 97,
+          "unit": "%",
+          "code": "%",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "performer": [
+          {
+            "display": "MOORE, SEAN",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          }
+        ],
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "_document": {
+          "_id": "nKnuhKQxHKiSQmvcT",
+          "resourceType": "Observation",
+          "effectiveDateTime": "2015-08-26T22:00:00.000Z",
+          "status": "final",
+          "code": {
+            "text": "SpO2",
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "2710-2",
+                "display": "Oxygen saturation in Capillary blood by Oximetry"
+              },
+              {
+                "system": "http://loinc.org",
+                "code": "59408-5",
+                "display": "Oxygen saturation in Arterial blood by Pulse oximetry"
+              },
+              {
+                "system": "http://loinc.org",
+                "code": "8716-3",
+                "display": "Vital Signs grouping"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "value": 97,
+            "unit": "%",
+            "code": "%",
+            "system": "http://unitsofmeasure.org"
+          },
+          "subject": {
+            "display": "Jason Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+          },
+          "performer": [
+            {
+              "display": "MOORE, SEAN",
+              "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+            }
+          ],
+          "category": {
+            "text": "Vital Signs",
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "/Observation/mZSoGqShpt2XfJhEF",
+      "resource": {
+        "_id": "mZSoGqShpt2XfJhEF",
+        "resourceType": "Observation",
+        "effectiveDateTime": "2016-04-19T15:02:00.000Z",
+        "status": "final",
+        "code": {
+          "text": "Height",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8302-2",
+              "display": "Body height"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 178,
+          "unit": "cm",
+          "code": "cm",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "performer": [
+          {
+            "display": "MOORE, SEAN",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          }
+        ],
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "_document": {
+          "_id": "mZSoGqShpt2XfJhEF",
+          "resourceType": "Observation",
+          "effectiveDateTime": "2016-04-19T15:02:00.000Z",
+          "status": "final",
+          "code": {
+            "text": "Height",
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "8302-2",
+                "display": "Body height"
+              },
+              {
+                "system": "http://loinc.org",
+                "code": "8716-3",
+                "display": "Vital Signs grouping"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "value": 178,
+            "unit": "cm",
+            "code": "cm",
+            "system": "http://unitsofmeasure.org"
+          },
+          "subject": {
+            "display": "Jason Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+          },
+          "performer": [
+            {
+              "display": "MOORE, SEAN",
+              "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+            }
+          ],
+          "category": {
+            "text": "Vital Signs",
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "/Observation/SfprvjeDPrp7SQiyt",
+      "resource": {
+        "_id": "SfprvjeDPrp7SQiyt",
+        "resourceType": "Observation",
+        "effectiveDateTime": "2016-12-22T22:37:00.000Z",
+        "status": "final",
+        "code": {
+          "text": "Weight",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "29463-7",
+              "display": "Body weight"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "3141-9",
+              "display": "Body weight Measured"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 90,
+          "unit": "kg",
+          "code": "kg",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "_document": {
+          "_id": "SfprvjeDPrp7SQiyt",
+          "resourceType": "Observation",
+          "effectiveDateTime": "2016-12-22T22:37:00.000Z",
+          "status": "final",
+          "code": {
+            "text": "Weight",
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "29463-7",
+                "display": "Body weight"
+              },
+              {
+                "system": "http://loinc.org",
+                "code": "3141-9",
+                "display": "Body weight Measured"
+              },
+              {
+                "system": "http://loinc.org",
+                "code": "8716-3",
+                "display": "Vital Signs grouping"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "value": 90,
+            "unit": "kg",
+            "code": "kg",
+            "system": "http://unitsofmeasure.org"
+          },
+          "subject": {
+            "display": "Jason Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+          },
+          "category": {
+            "text": "Vital Signs",
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "/Observation/PimCfgTGabyxMY6oX",
+      "resource": {
+        "_id": "PimCfgTGabyxMY6oX",
+        "resourceType": "Observation",
+        "effectiveDateTime": "2015-08-26T22:00:00.000Z",
+        "status": "final",
+        "code": {
+          "text": "Height",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8302-2",
+              "display": "Body height"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 185,
+          "unit": "cm",
+          "code": "cm",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "performer": [
+          {
+            "display": "MOORE, SEAN",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          }
+        ],
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "_document": {
+          "_id": "PimCfgTGabyxMY6oX",
+          "resourceType": "Observation",
+          "effectiveDateTime": "2015-08-26T22:00:00.000Z",
+          "status": "final",
+          "code": {
+            "text": "Height",
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "8302-2",
+                "display": "Body height"
+              },
+              {
+                "system": "http://loinc.org",
+                "code": "8716-3",
+                "display": "Vital Signs grouping"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "value": 185,
+            "unit": "cm",
+            "code": "cm",
+            "system": "http://unitsofmeasure.org"
+          },
+          "subject": {
+            "display": "Jason Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+          },
+          "performer": [
+            {
+              "display": "MOORE, SEAN",
+              "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+            }
+          ],
+          "category": {
+            "text": "Vital Signs",
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "/Observation/t4u8RLBzuCsFsnXjR",
+      "resource": {
+        "_id": "t4u8RLBzuCsFsnXjR",
+        "resourceType": "Observation",
+        "effectiveDateTime": "2015-08-25T22:46:00.000Z",
+        "status": "final",
+        "code": {
+          "text": "Height",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8302-2",
+              "display": "Body height"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 184,
+          "unit": "cm",
+          "code": "cm",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "performer": [
+          {
+            "display": "MOORE, SEAN",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          }
+        ],
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "_document": {
+          "_id": "t4u8RLBzuCsFsnXjR",
+          "resourceType": "Observation",
+          "effectiveDateTime": "2015-08-25T22:46:00.000Z",
+          "status": "final",
+          "code": {
+            "text": "Height",
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "8302-2",
+                "display": "Body height"
+              },
+              {
+                "system": "http://loinc.org",
+                "code": "8716-3",
+                "display": "Vital Signs grouping"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "value": 184,
+            "unit": "cm",
+            "code": "cm",
+            "system": "http://unitsofmeasure.org"
+          },
+          "subject": {
+            "display": "Jason Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+          },
+          "performer": [
+            {
+              "display": "MOORE, SEAN",
+              "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+            }
+          ],
+          "category": {
+            "text": "Vital Signs",
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "/Observation/Qav3Xi65kFfExQD8K",
+      "resource": {
+        "_id": "Qav3Xi65kFfExQD8K",
+        "resourceType": "Observation",
+        "effectiveDateTime": "2015-08-26T22:00:00.000Z",
+        "status": "final",
+        "code": {
+          "text": "Weight",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "29463-7",
+              "display": "Body weight"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "3141-9",
+              "display": "Body weight Measured"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 77.1,
+          "unit": "kg",
+          "code": "kg",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "performer": [
+          {
+            "display": "MOORE, SEAN",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          }
+        ],
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "_document": {
+          "_id": "Qav3Xi65kFfExQD8K",
+          "resourceType": "Observation",
+          "effectiveDateTime": "2015-08-26T22:00:00.000Z",
+          "status": "final",
+          "code": {
+            "text": "Weight",
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "29463-7",
+                "display": "Body weight"
+              },
+              {
+                "system": "http://loinc.org",
+                "code": "3141-9",
+                "display": "Body weight Measured"
+              },
+              {
+                "system": "http://loinc.org",
+                "code": "8716-3",
+                "display": "Vital Signs grouping"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "value": 77.1,
+            "unit": "kg",
+            "code": "kg",
+            "system": "http://unitsofmeasure.org"
+          },
+          "subject": {
+            "display": "Jason Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+          },
+          "performer": [
+            {
+              "display": "MOORE, SEAN",
+              "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+            }
+          ],
+          "category": {
+            "text": "Vital Signs",
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "/Observation/vAYfvTErJ6bYrKcX5",
+      "resource": {
+        "_id": "vAYfvTErJ6bYrKcX5",
+        "resourceType": "Observation",
+        "effectiveDateTime": "2016-04-19T15:02:00.000Z",
+        "status": "final",
+        "code": {
+          "text": "Weight",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "29463-7",
+              "display": "Body weight"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "3141-9",
+              "display": "Body weight Measured"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 90.7,
+          "unit": "kg",
+          "code": "kg",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "performer": [
+          {
+            "display": "MOORE, SEAN",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          }
+        ],
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "_document": {
+          "_id": "vAYfvTErJ6bYrKcX5",
+          "resourceType": "Observation",
+          "effectiveDateTime": "2016-04-19T15:02:00.000Z",
+          "status": "final",
+          "code": {
+            "text": "Weight",
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "29463-7",
+                "display": "Body weight"
+              },
+              {
+                "system": "http://loinc.org",
+                "code": "3141-9",
+                "display": "Body weight Measured"
+              },
+              {
+                "system": "http://loinc.org",
+                "code": "8716-3",
+                "display": "Vital Signs grouping"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "value": 90.7,
+            "unit": "kg",
+            "code": "kg",
+            "system": "http://unitsofmeasure.org"
+          },
+          "subject": {
+            "display": "Jason Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+          },
+          "performer": [
+            {
+              "display": "MOORE, SEAN",
+              "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+            }
+          ],
+          "category": {
+            "text": "Vital Signs",
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "/Observation/bxFe3JmenfWRPfPcu",
+      "resource": {
+        "_id": "bxFe3JmenfWRPfPcu",
+        "resourceType": "Observation",
+        "effectiveDateTime": "2015-08-25T22:46:00.000Z",
+        "status": "final",
+        "code": {
+          "text": "Head Cir",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8287-5",
+              "display": "Head Occipital-frontal circumference by Tape measure"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 57,
+          "unit": "cm",
+          "code": "cm",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "performer": [
+          {
+            "display": "MOORE, SEAN",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          }
+        ],
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "_document": {
+          "_id": "bxFe3JmenfWRPfPcu",
+          "resourceType": "Observation",
+          "effectiveDateTime": "2015-08-25T22:46:00.000Z",
+          "status": "final",
+          "code": {
+            "text": "Head Cir",
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "8287-5",
+                "display": "Head Occipital-frontal circumference by Tape measure"
+              },
+              {
+                "system": "http://loinc.org",
+                "code": "8716-3",
+                "display": "Vital Signs grouping"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "value": 57,
+            "unit": "cm",
+            "code": "cm",
+            "system": "http://unitsofmeasure.org"
+          },
+          "subject": {
+            "display": "Jason Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+          },
+          "performer": [
+            {
+              "display": "MOORE, SEAN",
+              "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+            }
+          ],
+          "category": {
+            "text": "Vital Signs",
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "/Observation/oPMFiwnrwG4pbjCWq",
+      "resource": {
+        "_id": "oPMFiwnrwG4pbjCWq",
+        "resourceType": "Observation",
+        "effectiveDateTime": "2015-08-25T22:46:00.000Z",
+        "status": "final",
+        "code": {
+          "text": "Weight",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "29463-7",
+              "display": "Body weight"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "3141-9",
+              "display": "Body weight Measured"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 77.1,
+          "unit": "kg",
+          "code": "kg",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "performer": [
+          {
+            "display": "MOORE, SEAN",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          }
+        ],
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "_document": {
+          "_id": "oPMFiwnrwG4pbjCWq",
+          "resourceType": "Observation",
+          "effectiveDateTime": "2015-08-25T22:46:00.000Z",
+          "status": "final",
+          "code": {
+            "text": "Weight",
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "29463-7",
+                "display": "Body weight"
+              },
+              {
+                "system": "http://loinc.org",
+                "code": "3141-9",
+                "display": "Body weight Measured"
+              },
+              {
+                "system": "http://loinc.org",
+                "code": "8716-3",
+                "display": "Vital Signs grouping"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "value": 77.1,
+            "unit": "kg",
+            "code": "kg",
+            "system": "http://unitsofmeasure.org"
+          },
+          "subject": {
+            "display": "Jason Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+          },
+          "performer": [
+            {
+              "display": "MOORE, SEAN",
+              "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+            }
+          ],
+          "category": {
+            "text": "Vital Signs",
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "/Observation/7hZiFoMK9YgEh7MSE",
+      "resource": {
+        "_id": "7hZiFoMK9YgEh7MSE",
+        "resourceType": "Observation",
+        "effectiveDateTime": "2015-08-26T22:00:00.000Z",
+        "status": "amended",
+        "code": {
+          "text": "Head Cir",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8287-5",
+              "display": "Head Occipital-frontal circumference by Tape measure"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 57,
+          "unit": "cm",
+          "code": "cm",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "performer": [
+          {
+            "display": "MOORE, SEAN",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          }
+        ],
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "_document": {
+          "_id": "7hZiFoMK9YgEh7MSE",
+          "resourceType": "Observation",
+          "effectiveDateTime": "2015-08-26T22:00:00.000Z",
+          "status": "amended",
+          "code": {
+            "text": "Head Cir",
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "8287-5",
+                "display": "Head Occipital-frontal circumference by Tape measure"
+              },
+              {
+                "system": "http://loinc.org",
+                "code": "8716-3",
+                "display": "Vital Signs grouping"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "value": 57,
+            "unit": "cm",
+            "code": "cm",
+            "system": "http://unitsofmeasure.org"
+          },
+          "subject": {
+            "display": "Jason Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+          },
+          "performer": [
+            {
+              "display": "MOORE, SEAN",
+              "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+            }
+          ],
+          "category": {
+            "text": "Vital Signs",
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "/Observation/Atdy8xJsTHwp6xNht",
+      "resource": {
+        "_id": "Atdy8xJsTHwp6xNht",
+        "resourceType": "Observation",
+        "effectiveDateTime": "2016-04-19T15:02:00.000Z",
+        "status": "final",
+        "code": {
+          "text": "R BMI",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "39156-5",
+              "display": "Body mass index"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 28.6
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "performer": [
+          {
+            "display": "MOORE, SEAN",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          }
+        ],
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "_document": {
+          "_id": "Atdy8xJsTHwp6xNht",
+          "resourceType": "Observation",
+          "effectiveDateTime": "2016-04-19T15:02:00.000Z",
+          "status": "final",
+          "code": {
+            "text": "R BMI",
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "39156-5",
+                "display": "Body mass index"
+              },
+              {
+                "system": "http://loinc.org",
+                "code": "8716-3",
+                "display": "Vital Signs grouping"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "value": 28.6
+          },
+          "subject": {
+            "display": "Jason Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+          },
+          "performer": [
+            {
+              "display": "MOORE, SEAN",
+              "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+            }
+          ],
+          "category": {
+            "text": "Vital Signs",
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "/Observation/L4NH7CxHqZuWNzdzk",
+      "resource": {
+        "_id": "L4NH7CxHqZuWNzdzk",
+        "resourceType": "Observation",
+        "effectiveDateTime": "2015-08-26T22:00:00.000Z",
+        "status": "final",
+        "code": {
+          "text": "R BMI",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "39156-5",
+              "display": "Body mass index"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 22.5
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "performer": [
+          {
+            "display": "MOORE, SEAN",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          }
+        ],
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "_document": {
+          "_id": "L4NH7CxHqZuWNzdzk",
+          "resourceType": "Observation",
+          "effectiveDateTime": "2015-08-26T22:00:00.000Z",
+          "status": "final",
+          "code": {
+            "text": "R BMI",
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "39156-5",
+                "display": "Body mass index"
+              },
+              {
+                "system": "http://loinc.org",
+                "code": "8716-3",
+                "display": "Vital Signs grouping"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "value": 22.5
+          },
+          "subject": {
+            "display": "Jason Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+          },
+          "performer": [
+            {
+              "display": "MOORE, SEAN",
+              "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+            }
+          ],
+          "category": {
+            "text": "Vital Signs",
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "/Observation/BhSDHvHRyPin8jPcn",
+      "resource": {
+        "_id": "BhSDHvHRyPin8jPcn",
+        "resourceType": "Observation",
+        "effectiveDateTime": "2015-08-25T22:46:00.000Z",
+        "status": "final",
+        "code": {
+          "text": "R BMI",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "39156-5",
+              "display": "Body mass index"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 22.8
+        },
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "performer": [
+          {
+            "display": "MOORE, SEAN",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          }
+        ],
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "_document": {
+          "_id": "BhSDHvHRyPin8jPcn",
+          "resourceType": "Observation",
+          "effectiveDateTime": "2015-08-25T22:46:00.000Z",
+          "status": "final",
+          "code": {
+            "text": "R BMI",
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "39156-5",
+                "display": "Body mass index"
+              },
+              {
+                "system": "http://loinc.org",
+                "code": "8716-3",
+                "display": "Vital Signs grouping"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "value": 22.8
+          },
+          "subject": {
+            "display": "Jason Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+          },
+          "performer": [
+            {
+              "display": "MOORE, SEAN",
+              "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+            }
+          ],
+          "category": {
+            "text": "Vital Signs",
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "/Patient/qysyDhx6ortYJ3gnW",
+      "resource": {
+        "_id": "qysyDhx6ortYJ3gnW",
+        "resourceType": "Patient",
+        "birthDate": "1985-08-01T00:00:00.000Z",
+        "active": true,
+        "gender": "male",
+        "deceasedBoolean": false,
+        "id": "Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB",
+        "name": [
+          {
+            "use": "usual",
+            "family": "Argonaut",
+            "given": [
+              "Jason"
+            ],
+            "text": "JasonArgonaut",
+            "resourceType": "HumanName"
+          }
+        ],
+        "identifier": [
+          {
+            "use": "usual",
+            "system": "urn:oid:1.2.840.114350.1.13.327.1.7.5.737384.0",
+            "value": "E3826"
+          },
+          {
+            "use": "usual",
+            "system": "urn:oid:1.2.3.4",
+            "value": "203579"
+          }
+        ],
+        "address": [
+          {
+            "use": "home",
+            "line": [
+              "1979 Milky Way Dr."
+            ],
+            "city": "Verona",
+            "state": "WI",
+            "postalCode": "53593",
+            "country": "US",
+            "resourceType": "Address"
+          },
+          {
+            "use": "temp",
+            "line": [
+              "5301 Tokay Blvd"
+            ],
+            "city": "MADISON",
+            "state": "WI",
+            "postalCode": "53711",
+            "country": "US",
+            "period": {},
+            "resourceType": "Address"
+          }
+        ],
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "608-271-9000",
+            "use": "home",
+            "resourceType": "ContactPoint"
+          },
+          {
+            "system": "phone",
+            "value": "608-771-9000",
+            "use": "work",
+            "resourceType": "ContactPoint"
+          },
+          {
+            "system": "phone",
+            "value": "608-771-9000",
+            "use": "mobile",
+            "resourceType": "ContactPoint"
+          },
+          {
+            "system": "fax",
+            "value": "608-771-9000",
+            "use": "home",
+            "resourceType": "ContactPoint"
+          },
+          {
+            "system": "phone",
+            "value": "608-771-9000",
+            "use": "temp",
+            "period": {},
+            "resourceType": "ContactPoint"
+          },
+          {
+            "system": "email",
+            "value": "open@epic.com",
+            "resourceType": "ContactPoint"
+          }
+        ],
+        "maritalStatus": {
+          "text": "Single",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/ValueSet/marital-status",
+              "code": "S",
+              "display": "Never Married"
+            }
+          ]
+        },
+        "communication": [
+          {
+            "preferred": true,
+            "language": {
+              "text": "English",
+              "coding": [
+                {
+                  "system": "urn:oid:2.16.840.1.113883.6.99",
+                  "code": "en",
+                  "display": "English"
+                }
+              ]
+            }
+          }
+        ],
+        "extension": [
+          {},
+          {},
+          {}
+        ],
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2018-07-05T03:58:49.775Z"
+        },
+        "text": {
+          "status": "additional"
+        },
+        "_document": {
+          "_id": "qysyDhx6ortYJ3gnW",
+          "resourceType": "Patient",
+          "birthDate": "1985-08-01T00:00:00.000Z",
+          "active": true,
+          "gender": "male",
+          "deceasedBoolean": false,
+          "id": "Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB",
+          "name": [
+            {
+              "use": "usual",
+              "family": "Argonaut",
+              "given": [
+                "Jason"
+              ],
+              "text": "JasonArgonaut",
+              "resourceType": "HumanName"
+            }
+          ],
+          "identifier": [
+            {
+              "use": "usual",
+              "system": "urn:oid:1.2.840.114350.1.13.327.1.7.5.737384.0",
+              "value": "E3826"
+            },
+            {
+              "use": "usual",
+              "system": "urn:oid:1.2.3.4",
+              "value": "203579"
+            }
+          ],
+          "address": [
+            {
+              "use": "home",
+              "line": [
+                "1979 Milky Way Dr."
+              ],
+              "city": "Verona",
+              "state": "WI",
+              "postalCode": "53593",
+              "country": "US",
+              "resourceType": "Address"
+            },
+            {
+              "use": "temp",
+              "line": [
+                "5301 Tokay Blvd"
+              ],
+              "city": "MADISON",
+              "state": "WI",
+              "postalCode": "53711",
+              "country": "US",
+              "period": {},
+              "resourceType": "Address"
+            }
+          ],
+          "telecom": [
+            {
+              "system": "phone",
+              "value": "608-271-9000",
+              "use": "home",
+              "resourceType": "ContactPoint"
+            },
+            {
+              "system": "phone",
+              "value": "608-771-9000",
+              "use": "work",
+              "resourceType": "ContactPoint"
+            },
+            {
+              "system": "phone",
+              "value": "608-771-9000",
+              "use": "mobile",
+              "resourceType": "ContactPoint"
+            },
+            {
+              "system": "fax",
+              "value": "608-771-9000",
+              "use": "home",
+              "resourceType": "ContactPoint"
+            },
+            {
+              "system": "phone",
+              "value": "608-771-9000",
+              "use": "temp",
+              "period": {},
+              "resourceType": "ContactPoint"
+            },
+            {
+              "system": "email",
+              "value": "open@epic.com",
+              "resourceType": "ContactPoint"
+            }
+          ],
+          "maritalStatus": {
+            "text": "Single",
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/ValueSet/marital-status",
+                "code": "S",
+                "display": "Never Married"
+              }
+            ]
+          },
+          "communication": [
+            {
+              "preferred": true,
+              "language": {
+                "text": "English",
+                "coding": [
+                  {
+                    "system": "urn:oid:2.16.840.1.113883.6.99",
+                    "code": "en",
+                    "display": "English"
+                  }
+                ]
+              }
+            }
+          ],
+          "extension": [
+            {},
+            {},
+            {}
+          ],
+          "meta": {
+            "versionId": "1",
+            "lastUpdated": "2018-07-05T03:58:49.775Z"
+          },
+          "text": {
+            "status": "additional"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "/Procedure/AL2i7TiPR6k2eCJ8a",
+      "resource": {
+        "_id": "AL2i7TiPR6k2eCJ8a",
+        "resourceType": "Procedure",
+        "status": "completed",
+        "notPerformed": false,
+        "performedDateTime": "2016-08-06T13:27:00.000Z",
+        "identifier": [
+          {
+            "use": "usual",
+            "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+            "value": "988735",
+            "type": {
+              "text": "ORD"
+            }
+          },
+          {
+            "use": "usual",
+            "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.696580",
+            "value": "33882",
+            "type": {
+              "text": "EAP"
+            }
+          }
+        ],
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "code": {
+          "text": "CT ABDOMEN W IV CONTRAST",
+          "coding": [
+            {
+              "system": "http://www.ama-assn.org/go/cpt",
+              "code": "74160",
+              "display": "CHG CT SCAN OF ABDOMEN CONTRAST"
+            }
+          ]
+        },
+        "_document": {
+          "_id": "AL2i7TiPR6k2eCJ8a",
+          "resourceType": "Procedure",
+          "status": "completed",
+          "notPerformed": false,
+          "performedDateTime": "2016-08-06T13:27:00.000Z",
+          "identifier": [
+            {
+              "use": "usual",
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+              "value": "988735",
+              "type": {
+                "text": "ORD"
+              }
+            },
+            {
+              "use": "usual",
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.696580",
+              "value": "33882",
+              "type": {
+                "text": "EAP"
+              }
+            }
+          ],
+          "subject": {
+            "display": "Jason Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+          },
+          "code": {
+            "text": "CT ABDOMEN W IV CONTRAST",
+            "coding": [
+              {
+                "system": "http://www.ama-assn.org/go/cpt",
+                "code": "74160",
+                "display": "CHG CT SCAN OF ABDOMEN CONTRAST"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "/Procedure/kRgRavxa7Q27dZcnu",
+      "resource": {
+        "_id": "kRgRavxa7Q27dZcnu",
+        "resourceType": "Procedure",
+        "status": "completed",
+        "notPerformed": false,
+        "performedDateTime": "2016-11-23T18:47:00.000Z",
+        "identifier": [
+          {
+            "use": "usual",
+            "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+            "value": "1001984",
+            "type": {
+              "text": "ORD"
+            }
+          },
+          {
+            "use": "usual",
+            "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.696580",
+            "value": "41423",
+            "type": {
+              "text": "EAP"
+            }
+          }
+        ],
+        "subject": {
+          "display": "Jason Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+        },
+        "code": {
+          "text": "REMOVE STAPLES",
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.696580",
+              "code": "41423",
+              "display": "REMOVE STAPLES"
+            }
+          ]
+        },
+        "_document": {
+          "_id": "kRgRavxa7Q27dZcnu",
+          "resourceType": "Procedure",
+          "status": "completed",
+          "notPerformed": false,
+          "performedDateTime": "2016-11-23T18:47:00.000Z",
+          "identifier": [
+            {
+              "use": "usual",
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+              "value": "1001984",
+              "type": {
+                "text": "ORD"
+              }
+            },
+            {
+              "use": "usual",
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.696580",
+              "value": "41423",
+              "type": {
+                "text": "EAP"
+              }
+            }
+          ],
+          "subject": {
+            "display": "Jason Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+          },
+          "code": {
+            "text": "REMOVE STAPLES",
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.696580",
+                "code": "41423",
+                "display": "REMOVE STAPLES"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}
