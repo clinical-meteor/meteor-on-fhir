@@ -2,6 +2,12 @@ accounts-base@1.4.2
 accounts-password@1.5.1
 accounts-ui@1.3.0
 accounts-ui-unstyled@1.4.1
+akasha:adm-zip@0.4.8
+akasha:es6-symbol@0.0.1
+akasha:fs-extra@0.26.3
+akasha:meteor-ipfs@0.0.5
+akasha:request@2.67.1
+akasha:shelljs@0.5.4
 alanning:roles@1.2.16
 aldeed:collection2@2.10.0
 aldeed:collection2-core@1.2.0
@@ -18,6 +24,10 @@ binary-heap@1.0.10
 blaze@2.3.2
 blaze-tools@1.0.10
 boilerplate-generator@1.5.0
+browser-policy@1.1.0
+browser-policy-common@1.0.11
+browser-policy-content@1.1.0
+browser-policy-framing@1.1.0
 caching-compiler@1.1.12
 caching-html-compiler@1.1.3
 callback-hook@1.1.0
@@ -39,6 +49,7 @@ clinical:hl7-resource-allergy-intolerance@1.2.8
 clinical:hl7-resource-bundle@1.3.14
 clinical:hl7-resource-careplan@1.2.19
 clinical:hl7-resource-communication@0.0.5
+clinical:hl7-resource-composition@1.4.7
 clinical:hl7-resource-condition@1.4.6
 clinical:hl7-resource-consent@3.3.7
 clinical:hl7-resource-contract@3.3.9
@@ -55,7 +66,7 @@ clinical:hl7-resource-medication-order@1.5.9
 clinical:hl7-resource-medication-statement@1.2.8
 clinical:hl7-resource-observation@1.3.18
 clinical:hl7-resource-organization@1.5.4
-clinical:hl7-resource-patient@3.2.29
+clinical:hl7-resource-patient@3.2.30
 clinical:hl7-resource-practitioner@3.2.9
 clinical:hl7-resource-procedure@1.4.3
 clinical:hl7-resource-questionnaire@1.3.4
@@ -63,6 +74,7 @@ clinical:hl7-resource-risk-assessment@1.4.9
 clinical:hl7-resource-subscription@3.4.1
 clinical:keybindings@1.4.7
 clinical:oauth@1.2.27
+clinical:smart-on-fhir-client@0.1.40
 clinical:theming@0.4.10
 clinical:user-model@1.6.0
 coffeescript@1.0.17
@@ -144,6 +156,7 @@ reload@1.2.0
 retry@1.1.0
 reywood:publish-composite@1.6.0
 routepolicy@1.0.13
+sanjo:long-running-child-process@1.1.5
 service-configuration@1.0.11
 session@1.1.7
 sha@1.0.9
@@ -156,6 +169,11 @@ spacebars@1.0.15
 spacebars-compiler@1.1.3
 srp@1.0.10
 standard-minifier-js@2.3.4
+symptomatic:blockchain-core@0.3.4
+symptomatic:continuity-of-care@0.0.4
+symptomatic:fhir-caching-layer@0.1.7
+symptomatic:geomapping@0.0.7
+symptomatic:theming@0.0.3
 templating@1.2.15
 templating-compiler@1.2.15
 templating-runtime@1.2.15

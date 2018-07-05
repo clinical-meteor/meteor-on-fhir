@@ -108,8 +108,9 @@ clinical:hl7-resource-allergy-intolerance
 clinical:hl7-resource-condition
 clinical:hl7-resource-careplan
 clinical:hl7-resource-communication
-# clinical:hl7-resource-consent
-# clinical:hl7-resource-contract
+clinical:hl7-resource-composition
+clinical:hl7-resource-consent
+clinical:hl7-resource-contract
 clinical:hl7-resource-device
 clinical:hl7-resource-diagnostic-report
 clinical:hl7-resource-endpoint
@@ -129,28 +130,26 @@ clinical:hl7-resource-questionnaire
 clinical:hl7-resource-risk-assessment
 clinical:hl7-resource-subscription
 
-# clinical:smart-on-fhir-client
+clinical:smart-on-fhir-client
 # clinical:oauth
 
 
 d3js:d3
 
 ### Infrastructure as a Service
-# symptomatic:fhir-caching-layer
 percolate:synced-cron
+symptomatic:fhir-caching-layer
 
 
 ### Premium Modules
-# symptomatic:theming
-# symptomatic:continuity-of-care
-# symptomatic:geomapping
+symptomatic:theming
+symptomatic:continuity-of-care
+symptomatic:geomapping
 
 
 ### Blockchains
-# symptomatic:blockchain-core
+symptomatic:blockchain-core
 # fhirblocks:core
-clinical:hl7-resource-consent
-clinical:hl7-resource-contract
 
 ### GitHub Community Versions
 # clinical:example-plugin
