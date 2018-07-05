@@ -252,7 +252,25 @@ For more details on running Dockerized Meteor apps in production, see:
 https://projectricochet.com/blog/production-meteor-and-node-using-docker-part-vi
 
 
+#### M.  Peer To Peer Sync  
+Meteor on FHIR servers now support basic peer-to-peer autosync functionality.  We have basic support for server capability statements, OAuth autonegotiation, swarm filesystems, and blockchain ledgers.  More p2p and mesh network functionality is on the roadmap, including peer discovery, openID, and distributed OAuth. 
 
+```js
+{
+  "public": {
+    "meshNetwork": {
+      "upstreamSync": "http://meteor-on-fhir.meteorapp.com/fhir-3.0.0", 
+      "autosync": false
+    },
+  },
+  "private": {
+    "disableOauth": true
+  },
+}
+```
+<img src="/uploads/default/original/2X/b/bc10916c88492c494cfc8dfc30e8f7c1876ceeb1.png" width="690" height="388">
+
+If you set the `upstreamSync` and `disableOauth` fields, you can enable Practitioner, Organization, and Location sync between datalakes.  Nightly replication and syncing across the Symptomatic network can be configured in a plugin.  
 
 
 #### Miscellaneous References    
