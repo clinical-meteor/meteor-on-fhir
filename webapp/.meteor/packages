@@ -130,9 +130,10 @@ clinical:hl7-resource-questionnaire
 clinical:hl7-resource-risk-assessment
 clinical:hl7-resource-subscription
 
-clinical:smart-on-fhir-client
+# clinical:smart-on-fhir-client
 # clinical:oauth
 
+upenn:innovation
 
 d3js:d3
 
