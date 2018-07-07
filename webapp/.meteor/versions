@@ -74,6 +74,7 @@ clinical:hl7-resource-risk-assessment@1.4.9
 clinical:hl7-resource-subscription@3.4.1
 clinical:keybindings@1.4.7
 clinical:oauth@1.2.28
+clinical:smart-on-fhir-client@0.1.41
 clinical:theming@0.4.10
 clinical:user-model@1.6.0
 coffeescript@1.0.17
@@ -184,7 +185,6 @@ tracker@1.2.0
 ui@1.0.13
 underscore@1.0.10
 universe:i18n@1.16.1
-upenn:innovation@0.2.22
 url@1.2.0
 webapp@1.6.2
 webapp-hashing@1.0.9
