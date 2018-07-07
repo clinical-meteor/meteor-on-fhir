@@ -1,0 +1,2229 @@
+{
+  "resourceType": "Bundle",
+  "entry": [
+    {
+      "fullUrl": "/Composition/st3e9PNvQkgiT84Po",
+      "resource": {
+        "resourceType": "Composition",
+        "identifier": {},
+        "status": "preliminary",
+        "type": {},
+        "class": {},
+        "subject": {
+          "display": "JessicaArgonaut",
+          "reference": "sWZ4iYQ2NdtepYzER"
+        },
+        "encounter": {
+          "display": "",
+          "reference": ""
+        },
+        "date": "<dateTime>",
+        "author": [
+          {
+            "display": "JessicaArgonaut",
+            "reference": "sWZ4iYQ2NdtepYzER"
+          }
+        ],
+        "title": "Continuity of Care Document",
+        "confidentiality": "0",
+        "attester": [],
+        "custodian": {
+          "display": "",
+          "reference": ""
+        },
+        "relatesTo": [],
+        "event": [],
+        "section": [
+          {
+            "reference": "/CarePlan/HzQLkK4mea2pSMzxw"
+          },
+          {
+            "reference": "/Condition/B5jPjBnNovWviDKry"
+          },
+          {
+            "reference": "/Condition/KuXtkh9qSvSk4vPzk"
+          },
+          {
+            "reference": "/Condition/dN5BvAHBmFD3M69ht"
+          },
+          {
+            "reference": "/MedicationOrder/wYzX9vE2i9RBP7uEY"
+          },
+          {
+            "reference": "/MedicationOrder/rhhEiPyjih29fGP8p"
+          },
+          {
+            "reference": "/MedicationOrder/Bm4eY33HdyjhJkBqQ"
+          },
+          {
+            "reference": "/MedicationOrder/s2Za9up9vAc6SjYHC"
+          },
+          {
+            "reference": "/MedicationOrder/teJKvnxCXCCSwwh9s"
+          },
+          {
+            "reference": "/Observation/S9uH9YTbowCoJrmim"
+          },
+          {
+            "reference": "/Observation/mNYj9Labbm66WQw9M"
+          },
+          {
+            "reference": "/Observation/mF7KNfywzG9edZP4r"
+          },
+          {
+            "reference": "/Observation/tFXN9gehP2ZpLdgC9"
+          },
+          {
+            "reference": "/Observation/nFdnH946u68D6HEqm"
+          },
+          {
+            "reference": "/Patient/bHX8CBkCHRuTHnDyc"
+          },
+          {
+            "reference": "/Procedure/MCBkSfLYw8NYs3KSW"
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "/CarePlan/HzQLkK4mea2pSMzxw",
+      "resource": {
+        "_id": "HzQLkK4mea2pSMzxw",
+        "resourceType": "CarePlan",
+        "status": "active",
+        "subject": {
+          "display": "Jessica Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/TUKRxL29bxE9lyAcdTIyrWC6Ln5gZ-z7CLr2r-2SY964B"
+        },
+        "addresses": [
+          {
+            "display": "Dog bite",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Condition/Tt4fNWwh8ZM2zgwSBoCYVuAB"
+          },
+          {
+            "display": "TB (pulmonary tuberculosis)",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Condition/TxQxE5aRxdUWajHY8M4qtwgB"
+          },
+          {
+            "display": "Diabetes mellitus type 2, uncomplicated",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Condition/TVDibQZGxD6cvjmObOXk78wB"
+          }
+        ],
+        "activity": [
+          {
+            "detail": {
+              "prohibited": false,
+              "category": {
+                "text": "procedure",
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/care-plan-activity-category",
+                    "code": "procedure",
+                    "display": "Procedure"
+                  }
+                ]
+              },
+              "code": {
+                "text": "ADULT DIET"
+              },
+              "scheduledTiming": {
+                "resourceType": "Timing"
+              }
+            }
+          },
+          {
+            "detail": {
+              "prohibited": false,
+              "category": {
+                "text": "procedure",
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/care-plan-activity-category",
+                    "code": "procedure",
+                    "display": "Procedure"
+                  }
+                ]
+              },
+              "code": {
+                "text": "CARDIAC EVENT MONITOR"
+              },
+              "scheduledTiming": {
+                "resourceType": "Timing"
+              }
+            }
+          }
+        ],
+        "category": [
+          {
+            "text": "Longitudinal",
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "38717003",
+                "display": "Longitudinal"
+              }
+            ]
+          }
+        ],
+        "_document": {
+          "_id": "HzQLkK4mea2pSMzxw",
+          "resourceType": "CarePlan",
+          "status": "active",
+          "subject": {
+            "display": "Jessica Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/TUKRxL29bxE9lyAcdTIyrWC6Ln5gZ-z7CLr2r-2SY964B"
+          },
+          "addresses": [
+            {
+              "display": "Dog bite",
+              "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Condition/Tt4fNWwh8ZM2zgwSBoCYVuAB"
+            },
+            {
+              "display": "TB (pulmonary tuberculosis)",
+              "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Condition/TxQxE5aRxdUWajHY8M4qtwgB"
+            },
+            {
+              "display": "Diabetes mellitus type 2, uncomplicated",
+              "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Condition/TVDibQZGxD6cvjmObOXk78wB"
+            }
+          ],
+          "activity": [
+            {
+              "detail": {
+                "prohibited": false,
+                "category": {
+                  "text": "procedure",
+                  "coding": [
+                    {
+                      "system": "http://hl7.org/fhir/care-plan-activity-category",
+                      "code": "procedure",
+                      "display": "Procedure"
+                    }
+                  ]
+                },
+                "code": {
+                  "text": "ADULT DIET"
+                },
+                "scheduledTiming": {
+                  "resourceType": "Timing"
+                }
+              }
+            },
+            {
+              "detail": {
+                "prohibited": false,
+                "category": {
+                  "text": "procedure",
+                  "coding": [
+                    {
+                      "system": "http://hl7.org/fhir/care-plan-activity-category",
+                      "code": "procedure",
+                      "display": "Procedure"
+                    }
+                  ]
+                },
+                "code": {
+                  "text": "CARDIAC EVENT MONITOR"
+                },
+                "scheduledTiming": {
+                  "resourceType": "Timing"
+                }
+              }
+            }
+          ],
+          "category": [
+            {
+              "text": "Longitudinal",
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "38717003",
+                  "display": "Longitudinal"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "/Condition/B5jPjBnNovWviDKry",
+      "resource": {
+        "_id": "B5jPjBnNovWviDKry",
+        "resourceType": "Condition",
+        "dateRecorded": "2016-04-24T00:00:00.000Z",
+        "clinicalStatus": "active",
+        "onsetDateTime": "2016-04-24T00:00:00.000Z",
+        "verificationStatus": "confirmed",
+        "patient": {
+          "display": "Jessica Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/TUKRxL29bxE9lyAcdTIyrWC6Ln5gZ-z7CLr2r-2SY964B"
+        },
+        "asserter": {
+          "display": "MOORE, SEAN",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+        },
+        "code": {
+          "text": "Diabetes mellitus type 2, uncomplicated",
+          "coding": [
+            {
+              "system": "urn:oid:2.16.840.1.113883.6.90",
+              "code": "E11.9",
+              "display": "Diabetes mellitus type 2, uncomplicated"
+            },
+            {
+              "system": "http://snomed.info/sct",
+              "code": "313436004",
+              "display": "Type II diabetes mellitus without complication (disorder)"
+            }
+          ]
+        },
+        "category": {
+          "text": "Diagnosis",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "29308-4",
+              "display": "Diagnosis"
+            },
+            {
+              "system": "http://snomed.info/sct",
+              "code": "439401001",
+              "display": "Diagnosis"
+            },
+            {
+              "system": "http://hl7.org/fhir/condition-category",
+              "code": "diagnosis",
+              "display": "Diagnosis"
+            },
+            {
+              "system": "http://argonautwiki.hl7.org/extension-codes",
+              "code": "problem",
+              "display": "Problem"
+            }
+          ]
+        },
+        "_document": {
+          "_id": "B5jPjBnNovWviDKry",
+          "resourceType": "Condition",
+          "dateRecorded": "2016-04-24T00:00:00.000Z",
+          "clinicalStatus": "active",
+          "onsetDateTime": "2016-04-24T00:00:00.000Z",
+          "verificationStatus": "confirmed",
+          "patient": {
+            "display": "Jessica Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/TUKRxL29bxE9lyAcdTIyrWC6Ln5gZ-z7CLr2r-2SY964B"
+          },
+          "asserter": {
+            "display": "MOORE, SEAN",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          },
+          "code": {
+            "text": "Diabetes mellitus type 2, uncomplicated",
+            "coding": [
+              {
+                "system": "urn:oid:2.16.840.1.113883.6.90",
+                "code": "E11.9",
+                "display": "Diabetes mellitus type 2, uncomplicated"
+              },
+              {
+                "system": "http://snomed.info/sct",
+                "code": "313436004",
+                "display": "Type II diabetes mellitus without complication (disorder)"
+              }
+            ]
+          },
+          "category": {
+            "text": "Diagnosis",
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "29308-4",
+                "display": "Diagnosis"
+              },
+              {
+                "system": "http://snomed.info/sct",
+                "code": "439401001",
+                "display": "Diagnosis"
+              },
+              {
+                "system": "http://hl7.org/fhir/condition-category",
+                "code": "diagnosis",
+                "display": "Diagnosis"
+              },
+              {
+                "system": "http://argonautwiki.hl7.org/extension-codes",
+                "code": "problem",
+                "display": "Problem"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "/Condition/KuXtkh9qSvSk4vPzk",
+      "resource": {
+        "_id": "KuXtkh9qSvSk4vPzk",
+        "resourceType": "Condition",
+        "dateRecorded": "2015-11-07T00:00:00.000Z",
+        "clinicalStatus": "active",
+        "onsetDateTime": "2015-11-07T00:00:00.000Z",
+        "verificationStatus": "confirmed",
+        "patient": {
+          "display": "Jessica Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/TUKRxL29bxE9lyAcdTIyrWC6Ln5gZ-z7CLr2r-2SY964B"
+        },
+        "asserter": {
+          "display": "MOORE, SEAN",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+        },
+        "code": {
+          "text": "Dog bite",
+          "coding": [
+            {
+              "system": "urn:oid:2.16.840.1.113883.6.90",
+              "code": "W54.0XXA",
+              "display": "Dog bite"
+            },
+            {
+              "system": "http://snomed.info/sct",
+              "code": "283734005",
+              "display": "Dog bite - wound (disorder)"
+            }
+          ]
+        },
+        "category": {
+          "text": "Diagnosis",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "29308-4",
+              "display": "Diagnosis"
+            },
+            {
+              "system": "http://snomed.info/sct",
+              "code": "439401001",
+              "display": "Diagnosis"
+            },
+            {
+              "system": "http://hl7.org/fhir/condition-category",
+              "code": "diagnosis",
+              "display": "Diagnosis"
+            },
+            {
+              "system": "http://argonautwiki.hl7.org/extension-codes",
+              "code": "problem",
+              "display": "Problem"
+            }
+          ]
+        },
+        "severity": {
+          "text": "Medium"
+        },
+        "_document": {
+          "_id": "KuXtkh9qSvSk4vPzk",
+          "resourceType": "Condition",
+          "dateRecorded": "2015-11-07T00:00:00.000Z",
+          "clinicalStatus": "active",
+          "onsetDateTime": "2015-11-07T00:00:00.000Z",
+          "verificationStatus": "confirmed",
+          "patient": {
+            "display": "Jessica Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/TUKRxL29bxE9lyAcdTIyrWC6Ln5gZ-z7CLr2r-2SY964B"
+          },
+          "asserter": {
+            "display": "MOORE, SEAN",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          },
+          "code": {
+            "text": "Dog bite",
+            "coding": [
+              {
+                "system": "urn:oid:2.16.840.1.113883.6.90",
+                "code": "W54.0XXA",
+                "display": "Dog bite"
+              },
+              {
+                "system": "http://snomed.info/sct",
+                "code": "283734005",
+                "display": "Dog bite - wound (disorder)"
+              }
+            ]
+          },
+          "category": {
+            "text": "Diagnosis",
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "29308-4",
+                "display": "Diagnosis"
+              },
+              {
+                "system": "http://snomed.info/sct",
+                "code": "439401001",
+                "display": "Diagnosis"
+              },
+              {
+                "system": "http://hl7.org/fhir/condition-category",
+                "code": "diagnosis",
+                "display": "Diagnosis"
+              },
+              {
+                "system": "http://argonautwiki.hl7.org/extension-codes",
+                "code": "problem",
+                "display": "Problem"
+              }
+            ]
+          },
+          "severity": {
+            "text": "Medium"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "/Condition/dN5BvAHBmFD3M69ht",
+      "resource": {
+        "_id": "dN5BvAHBmFD3M69ht",
+        "resourceType": "Condition",
+        "dateRecorded": "2016-04-23T00:00:00.000Z",
+        "clinicalStatus": "active",
+        "onsetDateTime": "2016-04-23T00:00:00.000Z",
+        "verificationStatus": "confirmed",
+        "patient": {
+          "display": "Jessica Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/TUKRxL29bxE9lyAcdTIyrWC6Ln5gZ-z7CLr2r-2SY964B"
+        },
+        "asserter": {
+          "display": "MOORE, SEAN",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+        },
+        "code": {
+          "text": "TB (pulmonary tuberculosis)",
+          "coding": [
+            {
+              "system": "urn:oid:2.16.840.1.113883.6.90",
+              "code": "A15.0",
+              "display": "TB (pulmonary tuberculosis)"
+            },
+            {
+              "system": "http://snomed.info/sct",
+              "code": "154283005",
+              "display": "Pulmonary tuberculosis (disorder)"
+            }
+          ]
+        },
+        "category": {
+          "text": "Diagnosis",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "29308-4",
+              "display": "Diagnosis"
+            },
+            {
+              "system": "http://snomed.info/sct",
+              "code": "439401001",
+              "display": "Diagnosis"
+            },
+            {
+              "system": "http://hl7.org/fhir/condition-category",
+              "code": "diagnosis",
+              "display": "Diagnosis"
+            },
+            {
+              "system": "http://argonautwiki.hl7.org/extension-codes",
+              "code": "problem",
+              "display": "Problem"
+            }
+          ]
+        },
+        "_document": {
+          "_id": "dN5BvAHBmFD3M69ht",
+          "resourceType": "Condition",
+          "dateRecorded": "2016-04-23T00:00:00.000Z",
+          "clinicalStatus": "active",
+          "onsetDateTime": "2016-04-23T00:00:00.000Z",
+          "verificationStatus": "confirmed",
+          "patient": {
+            "display": "Jessica Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/TUKRxL29bxE9lyAcdTIyrWC6Ln5gZ-z7CLr2r-2SY964B"
+          },
+          "asserter": {
+            "display": "MOORE, SEAN",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          },
+          "code": {
+            "text": "TB (pulmonary tuberculosis)",
+            "coding": [
+              {
+                "system": "urn:oid:2.16.840.1.113883.6.90",
+                "code": "A15.0",
+                "display": "TB (pulmonary tuberculosis)"
+              },
+              {
+                "system": "http://snomed.info/sct",
+                "code": "154283005",
+                "display": "Pulmonary tuberculosis (disorder)"
+              }
+            ]
+          },
+          "category": {
+            "text": "Diagnosis",
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "29308-4",
+                "display": "Diagnosis"
+              },
+              {
+                "system": "http://snomed.info/sct",
+                "code": "439401001",
+                "display": "Diagnosis"
+              },
+              {
+                "system": "http://hl7.org/fhir/condition-category",
+                "code": "diagnosis",
+                "display": "Diagnosis"
+              },
+              {
+                "system": "http://argonautwiki.hl7.org/extension-codes",
+                "code": "problem",
+                "display": "Problem"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "/MedicationOrder/wYzX9vE2i9RBP7uEY",
+      "resource": {
+        "_id": "wYzX9vE2i9RBP7uEY",
+        "resourceType": "MedicationOrder",
+        "dateWritten": "2016-04-19T00:00:00.000Z",
+        "status": "active",
+        "identifier": [
+          {
+            "use": "usual",
+            "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+            "value": "975877"
+          },
+          {
+            "use": "usual",
+            "system": "urn:oid:1.2.840.114350.1.13.0.1.7.3.798268.801",
+            "value": "975877:4000892929"
+          }
+        ],
+        "patient": {
+          "display": "Jessica Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/TUKRxL29bxE9lyAcdTIyrWC6Ln5gZ-z7CLr2r-2SY964B"
+        },
+        "prescriber": {
+          "display": "Physician Endocrinology, MD",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TiL.nRs1xolOuO8ocYkRcewB"
+        },
+        "dosageInstruction": [
+          {
+            "text": "Take 1 capsule (30 mg total) by mouth every morning for 10 days. Max Daily Amount: 30 mg",
+            "asNeededBoolean": false,
+            "route": {
+              "text": "Oral",
+              "coding": [
+                {
+                  "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.698288.330",
+                  "code": "15",
+                  "display": "Oral"
+                }
+              ]
+            },
+            "method": {
+              "text": "Take",
+              "coding": [
+                {
+                  "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.798268.8600",
+                  "code": "11",
+                  "display": "Take"
+                }
+              ]
+            },
+            "timing": {
+              "repeat": {
+                "frequency": 1,
+                "period": 1,
+                "boundsPeriod": {
+                  "start": "2016-04-19T00:00:00.000Z",
+                  "end": "2016-04-29T00:00:00.000Z"
+                }
+              },
+              "resourceType": "Timing"
+            },
+            "doseQuantity": {
+              "value": 1,
+              "unit": "capsule"
+            }
+          }
+        ],
+        "dispenseRequest": {
+          "numberOfRepeatsAllowed": 0,
+          "expectedSupplyDuration": {
+            "value": 10,
+            "unit": "days",
+            "code": "d",
+            "system": "urn:oid:2.16.840.1.113883.6.8"
+          },
+          "quantity": {
+            "value": 10,
+            "unit": "capsule"
+          }
+        },
+        "_document": {
+          "_id": "wYzX9vE2i9RBP7uEY",
+          "resourceType": "MedicationOrder",
+          "dateWritten": "2016-04-19T00:00:00.000Z",
+          "status": "active",
+          "identifier": [
+            {
+              "use": "usual",
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+              "value": "975877"
+            },
+            {
+              "use": "usual",
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.3.798268.801",
+              "value": "975877:4000892929"
+            }
+          ],
+          "patient": {
+            "display": "Jessica Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/TUKRxL29bxE9lyAcdTIyrWC6Ln5gZ-z7CLr2r-2SY964B"
+          },
+          "prescriber": {
+            "display": "Physician Endocrinology, MD",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TiL.nRs1xolOuO8ocYkRcewB"
+          },
+          "dosageInstruction": [
+            {
+              "text": "Take 1 capsule (30 mg total) by mouth every morning for 10 days. Max Daily Amount: 30 mg",
+              "asNeededBoolean": false,
+              "route": {
+                "text": "Oral",
+                "coding": [
+                  {
+                    "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.698288.330",
+                    "code": "15",
+                    "display": "Oral"
+                  }
+                ]
+              },
+              "method": {
+                "text": "Take",
+                "coding": [
+                  {
+                    "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.798268.8600",
+                    "code": "11",
+                    "display": "Take"
+                  }
+                ]
+              },
+              "timing": {
+                "repeat": {
+                  "frequency": 1,
+                  "period": 1,
+                  "boundsPeriod": {
+                    "start": "2016-04-19T00:00:00.000Z",
+                    "end": "2016-04-29T00:00:00.000Z"
+                  }
+                },
+                "resourceType": "Timing"
+              },
+              "doseQuantity": {
+                "value": 1,
+                "unit": "capsule"
+              }
+            }
+          ],
+          "dispenseRequest": {
+            "numberOfRepeatsAllowed": 0,
+            "expectedSupplyDuration": {
+              "value": 10,
+              "unit": "days",
+              "code": "d",
+              "system": "urn:oid:2.16.840.1.113883.6.8"
+            },
+            "quantity": {
+              "value": 10,
+              "unit": "capsule"
+            }
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "/MedicationOrder/rhhEiPyjih29fGP8p",
+      "resource": {
+        "_id": "rhhEiPyjih29fGP8p",
+        "resourceType": "MedicationOrder",
+        "dateWritten": "2016-04-19T00:00:00.000Z",
+        "status": "active",
+        "identifier": [
+          {
+            "use": "usual",
+            "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+            "value": "975879"
+          },
+          {
+            "use": "usual",
+            "system": "urn:oid:1.2.840.114350.1.13.0.1.7.3.798268.801",
+            "value": "975879:3900227215"
+          }
+        ],
+        "patient": {
+          "display": "Jessica Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/TUKRxL29bxE9lyAcdTIyrWC6Ln5gZ-z7CLr2r-2SY964B"
+        },
+        "prescriber": {
+          "display": "Physician Endocrinology, MD",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TiL.nRs1xolOuO8ocYkRcewB"
+        },
+        "dosageInstruction": [
+          {
+            "text": "Take 1 tablet (50 mg total) by mouth 3 (three) times a day with meals.",
+            "asNeededBoolean": false,
+            "route": {
+              "text": "Oral",
+              "coding": [
+                {
+                  "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.698288.330",
+                  "code": "15",
+                  "display": "Oral"
+                }
+              ]
+            },
+            "method": {
+              "text": "Take",
+              "coding": [
+                {
+                  "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.798268.8600",
+                  "code": "11",
+                  "display": "Take"
+                }
+              ]
+            },
+            "timing": {
+              "repeat": {
+                "frequency": 1,
+                "period": 8,
+                "boundsPeriod": {
+                  "start": "2016-04-19T00:00:00.000Z",
+                  "end": "2016-05-19T00:00:00.000Z"
+                }
+              },
+              "resourceType": "Timing"
+            },
+            "doseQuantity": {
+              "value": 1,
+              "unit": "tablet"
+            }
+          }
+        ],
+        "dispenseRequest": {
+          "numberOfRepeatsAllowed": 0,
+          "expectedSupplyDuration": {
+            "value": 30,
+            "unit": "days",
+            "code": "d",
+            "system": "urn:oid:2.16.840.1.113883.6.8"
+          },
+          "quantity": {
+            "value": 90,
+            "unit": "tablet"
+          }
+        },
+        "_document": {
+          "_id": "rhhEiPyjih29fGP8p",
+          "resourceType": "MedicationOrder",
+          "dateWritten": "2016-04-19T00:00:00.000Z",
+          "status": "active",
+          "identifier": [
+            {
+              "use": "usual",
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+              "value": "975879"
+            },
+            {
+              "use": "usual",
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.3.798268.801",
+              "value": "975879:3900227215"
+            }
+          ],
+          "patient": {
+            "display": "Jessica Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/TUKRxL29bxE9lyAcdTIyrWC6Ln5gZ-z7CLr2r-2SY964B"
+          },
+          "prescriber": {
+            "display": "Physician Endocrinology, MD",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TiL.nRs1xolOuO8ocYkRcewB"
+          },
+          "dosageInstruction": [
+            {
+              "text": "Take 1 tablet (50 mg total) by mouth 3 (three) times a day with meals.",
+              "asNeededBoolean": false,
+              "route": {
+                "text": "Oral",
+                "coding": [
+                  {
+                    "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.698288.330",
+                    "code": "15",
+                    "display": "Oral"
+                  }
+                ]
+              },
+              "method": {
+                "text": "Take",
+                "coding": [
+                  {
+                    "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.798268.8600",
+                    "code": "11",
+                    "display": "Take"
+                  }
+                ]
+              },
+              "timing": {
+                "repeat": {
+                  "frequency": 1,
+                  "period": 8,
+                  "boundsPeriod": {
+                    "start": "2016-04-19T00:00:00.000Z",
+                    "end": "2016-05-19T00:00:00.000Z"
+                  }
+                },
+                "resourceType": "Timing"
+              },
+              "doseQuantity": {
+                "value": 1,
+                "unit": "tablet"
+              }
+            }
+          ],
+          "dispenseRequest": {
+            "numberOfRepeatsAllowed": 0,
+            "expectedSupplyDuration": {
+              "value": 30,
+              "unit": "days",
+              "code": "d",
+              "system": "urn:oid:2.16.840.1.113883.6.8"
+            },
+            "quantity": {
+              "value": 90,
+              "unit": "tablet"
+            }
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "/MedicationOrder/Bm4eY33HdyjhJkBqQ",
+      "resource": {
+        "_id": "Bm4eY33HdyjhJkBqQ",
+        "resourceType": "MedicationOrder",
+        "dateWritten": "2016-04-19T00:00:00.000Z",
+        "status": "active",
+        "identifier": [
+          {
+            "use": "usual",
+            "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+            "value": "975881"
+          },
+          {
+            "use": "usual",
+            "system": "urn:oid:1.2.840.114350.1.13.0.1.7.3.798268.801",
+            "value": "975881:3632918144"
+          }
+        ],
+        "patient": {
+          "display": "Jessica Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/TUKRxL29bxE9lyAcdTIyrWC6Ln5gZ-z7CLr2r-2SY964B"
+        },
+        "prescriber": {
+          "display": "Physician Endocrinology, MD",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TiL.nRs1xolOuO8ocYkRcewB"
+        },
+        "dosageInstruction": [
+          {
+            "text": "Take 1 tablet by mouth daily.",
+            "asNeededBoolean": false,
+            "route": {
+              "text": "Oral",
+              "coding": [
+                {
+                  "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.698288.330",
+                  "code": "15",
+                  "display": "Oral"
+                }
+              ]
+            },
+            "method": {
+              "text": "Take",
+              "coding": [
+                {
+                  "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.798268.8600",
+                  "code": "11",
+                  "display": "Take"
+                }
+              ]
+            },
+            "timing": {
+              "repeat": {
+                "frequency": 1,
+                "period": 1,
+                "boundsPeriod": {
+                  "start": "2016-04-19T00:00:00.000Z",
+                  "end": "2016-05-19T00:00:00.000Z"
+                }
+              },
+              "resourceType": "Timing"
+            },
+            "doseQuantity": {
+              "value": 1,
+              "unit": "tablet"
+            }
+          }
+        ],
+        "dispenseRequest": {
+          "numberOfRepeatsAllowed": 1,
+          "expectedSupplyDuration": {
+            "value": 28,
+            "unit": "days",
+            "code": "d",
+            "system": "urn:oid:2.16.840.1.113883.6.8"
+          },
+          "quantity": {
+            "value": 28,
+            "unit": "tablet"
+          }
+        },
+        "_document": {
+          "_id": "Bm4eY33HdyjhJkBqQ",
+          "resourceType": "MedicationOrder",
+          "dateWritten": "2016-04-19T00:00:00.000Z",
+          "status": "active",
+          "identifier": [
+            {
+              "use": "usual",
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+              "value": "975881"
+            },
+            {
+              "use": "usual",
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.3.798268.801",
+              "value": "975881:3632918144"
+            }
+          ],
+          "patient": {
+            "display": "Jessica Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/TUKRxL29bxE9lyAcdTIyrWC6Ln5gZ-z7CLr2r-2SY964B"
+          },
+          "prescriber": {
+            "display": "Physician Endocrinology, MD",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TiL.nRs1xolOuO8ocYkRcewB"
+          },
+          "dosageInstruction": [
+            {
+              "text": "Take 1 tablet by mouth daily.",
+              "asNeededBoolean": false,
+              "route": {
+                "text": "Oral",
+                "coding": [
+                  {
+                    "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.698288.330",
+                    "code": "15",
+                    "display": "Oral"
+                  }
+                ]
+              },
+              "method": {
+                "text": "Take",
+                "coding": [
+                  {
+                    "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.798268.8600",
+                    "code": "11",
+                    "display": "Take"
+                  }
+                ]
+              },
+              "timing": {
+                "repeat": {
+                  "frequency": 1,
+                  "period": 1,
+                  "boundsPeriod": {
+                    "start": "2016-04-19T00:00:00.000Z",
+                    "end": "2016-05-19T00:00:00.000Z"
+                  }
+                },
+                "resourceType": "Timing"
+              },
+              "doseQuantity": {
+                "value": 1,
+                "unit": "tablet"
+              }
+            }
+          ],
+          "dispenseRequest": {
+            "numberOfRepeatsAllowed": 1,
+            "expectedSupplyDuration": {
+              "value": 28,
+              "unit": "days",
+              "code": "d",
+              "system": "urn:oid:2.16.840.1.113883.6.8"
+            },
+            "quantity": {
+              "value": 28,
+              "unit": "tablet"
+            }
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "/MedicationOrder/s2Za9up9vAc6SjYHC",
+      "resource": {
+        "_id": "s2Za9up9vAc6SjYHC",
+        "resourceType": "MedicationOrder",
+        "dateWritten": "2016-04-19T00:00:00.000Z",
+        "status": "active",
+        "identifier": [
+          {
+            "use": "usual",
+            "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+            "value": "975880"
+          },
+          {
+            "use": "usual",
+            "system": "urn:oid:1.2.840.114350.1.13.0.1.7.3.798268.801",
+            "value": "975880:3649695763"
+          }
+        ],
+        "patient": {
+          "display": "Jessica Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/TUKRxL29bxE9lyAcdTIyrWC6Ln5gZ-z7CLr2r-2SY964B"
+        },
+        "prescriber": {
+          "display": "Physician Endocrinology, MD",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TiL.nRs1xolOuO8ocYkRcewB"
+        },
+        "dosageInstruction": [
+          {
+            "text": "Take 1 tablet (50 mg total) by mouth daily.",
+            "asNeededBoolean": false,
+            "route": {
+              "text": "Oral",
+              "coding": [
+                {
+                  "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.698288.330",
+                  "code": "15",
+                  "display": "Oral"
+                }
+              ]
+            },
+            "method": {
+              "text": "Take",
+              "coding": [
+                {
+                  "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.798268.8600",
+                  "code": "11",
+                  "display": "Take"
+                }
+              ]
+            },
+            "timing": {
+              "repeat": {
+                "frequency": 1,
+                "period": 1,
+                "boundsPeriod": {
+                  "start": "2016-04-19T00:00:00.000Z",
+                  "end": "2016-05-19T00:00:00.000Z"
+                }
+              },
+              "resourceType": "Timing"
+            },
+            "doseQuantity": {
+              "value": 1,
+              "unit": "tablet"
+            }
+          }
+        ],
+        "dispenseRequest": {
+          "numberOfRepeatsAllowed": 0,
+          "expectedSupplyDuration": {
+            "value": 30,
+            "unit": "days",
+            "code": "d",
+            "system": "urn:oid:2.16.840.1.113883.6.8"
+          },
+          "quantity": {
+            "value": 30,
+            "unit": "tablet"
+          }
+        },
+        "_document": {
+          "_id": "s2Za9up9vAc6SjYHC",
+          "resourceType": "MedicationOrder",
+          "dateWritten": "2016-04-19T00:00:00.000Z",
+          "status": "active",
+          "identifier": [
+            {
+              "use": "usual",
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+              "value": "975880"
+            },
+            {
+              "use": "usual",
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.3.798268.801",
+              "value": "975880:3649695763"
+            }
+          ],
+          "patient": {
+            "display": "Jessica Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/TUKRxL29bxE9lyAcdTIyrWC6Ln5gZ-z7CLr2r-2SY964B"
+          },
+          "prescriber": {
+            "display": "Physician Endocrinology, MD",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TiL.nRs1xolOuO8ocYkRcewB"
+          },
+          "dosageInstruction": [
+            {
+              "text": "Take 1 tablet (50 mg total) by mouth daily.",
+              "asNeededBoolean": false,
+              "route": {
+                "text": "Oral",
+                "coding": [
+                  {
+                    "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.698288.330",
+                    "code": "15",
+                    "display": "Oral"
+                  }
+                ]
+              },
+              "method": {
+                "text": "Take",
+                "coding": [
+                  {
+                    "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.798268.8600",
+                    "code": "11",
+                    "display": "Take"
+                  }
+                ]
+              },
+              "timing": {
+                "repeat": {
+                  "frequency": 1,
+                  "period": 1,
+                  "boundsPeriod": {
+                    "start": "2016-04-19T00:00:00.000Z",
+                    "end": "2016-05-19T00:00:00.000Z"
+                  }
+                },
+                "resourceType": "Timing"
+              },
+              "doseQuantity": {
+                "value": 1,
+                "unit": "tablet"
+              }
+            }
+          ],
+          "dispenseRequest": {
+            "numberOfRepeatsAllowed": 0,
+            "expectedSupplyDuration": {
+              "value": 30,
+              "unit": "days",
+              "code": "d",
+              "system": "urn:oid:2.16.840.1.113883.6.8"
+            },
+            "quantity": {
+              "value": 30,
+              "unit": "tablet"
+            }
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "/MedicationOrder/teJKvnxCXCCSwwh9s",
+      "resource": {
+        "_id": "teJKvnxCXCCSwwh9s",
+        "resourceType": "MedicationOrder",
+        "dateWritten": "2016-04-19T00:00:00.000Z",
+        "status": "active",
+        "identifier": [
+          {
+            "use": "usual",
+            "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+            "value": "975882"
+          },
+          {
+            "use": "usual",
+            "system": "urn:oid:1.2.840.114350.1.13.0.1.7.3.798268.801",
+            "value": "975882:3683251001"
+          }
+        ],
+        "patient": {
+          "display": "Jessica Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/TUKRxL29bxE9lyAcdTIyrWC6Ln5gZ-z7CLr2r-2SY964B"
+        },
+        "prescriber": {
+          "display": "Physician Endocrinology, MD",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TiL.nRs1xolOuO8ocYkRcewB"
+        },
+        "dosageInstruction": [
+          {
+            "text": "Administer 1 drop into each nostril every 4 (four) hours as needed for congestion for up to 3 days.",
+            "asNeededBoolean": true,
+            "route": {
+              "text": "Each Nostril",
+              "coding": [
+                {
+                  "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.698288.330",
+                  "code": "110",
+                  "display": "Each Nostril"
+                }
+              ]
+            },
+            "timing": {
+              "repeat": {
+                "frequency": 1,
+                "period": 4,
+                "boundsPeriod": {
+                  "start": "2016-04-19T00:00:00.000Z",
+                  "end": "2016-04-22T00:00:00.000Z"
+                }
+              },
+              "resourceType": "Timing"
+            },
+            "doseQuantity": {
+              "value": 1,
+              "unit": "[drp]",
+              "code": "[drp]",
+              "system": "http://unitsofmeasure.org"
+            }
+          }
+        ],
+        "dispenseRequest": {
+          "numberOfRepeatsAllowed": 0,
+          "expectedSupplyDuration": {
+            "value": 3,
+            "unit": "days",
+            "code": "d",
+            "system": "urn:oid:2.16.840.1.113883.6.8"
+          },
+          "quantity": {
+            "value": 30,
+            "unit": "ml",
+            "code": "ml",
+            "system": "http://unitsofmeasure.org"
+          }
+        },
+        "_document": {
+          "_id": "teJKvnxCXCCSwwh9s",
+          "resourceType": "MedicationOrder",
+          "dateWritten": "2016-04-19T00:00:00.000Z",
+          "status": "active",
+          "identifier": [
+            {
+              "use": "usual",
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+              "value": "975882"
+            },
+            {
+              "use": "usual",
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.3.798268.801",
+              "value": "975882:3683251001"
+            }
+          ],
+          "patient": {
+            "display": "Jessica Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/TUKRxL29bxE9lyAcdTIyrWC6Ln5gZ-z7CLr2r-2SY964B"
+          },
+          "prescriber": {
+            "display": "Physician Endocrinology, MD",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TiL.nRs1xolOuO8ocYkRcewB"
+          },
+          "dosageInstruction": [
+            {
+              "text": "Administer 1 drop into each nostril every 4 (four) hours as needed for congestion for up to 3 days.",
+              "asNeededBoolean": true,
+              "route": {
+                "text": "Each Nostril",
+                "coding": [
+                  {
+                    "system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.698288.330",
+                    "code": "110",
+                    "display": "Each Nostril"
+                  }
+                ]
+              },
+              "timing": {
+                "repeat": {
+                  "frequency": 1,
+                  "period": 4,
+                  "boundsPeriod": {
+                    "start": "2016-04-19T00:00:00.000Z",
+                    "end": "2016-04-22T00:00:00.000Z"
+                  }
+                },
+                "resourceType": "Timing"
+              },
+              "doseQuantity": {
+                "value": 1,
+                "unit": "[drp]",
+                "code": "[drp]",
+                "system": "http://unitsofmeasure.org"
+              }
+            }
+          ],
+          "dispenseRequest": {
+            "numberOfRepeatsAllowed": 0,
+            "expectedSupplyDuration": {
+              "value": 3,
+              "unit": "days",
+              "code": "d",
+              "system": "urn:oid:2.16.840.1.113883.6.8"
+            },
+            "quantity": {
+              "value": 30,
+              "unit": "ml",
+              "code": "ml",
+              "system": "http://unitsofmeasure.org"
+            }
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "/Observation/S9uH9YTbowCoJrmim",
+      "resource": {
+        "_id": "S9uH9YTbowCoJrmim",
+        "resourceType": "Observation",
+        "effectiveDateTime": "2015-10-03T18:00:00.000Z",
+        "status": "final",
+        "code": {
+          "text": "Blood Pressure",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "55284-4",
+              "display": "Blood pressure systolic and diastolic"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            }
+          ]
+        },
+        "subject": {
+          "display": "Jessica Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/TUKRxL29bxE9lyAcdTIyrWC6Ln5gZ-z7CLr2r-2SY964B"
+        },
+        "performer": [
+          {
+            "display": "MOORE, SEAN",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          }
+        ],
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "component": [
+          {
+            "code": {
+              "text": "Systolic blood pressure",
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8480-6",
+                  "display": "Systolic blood pressure"
+                }
+              ]
+            },
+            "valueQuantity": {
+              "value": 120,
+              "unit": "mm[Hg]",
+              "code": "mm[Hg]",
+              "system": "http://unitsofmeasure.org"
+            }
+          },
+          {
+            "code": {
+              "text": "Diastolic blood pressure",
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "8462-4",
+                  "display": "Diastolic blood pressure"
+                }
+              ]
+            },
+            "valueQuantity": {
+              "value": 55,
+              "unit": "mm[Hg]",
+              "code": "mm[Hg]",
+              "system": "http://unitsofmeasure.org"
+            }
+          }
+        ],
+        "_document": {
+          "_id": "S9uH9YTbowCoJrmim",
+          "resourceType": "Observation",
+          "effectiveDateTime": "2015-10-03T18:00:00.000Z",
+          "status": "final",
+          "code": {
+            "text": "Blood Pressure",
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "55284-4",
+                "display": "Blood pressure systolic and diastolic"
+              },
+              {
+                "system": "http://loinc.org",
+                "code": "8716-3",
+                "display": "Vital Signs grouping"
+              }
+            ]
+          },
+          "subject": {
+            "display": "Jessica Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/TUKRxL29bxE9lyAcdTIyrWC6Ln5gZ-z7CLr2r-2SY964B"
+          },
+          "performer": [
+            {
+              "display": "MOORE, SEAN",
+              "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+            }
+          ],
+          "category": {
+            "text": "Vital Signs",
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          },
+          "component": [
+            {
+              "code": {
+                "text": "Systolic blood pressure",
+                "coding": [
+                  {
+                    "system": "http://loinc.org",
+                    "code": "8480-6",
+                    "display": "Systolic blood pressure"
+                  }
+                ]
+              },
+              "valueQuantity": {
+                "value": 120,
+                "unit": "mm[Hg]",
+                "code": "mm[Hg]",
+                "system": "http://unitsofmeasure.org"
+              }
+            },
+            {
+              "code": {
+                "text": "Diastolic blood pressure",
+                "coding": [
+                  {
+                    "system": "http://loinc.org",
+                    "code": "8462-4",
+                    "display": "Diastolic blood pressure"
+                  }
+                ]
+              },
+              "valueQuantity": {
+                "value": 55,
+                "unit": "mm[Hg]",
+                "code": "mm[Hg]",
+                "system": "http://unitsofmeasure.org"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "/Observation/mNYj9Labbm66WQw9M",
+      "resource": {
+        "_id": "mNYj9Labbm66WQw9M",
+        "resourceType": "Observation",
+        "effectiveDateTime": "2015-10-03T16:00:00.000Z",
+        "status": "final",
+        "code": {
+          "text": "Temperature",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8310-5",
+              "display": "Body temperature"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 36,
+          "unit": "Cel",
+          "code": "Cel",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jessica Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/TUKRxL29bxE9lyAcdTIyrWC6Ln5gZ-z7CLr2r-2SY964B"
+        },
+        "performer": [
+          {
+            "display": "MOORE, SEAN",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          }
+        ],
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "_document": {
+          "_id": "mNYj9Labbm66WQw9M",
+          "resourceType": "Observation",
+          "effectiveDateTime": "2015-10-03T16:00:00.000Z",
+          "status": "final",
+          "code": {
+            "text": "Temperature",
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "8310-5",
+                "display": "Body temperature"
+              },
+              {
+                "system": "http://loinc.org",
+                "code": "8716-3",
+                "display": "Vital Signs grouping"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "value": 36,
+            "unit": "Cel",
+            "code": "Cel",
+            "system": "http://unitsofmeasure.org"
+          },
+          "subject": {
+            "display": "Jessica Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/TUKRxL29bxE9lyAcdTIyrWC6Ln5gZ-z7CLr2r-2SY964B"
+          },
+          "performer": [
+            {
+              "display": "MOORE, SEAN",
+              "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+            }
+          ],
+          "category": {
+            "text": "Vital Signs",
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "/Observation/mF7KNfywzG9edZP4r",
+      "resource": {
+        "_id": "mF7KNfywzG9edZP4r",
+        "resourceType": "Observation",
+        "effectiveDateTime": "2015-10-03T18:00:00.000Z",
+        "status": "final",
+        "code": {
+          "text": "Pulse",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4",
+              "display": "Heart rate"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 55,
+          "unit": "/min",
+          "code": "/min",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jessica Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/TUKRxL29bxE9lyAcdTIyrWC6Ln5gZ-z7CLr2r-2SY964B"
+        },
+        "performer": [
+          {
+            "display": "MOORE, SEAN",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          }
+        ],
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "_document": {
+          "_id": "mF7KNfywzG9edZP4r",
+          "resourceType": "Observation",
+          "effectiveDateTime": "2015-10-03T18:00:00.000Z",
+          "status": "final",
+          "code": {
+            "text": "Pulse",
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "8716-3",
+                "display": "Vital Signs grouping"
+              },
+              {
+                "system": "http://loinc.org",
+                "code": "8867-4",
+                "display": "Heart rate"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "value": 55,
+            "unit": "/min",
+            "code": "/min",
+            "system": "http://unitsofmeasure.org"
+          },
+          "subject": {
+            "display": "Jessica Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/TUKRxL29bxE9lyAcdTIyrWC6Ln5gZ-z7CLr2r-2SY964B"
+          },
+          "performer": [
+            {
+              "display": "MOORE, SEAN",
+              "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+            }
+          ],
+          "category": {
+            "text": "Vital Signs",
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "/Observation/tFXN9gehP2ZpLdgC9",
+      "resource": {
+        "_id": "tFXN9gehP2ZpLdgC9",
+        "resourceType": "Observation",
+        "effectiveDateTime": "2015-10-03T16:00:00.000Z",
+        "status": "final",
+        "code": {
+          "text": "Pulse",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4",
+              "display": "Heart rate"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 56,
+          "unit": "/min",
+          "code": "/min",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jessica Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/TUKRxL29bxE9lyAcdTIyrWC6Ln5gZ-z7CLr2r-2SY964B"
+        },
+        "performer": [
+          {
+            "display": "MOORE, SEAN",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          }
+        ],
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "_document": {
+          "_id": "tFXN9gehP2ZpLdgC9",
+          "resourceType": "Observation",
+          "effectiveDateTime": "2015-10-03T16:00:00.000Z",
+          "status": "final",
+          "code": {
+            "text": "Pulse",
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "8716-3",
+                "display": "Vital Signs grouping"
+              },
+              {
+                "system": "http://loinc.org",
+                "code": "8867-4",
+                "display": "Heart rate"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "value": 56,
+            "unit": "/min",
+            "code": "/min",
+            "system": "http://unitsofmeasure.org"
+          },
+          "subject": {
+            "display": "Jessica Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/TUKRxL29bxE9lyAcdTIyrWC6Ln5gZ-z7CLr2r-2SY964B"
+          },
+          "performer": [
+            {
+              "display": "MOORE, SEAN",
+              "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+            }
+          ],
+          "category": {
+            "text": "Vital Signs",
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "/Observation/nFdnH946u68D6HEqm",
+      "resource": {
+        "_id": "nFdnH946u68D6HEqm",
+        "resourceType": "Observation",
+        "effectiveDateTime": "2015-10-03T18:00:00.000Z",
+        "status": "final",
+        "code": {
+          "text": "Temperature",
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8310-5",
+              "display": "Body temperature"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "8716-3",
+              "display": "Vital Signs grouping"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 37,
+          "unit": "Cel",
+          "code": "Cel",
+          "system": "http://unitsofmeasure.org"
+        },
+        "subject": {
+          "display": "Jessica Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/TUKRxL29bxE9lyAcdTIyrWC6Ln5gZ-z7CLr2r-2SY964B"
+        },
+        "performer": [
+          {
+            "display": "MOORE, SEAN",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+          }
+        ],
+        "category": {
+          "text": "Vital Signs",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/observation-category",
+              "code": "vital-signs",
+              "display": "Vital Signs"
+            }
+          ]
+        },
+        "_document": {
+          "_id": "nFdnH946u68D6HEqm",
+          "resourceType": "Observation",
+          "effectiveDateTime": "2015-10-03T18:00:00.000Z",
+          "status": "final",
+          "code": {
+            "text": "Temperature",
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "8310-5",
+                "display": "Body temperature"
+              },
+              {
+                "system": "http://loinc.org",
+                "code": "8716-3",
+                "display": "Vital Signs grouping"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "value": 37,
+            "unit": "Cel",
+            "code": "Cel",
+            "system": "http://unitsofmeasure.org"
+          },
+          "subject": {
+            "display": "Jessica Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/TUKRxL29bxE9lyAcdTIyrWC6Ln5gZ-z7CLr2r-2SY964B"
+          },
+          "performer": [
+            {
+              "display": "MOORE, SEAN",
+              "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Practitioner/TItWfhjChtlo0pFh9nzctSQB"
+            }
+          ],
+          "category": {
+            "text": "Vital Signs",
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "/Patient/bHX8CBkCHRuTHnDyc",
+      "resource": {
+        "_id": "bHX8CBkCHRuTHnDyc",
+        "resourceType": "Patient",
+        "birthDate": "1985-08-01T00:00:00.000Z",
+        "active": true,
+        "gender": "female",
+        "deceasedBoolean": false,
+        "id": "TUKRxL29bxE9lyAcdTIyrWC6Ln5gZ-z7CLr2r-2SY964B",
+        "name": [
+          {
+            "use": "usual",
+            "family": "Argonaut",
+            "given": [
+              "Jessica"
+            ],
+            "text": "JessicaArgonaut",
+            "resourceType": "HumanName"
+          }
+        ],
+        "identifier": [
+          {
+            "use": "usual",
+            "system": "urn:oid:1.2.840.114350.1.13.327.1.7.5.737384.0",
+            "value": "E3827"
+          },
+          {
+            "use": "usual",
+            "system": "urn:oid:1.2.3.4",
+            "value": "203580"
+          }
+        ],
+        "address": [
+          {
+            "use": "home",
+            "line": [
+              "Vandtårnsvej 83A",
+              "2860 Søborg"
+            ],
+            "city": "København",
+            "state": "CHIS",
+            "postalCode": "12345",
+            "country": "DK",
+            "resourceType": "Address"
+          }
+        ],
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "608-271-9000",
+            "use": "home",
+            "resourceType": "ContactPoint"
+          },
+          {
+            "system": "email",
+            "value": "open@epic.com",
+            "resourceType": "ContactPoint"
+          }
+        ],
+        "maritalStatus": {
+          "text": "Single",
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/ValueSet/marital-status",
+              "code": "S",
+              "display": "Never Married"
+            }
+          ]
+        },
+        "communication": [
+          {
+            "preferred": true,
+            "language": {
+              "text": "Danish",
+              "coding": [
+                {
+                  "system": "urn:oid:2.16.840.1.113883.6.99",
+                  "code": "da",
+                  "display": "Danish"
+                }
+              ]
+            }
+          }
+        ],
+        "extension": [
+          {},
+          {},
+          {}
+        ],
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2018-07-07T03:53:59.529Z"
+        },
+        "text": {
+          "status": "additional"
+        },
+        "_document": {
+          "_id": "bHX8CBkCHRuTHnDyc",
+          "resourceType": "Patient",
+          "birthDate": "1985-08-01T00:00:00.000Z",
+          "active": true,
+          "gender": "female",
+          "deceasedBoolean": false,
+          "id": "TUKRxL29bxE9lyAcdTIyrWC6Ln5gZ-z7CLr2r-2SY964B",
+          "name": [
+            {
+              "use": "usual",
+              "family": "Argonaut",
+              "given": [
+                "Jessica"
+              ],
+              "text": "JessicaArgonaut",
+              "resourceType": "HumanName"
+            }
+          ],
+          "identifier": [
+            {
+              "use": "usual",
+              "system": "urn:oid:1.2.840.114350.1.13.327.1.7.5.737384.0",
+              "value": "E3827"
+            },
+            {
+              "use": "usual",
+              "system": "urn:oid:1.2.3.4",
+              "value": "203580"
+            }
+          ],
+          "address": [
+            {
+              "use": "home",
+              "line": [
+                "Vandtårnsvej 83A",
+                "2860 Søborg"
+              ],
+              "city": "København",
+              "state": "CHIS",
+              "postalCode": "12345",
+              "country": "DK",
+              "resourceType": "Address"
+            }
+          ],
+          "telecom": [
+            {
+              "system": "phone",
+              "value": "608-271-9000",
+              "use": "home",
+              "resourceType": "ContactPoint"
+            },
+            {
+              "system": "email",
+              "value": "open@epic.com",
+              "resourceType": "ContactPoint"
+            }
+          ],
+          "maritalStatus": {
+            "text": "Single",
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/ValueSet/marital-status",
+                "code": "S",
+                "display": "Never Married"
+              }
+            ]
+          },
+          "communication": [
+            {
+              "preferred": true,
+              "language": {
+                "text": "Danish",
+                "coding": [
+                  {
+                    "system": "urn:oid:2.16.840.1.113883.6.99",
+                    "code": "da",
+                    "display": "Danish"
+                  }
+                ]
+              }
+            }
+          ],
+          "extension": [
+            {},
+            {},
+            {}
+          ],
+          "meta": {
+            "versionId": "1",
+            "lastUpdated": "2018-07-07T03:53:59.529Z"
+          },
+          "text": {
+            "status": "additional"
+          }
+        }
+      }
+    },
+    {
+      "fullUrl": "/Procedure/MCBkSfLYw8NYs3KSW",
+      "resource": {
+        "_id": "MCBkSfLYw8NYs3KSW",
+        "resourceType": "Procedure",
+        "status": "completed",
+        "notPerformed": false,
+        "performedDateTime": "2015-10-06T19:20:00.000Z",
+        "identifier": [
+          {
+            "use": "usual",
+            "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+            "value": "975888",
+            "type": {
+              "text": "ORD"
+            }
+          },
+          {
+            "use": "usual",
+            "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.696580",
+            "value": "40707",
+            "type": {
+              "text": "EAP"
+            }
+          }
+        ],
+        "subject": {
+          "display": "Jessica Argonaut",
+          "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/TUKRxL29bxE9lyAcdTIyrWC6Ln5gZ-z7CLr2r-2SY964B"
+        },
+        "code": {
+          "text": "EYE EXAM",
+          "coding": [
+            {
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.696580",
+              "code": "40707",
+              "display": "EYE EXAM"
+            }
+          ]
+        },
+        "_document": {
+          "_id": "MCBkSfLYw8NYs3KSW",
+          "resourceType": "Procedure",
+          "status": "completed",
+          "notPerformed": false,
+          "performedDateTime": "2015-10-06T19:20:00.000Z",
+          "identifier": [
+            {
+              "use": "usual",
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+              "value": "975888",
+              "type": {
+                "text": "ORD"
+              }
+            },
+            {
+              "use": "usual",
+              "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.696580",
+              "value": "40707",
+              "type": {
+                "text": "EAP"
+              }
+            }
+          ],
+          "subject": {
+            "display": "Jessica Argonaut",
+            "reference": "https://open-ic.epic.com/Argonaut/api/FHIR/Argonaut/Patient/TUKRxL29bxE9lyAcdTIyrWC6Ln5gZ-z7CLr2r-2SY964B"
+          },
+          "code": {
+            "text": "EYE EXAM",
+            "coding": [
+              {
+                "system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.696580",
+                "code": "40707",
+                "display": "EYE EXAM"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}
