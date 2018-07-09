@@ -19,7 +19,7 @@ if(Package['clinical:smart-on-fhir-client']){
   import { OAuth } from 'meteor/clinical:smart-on-fhir-client';
 }
 
-console.log("OAuth", OAuth)
+// console.log("OAuth", OAuth)
 
 Session.setDefault('signinWithSearch', '');
 

@@ -96,8 +96,6 @@ ejson@1.1.0
 email@1.2.3
 es5-shim@4.8.0
 fastclick@1.0.13
-force-ssl@1.1.0
-force-ssl-common@1.1.0
 fortawesome:fontawesome@4.4.0_1
 fourseven:scss@4.9.0
 geojson-utils@1.0.10
