@@ -41,8 +41,13 @@ export class PatientSidebar extends React.Component {
         display: 'inline-block',
         position: 'relative'
       },
-      indexRoute: '/'
+      indexRoute: '/',
+      isLoggedIn: false
     };
+
+    if(Meteor.userId()){
+      data.isLoggedIn = true;
+    }
 
     // but normally we just use the default route specified in settings.json
     if(get(Meteor, 'settings.public.defaults.route')){
@@ -63,39 +68,41 @@ export class PatientSidebar extends React.Component {
   render () {
 
     var index;
-    if(!get(Meteor, 'settings.public.defaults.sidebar.hideIndex')){
-      index = <LinkContainer to={ this.data.indexRoute } >
-        <MenuItem id="indexPageItem" className="indexItem" href={ this.data.indexRoute } primaryText='Index' />
-      </LinkContainer>;
-      // index = <LinkContainer to='/'>
-      //   <MenuItem className="indexItem" href='/' primaryText='Index' />
-      // </LinkContainer>;
-    }
-    
-    //----------------------------------------------------------------------
-    // Core Modules 
-
     var healthlog;
-
-    if(get(Meteor, 'settings.public.modules.healthlog')){
-      healthlog = <LinkContainer to='/weblog'>
-        <MenuItem primaryText='Healthlog' href='/weblog' />
-      </LinkContainer>;
-    }
-
-    //----------------------------------------------------------------------
-    // Dynamic Modules  
-
     var dynamicElements = [];
-    dynamicModules.map(function(element, index){ 
 
-      // the excludes array will hide routes
-      if(!get(Meteor, 'settings.public.defaults.sidebar.hidden', []).includes(element.to)){
-        dynamicElements.push(<LinkContainer to={element.to} key={index}>
-          <MenuItem primaryText={element.primaryText} href={element.href} />
-        </LinkContainer>);
+    if(this.data.isLoggedIn){
+      if(!get(Meteor, 'settings.public.defaults.sidebar.hideIndex')){
+        index = <LinkContainer to={ this.data.indexRoute } >
+          <MenuItem id="indexPageItem" className="indexItem" href={ this.data.indexRoute } primaryText='Index' />
+        </LinkContainer>;
+        // index = <LinkContainer to='/'>
+        //   <MenuItem className="indexItem" href='/' primaryText='Index' />
+        // </LinkContainer>;
       }
-    });
+      
+      //----------------------------------------------------------------------
+      // Core Modules 
+
+      if(get(Meteor, 'settings.public.modules.healthlog')){
+        healthlog = <LinkContainer to='/weblog'>
+          <MenuItem primaryText='Healthlog' href='/weblog' />
+        </LinkContainer>;
+      }
+
+      //----------------------------------------------------------------------
+      // Dynamic Modules  
+
+      dynamicModules.map(function(element, index){ 
+
+        // the excludes array will hide routes
+        if(!get(Meteor, 'settings.public.defaults.sidebar.hidden', []).includes(element.to)){
+          dynamicElements.push(<LinkContainer to={element.to} key={index}>
+            <MenuItem primaryText={element.primaryText} href={element.href} />
+          </LinkContainer>);
+        }
+      });
+    }
 
     return(
       <div id='patientSidebar'>
@@ -119,6 +126,14 @@ export class PatientSidebar extends React.Component {
           <hr />
           <LinkContainer to='/theming'>
              <MenuItem primaryText='Theming' href='/theming' />
+          </LinkContainer>
+
+          <LinkContainer to='/tutorial-board'>
+             <MenuItem primaryText='Tutorial Board' href='/tutorial-board' />
+          </LinkContainer>
+
+          <LinkContainer to='/privacy'>
+             <MenuItem primaryText='Privacy Policy' href='/privacy' />
           </LinkContainer>
 
           <LinkContainer to='/about'>

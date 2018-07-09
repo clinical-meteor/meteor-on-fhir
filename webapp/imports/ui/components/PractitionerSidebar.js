@@ -53,6 +53,7 @@ export class PractitionerSidebar extends React.Component {
           <LinkContainer to='/data-management'>
              <MenuItem primaryText='Data Management' href='/theming' />
           </LinkContainer>
+          
           <LinkContainer to='/users'>
              <MenuItem primaryText='Users' href='/users' />
           </LinkContainer>
