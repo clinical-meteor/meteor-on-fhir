@@ -135,6 +135,13 @@ if(Package['clinical:hl7-resource-patient']){
   });
 }
 
+if(Package['clinical:hl7-resource-person']){
+  Persons.allow({
+    update() { return true; },
+    insert() { return true; },
+    remove() { return true; }
+  });
+}
 if(Package['clinical:hl7-resource-practitioner']){
   Practitioners.allow({
     update() { return true; },
@@ -150,7 +157,13 @@ if(Package['clinical:hl7-resource-procedure']){
     remove() { return true; }
   });
 }
-
+if(Package['clinical:hl7-resource-related-person']){
+  RelatedPersons.allow({
+    update() { return true; },
+    insert() { return true; },
+    remove() { return true; }
+  });
+}
 if(Package['clinical:hl7-resource-risk-assessment']){
   RiskAssessments.allow({
     update() { return true; },

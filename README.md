@@ -129,11 +129,12 @@ NODE_ENV=dev meteor --mobile-server http://localhost:3000 --settings configs/set
 # then to run the desktop app locally...
 npm run desktop
 
-# or try the shortcut script
-meteor npm run-script desktop
+### or try the shortcut script
+# meteor npm run-script desktop
 
 # If you want to build a production release, that connects to the main server, you'll need to specify a different URL
 meteor --mobile-server http://www.symptomatic.io --settings configs/settings.galaxy.json
+
 npm run desktop -- build-installer http://www.symptomatic.io
 ```    
 

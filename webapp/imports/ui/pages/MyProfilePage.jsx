@@ -26,7 +26,7 @@ import { browserHistory } from 'react-router';
 import { removeUserById } from '/imports/api/users/methods';
 
 import { PatientCard } from 'meteor/clinical:hl7-resource-patient';
-
+import { moment } from 'meteor/momentjs:moment';
 
 
 let defaultState = {
@@ -182,9 +182,13 @@ export class MyProfilePage extends React.Component {
 
       // if (Meteor.user() && Meteor.user().profile && Meteor.user().profile.name) {
       if(get(Meteor.user(), 'profile.name')) {
-        data.user.given = get(Meteor.user(), 'profile.name.given');
+        data.user.given = get(Meteor.user(), 'profile.name.given[0]');
         data.user.family = get(Meteor.user(), 'profile.name.family')
-        data.user.fullName = get(Meteor.user(), 'profile.name.given') + ' ' + get(Meteor.user(), 'profile.name.family');
+        if(get(Meteor.user(), 'profile.name.text')){
+          data.user.fullName = get(Meteor.user(), 'profile.name.text');
+        } else {
+          data.user.fullName = get(Meteor.user(), 'profile.name.given[0]') + ' ' + get(Meteor.user(), 'profile.name.family');          
+        }
       } else {
         data.user.given = '';
         data.user.family = '';
@@ -195,6 +199,9 @@ export class MyProfilePage extends React.Component {
         data.user.gender = get(Meteor.user(), 'profile.gender');
       }
 
+      if(get(Meteor.user(), 'profile.birthDate')) {
+        data.user.birthdate = get(Meteor.user(), 'profile.birthDate');
+      }
       
       // if(Meteor.user() && Meteor.user().profile && Meteor.user().profile.locations  && Meteor.user().profile.locations.home && Meteor.user().profile.locations.home.address){
       if(get(Meteor.user(), 'profile.locations.home.address')){
@@ -323,10 +330,8 @@ export class MyProfilePage extends React.Component {
       data.style.photo.top = '74px';
       data.style.photo.position = 'absolute';
       data.style.photo.zIndex = 10;
-      data.style.synopsis.marginLeft = '160px;'
-      //data.header.photo = null;
+      data.style.synopsis.marginLeft = '160px;';
     } else {
-      //data.style.photo.display = 'none';
       data.style.photo.height = '50px';
       data.style.photo.width = '50px';
       data.style.photo.left = '-50px';
@@ -336,7 +341,9 @@ export class MyProfilePage extends React.Component {
       data.style.synopsis.marginLeft = '0px;'
     }
 
-    if(process.env.NODE_ENV === "test") console.log("MyProfilePage[data]" , data);
+    if(["test", "development"].includes(process.env.NODE_ENV)) {
+      console.log("MyProfilePage[data]" , data);
+    }
     return data;
   }
 
@@ -511,9 +518,9 @@ export class MyProfilePage extends React.Component {
           <PatientCard
             fullName={ get(this, 'data.user.fullName', '') }
             email={ get(this, 'data.user.email', '') }
-            givenName={ get(this, 'data.user.givenName', '') }
-            familyName={ get(this, 'data.user.familyName', '') }
-            birthdate={this.data.user.birthdate}
+            givenName={ get(this, 'data.user.given', '') }
+            familyName={ get(this, 'data.user.family', '') }
+            birthdate={ moment(this.data.user.birthdate).format('YYYY-MM-DD') }
             gender={ get(this, 'data.user.gender', '') }
             avatar={ get(this, 'data.user.avatar', '') }
             updateGivenName={ this.updateGivenName }

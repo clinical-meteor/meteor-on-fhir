@@ -17,6 +17,7 @@ let DailyStats = {
         organizations: 0,
         observations: 0,
         patients: 0,
+        persons: 0,
         practitioners: 0,
         procedures: 0,
         questionnaires: 0
@@ -76,11 +77,17 @@ let DailyStats = {
       newDailyStat.practitionersCount = Practitioners.find().count();
       newDailyStat.counts.practitioners = Practitioners.find().count();
     }
+    if (typeof Persons === 'object') {
+      newDailyStat.counts.persons = Persons.find().count();
+    }
     if (typeof Questionnaires === 'object') {
       newDailyStat.counts.questionnaires = Questionnaires.find().count();
     }
     if (typeof QuestionnaireResponses === 'object') {
       newDailyStat.counts.questionnaireResponses = QuestionnaireResponses.find().count();
+    }
+    if (typeof RelatedPersons === 'object') {
+      newDailyStat.counts.relatedPersons = RelatedPersons.find().count();
     }
     if (typeof RiskAssessments === 'object') {
       newDailyStat.counts.riskAssessments = RiskAssessments.find().count();

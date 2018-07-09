@@ -106,6 +106,11 @@ export class GlassApp extends React.Component {
     data.app.style.height = '100%';
     data.app.style.position = 'fixed';
 
+    data.app.style.WebkitBackgroundSize = 'cover';
+    data.app.style.MozBackgroundSize = 'cover';
+    data.app.style.OBackgroundSize = 'cover';
+    data.app.style.backgroundSize = 'cover';
+
     if(process.env.NODE_ENV === "test") console.log("GlassApp[data]" , data);
     if(process.env.NODE_ENV === "test") console.log("Meteor.settings" , Meteor.settings);
 
@@ -130,7 +135,7 @@ export class GlassApp extends React.Component {
 
     return style;
   }
-  renderBackground(showVideoBackground){
+  renderVideo(showVideoBackground){
     if (showVideoBackground) {
       let videoSrc = '/VideoBackgrounds/Circulation.mp4';
       if (Meteor.settings.public.theme.defaultVideo) {
@@ -153,7 +158,7 @@ export class GlassApp extends React.Component {
   render(){
     return (
       <div id="glassApp">
-        {this.renderBackground(this.data.app.showVideoBackground)}
+        {this.renderVideo(this.data.app.showVideoBackground)}
         <div style={this.data.app.style}>
           {this.props.children}
         </div>

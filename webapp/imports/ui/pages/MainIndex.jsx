@@ -98,8 +98,11 @@ export class MainIndex extends React.Component {
         medicationStatements: 0,
         observations: 0,
         organizations: 0,
+        patients: 0,
+        persons: 0,
         practitioners: 0,
         procedures: 0,
+        relatedPersons: 0,
         riskAssessments: 0
       },
       filterMainTiles: Session.get('filterMainTiles'),
@@ -151,6 +154,12 @@ export class MainIndex extends React.Component {
     if( typeof Procedures === "object" ){
       data.local.procedures = Procedures.find().count();
     }
+    if( typeof Persons === "object" ){
+      data.local.persons = Persons.find().count();
+    }
+    if( typeof RelatedPersons === "object" ){
+      data.local.relatedPersons = RelatedPersons.find().count();
+    }
     if( typeof RiskAssessments === "object" ){
       data.local.riskAssessments = RiskAssessments.find().count();
     }
@@ -189,13 +198,6 @@ export class MainIndex extends React.Component {
     var tilesToRender = [];
             
     var tileConfigs = [{
-      collection: "Immunizations",
-      id: 'immunizationsTile',
-      active: true,
-      path: '/immunizations',
-      icon: 'EyeDropper',
-      subtitle: 'Immunizations',
-    }, {
       collection: "AllergyIntolerances",
       id: 'allergyIntoleranceTile',
       active: true,
@@ -203,40 +205,61 @@ export class MainIndex extends React.Component {
       icon: 'StreetView',
       subtitle: 'Allergy Intolerances'
     }, {
-      collection: "Procedures",
-      id: 'proceduresTile',
+      collection: "CarePlans",
+      id: 'carePlansTile',
       active: true,
-      path: '/procedures',
-      icon: 'Nuclear',
-      subtitle: 'Procedures'
+      path: '/care-plans',
+      icon: 'Clipboard',
+      subtitle: 'Care Plan'
     }, {
-      collection: "Patients",
-      id: 'patientsTile',
+      collection: "Conditions",
+      id: 'conditionsTile',
       active: true,
-      path: '/patients',
-      icon: 'Person',
-      subtitle: 'Patients'
+      path: '/conditions',
+      icon: 'Heartbeat',
+      subtitle: 'Conditions'
     }, {
-      collection: "Practitioners",
-      id: 'practitionersTile',
+      collection: "Consents",
+      id: 'consents',
       active: true,
-      path: '/practitioners',
-      icon: 'Person',
-      subtitle: 'Practitioners'
+      path: '/consents',
+      icon: 'Clipboard',
+      subtitle: 'Consents'
     }, {
-      collection: "Observations",
-      id: 'observationsTile',
+      collection: "Contracts",
+      id: 'contracts',
       active: true,
-      path: '/observations',
-      icon: 'Pulse',
-      subtitle: 'Observations'
+      path: '/contracts',
+      icon: 'Clipboard',
+      subtitle: 'Contracts'
     }, {
-      collection: "Organizations",
-      id: 'organizationsTile',
+      collection: "DiagnosticReports",
+      id: 'diagnosticReportsTile',
       active: true,
-      path: '/organizations',
-      icon: 'Building',
-      subtitle: 'Organizations'
+      path: '/diagnostic-reports',
+      icon: 'Clipboard',
+      subtitle: 'Diagnostic Reports'
+    }, {
+      collection: "Devices",
+      id: 'devicesTile',
+      active: true,
+      path: '/devices',
+      icon: 'Mobile',
+      subtitle: 'Devices'
+    }, {
+      collection: "Goals",
+      id: 'goalsTile',
+      active: true,
+      path: '/goals',
+      icon: 'NoSmoking',
+      subtitle: 'Goals'
+    }, {
+      collection: "Immunizations",
+      id: 'immunizationsTile',
+      active: true,
+      path: '/immunizations',
+      icon: 'EyeDropper',
+      subtitle: 'Immunizations',
     }, {
       collection: "Locations",
       id: 'locationsTile',
@@ -259,12 +282,75 @@ export class MainIndex extends React.Component {
       icon: 'Flask',
       subtitle: 'Medications'
     }, {
-      collection: "Devices",
-      id: 'devicesTile',
+      collection: "MedicationStatements",
+      id: 'medicationStatementsTile',
       active: true,
-      path: '/devices',
-      icon: 'Mobile',
-      subtitle: 'Devices'
+      path: '/medication-statements',
+      icon: 'MdLocalPhramacy',
+      subtitle: 'Medication Statements'
+    }, {
+      collection: "MedicationOrders",
+      id: 'medicationOrderTile',
+      active: true,
+      path: '/medication-orders',
+      icon: 'MdLocalPhramacy',
+      subtitle: 'Medication Orders'
+    }, {
+      collection: "Observations",
+      id: 'observationsTile',
+      active: true,
+      path: '/observations',
+      icon: 'Pulse',
+      subtitle: 'Observations'
+    }, {
+      collection: "Organizations",
+      id: 'organizationsTile',
+      active: true,
+      path: '/organizations',
+      icon: 'Building',
+      subtitle: 'Organizations'
+    }, {
+      collection: "Patients",
+      id: 'patientsTile',
+      active: true,
+      path: '/patients',
+      icon: 'Person',
+      subtitle: 'Patients'
+    }, {
+      collection: "Persons",
+      id: 'personsTile',
+      active: true,
+      path: '/persons',
+      icon: 'Person',
+      subtitle: 'Persons'
+    }, {
+      collection: "Procedures",
+      id: 'proceduresTile',
+      active: true,
+      path: '/procedures',
+      icon: 'Nuclear',
+      subtitle: 'Procedures'
+    }, {
+      collection: "Practitioners",
+      id: 'practitionersTile',
+      active: true,
+      path: '/practitioners',
+      icon: 'Person',
+      subtitle: 'Practitioners'
+    }, {
+      collection: "Questionnaires",
+      id: 'questionnaires',
+      active: true,
+      path: '/questionnaires',
+      icon: 'Clipboard',
+      subtitle: 'Questionnaire'
+    }, {
+      collection: "QuestionnaireResponses",
+      id: 'questionnaireResponse',
+      active: true,
+      path: '/questionnaire-responses',
+      icon: 'Clipboard',
+      subtitle: 'Questionnaire Resposes'
     }, {
       collection: "RiskAssessments",
       id: 'riskAssessmentsTile',
@@ -273,48 +359,13 @@ export class MainIndex extends React.Component {
       icon: 'MdAddAlert',
       subtitle: 'Risk Assessments'
     }, {
-      collection: "Conditions",
-      id: 'conditionsTile',
+      collection: "RelatedPersons",
+      id: 'relatedPersons',
       active: true,
-      path: '/conditions',
-      icon: 'Heartbeat',
-      subtitle: 'Conditions'
-    }, {
-      collection: "MedicationStatements",
-      id: 'medicationStatementsTile',
-      active: true,
-      path: '/medication-statements',
-      icon: 'MdLocalPhramacy',
-      subtitle: 'Medication Statements'
-    }, {
-      collection: "DiagnosticReports",
-      id: 'diagnosticReportsTile',
-      active: true,
-      path: '/diagnostic-reports',
-      icon: 'Clipboard',
-      subtitle: 'Diagnostic Reports'
-    }, {
-      collection: "Goals",
-      id: 'goalsTile',
-      active: true,
-      path: '/goals',
-      icon: 'NoSmoking',
-      subtitle: 'Goals'
-    }, {
-      collection: "CarePlans",
-      id: 'carePlansTile',
-      active: true,
-      path: '/care-plans',
-      icon: 'Clipboard',
-      subtitle: 'Care Plan'
-    }, {
-      collection: "MedicationOrders",
-      id: 'medicationOrderTile',
-      active: true,
-      path: '/medication-orders',
-      icon: 'MdLocalPhramacy',
-      subtitle: 'Medication Orders'
-    } ];
+      path: '/related-persons',
+      icon: 'Person',
+      subtitle: 'RelatedPersons'
+    }];
 
 
 
@@ -419,16 +470,7 @@ export class MainIndex extends React.Component {
       </div>
     );
   }
-  // renderTile()
-  // // id, active, path, icon, subtitle
-  // {
-  //   id: 'immunizationsTile',
-  //   active: true,
-  //   path: '/immunizations',
-  //   icon: 'EyeDropper',
-  //   title: this.data.local.immunizations,
-  //   subtitle: 'Immunizations'
-  // }
+
 
   renderTile(user, tileConfig){
     if (user.isPatient || user.isPractitioner || user.isAdmin) {

@@ -11,9 +11,9 @@ import { get } from 'lodash';
 // Pick up any dynamic routes that are specified in packages, and include them
 var publicModules = [];
 Object.keys(Package).forEach(function(packageName){
-  if(Package[packageName].SidebarElements){
+  if(Package[packageName].PublicSidebarElements){
     // we try to build up a route from what's specified in the package
-    Package[packageName].SidebarElements.forEach(function(element){
+    Package[packageName].PublicSidebarElements.forEach(function(element){
       publicModules.push(element);      
     });    
   }
@@ -36,15 +36,21 @@ export class PublicSidebar extends React.Component {
       listItem: {
         display: 'inline-block',
         position: 'relative'
-      }
+      },
+      isLoggedIn: false
     };
-
+    if(Meteor.userId()){
+      data.isLoggedIn = true;
+    }
     return data;
   }
 
   render () {
 
     var index;
+    var publicElements = [];
+
+
     if(get(Meteor, 'settings.public.defaults.sidebar.showIndex')){
       index = <IndexLinkContainer to='/signup'>
         <MenuItem primaryText='Register' href='/signup' />
@@ -54,7 +60,6 @@ export class PublicSidebar extends React.Component {
     //----------------------------------------------------------------------
     // Public Modules  
 
-    var publicElements = [];
     publicModules.map(function(element, index){ 
 
       // the excludes array will hide routes
@@ -86,6 +91,10 @@ export class PublicSidebar extends React.Component {
 
         <IndexLinkContainer to='/about'>
            <MenuItem primaryText='About' href='/about' />
+        </IndexLinkContainer>
+
+        <IndexLinkContainer to='/tutorial-board'>
+           <MenuItem primaryText='Tutorial' href='/tutorial-board' />
         </IndexLinkContainer>
 
         <IndexLinkContainer to='/privacy'>
