@@ -150,7 +150,7 @@ symptomatic:geomapping
 
 
 ### Blockchains
-symptomatic:blockchain-core
+# symptomatic:blockchain-core
 # fhirblocks:core
 
 
@@ -166,3 +166,5 @@ omega:meteor-desktop-bundler@=1.3.0
 ### Data Publication Rules  
 clinical:desktop-publish
 symptomatic:landing-page
+
+force-ssl
