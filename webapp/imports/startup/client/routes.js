@@ -154,7 +154,13 @@ Meteor.startup(() => {
         <Route name="oauthGrants" path="/oauth-grants" component={ AuthorizationGrantsPage }  onEnter={ requireAuth }/>
         {/* <Route name="oauthClient" path="/oauth-client" component={ OAuthClientPage }  onEnter={ requireAuth }/> */}
         
-        { dynamicRoutes.map(route => <Route name={route.name} key={route.name} path={route.path} component={ route.component } />) }
+        { dynamicRoutes.map(route => <Route 
+          name={route.name} 
+          key={route.name} 
+          path={route.path} 
+          component={ route.component } 
+          onEnter={ route.requireAuth ? requireAuth : null } 
+          />) }
               
         <Route path="*" component={ NotFound } />              
       </Route>
