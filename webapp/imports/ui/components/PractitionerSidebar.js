@@ -37,7 +37,7 @@ export class PractitionerSidebar extends React.Component {
         <List style={{paddingLeft: '20px', position: 'static'}}>
 
           <LinkContainer to='/'>
-             <MenuItem primaryText='Index' href='/' />
+            <MenuItem id="indexPageItem" className="indexItem" href='/' primaryText='Index' />
           </LinkContainer>
 
           <hr />
