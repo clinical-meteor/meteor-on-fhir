@@ -144,15 +144,12 @@ Meteor.startup(() => {
 
         <Route name="welcomePatient" path="/welcome/patient" component={ WelcomePatientPage } onEnter={ requireAuth }/>
 
-        {/* <Route name="appInfo" path="/info" component={ AppInfoPage } /> */}
-
         <Route name="checklists" path="/checklists" component={ ChecklistsPage }  onEnter={ requireAuth }/>
         <Route name="notifications" path="/notifications" component={ NotificationsPage }  onEnter={ requireAuth }/>
 
         <Route name="password" path="/password" component={ PasswordManagementPage }  onEnter={ requireAuth }/>
         <Route name="preferences" path="/preferences" component={ PreferencesPage }  onEnter={ requireAuth }/>
         <Route name="oauthGrants" path="/oauth-grants" component={ AuthorizationGrantsPage }  onEnter={ requireAuth }/>
-        {/* <Route name="oauthClient" path="/oauth-client" component={ OAuthClientPage }  onEnter={ requireAuth }/> */}
         
         { dynamicRoutes.map(route => <Route 
           name={route.name} 
