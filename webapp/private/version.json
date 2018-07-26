@@ -1,7 +1,7 @@
 {
     "basic": "v1.0-prerelease-3",
-    "complete": "v1.0-prerelease-3",
-    "branch": "hotfix-requireAuth",
-    "commit": "a6537143bed74702d4112001f2481e4dd1ea180a",
-    "timestamp": "2018-07-04"
+    "complete": "v1.0-prerelease-3-6-gf1a103d",
+    "branch": "master",
+    "commit": "f1a103d74e1590dec95975efc36160415440ed89",
+    "timestamp": "2018-07-25"
 }
