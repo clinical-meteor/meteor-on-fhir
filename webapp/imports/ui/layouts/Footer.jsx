@@ -468,6 +468,9 @@ export class Footer extends React.Component {
               notes: ''
             });
           })}  style={this.data.style.buttonText} ></FlatButton>
+
+          <FlatButton label='Filter' className='querySystemButton' ref='querySystemButton'></FlatButton>
+
         </div>
       );
     

@@ -66,6 +66,9 @@ Meteor.startup(function (){
     },
     passwordSignupFields: 'USERNAME_AND_OPTIONAL_EMAIL'
   });  
+
+
+  
 });
 
 

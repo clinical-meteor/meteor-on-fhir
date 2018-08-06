@@ -9,6 +9,8 @@ import { App } from '/imports/ui/layouts/App';
 
 import { AppInfoPage } from '/imports/ui/pages/AppInfoPage';
 import { MainIndex } from '/imports/ui/pages/MainIndex';
+import { FhirResourcesIndex } from '/imports/ui/pages/FhirResourcesIndex';
+
 import { Meteor } from 'meteor/meteor';
 import { NotFound } from '/imports/ui/pages/NotFound';
 import { NotificationsPage } from '/imports/ui/pages/NotificationsPage';
@@ -129,6 +131,8 @@ Meteor.startup(() => {
     <Router history={ browserHistory }>
       <Route path="/" component={ App }>
       <IndexRoute name="index" component={ MainIndex } onEnter={ requireAuth } />
+
+        <Route name="fhirResources" path="/fhir-resources-index" component={ FhirResourcesIndex } />
 
         <Route name="signin" path="/signin" component={ Signin } />
         <Route name="recover-password" path="/recover-password" component={ RecoverPassword } />
