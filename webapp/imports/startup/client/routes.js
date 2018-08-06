@@ -21,6 +21,9 @@ import { ThemePage } from '/imports/ui/pages/ThemePage';
 import { UsersPage } from '/imports/ui/pages/UsersPage';
 import { WelcomePatientPage } from '/imports/ui/pages/WelcomePatientPage';
 import { WelcomePractitionerPage } from '/imports/ui/pages/WelcomePractitionerPage';
+import { WelcomeAdminPage } from '/imports/ui/pages/WelcomeAdminPage';
+
+
 import { MyProfilePage } from '/imports/ui/pages/MyProfilePage';
 
 import { PreferencesPage } from '/imports/ui/pages/PreferencesPage';
@@ -141,6 +144,7 @@ Meteor.startup(() => {
 
         <Route name="welcomePatient" path="/welcome/patient" component={ WelcomePatientPage } onEnter={ requireAuth }/>
         <Route name="welcomePractitioner" path="/welcome/practitioner" component={ WelcomePractitionerPage } onEnter={ requireAuth }/>
+        <Route name="welcomeAdmin" path="/welcome/sysadmin" component={ WelcomeAdminPage } onEnter={ requireAuth }/>
 
         <Route name="checklists" path="/checklists" component={ ChecklistsPage }  onEnter={ requireAuth }/>
         <Route name="notifications" path="/notifications" component={ NotificationsPage }  onEnter={ requireAuth }/>

@@ -144,6 +144,8 @@ export class Signup extends React.Component {
         // and inform them about their obligations regarding HIPAA
         } else if (Roles.userIsInRole(Meteor.userId(), 'practitioner') && get(Meteor.user(), 'profile.firstTimeVisit')) {
             browserHistory.push('/welcome/practitioner');
+        } else if (Roles.userIsInRole(Meteor.userId(), 'sysadmin') && get(Meteor.user(), 'profile.firstTimeVisit')) {
+            browserHistory.push('/welcome/sysadmin');
         } else {
           // otherwise we go to the default route specified in the settings.json file
           if(get(Meteor, 'settings.public.defaults.route')){
