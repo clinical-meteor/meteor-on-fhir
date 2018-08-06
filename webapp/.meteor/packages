@@ -153,4 +153,10 @@ clinical:hl7-resource-consent
 clinical:hl7-resource-contract
 
 ### GitHub Community Versions
-# clinical:example-plugin
+symptomatic:example-plugin
+
+clinical:smart-on-fhir-client
+symptomatic:geomapping
+symptomatic:theming
+symptomatic:landing-page
+symptomatic:continuity-of-care
