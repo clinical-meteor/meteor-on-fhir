@@ -252,8 +252,21 @@ For more details on running Dockerized Meteor apps in production, see:
 https://projectricochet.com/blog/production-meteor-and-node-using-docker-part-vi
 
 
+#### Trouble Shooting
+```sh
+# Browser ERROR: 404 "/example-route" does not exist
+# A quick fix is edit the "route" to "/hello-world" in the webapp/packages/example-plugin/configs/settings.example.json 
+# "defaults": {
+#       "route": "/hello-world",
+#       ...
+#       }
+
+# ERROR: Failed to connect to 127.0.0.1:27017
+# You may need to restart mongod with the correct dbpath. Example:  
+mongod --dbpath ~/meteor-on-fhir/webapp/packages/example-plugin/data
 
 
+```
 
 #### Miscellaneous References    
 [Supporting Interoperability – Terminology, Subsets and Other Resources from Natl. Library of Medicine](https://www.nlm.nih.gov/hit_interoperability.html)  
