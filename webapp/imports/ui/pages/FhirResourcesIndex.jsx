@@ -386,35 +386,19 @@ export class FhirResourcesIndex extends React.Component {
       </Col>
       <Col sm={3} style={this.data.style.column}>
         {this.renderTimeline(this.data.user)}
-        {/* {this.renderVideoconferencing(this.data.user)} */}
       </Col>
-      {/* <Col sm={3} style={this.data.style.column}>
-        {this.renderZygote(this.data.user)}
-      </Col> */}
     </Row>
 
 
     return (
-      <div id='indexPage'>
+      <div id='fhirResourcesIndexPage'>
         <VerticalCanvas>
           <div>
-
-            {this.renderAdminTiles(this.data.user)}
-
-            {this.renderAppsSection(this.data.user)}
-            { appRow }
-
             {this.renderFhirSection(this.data.user)}
             <Row>
               { tilesToRender }
             </Row>
-
-            <br/>
-            {this.renderUnderConstructionSection(this.data.user)}          
-
-            {this.renderExperimentalSection(this.data.user)}
           </div>
-
         </VerticalCanvas>
       </div>
     );

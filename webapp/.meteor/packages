@@ -101,6 +101,8 @@ clinical:hipaa-logger
 clinical:glass-ui
 clinical:default-landing-page
 clinical:alert
+clinical:ihealth-cloud-api
+# clinical:autopublish
 
 ### Fast Healthcare Interoperability Resources
 clinical:hl7-resource-allergy-intolerance
@@ -127,9 +129,6 @@ clinical:hl7-resource-procedure
 clinical:hl7-resource-questionnaire
 clinical:hl7-resource-risk-assessment
 clinical:hl7-resource-subscription
-
-# clinical:smart-on-fhir-client
-# clinical:oauth
 
 
 d3js:d3

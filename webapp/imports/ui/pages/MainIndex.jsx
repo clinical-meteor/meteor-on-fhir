@@ -188,188 +188,188 @@ export class MainIndex extends React.Component {
 
     var tilesToRender = [];
             
-    var tileConfigs = [{
-      collection: "Immunizations",
-      id: 'immunizationsTile',
-      active: true,
-      path: '/immunizations',
-      icon: 'EyeDropper',
-      subtitle: 'Immunizations',
-    }, {
-      collection: "AllergyIntolerances",
-      id: 'allergyIntoleranceTile',
-      active: true,
-      path: '/allergies',
-      icon: 'StreetView',
-      subtitle: 'Allergy Intolerances'
-    }, {
-      collection: "Procedures",
-      id: 'proceduresTile',
-      active: true,
-      path: '/procedures',
-      icon: 'Nuclear',
-      subtitle: 'Procedures'
-    }, {
-      collection: "Patients",
-      id: 'patientsTile',
-      active: true,
-      path: '/patients',
-      icon: 'Person',
-      subtitle: 'Patients'
-    }, {
-      collection: "Practitioners",
-      id: 'practitionersTile',
-      active: true,
-      path: '/practitioners',
-      icon: 'Person',
-      subtitle: 'Practitioners'
-    }, {
-      collection: "Observations",
-      id: 'observationsTile',
-      active: true,
-      path: '/observations',
-      icon: 'Pulse',
-      subtitle: 'Observations'
-    }, {
-      collection: "Organizations",
-      id: 'organizationsTile',
-      active: true,
-      path: '/organizations',
-      icon: 'Building',
-      subtitle: 'Organizations'
-    }, {
-      collection: "Locations",
-      id: 'locationsTile',
-      active: true,
-      path: '/locations',
-      icon: 'MapMarker',
-      subtitle: 'Locations'
-    }, {
-      collection: "Lists",
-      id: 'listsTile',
-      active: true,
-      path: '/checklists',
-      icon: 'MapMarker',
-      subtitle: 'Lists'
-    }, {
-      collection: "Medications",
-      id: 'medicationsTile',
-      active: true,
-      path: '/medications',
-      icon: 'Flask',
-      subtitle: 'Medications'
-    }, {
-      collection: "Devices",
-      id: 'devicesTile',
-      active: true,
-      path: '/devices',
-      icon: 'Mobile',
-      subtitle: 'Devices'
-    }, {
-      collection: "RiskAssessments",
-      id: 'riskAssessmentsTile',
-      active: true,
-      path: '/risk-assessments',
-      icon: 'MdAddAlert',
-      subtitle: 'Risk Assessments'
-    }, {
-      collection: "Conditions",
-      id: 'conditionsTile',
-      active: true,
-      path: '/conditions',
-      icon: 'Heartbeat',
-      subtitle: 'Conditions'
-    }, {
-      collection: "MedicationStatements",
-      id: 'medicationStatementsTile',
-      active: true,
-      path: '/medication-statements',
-      icon: 'MdLocalPhramacy',
-      subtitle: 'Medication Statements'
-    }, {
-      collection: "DiagnosticReports",
-      id: 'diagnosticReportsTile',
-      active: true,
-      path: '/diagnostic-reports',
-      icon: 'Clipboard',
-      subtitle: 'Diagnostic Reports'
-    }, {
-      collection: "Goals",
-      id: 'goalsTile',
-      active: true,
-      path: '/goals',
-      icon: 'NoSmoking',
-      subtitle: 'Goals'
-    }, {
-      collection: "CarePlans",
-      id: 'carePlansTile',
-      active: true,
-      path: '/care-plans',
-      icon: 'Clipboard',
-      subtitle: 'Care Plan'
-    }, {
-      collection: "MedicationOrders",
-      id: 'medicationOrderTile',
-      active: true,
-      path: '/medication-orders',
-      icon: 'MdLocalPhramacy',
-      subtitle: 'Medication Orders'
-    } ];
+    // var tileConfigs = [{
+    //   collection: "Immunizations",
+    //   id: 'immunizationsTile',
+    //   active: true,
+    //   path: '/immunizations',
+    //   icon: 'EyeDropper',
+    //   subtitle: 'Immunizations',
+    // }, {
+    //   collection: "AllergyIntolerances",
+    //   id: 'allergyIntoleranceTile',
+    //   active: true,
+    //   path: '/allergies',
+    //   icon: 'StreetView',
+    //   subtitle: 'Allergy Intolerances'
+    // }, {
+    //   collection: "Procedures",
+    //   id: 'proceduresTile',
+    //   active: true,
+    //   path: '/procedures',
+    //   icon: 'Nuclear',
+    //   subtitle: 'Procedures'
+    // }, {
+    //   collection: "Patients",
+    //   id: 'patientsTile',
+    //   active: true,
+    //   path: '/patients',
+    //   icon: 'Person',
+    //   subtitle: 'Patients'
+    // }, {
+    //   collection: "Practitioners",
+    //   id: 'practitionersTile',
+    //   active: true,
+    //   path: '/practitioners',
+    //   icon: 'Person',
+    //   subtitle: 'Practitioners'
+    // }, {
+    //   collection: "Observations",
+    //   id: 'observationsTile',
+    //   active: true,
+    //   path: '/observations',
+    //   icon: 'Pulse',
+    //   subtitle: 'Observations'
+    // }, {
+    //   collection: "Organizations",
+    //   id: 'organizationsTile',
+    //   active: true,
+    //   path: '/organizations',
+    //   icon: 'Building',
+    //   subtitle: 'Organizations'
+    // }, {
+    //   collection: "Locations",
+    //   id: 'locationsTile',
+    //   active: true,
+    //   path: '/locations',
+    //   icon: 'MapMarker',
+    //   subtitle: 'Locations'
+    // }, {
+    //   collection: "Lists",
+    //   id: 'listsTile',
+    //   active: true,
+    //   path: '/checklists',
+    //   icon: 'MapMarker',
+    //   subtitle: 'Lists'
+    // }, {
+    //   collection: "Medications",
+    //   id: 'medicationsTile',
+    //   active: true,
+    //   path: '/medications',
+    //   icon: 'Flask',
+    //   subtitle: 'Medications'
+    // }, {
+    //   collection: "Devices",
+    //   id: 'devicesTile',
+    //   active: true,
+    //   path: '/devices',
+    //   icon: 'Mobile',
+    //   subtitle: 'Devices'
+    // }, {
+    //   collection: "RiskAssessments",
+    //   id: 'riskAssessmentsTile',
+    //   active: true,
+    //   path: '/risk-assessments',
+    //   icon: 'MdAddAlert',
+    //   subtitle: 'Risk Assessments'
+    // }, {
+    //   collection: "Conditions",
+    //   id: 'conditionsTile',
+    //   active: true,
+    //   path: '/conditions',
+    //   icon: 'Heartbeat',
+    //   subtitle: 'Conditions'
+    // }, {
+    //   collection: "MedicationStatements",
+    //   id: 'medicationStatementsTile',
+    //   active: true,
+    //   path: '/medication-statements',
+    //   icon: 'MdLocalPhramacy',
+    //   subtitle: 'Medication Statements'
+    // }, {
+    //   collection: "DiagnosticReports",
+    //   id: 'diagnosticReportsTile',
+    //   active: true,
+    //   path: '/diagnostic-reports',
+    //   icon: 'Clipboard',
+    //   subtitle: 'Diagnostic Reports'
+    // }, {
+    //   collection: "Goals",
+    //   id: 'goalsTile',
+    //   active: true,
+    //   path: '/goals',
+    //   icon: 'NoSmoking',
+    //   subtitle: 'Goals'
+    // }, {
+    //   collection: "CarePlans",
+    //   id: 'carePlansTile',
+    //   active: true,
+    //   path: '/care-plans',
+    //   icon: 'Clipboard',
+    //   subtitle: 'Care Plan'
+    // }, {
+    //   collection: "MedicationOrders",
+    //   id: 'medicationOrderTile',
+    //   active: true,
+    //   path: '/medication-orders',
+    //   icon: 'MdLocalPhramacy',
+    //   subtitle: 'Medication Orders'
+    // } ];
 
 
 
 
-    // first we need to figure out which tiles to render
-    if(get(Meteor, 'settings.public.modules.fhir')){
-      var fhirResources = get(Meteor, 'settings.public.modules.fhir');
+    // // first we need to figure out which tiles to render
+    // if(get(Meteor, 'settings.public.modules.fhir')){
+    //   var fhirResources = get(Meteor, 'settings.public.modules.fhir');
 
-      var count = 0;
-      // parse through each FHIR module specified in the Settings file
-      Object.keys(fhirResources).forEach(function(key){
-        // is it enabled?
-        if(fhirResources[key] === true){
-          // if so, see if there's a collection loaded up
-          if(Mongo.Collection.get(key)){
-              var selectedConfig = {
-                id: '',
-                active: true,
-                path: '/',
-                icon: '',
-                title: 0,
-                subtitle: ''
-              }
-              // parse through our config objects
-              tileConfigs.forEach(function(config){
-                // if we find a config object that matches the current key, assign it
-                if(config.collection === key){
-                  selectedConfig = config;
-                }
-              })
+    //   var count = 0;
+    //   // parse through each FHIR module specified in the Settings file
+    //   Object.keys(fhirResources).forEach(function(key){
+    //     // is it enabled?
+    //     if(fhirResources[key] === true){
+    //       // if so, see if there's a collection loaded up
+    //       if(Mongo.Collection.get(key)){
+    //           var selectedConfig = {
+    //             id: '',
+    //             active: true,
+    //             path: '/',
+    //             icon: '',
+    //             title: 0,
+    //             subtitle: ''
+    //           }
+    //           // parse through our config objects
+    //           tileConfigs.forEach(function(config){
+    //             // if we find a config object that matches the current key, assign it
+    //             if(config.collection === key){
+    //               selectedConfig = config;
+    //             }
+    //           })
               
-              // grab the count
-              selectedConfig.title = Mongo.Collection.get(key).find().count();
+    //           // grab the count
+    //           selectedConfig.title = Mongo.Collection.get(key).find().count();
 
-              // render out a tile
-              var newTile = <Col sm={3} style={self.data.style.column} key={key}>
-                {self.renderTile(self.data.user, selectedConfig)}
-              </Col>
+    //           // render out a tile
+    //           var newTile = <Col sm={3} style={self.data.style.column} key={key}>
+    //             {self.renderTile(self.data.user, selectedConfig)}
+    //           </Col>
 
-              // and add it to the array of tiles to render
-              // check whether we want to limit tiles to just those that have records on the client
-              if(self.data.filterMainTiles){
-                if(Mongo.Collection.get(key).find().count() > 0){
-                  tilesToRender.push(newTile);
-                } 
-              } else {
-                // or display them all (including tiles with 0 records)
-                tilesToRender.push(newTile);
-              }
+    //           // and add it to the array of tiles to render
+    //           // check whether we want to limit tiles to just those that have records on the client
+    //           if(self.data.filterMainTiles){
+    //             if(Mongo.Collection.get(key).find().count() > 0){
+    //               tilesToRender.push(newTile);
+    //             } 
+    //           } else {
+    //             // or display them all (including tiles with 0 records)
+    //             tilesToRender.push(newTile);
+    //           }
 
-          };
-        }
-        count++;
-      })
-    }
+    //       };
+    //     }
+    //     count++;
+    //   })
+    // }
 
     //console.log('tilesToRender', tilesToRender)
     
@@ -404,10 +404,16 @@ export class MainIndex extends React.Component {
             {this.renderAppsSection(this.data.user)}
             { appRow }
 
-            {this.renderFhirSection(this.data.user)}
+            <div>
+              <CardTitle title="Dashboard" style={this.data.style.sectionTitle} /> 
+              <br/>
+            </div>
+
+
+            {/* {this.renderFhirSection(this.data.user)}
             <Row>
               { tilesToRender }
-            </Row>
+            </Row> */}
 
             <br/>
             {this.renderUnderConstructionSection(this.data.user)}          
@@ -486,19 +492,19 @@ export class MainIndex extends React.Component {
       }
     }
   }    
-  renderFhirSection(user){
-    if (get(Meteor, 'settings.public.home.showFhirMenu')) {
-      if (user.isAdmin || user.isPractitioner || user.isPatient || user.isUser) {
-        return(
-          <div>
-            <br/>
-            <CardTitle title="Fast Healthcare Interoperability Resources" style={this.data.style.sectionTitle} /><br/>  
-            <br/>
-          </div>
-        );
-      }
-    }
-  }    
+  // renderFhirSection(user){
+  //   if (get(Meteor, 'settings.public.home.showFhirMenu')) {
+  //     if (user.isAdmin || user.isPractitioner || user.isPatient || user.isUser) {
+  //       return(
+  //         <div>
+  //           <br/>
+  //           <CardTitle title="Fast Healthcare Interoperability Resources" style={this.data.style.sectionTitle} /><br/>  
+  //           <br/>
+  //         </div>
+  //       );
+  //     }
+  //   }
+  // }    
 
 
 

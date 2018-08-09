@@ -409,6 +409,25 @@ export class Footer extends React.Component {
   }
   showLines(){
     Session.toggle('showEdgeBundleLines');
+    console.log('selectedChecklist', Session.get('selectedChecklist'))
+  }
+  newList(){
+    Session.set('selectedChecklist', Lists.insert({
+      "resourceType": "List",
+      "code": {
+        "text": ''
+      },
+      "note": '',
+      "source": {
+        "reference": "System/system"
+      },
+      "status": "current",
+      "date": new Date(),
+      "mode": "changes",
+      "entry": []
+    }))
+    Session.set('checklistPageTabIndex', 1);
+    console.log('selectedChecklist', Session.get('selectedChecklist'))
   }
   toggleStates(){
     if(Session.equals('powerOfAttorneyState', 'Illinois')){
@@ -432,7 +451,7 @@ export class Footer extends React.Component {
       if (Meteor.userId() && (Session.equals('pathname', '/')) ) {
         return (
           <div style={{marginTop: '-8px'}}>
-            <FlatButton label='filter tiles' className='filterTileButton' ref='filterTileButton' onClick={this.toggleFilterMainTiles} style={this.data.style.buttonText} ></FlatButton>
+            <FlatButton label='Filter Tiles' className='filterTileButton' ref='filterTileButton' onClick={this.toggleFilterMainTiles} style={this.data.style.buttonText} ></FlatButton>
           </div>
         );
 
@@ -473,7 +492,15 @@ export class Footer extends React.Component {
 
         </div>
       );
-    
+
+    // CHECKLISTS
+    } else if (Meteor.userId() && (Session.equals('pathname', '/checklists')) && get(Meteor, 'settings.public.modules.apps.ChecklistManifesto')) {
+      return (
+        <div>
+          <FlatButton label='New List' className='querySystemButton' ref='querySystemButton' onClick={this.newList.bind(this)} style={this.data.style.buttonText} ></FlatButton>
+        </div>
+      );
+
       // ORGANIZATIONS
       } else if (Meteor.userId() && (Session.equals('pathname', '/organizations')) && get(Meteor, 'settings.public.modules.fhir.Organizations')) {
         return (
