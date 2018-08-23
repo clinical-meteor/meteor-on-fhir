@@ -124,6 +124,7 @@ clinical:hl7-resource-medication-statement
 clinical:hl7-resource-organization
 clinical:hl7-resource-observation
 clinical:hl7-resource-patient
+clinical:hl7-resource-person
 clinical:hl7-resource-practitioner
 clinical:hl7-resource-procedure
 clinical:hl7-resource-questionnaire
@@ -158,3 +159,10 @@ symptomatic:geomapping
 symptomatic:theming
 symptomatic:landing-page
 symptomatic:continuity-of-care
+
+symptomatic:blockchain-core
+clinical:autopublish
+
+# 
+fhirblocks:core
+clinical:hipaa-audit-log

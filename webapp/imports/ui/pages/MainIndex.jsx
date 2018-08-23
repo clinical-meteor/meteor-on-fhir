@@ -474,7 +474,7 @@ export class MainIndex extends React.Component {
             <CardTitle title="Under Construction" style={this.data.style.sectionTitle} /> 
             <br/>
             {this.renderTilesUnderConstruction(this.data.user)}
-            {this.renderImagingStudy(this.data.user)}
+            {/* {this.renderImagingStudy(this.data.user)} */}
           </div>
         );
       }
@@ -521,23 +521,23 @@ export class MainIndex extends React.Component {
               <MenuTile          
                 id='oauthConfigTile'
                 active={true}
-                path='/oauth-client'
+                path='/oauth-config'
                 icon='Clipboard'
                 iconSize={65}
-                subtitle='Authorization Grants'
+                subtitle='OAuth Service Config'
               />  
             </Col>
             <Col sm={3} style={this.data.style.column}>
               <MenuTile          
                 id='hipaaLogTile'
                 active={true}
-                path='/hipaa-log'
+                path='/hipaa-audit-log'
                 icon='Clipboard'
                 iconSize={65}
                 subtitle='Audit Events'
               />  
             </Col>
-            <Col sm={3} style={this.data.style.column} >
+            {/* <Col sm={3} style={this.data.style.column} >
               <MenuTile          
                 id='inboundMessagesTile'
                 active={true}
@@ -552,7 +552,7 @@ export class MainIndex extends React.Component {
                 path='/outbound-messages'
                 iconSize={65}
                 subtitle='Outbound Messages' />  
-            </Col>
+            </Col> */}
             {/* <Col sm={3} style={this.data.style.column}>
               <MenuTile          
                 id='dataManagementTile'

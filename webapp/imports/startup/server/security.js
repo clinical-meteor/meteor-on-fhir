@@ -55,6 +55,14 @@ if(Package['clinical:hl7-resource-device']){
   });
 }
 
+if(Package['clinical:hl7-resource-endpoint']){
+  Endpoints.allow({
+    update() { return true; },
+    insert() { return true; },
+    remove() { return true; }
+  });
+}
+
 if(Package['clinical:hl7-resource-diagnostic-report']){
   DiagnosticReports.allow({
     update() { return true; },
@@ -121,6 +129,14 @@ if(Package['clinical:hl7-resource-observation']){
 
 if(Package['clinical:hl7-resource-organization']){
   Organizations.allow({
+    update() { return true; },
+    insert() { return true; },
+    remove() { return true; }
+  });
+}
+
+if(Package['clinical:hl7-resource-person']){
+  Persons.allow({
     update() { return true; },
     insert() { return true; },
     remove() { return true; }

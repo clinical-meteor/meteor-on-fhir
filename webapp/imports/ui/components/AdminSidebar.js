@@ -5,7 +5,7 @@ import ReactMixin from 'react-mixin';
 
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import MenuItem from '/imports/ui/components/MenuItem';
-import { get } from 'lodash';
+import { get, orderBy } from 'lodash';
 
 // Pick up any dynamic routes that are specified in packages, and include them
 var dynamicModules = [];
@@ -47,15 +47,17 @@ export class AdminSidebar extends React.Component {
     //----------------------------------------------------------------------
     // Dynamic Modules  
 
+    let sortedModules = orderBy(dynamicModules, ['primaryText'], ['asc'])
+
     var dynamicElements = [];
-    dynamicModules.map(function(element, index){ 
+    sortedModules.map(function(element, index){ 
 
       // the excludes array will hide routes
-      if(!get(Meteor, 'settings.public.defaults.sidebar.hidden', []).includes(element.to)){
+      // if(!get(Meteor, 'settings.public.defaults.sidebar.hidden', []).includes(element.to)){
         dynamicElements.push(<LinkContainer to={element.to} key={index}>
           <MenuItem primaryText={element.primaryText} href={element.href} />
         </LinkContainer>);
-      }
+      // }
     });
 
     return(
@@ -75,6 +77,13 @@ export class AdminSidebar extends React.Component {
           { dynamicElements }
 
           <hr />
+          <LinkContainer to='/fhir-resources-index'>
+             <MenuItem primaryText='FHIR Resources' href='/fhir-resources-index' />
+          </LinkContainer>
+          <LinkContainer to='/data-management'>
+             <MenuItem primaryText='Data Management' href='/theming' />
+          </LinkContainer>
+          <hr />
 
           <LinkContainer to='/theming'>
              <MenuItem primaryText='Theming' href='/theming' />
@@ -82,12 +91,8 @@ export class AdminSidebar extends React.Component {
 
           <hr />
 
-          <LinkContainer to='/info'>
-             <MenuItem primaryText='Info' href='/info' />
-          </LinkContainer>
-
-          <LinkContainer to='/info'>
-             <MenuItem primaryText='Info' href='/info' />
+          <LinkContainer to='/about'>
+             <MenuItem primaryText='About' href='/about' />
           </LinkContainer>
 
           <LinkContainer to='/metadata'>
