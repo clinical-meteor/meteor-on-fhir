@@ -154,10 +154,10 @@ percolate:synced-cron
 
 ### GitHub Community Versions
 
-symptomatic:theming
-symptomatic:continuity-of-care
-symptomatic:smart-on-fhir-client
-symptomatic:example-plugin
-symptomatic:clinical-scenarios
+# symptomatic:theming
+# symptomatic:continuity-of-care
+# symptomatic:smart-on-fhir-client
+# symptomatic:example-plugin
+# symptomatic:clinical-scenarios
 
 # symptomatic:ihealth-cloud-api
