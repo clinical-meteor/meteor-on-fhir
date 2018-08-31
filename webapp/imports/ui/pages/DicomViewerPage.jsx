@@ -52,7 +52,7 @@ export class DicomViewerPage extends React.Component {
               </Col>                    
               <Col md={6}>
                 <GlassCard height='auto' style={{position: 'relative'}}>
-                <DicomImage imageUrl='https://upload.wikimedia.org/wikipedia/commons/2/22/Chest_x-ray_-_lateral_view.jpg' />
+                  <DicomImage imageUrl='https://upload.wikimedia.org/wikipedia/commons/2/22/Chest_x-ray_-_lateral_view.jpg' />
                 </GlassCard>
               </Col>                    
           </Row>

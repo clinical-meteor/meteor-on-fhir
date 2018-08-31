@@ -27,7 +27,7 @@ export const DicomImage = createReactClass({
       <div className='viewportContainer'
            unselectable='on'
            onContextMenu={this.returnFalse}
-           onSelectStart={this.returnFalse}
+           //onSelectStart={this.returnFalse}
            onMouseDown={this.returnFalse}
            style={viewportStyle}           
            >
@@ -108,21 +108,25 @@ export const DicomImage = createReactClass({
 
       // var imageId = "example://1";
       // var imageId = 'https://rawgit.com/cornerstonejs/cornerstoneWebImageLoader/master/examples/Renal_Cell_Carcinoma.jpg'
-      var imageId = this.props.imageUrl
+      if(this.props.imageUrl){
+        var imageId = this.props.imageUrl
 
-      cornerstone.loadImage(imageId).then(function(image) {
-          cornerstone.displayImage(element, image);
-          cornerstoneTools.mouseInput.enable(element);
-          cornerstoneTools.mouseWheelInput.enable(element);
-          cornerstoneTools.wwwc.activate(element, 1); // ww/wc is the default tool for left mouse button
-          cornerstoneTools.pan.activate(element, 2); // pan is the default tool for middle mouse button
-          cornerstoneTools.zoom.activate(element, 5); // zoom is the default tool for right mouse button
-          cornerstoneTools.zoomWheel.activate(element); // zoom is the default tool for middle mouse wheel
-  
-          cornerstoneTools.touchInput.enable(element);
-          cornerstoneTools.panTouchDrag.activate(element);
-          cornerstoneTools.zoomTouchPinch.activate(element);
-      });  
+        cornerstone.loadImage(imageId).then(function(image) {
+            cornerstone.displayImage(element, image);
+            cornerstoneTools.mouseInput.enable(element);
+            cornerstoneTools.mouseWheelInput.enable(element);
+            cornerstoneTools.wwwc.activate(element, 1); // ww/wc is the default tool for left mouse button
+            cornerstoneTools.pan.activate(element, 2); // pan is the default tool for middle mouse button
+            cornerstoneTools.zoom.activate(element, 5); // zoom is the default tool for right mouse button
+            cornerstoneTools.zoomWheel.activate(element); // zoom is the default tool for middle mouse wheel
+    
+            cornerstoneTools.touchInput.enable(element);
+            cornerstoneTools.panTouchDrag.activate(element);
+            cornerstoneTools.zoomTouchPinch.activate(element);
+        });    
+      } else {
+        console.info('this.props.imageUrl wasnt passed to the DicomImage react component.')
+      }
     } else {
       console.info('Cornerstone.js not loaded.  DICOM Viewing is not currently supported.')
     }

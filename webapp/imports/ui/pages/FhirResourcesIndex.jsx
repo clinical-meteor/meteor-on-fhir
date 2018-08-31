@@ -314,8 +314,29 @@ export class FhirResourcesIndex extends React.Component {
       path: '/medication-orders',
       icon: 'MdLocalPhramacy',
       subtitle: 'Medication Orders'
+    }, {
+      collection: "Consents",
+      id: 'consentsTile',
+      active: true,
+      path: '/consents',
+      icon: 'Clipboard',
+      subtitle: 'Consents'
+    }, {
+      collection: "Contracts",
+      id: 'contractsTile',
+      active: true,
+      path: '/contracts',
+      icon: 'Clipboard',
+      subtitle: 'Contracts'
+    }, {
+      collection: "Communications",
+      id: 'contractsTile',
+      active: true,
+      path: '/communications',
+      icon: 'Mobile',
+      subtitle: 'Communications'
     } ];
-
+   
 
 
 

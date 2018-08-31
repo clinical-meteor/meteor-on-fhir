@@ -46,7 +46,7 @@ clinical:hl7-resource-consent@3.3.7
 clinical:hl7-resource-contract@3.3.9
 clinical:hl7-resource-datatypes@3.0.1
 clinical:hl7-resource-device@1.2.7
-clinical:hl7-resource-diagnostic-report@1.5.13
+clinical:hl7-resource-diagnostic-report@1.5.14
 clinical:hl7-resource-endpoint@3.0.17
 clinical:hl7-resource-goal@1.2.20
 clinical:hl7-resource-immunization@1.1.9
