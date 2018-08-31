@@ -1,7 +1,7 @@
 // https://material.io/icons/
 // https://andy-pro.github.io/icon-viewer/
 
-import { Container, Col, Row } from 'react-bootstrap';
+import { Alert, Grid, Container, Col, Row } from 'react-bootstrap';
 
 import { CardTitle, Card, CardText, CardActions } from 'material-ui';
 import { Glass, GlassCard, FullPageCanvas, VerticalCanvas } from 'meteor/clinical:glass-ui';
@@ -405,15 +405,57 @@ export class MainIndex extends React.Component {
             { appRow }
 
             <div>
-              <CardTitle title="Dashboard" style={this.data.style.sectionTitle} /> 
+              <CardTitle title="Dashboard Configuration" style={this.data.style.sectionTitle} /> 
               <br/>
             </div>
 
 
-            {/* {this.renderFhirSection(this.data.user)}
-            <Row>
-              { tilesToRender }
-            </Row> */}
+            <Grid>
+              <Alert bsStyle="warning">
+                  <strong>Instructions</strong> <br />
+                    It appears you haven't specified a default route for your application.  You will probably want to replace this page with a custom dashboard, welcome page, visualization, or utility.  
+
+                    <br /><br />
+                    <ol>
+                      <li>
+                        Make sure you are using a settings file:
+                        <pre>meteor --settings /path/to/settings.json</pre>
+                      </li>
+                      <li>
+                        Your settings file should specify a default route:
+                        <pre>Meteor.settings.public.defaults.route</pre>
+                      </li>
+                      <li>
+                        Make sure you've added the plugin that contains the dashboard component:
+                        <pre>meteor add namespace:my-package</pre>
+                      </li>
+                    </ol>
+                    <br />
+
+                    <strong>Developing Your Own Dashboard</strong> <br />
+                    If you are a developer, you may want to develop a custom plugin from scratch.  
+                    <br /> <br />
+                    <ul>
+                      <li>
+                        Start with the <a href='https://github.com/symptomatic/software-development-kit'>Symptomatic Software Development Kit</a>
+                      </li>
+                      <li>
+                        Reference the <a href='https://github.com/symptomatic/example-plugin'>Symptomatic Example Plugin</a> for an example.  
+                      </li>
+                      <li>
+                        Make sure that your <strong>index.js</strong> is added as the main ES6 module of your package.
+                      </li>
+                      <li>
+                        Make sure that a <strong>DynamicRoute</strong> is exported from the <strong>index.jsx</strong> file of your custom package.
+                      </li>
+                      <li>
+                        Make sure that your <strong>DynamicRoute</strong> uses the custom React component that you've developed.
+                      </li>
+                    </ul>
+
+
+              </Alert>
+            </Grid>
 
             <br/>
             {this.renderUnderConstructionSection(this.data.user)}          
