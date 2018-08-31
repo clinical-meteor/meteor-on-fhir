@@ -11,7 +11,7 @@ import { Footer } from '/imports/ui/layouts/Footer';
 import { GlassApp } from '/imports/ui/layouts/GlassApp';
 import { GlassCard, VerticalCanvas, FullPageCanvas } from 'meteor/clinical:glass-ui';
 import { Header } from '/imports/ui/layouts/Header';
-import { Image } from '/imports/ui/components/Image';
+import { DicomImage } from '/imports/ui/components/DicomImage';
 import { SciFiOrbital } from '/imports/ui/components/SciFiOrbital';
 import { Session } from 'meteor/session';
 import SidebarTray from '/imports/ui/layouts/SidebarTray';
@@ -58,7 +58,7 @@ export class App extends React.Component {
       // the user is logged in as a normal user
       return (
         <GlassCard style={this.data.style.card} >
-          <Image />
+          <DicomImage />
         </GlassCard>
       );
 

@@ -50,6 +50,9 @@ export class PractitionerSidebar extends React.Component {
           </LinkContainer>          
 
           <hr />
+          <LinkContainer to='/fhir-resources-index'>
+             <MenuItem id="fhirResourcePageItem" primaryText='FHIR Resources' href='/fhir-resources-index' />
+          </LinkContainer>
           <LinkContainer to='/data-management'>
              <MenuItem primaryText='Data Management' href='/theming' />
           </LinkContainer>

@@ -386,6 +386,9 @@ export class Footer extends React.Component {
     Meteor.call('dropEndpoints');
     Session.set('edgeBundle', []);
   }
+  cornerstoneViewer(){
+    browserHistory.push('/dicom-viewer');
+  }
   initBlockchainGraph(){
     Session.set('edgeBundle', Endpoints.find().map(function(endpoint){
       var result = {
@@ -564,12 +567,19 @@ export class Footer extends React.Component {
           </div>
         );
 
-        // ENDPOINTS
+      // ENDPOINTS
       } else if (Meteor.userId() && (Session.equals('pathname', '/endpoints'))) {
         return (
           <div>
             <FlatButton label='Clear' className='clearEndpoints' ref='querySystemButton' onClick={this.clearEndpoints} style={this.data.style.buttonText} ></FlatButton>
-            <FlatButton label='Init Graph' ref='querySystemButton' onClick={this.initBlockchainGraph} style={this.data.style.buttonText} ></FlatButton>
+          </div>
+        );
+
+      // DIAGNOSTIC REPORTS
+      } else if (Meteor.userId() && (Session.equals('pathname', '/diagnostic-reports'))) {
+        return (
+          <div>
+            <FlatButton label='Cornerstone DICOM Viewer' ref='cornerstoneViewer' onClick={this.cornerstoneViewer} style={this.data.style.buttonText} ></FlatButton>
           </div>
         );
 
@@ -583,13 +593,13 @@ export class Footer extends React.Component {
         );
 
 
-      // Power of Attorney
-    } else if (Meteor.userId() && (Session.equals('pathname', '/power-of-attorney'))) {
-      return (
-        <div>
-          <FlatButton label='State' className='configGraph' ref='querySystemButton' onClick={ this.toggleStates } style={this.data.style.buttonText} ></FlatButton>
-        </div>
-      );        
+        // Power of Attorney
+      } else if (Meteor.userId() && (Session.equals('pathname', '/power-of-attorney'))) {
+        return (
+          <div>
+            <FlatButton label='State' className='configGraph' ref='querySystemButton' onClick={ this.toggleStates } style={this.data.style.buttonText} ></FlatButton>
+          </div>
+        );        
 
 
         // NOTIFICATIONS
