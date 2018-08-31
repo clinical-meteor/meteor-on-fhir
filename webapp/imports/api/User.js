@@ -1,4 +1,4 @@
-
+import { get } from 'lodash';
 
 
 export default class User {
@@ -142,8 +142,8 @@ export default class User {
         });
       }
   
-      if (this.services && this.services.google && this.services.google.email) {
-        result.push(this.services.google.email);
+      if (get(this, 'services.google.email')) {
+        result.push(get(this, 'services.google.email'));
       }
   
       if (result.length > 0){

@@ -1,13 +1,14 @@
-import { CardActions, CardText, CardTitle } from 'material-ui/Card';
+import { CardActions, CardHeader, CardText, CardTitle } from 'material-ui/Card';
 
 import { Alert } from 'react-bootstrap';
 import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
 import React from 'react';
 
 import { VerticalCanvas, GlassCard } from 'meteor/clinical:glass-ui';
 import { browserHistory } from 'react-router';
 
-export class WelcomePatientPage extends React.Component {
+export class WelcomePractitionerPage extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -21,7 +22,7 @@ export class WelcomePatientPage extends React.Component {
 
   render(){
     return(
-      <div id="welcomePatientPage">
+      <div id="welcomePractitionerPage">
         <VerticalCanvas>
           <GlassCard>
             <CardTitle
@@ -88,4 +89,4 @@ export class WelcomePatientPage extends React.Component {
     );
   }
 }
-export default WelcomePatientPage;
+export default WelcomePractitionerPage;

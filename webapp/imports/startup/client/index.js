@@ -14,6 +14,8 @@ Session.setDefault('accessToken', '');
 
 Meteor.startup(function (){
 
+  document.title = get(Meteor, 'settings.public.title');
+
   console.log('Bert', Bert)
   Bert.defaults.style = 'growl-top-right';
 
@@ -64,6 +66,9 @@ Meteor.startup(function (){
     },
     passwordSignupFields: 'USERNAME_AND_OPTIONAL_EMAIL'
   });  
+
+
+  
 });
 
 

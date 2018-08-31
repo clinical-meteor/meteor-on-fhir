@@ -386,6 +386,9 @@ export class Footer extends React.Component {
     Meteor.call('dropEndpoints');
     Session.set('edgeBundle', []);
   }
+  cornerstoneViewer(){
+    browserHistory.push('/dicom-viewer');
+  }
   initBlockchainGraph(){
     Session.set('edgeBundle', Endpoints.find().map(function(endpoint){
       var result = {
@@ -409,6 +412,25 @@ export class Footer extends React.Component {
   }
   showLines(){
     Session.toggle('showEdgeBundleLines');
+    console.log('selectedChecklist', Session.get('selectedChecklist'))
+  }
+  newList(){
+    Session.set('selectedChecklist', Lists.insert({
+      "resourceType": "List",
+      "code": {
+        "text": ''
+      },
+      "note": '',
+      "source": {
+        "reference": "System/system"
+      },
+      "status": "current",
+      "date": new Date(),
+      "mode": "changes",
+      "entry": []
+    }))
+    Session.set('checklistPageTabIndex', 1);
+    console.log('selectedChecklist', Session.get('selectedChecklist'))
   }
   toggleStates(){
     if(Session.equals('powerOfAttorneyState', 'Illinois')){
@@ -432,7 +454,7 @@ export class Footer extends React.Component {
       if (Meteor.userId() && (Session.equals('pathname', '/')) ) {
         return (
           <div style={{marginTop: '-8px'}}>
-            <FlatButton label='filter tiles' className='filterTileButton' ref='filterTileButton' onClick={this.toggleFilterMainTiles} style={this.data.style.buttonText} ></FlatButton>
+            <FlatButton label='Filter Tiles' className='filterTileButton' ref='filterTileButton' onClick={this.toggleFilterMainTiles} style={this.data.style.buttonText} ></FlatButton>
           </div>
         );
 
@@ -468,9 +490,20 @@ export class Footer extends React.Component {
               notes: ''
             });
           })}  style={this.data.style.buttonText} ></FlatButton>
+
+          <FlatButton label='Filter' className='querySystemButton' ref='querySystemButton'></FlatButton>
+
         </div>
       );
-    
+
+    // CHECKLISTS
+    } else if (Meteor.userId() && (Session.equals('pathname', '/checklists')) && get(Meteor, 'settings.public.modules.apps.ChecklistManifesto')) {
+      return (
+        <div>
+          <FlatButton label='New List' className='querySystemButton' ref='querySystemButton' onClick={this.newList.bind(this)} style={this.data.style.buttonText} ></FlatButton>
+        </div>
+      );
+
       // ORGANIZATIONS
       } else if (Meteor.userId() && (Session.equals('pathname', '/organizations')) && get(Meteor, 'settings.public.modules.fhir.Organizations')) {
         return (
@@ -534,12 +567,19 @@ export class Footer extends React.Component {
           </div>
         );
 
-        // ENDPOINTS
+      // ENDPOINTS
       } else if (Meteor.userId() && (Session.equals('pathname', '/endpoints'))) {
         return (
           <div>
             <FlatButton label='Clear' className='clearEndpoints' ref='querySystemButton' onClick={this.clearEndpoints} style={this.data.style.buttonText} ></FlatButton>
-            <FlatButton label='Init Graph' ref='querySystemButton' onClick={this.initBlockchainGraph} style={this.data.style.buttonText} ></FlatButton>
+          </div>
+        );
+
+      // DIAGNOSTIC REPORTS
+      } else if (Meteor.userId() && (Session.equals('pathname', '/diagnostic-reports'))) {
+        return (
+          <div>
+            <FlatButton label='Cornerstone DICOM Viewer' ref='cornerstoneViewer' onClick={this.cornerstoneViewer} style={this.data.style.buttonText} ></FlatButton>
           </div>
         );
 
@@ -553,13 +593,13 @@ export class Footer extends React.Component {
         );
 
 
-      // Power of Attorney
-    } else if (Meteor.userId() && (Session.equals('pathname', '/power-of-attorney'))) {
-      return (
-        <div>
-          <FlatButton label='State' className='configGraph' ref='querySystemButton' onClick={ this.toggleStates } style={this.data.style.buttonText} ></FlatButton>
-        </div>
-      );        
+        // Power of Attorney
+      } else if (Meteor.userId() && (Session.equals('pathname', '/power-of-attorney'))) {
+        return (
+          <div>
+            <FlatButton label='State' className='configGraph' ref='querySystemButton' onClick={ this.toggleStates } style={this.data.style.buttonText} ></FlatButton>
+          </div>
+        );        
 
 
         // NOTIFICATIONS

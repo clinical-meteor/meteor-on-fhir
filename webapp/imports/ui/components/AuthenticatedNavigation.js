@@ -83,6 +83,13 @@ export class AuthenticatedNavigation extends React.Component {
       data.user = '';
     }
 
+    // data.style.glassText = Glass.blur(data.style.glassText);
+
+    if (Session.get('glassBlurEnabled')) {
+      data.glassText.filter = 'blur(3px)';
+      data.glassText.WebkitFilter = 'blur(3px)';
+    }
+
     if(data.notificationCount > 0){
       data.notificationColor = 'orange';
       if(data.notifications){

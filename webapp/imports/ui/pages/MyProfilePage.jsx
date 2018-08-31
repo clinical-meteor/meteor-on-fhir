@@ -74,6 +74,7 @@ export class MyProfilePage extends React.Component {
           paddingLeft: '160px'
         }
       },
+      patient: {},
       state: {
         index: 0,
         hasConfirmedDelete: false,
@@ -175,25 +176,47 @@ export class MyProfilePage extends React.Component {
       if(get(Meteor.user(), 'profile.avatar')) {
         data.user.profileImage = get(Meteor.user(), 'profile.avatar');
         data.header.avatar = get(Meteor.user(), 'profile.avatar');
-      } else {
-        data.user.profileImage = 'thumbnail.png';
-        data.header.avatar = 'thumbnail.png';
-      }
+        data.patient.photo = [{url: get(Meteor.user(), 'profile.avatar') }]
+      } 
+      // else {
+      //   data.user.profileImage = 'thumbnail.png';
+      //   data.header.avatar = 'thumbnail.png';
+      //   data.patient.photo = [{url: 'thumbnail.png' }]
+      // }
 
       // if (Meteor.user() && Meteor.user().profile && Meteor.user().profile.name) {
       if(get(Meteor.user(), 'profile.name')) {
         data.user.given = get(Meteor.user(), 'profile.name.given');
         data.user.family = get(Meteor.user(), 'profile.name.family')
         data.user.fullName = get(Meteor.user(), 'profile.name.given') + ' ' + get(Meteor.user(), 'profile.name.family');
+        data.patient.name = [{
+          given: [get(Meteor.user(), 'profile.name.given')],
+          family: [get(Meteor.user(), 'profile.name.family')],
+          text: get(Meteor.user(), 'profile.name.given') + ' ' + get(Meteor.user(), 'profile.name.family')
+        }]
       } else {
         data.user.given = '';
         data.user.family = '';
         data.user.fullName = '';
+        data.patient.name = [{
+          given: [''],
+          family: [''],
+          text: ''
+        }]
       }
 
       if(get(Meteor.user(), 'profile.gender')) {
         data.user.gender = get(Meteor.user(), 'profile.gender');
+        data.patient.gender = get(Meteor.user(), 'profile.gender');
       }
+
+
+
+      
+
+
+
+
 
       
       // if(Meteor.user() && Meteor.user().profile && Meteor.user().profile.locations  && Meteor.user().profile.locations.home && Meteor.user().profile.locations.home.address){
@@ -232,66 +255,66 @@ export class MyProfilePage extends React.Component {
       }
 
 
-      if(get(Meteor.user(), 'profile.continuityOfCare')){
-        if(get(Meteor.user(), 'profile.continuityOfCare.allergyIntolerances')){
-          data.ccd.AllergyIntolerances = get(Meteor.user(), 'profile.continuityOfCare.allergyIntolerances').length;
-        }
-        if(get(Meteor.user(), 'profile.continuityOfCare.carePlans')){
-          data.ccd.CarePlans = get(Meteor.user(), 'profile.continuityOfCare.carePlans').length;
-        }
-        if(get(Meteor.user(), 'profile.continuityOfCare.conditions')){
-          data.ccd.Conditions = get(Meteor.user(), 'profile.continuityOfCare.conditions').length;
-        }
+      // if(get(Meteor.user(), 'profile.continuityOfCare')){
+      //   if(get(Meteor.user(), 'profile.continuityOfCare.allergyIntolerances')){
+      //     data.ccd.AllergyIntolerances = get(Meteor.user(), 'profile.continuityOfCare.allergyIntolerances').length;
+      //   }
+      //   if(get(Meteor.user(), 'profile.continuityOfCare.carePlans')){
+      //     data.ccd.CarePlans = get(Meteor.user(), 'profile.continuityOfCare.carePlans').length;
+      //   }
+      //   if(get(Meteor.user(), 'profile.continuityOfCare.conditions')){
+      //     data.ccd.Conditions = get(Meteor.user(), 'profile.continuityOfCare.conditions').length;
+      //   }
 
-        if(get(Meteor.user(), 'profile.continuityOfCare.devices')){
-          data.ccd.Devices = get(Meteor.user(), 'profile.continuityOfCare.devices').length;
-        }
-        if(get(Meteor.user(), 'profile.continuityOfCare.diagnosticReports')){
-          data.ccd.DiagnosticReports = get(Meteor.user(), 'profile.continuityOfCare.diagnosticReports').length;
-        }
-        if(get(Meteor.user(), 'profile.continuityOfCare.goals')){
-          data.ccd.Goals = get(Meteor.user(), 'profile.continuityOfCare.goals').length;
-        }
+      //   if(get(Meteor.user(), 'profile.continuityOfCare.devices')){
+      //     data.ccd.Devices = get(Meteor.user(), 'profile.continuityOfCare.devices').length;
+      //   }
+      //   if(get(Meteor.user(), 'profile.continuityOfCare.diagnosticReports')){
+      //     data.ccd.DiagnosticReports = get(Meteor.user(), 'profile.continuityOfCare.diagnosticReports').length;
+      //   }
+      //   if(get(Meteor.user(), 'profile.continuityOfCare.goals')){
+      //     data.ccd.Goals = get(Meteor.user(), 'profile.continuityOfCare.goals').length;
+      //   }
 
-        if(get(Meteor.user(), 'profile.continuityOfCare.imagingStudies')){
-          data.ccd.ImagingStudies = get(Meteor.user(), 'profile.continuityOfCare.imagingStudies').length;
-        }
-        if(get(Meteor.user(), 'profile.continuityOfCare.immunizations')){
-          data.ccd.Immunizations = get(Meteor.user(), 'profile.continuityOfCare.immunizations').length;
-        }
-        if(get(Meteor.user(), 'profile.continuityOfCare.locations')){
-          data.ccd.Locations = get(Meteor.user(), 'profile.continuityOfCare.locations').length;
-        }
+      //   if(get(Meteor.user(), 'profile.continuityOfCare.imagingStudies')){
+      //     data.ccd.ImagingStudies = get(Meteor.user(), 'profile.continuityOfCare.imagingStudies').length;
+      //   }
+      //   if(get(Meteor.user(), 'profile.continuityOfCare.immunizations')){
+      //     data.ccd.Immunizations = get(Meteor.user(), 'profile.continuityOfCare.immunizations').length;
+      //   }
+      //   if(get(Meteor.user(), 'profile.continuityOfCare.locations')){
+      //     data.ccd.Locations = get(Meteor.user(), 'profile.continuityOfCare.locations').length;
+      //   }
 
-        if(get(Meteor.user(), 'profile.continuityOfCare.medications')){
-          data.ccd.Medications = get(Meteor.user(), 'profile.continuityOfCare.medications').length;
-        }        
-        if(get(Meteor.user(), 'profile.continuityOfCare.medicationStatements')){
-          data.ccd.MedicationStatements = get(Meteor.user(), 'profile.continuityOfCare.medicationStatements').length;
-        }        
-        if(get(Meteor.user(), 'profile.continuityOfCare.observations')){
-          data.ccd.Observations = get(Meteor.user(), 'profile.continuityOfCare.observations').length;
-        }        
+      //   if(get(Meteor.user(), 'profile.continuityOfCare.medications')){
+      //     data.ccd.Medications = get(Meteor.user(), 'profile.continuityOfCare.medications').length;
+      //   }        
+      //   if(get(Meteor.user(), 'profile.continuityOfCare.medicationStatements')){
+      //     data.ccd.MedicationStatements = get(Meteor.user(), 'profile.continuityOfCare.medicationStatements').length;
+      //   }        
+      //   if(get(Meteor.user(), 'profile.continuityOfCare.observations')){
+      //     data.ccd.Observations = get(Meteor.user(), 'profile.continuityOfCare.observations').length;
+      //   }        
 
-        if(get(Meteor.user(), 'profile.continuityOfCare.patients')){
-          data.ccd.Patients = get(Meteor.user(), 'profile.continuityOfCare.patients').length;
-        }           
-        if(get(Meteor.user(), 'profile.continuityOfCare.persons')){
-          data.ccd.Persons = get(Meteor.user(), 'profile.continuityOfCare.persons').length;
-        }           
-        if(get(Meteor.user(), 'profile.continuityOfCare.practitioners')){
-          data.ccd.Practitioners = get(Meteor.user(), 'profile.continuityOfCare.practitioners').length;
-        }           
-        if(get(Meteor.user(), 'profile.continuityOfCare.procedures')){
-          data.ccd.Procedures = get(Meteor.user(), 'profile.continuityOfCare.procedures').length;
-        }           
-        if(get(Meteor.user(), 'profile.continuityOfCare.relatedPersons')){
-          data.ccd.RelatedPersons = get(Meteor.user(), 'profile.continuityOfCare.relatedPersons').length;
-        }           
-        if(get(Meteor.user(), 'profile.continuityOfCare.sequences')){
-          data.ccd.Sequences = get(Meteor.user(), 'profile.continuityOfCare.sequences').length;
-        }           
-      }
+      //   if(get(Meteor.user(), 'profile.continuityOfCare.patients')){
+      //     data.ccd.Patients = get(Meteor.user(), 'profile.continuityOfCare.patients').length;
+      //   }           
+      //   if(get(Meteor.user(), 'profile.continuityOfCare.persons')){
+      //     data.ccd.Persons = get(Meteor.user(), 'profile.continuityOfCare.persons').length;
+      //   }           
+      //   if(get(Meteor.user(), 'profile.continuityOfCare.practitioners')){
+      //     data.ccd.Practitioners = get(Meteor.user(), 'profile.continuityOfCare.practitioners').length;
+      //   }           
+      //   if(get(Meteor.user(), 'profile.continuityOfCare.procedures')){
+      //     data.ccd.Procedures = get(Meteor.user(), 'profile.continuityOfCare.procedures').length;
+      //   }           
+      //   if(get(Meteor.user(), 'profile.continuityOfCare.relatedPersons')){
+      //     data.ccd.RelatedPersons = get(Meteor.user(), 'profile.continuityOfCare.relatedPersons').length;
+      //   }           
+      //   if(get(Meteor.user(), 'profile.continuityOfCare.sequences')){
+      //     data.ccd.Sequences = get(Meteor.user(), 'profile.continuityOfCare.sequences').length;
+      //   }           
+      // }
       
       var resourceTypes = [
         'AllergyIntolerances',
@@ -509,13 +532,14 @@ export class MyProfilePage extends React.Component {
       <div id='myProfilePage'>
         <VerticalCanvas style={{paddingBottom: '80px'}}> 
           <PatientCard
-            fullName={ get(this, 'data.user.fullName', '') }
-            email={ get(this, 'data.user.email', '') }
-            givenName={ get(this, 'data.user.givenName', '') }
-            familyName={ get(this, 'data.user.familyName', '') }
-            birthdate={this.data.user.birthdate}
-            gender={ get(this, 'data.user.gender', '') }
-            avatar={ get(this, 'data.user.avatar', '') }
+            // fullName={ get(this, 'data.user.fullName', '') }
+            // email={ get(this, 'data.user.email', '') }
+            // givenName={ get(this, 'data.user.givenName', '') }
+            // familyName={ get(this, 'data.user.familyName', '') }
+            // birthdate={this.data.user.birthdate}
+            // gender={ get(this, 'data.user.gender', '') }
+            // avatar={ get(this, 'data.user.avatar', '') }
+            patient = { get(this, 'data.patient') }
             updateGivenName={ this.updateGivenName }
             updateFamilyName={ this.updateFamilyName }
             updateBirthdate={ this.updateBirthdate }
