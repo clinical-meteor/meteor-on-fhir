@@ -96,6 +96,7 @@ jobs:
 
     #- before/after
     - run: cd webapp && cat .meteor/packages
+    - run: cd webapp && cat .meteor/versions
     - run: cd webapp && locale
 
     #- make sure we have our tests
