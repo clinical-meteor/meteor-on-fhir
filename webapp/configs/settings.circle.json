@@ -93,8 +93,10 @@
       },
       "fhir": {
         "AllergyIntolerances": true,
+        "AuditEvents": true,
         "CarePlans": true,
         "Conditions": true,
+        "ClinicalImpressions": true,
         "Devices": true,
         "DiagnosticReports": true,
         "Goals": true,
@@ -111,6 +113,9 @@
         "Patients": true,
         "Practitioners": true,
         "Procedures": true,
+        "Questionnaries": true,
+        "QuestionnaireResponses": true,
+        "Sequences": true,
         "RiskAssessments": true
       }
     }

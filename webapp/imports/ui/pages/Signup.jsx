@@ -11,7 +11,7 @@ import { MobilePadding } from '/imports/ui/components/MobilePadding';
 
 import { browserHistory } from 'react-router';
 import { Accounts } from 'meteor/accounts-base';
-import { Bert } from 'meteor/clinical:alert';
+// import { Bert } from 'meteor/clinical:alert';
 
 import RaisedButton from 'material-ui/RaisedButton';
 import { lightBaseTheme, darkBaseTheme } from 'material-ui/styles';
