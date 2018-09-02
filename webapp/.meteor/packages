@@ -136,7 +136,7 @@ clinical:hl7-resource-questionnaire
 clinical:hl7-resource-questionnaire-response
 clinical:hl7-resource-risk-assessment
 clinical:hl7-resource-sequence
-clinical:hl7-resource-subscription@3.5.1
+clinical:hl7-resource-subscription@3.5.2
 
 
 d3js:d3
