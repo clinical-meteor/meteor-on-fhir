@@ -23,7 +23,7 @@ export class WelcomePatientPage extends React.Component {
     return(
       <div id="welcomePatientPage">
         <VerticalCanvas>
-          <GlassCard>
+          <GlassCard style={{marginBottom: '20px'}}>
             <CardTitle
               title="Privacy Policy"
             />
