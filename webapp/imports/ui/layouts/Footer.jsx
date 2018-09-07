@@ -414,6 +414,9 @@ export class Footer extends React.Component {
     Session.toggle('showEdgeBundleLines');
     console.log('selectedChecklist', Session.get('selectedChecklist'))
   }
+  searchConsents(){
+    Session.set('consentDialogOpen', true);
+  }
   newList(){
     Session.set('selectedChecklist', Lists.insert({
       "resourceType": "List",
@@ -599,6 +602,15 @@ export class Footer extends React.Component {
             <FlatButton label='Lines' className='configGraph' ref='querySystemButton' onClick={ this.showLines } style={this.data.style.buttonText} ></FlatButton>
           </div>
         );
+
+        
+      // CONSENTS
+      } else if (Meteor.userId() && (Session.equals('pathname', '/consents'))) {
+        return (
+          <div>
+            <FlatButton label='Search' className='configGraph' ref='querySystemButton' onClick={ this.searchConsents } style={this.data.style.buttonText} ></FlatButton>
+          </div>
+        );        
 
 
         // Power of Attorney
