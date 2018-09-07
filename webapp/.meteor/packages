@@ -102,7 +102,7 @@ clinical:glass-ui
 clinical:default-landing-page
 clinical:alert
 clinical:hipaa-audit-log
-clinical:desktop-publish
+clinical:desktop-publish@2.2.0
 
 
 ### Fast Healthcare Interoperability Resources

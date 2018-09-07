@@ -88,6 +88,8 @@ export class FhirResourcesIndex extends React.Component {
         allergies: 0,
         carePlans: 0,
         conditions: 0,
+        consents: 0,
+        contracts: 0,
         devices: 0,
         diagnosticReports: 0,
         goals: 0,
@@ -114,6 +116,12 @@ export class FhirResourcesIndex extends React.Component {
     }
     if( typeof Conditions === "object" ){
       data.local.conditions = Conditions.find().count();
+    }
+    if( typeof Consents === "object" ){
+      data.local.consents = Consents.find().count();
+    }
+    if( typeof Contracts === "object" ){
+      data.local.contracts = Contracts.find().count();
     }
     if( typeof Devices === "object" ){
       data.local.devices = Devices.find().count();
@@ -224,6 +232,27 @@ export class FhirResourcesIndex extends React.Component {
       icon: 'Heartbeat',
       subtitle: 'Conditions'
     }, {
+      collection: "Consents",
+      id: 'consentsTile',
+      active: true,
+      path: '/consents',
+      icon: 'Clipboard',
+      subtitle: 'Consents'
+    }, {
+      collection: "Contracts",
+      id: 'contractsTile',
+      active: true,
+      path: '/contracts',
+      icon: 'Clipboard',
+      subtitle: 'Contracts'
+    }, {
+      collection: "Communications",
+      id: 'contractsTile',
+      active: true,
+      path: '/communications',
+      icon: 'Mobile',
+      subtitle: 'Communications'
+    }, {
       collection: "Devices",
       id: 'devicesTile',
       active: true,
@@ -251,6 +280,13 @@ export class FhirResourcesIndex extends React.Component {
       path: '/immunizations',
       icon: 'EyeDropper',
       subtitle: 'Immunizations',
+    }, {
+      collection: "ImagingStudies",
+      id: 'imagingStudiesTile',
+      active: true,
+      path: '/imaging-studies',
+      icon: 'Nuclear',
+      subtitle: 'Imaging Studies',
     }, {
       collection: "Locations",
       id: 'locationsTile',
@@ -329,27 +365,6 @@ export class FhirResourcesIndex extends React.Component {
       icon: 'MdLocalPhramacy',
       subtitle: 'Medication Orders'
     }, {
-      collection: "Consents",
-      id: 'consentsTile',
-      active: true,
-      path: '/consents',
-      icon: 'Clipboard',
-      subtitle: 'Consents'
-    }, {
-      collection: "Contracts",
-      id: 'contractsTile',
-      active: true,
-      path: '/contracts',
-      icon: 'Clipboard',
-      subtitle: 'Contracts'
-    }, {
-      collection: "Communications",
-      id: 'contractsTile',
-      active: true,
-      path: '/communications',
-      icon: 'Mobile',
-      subtitle: 'Communications'
-    }, {
       collection: "Questionnaires",
       id: 'questionnairesTile',
       active: true,
@@ -370,6 +385,13 @@ export class FhirResourcesIndex extends React.Component {
       path: '/sequences',
       icon: 'Ribbon',
       subtitle: 'Sequences'
+    }, {
+      collection: "Subscriptions",
+      id: 'subscriptionsTile',
+      active: true,
+      path: '/subscriptions',
+      icon: '',
+      subtitle: 'Subscriptions'
     } ];
    
 
@@ -406,7 +428,7 @@ export class FhirResourcesIndex extends React.Component {
               selectedConfig.title = Mongo.Collection.get(key).find().count();
 
               // render out a tile
-              var newTile = <Col sm={3} style={self.data.style.column} key={key}>
+              var newTile = <Col sm={4} md={3} lg={2} style={self.data.style.column} key={key}>
                 {self.renderTile(self.data.user, selectedConfig)}
               </Col>
 
@@ -448,14 +470,14 @@ export class FhirResourcesIndex extends React.Component {
 
     return (
       <div id='fhirResourcesIndexPage'>
-        <VerticalCanvas>
+        <FullPageCanvas>
           <div>
             {this.renderFhirSection(this.data.user)}
             <Row>
               { tilesToRender }
             </Row>
           </div>
-        </VerticalCanvas>
+        </FullPageCanvas>
       </div>
     );
   }
@@ -475,6 +497,7 @@ export class FhirResourcesIndex extends React.Component {
       return (
         <MenuTile          
           id={ tileConfig.id }
+          className='tile'
           active={ tileConfig.active }
           path={ tileConfig.path }
           icon={ tileConfig.icon }
@@ -913,9 +936,8 @@ export class FhirResourcesIndex extends React.Component {
 }
 
 
-
-
 FhirResourcesIndex.propTypes = {
   hasUser: PropTypes.object
 };
 ReactMixin(FhirResourcesIndex.prototype, ReactMeteorData);
+export default FhirResourcesIndex;

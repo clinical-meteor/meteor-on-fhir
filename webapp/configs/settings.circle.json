@@ -96,11 +96,13 @@
         "AuditEvents": true,
         "CarePlans": true,
         "Conditions": true,
+        "Consents": true,
+        "Contracts": true,
         "ClinicalImpressions": true,
         "Devices": true,
         "DiagnosticReports": true,
         "Goals": true,
-        "ImagingStudies": false,
+        "ImagingStudies": true,
         "Immunizations": true,
         "Locations": false,
         "Lists": true,
@@ -115,8 +117,9 @@
         "Procedures": true,
         "Questionnaries": true,
         "QuestionnaireResponses": true,
+        "RiskAssessments": true,
         "Sequences": true,
-        "RiskAssessments": true
+        "Subscriptions": true
       }
     }
   },
