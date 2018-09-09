@@ -39,6 +39,11 @@
       "registration": {
         "displayAccessCode": true
       },
+      "schemas": {
+        "validate": false,
+        "filter": false,
+        "removeEmptyStrings": false
+      },
       "sidebar": {
         "hidden": [
           "/allergies",
