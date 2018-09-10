@@ -149,8 +149,8 @@ percolate:synced-cron
 
 
 ### Blockchains
-symptomatic:blockchain-core
-fhirblocks:core
+# symptomatic:blockchain-core
+# fhirblocks:core
 
 
 ### GitHub Community Versions
