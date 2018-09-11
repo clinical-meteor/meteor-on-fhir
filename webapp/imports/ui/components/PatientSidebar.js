@@ -55,6 +55,7 @@ export class PatientSidebar extends React.Component {
   handleLogout() {
     console.log("handleLogout");
     Meteor.logout();
+    browserHistory.push('/signin')
   }
 
   handleProfile() {
@@ -129,7 +130,7 @@ export class PatientSidebar extends React.Component {
           </LinkContainer>
 
           <LinkContainer to='/signin'>
-             <MenuItem id='logoutMenuItem' className='logoutMenuItem' primaryText='Logout' href='/signin' onClick={this.handleLogout} />
+             <MenuItem id='logoutMenuItem' className='logoutMenuItem' primaryText='Logout' onClick={this.handleLogout} />
           </LinkContainer>
         </List>
       </div>

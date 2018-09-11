@@ -1,4 +1,4 @@
-import { Bert } from 'meteor/clinical:alert';
+// import { Bert } from 'meteor/clinical:alert';
 import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session';
 import { MobilePadding } from '/imports/ui/components/MobilePadding';

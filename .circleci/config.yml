@@ -43,6 +43,7 @@ jobs:
         DISPLAY: :99.0
         NPM_PREFIX: /home/ubuntu/nvm/v0.10.33
         MONGO_URL: mongodb://mongo:27017/meteor
+        TOOL_NODE_FLAGS: --max_old_space_size=4096
         DEBUG: true
     - image: mongo:3.4.4
       name: mongo
@@ -80,7 +81,7 @@ jobs:
     - run: mkdir -p .meteor
     
     # If Meteor is already cached, do not need to build it again.
-    - run: if [ ! -e .meteor/meteor ]; then curl https://install.meteor.com?=release=1.6.0.1 | /bin/sh; else echo "Meteor seems to be cached"; fi;
+    - run: if [ ! -e .meteor/meteor ]; then curl https://install.meteor.com?=release=1.6.1.4 | /bin/sh; else echo "Meteor seems to be cached"; fi;
 
     # Link the meteor executable into /usr/bin
     - run: sudo ln -s .meteor/meteor /usr/bin/meteor
@@ -96,6 +97,7 @@ jobs:
 
     #- before/after
     - run: cd webapp && cat .meteor/packages
+    - run: cd webapp && cat .meteor/versions
     - run: cd webapp && locale
 
     #- make sure we have our tests
@@ -112,7 +114,7 @@ jobs:
 
     - run: 
         name: Running tests
-        command: sleep 330 && cd webapp && meteor npm run-script circle-nightwatch -- --tag circle
+        command: sleep 300 && cd webapp && meteor npm run-script circle-nightwatch -- --tag circle
         no_output_timeout: 10m
         when: on_success    # always, on_success, on_fail 
 

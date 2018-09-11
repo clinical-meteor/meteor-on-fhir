@@ -414,6 +414,9 @@ export class Footer extends React.Component {
     Session.toggle('showEdgeBundleLines');
     console.log('selectedChecklist', Session.get('selectedChecklist'))
   }
+  searchConsents(){
+    Session.set('consentDialogOpen', true);
+  }
   newList(){
     Session.set('selectedChecklist', Lists.insert({
       "resourceType": "List",
@@ -579,6 +582,14 @@ export class Footer extends React.Component {
       } else if (Meteor.userId() && (Session.equals('pathname', '/diagnostic-reports'))) {
         return (
           <div>
+            <FlatButton label='Imaging Studies' ref='cornerstoneViewer' onClick={this.openLink.bind(this, '/imaging-studies')} style={this.data.style.buttonText} ></FlatButton>
+          </div>
+        );
+
+      // IMAGING STUDIES
+      } else if (Meteor.userId() && (Session.equals('pathname', '/imaging-studies'))) {
+        return (
+          <div>
             <FlatButton label='Cornerstone DICOM Viewer' ref='cornerstoneViewer' onClick={this.cornerstoneViewer} style={this.data.style.buttonText} ></FlatButton>
           </div>
         );
@@ -591,6 +602,15 @@ export class Footer extends React.Component {
             <FlatButton label='Lines' className='configGraph' ref='querySystemButton' onClick={ this.showLines } style={this.data.style.buttonText} ></FlatButton>
           </div>
         );
+
+        
+      // CONSENTS
+      } else if (Meteor.userId() && (Session.equals('pathname', '/consents'))) {
+        return (
+          <div>
+            <FlatButton label='Search' className='configGraph' ref='querySystemButton' onClick={ this.searchConsents } style={this.data.style.buttonText} ></FlatButton>
+          </div>
+        );        
 
 
         // Power of Attorney

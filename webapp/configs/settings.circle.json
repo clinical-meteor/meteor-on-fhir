@@ -39,6 +39,11 @@
       "registration": {
         "displayAccessCode": true
       },
+      "schemas": {
+        "validate": false,
+        "filter": false,
+        "removeEmptyStrings": false
+      },
       "sidebar": {
         "hidden": [
           "/allergies",
@@ -93,12 +98,16 @@
       },
       "fhir": {
         "AllergyIntolerances": true,
+        "AuditEvents": true,
         "CarePlans": true,
         "Conditions": true,
+        "Consents": true,
+        "Contracts": true,
+        "ClinicalImpressions": true,
         "Devices": true,
         "DiagnosticReports": true,
         "Goals": true,
-        "ImagingStudies": false,
+        "ImagingStudies": true,
         "Immunizations": true,
         "Locations": false,
         "Lists": true,
@@ -111,7 +120,11 @@
         "Patients": true,
         "Practitioners": true,
         "Procedures": true,
-        "RiskAssessments": true
+        "Questionnaries": true,
+        "QuestionnaireResponses": true,
+        "RiskAssessments": true,
+        "Sequences": true,
+        "Subscriptions": true
       }
     }
   },

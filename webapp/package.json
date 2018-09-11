@@ -43,6 +43,7 @@
     "faker": "^3.1.0",
     "fhir-schemas": "^0.3.1",
     "hammerjs": "^2.0.8",
+    "immutability-helper": "2.7.1",
     "jquery": "^3.3.1",
     "jquery-validation": "^1.17.0",
     "lodash": "^4.17.4",
@@ -55,6 +56,7 @@
     "react-addons-pure-render-mixin": "^15.3.1",
     "react-bootstrap": "^0.31.5",
     "react-cornerstone": "^0.9.1",
+    "react-color": "2.14.1",
     "react-dom": "^16.4.1",
     "react-dom-factories": "1.0.2",
     "react-dropzone-component": "^3.0.0",
@@ -67,6 +69,7 @@
     "react-router-dom": "^4.2.2",
     "react-scifi": "0.1.0-alpha",
     "react-swipeable": "^4.3.0",
+    "simpl-schema": "1.5.3",
     "xml2js": "0.4.19"
   },
   "devDependencies": {

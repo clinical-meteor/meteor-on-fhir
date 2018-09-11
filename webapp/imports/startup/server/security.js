@@ -25,6 +25,13 @@ if(Package['clinical:hl7-resource-allergy-intolerance']){
     remove() { return true; }
   });
 }
+if(Package['clinical:hl7-resource-audit-event']){
+  AuditEvents.allow({
+    update() { return true; },
+    insert() { return true; },
+    remove() { return true; }
+  });
+}
 
 if(Package['clinical:hl7-resource-careplan']){
   CarePlans.allow({

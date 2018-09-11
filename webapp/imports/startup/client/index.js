@@ -5,7 +5,7 @@ import './routes.js';
 import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session';
 
-import { Bert} from 'meteor/clinical:alert';
+// import { Bert} from 'meteor/clinical:alert';
 import { get } from 'lodash';
 
 

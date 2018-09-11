@@ -88,6 +88,8 @@ export class FhirResourcesIndex extends React.Component {
         allergies: 0,
         carePlans: 0,
         conditions: 0,
+        consents: 0,
+        contracts: 0,
         devices: 0,
         diagnosticReports: 0,
         goals: 0,
@@ -114,6 +116,12 @@ export class FhirResourcesIndex extends React.Component {
     }
     if( typeof Conditions === "object" ){
       data.local.conditions = Conditions.find().count();
+    }
+    if( typeof Consents === "object" ){
+      data.local.consents = Consents.find().count();
+    }
+    if( typeof Contracts === "object" ){
+      data.local.contracts = Contracts.find().count();
     }
     if( typeof Devices === "object" ){
       data.local.devices = Devices.find().count();
@@ -189,13 +197,6 @@ export class FhirResourcesIndex extends React.Component {
     var tilesToRender = [];
             
     var tileConfigs = [{
-      collection: "Immunizations",
-      id: 'immunizationsTile',
-      active: true,
-      path: '/immunizations',
-      icon: 'EyeDropper',
-      subtitle: 'Immunizations',
-    }, {
       collection: "AllergyIntolerances",
       id: 'allergyIntoleranceTile',
       active: true,
@@ -203,40 +204,89 @@ export class FhirResourcesIndex extends React.Component {
       icon: 'StreetView',
       subtitle: 'Allergy Intolerances'
     }, {
-      collection: "Procedures",
-      id: 'proceduresTile',
+      collection: "AuditEvents",
+      id: 'auditEventsTile',
       active: true,
-      path: '/procedures',
+      path: '/audit-events',
+      icon: 'Clipboard',
+      subtitle: 'Audit Events'
+    }, {
+      collection: "CarePlans",
+      id: 'carePlansTile',
+      active: true,
+      path: '/care-plans',
+      icon: 'Clipboard',
+      subtitle: 'Care Plan'
+    }, {
+      collection: "ClinicalImpressions",
+      id: 'clinicalImpressionssTile',
+      active: true,
+      path: '/clinical-impressions',
+      icon: 'MdHearing',
+      subtitle: 'Clinical Impressions'
+    }, {
+      collection: "Conditions",
+      id: 'conditionsTile',
+      active: true,
+      path: '/conditions',
+      icon: 'Heartbeat',
+      subtitle: 'Conditions'
+    }, {
+      collection: "Consents",
+      id: 'consentsTile',
+      active: true,
+      path: '/consents',
+      icon: 'Clipboard',
+      subtitle: 'Consents'
+    }, {
+      collection: "Contracts",
+      id: 'contractsTile',
+      active: true,
+      path: '/contracts',
+      icon: 'Clipboard',
+      subtitle: 'Contracts'
+    }, {
+      collection: "Communications",
+      id: 'contractsTile',
+      active: true,
+      path: '/communications',
+      icon: 'Mobile',
+      subtitle: 'Communications'
+    }, {
+      collection: "Devices",
+      id: 'devicesTile',
+      active: true,
+      path: '/devices',
+      icon: 'Mobile',
+      subtitle: 'Devices'
+    }, {
+      collection: "DiagnosticReports",
+      id: 'diagnosticReportsTile',
+      active: true,
+      path: '/diagnostic-reports',
+      icon: 'Clipboard',
+      subtitle: 'Diagnostic Reports'
+    }, {
+      collection: "Goals",
+      id: 'goalsTile',
+      active: true,
+      path: '/goals',
+      icon: 'NoSmoking',
+      subtitle: 'Goals'
+    },  {
+      collection: "Immunizations",
+      id: 'immunizationsTile',
+      active: true,
+      path: '/immunizations',
+      icon: 'EyeDropper',
+      subtitle: 'Immunizations',
+    }, {
+      collection: "ImagingStudies",
+      id: 'imagingStudiesTile',
+      active: true,
+      path: '/imaging-studies',
       icon: 'Nuclear',
-      subtitle: 'Procedures'
-    }, {
-      collection: "Patients",
-      id: 'patientsTile',
-      active: true,
-      path: '/patients',
-      icon: 'Person',
-      subtitle: 'Patients'
-    }, {
-      collection: "Practitioners",
-      id: 'practitionersTile',
-      active: true,
-      path: '/practitioners',
-      icon: 'Person',
-      subtitle: 'Practitioners'
-    }, {
-      collection: "Observations",
-      id: 'observationsTile',
-      active: true,
-      path: '/observations',
-      icon: 'Pulse',
-      subtitle: 'Observations'
-    }, {
-      collection: "Organizations",
-      id: 'organizationsTile',
-      active: true,
-      path: '/organizations',
-      icon: 'Building',
-      subtitle: 'Organizations'
+      subtitle: 'Imaging Studies',
     }, {
       collection: "Locations",
       id: 'locationsTile',
@@ -259,12 +309,40 @@ export class FhirResourcesIndex extends React.Component {
       icon: 'Flask',
       subtitle: 'Medications'
     }, {
-      collection: "Devices",
-      id: 'devicesTile',
+      collection: "Observations",
+      id: 'observationsTile',
       active: true,
-      path: '/devices',
-      icon: 'Mobile',
-      subtitle: 'Devices'
+      path: '/observations',
+      icon: 'Pulse',
+      subtitle: 'Observations'
+    }, {
+      collection: "Organizations",
+      id: 'organizationsTile',
+      active: true,
+      path: '/organizations',
+      icon: 'Building',
+      subtitle: 'Organizations'
+    }, {
+      collection: "Procedures",
+      id: 'proceduresTile',
+      active: true,
+      path: '/procedures',
+      icon: 'Nuclear',
+      subtitle: 'Procedures'
+    }, {
+      collection: "Patients",
+      id: 'patientsTile',
+      active: true,
+      path: '/patients',
+      icon: 'Person',
+      subtitle: 'Patients'
+    }, {
+      collection: "Practitioners",
+      id: 'practitionersTile',
+      active: true,
+      path: '/practitioners',
+      icon: 'Person',
+      subtitle: 'Practitioners'
     }, {
       collection: "RiskAssessments",
       id: 'riskAssessmentsTile',
@@ -273,40 +351,12 @@ export class FhirResourcesIndex extends React.Component {
       icon: 'MdAddAlert',
       subtitle: 'Risk Assessments'
     }, {
-      collection: "Conditions",
-      id: 'conditionsTile',
-      active: true,
-      path: '/conditions',
-      icon: 'Heartbeat',
-      subtitle: 'Conditions'
-    }, {
       collection: "MedicationStatements",
       id: 'medicationStatementsTile',
       active: true,
       path: '/medication-statements',
       icon: 'MdLocalPhramacy',
       subtitle: 'Medication Statements'
-    }, {
-      collection: "DiagnosticReports",
-      id: 'diagnosticReportsTile',
-      active: true,
-      path: '/diagnostic-reports',
-      icon: 'Clipboard',
-      subtitle: 'Diagnostic Reports'
-    }, {
-      collection: "Goals",
-      id: 'goalsTile',
-      active: true,
-      path: '/goals',
-      icon: 'NoSmoking',
-      subtitle: 'Goals'
-    }, {
-      collection: "CarePlans",
-      id: 'carePlansTile',
-      active: true,
-      path: '/care-plans',
-      icon: 'Clipboard',
-      subtitle: 'Care Plan'
     }, {
       collection: "MedicationOrders",
       id: 'medicationOrderTile',
@@ -315,26 +365,33 @@ export class FhirResourcesIndex extends React.Component {
       icon: 'MdLocalPhramacy',
       subtitle: 'Medication Orders'
     }, {
-      collection: "Consents",
-      id: 'consentsTile',
+      collection: "Questionnaires",
+      id: 'questionnairesTile',
       active: true,
-      path: '/consents',
+      path: '/questionnaires',
       icon: 'Clipboard',
-      subtitle: 'Consents'
+      subtitle: 'Questionnaires'
     }, {
-      collection: "Contracts",
-      id: 'contractsTile',
+      collection: "QuestionnaireResponses",
+      id: 'questionnaireResponsesTile',
       active: true,
-      path: '/contracts',
+      path: '/questionnaire-responsess',
       icon: 'Clipboard',
-      subtitle: 'Contracts'
+      subtitle: 'Questionnaire Responses'
     }, {
-      collection: "Communications",
-      id: 'contractsTile',
+      collection: "Sequences",
+      id: 'sequencesTile',
       active: true,
-      path: '/communications',
-      icon: 'Mobile',
-      subtitle: 'Communications'
+      path: '/sequences',
+      icon: 'Ribbon',
+      subtitle: 'Sequences'
+    }, {
+      collection: "Subscriptions",
+      id: 'subscriptionsTile',
+      active: true,
+      path: '/subscriptions',
+      icon: '',
+      subtitle: 'Subscriptions'
     } ];
    
 
@@ -371,7 +428,7 @@ export class FhirResourcesIndex extends React.Component {
               selectedConfig.title = Mongo.Collection.get(key).find().count();
 
               // render out a tile
-              var newTile = <Col sm={3} style={self.data.style.column} key={key}>
+              var newTile = <Col sm={4} md={3} lg={2} style={self.data.style.column} key={key}>
                 {self.renderTile(self.data.user, selectedConfig)}
               </Col>
 
@@ -413,14 +470,14 @@ export class FhirResourcesIndex extends React.Component {
 
     return (
       <div id='fhirResourcesIndexPage'>
-        <VerticalCanvas>
+        <FullPageCanvas>
           <div>
             {this.renderFhirSection(this.data.user)}
             <Row>
               { tilesToRender }
             </Row>
           </div>
-        </VerticalCanvas>
+        </FullPageCanvas>
       </div>
     );
   }
@@ -440,6 +497,7 @@ export class FhirResourcesIndex extends React.Component {
       return (
         <MenuTile          
           id={ tileConfig.id }
+          className='tile'
           active={ tileConfig.active }
           path={ tileConfig.path }
           icon={ tileConfig.icon }
@@ -878,9 +936,8 @@ export class FhirResourcesIndex extends React.Component {
 }
 
 
-
-
 FhirResourcesIndex.propTypes = {
   hasUser: PropTypes.object
 };
 ReactMixin(FhirResourcesIndex.prototype, ReactMeteorData);
+export default FhirResourcesIndex;

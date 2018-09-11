@@ -5033,7 +5033,7 @@ Request.HTML = new Class({
 		update: false,
 		append: false,
 		evalScripts: true,
-		filter: false,
+		filter: get(Meteor, 'settings.public.defaults.schemas.filter', false),
 		headers: {
 			Accept: 'text/html, application/xml, text/xml, */*'
 		}

@@ -35,6 +35,10 @@ export const NotFound = () => (
                     Check the default route in the settings file.
                     <pre>Meteor.settings.public.defaults.route</pre>
                   </li>
+                  <li>
+                    Make sure you've added the plugin that contains the dashboard component:
+                    <pre>meteor add namespace:my-package</pre>
+                  </li>
                 </ol>
                 <br />
 
