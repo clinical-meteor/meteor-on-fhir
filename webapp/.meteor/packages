@@ -53,8 +53,8 @@ accounts-password@1.5.0
 accounts-ui@1.3.0
 clinical:oauth
 clinical:accounts-oauth
-# clinical:accounts-famous-dead-people
-# clinical:accounts-housemd
+clinical:accounts-famous-dead-people
+clinical:accounts-housemd
 
 
 
@@ -137,8 +137,6 @@ clinical:hl7-resource-risk-assessment
 clinical:hl7-resource-sequence
 clinical:hl7-resource-subscription
 
-
-# d3js:d3
 
 ### Infrastructure as a Service
 percolate:synced-cron
