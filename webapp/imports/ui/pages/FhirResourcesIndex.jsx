@@ -428,7 +428,7 @@ export class FhirResourcesIndex extends React.Component {
               selectedConfig.title = Mongo.Collection.get(key).find().count();
 
               // render out a tile
-              var newTile = <Col sm={4} md={3} lg={2} style={self.data.style.column} key={key}>
+              var newTile = <Col md={4} lg={2} style={self.data.style.column} key={key}>
                 {self.renderTile(self.data.user, selectedConfig)}
               </Col>
 
@@ -509,46 +509,46 @@ export class FhirResourcesIndex extends React.Component {
       );
     }
   }
-  renderExperimentalSection(user){
-    if (get(Meteor, 'settings.public.home.showExperimental')) {
-      if (user.isAdmin || user.isPractitioner) {
-        return(
-          <div>
-            <CardTitle title="Experimental" style={this.data.style.sectionTitle} />  
-            <br/>
-            {this.renderExperimentalTiles(this.data.user)}
+  // renderExperimentalSection(user){
+  //   if (get(Meteor, 'settings.public.home.showExperimental')) {
+  //     if (user.isAdmin || user.isPractitioner) {
+  //       return(
+  //         <div>
+  //           <CardTitle title="Experimental" style={this.data.style.sectionTitle} />  
+  //           <br/>
+  //           {this.renderExperimentalTiles(this.data.user)}
 
-          </div>
-        );
-      }
-    }
-  }
-  renderUnderConstructionSection(user){
-    if (get(Meteor, 'settings.public.home.showUnderConstruction')) {
-      if (user.isAdmin || user.isPractitioner) {
-        return(
-          <div>
-            <CardTitle title="Under Construction" style={this.data.style.sectionTitle} /> 
-            <br/>
-            {this.renderTilesUnderConstruction(this.data.user)}
-            {this.renderImagingStudy(this.data.user)}
-          </div>
-        );
-      }
-    }
-  }  
-  renderAppsSection(user){
-    if (get(Meteor, 'settings.public.home.showApps')) {
-      if (user.isAdmin || user.isPractitioner || user.isPatient) {
-        return(
-          <div>
-            <CardTitle title="Apps" style={this.data.style.sectionTitle} /> 
-            <br/>
-          </div>
-        );
-      }
-    }
-  }    
+  //         </div>
+  //       );
+  //     }
+  //   }
+  // }
+  // renderUnderConstructionSection(user){
+  //   if (get(Meteor, 'settings.public.home.showUnderConstruction')) {
+  //     if (user.isAdmin || user.isPractitioner) {
+  //       return(
+  //         <div>
+  //           <CardTitle title="Under Construction" style={this.data.style.sectionTitle} /> 
+  //           <br/>
+  //           {this.renderTilesUnderConstruction(this.data.user)}
+  //           {this.renderImagingStudy(this.data.user)}
+  //         </div>
+  //       );
+  //     }
+  //   }
+  // }  
+  // renderAppsSection(user){
+  //   if (get(Meteor, 'settings.public.home.showApps')) {
+  //     if (user.isAdmin || user.isPractitioner || user.isPatient) {
+  //       return(
+  //         <div>
+  //           <CardTitle title="Apps" style={this.data.style.sectionTitle} /> 
+  //           <br/>
+  //         </div>
+  //       );
+  //     }
+  //   }
+  // }    
   renderFhirSection(user){
     if (get(Meteor, 'settings.public.home.showFhirMenu')) {
       if (user.isAdmin || user.isPractitioner || user.isPatient || user.isUser) {
@@ -566,63 +566,63 @@ export class FhirResourcesIndex extends React.Component {
 
 
 
-  renderAdminTiles(user){
-    if (user.isAdmin) {
-      return (
-        <div>
-          <CardTitle title="Admin Functionality" style={this.data.style.sectionTitle} />  
-          <br />  
+  // renderAdminTiles(user){
+  //   if (user.isAdmin) {
+  //     return (
+  //       <div>
+  //         <CardTitle title="Admin Functionality" style={this.data.style.sectionTitle} />  
+  //         <br />  
 
-          <Row>
-            <Col sm={3} style={this.data.style.column}>
-              <MenuTile          
-                id='oauthConfigTile'
-                active={true}
-                path='/oauth-client'
-                icon='Clipboard'
-                iconSize={65}
-                subtitle='Authorization Grants'
-              />  
-            </Col>
-            <Col sm={3} style={this.data.style.column}>
-              <MenuTile          
-                id='hipaaLogTile'
-                active={true}
-                path='/hipaa-log'
-                icon='Clipboard'
-                iconSize={65}
-                subtitle='Audit Events'
-              />  
-            </Col>
-            <Col sm={3} style={this.data.style.column} >
-              <MenuTile          
-                id='inboundMessagesTile'
-                active={true}
-                path='/inbound-messages'
-                iconSize={65}
-                subtitle='Inbound Messages' />  
-            </Col>
-            <Col sm={3} style={this.data.style.column}>
-              <MenuTile          
-                id='outboundMessagesTile'
-                active={true}
-                path='/outbound-messages'
-                iconSize={65}
-                subtitle='Outbound Messages' />  
-            </Col>
-            {/* <Col sm={3} style={this.data.style.column}>
-              <MenuTile          
-                id='dataManagementTile'
-                active={true}
-                path='/data-management'
-                iconSize={65}
-                subtitle='Data Management' />  
-            </Col> */}
-          </Row>         
-        </div>
-      )
-    }
-  }
+  //         <Row>
+  //           <Col sm={3} style={this.data.style.column}>
+  //             <MenuTile          
+  //               id='oauthConfigTile'
+  //               active={true}
+  //               path='/oauth-client'
+  //               icon='Clipboard'
+  //               iconSize={65}
+  //               subtitle='Authorization Grants'
+  //             />  
+  //           </Col>
+  //           <Col sm={3} style={this.data.style.column}>
+  //             <MenuTile          
+  //               id='hipaaLogTile'
+  //               active={true}
+  //               path='/hipaa-log'
+  //               icon='Clipboard'
+  //               iconSize={65}
+  //               subtitle='Audit Events'
+  //             />  
+  //           </Col>
+  //           <Col sm={3} style={this.data.style.column} >
+  //             <MenuTile          
+  //               id='inboundMessagesTile'
+  //               active={true}
+  //               path='/inbound-messages'
+  //               iconSize={65}
+  //               subtitle='Inbound Messages' />  
+  //           </Col>
+  //           <Col sm={3} style={this.data.style.column}>
+  //             <MenuTile          
+  //               id='outboundMessagesTile'
+  //               active={true}
+  //               path='/outbound-messages'
+  //               iconSize={65}
+  //               subtitle='Outbound Messages' />  
+  //           </Col>
+  //           {/* <Col sm={3} style={this.data.style.column}>
+  //             <MenuTile          
+  //               id='dataManagementTile'
+  //               active={true}
+  //               path='/data-management'
+  //               iconSize={65}
+  //               subtitle='Data Management' />  
+  //           </Col> */}
+  //         </Row>         
+  //       </div>
+  //     )
+  //   }
+  // }
 
   renderExperimentalTiles(user){
     if (user.isPatient || user.isPractitioner || user.isAdmin) {
@@ -860,39 +860,39 @@ export class FhirResourcesIndex extends React.Component {
   }
 
 
-  renderTilesUnderConstruction(user, showUnderConstruction){
-    // if (showUnderConstruction) {
-    if (true) {
-      if (user.isPractitioner || user.isAdmin) {
-        return (
-          <div>
+  // renderTilesUnderConstruction(user, showUnderConstruction){
+  //   // if (showUnderConstruction) {
+  //   if (true) {
+  //     if (user.isPractitioner || user.isAdmin) {
+  //       return (
+  //         <div>
 
-            <div id='diagnosticReportsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/diagnostic-reports') } >
-              <GlassCard style={this.data.style.indexCard} >
-                <CardTitle
-                  title={<Heartbeat />}
-                  subtitle='Diagnostic Reports'
-                  titleStyle={this.data.style.title}
-                  subtitleStyle={this.data.style.subtitle}
-                />
-              </GlassCard>
-            </div>    
+  //           <div id='diagnosticReportsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/diagnostic-reports') } >
+  //             <GlassCard style={this.data.style.indexCard} >
+  //               <CardTitle
+  //                 title={<Heartbeat />}
+  //                 subtitle='Diagnostic Reports'
+  //                 titleStyle={this.data.style.title}
+  //                 subtitleStyle={this.data.style.subtitle}
+  //               />
+  //             </GlassCard>
+  //           </div>    
 
-            <div id='bodySitesTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/body-sites') } >
-              <GlassCard style={this.data.style.indexCard} >
-                <CardTitle
-                  title={<Heartbeat />}
-                  subtitle='Body Sites'
-                  titleStyle={this.data.style.title}
-                  subtitleStyle={this.data.style.subtitle}
-                />
-              </GlassCard>
-            </div>
+  //           <div id='bodySitesTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/body-sites') } >
+  //             <GlassCard style={this.data.style.indexCard} >
+  //               <CardTitle
+  //                 title={<Heartbeat />}
+  //                 subtitle='Body Sites'
+  //                 titleStyle={this.data.style.title}
+  //                 subtitleStyle={this.data.style.subtitle}
+  //               />
+  //             </GlassCard>
+  //           </div>
 
-          </div>);
-      }
-    }
-  }
+  //         </div>);
+  //     }
+  //   }
+  // }
 
 
   openDiscussionForum(){
