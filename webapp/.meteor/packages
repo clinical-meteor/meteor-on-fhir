@@ -54,7 +54,7 @@ accounts-ui@1.3.0
 clinical:oauth
 clinical:accounts-oauth
 clinical:accounts-famous-dead-people
-clinical:accounts-housemd
+# clinical:accounts-housemd
 
 
 

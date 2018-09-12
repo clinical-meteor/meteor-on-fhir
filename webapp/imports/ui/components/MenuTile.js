@@ -51,8 +51,8 @@ const style = {
   },
   indexCard: {
     cursor: 'pointer',
-    height: '120px',
-    minHeight: '120px'          
+    height: '142px',
+    minHeight: '142px'          
   },
   inactiveIndexCard: {
     opacity: .5,
@@ -62,7 +62,7 @@ const style = {
   },
   thumbnail: {
     width: '85px',
-    minHeight: '135px',
+    minHeight: '142px',
     position: 'absolute',
     left: '15px',
     top: '0px',
@@ -72,7 +72,7 @@ const style = {
     textAlign: 'center'
   },
   title: Glass.darkroom({
-    marginTop: '20px',
+    marginTop: '10px',
     textAlign: 'left',
     fontSize: '48px',
     paddingLeft: '85px'
