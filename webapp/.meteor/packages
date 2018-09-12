@@ -123,7 +123,7 @@ clinical:hl7-resource-immunization
 clinical:hl7-resource-location
 clinical:hl7-resource-list
 clinical:hl7-resource-medication
-clinical:hl7-resource-medication-order
+# clinical:hl7-resource-medication-order
 clinical:hl7-resource-medication-statement
 clinical:hl7-resource-organization
 clinical:hl7-resource-observation
@@ -135,7 +135,7 @@ clinical:hl7-resource-procedure
 # clinical:hl7-resource-questionnaire-response
 clinical:hl7-resource-risk-assessment
 # clinical:hl7-resource-sequence
-clinical:hl7-resource-subscription
+# clinical:hl7-resource-subscription
 
 
 ### Infrastructure as a Service
