@@ -131,8 +131,8 @@ clinical:hl7-resource-patient
 clinical:hl7-resource-person
 clinical:hl7-resource-practitioner
 clinical:hl7-resource-procedure
-# clinical:hl7-resource-questionnaire
-# clinical:hl7-resource-questionnaire-response
+clinical:hl7-resource-questionnaire
+clinical:hl7-resource-questionnaire-response
 clinical:hl7-resource-risk-assessment
 # clinical:hl7-resource-sequence
 # clinical:hl7-resource-subscription
