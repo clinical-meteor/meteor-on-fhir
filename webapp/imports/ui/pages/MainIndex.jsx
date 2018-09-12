@@ -86,6 +86,7 @@ export class MainIndex extends React.Component {
       showExperimental: true,
       local: {
         allergies: 0,
+        auditEvents: 0,
         carePlans: 0,
         conditions: 0,
         devices: 0,
@@ -100,7 +101,8 @@ export class MainIndex extends React.Component {
         organizations: 0,
         practitioners: 0,
         procedures: 0,
-        riskAssessments: 0
+        riskAssessments: 0,
+        serviceConfigs: 0
       },
       filterMainTiles: Session.get('filterMainTiles'),
       glassBlurEnabled: Session.get('glassBlurEnabled')
@@ -108,6 +110,9 @@ export class MainIndex extends React.Component {
 
     if( typeof AllergyIntolerances === "object" ){
       data.local.allergies = AllergyIntolerances.find().count();
+    }
+    if( typeof AuditEvents === "object" ){
+      data.local.auditEvents = AuditEvents.find().count();
     }
     if( typeof CarePlans === "object" ){
       data.local.carePlans = CarePlans.find().count();
@@ -153,6 +158,9 @@ export class MainIndex extends React.Component {
     }
     if( typeof RiskAssessments === "object" ){
       data.local.riskAssessments = RiskAssessments.find().count();
+    }
+    if( typeof ServiceConfiguration === "object" ){
+      data.local.serviceConfigs = ServiceConfiguration.configurationgs.find().count();
     }
 
     data.style.indexCard = Glass.darkroom(data.style.indexCard);
@@ -384,6 +392,7 @@ export class MainIndex extends React.Component {
                 path='/oauth-config'
                 icon='Clipboard'
                 iconSize={65}
+                title={ this.data.local.serviceConfigs }
                 subtitle='OAuth Service Config'
               />  
             </Col>
@@ -394,6 +403,7 @@ export class MainIndex extends React.Component {
                 path='/hipaa-audit-log'
                 icon='Clipboard'
                 iconSize={65}
+                title={ this.data.local.auditEvents }
                 subtitle='Audit Events'
               />  
             </Col>
