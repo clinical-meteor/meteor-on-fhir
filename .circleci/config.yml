@@ -32,19 +32,18 @@ jobs:
     docker:
     - image: circleci/node:8.9-browsers
       command: /sbin/init
-      name: meteorapp
+      name: meteor-on-fhir
       environment:
         CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
         CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
-        TZ: "/usr/share/zoneinfo/America/Los_Angeles"
+        TZ: "/usr/share/zoneinfo/America/Chicago"
         CIRCLE_ENV: test
         NODE_ENV: test
         CXX: g++-4.8
         DISPLAY: :99.0
         NPM_PREFIX: /home/ubuntu/nvm/v0.10.33
         MONGO_URL: mongodb://mongo:27017/meteor
-        TOOL_NODE_FLAGS: --max_old_space_size=8192
-        DEBUG: true
+        TOOL_NODE_FLAGS: --max_old_space_size=4096
     - image: mongo:3.4.4
       name: mongo
 
