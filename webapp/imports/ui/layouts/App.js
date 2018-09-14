@@ -63,7 +63,7 @@ export class App extends React.Component {
       );
 
       // Conditions (Zygote)
-    } else if (Meteor.userId() && Session.equals('pathname', '/conditions')) {
+    } else if (Meteor.userId() && Session.equals('pathname', '/conditions') && get(Meteor, 'settings.public.apps.ZygoteAvatar')) {
       return (
         <GlassCard style={this.data.style.card} height='auto'>
           <CardText>

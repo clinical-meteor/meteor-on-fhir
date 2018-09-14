@@ -2,7 +2,7 @@
   "public": {
     "title": "Meteor on FHIR",      
     "baseUrl":"https://fhir-timeline.meteorapp.com/",
-    "logging": "debug",
+    "logging": "none",
     "theme": {
       "showVideoBackground": false,
       "darkroomTextEnabled": false,
