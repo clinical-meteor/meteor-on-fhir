@@ -1,3 +1,93 @@
 [submodule "webapp/packages/hl7-resource-allergy-intolerance"]
 	path = webapp/packages/hl7-resource-allergy-intolerance
 	url = https://github.com/clinical-meteor/hl7-resource-allergy-intolerance
+[submodule "webapp/packages/hl7-resource-audit-event"]
+	path = webapp/packages/hl7-resource-audit-event
+	url = https://github.com/clinical-meteor/hl7-resource-audit-event
+[submodule "webapp/packages/hl7-resource-binary"]
+	path = webapp/packages/hl7-resource-binary
+	url = https://github.com/clinical-meteor/hl7-resource-binary
+[submodule "webapp/packages/hl7-resource-bundle"]
+	path = webapp/packages/hl7-resource-bundle
+	url = https://github.com/clinical-meteor/hl7-resource-bundle
+[submodule "webapp/packages/hl7-resource-careplan"]
+	path = webapp/packages/hl7-resource-careplan
+	url = https://github.com/clinical-meteor/hl7-resource-careplan
+[submodule "webapp/packages/hl7-resource-communication"]
+	path = webapp/packages/hl7-resource-communication
+	url = https://github.com/clinical-meteor/hl7-resource-communication
+[submodule "webapp/packages/hl7-resource-condition"]
+	path = webapp/packages/hl7-resource-condition
+	url = https://github.com/clinical-meteor/hl7-resource-condition
+[submodule "webapp/packages/hl7-resource-consent"]
+	path = webapp/packages/hl7-resource-consent
+	url = https://github.com/clinical-meteor/hl7-resource-consent
+[submodule "webapp/packages/hl7-resource-contract"]
+	path = webapp/packages/hl7-resource-contract
+	url = https://github.com/clinical-meteor/hl7-resource-contract
+[submodule "webapp/packages/hl7-resource-datatypes"]
+	path = webapp/packages/hl7-resource-datatypes
+	url = https://github.com/clinical-meteor/hl7-resource-datatypes
+[submodule "webapp/packages/hl7-resource-device"]
+	path = webapp/packages/hl7-resource-device
+	url = https://github.com/clinical-meteor/hl7-resource-device
+[submodule "webapp/packages/hl7-resource-diagnostic-report"]
+	path = webapp/packages/hl7-resource-diagnostic-report
+	url = https://github.com/clinical-meteor/hl7-resource-diagnostic-report
+[submodule "webapp/packages/hl7-resource-endpoint"]
+	path = webapp/packages/hl7-resource-endpoint
+	url = https://github.com/clinical-meteor/hl7-resource-endpoint
+[submodule "webapp/packages/hl7-resource-goal"]
+	path = webapp/packages/hl7-resource-goal
+	url = https://github.com/clinical-meteor/hl7-resource-goal
+[submodule "webapp/packages/hl7-resource-immunization"]
+	path = webapp/packages/hl7-resource-immunization
+	url = https://github.com/clinical-meteor/hl7-resource-immunization
+[submodule "webapp/packages/hl7-resource-list"]
+	path = webapp/packages/hl7-resource-list
+	url = https://github.com/clinical-meteor/hl7-resource-list
+[submodule "webapp/packages/hl7-resource-location"]
+	path = webapp/packages/hl7-resource-location
+	url = https://github.com/clinical-meteor/hl7-resource-location
+[submodule "webapp/packages/hl7-resource-medication"]
+	path = webapp/packages/hl7-resource-medication
+	url = https://github.com/clinical-meteor/hl7-resource-medication
+[submodule "webapp/packages/hl7-resource-medication-order"]
+	path = webapp/packages/hl7-resource-medication-order
+	url = https://github.com/clinical-meteor/hl7-resource-medication-order
+[submodule "webapp/packages/hl7-resource-medication-statement"]
+	path = webapp/packages/hl7-resource-medication-statement
+	url = https://github.com/clinical-meteor/hl7-resource-medication-statement
+[submodule "webapp/packages/hl7-resource-observation"]
+	path = webapp/packages/hl7-resource-observation
+	url = https://github.com/clinical-meteor/hl7-resource-observation
+[submodule "webapp/packages/hl7-resource-organization"]
+	path = webapp/packages/hl7-resource-organization
+	url = https://github.com/clinical-meteor/hl7-resource-organization
+[submodule "webapp/packages/hl7-resource-patient"]
+	path = webapp/packages/hl7-resource-patient
+	url = https://github.com/clinical-meteor/hl7-resource-patient
+[submodule "webapp/packages/hl7-resource-person"]
+	path = webapp/packages/hl7-resource-person
+	url = https://github.com/clinical-meteor/hl7-resource-person
+[submodule "webapp/packages/hl7-resource-practitioner"]
+	path = webapp/packages/hl7-resource-practitioner
+	url = https://github.com/clinical-meteor/hl7-resource-practitioner
+[submodule "webapp/packages/hl7-resource-procedure"]
+	path = webapp/packages/hl7-resource-procedure
+	url = https://github.com/clinical-meteor/hl7-resource-procedure
+[submodule "webapp/packages/hl7-resource-risk-assessment"]
+	path = webapp/packages/hl7-resource-risk-assessment
+	url = https://github.com/clinical-meteor/hl7-resource-risk-assessment
+[submodule "webapp/packages/hl7-resource-subscription"]
+	path = webapp/packages/hl7-resource-subscription
+	url = https://github.com/clinical-meteor/hl7-resource-subscription
+[submodule "webapp/packages/hl7-resource-sequence"]
+	path = webapp/packages/hl7-resource-sequence
+	url = https://github.com/clinical-meteor/hl7-resource-sequence
+[submodule "webapp/packages/accounts-housemd"]
+	path = webapp/packages/accounts-housemd
+	url = https://github.com/clinical-meteor/accounts-housemd
+[submodule "webapp/packages/accounts-famous-dead-people"]
+	path = webapp/packages/accounts-famous-dead-people
+	url = https://github.com/clinical-meteor/accounts-famous-dead-people
