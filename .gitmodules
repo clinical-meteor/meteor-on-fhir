@@ -1,0 +1,3 @@
+[submodule "webapp/packages/hl7-resource-allergy-intolerance"]
+	path = webapp/packages/hl7-resource-allergy-intolerance
+	url = https://github.com/clinical-meteor/hl7-resource-allergy-intolerance
