@@ -13,16 +13,22 @@ Yes, the above is a live screenshot of the app, which supports a theming engine 
 #### A. Installation  
 
 ```sh
-# get the application
-git clone http://github.com/clinical-meteor/meteor-on-fhir
+# recursively clone the application and all of it's submodules
+git clone --recursive http://github.com/clinical-meteor/meteor-on-fhir
 
 # move into the webapp directory
 cd meteor-on-fhir/webapp
 
-# clone the example plugin
-git clone http://github.com/clinical-meteor/example-plugin packages/example-plugin
+# update the submodules to the latest (if needed; be careful with this)
+git submodule update --init --recursive
 
-# install the example plugin
+# add symplinks for ES6 submodules that we want to compile with Meteor
+# anything in the imports/linked directory is a candidate for symlinking
+meteor npm link imports/linked/ideogram
+
+# clone and install the example plugin (if you want to do local development)
+# you may want to use symptomatic/example-plugin for the latest professionally supported examples
+git clone http://github.com/clinical-meteor/example-plugin packages/example-plugin
 meteor add clinical:example-plugin
 
 # install the app

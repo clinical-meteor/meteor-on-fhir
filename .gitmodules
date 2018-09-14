@@ -91,3 +91,6 @@
 [submodule "webapp/packages/accounts-famous-dead-people"]
 	path = webapp/packages/accounts-famous-dead-people
 	url = https://github.com/clinical-meteor/accounts-famous-dead-people
+[submodule "webapp/imports/linked/ideogram"]
+	path = webapp/imports/linked/ideogram
+	url = https://github.com/eweitz/ideogram
