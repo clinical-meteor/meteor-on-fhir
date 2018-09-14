@@ -160,7 +160,7 @@ export class MainIndex extends React.Component {
       data.local.riskAssessments = RiskAssessments.find().count();
     }
     if( typeof ServiceConfiguration === "object" ){
-      data.local.serviceConfigs = ServiceConfiguration.configurationgs.find().count();
+      data.local.serviceConfigs = ServiceConfiguration.configurations.find().count();
     }
 
     data.style.indexCard = Glass.darkroom(data.style.indexCard);
