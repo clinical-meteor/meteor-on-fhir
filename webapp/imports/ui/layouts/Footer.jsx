@@ -666,7 +666,21 @@ export class Footer extends React.Component {
         console.log('ValidationErrors: ', consentValidator.validationErrors());
     
         
-        Consents._collection.insert(receivedConsent)
+        Consents._collection.insert(receivedConsent);
+
+        let sourceReference = get(receivedConsent, 'sourceReference.reference');
+        if(sourceReference){
+          let docRefUrl = 'http://hapi.fhir.org/baseDstu3/' +sourceReference + '/_history/1?_pretty=true&_format=json';
+          console.log('docRefUrl', docRefUrl)
+          HTTP.get(docRefUrl, function(error, result){
+            if(error){
+              console.error(error)        
+            }
+            if(result){
+              DocumentReferences._collection.insert(JSON.parse(result.content))
+            }
+          })
+        }
       }
     })
     
