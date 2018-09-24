@@ -142,9 +142,6 @@ clinical:hl7-resource-subscription
 percolate:synced-cron
 
 
-### Premium Modules
-symptomatic:geomapping
-
 
 ### Blockchains
 # symptomatic:blockchain-core
@@ -158,6 +155,7 @@ symptomatic:continuity-of-care
 symptomatic:smart-on-fhir-client
 symptomatic:example-plugin
 symptomatic:landing-page
-# symptomatic:clinical-scenarios
+symptomatic:clinical-scenarios
+symptomatic:geomapping
 
 # symptomatic:ihealth-cloud-api

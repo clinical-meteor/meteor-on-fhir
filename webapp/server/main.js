@@ -15,7 +15,7 @@ Meteor.startup(function(){
     }
 
   // if OAuth is configured, load oauth configs into active memory
-  if(Package['clinical:smart-on-fhir-client']){
+  if(Package['symptomtic:smart-on-fhir-client']){
     Meteor.call('resyncConfiguration');
   }
 
