@@ -105,7 +105,7 @@ NODE_ENV=dev meteor run ios-device --mobile-server http://localhost:3000 --setti
 
 # production
 # we need to specify the production server
-NODE_ENV=dev meteor run ios-device --mobile-server http://meteor-on-fhir.meteorapp.com --settings configs/settings.galaxy.json
+NODE_ENV=dev meteor run ios-device --mobile-server http://meteor-on-fhir.meteorapp.com --settings packages/landing-page/configs/settings.symptomatic.io.json
 ```    
 
 
@@ -122,6 +122,11 @@ meteor npm install --save meteor-desktop
 # add the .desktop directory, which has files needed by omega:meteor-desktop
 npm run desktop -- init
 
+# if there is already a desktop directory, move it to the .desktop dir
+# this will override the previous step
+mv webapp/desktop webapp/.desktop
+
+
 # run the app server locally, as if you were doing a mobile build
 # (you may be able to just use the running mobile build server)
 NODE_ENV=dev meteor --mobile-server http://localhost:3000 --settings configs/settings.galaxy.json
@@ -136,8 +141,8 @@ NODE_ENV=dev meteor --mobile-server http://localhost:3000 --settings configs/set
 # meteor --mobile-server http://www.symptomatic.io --settings configs/settings.galaxy.json
 # npm run desktop -- build-installer http://www.symptomatic.io
 
-meteor --mobile-server https://www.symptomatic.io --settings packages/landing-page/configs/settings.symptomatic.io.json
-meteor npm run desktop -- build-installer http://www.symptomatic.io
+meteor --mobile-server https://meteor-on-fhir.meteorapp.com --settings packages/landing-page/configs/settings.symptomatic.io.json
+meteor npm run desktop -- build-installer http://meteor-on-fhir.meteorapp.com
 
 ```    
 
@@ -146,6 +151,9 @@ meteor npm run desktop -- build-installer http://www.symptomatic.io
 
 ```sh
 # remove the desktop pipeline before building for Galaxy
+mv webapp/.desktop webapp/desktop
+git commit -a -m 'desktop' 
+
 meteor reset
 meteor remove-platform ios
 meteor remove omega:meteor-desktop-watcher omega:meteor-desktop-bundler omega:meteor-desktop-localstorage

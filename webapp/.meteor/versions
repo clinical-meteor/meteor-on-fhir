@@ -130,8 +130,6 @@ mrt:moment@2.8.1
 npm-bcrypt@0.9.3
 npm-mongo@2.2.34
 observe-sequence@1.0.16
-omega:meteor-desktop-bundler@1.6.0
-omega:meteor-desktop-watcher@1.6.0
 ordered-dict@1.1.0
 percolate:synced-cron@1.3.2
 prime8consulting:meteor-oauth2-server@0.0.3
@@ -163,7 +161,7 @@ symptomatic:clinical-scenarios@0.1.0
 symptomatic:continuity-of-care@0.1.3
 symptomatic:example-plugin@0.1.16
 symptomatic:geomapping@0.0.6
-symptomatic:landing-page@0.1.1
+symptomatic:landing-page@0.1.2
 symptomatic:smart-on-fhir-client@0.1.48
 symptomatic:theming@0.0.4
 templating@1.2.15

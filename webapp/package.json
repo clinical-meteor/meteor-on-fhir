@@ -48,7 +48,6 @@
     "jquery-validation": "^1.17.0",
     "lodash": "^4.17.4",
     "material-ui": "0.20.1",
-    "meteor-desktop": "^1.6.0",
     "moment": "^2.20.1",
     "onecolor": "^3.0.4",
     "prop-types": "^15.5.10",
