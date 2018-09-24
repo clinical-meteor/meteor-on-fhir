@@ -90,7 +90,6 @@ ejson@1.1.0
 email@1.2.3
 es5-shim@4.7.3
 fastclick@1.0.13
-fhirblocks:core@0.1.9
 fortawesome:fontawesome@4.4.0_1
 fourseven:scss@4.5.4
 geojson-utils@1.0.10
@@ -131,6 +130,8 @@ mrt:moment@2.8.1
 npm-bcrypt@0.9.3
 npm-mongo@2.2.34
 observe-sequence@1.0.16
+omega:meteor-desktop-bundler@1.6.0
+omega:meteor-desktop-watcher@1.6.0
 ordered-dict@1.1.0
 percolate:synced-cron@1.3.2
 prime8consulting:meteor-oauth2-server@0.0.3
@@ -160,9 +161,9 @@ srp@1.0.10
 standard-minifier-js@2.3.4
 symptomatic:clinical-scenarios@0.1.0
 symptomatic:continuity-of-care@0.1.3
+symptomatic:example-plugin@0.1.16
 symptomatic:geomapping@0.0.6
 symptomatic:landing-page@0.1.1
-symptomatic:example-plugin@0.1.16
 symptomatic:smart-on-fhir-client@0.1.48
 symptomatic:theming@0.0.4
 templating@1.2.15

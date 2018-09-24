@@ -2,13 +2,13 @@
 /* eslint-disable quote-props */
 
 App.info({
-  id: 'io.sympatomatic.fhir-timeline',
+  id: 'io.sympatomatic.desktop',
   name: 'Symptomatic',
-  description: 'Continuity of Care Document Viewer.',
+  description: 'Continuity of Care Document Viewer',
   author: 'Abigail Watson',
   email: 'abigail@symptomatic.io',
-  website: 'http://fhir-timeline.meteorapp.com',
-  version: '0.4.0'
+  website: 'https://www.symptomatic.io',
+  version: '0.5.0'
 });
 
 App.icons({
@@ -59,6 +59,9 @@ App.setPreference('DisallowOverscroll', 'true');
 App.accessRule('http://localhost', { type: 'navigation' } );
 App.accessRule('http://localhost:3000', { type: 'navigation' } );
 App.accessRule('http://www.symptomatic.io', { type: 'navigation' } );
+App.accessRule('https://www.symptomatic.io', { type: 'navigation' } );
+App.accessRule('http://symptomatic.io', { type: 'navigation' } );
+App.accessRule('https://symptomatic.io', { type: 'navigation' } );
 App.accessRule('http://fhir-timeline.meteorapp.com', { type: 'navigation' } );
 
 App.setPreference("BackupWebStorage", "local");

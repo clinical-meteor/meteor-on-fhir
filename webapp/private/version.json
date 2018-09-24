@@ -1,7 +1,7 @@
 {
     "basic": "v1.0-prerelease-3",
-    "complete": "v1.0-prerelease-3-89-g4bd78bb",
-    "branch": "symptomatic.io",
-    "commit": "4bd78bb9b8e17c25a35c02fa03eee52ab597e3ce",
-    "timestamp": "2018-09-18"
+    "complete": "v1.0-prerelease-3-92-g2fa2e61",
+    "branch": "baltimore",
+    "commit": "2fa2e61dfc16312b6a9894a64afde20154f5fc3b",
+    "timestamp": "2018-09-23"
 }
