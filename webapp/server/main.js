@@ -39,7 +39,9 @@ Meteor.startup(function(){
     BrowserPolicy.content.allowOriginForAll('*.wikipedia.org');
     BrowserPolicy.content.allowOriginForAll('fonts.googleapis.com');
     BrowserPolicy.content.allowOriginForAll('fonts.gstatic.com');
-    BrowserPolicy.content.allowImageOrigin("*")
+    BrowserPolicy.content.allowImageOrigin("* data:")
+    BrowserPolicy.content.allowOriginForAll('blob:');
+    BrowserPolicy.content.allowImageOrigin("blob:")
     BrowserPolicy.content.allowEval();
     BrowserPolicy.content.allowInlineScripts()
     BrowserPolicy.content.allowInlineStyles()  

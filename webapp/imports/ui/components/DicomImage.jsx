@@ -32,18 +32,15 @@ export const DicomImage = createReactClass({
            style={viewportStyle}           
            >
           <div className="viewportElement" style={{height: '100%'}}></div>
-          {/*<div className="topLeft dicomTag">
-              Patient Name
-          </div>
-          <div className="topRight dicomTag">
-              Hospital
+          <div className="topLeft dicomTag">
+              { this.props.title }
           </div>
           <div className="bottomRight dicomTag">
               Zoom: {this.state.zoom}
           </div>
           <div className="bottomLeft dicomTag">
               WW/WC: {this.state.wwwc}
-          </div>*/}
+          </div>
       </div>
       );
   },
@@ -109,9 +106,10 @@ export const DicomImage = createReactClass({
       // var imageId = "example://1";
       // var imageId = 'https://rawgit.com/cornerstonejs/cornerstoneWebImageLoader/master/examples/Renal_Cell_Carcinoma.jpg'
       if(this.props.imageUrl){
-        var imageId = this.props.imageUrl
+        var imageUrl = this.props.imageUrl
+        console.log('DicomImage received the following imageUrl: ', imageUrl)
 
-        cornerstone.loadImage(imageId).then(function(image) {
+        cornerstone.loadImage(imageUrl).then(function(image) {
             cornerstone.displayImage(element, image);
             cornerstoneTools.mouseInput.enable(element);
             cornerstoneTools.mouseWheelInput.enable(element);

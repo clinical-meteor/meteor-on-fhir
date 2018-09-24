@@ -159,3 +159,10 @@ symptomatic:clinical-scenarios
 symptomatic:geomapping
 
 # symptomatic:ihealth-cloud-api
+symptomatic:continuity-of-care
+symptomatic:theming
+fhirblocks:core
+symptomatic:smart-on-fhir-client
+symptomatic:example-plugin
+symptomatic:geomapping
+clinical:hl7-resource-imaging-study
