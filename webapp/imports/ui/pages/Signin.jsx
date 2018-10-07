@@ -189,6 +189,7 @@ export class Signin extends React.Component {
               primary={true}
               onClick={ self.signInWith.bind(this, service.service) }
               fullWidth
+              labelStyle={{textTransform: 'capitalize'}}
               />    
               <br />
               <br />
