@@ -633,7 +633,8 @@ export class Footer extends React.Component {
       } else if (pathname === '/wallet-dashboard') {
         return (
           <div>
-            <FlatButton label='Query HAPI for Consent' className='querySystemButton' ref='querySystemButton' onClick={this.queryHapi.bind(this)} style={this.data.style.buttonText} ></FlatButton>
+            <FlatButton label='Query HAPI for Consents' className='querySystemButton' ref='querySystemButton' onClick={this.queryHapi.bind(this)} style={this.data.style.buttonText} ></FlatButton>
+            <FlatButton label='WebAuthN ' className='querySystemButton' ref='querySystemButton' onClick={this.webAuthn.bind(this)}  style={this.data.style.buttonText} ></FlatButton>
           </div>
         );
 
@@ -646,44 +647,36 @@ export class Footer extends React.Component {
       }
 
   }
-
+  webAuthn(){
+    window.open('https://poc-node-1.fhirblocks.io/oauth2/wan-auth','MyWindow', "width=1024, height=600"); 
+  }
   queryHapi(){
     console.log('queryHapi')
 
-    HTTP.get('http://hapi.fhir.org/baseDstu3/Consent/5592837/_history/1?_pretty=true&_format=json', function(error, result){
+    HTTP.get('http://hapi.fhir.org/baseDstu3/Consent?_pretty=true&_format=json', function(error, result){
       if(error){
         console.error(error)        
       }
       if(result){
         // console.info(result)
-        let receivedConsent = JSON.parse(result.content);
-        console.info(receivedConsent)
-
-        let consentValidator = ConsentSchema.newContext();
-        consentValidator.validate(receivedConsent)
-    
-        console.log('IsValid: ', consentValidator.isValid())
-        console.log('ValidationErrors: ', consentValidator.validationErrors());
-    
+        let resultContent = JSON.parse(result.content);
+        console.info(resultContent)
         
-        Consents._collection.insert(receivedConsent);
-
-        let sourceReference = get(receivedConsent, 'sourceReference.reference');
-        if(sourceReference){
-          let docRefUrl = 'http://hapi.fhir.org/baseDstu3/' +sourceReference + '/_history/1?_pretty=true&_format=json';
-          console.log('docRefUrl', docRefUrl)
-          HTTP.get(docRefUrl, function(error, result){
-            if(error){
-              console.error(error)        
-            }
-            if(result){
-              DocumentReferences._collection.insert(JSON.parse(result.content))
-            }
+        if(resultContent.resourceType === "Bundle"){
+          resultContent.entry.forEach(function(record){
+            let consentValidator = ConsentSchema.newContext();
+            consentValidator.validate(record.resource)
+        
+            console.log('IsValid: ', consentValidator.isValid())
+            console.log('ValidationErrors: ', consentValidator.validationErrors());        
+            
+            Consents._collection.insert(record.resource)
+    
           })
-        }
+        } 
+
       }
     })
-    
     
     Session.set('hapiResults', {})
   }
