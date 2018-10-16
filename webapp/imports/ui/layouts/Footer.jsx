@@ -655,7 +655,7 @@ export class Footer extends React.Component {
   queryHapiConsents(){
     console.log('queryHapiConsents')
 
-    HTTP.get('http://hapi.fhir.org/baseDstu3/Consent?_pretty=true&_format=json&_organization=Duke', function(error, result){
+    HTTP.get('https://hapi.fhir.org/baseDstu3/Consent?_pretty=true&_format=json&_organization=Duke', function(error, result){
       if(error){
         console.error(error)        
       }
@@ -686,7 +686,7 @@ export class Footer extends React.Component {
     // 
     console.log('queryHapiProvenances')
 
-    HTTP.get('http://hapi.fhir.org/baseDstu3/Provenance?_pretty=true&_format=json&_count=100&_agent=Duke', function(error, result){
+    HTTP.get('https://hapi.fhir.org/baseDstu3/Provenance?_pretty=true&_format=json&_count=100&_agent=Duke', function(error, result){
       if(error){
         console.error(error)        
       }
@@ -717,7 +717,7 @@ export class Footer extends React.Component {
     // 
     console.log('queryHapiProvenances')
 
-    HTTP.get('http://hapi.fhir.org/baseDstu3/DocumentReference?_pretty=true&_format=json&_count=100', function(error, result){
+    HTTP.get('https://hapi.fhir.org/baseDstu3/DocumentReference?_pretty=true&_format=json&_count=100', function(error, result){
       if(error){
         console.error(error)        
       }
