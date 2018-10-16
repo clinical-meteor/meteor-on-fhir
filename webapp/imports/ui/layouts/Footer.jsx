@@ -633,7 +633,9 @@ export class Footer extends React.Component {
       } else if (pathname === '/wallet-dashboard') {
         return (
           <div>
-            <FlatButton label='Query HAPI for Consents' className='querySystemButton' ref='querySystemButton' onClick={this.queryHapi.bind(this)} style={this.data.style.buttonText} ></FlatButton>
+            <FlatButton label='Query HAPI for Provenances' className='querySystemButton' ref='querySystemButton' onClick={this.queryHapiProvenances.bind(this)} style={this.data.style.buttonText} ></FlatButton>
+            <FlatButton label='Query HAPI for Consents' className='querySystemButton' ref='querySystemButton' onClick={this.queryHapiConsents.bind(this)} style={this.data.style.buttonText} ></FlatButton>
+            <FlatButton label='Query HAPI for Documents' className='querySystemButton' ref='querySystemButton' onClick={this.queryHapiDocumentReferences.bind(this)} style={this.data.style.buttonText} ></FlatButton>
             <FlatButton label='WebAuthN ' className='querySystemButton' ref='querySystemButton' onClick={this.webAuthn.bind(this)}  style={this.data.style.buttonText} ></FlatButton>
           </div>
         );
@@ -650,10 +652,10 @@ export class Footer extends React.Component {
   webAuthn(){
     window.open('https://poc-node-1.fhirblocks.io/oauth2/wan-auth','MyWindow', "width=1024, height=600"); 
   }
-  queryHapi(){
-    console.log('queryHapi')
+  queryHapiConsents(){
+    console.log('queryHapiConsents')
 
-    HTTP.get('http://hapi.fhir.org/baseDstu3/Consent?_pretty=true&_format=json', function(error, result){
+    HTTP.get('http://hapi.fhir.org/baseDstu3/Consent?_pretty=true&_format=json&_organization=Duke', function(error, result){
       if(error){
         console.error(error)        
       }
@@ -670,7 +672,7 @@ export class Footer extends React.Component {
             console.log('IsValid: ', consentValidator.isValid())
             console.log('ValidationErrors: ', consentValidator.validationErrors());        
             
-            Consents._collection.insert(record.resource)
+            Consents._collection.upsert(record.resource.id, record.resource)
     
           })
         } 
@@ -679,6 +681,67 @@ export class Footer extends React.Component {
     })
     
     Session.set('hapiResults', {})
+  }
+  queryHapiProvenances(){
+    // 
+    console.log('queryHapiProvenances')
+
+    HTTP.get('http://hapi.fhir.org/baseDstu3/Provenance?_pretty=true&_format=json&_count=100&_agent=Duke', function(error, result){
+      if(error){
+        console.error(error)        
+      }
+      if(result){
+        // console.info(result)
+        let resultContent = JSON.parse(result.content);
+        console.info(resultContent)
+        
+        if(resultContent.resourceType === "Bundle"){
+          resultContent.entry.forEach(function(record){
+            let provenanceValidator = ProvenanceSchema.newContext();
+            provenanceValidator.validate(record.resource)
+        
+            console.log('IsValid: ', provenanceValidator.isValid())
+            console.log('ValidationErrors: ', provenanceValidator.validationErrors());        
+            
+            Provenances._collection.upsert(record.resource.id, record.resource)
+    
+          })
+        } 
+
+      }
+    })
+    
+    Session.set('hapiProvenances', {})
+  }
+  queryHapiDocumentReferences(){
+    // 
+    console.log('queryHapiProvenances')
+
+    HTTP.get('http://hapi.fhir.org/baseDstu3/DocumentReference?_pretty=true&_format=json&_count=100', function(error, result){
+      if(error){
+        console.error(error)        
+      }
+      if(result){
+        // console.info(result)
+        let resultContent = JSON.parse(result.content);
+        console.info(resultContent)
+        
+        if(resultContent.resourceType === "Bundle"){
+          resultContent.entry.forEach(function(record){
+            let documentReferenceValidator = DocumentReferenceSchema.newContext();
+            documentReferenceValidator.validate(record.resource)
+        
+            console.log('IsValid: ', documentReferenceValidator.isValid())
+            console.log('ValidationErrors: ', documentReferenceValidator.validationErrors());        
+            
+            DocumentReferences._collection.upsert(record.resource.id, record.resource)
+          })
+        } 
+
+      }
+    })
+    
+    Session.set('hapiProvenances', {})
   }
   renderEastNavbar(displayThemeNavbar){
     if (displayThemeNavbar) {

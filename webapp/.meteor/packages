@@ -165,3 +165,4 @@ symptomatic:geomapping
 fhirblocks:core
 symptomatic:smart-on-fhir-client
 symptomatic:continuity-of-care
+clinical:hl7-resource-provenance
