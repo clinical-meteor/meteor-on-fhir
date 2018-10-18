@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Brush | Ideogram</title>
+  <style>body {font: 12px Arial; line-height: 19.6px;}</style>
+  <script type="text/javascript" src="../../dist/js/ideogram.min.js"></script>
+</head>
+<body>
+  <h1>Brush | Ideogram</h1>
+  <a href="../">Back to overview</a> |
+  <a href="layout-small">Previous</a> |
+  <a href="ploidy-basic">Next</a>
+  <br/><br/>
+  <div>
+    Selected region on human chromosome 1:
+    <div><span id="from"></span>-<span id="to"></span>
+      (extent: <span id="extent"></span> base pairs)
+    </div>
+  </div>
+  <div class="ideogram-container">
+    <!-- The ideogram goes here. -->
+  </div>
+  <script type="text/javascript">
+
+  function writeSelectedRange() {
+    var r = ideogram.selectedRegion,
+        from = r.from.toLocaleString(), // Adds thousands-separator
+        to = r.to.toLocaleString(),
+        extent = r.extent.toLocaleString();
+
+    document.getElementById('from').innerHTML = from;
+    document.getElementById('to').innerHTML = to;
+    document.getElementById('extent').innerHTML = extent;
+  }
+
+  var config = {
+    container: '.ideogram-container',
+    organism: 'human',
+    chromosome: '1',
+    brush: 'chr1:104325484-119977655', // https://www.ncbi.nlm.nih.gov/dbvar/variants/nsv916356
+    chrHeight: 900,
+    resolution: 550,
+    orientation: 'horizontal',
+    onBrushMove: writeSelectedRange,
+    onLoad: writeSelectedRange
+  };
+
+  var ideogram = new Ideogram(config);
+  </script>
+</body>
+</html>

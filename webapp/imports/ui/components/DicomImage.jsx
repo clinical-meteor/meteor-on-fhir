@@ -20,7 +20,7 @@ export const DicomImage = createReactClass({
   },
   render() {
     var viewportStyle = {
-      height: 984,
+      height: 1333,
       width: '100%'
     }
     return (
