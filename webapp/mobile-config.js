@@ -2,27 +2,27 @@
 /* eslint-disable quote-props */
 
 App.info({
-  id: 'io.sympatomatic.fhir-timeline',
+  id: 'io.sympatomatic.desktop',
   name: 'Symptomatic',
-  description: 'Continuity of Care Document Viewer.',
+  description: 'Continuity of Care Document Viewer',
   author: 'Abigail Watson',
   email: 'abigail@symptomatic.io',
-  website: 'http://fhir-timeline.meteorapp.com',
-  version: '0.4.0'
+  website: 'https://www.symptomatic.io',
+  version: '0.5.0'
 });
 
 App.icons({
   // iOS
-  'iphone': 'resources/icons/icon-60x60.png',
-  'iphone_2x': 'resources/icons/icon-60x60@2x.png',
-  'ipad': 'resources/icons/icon-76x76.png',
-  'ipad_2x': 'resources/icons/icon-76x76@2x.png',
+  'iphone': 'resources/icons/Icon-60.png',
+  'iphone_2x': 'resources/icons/Icon-60@2x.png',
+  'ipad': 'resources/icons/Icon-76.png',
+  'ipad_2x': 'resources/icons/Icon-76@2x.png',
 
   // Android
-  'android_ldpi': 'resources/icons/icon-36x36.png',
-  'android_mdpi': 'resources/icons/icon-48x48.png',
-  'android_hdpi': 'resources/icons/icon-72x72.png',
-  'android_xhdpi': 'resources/icons/icon-96x96.png',
+  //'android_ldpi': 'resources/icons/icon-36x36.png',
+  //'android_mdpi': 'resources/icons/icon-48x48.png',
+  //'android_hdpi': 'resources/icons/icon-72x72.png',
+  //'android_xhdpi': 'resources/icons/icon-96x96.png',
 });
 
 App.launchScreens({
@@ -36,14 +36,14 @@ App.launchScreens({
   'ipad_landscape_2x': 'resources/splash/splash-1024x768@2x.png',
 
   // Android
-  'android_ldpi_portrait': 'resources/splash/splash-200x320.png',
-  'android_ldpi_landscape': 'resources/splash/splash-320x200.png',
-  'android_mdpi_portrait': 'resources/splash/splash-320x480.png',
-  'android_mdpi_landscape': 'resources/splash/splash-480x320.png',
-  'android_hdpi_portrait': 'resources/splash/splash-480x800.png',
-  'android_hdpi_landscape': 'resources/splash/splash-800x480.png',
-  'android_xhdpi_portrait': 'resources/splash/splash-720x1280.png',
-  'android_xhdpi_landscape': 'resources/splash/splash-1280x720.png',
+  //'android_ldpi_portrait': 'resources/splash/splash-200x320.png',
+  //'android_ldpi_landscape': 'resources/splash/splash-320x200.png',
+  //'android_mdpi_portrait': 'resources/splash/splash-320x480.png',
+  //'android_mdpi_landscape': 'resources/splash/splash-480x320.png',
+  //'android_hdpi_portrait': 'resources/splash/splash-480x800.png',
+  //'android_hdpi_landscape': 'resources/splash/splash-800x480.png',
+  //'android_xhdpi_portrait': 'resources/splash/splash-720x1280.png',
+  //'android_xhdpi_landscape': 'resources/splash/splash-1280x720.png',
 });
 
 // Set PhoneGap/Cordova preferences
@@ -59,6 +59,9 @@ App.setPreference('DisallowOverscroll', 'true');
 App.accessRule('http://localhost', { type: 'navigation' } );
 App.accessRule('http://localhost:3000', { type: 'navigation' } );
 App.accessRule('http://www.symptomatic.io', { type: 'navigation' } );
+App.accessRule('https://www.symptomatic.io', { type: 'navigation' } );
+App.accessRule('http://symptomatic.io', { type: 'navigation' } );
+App.accessRule('https://symptomatic.io', { type: 'navigation' } );
 App.accessRule('http://fhir-timeline.meteorapp.com', { type: 'navigation' } );
 
 App.setPreference("BackupWebStorage", "local");

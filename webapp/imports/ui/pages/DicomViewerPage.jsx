@@ -2,14 +2,12 @@ import { CardText, CardTitle } from 'material-ui/Card';
 import { Col, Grid, Row } from 'react-bootstrap';
 import {blue500, orange500} from 'material-ui/styles/colors';
 
-import { AboutAppCard } from '/imports/ui/components/AboutAppCard';
 import { GlassCard, FullPageCanvas, VerticalCanvas, Glass } from 'meteor/clinical:glass-ui';
 import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
 import TextField from 'material-ui/TextField';
 import { DicomImage } from '/imports/ui/components/DicomImage';
-
 
 import { get } from 'lodash';
 
@@ -46,13 +44,19 @@ export class DicomViewerPage extends React.Component {
         <FullPageCanvas >
           <Row>
               <Col md={6}>
-                <GlassCard height='auto' style={{position: 'relative'}}>
-                  <DicomImage imageUrl='https://upload.wikimedia.org/wikipedia/commons/a/a1/Normal_posteroanterior_%28PA%29_chest_radiograph_%28X-ray%29.jpg' />
+                <GlassCard height='auto's style={{position: 'relative'}}>
+                  <DicomImage 
+                    imageUrl='https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Normal_posteroanterior_%28PA%29_chest_radiograph_%28X-ray%29.jpg/800px-Normal_posteroanterior_%28PA%29_chest_radiograph_%28X-ray%29.jpg' 
+                    title='P/A'
+                    />
                 </GlassCard>
               </Col>                    
               <Col md={6}>
                 <GlassCard height='auto' style={{position: 'relative'}}>
-                  <DicomImage imageUrl='https://upload.wikimedia.org/wikipedia/commons/2/22/Chest_x-ray_-_lateral_view.jpg' />
+                  <DicomImage 
+                    imageUrl='https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Normal_lateral_chest_radiograph_%28X-ray%29.jpg/800px-Normal_lateral_chest_radiograph_%28X-ray%29.jpg'
+                    title='Lateral'
+                    />
                 </GlassCard>
               </Col>                    
           </Row>

@@ -24,7 +24,7 @@ import DeviceWifiTethering from 'material-ui/svg-icons/device/wifi-tethering';
 // }
 
 Session.setDefault('showThemingControls', false);
-Session.setDefault('gender', 'Pink');
+Session.setDefault('gender', false);
 Session.setDefault('timelineBackground', false);
 Session.setDefault('continuityOfCareDoc', null);
 
@@ -529,7 +529,7 @@ export class Footer extends React.Component {
         return (
           <div>
             <FlatButton label='Continuity of Care' className='ccdPage' ref='ccdPage' onClick={this.openLink.bind(this, '/continuity-of-care')} style={this.data.style.buttonText} ></FlatButton>
-            <FlatButton label={this.data.gender} id="pinkBlueToggle" className='clearCcd' ref='pinkBlueToggle' style={this.data.style.buttonText} onClick={this.pinkBlueToggle}></FlatButton>
+            {/* <FlatButton label={this.data.gender} id="pinkBlueToggle" className='clearCcd' ref='pinkBlueToggle' style={this.data.style.buttonText} onClick={this.pinkBlueToggle}></FlatButton> */}
             <FlatButton label='Background' id="toggleBackground" className='clearCcd' ref='toggleBackground' style={this.data.style.buttonText} onClick={this.toggleBackground}></FlatButton>
           </div>
         );

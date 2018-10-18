@@ -1,0 +1,101 @@
+{
+    "name": "SymptomaticDesktop",
+    "version": "0.9.3",
+    "projectName": "SymptomaticDesktop",
+    "devTools": true,
+    "devtron": true,
+    "desktopHCP": true,
+    "desktopHCPIgnoreCompatibilityVersion": false,
+    "autoUpdateFeedUrl": "https://symptomatic.io/update/:platform/:version",
+    "autoUpdateFeedHeaders": {},
+    "autoUpdateCheckOnStart": true,
+    "webAppStartupTimeout": 60000,
+    "exposeLocalFilesystem": false,
+    "window": {
+        "icon": "@assets/symptomatic.png",
+        "_windows": {
+            "icon": "@assets/symptomatic.ico"
+        }
+    },
+    "windowDev": {
+    },
+    "uglify": true,
+    "plugins": {
+        "meteor-desktop-splash-screen": {
+            "version": "0.5.0",
+            "windowSettings": {
+                "width": 800,
+                "height": 600
+            },
+            "updateScreen": true,
+            "updateScreenSettings": {
+                "imagePath": "updating.gif",
+                "windowSettings": {
+                    "width": 400,
+                    "height": 300
+                },
+                "clickThrough": false,
+                "style": {
+                    "background-size": "auto"
+                }
+            }
+        }
+    },
+    "dependencies": {},
+    "packageJsonFields": {
+        "description": "Symptomatic Desktop",
+        "author": "Abigail Watson",
+        "private": true
+    },
+    "builderOptions": {
+        "icon": ".desktop/assets/symptomatic.ico",
+        "appId": "meteor.app",
+        "productName": "Symptomatic Desktop",
+        "compression": "maximum",
+        "win": {
+            "target": "nsis"
+        },
+        "squirrelWindows": {
+            "iconUrl": "https://github.com/wojtkowiak/meteor-desktop/blob/beta/scaffold/assets/meteor.ico?raw=true",
+            "loadingGif": ".desktop/assets/loading.gif"
+        },
+        "publish": [
+            {
+                "provider": "generic",
+                "url": "https://symptomatic.io"
+            }
+        ],
+        "mac": {
+            "icon": ".desktop/assets/symptomatic.icns"
+        },
+        "dmg": {
+            "icon": ".desktop/assets/symptomatic.icns",
+            "background": ".desktop/assets/dmgBackground.png",
+            "iconSize": 54,
+            "contents": [
+                { "x": 377, "y": 190, "type": "link", "path": "/Applications" },
+                { "x": 63, "y": 190, "type": "file" }
+            ],
+            "window": {
+                "width": 480,
+                "height": 300
+            }
+        }
+    },
+    "packagerOptions": {
+        "icon": ".desktop/assets/meteor.ico",
+        "_osx": {
+            "icon": ".desktop/assets/meteor.icns"
+        },
+        "appVersion": "@version",
+        "buildVersion": "@version",
+        "appCopyright": "Copyright 2018 Symptomatic, LLC - All rights reserved.",
+        "win32metadata": {
+            "CompanyName": "Symptomatic, LLC",
+            "FileDescription": "SymptomaticDesktop",
+            "OriginalFilename": "SymptomaticDesktop.exe",
+            "ProductName": "SymptomaticDesktop",
+            "InternalName": "SymptomaticDesktop.exe"
+        }
+    }
+}

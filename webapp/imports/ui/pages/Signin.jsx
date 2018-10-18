@@ -15,8 +15,8 @@ import { Row, Col } from 'react-bootstrap';
 import { lightBaseTheme, darkBaseTheme } from 'material-ui/styles';
 import { get } from 'lodash';
 
-if(Package['clinical:smart-on-fhir-client']){
-  import { OAuth } from 'meteor/clinical:smart-on-fhir-client';
+if(Package['symptomatic:smart-on-fhir-client']){
+  import { OAuth } from 'meteor/symptomatic:smart-on-fhir-client';
 }
 
 Session.setDefault('signinWithSearch', '');
@@ -60,7 +60,7 @@ export class Signin extends React.Component {
       }).fetch()
     }
 
-    if(Package['clinical:smart-on-fhir-client']){
+    if(Package['symptomatic:smart-on-fhir-client']){
       if(ServiceConfiguration){
         data.services = ServiceConfiguration.configurations.find().fetch()
       }   
@@ -189,6 +189,7 @@ export class Signin extends React.Component {
               primary={true}
               onClick={ self.signInWith.bind(this, service.service) }
               fullWidth
+              labelStyle={{textTransform: 'capitalize'}}
               />    
               <br />
               <br />
@@ -203,7 +204,7 @@ export class Signin extends React.Component {
 
     var signInWith;
 
-    if(Package['clinical:smart-on-fhir-client']){
+    if(Package['symptomatic:smart-on-fhir-client']){
       signInWith = <Col lgOffset={4} mdOffset={2} lg={2} md={3}>
         <GlassCard zDepth={3} height="auto" >
           <CardTitle
