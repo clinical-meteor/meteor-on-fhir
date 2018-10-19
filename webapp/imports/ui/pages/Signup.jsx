@@ -123,7 +123,7 @@ export class Signup extends React.Component {
 
     Accounts.createUser(newUserData, function(error, result){
       if (error) {
-        console.log('Accounts.createUser().error', error.reason)
+        console.log('Accounts.createUser().error: ' + error.reason)
         // Meteor.call('debugToServer', 'Accounts.createUser()', error)
 
         Session.set('signUpErrorMessage', error.reason);
