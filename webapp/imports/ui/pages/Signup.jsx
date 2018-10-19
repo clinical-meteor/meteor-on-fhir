@@ -128,9 +128,9 @@ export class Signup extends React.Component {
         Session.set('signUpErrorMessage', error.reason);
 
         // for some reason, we're getting an "Email already exists!" on signup
-        if (!error.reason.includes("Email already exists.")) {
+        //if (!error.reason.includes("Email already exists.")) {
           Bert.alert(error.reason, 'danger');
-        }
+        //}
       }
       if (result) {
         console.log("Accounts.createUser[result]", result);
@@ -144,8 +144,10 @@ export class Signup extends React.Component {
         // and inform them about their obligations regarding HIPAA
         } else if (Roles.userIsInRole(Meteor.userId(), 'practitioner') && get(Meteor.user(), 'profile.firstTimeVisit')) {
             browserHistory.push('/welcome/practitioner');
+
         } else if (Roles.userIsInRole(Meteor.userId(), 'sysadmin') && get(Meteor.user(), 'profile.firstTimeVisit')) {
             browserHistory.push('/welcome/sysadmin');
+
         } else {
           // otherwise we go to the default route specified in the settings.json file
           if(get(Meteor, 'settings.public.defaults.route')){
