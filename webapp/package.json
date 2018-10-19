@@ -22,6 +22,7 @@
     "version": "../scripts/version.sh"
   },
   "dependencies": {
+    "@babel/runtime": "^7.1.2",
     "ajv": "6.1.1",
     "async": "^2.6.0",
     "autoprefixer": "^6.4.1",

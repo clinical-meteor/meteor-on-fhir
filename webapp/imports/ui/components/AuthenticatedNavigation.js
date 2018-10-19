@@ -100,7 +100,7 @@ export class AuthenticatedNavigation extends React.Component {
         });          
       }
     }
-    (process.env.NODE_ENV === 'test') && console.log("AuthenticatedNavigation[data]", data);
+    process.env.DEBUG && console.log("AuthenticatedNavigation[data]", data);
 
     return data;
   }

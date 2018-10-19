@@ -383,7 +383,7 @@ export class CollectionManagement extends React.Component {
   callMethod(signature){
     console.log("callMethod", signature);
 
-    //if (process.env.NODE_ENV === "test") {
+    //if (process.env.NODE_ENV === "development") {
       if (confirm('Are you sure?')) {
         Meteor.call(signature, function(error, result){
           Meteor.call('getServerStats', function(error, result){

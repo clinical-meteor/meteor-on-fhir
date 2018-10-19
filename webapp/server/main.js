@@ -5,6 +5,15 @@ import '/imports/api/users/methods';
 Meteor.startup(function(){
   console.log('Meteor app framework is initializing....');
 
+  console.log(' ')
+  console.log('Environment Variables')
+  console.log(' ')
+  console.log('process.env.NODE_ENV', process.env.NODE_ENV)
+  console.log('process.env.DEBUG', process.env.DEBUG)
+  console.log('process.env.FOO', process.env.FOO)
+  console.log('process.env.NIGHTWATCH', process.env.NIGHTWATCH)
+  console.log(' ')
+
     // pick up version info
     try {
       var version = {};
@@ -68,5 +77,6 @@ Meteor.startup(function(){
     // BrowserPolicy.content.allowConnectOrigin("open-ic-epic.com")
     // BrowserPolicy.content.allowImageOrigin("open-ic-epic.com")  
     // BrowserPolicy.content.allowObjectOrigin('open-ic-epic.com')
+
   }
 })

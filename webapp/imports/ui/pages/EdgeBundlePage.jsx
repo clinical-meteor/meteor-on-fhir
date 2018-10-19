@@ -32,7 +32,7 @@ export class EdgeBundlePage extends React.Component {
       edgeBundle: Session.get('edgeBundle')
     };
 
-    if(process.env.NODE_ENV === "test") console.log("data", data);
+    if(process.env.NODE_ENV === "development") console.log("EdgeBundlePage.data", data);
     return data;
   };
 

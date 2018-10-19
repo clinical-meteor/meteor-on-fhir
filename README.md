@@ -78,7 +78,7 @@ Edit the `settings.dev.json` file, and update:
   "galaxy.meteor.com": {
     "env": {
       "MONGO_URL": "mongodb://username:password@mlab.com:25389/my-org-exchange-db",
-      "NODE_ENV": "produciton"
+      "NODE_ENV": "production"
     }
   }  
 }
@@ -101,11 +101,11 @@ mv public/geodata ..
 # this can be tricky, because http://localhost:3000 may need to be a local IP address
 # you may need to use `ifconfig` to find that address
 # beware network isolation, and make sure your phone and workstation are on the same network
-NODE_ENV=dev meteor run ios-device --mobile-server http://localhost:3000 --settings configs/settings.dev.json
+meteor run ios-device --mobile-server http://localhost:3000 --settings configs/settings.dev.json
 
 # production
 # we need to specify the production server
-NODE_ENV=dev meteor run ios-device --mobile-server http://meteor-on-fhir.meteorapp.com --settings packages/landing-page/configs/settings.symptomatic.io.json
+meteor run ios-device --mobile-server http://meteor-on-fhir.meteorapp.com --settings packages/landing-page/configs/settings.symptomatic.io.json
 ```    
 
 
@@ -129,7 +129,7 @@ mv webapp/desktop webapp/.desktop
 
 # run the app server locally, as if you were doing a mobile build
 # (you may be able to just use the running mobile build server)
-NODE_ENV=dev meteor --mobile-server http://localhost:3000 --settings configs/settings.galaxy.json
+meteor --mobile-server http://localhost:3000 --settings configs/settings.galaxy.json
 
 # then to run the desktop app locally...
 # npm run desktop

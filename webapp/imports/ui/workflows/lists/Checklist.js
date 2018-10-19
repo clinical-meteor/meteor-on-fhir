@@ -56,7 +56,7 @@ export class Checklist extends React.Component {
     data.style.appbar = Glass.darkroom(data.style.appbar);
     data.style.tab = Glass.darkroom(data.style.tab);
 
-    if(process.env.NODE_ENV === "test") console.log("Checklist[data]", data);
+    if(process.env.NODE_ENV === "development") console.log("Checklist[data]", data);
     return data;
   }
 

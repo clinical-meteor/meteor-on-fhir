@@ -188,7 +188,7 @@ export class FhirResourcesIndex extends React.Component {
     data.style = Glass.blur(data.style);
     data.style.appbar = Glass.darkroom(data.style.appbar);
 
-    if(process.env.NODE_ENV === "test") console.log("FhirResourcesIndex[data]", data);
+    if(process.env.NODE_ENV === "development") console.log("FhirResourcesIndex[data]", data);
     return data;
   }
   render() {

@@ -76,7 +76,7 @@ export class Signin extends React.Component {
       data.style.floatingLabelFocusStyle.color = darkBaseTheme.palette.secondaryTextColor;
     }
 
-    if(process.env.NODE_ENV === "test") console.log("Signin[data]", data);
+    if(process.env.NODE_ENV === "development") console.log("Signin[data]", data);
     return data;
   }
   handleSubmit(event) {
@@ -131,7 +131,7 @@ export class Signin extends React.Component {
 
   }
   handleTouchTap(event, foo, value){    
-    if(process.env.NODE_ENV === "test") {
+    if(process.env.NODE_ENV === "development") {
       console.log('Signin.handleTouchTap', event, foo, value)
       console.log("this", this);
     }

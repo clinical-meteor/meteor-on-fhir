@@ -188,7 +188,7 @@ export class MainIndex extends React.Component {
     data.style = Glass.blur(data.style);
     data.style.appbar = Glass.darkroom(data.style.appbar);
 
-    if(process.env.NODE_ENV === "test") console.log("MainIndex[data]", data);
+    if(process.env.NODE_ENV === "development") console.log("MainIndex[data]", data);
     return data;
   }
   render() {

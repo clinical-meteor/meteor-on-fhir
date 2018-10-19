@@ -359,7 +359,7 @@ export class MyProfilePage extends React.Component {
       data.style.synopsis.marginLeft = '0px;'
     }
 
-    if(process.env.NODE_ENV === "test") console.log("MyProfilePage[data]" , data);
+    if(process.env.NODE_ENV === "development") console.log("MyProfilePage[data]" , data);
     return data;
   }
 
@@ -1003,7 +1003,7 @@ export class MyProfilePage extends React.Component {
 
       // janky, but it works, i guess
       if ((state.confirm === Meteor.userId()) || (state.confirm === Meteor.user().emails[0].address)) {
-        if(process.env.NODE_ENV === "test") console.log('Confirm _id match.  Removing.');
+        if(process.env.NODE_ENV === "development") console.log('Confirm _id match.  Removing.');
   
         removeUserById.call({
           _id:  Meteor.userId()

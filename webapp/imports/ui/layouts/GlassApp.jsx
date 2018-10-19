@@ -106,8 +106,8 @@ export class GlassApp extends React.Component {
     data.app.style.height = '100%';
     data.app.style.position = 'fixed';
 
-    if(process.env.NODE_ENV === "test") console.log("GlassApp[data]" , data);
-    if(process.env.NODE_ENV === "test") console.log("Meteor.settings" , Meteor.settings);
+    if(process.env.DEBUG) console.log("GlassApp[data]" , data);
+    if(process.env.DEBUG) console.log("Meteor.settings" , Meteor.settings);
 
     return data;
   }

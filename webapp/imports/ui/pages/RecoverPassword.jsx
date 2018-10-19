@@ -61,7 +61,7 @@ export class RecoverPassword extends React.Component {
       data.style.floatingLabelFocusStyle.color = darkBaseTheme.palette.secondaryTextColor;
     }
 
-    if(process.env.NODE_ENV === "test") console.log("Signin[data]", data);
+    if(process.env.NODE_ENV === "development") console.log("Signin[data]", data);
     return data;
   }
   recoverPassword(){

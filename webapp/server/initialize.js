@@ -12,6 +12,7 @@ Meteor.startup(function(){
 
   if(process.env.DEBUG) console.log("Meteor.settings", Meteor.settings);
 
+  if(process.env.NIGHTWATCH) console.log("Running application in testing mode.  Security disabled for testing related helper functions.");
 
   //var rootUrl = __meteor_runtime_config__.ROOT_URL;
   //console.log('Adding Content Security Policies for ' + rootUrl + ' and meteor-on-fhir.meteorapp.com');

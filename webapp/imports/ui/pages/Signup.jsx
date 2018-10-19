@@ -17,8 +17,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 import { lightBaseTheme, darkBaseTheme } from 'material-ui/styles';
 import { has, get } from 'lodash';
 
-if(process.env.NODE_ENV === "test") console.log("Signup[lightBaseTheme]", lightBaseTheme);
-if(process.env.NODE_ENV === "test") console.log("Signup[darkBaseTheme]", darkBaseTheme);
+if(process.env.NODE_ENV === "development") console.log("Signup[lightBaseTheme]", lightBaseTheme);
+if(process.env.NODE_ENV === "development") console.log("Signup[darkBaseTheme]", darkBaseTheme);
 
 export class Signup extends React.Component {
   componentDidMount() {
@@ -92,7 +92,7 @@ export class Signup extends React.Component {
         data.errorText.password = '';
     }
 
-    if(process.env.NODE_ENV === "test") console.log("Signup[data]", data);
+    if(process.env.NODE_ENV === "development") console.log("Signup[data]", data);
     return data;
   }
 
