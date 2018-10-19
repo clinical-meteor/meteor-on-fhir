@@ -20,6 +20,10 @@ import { has, get } from 'lodash';
 if(process.env.NODE_ENV === "test") console.log("Signup[lightBaseTheme]", lightBaseTheme);
 if(process.env.NODE_ENV === "test") console.log("Signup[darkBaseTheme]", darkBaseTheme);
 
+function localLog(message){
+  console.log(message)
+}
+
 export class Signup extends React.Component {
   componentDidMount() {
     //handleSignup({ component: this });
@@ -102,9 +106,7 @@ export class Signup extends React.Component {
   signinRoute(){
     browserHistory.push('/signin');
   }
-  localLog(message){
-    console.log(message)
-  }
+
   handleTouchTap(){
     let newUserData = {
       email: this.refs.emailAddress.input.value,
@@ -129,7 +131,7 @@ export class Signup extends React.Component {
     Accounts.createUser(newUserData, function(error, result){
       if (error) {
         console.log('Accounts.createUser().error: ' + error.reason)
-        self.localLog('Accounts.createUser().error: ' + error.reason)
+        localLog('Accounts.createUser().error: ' + error.reason)
         // Meteor.call('debugToServer', 'Accounts.createUser()', error)
 
         Session.set('signUpErrorMessage', error.reason);
@@ -144,36 +146,36 @@ export class Signup extends React.Component {
         console.log("Accounts.createUser[Meteor.userId()]", Meteor.userId());
         console.log("Accounts.createUser[Roles.userIsInRole(Meteor.userId()]", Roles.userIsInRole(Meteor.userId()));
 
-        self.localLog('Accounts.createUser[Meteor.userId()]: ' + Meteor.userId())
-        self.localLog('Accounts.createUser[Roles.userIsInRole(Meteor.userId()]: ' + Roles.userIsInRole(Meteor.userId()))
+        localLog('Accounts.createUser[Meteor.userId()]: ' + Meteor.userId())
+        localLog('Accounts.createUser[Roles.userIsInRole(Meteor.userId()]: ' + Roles.userIsInRole(Meteor.userId()))
 
         // if this is a patient's first visit, we want to send them to a welcome screen
         // where they can fill out HIPAA
         if (Roles.userIsInRole(Meteor.userId(), 'patient') && get(Meteor.user(), 'profile.firstTimeVisit')) {
           if (process.env.NODE_ENV === "test") console.log('Routing to /welcome/patient')
-          self.localLog('Routing to /welcome/patient')
+          localLog('Routing to /welcome/patient')
           browserHistory.push('/welcome/patient');
 
         // and if they're a practitioner, we probably need to collect some credentialing data
         // and inform them about their obligations regarding HIPAA
         } else if (Roles.userIsInRole(Meteor.userId(), 'practitioner') && get(Meteor.user(), 'profile.firstTimeVisit')) {
             if (process.env.NODE_ENV === "test") console.log('Routing to /welcome/practitioner')
-            self.localLog('Routing to /welcome/practitioner')
+            localLog('Routing to /welcome/practitioner')
             browserHistory.push('/welcome/practitioner');
         } else if (Roles.userIsInRole(Meteor.userId(), 'sysadmin') && get(Meteor.user(), 'profile.firstTimeVisit')) {
             if (process.env.NODE_ENV === "test") console.log('Routing to /welcome/sysadmin')
-            self.localLog('Routing to /welcome/sysadmin')
+            localLog('Routing to /welcome/sysadmin')
             browserHistory.push('/welcome/sysadmin');
         } else {
           // otherwise we go to the default route specified in the settings.json file
           if(get(Meteor, 'settings.public.defaults.route')){
             if (process.env.NODE_ENV === "test") console.log('Meteor.settings.public.defaults.route', get(Meteor, 'settings.public.defaults.route', '/'))
-            self.localLog('Meteor.settings.public.defaults.route: ' + get(Meteor, 'settings.public.defaults.route', '/'))
+            localLog('Meteor.settings.public.defaults.route: ' + get(Meteor, 'settings.public.defaults.route', '/'))
             browserHistory.push(get(Meteor, 'settings.public.defaults.route', '/'));
           } else {
             // and if all else fails, just go to the root 
             if (process.env.NODE_ENV === "test") console.log('Routing to /');
-            self.localLog('Routing to /')
+            localLog('Routing to /')
             browserHistory.push('/');      
           }  
         }
