@@ -44,7 +44,7 @@ jobs:
         DISPLAY: :99.0
         NPM_PREFIX: /home/ubuntu/nvm/v0.10.33
         MONGO_URL: mongodb://mongo:27017/meteor
-        TOOL_NODE_FLAGS: --max_old_space_size=8192
+        TOOL_NODE_FLAGS: --max_old_space_size=16000
     - image: mongo:4.1.2
       name: mongo
 
@@ -112,6 +112,13 @@ jobs:
         no_output_timeout: 10m
         when: on_success    # always, on_success, on_fail 
 
+
+    - run: 
+        name: Memmorgy Logging
+        command: free -h -s 10 >> ./tmp/memory.log
+        background: true
+        when: on_success    # always, on_success, on_fail 
+
     - run: 
         name: Running tests
         command: sleep 300 && cd webapp && meteor npm run-script circle-nightwatch -- --tag circle
@@ -137,6 +144,8 @@ jobs:
     # Save artifacts
     - store_artifacts:
         path: ./test-reports
+    - store_artifacts:
+        path: ./tmp/memory.log
     - store_artifacts:
         path: ./tests/nightwatch/screenshots
     - store_artifacts:
