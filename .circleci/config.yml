@@ -114,12 +114,6 @@ jobs:
 
 
     - run: 
-        name: Memmorgy Logging
-        command: free -h -s 10 >> ./memory.log
-        background: true
-        when: on_success    # always, on_success, on_fail 
-
-    - run: 
         name: Running tests
         command: sleep 300 && cd webapp && meteor npm run-script circle-nightwatch -- --tag circle
         no_output_timeout: 10m
@@ -144,8 +138,6 @@ jobs:
     # Save artifacts
     - store_artifacts:
         path: ./test-reports
-    - store_artifacts:
-        path: ./memory.log
     - store_artifacts:
         path: ./tests/nightwatch/screenshots
     - store_artifacts:
