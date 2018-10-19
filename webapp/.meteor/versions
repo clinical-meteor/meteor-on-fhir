@@ -19,8 +19,6 @@ caching-html-compiler@1.0.7
 callback-hook@1.1.0
 check@1.3.1
 chriswessels:hammer@4.0.2
-clinical:accounts-famous-dead-people@1.5.7
-clinical:accounts-housemd@2.3.7
 clinical:accounts-oauth@1.1.52
 clinical:alert@2.1.3
 clinical:auto-resizing@0.3.2

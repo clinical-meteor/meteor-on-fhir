@@ -4,8 +4,9 @@ import { get } from 'lodash';
 Accounts.onCreateUser(function(options, user) {
   console.log('------------------------------------------------');
   console.log('Accounts.onCreateUser');
-  process.env.TRACE && console.log('Meteor.settings', Meteor.settings);
-  process.env.TRACE && console.log('options', options);
+  process.env.DEBUG && console.log('Meteor.settings', Meteor.settings);
+  process.env.DEBUG && console.log('options', options);
+  process.env.DEBUG && console.log("user", user);
 
   // console.log('options', options);
   // console.log('user', user);
