@@ -123,14 +123,14 @@ export class Signup extends React.Component {
 
     Accounts.createUser(newUserData, function(error, result){
       if (error) {
-        console.log('Accounts.createUser().error', error)
+        console.log('Accounts.createUser().error', error.reason)
 
         Session.set('signUpErrorMessage', error.reason);
 
         // for some reason, we're getting an "Email already exists!" on signup
-        if (!error.reason.includes("Email already exists.")) {
-          Bert.alert(error.reason, 'danger');
-        }
+        //if (!error.reason.includes("Email already exists.")) {
+        Bert.alert(error.reason, 'danger');
+        //}
       }
       if (result) {
         console.log("Accounts.createUser[result]", result);
