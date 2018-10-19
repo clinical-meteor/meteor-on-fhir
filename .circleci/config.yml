@@ -45,7 +45,7 @@ jobs:
         NPM_PREFIX: /home/ubuntu/nvm/v0.10.33
         MONGO_URL: mongodb://mongo:27017/meteor
         TOOL_NODE_FLAGS: --max_old_space_size=8192
-    - image: circleci/mongo:4.1.4-ram
+    - image: circleci/mongo:4-ram
       name: mongo
 
     # - image: selenium/standalone-chrome:3.0.1
