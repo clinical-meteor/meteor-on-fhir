@@ -40,6 +40,7 @@ jobs:
         CIRCLE_ENV: test
         NODE_ENV: test
         NIGHTWATCH: true
+        DEBUG: true
         CXX: g++-4.8
         DISPLAY: :99.0
         NPM_PREFIX: /home/ubuntu/nvm/v0.10.33
