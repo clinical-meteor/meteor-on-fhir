@@ -115,7 +115,7 @@ jobs:
 
     - run: 
         name: Memmorgy Logging
-        command: free -h -s 10 >> ./tmp/memory.log
+        command: free -h -s 10 >> ./memory.log
         background: true
         when: on_success    # always, on_success, on_fail 
 
@@ -145,7 +145,7 @@ jobs:
     - store_artifacts:
         path: ./test-reports
     - store_artifacts:
-        path: ./tmp/memory.log
+        path: ./memory.log
     - store_artifacts:
         path: ./tests/nightwatch/screenshots
     - store_artifacts:
