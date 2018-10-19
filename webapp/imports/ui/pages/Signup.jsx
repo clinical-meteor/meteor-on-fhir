@@ -209,7 +209,7 @@ export class Signup extends React.Component {
                         underlineStyle={this.data.style.underlineStyle}
                         floatingLabelStyle={this.data.style.floatingLabelStyle}
                         floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
-                        autocomplete="given-name"
+                        autoComplete="given-name"
                         onKeyPress={this.handleKeyPress.bind(this)}
                         fullWidth
                         /><br/>
@@ -228,7 +228,7 @@ export class Signup extends React.Component {
                         underlineStyle={this.data.style.underlineStyle}
                         floatingLabelStyle={this.data.style.floatingLabelStyle}
                         floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
-                        autocomplete="family-name"
+                        autoComplete="family-name"
                         onKeyPress={this.handleKeyPress.bind(this)}
                         fullWidth
                         /><br/>
@@ -247,7 +247,7 @@ export class Signup extends React.Component {
                       underlineStyle={this.data.style.underlineStyle}
                       floatingLabelStyle={this.data.style.floatingLabelStyle}
                       floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
-                      autocomplete="email"
+                      autoComplete="email"
                       onKeyPress={this.handleKeyPress.bind(this)}
                       fullWidth
                       /><br/>
