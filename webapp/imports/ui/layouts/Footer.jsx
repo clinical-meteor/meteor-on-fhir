@@ -630,9 +630,10 @@ export class Footer extends React.Component {
         );
 
       // WALLET DASHBOARD
-      } else if (pathname === '/wallet-dashboard') {
+      } else if ((pathname === '/wallet-dashboard') || (pathname.includes('authn'))) {
         return (
           <div>
+            <FlatButton label='Query HAPI for Patients' className='querySystemButton' ref='querySystemButton' onClick={this.queryHapiPatients.bind(this)} style={this.data.style.buttonText} ></FlatButton>
             <FlatButton label='Query HAPI for Provenances' className='querySystemButton' ref='querySystemButton' onClick={this.queryHapiProvenances.bind(this)} style={this.data.style.buttonText} ></FlatButton>
             <FlatButton label='Query HAPI for Consents' className='querySystemButton' ref='querySystemButton' onClick={this.queryHapiConsents.bind(this)} style={this.data.style.buttonText} ></FlatButton>
             <FlatButton label='Query HAPI for Documents' className='querySystemButton' ref='querySystemButton' onClick={this.queryHapiDocumentReferences.bind(this)} style={this.data.style.buttonText} ></FlatButton>
@@ -682,6 +683,37 @@ export class Footer extends React.Component {
     
     Session.set('hapiResults', {})
   }
+  queryHapiPatients(){
+    // 
+    console.log('queryHapiPatients')
+
+    HTTP.get('https://hapi.fhir.org/baseDstu3/Patient?_pretty=true&_format=json&_count=100&_agent=Duke', function(error, result){
+      if(error){
+        console.error(error)        
+      }
+      if(result){
+        // console.info(result)
+        let resultContent = JSON.parse(result.content);
+        console.info(resultContent)
+        
+        if(resultContent.resourceType === "Bundle"){
+          resultContent.entry.forEach(function(record){
+            let patientValidator = PatientSchema.newContext();
+            patientValidator.validate(record.resource)
+        
+            console.log('IsValid: ', patientValidator.isValid())
+            console.log('ValidationErrors: ', patientValidator.validationErrors());        
+            
+            Patients._collection.upsert(record.resource.id, record.resource)
+    
+          })
+        } 
+
+      }
+    })
+    
+    Session.set('hapiPatients', {})
+  }  
   queryHapiProvenances(){
     // 
     console.log('queryHapiProvenances')
