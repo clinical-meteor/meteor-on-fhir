@@ -59,6 +59,11 @@ export class Footer extends React.Component {
         buttonText: Glass.darkroom({marginLeft: '20px'}),
         disabledButtonText: {
           color: 'lightgray'
+        },
+        southEastButtons: {
+          fontSize: '18px', 
+          top: '-4px', 
+          cursor: 'pointer'
         }
       },
       pathname: Session.get('pathname')
@@ -88,6 +93,10 @@ export class Footer extends React.Component {
       if (!Session.get('showNavbars')) {
         data.footerStyle.bottom = '-100px';
       }
+    }
+
+    if (get(Meteor, 'settings.public.defaults.disableSecondaryPanel')) {
+      data.style.southEastButtons.cursor = 'none !important';
     }
 
     return data;
@@ -789,14 +798,14 @@ export class Footer extends React.Component {
           <ToolbarTitle
             id='privacyScreen'
             text='privacy | '
-            style={{fontSize: '18px', top: '-4px', cursor: 'pointer'}}
+            style={ this.data.style.southEastButtons }
             onClick={this.clickOnBlurButton }
           />
 
           <ToolbarTitle
             id='connectionStatus'
             text={this.data.status}
-            style={{fontSize: '18px', top: '-4px', cursor: 'pointer'}}
+            style={ this.data.style.southEastButtons }
             onClick={this.openInfo }
           />
         </div>
@@ -804,8 +813,11 @@ export class Footer extends React.Component {
     }
   }
   openInfo(){
-    Session.toggle('secondPanelVisible');
-    // browserHistory.push('/info');
+    // if we haven't disabled the secondary panel
+    if (get(Meteor, 'settings.public.defaults.disableSecondaryPanel') !== true) {
+      // then toggle it when clicked
+      Session.toggle('secondPanelVisible');
+    }
   }
   render () {
     console.log('this.data.pathname', this.data.pathname)
