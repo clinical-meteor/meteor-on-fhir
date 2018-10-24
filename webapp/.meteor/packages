@@ -158,3 +158,4 @@ percolate:synced-cron
 # symptomatic:clinical-scenarios
 # symptomatic:geomapping
 # symptomatic:ihealth-cloud-api
+symptomatic:card-readers
