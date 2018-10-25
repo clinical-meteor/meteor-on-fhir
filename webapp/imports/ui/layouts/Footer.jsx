@@ -646,7 +646,7 @@ export class Footer extends React.Component {
             <FlatButton label='Query HAPI for Provenances' className='querySystemButton' ref='querySystemButton' onClick={this.queryHapiProvenances.bind(this)} style={this.data.style.buttonText} ></FlatButton>
             <FlatButton label='Query HAPI for Consents' className='querySystemButton' ref='querySystemButton' onClick={this.queryHapiConsents.bind(this)} style={this.data.style.buttonText} ></FlatButton>
             {/* <FlatButton label='Query HAPI for Documents' className='querySystemButton' ref='querySystemButton' onClick={this.queryHapiDocumentReferences.bind(this)} style={this.data.style.buttonText} ></FlatButton> */}
-            <FlatButton label='WebAuthN ' className='querySystemButton' ref='querySystemButton' onClick={this.webAuthn.bind(this)}  style={this.data.style.buttonText} ></FlatButton>
+            {/* <FlatButton label='WebAuthN ' className='querySystemButton' ref='querySystemButton' onClick={this.webAuthn.bind(this)}  style={this.data.style.buttonText} ></FlatButton> */}
           </div>
         );
 
@@ -798,7 +798,11 @@ export class Footer extends React.Component {
           <ToolbarTitle
             id='privacyScreen'
             text='privacy | '
-            style={ this.data.style.southEastButtons }
+            style={{
+              fontSize: '18px', 
+              top: '-4px', 
+              cursor: 'pointer'
+            }}
             onClick={this.clickOnBlurButton }
           />
 
