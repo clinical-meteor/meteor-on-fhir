@@ -832,12 +832,12 @@ export class Footer extends React.Component {
     console.log('westNavbar', westNavbar)
     return(
       <div id='appFooter' style={this.data.footerStyle}>
-        {/* <AppBar
+        <AppBar
           iconElementLeft={ westNavbar }
           iconElementRight={ this.renderEastNavbar(this.data.displayThemeNavbar) }
           style={this.data.footerStyle}
           titleStyle={{color: 'black'}}
-        /> */}
+        />
 
       </div>
    );
