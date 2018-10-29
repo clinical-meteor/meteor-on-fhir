@@ -460,6 +460,7 @@ export class Footer extends React.Component {
     }
   }
   renderWestNavbar(pathname){
+      console.log('Footer.renderWestNavbar', pathname)
 
       // FHIR RESOURCES
       if (pathname === '/fhir-resources-index') {
@@ -785,6 +786,8 @@ export class Footer extends React.Component {
     Session.set('hapiProvenances', {})
   }
   renderEastNavbar(displayThemeNavbar){
+    console.log('Footer.renderEastNavbar')
+
     if (displayThemeNavbar) {
       return (<div>
           {/* <OpacitySlider style={this.data.eastStyle} /> */}
