@@ -3,19 +3,20 @@ import '/imports/api/users/methods';
 
 
 Meteor.startup(function(){
-  console.log('Meteor app framework is initializing....');
+  console.log('Meteor.startup() is initializing....');
 
-    // pick up version info
-    try {
-      var version = {};
-      version = JSON.parse(Assets.getText("version.json"));    
-      Meteor.settings.public.version = version;
-    } catch(e) { 
-      Meteor.settings.public.version = {};
-    }
+  // pick up version info
+  try {
+    var version = {};
+    version = JSON.parse(Assets.getText("version.json"));    
+    Meteor.settings.public.version = version;
+  } catch(e) { 
+    Meteor.settings.public.version = {};
+  }
 
   // if OAuth is configured, load oauth configs into active memory
   if(Package['symptomtic:smart-on-fhir-client']){
+    console.log('Resyncing OAuth configuration....');
     Meteor.call('resyncConfiguration');
   }
 
@@ -69,4 +70,6 @@ Meteor.startup(function(){
     // BrowserPolicy.content.allowImageOrigin("open-ic-epic.com")  
     // BrowserPolicy.content.allowObjectOrigin('open-ic-epic.com')
   }
+
+  console.log('Meteor.startup() completed....');
 })
