@@ -835,7 +835,7 @@ export class Footer extends React.Component {
     return(
       <div id='appFooter' style={this.data.footerStyle}>
         <AppBar
-          // iconElementLeft={ westNavbar }
+          iconElementLeft={ westNavbar }
           // iconElementRight={ this.renderEastNavbar(this.data.displayThemeNavbar) }
           style={this.data.footerStyle}
           titleStyle={{color: 'black'}}
