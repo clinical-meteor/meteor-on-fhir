@@ -1,80 +1,80 @@
-// import { get } from 'lodash';
+import { get } from 'lodash';
 
-// // Support for playing D&D: Roll 3d6 for dexterity
-// Accounts.onCreateUser(function(options, user) {
-//   console.log('------------------------------------------------');
-//   console.log('Accounts.onCreateUser');
-//   console.log(' ');
+// Support for playing D&D: Roll 3d6 for dexterity
+Accounts.onCreateUser(function(options, user) {
+  console.log('------------------------------------------------');
+  console.log('Accounts.onCreateUser');
+  console.log(' ');
 
-//   process.env.DEBUG && console.log('user', user);
-//   process.env.DEBUG && console.log('options', options);
-//   console.log(' ');
+  process.env.DEBUG && console.log('user', user);
+  process.env.DEBUG && console.log('options', options);
+  console.log(' ');
 
-//   // console.log('options', options);
-//   // console.log('user', user);
-//   // console.log('Meteor.settings', Meteor.settings);
-
-
-//   // We still want the default hook's 'profile' behavior.
-//   if (options.profile){
-//     process.env.DEBUG && console.log("options.profile exists");
-
-//     user.profile = options.profile;
-//     user.profile.firstTimeVisit = true;
-//     user.roles = [];
+  // console.log('options', options);
+  // console.log('user', user);
+  // console.log('Meteor.settings', Meteor.settings);
 
 
-//     // some of our test data will be initialized with a profile.role of Physician
-//     // if so, we want to set their system access to 'practitioner'
-//     if (options.profile.role === 'Physician') {
-//       user.roles = ['practitioner'];
-//       Roles.addUsersToRoles(user._id, ['practitioner']);
-//     }
+  // We still want the default hook's 'profile' behavior.
+  if (options.profile){
+    process.env.DEBUG && console.log("options.profile exists");
 
-//     // otherwise, we check whether thay have an access code to grant practitioner access
-//     if (options.accessCode && get(Meteor, 'settings.private.practitionerAccessCode')) {
-//       if (options.accessCode === get(Meteor, 'settings.private.practitionerAccessCode')) {
-//         process.env.DEBUG && console.log('AccessCodes match!  Assigning practitioner role...');
+    user.profile = options.profile;
+    user.profile.firstTimeVisit = true;
+    user.roles = [];
 
-//         user.roles = ['practitioner'];
-//         Roles.addUsersToRoles(user._id, ['practitioner']);
-//       }
-//     }
 
-//     // also check for admin access
-//     if (options.accessCode) {
-//       process.env.DEBUG && console.log("options.profile.accessCode exists");
+    // some of our test data will be initialized with a profile.role of Physician
+    // if so, we want to set their system access to 'practitioner'
+    if (options.profile.role === 'Physician') {
+      user.roles = ['practitioner'];
+      Roles.addUsersToRoles(user._id, ['practitioner']);
+    }
 
-//       if (get(Meteor, 'settings.private.sysadminAccessCode')) {
-//         process.env.DEBUG && console.log("Meteor.settings.private.sysadminAccessCode exists");
+    // otherwise, we check whether thay have an access code to grant practitioner access
+    if (options.accessCode && get(Meteor, 'settings.private.practitionerAccessCode')) {
+      if (options.accessCode === get(Meteor, 'settings.private.practitionerAccessCode')) {
+        process.env.DEBUG && console.log('AccessCodes match!  Assigning practitioner role...');
 
-//         if (options.accessCode === get(Meteor, 'settings.private.sysadminAccessCode')) {
-//           process.env.DEBUG && console.log('AccessCodes match!  Assigning sysadmin role...');
+        user.roles = ['practitioner'];
+        Roles.addUsersToRoles(user._id, ['practitioner']);
+      }
+    }
 
-//           user.roles = ['sysadmin'];
-//           Roles.addUsersToRoles(user._id, ['sysadmin']);
-//         }
-//       }
-//     }
+    // also check for admin access
+    if (options.accessCode) {
+      process.env.DEBUG && console.log("options.profile.accessCode exists");
 
-//     // if no other roles have been assigned, make the new user a patient
-//     if (user.roles.length === 0) {
-//       user.roles.push('patient');
-//       Roles.addUsersToRoles(user._id, ['patient']);
-//     }
-//   }
+      if (get(Meteor, 'settings.private.sysadminAccessCode')) {
+        process.env.DEBUG && console.log("Meteor.settings.private.sysadminAccessCode exists");
 
-//   // this lets us add OAuth services in the profile at account creation time
-//   // when then get securely stored 
-//   if(get(options, 'profile.services')){
-//     let services = get(options, 'profile.services');
-//     Object.keys(services).forEach(function(key){
-//       user.services[key] = services[key];      
-//     })
-//     delete user.profile.services;
-//   }
+        if (options.accessCode === get(Meteor, 'settings.private.sysadminAccessCode')) {
+          process.env.DEBUG && console.log('AccessCodes match!  Assigning sysadmin role...');
 
-//   process.env.DEBUG && console.log('modified user', user);
+          user.roles = ['sysadmin'];
+          Roles.addUsersToRoles(user._id, ['sysadmin']);
+        }
+      }
+    }
 
-//   return user;
-// });
+    // if no other roles have been assigned, make the new user a patient
+    if (user.roles.length === 0) {
+      user.roles.push('patient');
+      Roles.addUsersToRoles(user._id, ['patient']);
+    }
+  }
+
+  // this lets us add OAuth services in the profile at account creation time
+  // when then get securely stored 
+  if(get(options, 'profile.services')){
+    let services = get(options, 'profile.services');
+    Object.keys(services).forEach(function(key){
+      user.services[key] = services[key];      
+    })
+    delete user.profile.services;
+  }
+
+  process.env.DEBUG && console.log('modified user', user);
+
+  return user;
+});
