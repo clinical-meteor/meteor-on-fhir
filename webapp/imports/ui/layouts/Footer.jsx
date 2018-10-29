@@ -1,11 +1,12 @@
 // footer
-import AppBar from 'material-ui/AppBar';
-import FlatButton from 'material-ui/FlatButton';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
+
+import { AppBar, FlatButton, ToolbarTitle } from 'material-ui';
+
 import { Glass } from 'meteor/clinical:glass-ui';
 import ImageBlurOn from 'material-ui/svg-icons/image/blur-on';
 import ImageExposure from 'material-ui/svg-icons/image/exposure';
-import OpacitySlider from '../components/OpacitySlider';
+import DeviceWifiTethering from 'material-ui/svg-icons/device/wifi-tethering';
+
 import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
@@ -14,21 +15,17 @@ import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session';
 import { HTTP } from 'meteor/http';
 
-
-import { ToolbarTitle } from 'material-ui/Toolbar';
 import { browserHistory } from 'react-router';
 import { has, get } from 'lodash';
-import DeviceWifiTethering from 'material-ui/svg-icons/device/wifi-tethering';
 
-// if(Package['clinical:hl7-resource-practitioner']){
-//   import { Practitioners } from 'meteor/clinical:hl7-resource-practitioner'
-// }
+if(Package['clinical:hl7-resource-practitioner']){
+  import { Practitioners } from 'meteor/clinical:hl7-resource-practitioner'
+}
 
 Session.setDefault('showThemingControls', false);
 Session.setDefault('gender', 'Pink');
 Session.setDefault('timelineBackground', false);
 Session.setDefault('continuityOfCareDoc', null);
-
 
 
 export class Footer extends React.Component {
