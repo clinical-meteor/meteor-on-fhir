@@ -45,7 +45,7 @@ jobs:
         DISPLAY: :99.0
         NPM_PREFIX: /home/ubuntu/nvm/v0.10.33
         MONGO_URL: mongodb://mongo:27017/meteor
-        # TOOL_NODE_FLAGS: --max_old_space_size=8192
+        TOOL_NODE_FLAGS: --max_old_space_size=8192
     - image: mongo:3.4.4
       name: mongo
 
