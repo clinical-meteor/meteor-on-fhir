@@ -15,12 +15,24 @@ import { Roles } from 'meteor/alanning:roles';
 
 import RaisedButton from 'material-ui/RaisedButton';
 import { lightBaseTheme, darkBaseTheme } from 'material-ui/styles';
-import { has, get } from 'lodash';
+import { has, get, set } from 'lodash';
 
 if(process.env.NODE_ENV === "test") console.log("Signup[lightBaseTheme]", lightBaseTheme);
 if(process.env.NODE_ENV === "test") console.log("Signup[darkBaseTheme]", darkBaseTheme);
 
 export class Signup extends React.Component {
+    constructor(props) {
+    super(props);
+    this.state = {
+      form: {
+        familyName: '',
+        givenName: '',
+        emailAddress: '',
+        password: '',
+        accessCode: ''
+      }
+    }
+  }
   componentDidMount() {
     //handleSignup({ component: this });
   }
@@ -104,13 +116,13 @@ export class Signup extends React.Component {
   }
   handleTouchTap(){
     let newUserData = {
-      email: this.refs.emailAddress.input.value,
-      password: this.refs.password.input.value,
+      email: this.state.form.emailAddress,
+      password: this.state.form.password,
       profile: {
         name: {
-          given: this.refs.givenName.input.value,
-          family: this.refs.familyName.input.value,
-          text: this.refs.givenName.input.value + ' ' + this.refs.familyName.input.value
+          given: this.state.form.givenName,
+          family: this.state.form.familyName,
+          text: this.state.form.givenName + ' ' + this.state.form.familyName
         }
       }
     };
@@ -169,15 +181,16 @@ export class Signup extends React.Component {
   }
   handleKeyPress(e) {
     if (e.key === 'Enter') {
-      this.handleTouchTap(e);
+      this.handleTouchTap.bind(this);
     }
   }
   render() {
+    let formData = this.state.form;
+
     var acccessCode;
     if(get(Meteor, 'settings.public.defaults.registration.displayAccessCode')){
       acccessCode = <TextField
         id='accessCodeInput'
-        ref='accessCode'
         name='accessCode'
         type='text'
         floatingLabelText='Have an access code?'
@@ -188,8 +201,13 @@ export class Signup extends React.Component {
         underlineStyle={this.data.style.underlineStyle}
         floatingLabelStyle={this.data.style.floatingLabelStyle}
         floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
-      />;
+        onChange={this.changeState.bind(this, 'accessCode')}
+        value={ get(formData, 'accessCode') }
+        floatingLabelFixed={true} 
+        />;
     }
+
+
     return (
       <div id='signupPage'>
         <MobilePadding>
@@ -201,7 +219,6 @@ export class Signup extends React.Component {
                       <TextField
                         id='givenNameInput'
                         name='givenName'
-                        ref='givenName'
                         floatingLabelText='Given Name'
                         inputStyle={this.data.style.inputStyle}
                         hintStyle={this.data.style.hintStyle}
@@ -211,13 +228,16 @@ export class Signup extends React.Component {
                         floatingLabelStyle={this.data.style.floatingLabelStyle}
                         floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
                         onKeyPress={this.handleKeyPress.bind(this)}
+                        onChange={this.changeState.bind(this, 'givenName')}
+                        value={ get(formData, 'givenName') }
+                        hintText='Jane'
+                        floatingLabelFixed={true}
                         fullWidth
                         /><br/>
                     </Col>
                     <Col xs={ 6 } sm={ 6 }>
                       <TextField
                         id='familyNameInput'
-                        ref='familyName'
                         name='familyName'
                         type='text'
                         floatingLabelText='Family Name'
@@ -229,13 +249,16 @@ export class Signup extends React.Component {
                         floatingLabelStyle={this.data.style.floatingLabelStyle}
                         floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
                         onKeyPress={this.handleKeyPress.bind(this)}
+                        onChange={this.changeState.bind(this, 'familyName')}
+                        floatingLabelFixed={true}
+                        hintText='Doe'
+                        value={ get(formData, 'familyName') }
                         fullWidth
                         /><br/>
                     </Col>
                   </Row>
                     <TextField
                       id='emailAddressInput'
-                      ref='emailAddress'
                       name='emailAddress'
                       type='text'
                       floatingLabelText='Email Address'
@@ -247,11 +270,14 @@ export class Signup extends React.Component {
                       floatingLabelStyle={this.data.style.floatingLabelStyle}
                       floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
                       onKeyPress={this.handleKeyPress.bind(this)}
+                      onChange={this.changeState.bind(this, 'emailAddress')}
+                      value={ get(formData, 'emailAddress') }
+                      hintText='janedoe@gmail.com'
+                      floatingLabelFixed={true}
                       fullWidth
                       /><br/>
                     <TextField
                       id='passwordInput'
-                      ref='password'
                       name='password'
                       type='password'
                       floatingLabelText='Password'
@@ -263,6 +289,10 @@ export class Signup extends React.Component {
                       floatingLabelStyle={this.data.style.floatingLabelStyle}
                       floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
                       onKeyPress={this.handleKeyPress.bind(this)}
+                      onChange={this.changeState.bind(this, 'password')}
+                      value={ get(formData, 'password') }
+                      hintText='**********'
+                      floatingLabelFixed={true}
                       fullWidth
                       /><br/>
 
@@ -288,6 +318,43 @@ export class Signup extends React.Component {
         </MobilePadding>
       </div>
     );
+  }
+  updateFormData(formData, field, textValue){
+    if(process.env.NODE_ENV === "test") console.log("ObservationDetail.updateFormData", formData, field, textValue);
+
+    switch (field) {
+      case "familyName":
+        set(formData, 'familyName', textValue)
+        break;
+      case "givenName":
+        set(formData, 'givenName', textValue)
+        break;        
+      case "emailAddress":
+        set(formData, 'emailAddress', textValue)
+        break;        
+      case "password":
+        set(formData, 'password', textValue)
+        break;
+      case "accessCode":
+        set(formData, 'accessCode', textValue)
+        break;
+    }
+
+    if(process.env.NODE_ENV === "test") console.log("formData", formData);
+    return formData;
+  }
+  changeState(field, event, textValue){
+    if(process.env.NODE_ENV === "test") console.log("   ");
+    if(process.env.NODE_ENV === "test") console.log("Signup.changeState", field, textValue);
+    if(process.env.NODE_ENV === "test") console.log("this.state", this.state);
+
+    let formData = Object.assign({}, this.state.form);
+
+    formData = this.updateFormData(formData, field, textValue);
+
+    if(process.env.NODE_ENV === "test") console.log("formData", formData);
+
+    this.setState({form: formData})
   }
 }
 ReactMixin(Signup.prototype, ReactMeteorData);
