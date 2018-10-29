@@ -320,7 +320,7 @@ export class Signup extends React.Component {
     );
   }
   updateFormData(formData, field, textValue){
-    if(process.env.NODE_ENV === "test") console.log("ObservationDetail.updateFormData", formData, field, textValue);
+    // if(process.env.NODE_ENV === "test") console.log("ObservationDetail.updateFormData", formData, field, textValue);
 
     switch (field) {
       case "familyName":
@@ -344,15 +344,15 @@ export class Signup extends React.Component {
     return formData;
   }
   changeState(field, event, textValue){
-    if(process.env.NODE_ENV === "test") console.log("   ");
+    // if(process.env.NODE_ENV === "test") console.log("   ");
     if(process.env.NODE_ENV === "test") console.log("Signup.changeState", field, textValue);
-    if(process.env.NODE_ENV === "test") console.log("this.state", this.state);
+    // if(process.env.NODE_ENV === "test") console.log("this.state", this.state);
 
     let formData = Object.assign({}, this.state.form);
 
     formData = this.updateFormData(formData, field, textValue);
 
-    if(process.env.NODE_ENV === "test") console.log("formData", formData);
+    // if(process.env.NODE_ENV === "test") console.log("formData", formData);
 
     this.setState({form: formData})
   }
