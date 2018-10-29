@@ -19,7 +19,7 @@ jobs:
     environment:
       CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
       CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
-      NODE_OPTIONS: --max_old_space_size=4096
+      NODE_OPTIONS: --max_old_space_size=2048
       CIRCLE_ENV: test
       NODE_ENV: test
       DEBUG: true
@@ -53,7 +53,7 @@ jobs:
         DISPLAY: :99.0
         NPM_PREFIX: /home/ubuntu/nvm/v0.10.33
         MONGO_URL: mongodb://mongo:27017/meteor
-        NODE_OPTIONS: --max_old_space_size=4096
+        NODE_OPTIONS: --max_old_space_size=2048
         LANG: C.UTF-8
         LANGUAGE: C.UTF-8
         LC_ALL: C.UTF-8

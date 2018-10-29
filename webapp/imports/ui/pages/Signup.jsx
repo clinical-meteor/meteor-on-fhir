@@ -104,7 +104,7 @@ export class Signup extends React.Component {
         data.errorText.password = '';
     }
 
-    if(process.env.NODE_ENV === "test") console.log("Signup[data]", data);
+    // if(process.env.NODE_ENV === "test") console.log("Signup[data]", data);
     return data;
   }
 
@@ -132,6 +132,7 @@ export class Signup extends React.Component {
     }
 
     console.log('SignUp.handleTouchTap', this, newUserData);
+    console.log(newUserData);
 
     Accounts.createUser(newUserData, function(error, result){
       if (error) {
