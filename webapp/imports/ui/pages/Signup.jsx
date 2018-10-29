@@ -138,20 +138,25 @@ export class Signup extends React.Component {
         // if this is a patient's first visit, we want to send them to a welcome screen
         // where they can fill out HIPAA
         if (Roles.userIsInRole(Meteor.userId(), 'patient') && get(Meteor.user(), 'profile.firstTimeVisit')) {
+          console.log('Routing to /welcome/patient');
           browserHistory.push('/welcome/patient');
 
         // and if they're a practitioner, we probably need to collect some credentialing data
         // and inform them about their obligations regarding HIPAA
         } else if (Roles.userIsInRole(Meteor.userId(), 'practitioner') && get(Meteor.user(), 'profile.firstTimeVisit')) {
+            console.log('Routing to /welcome/practitioner');
             browserHistory.push('/welcome/practitioner');
         } else if (Roles.userIsInRole(Meteor.userId(), 'sysadmin') && get(Meteor.user(), 'profile.firstTimeVisit')) {
+            console.log('Routing to /welcome/sysadmin');
             browserHistory.push('/welcome/sysadmin');
         } else {
           // otherwise we go to the default route specified in the settings.json file
           if(get(Meteor, 'settings.public.defaults.route')){
+            console.log('Routing to Meteor.settings.public.defaults.route');
             browserHistory.push(get(Meteor, 'settings.public.defaults.route', '/'));
           } else {
             // and if all else fails, just go to the root 
+            console.log('Routing to /');
             browserHistory.push('/');      
           }  
         }
