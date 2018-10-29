@@ -10,6 +10,7 @@ import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
 
+import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session';
 import { HTTP } from 'meteor/http';
 
@@ -283,11 +284,11 @@ export class Footer extends React.Component {
       console.log('Couldnt find anchor element.')
     }
   }
-  clearContinuityOfCareDoc(){
-    Meteor.users.update({_id: Meteor.userId()}, {$unset: {
-      'profile.continuityOfCare': ''
-    }});
-  }
+  // clearContinuityOfCareDoc(){
+  //   Meteor.users.update({_id: Meteor.userId()}, {$unset: {
+  //     'profile.continuityOfCare': ''
+  //   }});
+  // }
   transferCurrentPatient(){
     console.log('Transferring patient...');
     console.log('selectedPractitioner:  ', Session.get('selectedPractitioner'));
@@ -550,7 +551,7 @@ export class Footer extends React.Component {
           <div>
             <FlatButton label='Prepare CCD' id="exportContinuityOfCareDoc" className='exportCcd' ref='exportContinuityOfCareDoc' style={this.data.style.buttonText} onClick={this.exportContinuityOfCareDoc}></FlatButton>
             <FlatButton label='Download' id="downloadContinuityOfCareDoc" className='exportCcd' ref='exportContinuityOfCareDoc' style={this.data.style.buttonText} onClick={this.downloadContinuityOfCareDoc}></FlatButton>
-            <FlatButton label='Clear' disabled={true} id="clearContinuityOfCareDoc" className='clearCcd' ref='clearContinuityOfCareDoc' style={this.data.style.disabledButtonText} onClick={this.clearContinuityOfCareDoc}></FlatButton>
+            {/* <FlatButton label='Clear' disabled={true} id="clearContinuityOfCareDoc" className='clearCcd' ref='clearContinuityOfCareDoc' style={this.data.style.disabledButtonText} onClick={this.clearContinuityOfCareDoc}></FlatButton> */}
             <a id="downloadAnchorElement" style={{display: "none"}} ></a>            
           </div>
         );
