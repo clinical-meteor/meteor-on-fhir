@@ -116,7 +116,7 @@ clinical:hl7-resource-contract
 # clinical:hl7-resource-clinical-impression
 clinical:hl7-resource-device
 clinical:hl7-resource-diagnostic-report
-clinical:hl7-resource-document-reference
+# clinical:hl7-resource-document-reference
 clinical:hl7-resource-endpoint
 clinical:hl7-resource-goal
 clinical:hl7-resource-immunization

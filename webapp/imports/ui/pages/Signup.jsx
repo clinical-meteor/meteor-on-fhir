@@ -11,7 +11,7 @@ import { MobilePadding } from '/imports/ui/components/MobilePadding';
 
 import { browserHistory } from 'react-router';
 import { Accounts } from 'meteor/accounts-base';
-// import { Bert } from 'meteor/clinical:alert';
+import { Roles } from 'meteor/alanning:roles';
 
 import RaisedButton from 'material-ui/RaisedButton';
 import { lightBaseTheme, darkBaseTheme } from 'material-ui/styles';
@@ -141,6 +141,7 @@ export class Signup extends React.Component {
         // if this is a patient's first visit, we want to send them to a welcome screen
         // where they can fill out HIPAA
         if (Roles.userIsInRole(Meteor.userId(), 'patient') && get(Meteor.user(), 'profile.firstTimeVisit')) {
+
           if (process.env.NODE_ENV === "test") console.log('Routing to /welcome/patient')
           browserHistory.push('/welcome/patient');
 
