@@ -18,10 +18,6 @@ import { HTTP } from 'meteor/http';
 import { browserHistory } from 'react-router';
 import { has, get } from 'lodash';
 
-if(Package['clinical:hl7-resource-practitioner']){
-  import { Practitioners } from 'meteor/clinical:hl7-resource-practitioner'
-}
-
 Session.setDefault('showThemingControls', false);
 Session.setDefault('gender', 'Pink');
 Session.setDefault('timelineBackground', false);
@@ -67,7 +63,7 @@ export class Footer extends React.Component {
       pathname: Session.get('pathname')
     };
 
-    if (Meteor.status) {
+    if (Meteor.status()) {
       data.status = Meteor.status().status + " | " + process.env.NODE_ENV;
     }
 
@@ -290,32 +286,33 @@ export class Footer extends React.Component {
     console.log('Transferring patient...');
     console.log('selectedPractitioner:  ', Session.get('selectedPractitioner'));
 
+    if(typeof Practitioners === 'object'){
+      var practitionerName = '';
+      var selectedPractitioner = Practitioners.findOne({_id: Session.get('selectedPractitioner')})
+      if(selectedPractitioner){
+        practitionerName = selectedPractitioner.displayName();
+      }
+      console.log('Practitioner Name:     ', practitionerName);
 
-    var practitionerName = '';
-    var selectedPractitioner = Practitioners.findOne({_id: Session.get('selectedPractitioner')})
-    if(selectedPractitioner){
-      practitionerName = selectedPractitioner.displayName();
-    }
-    console.log('Practitioner Name:     ', practitionerName);
 
+      console.log('selectedPatient:       ', Session.get('selectedPatient'));
 
-    console.log('selectedPatient:       ', Session.get('selectedPatient'));
+      var displayText = '';
+      var currentPatient = Patients.findOne({_id: Session.get('selectedPatient')})
+      if(currentPatient){
+        displayText = currentPatient.displayName();
+      }
+      console.log('Patient Name:          ', displayText);
 
-    var displayText = '';
-    var currentPatient = Patients.findOne({_id: Session.get('selectedPatient')})
-    if(currentPatient){
-      displayText = currentPatient.displayName();
-    }
-    console.log('Patient Name:          ', displayText);
-
-    if(Session.get('selectedPractitioner')){
-      Meteor.users.update({_id: Session.get('selectedPractitioner')}, {$set: {
-        'profile.inbox': true,
-        'profile.incomingPatient': {
-          display: displayText,
-          reference: Session.get('selectedPatient')
-        }     
-      }});  
+      if(Session.get('selectedPractitioner')){
+        Meteor.users.update({_id: Session.get('selectedPractitioner')}, {$set: {
+          'profile.inbox': true,
+          'profile.incomingPatient': {
+            display: displayText,
+            reference: Session.get('selectedPatient')
+          }     
+        }});  
+      }
     }
   }
   pinkBlueToggle(){
@@ -335,32 +332,32 @@ export class Footer extends React.Component {
   searchBigchainForPractitioner(){
     console.log("searchBigchainForPractitioner", Session.get('selectedPractitioner'));
 
-    var practitioner = Practitioners.findOne({_id: Session.get('selectedPractitioner')});
-    var searchTerm = '';
+    if(typeof Practitioners === "object"){
+      var practitioner = Practitioners.findOne({_id: Session.get('selectedPractitioner')});
+      var searchTerm = '';
 
-    // console.log('practitioner.name', practitioner.name)
+      // console.log('practitioner.name', practitioner.name)
 
-    if(get(practitioner, 'name[0].text')){
-      searchTerm = get(practitioner, 'name[0].text');
-      console.log('searchTerm', searchTerm);
+      if(get(practitioner, 'name[0].text')){
+        searchTerm = get(practitioner, 'name[0].text');
+        console.log('searchTerm', searchTerm);
 
-      Meteor.call('searchBigchainForPractitioner', searchTerm, function(error, data){
-        if(error) console.log('error', error);
-        if(data){
-          var parsedResults = [];
+        Meteor.call('searchBigchainForPractitioner', searchTerm, function(error, data){
+          if(error) console.log('error', error);
+          if(data){
+            var parsedResults = [];
 
-          data.forEach(function(result){
-            parsedResults.push(result.data);
-          });
+            data.forEach(function(result){
+              parsedResults.push(result.data);
+            });
 
-          console.log('parsedResults', parsedResults)
-          
-          Session.set('practitionerBlockchainData', parsedResults);  
-        }
-      });
+            console.log('parsedResults', parsedResults)
+            
+            Session.set('practitionerBlockchainData', parsedResults);  
+          }
+        });
+      }
     }
-
-
   }
   readPractitionersFromBlockchain(){
     //console.log("readPractitionersFromBlockchain");
@@ -837,7 +834,7 @@ export class Footer extends React.Component {
       <div id='appFooter' style={this.data.footerStyle}>
         <AppBar
           iconElementLeft={ westNavbar }
-          // iconElementRight={ this.renderEastNavbar(this.data.displayThemeNavbar) }
+          iconElementRight={ this.renderEastNavbar(this.data.displayThemeNavbar) }
           style={this.data.footerStyle}
           titleStyle={{color: 'black'}}
         />
