@@ -4,9 +4,11 @@ import { get } from 'lodash';
 Accounts.onCreateUser(function(options, user) {
   console.log('------------------------------------------------');
   console.log('Accounts.onCreateUser');
-  process.env.DEBUG && console.log('Meteor.settings', Meteor.settings);
+  console.log(' ');
+
+  process.env.DEBUG && console.log('user', user);
   process.env.DEBUG && console.log('options', options);
-  process.env.DEBUG && console.log("user", user);
+  console.log(' ');
 
   // console.log('options', options);
   // console.log('user', user);
@@ -62,8 +64,17 @@ Accounts.onCreateUser(function(options, user) {
     }
   }
 
-  process.env.DEBUG && console.log('modified user', user);
+  // this lets us add OAuth services in the profile at account creation time
+  // when then get securely stored 
+  if(get(options, 'profile.services')){
+    let services = get(options, 'profile.services');
+    Object.keys(services).forEach(function(key){
+      user.services[key] = services[key];      
+    })
+    delete user.profile.services;
+  }
 
+  process.env.DEBUG && console.log('modified user', user);
 
   return user;
 });
