@@ -457,196 +457,196 @@ export class Footer extends React.Component {
   renderWestNavbar(pathname){
       console.log('Footer.renderWestNavbar', pathname)
 
-      // // FHIR RESOURCES
-      // if (pathname === '/fhir-resources-index') {
-      //   return (
-      //     <div style={{marginTop: '-8px'}}>
-      //       <FlatButton label='Filter Tiles' className='filterTileButton' ref='filterTileButton' onClick={this.toggleFilterMainTiles} style={this.data.style.buttonText} ></FlatButton>
-      //     </div>
-      //   );
+      // FHIR RESOURCES
+      if (pathname === '/fhir-resources-index') {
+        return (
+          <div style={{marginTop: '-8px'}}>
+            <FlatButton label='Filter Tiles' className='filterTileButton' ref='filterTileButton' onClick={this.toggleFilterMainTiles} style={this.data.style.buttonText} ></FlatButton>
+          </div>
+        );
 
-      //   // PATIENTS
-      // } else if ((pathname === '/patients') && get(Meteor, 'settings.public.modules.epic')) {
-      //   // the user is logged in as a normal user
-      //   return (
-      //     <div></div>
-      //   );
+        // PATIENTS
+      } else if ((pathname === '/patients') && get(Meteor, 'settings.public.modules.epic')) {
+        // the user is logged in as a normal user
+        return (
+          <div></div>
+        );
 
-      // // PRACTITIONERS
-      // } else if ((pathname === '/practitioners') && get(Meteor, 'settings.public.modules.fhir.Practitioners')) {
-      //   if(Package["symptomatic:blockchain-core"]){          
-      //     return (
-      //       <div>
-      //         <FlatButton label='Read Practitioners on Bigchain' className='querySystemButton' ref='querySystemButton' onClick={this.readPractitionersFromBlockchain.bind(this)} style={this.data.style.buttonText} ></FlatButton>
-      //         <FlatButton label='Query Practitioner History' className='querySystemButton' ref='querySystemButton' onClick={this.searchBigchainForPractitioner.bind(this)} style={this.data.style.buttonText} ></FlatButton>
-      //       </div>
-      //     );
-      //   }
+      // PRACTITIONERS
+      } else if ((pathname === '/practitioners') && get(Meteor, 'settings.public.modules.fhir.Practitioners')) {
+        if(Package["symptomatic:blockchain-core"]){          
+          return (
+            <div>
+              <FlatButton label='Read Practitioners on Bigchain' className='querySystemButton' ref='querySystemButton' onClick={this.readPractitionersFromBlockchain.bind(this)} style={this.data.style.buttonText} ></FlatButton>
+              <FlatButton label='Query Practitioner History' className='querySystemButton' ref='querySystemButton' onClick={this.searchBigchainForPractitioner.bind(this)} style={this.data.style.buttonText} ></FlatButton>
+            </div>
+          );
+        }
             
-      // // OBSERVATIONS
-      // } else if ((pathname === '/observations') && get(Meteor, 'settings.public.modules.fhir.Observations')) {
-      //   // the user is logged in as a normal user
-      //   return (
-      //     <div>
-      //       <FlatButton label='Record Vitals' className='querySystemButton' ref='querySystemButton' onClick={this.openLink.bind(this, '/vitals-tracking', function(){
-      //         Session.set('vitalsForm', {
-      //           pulse: '',
-      //           temperature: '',
-      //           respiration: '',
-      //           bloodPressure: '',
-      //           notes: ''
-      //         });
-      //       })}  style={this.data.style.buttonText} ></FlatButton>
+      // OBSERVATIONS
+      } else if ((pathname === '/observations') && get(Meteor, 'settings.public.modules.fhir.Observations')) {
+        // the user is logged in as a normal user
+        return (
+          <div>
+            <FlatButton label='Record Vitals' className='querySystemButton' ref='querySystemButton' onClick={this.openLink.bind(this, '/vitals-tracking', function(){
+              Session.set('vitalsForm', {
+                pulse: '',
+                temperature: '',
+                respiration: '',
+                bloodPressure: '',
+                notes: ''
+              });
+            })}  style={this.data.style.buttonText} ></FlatButton>
 
-      //       <FlatButton label='Filter' className='querySystemButton' ref='querySystemButton'></FlatButton>
+            <FlatButton label='Filter' className='querySystemButton' ref='querySystemButton'></FlatButton>
 
-      //     </div>
-      //   );
+          </div>
+        );
 
-      // // CHECKLISTS
-      // } else if ((pathname === '/checklists') && get(Meteor, 'settings.public.modules.apps.ChecklistManifesto')) {
-      //   return (
-      //     <div>
-      //       <FlatButton label='New List' className='querySystemButton' ref='querySystemButton' onClick={this.newList.bind(this)} style={this.data.style.buttonText} ></FlatButton>
-      //     </div>
-      //   );
+      // CHECKLISTS
+      } else if ((pathname === '/checklists') && get(Meteor, 'settings.public.modules.apps.ChecklistManifesto')) {
+        return (
+          <div>
+            <FlatButton label='New List' className='querySystemButton' ref='querySystemButton' onClick={this.newList.bind(this)} style={this.data.style.buttonText} ></FlatButton>
+          </div>
+        );
 
-      // // ORGANIZATIONS
-      // } else if ((pathname === '/organizations') && get(Meteor, 'settings.public.modules.fhir.Organizations')) {
-      //   return (
-      //     <div>
-      //     </div>
-      //   );
+      // ORGANIZATIONS
+      } else if ((pathname === '/organizations') && get(Meteor, 'settings.public.modules.fhir.Organizations')) {
+        return (
+          <div>
+          </div>
+        );
 
-      // // CONTINUITY OF CARE
-      // } else if (pathname === '/continuity-of-care') {
-      //   return (
-      //     <div>
-      //       <FlatButton label='Sidescroll Timeline' className='horizontalTimeline' ref='horizontalTimeline' onClick={this.openLink.bind(this, '/timeline-sidescroll')} style={this.data.style.buttonText} ></FlatButton>
-      //       <FlatButton label='Import' className='importData' ref='importCcd' onClick={this.openLink.bind(this, '/data-management')} style={this.data.style.buttonText} ></FlatButton>
-      //       <FlatButton label='Export CCD' id="exportContinuityOfCareDoc" className='exportCcd' ref='exportContinuityOfCareDoc' style={this.data.style.buttonText} onClick={this.exportContinuityOfCareDoc}></FlatButton>
-      //     </div>
-      //   );
+      // CONTINUITY OF CARE
+      } else if (pathname === '/continuity-of-care') {
+        return (
+          <div>
+            <FlatButton label='Sidescroll Timeline' className='horizontalTimeline' ref='horizontalTimeline' onClick={this.openLink.bind(this, '/timeline-sidescroll')} style={this.data.style.buttonText} ></FlatButton>
+            <FlatButton label='Import' className='importData' ref='importCcd' onClick={this.openLink.bind(this, '/data-management')} style={this.data.style.buttonText} ></FlatButton>
+            <FlatButton label='Export CCD' id="exportContinuityOfCareDoc" className='exportCcd' ref='exportContinuityOfCareDoc' style={this.data.style.buttonText} onClick={this.exportContinuityOfCareDoc}></FlatButton>
+          </div>
+        );
 
-      // // TIMELINE
-      // } else if ((pathname === '/timeline') || (pathname === '/timeline-sidescroll')) {
-      //   return (
-      //     <div>
-      //       <FlatButton label='Continuity of Care' className='ccdPage' ref='ccdPage' onClick={this.openLink.bind(this, '/continuity-of-care')} style={this.data.style.buttonText} ></FlatButton>
-      //       <FlatButton label='Background' id="toggleBackground" className='clearCcd' ref='toggleBackground' style={this.data.style.buttonText} onClick={this.toggleBackground}></FlatButton>
-      //     </div>
-      //   );
+      // TIMELINE
+      } else if ((pathname === '/timeline') || (pathname === '/timeline-sidescroll')) {
+        return (
+          <div>
+            <FlatButton label='Continuity of Care' className='ccdPage' ref='ccdPage' onClick={this.openLink.bind(this, '/continuity-of-care')} style={this.data.style.buttonText} ></FlatButton>
+            <FlatButton label='Background' id="toggleBackground" className='clearCcd' ref='toggleBackground' style={this.data.style.buttonText} onClick={this.toggleBackground}></FlatButton>
+          </div>
+        );
 
-      // // DATA Management
-      // } else if (pathname === '/data-management') {
-      //   return (
-      //     <div>
-      //       <FlatButton label='Prepare CCD' id="exportContinuityOfCareDoc" className='exportCcd' ref='exportContinuityOfCareDoc' style={this.data.style.buttonText} onClick={this.exportContinuityOfCareDoc}></FlatButton>
-      //       <FlatButton label='Download' id="downloadContinuityOfCareDoc" className='exportCcd' ref='exportContinuityOfCareDoc' style={this.data.style.buttonText} onClick={this.downloadContinuityOfCareDoc}></FlatButton>
-      //       <a id="downloadAnchorElement" style={{display: "none"}} ></a>            
-      //     </div>
-      //   );
+      // DATA Management
+      } else if (pathname === '/data-management') {
+        return (
+          <div>
+            <FlatButton label='Prepare CCD' id="exportContinuityOfCareDoc" className='exportCcd' ref='exportContinuityOfCareDoc' style={this.data.style.buttonText} onClick={this.exportContinuityOfCareDoc}></FlatButton>
+            <FlatButton label='Download' id="downloadContinuityOfCareDoc" className='exportCcd' ref='exportContinuityOfCareDoc' style={this.data.style.buttonText} onClick={this.downloadContinuityOfCareDoc}></FlatButton>
+            <a id="downloadAnchorElement" style={{display: "none"}} ></a>            
+          </div>
+        );
 
-      // // CONDITIONS
-      // } else if ((pathname === '/conditions') && get(Meteor, 'settings.public.modules.epic')) {
-      //   return (
-      //     <div></div>
-      //   );
+      // CONDITIONS
+      } else if ((pathname === '/conditions') && get(Meteor, 'settings.public.modules.epic')) {
+        return (
+          <div></div>
+        );
 
-      // // ZYGOTE
-      // } else if (pathname === '/zygote') {
-      //   return (
-      //     <div>
-      //       <FlatButton label='Rotate' className='querySystemButton' ref='querySystemButton' onClick={this.rotateZygote.bind(this, 'Condition')} style={this.data.style.buttonText} ></FlatButton>
-      //     </div>
-      //   );
+      // ZYGOTE
+      } else if (pathname === '/zygote') {
+        return (
+          <div>
+            <FlatButton label='Rotate' className='querySystemButton' ref='querySystemButton' onClick={this.rotateZygote.bind(this, 'Condition')} style={this.data.style.buttonText} ></FlatButton>
+          </div>
+        );
 
-      // // VIDEOCONFERENCING
-      // } else if (pathname === '/videoconferencing') {
-      //   return (
-      //     <div>
-      //       <FlatButton label='Phonebook' className='querySystemButton' ref='querySystemButton' onClick={this.showPhonebook.bind(this, 'Condition')} style={this.data.style.buttonText} ></FlatButton>
-      //       <FlatButton label='Fullscreen' className='querySystemButton' ref='querySystemButton' onClick={this.fullscreenVideo.bind(this)} style={this.data.style.buttonText} ></FlatButton>
-      //       <FlatButton label='Orbital' className='querySystemButton' ref='querySystemButton' onClick={this.showOrbital.bind(this)} style={this.data.style.buttonText} ></FlatButton>
-      //     </div>
-      //   );
+      // VIDEOCONFERENCING
+      } else if (pathname === '/videoconferencing') {
+        return (
+          <div>
+            <FlatButton label='Phonebook' className='querySystemButton' ref='querySystemButton' onClick={this.showPhonebook.bind(this, 'Condition')} style={this.data.style.buttonText} ></FlatButton>
+            <FlatButton label='Fullscreen' className='querySystemButton' ref='querySystemButton' onClick={this.fullscreenVideo.bind(this)} style={this.data.style.buttonText} ></FlatButton>
+            <FlatButton label='Orbital' className='querySystemButton' ref='querySystemButton' onClick={this.showOrbital.bind(this)} style={this.data.style.buttonText} ></FlatButton>
+          </div>
+        );
 
-      // // ENDPOINTS
-      // } else if (pathname === '/endpoints') {
-      //   return (
-      //     <div>
-      //       <FlatButton label='Clear' className='clearEndpoints' ref='querySystemButton' onClick={this.clearEndpoints} style={this.data.style.buttonText} ></FlatButton>
-      //     </div>
-      //   );
+      // ENDPOINTS
+      } else if (pathname === '/endpoints') {
+        return (
+          <div>
+            <FlatButton label='Clear' className='clearEndpoints' ref='querySystemButton' onClick={this.clearEndpoints} style={this.data.style.buttonText} ></FlatButton>
+          </div>
+        );
 
-      // // DIAGNOSTIC REPORTS
-      // } else if (pathname === '/diagnostic-reports') {
-      //   return (
-      //     <div>
-      //       <FlatButton label='Imaging Studies' ref='cornerstoneViewer' onClick={this.openLink.bind(this, '/imaging-studies')} style={this.data.style.buttonText} ></FlatButton>
-      //     </div>
-      //   );
+      // DIAGNOSTIC REPORTS
+      } else if (pathname === '/diagnostic-reports') {
+        return (
+          <div>
+            <FlatButton label='Imaging Studies' ref='cornerstoneViewer' onClick={this.openLink.bind(this, '/imaging-studies')} style={this.data.style.buttonText} ></FlatButton>
+          </div>
+        );
 
-      // // IMAGING STUDIES
-      // } else if (pathname === '/imaging-studies') {
-      //   return (
-      //     <div>
-      //       <FlatButton label='Cornerstone DICOM Viewer' ref='cornerstoneViewer' onClick={this.cornerstoneViewer} style={this.data.style.buttonText} ></FlatButton>
-      //     </div>
-      //   );
+      // IMAGING STUDIES
+      } else if (pathname === '/imaging-studies') {
+        return (
+          <div>
+            <FlatButton label='Cornerstone DICOM Viewer' ref='cornerstoneViewer' onClick={this.cornerstoneViewer} style={this.data.style.buttonText} ></FlatButton>
+          </div>
+        );
 
-      // // GRAPHS
-      // } else if (pathname === '/blockchain-graphs') {
-      //   return (
-      //     <div>
-      //       <FlatButton label='Config' className='configGraph' ref='querySystemButton' onClick={ this.configBlockchain } style={this.data.style.buttonText} ></FlatButton>
-      //       <FlatButton label='Lines' className='configGraph' ref='querySystemButton' onClick={ this.showLines } style={this.data.style.buttonText} ></FlatButton>
-      //     </div>
-      //   );
+      // GRAPHS
+      } else if (pathname === '/blockchain-graphs') {
+        return (
+          <div>
+            <FlatButton label='Config' className='configGraph' ref='querySystemButton' onClick={ this.configBlockchain } style={this.data.style.buttonText} ></FlatButton>
+            <FlatButton label='Lines' className='configGraph' ref='querySystemButton' onClick={ this.showLines } style={this.data.style.buttonText} ></FlatButton>
+          </div>
+        );
 
         
-      // // CONSENTS
-      // } else if (pathname === '/consents') {
-      //   return (
-      //     <div>
-      //       <FlatButton label='Search' className='configGraph' ref='querySystemButton' onClick={ this.searchConsents } style={this.data.style.buttonText} ></FlatButton>
-      //     </div>
-      //   );        
+      // CONSENTS
+      } else if (pathname === '/consents') {
+        return (
+          <div>
+            <FlatButton label='Search' className='configGraph' ref='querySystemButton' onClick={ this.searchConsents } style={this.data.style.buttonText} ></FlatButton>
+          </div>
+        );        
 
 
-      // // POWER OF ATTOURNEY
-      // } else if (pathname === '/power-of-attorney') {
-      //   return (
-      //     <div>
-      //       <FlatButton label='State' className='configGraph' ref='querySystemButton' onClick={ this.toggleStates } style={this.data.style.buttonText} ></FlatButton>
-      //     </div>
-      //   );        
+      // POWER OF ATTOURNEY
+      } else if (pathname === '/power-of-attorney') {
+        return (
+          <div>
+            <FlatButton label='State' className='configGraph' ref='querySystemButton' onClick={ this.toggleStates } style={this.data.style.buttonText} ></FlatButton>
+          </div>
+        );        
 
 
-      // // NOTIFICATIONS
-      // } else if ((pathname === '/notifications') && get(Meteor, 'settings.public.defaults.notificationMenu')) {
-      //   return (
-      //     <div>
-      //       <FlatButton label='Transfer Current Patient' className='querySystemButton' ref='querySystemButton' onClick={this.transferCurrentPatient.bind(this)} style={this.data.style.buttonText} ></FlatButton>
-      //     </div>
-      //   );
+      // NOTIFICATIONS
+      } else if ((pathname === '/notifications') && get(Meteor, 'settings.public.defaults.notificationMenu')) {
+        return (
+          <div>
+            <FlatButton label='Transfer Current Patient' className='querySystemButton' ref='querySystemButton' onClick={this.transferCurrentPatient.bind(this)} style={this.data.style.buttonText} ></FlatButton>
+          </div>
+        );
 
-      // // WALLET DASHBOARD
-      // } else if ((pathname === '/wallet-dashboard') || (pathname.includes('authn'))) {
-      //   return (
-      //     <div>
-      //       <FlatButton label='Query HAPI for Provenances' className='querySystemButton' ref='querySystemButton' onClick={this.queryHapiProvenances.bind(this)} style={this.data.style.buttonText} ></FlatButton>
-      //       <FlatButton label='Query HAPI for Consents' className='querySystemButton' ref='querySystemButton' onClick={this.queryHapiConsents.bind(this)} style={this.data.style.buttonText} ></FlatButton>
-      //     </div>
-      //   );
+      // WALLET DASHBOARD
+      } else if ((pathname === '/wallet-dashboard') || (pathname.includes('authn'))) {
+        return (
+          <div>
+            <FlatButton label='Query HAPI for Provenances' className='querySystemButton' ref='querySystemButton' onClick={this.queryHapiProvenances.bind(this)} style={this.data.style.buttonText} ></FlatButton>
+            <FlatButton label='Query HAPI for Consents' className='querySystemButton' ref='querySystemButton' onClick={this.queryHapiConsents.bind(this)} style={this.data.style.buttonText} ></FlatButton>
+          </div>
+        );
 
 
-      // } else {
-      //   // anything else
-      //   return (
-      //     <div></div>
-      //   );
-      // }
+      } else {
+        // anything else
+        return (
+          <div></div>
+        );
+      }
 
   }
   webAuthn(){
