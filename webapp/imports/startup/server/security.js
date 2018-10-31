@@ -10,7 +10,7 @@ import { _ } from 'meteor/underscore';
 // });
 
 // Don't let people write arbitrary data to their 'profile' field from the client
-if(Package['clinical:hl7-resource-patient']){
+if(Package['clinical:hl7-resource-patient'] && (typeof Patients === "object")){
   Patients.allow({
     update() { return true; },
     insert() { return true; },
@@ -18,14 +18,14 @@ if(Package['clinical:hl7-resource-patient']){
   });
 }
 
-if(Package['clinical:hl7-resource-allergy-intolerance']){
+if(Package['clinical:hl7-resource-allergy-intolerance'] && (typeof AllergyIntolerances === "object")){
   AllergyIntolerances.allow({
     update() { return true; },
     insert() { return true; },
     remove() { return true; }
   });
 }
-if(Package['clinical:hl7-resource-audit-event']){
+if(Package['clinical:hl7-resource-audit-event'] && (typeof AuditEvents === "object")){
   AuditEvents.allow({
     update() { return true; },
     insert() { return true; },
@@ -34,19 +34,23 @@ if(Package['clinical:hl7-resource-audit-event']){
 }
 
 if(Package['clinical:hl7-resource-careplan']){
-  CarePlans.allow({
-    update() { return true; },
-    insert() { return true; },
-    remove() { return true; }
-  });
-  Goals.allow({
-    update() { return true; },
-    insert() { return true; },
-    remove() { return true; }
-  });
+  if(typeof CarePlans === "object"){
+    CarePlans.allow({
+      update() { return true; },
+      insert() { return true; },
+      remove() { return true; }
+    });  
+  }
+  if(typeof Goals === "object"){
+    Goals.allow({
+      update() { return true; },
+      insert() { return true; },
+      remove() { return true; }
+    });
+  }
 }
 
-if(Package['clinical:hl7-resource-condition']){
+if(Package['clinical:hl7-resource-condition'] && (typeof Conditions === "object")){
   Conditions.allow({
     update() { return true; },
     insert() { return true; },
@@ -54,7 +58,7 @@ if(Package['clinical:hl7-resource-condition']){
   });
 }
 
-if(Package['clinical:hl7-resource-device']){
+if(Package['clinical:hl7-resource-device'] && (typeof Devices === "object")){
   Devices.allow({
     update() { return true; },
     insert() { return true; },
@@ -62,7 +66,7 @@ if(Package['clinical:hl7-resource-device']){
   });
 }
 
-if(Package['clinical:hl7-resource-endpoint']){
+if(Package['clinical:hl7-resource-endpoint'] && (typeof Endpoints === "object")){
   Endpoints.allow({
     update() { return true; },
     insert() { return true; },
@@ -70,7 +74,7 @@ if(Package['clinical:hl7-resource-endpoint']){
   });
 }
 
-if(Package['clinical:hl7-resource-diagnostic-report']){
+if(Package['clinical:hl7-resource-diagnostic-report'] && (typeof DiagnosticReports === "object")){
   DiagnosticReports.allow({
     update() { return true; },
     insert() { return true; },
@@ -79,7 +83,7 @@ if(Package['clinical:hl7-resource-diagnostic-report']){
 }
 
 
-if(Package['clinical:hl7-resource-immunization']){
+if(Package['clinical:hl7-resource-immunization'] && (typeof Immunizations === "object")){
   Immunizations.allow({
     update() { return true; },
     insert() { return true; },
@@ -87,14 +91,14 @@ if(Package['clinical:hl7-resource-immunization']){
   });
 }
 
-if(Package['clinical:hl7-resource-list']){
+if(Package['clinical:hl7-resource-list'] && (typeof Lists === "object")){
   Lists.allow({
     update() { return true; },
     insert() { return true; },
     remove() { return true; }
   });
 }
-if(Package['clinical:hl7-resource-location']){
+if(Package['clinical:hl7-resource-location'] && (typeof Locations === "object")){
   Locations.allow({
     update() { return true; },
     insert() { return true; },
@@ -102,7 +106,7 @@ if(Package['clinical:hl7-resource-location']){
   });
 }
 
-if(Package['clinical:hl7-resource-medication']){
+if(Package['clinical:hl7-resource-medication'] && (typeof Medications === "object")){
   Medications.allow({
     update() { return true; },
     insert() { return true; },
@@ -110,7 +114,7 @@ if(Package['clinical:hl7-resource-medication']){
   });
 }
 
-if(Package['clinical:hl7-resource-medication-order']){
+if(Package['clinical:hl7-resource-medication-order'] && (typeof MedicationOrders === "object")){
   MedicationOrders.allow({
     update() { return true; },
     insert() { return true; },
@@ -118,7 +122,7 @@ if(Package['clinical:hl7-resource-medication-order']){
   });
 }
 
-if(Package['clinical:hl7-resource-medication-statement']){
+if(Package['clinical:hl7-resource-medication-statement'] && (typeof MedicationStatements === "object")){
   MedicationStatements.allow({
     update() { return true; },
     insert() { return true; },
@@ -126,7 +130,7 @@ if(Package['clinical:hl7-resource-medication-statement']){
   });
 }
 
-if(Package['clinical:hl7-resource-observation']){
+if(Package['clinical:hl7-resource-observation'] && (typeof Observations === "object")){
   Observations.allow({
     update() { return true; },
     insert() { return true; },
@@ -134,7 +138,7 @@ if(Package['clinical:hl7-resource-observation']){
   });
 }
 
-if(Package['clinical:hl7-resource-organization']){
+if(Package['clinical:hl7-resource-organization'] && (typeof Organizations === "object")){
   Organizations.allow({
     update() { return true; },
     insert() { return true; },
@@ -142,7 +146,7 @@ if(Package['clinical:hl7-resource-organization']){
   });
 }
 
-if(Package['clinical:hl7-resource-person']){
+if(Package['clinical:hl7-resource-person'] && (typeof Persons === "object")){
   Persons.allow({
     update() { return true; },
     insert() { return true; },
@@ -150,7 +154,7 @@ if(Package['clinical:hl7-resource-person']){
   });
 }
 
-if(Package['clinical:hl7-resource-patient']){
+if(Package['clinical:hl7-resource-patient'] && (typeof Patients === "object")){
   Patients.allow({
     update() { return true; },
     insert() { return true; },
@@ -158,7 +162,7 @@ if(Package['clinical:hl7-resource-patient']){
   });
 }
 
-if(Package['clinical:hl7-resource-practitioner']){
+if(Package['clinical:hl7-resource-practitioner'] && (typeof Practitioners === "object")){
   Practitioners.allow({
     update() { return true; },
     insert() { return true; },
@@ -166,7 +170,7 @@ if(Package['clinical:hl7-resource-practitioner']){
   });
 }
 
-if(Package['clinical:hl7-resource-procedure']){
+if(Package['clinical:hl7-resource-procedure'] && (typeof Procedures === "object")){
   Procedures.allow({
     update() { return true; },
     insert() { return true; },
@@ -174,7 +178,7 @@ if(Package['clinical:hl7-resource-procedure']){
   });
 }
 
-if(Package['clinical:hl7-resource-risk-assessment']){
+if(Package['clinical:hl7-resource-risk-assessment'] && (typeof RiskAssessments === "object")){
   RiskAssessments.allow({
     update() { return true; },
     insert() { return true; },

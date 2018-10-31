@@ -19,8 +19,6 @@ caching-html-compiler@1.0.7
 callback-hook@1.1.0
 check@1.3.1
 chriswessels:hammer@4.0.2
-clinical:accounts-famous-dead-people@1.5.7
-clinical:accounts-housemd@2.3.7
 clinical:accounts-oauth@1.1.52
 clinical:alert@2.1.3
 clinical:auto-resizing@0.3.2
@@ -46,14 +44,13 @@ clinical:hl7-resource-device@1.3.7
 clinical:hl7-resource-diagnostic-report@1.6.4
 clinical:hl7-resource-endpoint@3.1.2
 clinical:hl7-resource-goal@1.3.6
-clinical:hl7-resource-imaging-study@1.4.2
 clinical:hl7-resource-immunization@1.2.5
 clinical:hl7-resource-list@1.4.2
 clinical:hl7-resource-location@1.5.6
 clinical:hl7-resource-medication@1.3.5
 clinical:hl7-resource-medication-order@1.6.2
 clinical:hl7-resource-medication-statement@1.3.4
-clinical:hl7-resource-observation@1.4.5
+clinical:hl7-resource-observation@1.4.6
 clinical:hl7-resource-organization@1.6.9
 clinical:hl7-resource-patient@3.4.12
 clinical:hl7-resource-person@1.2.3
@@ -110,7 +107,6 @@ mdg:validation-error@0.5.1
 meteor@1.8.6
 meteor-base@1.3.0
 meteor-platform@1.2.6
-meteorhacks:async@1.0.0
 minifier-css@1.3.1
 minifier-js@2.3.5
 minimongo@1.4.4
@@ -129,7 +125,6 @@ npm-mongo@2.2.34
 observe-sequence@1.0.16
 ordered-dict@1.1.0
 percolate:synced-cron@1.3.2
-prime8consulting:meteor-oauth2-server@0.0.3
 promise@0.10.2
 raix:eventemitter@0.1.3
 random@1.1.0

@@ -159,6 +159,11 @@ export class App extends React.Component {
     // if(get(Meteor, 'settings.public.defaults.nfcOrbital')){
     //   orbital = <SciFiPage />;
     // }
+
+    console.log('this.props.location.query', this.props.location.query)
+    Session.set('window.location', this.props.location)
+    Session.set('ehrLaunchContext', get(this, 'props.location.query.launch'))
+  
     return (
         <MuiThemeProvider muiTheme={muiTheme}>
           <GlassApp>

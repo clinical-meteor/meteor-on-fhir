@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { PrivacyPolicyCard } from '/imports/ui/components/PrivacyPolicyCard';
+import { DefaultPrivacyPolicyCard } from '/imports/ui/components/PrivacyPolicyCard';
 import { GlassCard, VerticalCanvas } from 'meteor/clinical:glass-ui';
 
 export class PrivacyPage extends React.Component {
@@ -13,7 +13,7 @@ export class PrivacyPage extends React.Component {
       <div id="privacyPage">
         <VerticalCanvas>
           <GlassCard height='auto'>
-            <PrivacyPolicyCard />            
+            <DefaultPrivacyPolicyCard />            
           </GlassCard>
         </VerticalCanvas>
       </div>
