@@ -114,77 +114,7 @@ export class Signup extends React.Component {
   signinRoute(){
     browserHistory.push('/signin');
   }
-  handleTouchTap(){
-    let newUserData = {
-      email: this.state.form.emailAddress,
-      password: this.state.form.password,
-      profile: {
-        name: {
-          given: this.state.form.givenName,
-          family: this.state.form.familyName,
-          text: this.state.form.givenName + ' ' + this.state.form.familyName
-        }
-      }
-    };
 
-    if(this.refs.accessCode){
-      newUserData.accessCode = this.refs.accessCode.input.value;
-    }
-
-    console.log('SignUp.handleTouchTap', this, newUserData);
-    console.log(newUserData);
-
-    Accounts.createUser(newUserData, function(error, result){
-      if (error) {
-        console.log('Accounts.createUser().error' + error.reason)
-        // Meteor.call('debugToServer', 'Accounts.createUser()', error)
-
-        Session.set('signUpErrorMessage', error.reason);
-
-        // for some reason, we're getting an "Email already exists!" on signup
-        //if (!error.reason.includes("Email already exists.")) {
-        Bert.alert(error.reason, 'danger');
-        //}
-      }
-      if (result) {
-        console.log("Accounts.createUser[result]", result);
-        console.log("Accounts.createUser[Meteor.userId()]", Meteor.userId());
-        console.log("Accounts.createUser[Roles.userIsInRole(Meteor.userId()]", Roles.userIsInRole(Meteor.userId()));
-
-        // if this is a patient's first visit, we want to send them to a welcome screen
-        // where they can fill out HIPAA
-        if (Roles.userIsInRole(Meteor.userId(), 'patient') && get(Meteor.user(), 'profile.firstTimeVisit')) {
-
-          console.log('Routing to /welcome/patient')
-          browserHistory.push('/welcome/patient');
-
-        // and if they're a practitioner, we probably need to collect some credentialing data
-        // and inform them about their obligations regarding HIPAA
-        } else if (Roles.userIsInRole(Meteor.userId(), 'practitioner') && get(Meteor.user(), 'profile.firstTimeVisit')) {
-            console.log('Routing to /welcome/practitioner')
-            browserHistory.push('/welcome/practitioner');
-        } else if (Roles.userIsInRole(Meteor.userId(), 'sysadmin') && get(Meteor.user(), 'profile.firstTimeVisit')) {
-            console.log('Routing to /welcome/sysadmin')
-            browserHistory.push('/welcome/sysadmin');
-        } else {
-          // otherwise we go to the default route specified in the settings.json file
-          if(get(Meteor, 'settings.public.defaults.route')){
-            console.log('Meteor.settings.public.defaults.route', get(Meteor, 'settings.public.defaults.route', '/'))
-            browserHistory.push(get(Meteor, 'settings.public.defaults.route', '/'));
-          } else {
-            // and if all else fails, just go to the root 
-            console.log('Routing to /');
-            browserHistory.push('/');      
-          }  
-        }
-      }
-    });
-  }
-  handleKeyPress(e) {
-    if (e.key === 'Enter') {
-      this.handleTouchTap.bind(this);
-    }
-  }
   render() {
     let formData = this.state.form;
 
@@ -356,6 +286,74 @@ export class Signup extends React.Component {
     // if(process.env.NODE_ENV === "test") console.log("formData", formData);
 
     this.setState({form: formData})
+  }
+  handleTouchTap(){
+    let newUserData = {
+      email: get(this, 'state.form.emailAddress', ''),
+      password: get(this, 'state.form.password', ''),
+      profile: {
+        name: {
+          given: get(this, 'state.form.givenName', ''),
+          family: get(this, 'state.form.familyName', ''),
+          text: get(this, 'state.form.givenName','') + ' ' + get(this, 'state.form.familyName', '')
+        }
+      },
+      accessCode: get(this, 'state.form.accessCode', '')
+    };
+
+    console.log('SignUp.handleTouchTap', this, newUserData);
+    console.log(newUserData);
+
+    Accounts.createUser(newUserData, function(error, result){
+      if (error) {
+        console.log('Accounts.createUser().error' + error.reason)
+        // Meteor.call('debugToServer', 'Accounts.createUser()', error)
+
+        Session.set('signUpErrorMessage', error.reason);
+
+        // for some reason, we're getting an "Email already exists!" on signup
+        //if (!error.reason.includes("Email already exists.")) {
+        Bert.alert(error.reason, 'danger');
+        //}
+      }
+      if (result) {
+        console.log("Accounts.createUser[result]", result);
+        console.log("Accounts.createUser[Meteor.userId()]", Meteor.userId());
+        console.log("Accounts.createUser[Roles.userIsInRole(Meteor.userId()]", Roles.userIsInRole(Meteor.userId()));
+
+        // if this is a patient's first visit, we want to send them to a welcome screen
+        // where they can fill out HIPAA
+        if (Roles.userIsInRole(Meteor.userId(), 'patient') && get(Meteor.user(), 'profile.firstTimeVisit')) {
+
+          console.log('Routing to /welcome/patient')
+          browserHistory.push('/welcome/patient');
+
+        // and if they're a practitioner, we probably need to collect some credentialing data
+        // and inform them about their obligations regarding HIPAA
+        } else if (Roles.userIsInRole(Meteor.userId(), 'practitioner') && get(Meteor.user(), 'profile.firstTimeVisit')) {
+            console.log('Routing to /welcome/practitioner')
+            browserHistory.push('/welcome/practitioner');
+        } else if (Roles.userIsInRole(Meteor.userId(), 'sysadmin') && get(Meteor.user(), 'profile.firstTimeVisit')) {
+            console.log('Routing to /welcome/sysadmin')
+            browserHistory.push('/welcome/sysadmin');
+        } else {
+          // otherwise we go to the default route specified in the settings.json file
+          if(get(Meteor, 'settings.public.defaults.route')){
+            console.log('Meteor.settings.public.defaults.route', get(Meteor, 'settings.public.defaults.route', '/'))
+            browserHistory.push(get(Meteor, 'settings.public.defaults.route', '/'));
+          } else {
+            // and if all else fails, just go to the root 
+            console.log('Routing to /');
+            browserHistory.push('/');      
+          }  
+        }
+      }
+    });
+  }
+  handleKeyPress(e) {
+    if (e.key === 'Enter') {
+      this.handleTouchTap.bind(this);
+    }
   }
 }
 ReactMixin(Signup.prototype, ReactMeteorData);
