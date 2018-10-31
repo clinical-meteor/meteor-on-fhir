@@ -2,3 +2,7 @@
 node_modules
 
 packages/*
+version.desktop
+
+.desktop-installer
+.desktop-installer/*

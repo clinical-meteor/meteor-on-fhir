@@ -78,7 +78,7 @@ Edit the `settings.dev.json` file, and update:
   "galaxy.meteor.com": {
     "env": {
       "MONGO_URL": "mongodb://username:password@mlab.com:25389/my-org-exchange-db",
-      "NODE_ENV": "produciton"
+      "NODE_ENV": "production"
     }
   }  
 }
@@ -101,11 +101,11 @@ mv public/geodata ..
 # this can be tricky, because http://localhost:3000 may need to be a local IP address
 # you may need to use `ifconfig` to find that address
 # beware network isolation, and make sure your phone and workstation are on the same network
-NODE_ENV=dev meteor run ios-device --mobile-server http://localhost:3000 --settings configs/settings.dev.json
+meteor run ios-device --mobile-server http://localhost:3000 --settings configs/settings.dev.json
 
 # production
 # we need to specify the production server
-NODE_ENV=dev meteor run ios-device --mobile-server http://meteor-on-fhir.meteorapp.com --settings configs/settings.galaxy.json
+meteor run ios-device --mobile-server http://meteor-on-fhir.meteorapp.com --settings packages/landing-page/configs/settings.symptomatic.io.json
 ```    
 
 
@@ -122,19 +122,28 @@ meteor npm install --save meteor-desktop
 # add the .desktop directory, which has files needed by omega:meteor-desktop
 npm run desktop -- init
 
+# if there is already a desktop directory, move it to the .desktop dir
+# this will override the previous step
+mv webapp/desktop webapp/.desktop
+
+
 # run the app server locally, as if you were doing a mobile build
 # (you may be able to just use the running mobile build server)
 NODE_ENV=dev meteor --mobile-server http://localhost:3000 --settings configs/settings.galaxy.json
 
 # then to run the desktop app locally...
-npm run desktop
+# npm run desktop
 
 # or try the shortcut script
-meteor npm run-script desktop
+# meteor npm run-script desktop
 
 # If you want to build a production release, that connects to the main server, you'll need to specify a different URL
-meteor --mobile-server http://www.symptomatic.io --settings configs/settings.galaxy.json
-npm run desktop -- build-installer http://www.symptomatic.io
+# meteor --mobile-server http://www.symptomatic.io --settings configs/settings.galaxy.json
+# npm run desktop -- build-installer http://www.symptomatic.io
+
+meteor --mobile-server https://meteor-on-fhir.meteorapp.com --settings packages/landing-page/configs/settings.symptomatic.io.json
+meteor npm run desktop -- build-installer http://meteor-on-fhir.meteorapp.com
+
 ```    
 
 
@@ -142,6 +151,9 @@ npm run desktop -- build-installer http://www.symptomatic.io
 
 ```sh
 # remove the desktop pipeline before building for Galaxy
+mv webapp/.desktop webapp/desktop
+git commit -a -m 'desktop' 
+
 meteor reset
 meteor remove-platform ios
 meteor remove omega:meteor-desktop-watcher omega:meteor-desktop-bundler omega:meteor-desktop-localstorage
