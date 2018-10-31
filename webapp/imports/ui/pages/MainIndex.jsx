@@ -56,6 +56,10 @@ import MdHearing from 'react-icons/lib/md/hearing';
 import MdImportantDevices from 'react-icons/lib/md/important-devices';
 import MdClearAll from 'react-icons/lib/md/clear-all';
 
+import { VitalMeasurements } from 'meteor/clinical:hl7-resource-observation';
+
+
+
 
 Session.setDefault('filterMainTiles', false);
 export class MainIndex extends React.Component {
@@ -221,18 +225,19 @@ export class MainIndex extends React.Component {
       <div id='indexPage'>
         <VerticalCanvas>
           <div>
-
             {this.renderAdminTiles(this.data.user)}
 
             {this.renderAppsSection(this.data.user)}
             { appRow }
 
+            <VitalMeasurements />
+
+            {/* 
             <div>
               <CardTitle title="Dashboard Configuration" style={this.data.style.sectionTitle} /> 
               <br/>
-            </div>
-
-
+            </div> 
+            
             <Grid>
               <Row>
                 <Alert bsStyle="warning">
@@ -276,12 +281,10 @@ export class MainIndex extends React.Component {
                           Make sure that your <strong>DynamicRoute</strong> uses the custom React component that you've developed.
                         </li>
                       </ul>
-
-
                 </Alert>
-
               </Row>
             </Grid>
+            */}
 
             <br/>
             {this.renderUnderConstructionSection(this.data.user)}          

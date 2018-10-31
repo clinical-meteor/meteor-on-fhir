@@ -19,7 +19,7 @@ import { browserHistory } from 'react-router';
 import { has, get } from 'lodash';
 
 Session.setDefault('showThemingControls', false);
-Session.setDefault('gender', 'Pink');
+Session.setDefault('gender', false);
 Session.setDefault('timelineBackground', false);
 Session.setDefault('continuityOfCareDoc', null);
 
@@ -515,7 +515,6 @@ export class Footer extends React.Component {
       } else if ((pathname === '/organizations') && get(Meteor, 'settings.public.modules.fhir.Organizations')) {
         return (
           <div>
-            {/* <FlatButton label='GET open.epic.com/Organization' className='querySystemButton' ref='querySystemButton' onClick={this.querySystemButton.bind(this, 'Organization')} style={this.data.style.buttonText} ></FlatButton> */}
           </div>
         );
 
@@ -534,7 +533,6 @@ export class Footer extends React.Component {
         return (
           <div>
             <FlatButton label='Continuity of Care' className='ccdPage' ref='ccdPage' onClick={this.openLink.bind(this, '/continuity-of-care')} style={this.data.style.buttonText} ></FlatButton>
-            <FlatButton label={this.data.gender} id="pinkBlueToggle" className='clearCcd' ref='pinkBlueToggle' style={this.data.style.buttonText} onClick={this.pinkBlueToggle}></FlatButton>
             <FlatButton label='Background' id="toggleBackground" className='clearCcd' ref='toggleBackground' style={this.data.style.buttonText} onClick={this.toggleBackground}></FlatButton>
           </div>
         );
@@ -545,7 +543,6 @@ export class Footer extends React.Component {
           <div>
             <FlatButton label='Prepare CCD' id="exportContinuityOfCareDoc" className='exportCcd' ref='exportContinuityOfCareDoc' style={this.data.style.buttonText} onClick={this.exportContinuityOfCareDoc}></FlatButton>
             <FlatButton label='Download' id="downloadContinuityOfCareDoc" className='exportCcd' ref='exportContinuityOfCareDoc' style={this.data.style.buttonText} onClick={this.downloadContinuityOfCareDoc}></FlatButton>
-            {/* <FlatButton label='Clear' disabled={true} id="clearContinuityOfCareDoc" className='clearCcd' ref='clearContinuityOfCareDoc' style={this.data.style.disabledButtonText} onClick={this.clearContinuityOfCareDoc}></FlatButton> */}
             <a id="downloadAnchorElement" style={{display: "none"}} ></a>            
           </div>
         );
@@ -638,11 +635,8 @@ export class Footer extends React.Component {
       } else if ((pathname === '/wallet-dashboard') || (pathname.includes('authn'))) {
         return (
           <div>
-            {/* <FlatButton label='Query HAPI for Patients' className='querySystemButton' ref='querySystemButton' onClick={this.queryHapiPatients.bind(this)} style={this.data.style.buttonText} ></FlatButton> */}
             <FlatButton label='Query HAPI for Provenances' className='querySystemButton' ref='querySystemButton' onClick={this.queryHapiProvenances.bind(this)} style={this.data.style.buttonText} ></FlatButton>
             <FlatButton label='Query HAPI for Consents' className='querySystemButton' ref='querySystemButton' onClick={this.queryHapiConsents.bind(this)} style={this.data.style.buttonText} ></FlatButton>
-            {/* <FlatButton label='Query HAPI for Documents' className='querySystemButton' ref='querySystemButton' onClick={this.queryHapiDocumentReferences.bind(this)} style={this.data.style.buttonText} ></FlatButton> */}
-            {/* <FlatButton label='WebAuthN ' className='querySystemButton' ref='querySystemButton' onClick={this.webAuthn.bind(this)}  style={this.data.style.buttonText} ></FlatButton> */}
           </div>
         );
 
@@ -829,7 +823,6 @@ export class Footer extends React.Component {
     if(this.data.userId){
       westNavbar = this.renderWestNavbar(this.data.pathname);
     }
-    console.log('westNavbar', westNavbar)
     return(
       <div id='appFooter' style={this.data.footerStyle}>
         <AppBar

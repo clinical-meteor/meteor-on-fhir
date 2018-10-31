@@ -79,8 +79,8 @@ export class PatientSidebar extends React.Component {
     var healthlog;
 
     if(get(Meteor, 'settings.public.modules.healthlog')){
-      allergies = <LinkContainer to='/weblog'>
-        <MenuItem primaryText='Healthlog' href='/weblog' />
+      healthlog = <LinkContainer to='/vitals-tracking'>
+        <MenuItem primaryText='Healthlog' href='/vitals-tracking' />
       </LinkContainer>;
     }
 
@@ -127,6 +127,10 @@ export class PatientSidebar extends React.Component {
 
           <LinkContainer to='/about'>
              <MenuItem primaryText='About' href='/about' />
+          </LinkContainer>
+
+          <LinkContainer to='/privacy'>
+             <MenuItem primaryText='Privacy' href='/privacy' />
           </LinkContainer>
 
           <LinkContainer to='/signin'>
