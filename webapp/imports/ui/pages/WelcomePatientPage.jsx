@@ -1,8 +1,7 @@
-import { CardActions, CardHeader, CardText, CardTitle } from 'material-ui/Card';
+import { CardActions, CardText, CardTitle } from 'material-ui/Card';
 
 import { Alert } from 'react-bootstrap';
 import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
 import React from 'react';
 
 import { VerticalCanvas, GlassCard } from 'meteor/clinical:glass-ui';
@@ -24,7 +23,7 @@ export class WelcomePatientPage extends React.Component {
     return(
       <div id="welcomePatientPage">
         <VerticalCanvas>
-          <GlassCard>
+          <GlassCard style={{marginBottom: '20px'}}>
             <CardTitle
               title="Privacy Policy"
             />

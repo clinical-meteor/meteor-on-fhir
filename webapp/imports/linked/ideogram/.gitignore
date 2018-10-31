@@ -1,0 +1,22 @@
+.nyc_output/
+.vscode/
+node_modules/
+coverage/
+test.log
+screenshots/
+images/
+.DS_Store
+crossfilter.min.js
+data/analysis/
+*.log
+scripts/env
+scripts/python/__pycache__/
+.ipynb_checkpoints/
+
+# Eclipse IDE files
+.project
+.settings
+
+# IDEA IDE files
+.idea/
+ideogram.iml

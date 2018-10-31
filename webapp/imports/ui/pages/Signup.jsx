@@ -11,16 +11,28 @@ import { MobilePadding } from '/imports/ui/components/MobilePadding';
 
 import { browserHistory } from 'react-router';
 import { Accounts } from 'meteor/accounts-base';
-import { Bert } from 'meteor/clinical:alert';
+import { Roles } from 'meteor/alanning:roles';
 
 import RaisedButton from 'material-ui/RaisedButton';
 import { lightBaseTheme, darkBaseTheme } from 'material-ui/styles';
-import { has, get } from 'lodash';
+import { has, get, set } from 'lodash';
 
 if(process.env.NODE_ENV === "test") console.log("Signup[lightBaseTheme]", lightBaseTheme);
 if(process.env.NODE_ENV === "test") console.log("Signup[darkBaseTheme]", darkBaseTheme);
 
 export class Signup extends React.Component {
+    constructor(props) {
+    super(props);
+    this.state = {
+      form: {
+        familyName: '',
+        givenName: '',
+        emailAddress: '',
+        password: '',
+        accessCode: ''
+      }
+    }
+  }
   componentDidMount() {
     //handleSignup({ component: this });
   }
@@ -92,7 +104,7 @@ export class Signup extends React.Component {
         data.errorText.password = '';
     }
 
-    if(process.env.NODE_ENV === "test") console.log("Signup[data]", data);
+    // if(process.env.NODE_ENV === "test") console.log("Signup[data]", data);
     return data;
   }
 
@@ -102,66 +114,14 @@ export class Signup extends React.Component {
   signinRoute(){
     browserHistory.push('/signin');
   }
-  handleTouchTap(){
-    let newUserData = {
-      email: this.refs.emailAddress.input.value,
-      password: this.refs.password.input.value,
-      profile: {
-        name: {
-          given: this.refs.givenName.input.value,
-          family: this.refs.familyName.input.value,
-          text: this.refs.givenName.input.value + ' ' + this.refs.familyName.input.value
-        }
-      }
-    };
 
-    if(this.refs.accessCode){
-      newUserData.accessCode = this.refs.accessCode.input.value;
-    }
-
-    console.log('SignUp.handleTouchTap', this, newUserData);
-
-    Accounts.createUser(newUserData, function(error, result){
-      if (error) {
-        console.log('Accounts.createUser().error', error)
-
-        Session.set('signUpErrorMessage', error.reason);
-
-        // for some reason, we're getting an "Email already exists!" on signup
-        if (!error.reason.includes("Email already exists.")) {
-          Bert.alert(error.reason, 'danger');
-        }
-      }
-      if (result) {
-        console.log("Accounts.createUser[result]", result);
-
-        // if this is a patient's first visit, we want to send them to a welcome screen
-        // where they can fill out HIPAA
-        if (Roles.userIsInRole(Meteor.userId(), 'patient') && get(Meteor.user(), 'profile.firstTimeVisit')) {
-          browserHistory.push('/welcome/patient');
-        } else {
-          // otherwise we go to the default route specified in the settings.json file
-          if(get(Meteor, 'settings.public.defaults.route')){
-            browserHistory.push(get(Meteor, 'settings.public.defaults.route', '/'));
-          } else {
-            // and if all else fails, just go to the root 
-            browserHistory.push('/');      
-          }  
-        }
-      }
-    });
-  }
-  handleKeyPress(e) {
-    if (e.key === 'Enter') {
-      this.handleTouchTap(e);
-    }
-  }
   render() {
+    let formData = this.state.form;
+
     var acccessCode;
     if(get(Meteor, 'settings.public.defaults.registration.displayAccessCode')){
       acccessCode = <TextField
         id='accessCodeInput'
-        ref='accessCode'
         name='accessCode'
         type='text'
         floatingLabelText='Have an access code?'
@@ -172,8 +132,13 @@ export class Signup extends React.Component {
         underlineStyle={this.data.style.underlineStyle}
         floatingLabelStyle={this.data.style.floatingLabelStyle}
         floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
-      />;
+        onChange={this.changeState.bind(this, 'accessCode')}
+        value={ get(formData, 'accessCode') }
+        floatingLabelFixed={true} 
+        />;
     }
+
+
     return (
       <div id='signupPage'>
         <MobilePadding>
@@ -185,7 +150,6 @@ export class Signup extends React.Component {
                       <TextField
                         id='givenNameInput'
                         name='givenName'
-                        ref='givenName'
                         floatingLabelText='Given Name'
                         inputStyle={this.data.style.inputStyle}
                         hintStyle={this.data.style.hintStyle}
@@ -195,13 +159,16 @@ export class Signup extends React.Component {
                         floatingLabelStyle={this.data.style.floatingLabelStyle}
                         floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
                         onKeyPress={this.handleKeyPress.bind(this)}
+                        onChange={this.changeState.bind(this, 'givenName')}
+                        value={ get(formData, 'givenName') }
+                        hintText='Jane'
+                        floatingLabelFixed={true}
                         fullWidth
                         /><br/>
                     </Col>
                     <Col xs={ 6 } sm={ 6 }>
                       <TextField
                         id='familyNameInput'
-                        ref='familyName'
                         name='familyName'
                         type='text'
                         floatingLabelText='Family Name'
@@ -213,13 +180,16 @@ export class Signup extends React.Component {
                         floatingLabelStyle={this.data.style.floatingLabelStyle}
                         floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
                         onKeyPress={this.handleKeyPress.bind(this)}
+                        onChange={this.changeState.bind(this, 'familyName')}
+                        floatingLabelFixed={true}
+                        hintText='Doe'
+                        value={ get(formData, 'familyName') }
                         fullWidth
                         /><br/>
                     </Col>
                   </Row>
                     <TextField
                       id='emailAddressInput'
-                      ref='emailAddress'
                       name='emailAddress'
                       type='text'
                       floatingLabelText='Email Address'
@@ -231,11 +201,14 @@ export class Signup extends React.Component {
                       floatingLabelStyle={this.data.style.floatingLabelStyle}
                       floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
                       onKeyPress={this.handleKeyPress.bind(this)}
+                      onChange={this.changeState.bind(this, 'emailAddress')}
+                      value={ get(formData, 'emailAddress') }
+                      hintText='janedoe@gmail.com'
+                      floatingLabelFixed={true}
                       fullWidth
                       /><br/>
                     <TextField
                       id='passwordInput'
-                      ref='password'
                       name='password'
                       type='password'
                       floatingLabelText='Password'
@@ -247,6 +220,10 @@ export class Signup extends React.Component {
                       floatingLabelStyle={this.data.style.floatingLabelStyle}
                       floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
                       onKeyPress={this.handleKeyPress.bind(this)}
+                      onChange={this.changeState.bind(this, 'password')}
+                      value={ get(formData, 'password') }
+                      hintText='**********'
+                      floatingLabelFixed={true}
                       fullWidth
                       /><br/>
 
@@ -272,6 +249,111 @@ export class Signup extends React.Component {
         </MobilePadding>
       </div>
     );
+  }
+  updateFormData(formData, field, textValue){
+    // if(process.env.NODE_ENV === "test") console.log("ObservationDetail.updateFormData", formData, field, textValue);
+
+    switch (field) {
+      case "familyName":
+        set(formData, 'familyName', textValue)
+        break;
+      case "givenName":
+        set(formData, 'givenName', textValue)
+        break;        
+      case "emailAddress":
+        set(formData, 'emailAddress', textValue)
+        break;        
+      case "password":
+        set(formData, 'password', textValue)
+        break;
+      case "accessCode":
+        set(formData, 'accessCode', textValue)
+        break;
+    }
+
+    if(process.env.NODE_ENV === "test") console.log("formData", formData);
+    return formData;
+  }
+  changeState(field, event, textValue){
+    // if(process.env.NODE_ENV === "test") console.log("   ");
+    if(process.env.NODE_ENV === "test") console.log("Signup.changeState", field, textValue);
+    // if(process.env.NODE_ENV === "test") console.log("this.state", this.state);
+
+    let formData = Object.assign({}, this.state.form);
+
+    formData = this.updateFormData(formData, field, textValue);
+
+    // if(process.env.NODE_ENV === "test") console.log("formData", formData);
+
+    this.setState({form: formData})
+  }
+  handleTouchTap(){
+    let newUserData = {
+      email: get(this, 'state.form.emailAddress', ''),
+      password: get(this, 'state.form.password', ''),
+      profile: {
+        name: {
+          given: get(this, 'state.form.givenName', ''),
+          family: get(this, 'state.form.familyName', ''),
+          text: get(this, 'state.form.givenName','') + ' ' + get(this, 'state.form.familyName', '')
+        }
+      },
+      accessCode: get(this, 'state.form.accessCode', '')
+    };
+
+    console.log('SignUp.handleTouchTap', this, newUserData);
+    console.log(newUserData);
+
+    Accounts.createUser(newUserData, function(error, result){
+      if (error) {
+        console.log('Accounts.createUser().error' + error.reason)
+        // Meteor.call('debugToServer', 'Accounts.createUser()', error)
+
+        Session.set('signUpErrorMessage', error.reason);
+
+        // for some reason, we're getting an "Email already exists!" on signup
+        //if (!error.reason.includes("Email already exists.")) {
+        Bert.alert(error.reason, 'danger');
+        //}
+      }
+      if (result) {
+        console.log("Accounts.createUser[result]", result);
+        console.log("Accounts.createUser[Meteor.userId()]", Meteor.userId());
+        console.log("Accounts.createUser[Roles.userIsInRole(Meteor.userId()]", Roles.userIsInRole(Meteor.userId()));
+
+        // if this is a patient's first visit, we want to send them to a welcome screen
+        // where they can fill out HIPAA
+        if (Roles.userIsInRole(Meteor.userId(), 'patient') && get(Meteor.user(), 'profile.firstTimeVisit')) {
+
+          console.log('Routing to /welcome/patient')
+          browserHistory.push('/welcome/patient');
+
+        // and if they're a practitioner, we probably need to collect some credentialing data
+        // and inform them about their obligations regarding HIPAA
+        } else if (Roles.userIsInRole(Meteor.userId(), 'practitioner') && get(Meteor.user(), 'profile.firstTimeVisit')) {
+            console.log('Routing to /welcome/practitioner')
+            browserHistory.push('/welcome/practitioner');
+        } else if (Roles.userIsInRole(Meteor.userId(), 'sysadmin') && get(Meteor.user(), 'profile.firstTimeVisit')) {
+            console.log('Routing to /welcome/sysadmin')
+            browserHistory.push('/welcome/sysadmin');
+        } else {
+          // otherwise we go to the default route specified in the settings.json file
+          if(get(Meteor, 'settings.public.defaults.route')){
+            console.log('Meteor.settings.public.defaults.route', get(Meteor, 'settings.public.defaults.route', '/'))
+            browserHistory.push(get(Meteor, 'settings.public.defaults.route', '/'));
+          } else {
+            // and if all else fails, just go to the root 
+            console.log('Routing to /');
+            browserHistory.push('/');      
+          }  
+        }
+      }
+    });
+  }
+  handleKeyPress(e) {
+    if (e.key === 'Enter') {
+      this.handleTouchTap.bind(this);
+    }
   }
 }
 ReactMixin(Signup.prototype, ReactMeteorData);

@@ -55,6 +55,7 @@ export class PatientSidebar extends React.Component {
   handleLogout() {
     console.log("handleLogout");
     Meteor.logout();
+    browserHistory.push('/signin')
   }
 
   handleProfile() {
@@ -78,8 +79,8 @@ export class PatientSidebar extends React.Component {
     var healthlog;
 
     if(get(Meteor, 'settings.public.modules.healthlog')){
-      allergies = <LinkContainer to='/weblog'>
-        <MenuItem primaryText='Healthlog' href='/weblog' />
+      healthlog = <LinkContainer to='/vitals-tracking'>
+        <MenuItem primaryText='Healthlog' href='/vitals-tracking' />
       </LinkContainer>;
     }
 
@@ -113,6 +114,9 @@ export class PatientSidebar extends React.Component {
           { dynamicElements }
 
           <hr />
+          <LinkContainer to='/fhir-resources-index'>
+             <MenuItem id="fhirResourcePageItem" primaryText='FHIR Resources' href='/fhir-resources-index' />
+          </LinkContainer>
           <LinkContainer to='/data-management'>
              <MenuItem primaryText='Data Management' href='/theming' />
           </LinkContainer>
@@ -125,8 +129,12 @@ export class PatientSidebar extends React.Component {
              <MenuItem primaryText='About' href='/about' />
           </LinkContainer>
 
+          <LinkContainer to='/privacy'>
+             <MenuItem primaryText='Privacy' href='/privacy' />
+          </LinkContainer>
+
           <LinkContainer to='/signin'>
-             <MenuItem id='logoutMenuItem' className='logoutMenuItem' primaryText='Logout' href='/signin' onClick={this.handleLogout} />
+             <MenuItem id='logoutMenuItem' className='logoutMenuItem' primaryText='Logout' onClick={this.handleLogout} />
           </LinkContainer>
         </List>
       </div>

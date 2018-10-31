@@ -1,32 +1,33 @@
 // footer
-import AppBar from 'material-ui/AppBar';
-import FlatButton from 'material-ui/FlatButton';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
+
+import { AppBar, FlatButton, ToolbarTitle } from 'material-ui';
+
 import { Glass } from 'meteor/clinical:glass-ui';
 import ImageBlurOn from 'material-ui/svg-icons/image/blur-on';
 import ImageExposure from 'material-ui/svg-icons/image/exposure';
-import OpacitySlider from '../components/OpacitySlider';
+import DeviceWifiTethering from 'material-ui/svg-icons/device/wifi-tethering';
+
 import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
-import {Session} from 'meteor/session';
-import { ToolbarTitle } from 'material-ui/Toolbar';
+
+import { Meteor } from 'meteor/meteor';
+import { Session } from 'meteor/session';
+import { HTTP } from 'meteor/http';
+
 import { browserHistory } from 'react-router';
 import { has, get } from 'lodash';
-import DeviceWifiTethering from 'material-ui/svg-icons/device/wifi-tethering';
-
-// if(Package['clinical:hl7-resource-practitioner']){
-//   import { Practitioners } from 'meteor/clinical:hl7-resource-practitioner'
-// }
 
 Session.setDefault('showThemingControls', false);
-Session.setDefault('gender', 'Pink');
+Session.setDefault('gender', false);
 Session.setDefault('timelineBackground', false);
 Session.setDefault('continuityOfCareDoc', null);
+
 
 export class Footer extends React.Component {
   getMeteorData() {
     let data = {
+      userId: Meteor.userId(),
       gender: Session.get('gender'),
       footerStyle: {
         position: 'fixed',
@@ -52,11 +53,17 @@ export class Footer extends React.Component {
         buttonText: Glass.darkroom({marginLeft: '20px'}),
         disabledButtonText: {
           color: 'lightgray'
+        },
+        southEastButtons: {
+          fontSize: '18px', 
+          top: '-4px', 
+          cursor: 'pointer'
         }
-      }
+      },
+      pathname: Session.get('pathname')
     };
 
-    if (Meteor.status) {
+    if (Meteor.status()) {
       data.status = Meteor.status().status + " | " + process.env.NODE_ENV;
     }
 
@@ -80,6 +87,10 @@ export class Footer extends React.Component {
       if (!Session.get('showNavbars')) {
         data.footerStyle.bottom = '-100px';
       }
+    }
+
+    if (get(Meteor, 'settings.public.defaults.disableSecondaryPanel')) {
+      data.style.southEastButtons.cursor = 'none !important';
     }
 
     return data;
@@ -266,41 +277,42 @@ export class Footer extends React.Component {
       console.log('Couldnt find anchor element.')
     }
   }
-  clearContinuityOfCareDoc(){
-    Meteor.users.update({_id: Meteor.userId()}, {$unset: {
-      'profile.continuityOfCare': ''
-    }});
-  }
+  // clearContinuityOfCareDoc(){
+  //   Meteor.users.update({_id: Meteor.userId()}, {$unset: {
+  //     'profile.continuityOfCare': ''
+  //   }});
+  // }
   transferCurrentPatient(){
     console.log('Transferring patient...');
     console.log('selectedPractitioner:  ', Session.get('selectedPractitioner'));
 
+    if(typeof Practitioners === 'object'){
+      var practitionerName = '';
+      var selectedPractitioner = Practitioners.findOne({_id: Session.get('selectedPractitioner')})
+      if(selectedPractitioner){
+        practitionerName = selectedPractitioner.displayName();
+      }
+      console.log('Practitioner Name:     ', practitionerName);
 
-    var practitionerName = '';
-    var selectedPractitioner = Practitioners.findOne({_id: Session.get('selectedPractitioner')})
-    if(selectedPractitioner){
-      practitionerName = selectedPractitioner.displayName();
-    }
-    console.log('Practitioner Name:     ', practitionerName);
 
+      console.log('selectedPatient:       ', Session.get('selectedPatient'));
 
-    console.log('selectedPatient:       ', Session.get('selectedPatient'));
+      var displayText = '';
+      var currentPatient = Patients.findOne({_id: Session.get('selectedPatient')})
+      if(currentPatient){
+        displayText = currentPatient.displayName();
+      }
+      console.log('Patient Name:          ', displayText);
 
-    var displayText = '';
-    var currentPatient = Patients.findOne({_id: Session.get('selectedPatient')})
-    if(currentPatient){
-      displayText = currentPatient.displayName();
-    }
-    console.log('Patient Name:          ', displayText);
-
-    if(Session.get('selectedPractitioner')){
-      Meteor.users.update({_id: Session.get('selectedPractitioner')}, {$set: {
-        'profile.inbox': true,
-        'profile.incomingPatient': {
-          display: displayText,
-          reference: Session.get('selectedPatient')
-        }     
-      }});  
+      if(Session.get('selectedPractitioner')){
+        Meteor.users.update({_id: Session.get('selectedPractitioner')}, {$set: {
+          'profile.inbox': true,
+          'profile.incomingPatient': {
+            display: displayText,
+            reference: Session.get('selectedPatient')
+          }     
+        }});  
+      }
     }
   }
   pinkBlueToggle(){
@@ -320,32 +332,32 @@ export class Footer extends React.Component {
   searchBigchainForPractitioner(){
     console.log("searchBigchainForPractitioner", Session.get('selectedPractitioner'));
 
-    var practitioner = Practitioners.findOne({_id: Session.get('selectedPractitioner')});
-    var searchTerm = '';
+    if(typeof Practitioners === "object"){
+      var practitioner = Practitioners.findOne({_id: Session.get('selectedPractitioner')});
+      var searchTerm = '';
 
-    // console.log('practitioner.name', practitioner.name)
+      // console.log('practitioner.name', practitioner.name)
 
-    if(get(practitioner, 'name[0].text')){
-      searchTerm = get(practitioner, 'name[0].text');
-      console.log('searchTerm', searchTerm);
+      if(get(practitioner, 'name[0].text')){
+        searchTerm = get(practitioner, 'name[0].text');
+        console.log('searchTerm', searchTerm);
 
-      Meteor.call('searchBigchainForPractitioner', searchTerm, function(error, data){
-        if(error) console.log('error', error);
-        if(data){
-          var parsedResults = [];
+        Meteor.call('searchBigchainForPractitioner', searchTerm, function(error, data){
+          if(error) console.log('error', error);
+          if(data){
+            var parsedResults = [];
 
-          data.forEach(function(result){
-            parsedResults.push(result.data);
-          });
+            data.forEach(function(result){
+              parsedResults.push(result.data);
+            });
 
-          console.log('parsedResults', parsedResults)
-          
-          Session.set('practitionerBlockchainData', parsedResults);  
-        }
-      });
+            console.log('parsedResults', parsedResults)
+            
+            Session.set('practitionerBlockchainData', parsedResults);  
+          }
+        });
+      }
     }
-
-
   }
   readPractitionersFromBlockchain(){
     //console.log("readPractitionersFromBlockchain");
@@ -386,6 +398,9 @@ export class Footer extends React.Component {
     Meteor.call('dropEndpoints');
     Session.set('edgeBundle', []);
   }
+  cornerstoneViewer(){
+    browserHistory.push('/dicom-viewer');
+  }
   initBlockchainGraph(){
     Session.set('edgeBundle', Endpoints.find().map(function(endpoint){
       var result = {
@@ -409,6 +424,28 @@ export class Footer extends React.Component {
   }
   showLines(){
     Session.toggle('showEdgeBundleLines');
+    console.log('selectedChecklist', Session.get('selectedChecklist'))
+  }
+  searchConsents(){
+    Session.set('consentDialogOpen', true);
+  }
+  newList(){
+    Session.set('selectedChecklist', Lists.insert({
+      "resourceType": "List",
+      "code": {
+        "text": ''
+      },
+      "note": '',
+      "source": {
+        "reference": "System/system"
+      },
+      "status": "current",
+      "date": new Date(),
+      "mode": "changes",
+      "entry": []
+    }))
+    Session.set('checklistPageTabIndex', 1);
+    console.log('selectedChecklist', Session.get('selectedChecklist'))
   }
   toggleStates(){
     if(Session.equals('powerOfAttorneyState', 'Illinois')){
@@ -417,34 +454,26 @@ export class Footer extends React.Component {
       Session.set('powerOfAttorneyState', 'Illinois');      
     }
   }
-  renderWestNavbar(displayThemeNavbar){
-    if (displayThemeNavbar) {
-      // the user has pressed ctrl-cmd-t and is looking at theming controls
-      return (
-        <div style={{marginTop: '-8px'}}>
-          {/* <FlatButton label='privacy screen' className='blurButton' ref='blurButton' onClick={this.clickOnBlurButton} style={this.data.style.buttonText} ></FlatButton>
-          <FlatButton label='darkroom' className='darkroomButton' ref='darkroomButton' onClick={this.clickOnDarkroomButton} style={this.data.style.buttonText} ></FlatButton>
-          <FlatButton label='theming' className='themingButton' ref='themingButton' onClick={this.clickOnThemingButton} style={this.data.style.buttonText} ></FlatButton> */}
-        </div>
-      );
-    } else {
-      // PATIENTS
-      if (Meteor.userId() && (Session.equals('pathname', '/')) ) {
+  renderWestNavbar(pathname){
+      console.log('Footer.renderWestNavbar', pathname)
+
+      // FHIR RESOURCES
+      if (pathname === '/fhir-resources-index') {
         return (
           <div style={{marginTop: '-8px'}}>
-            <FlatButton label='filter tiles' className='filterTileButton' ref='filterTileButton' onClick={this.toggleFilterMainTiles} style={this.data.style.buttonText} ></FlatButton>
+            <FlatButton label='Filter Tiles' className='filterTileButton' ref='filterTileButton' onClick={this.toggleFilterMainTiles} style={this.data.style.buttonText} ></FlatButton>
           </div>
         );
 
         // PATIENTS
-      } else if (Meteor.userId() && (Session.equals('pathname', '/patients')) && get(Meteor, 'settings.public.modules.epic')) {
+      } else if ((pathname === '/patients') && get(Meteor, 'settings.public.modules.epic')) {
         // the user is logged in as a normal user
         return (
           <div></div>
         );
 
       // PRACTITIONERS
-      } else if (Meteor.userId() && (Session.equals('pathname', '/practitioners')) && get(Meteor, 'settings.public.modules.fhir.Practitioners')) {
+      } else if ((pathname === '/practitioners') && get(Meteor, 'settings.public.modules.fhir.Practitioners')) {
         if(Package["symptomatic:blockchain-core"]){          
           return (
             <div>
@@ -455,32 +484,42 @@ export class Footer extends React.Component {
         }
             
       // OBSERVATIONS
-    } else if (Meteor.userId() && (Session.equals('pathname', '/observations')) && get(Meteor, 'settings.public.modules.fhir.Observations')) {
-      // the user is logged in as a normal user
-      return (
-        <div>
-          <FlatButton label='Record Vitals' className='querySystemButton' ref='querySystemButton' onClick={this.openLink.bind(this, '/vitals-tracking', function(){
-            Session.set('vitalsForm', {
-              pulse: '',
-              temperature: '',
-              respiration: '',
-              bloodPressure: '',
-              notes: ''
-            });
-          })}  style={this.data.style.buttonText} ></FlatButton>
-        </div>
-      );
-    
-      // ORGANIZATIONS
-      } else if (Meteor.userId() && (Session.equals('pathname', '/organizations')) && get(Meteor, 'settings.public.modules.fhir.Organizations')) {
+      } else if ((pathname === '/observations') && get(Meteor, 'settings.public.modules.fhir.Observations')) {
+        // the user is logged in as a normal user
         return (
           <div>
-            {/* <FlatButton label='GET open.epic.com/Organization' className='querySystemButton' ref='querySystemButton' onClick={this.querySystemButton.bind(this, 'Organization')} style={this.data.style.buttonText} ></FlatButton> */}
+            <FlatButton label='Record Vitals' className='querySystemButton' ref='querySystemButton' onClick={this.openLink.bind(this, '/vitals-tracking', function(){
+              Session.set('vitalsForm', {
+                pulse: '',
+                temperature: '',
+                respiration: '',
+                bloodPressure: '',
+                notes: ''
+              });
+            })}  style={this.data.style.buttonText} ></FlatButton>
+
+            <FlatButton label='Filter' className='querySystemButton' ref='querySystemButton'></FlatButton>
+
+          </div>
+        );
+
+      // CHECKLISTS
+      } else if ((pathname === '/checklists') && get(Meteor, 'settings.public.modules.apps.ChecklistManifesto')) {
+        return (
+          <div>
+            <FlatButton label='New List' className='querySystemButton' ref='querySystemButton' onClick={this.newList.bind(this)} style={this.data.style.buttonText} ></FlatButton>
+          </div>
+        );
+
+      // ORGANIZATIONS
+      } else if ((pathname === '/organizations') && get(Meteor, 'settings.public.modules.fhir.Organizations')) {
+        return (
+          <div>
           </div>
         );
 
       // CONTINUITY OF CARE
-      } else if (Meteor.userId() && (Session.equals('pathname', '/continuity-of-care') )) {
+      } else if (pathname === '/continuity-of-care') {
         return (
           <div>
             <FlatButton label='Sidescroll Timeline' className='horizontalTimeline' ref='horizontalTimeline' onClick={this.openLink.bind(this, '/timeline-sidescroll')} style={this.data.style.buttonText} ></FlatButton>
@@ -490,34 +529,32 @@ export class Footer extends React.Component {
         );
 
       // TIMELINE
-      } else if (Meteor.userId() && (Session.equals('pathname', '/timeline') || Session.equals('pathname', '/timeline-sidescroll'))) {
+      } else if ((pathname === '/timeline') || (pathname === '/timeline-sidescroll')) {
         return (
           <div>
             <FlatButton label='Continuity of Care' className='ccdPage' ref='ccdPage' onClick={this.openLink.bind(this, '/continuity-of-care')} style={this.data.style.buttonText} ></FlatButton>
-            <FlatButton label={this.data.gender} id="pinkBlueToggle" className='clearCcd' ref='pinkBlueToggle' style={this.data.style.buttonText} onClick={this.pinkBlueToggle}></FlatButton>
             <FlatButton label='Background' id="toggleBackground" className='clearCcd' ref='toggleBackground' style={this.data.style.buttonText} onClick={this.toggleBackground}></FlatButton>
           </div>
         );
 
       // DATA Management
-      } else if (Meteor.userId() && (Session.equals('pathname', '/data-management'))) {
+      } else if (pathname === '/data-management') {
         return (
           <div>
             <FlatButton label='Prepare CCD' id="exportContinuityOfCareDoc" className='exportCcd' ref='exportContinuityOfCareDoc' style={this.data.style.buttonText} onClick={this.exportContinuityOfCareDoc}></FlatButton>
             <FlatButton label='Download' id="downloadContinuityOfCareDoc" className='exportCcd' ref='exportContinuityOfCareDoc' style={this.data.style.buttonText} onClick={this.downloadContinuityOfCareDoc}></FlatButton>
-            <FlatButton label='Clear' disabled={true} id="clearContinuityOfCareDoc" className='clearCcd' ref='clearContinuityOfCareDoc' style={this.data.style.disabledButtonText} onClick={this.clearContinuityOfCareDoc}></FlatButton>
             <a id="downloadAnchorElement" style={{display: "none"}} ></a>            
           </div>
         );
 
       // CONDITIONS
-      } else if (Meteor.userId() && (Session.equals('pathname', '/conditions')) && get(Meteor, 'settings.public.modules.epic')) {
+      } else if ((pathname === '/conditions') && get(Meteor, 'settings.public.modules.epic')) {
         return (
           <div></div>
         );
 
       // ZYGOTE
-      } else if (Meteor.userId() && (Session.equals('pathname', '/zygote'))) {
+      } else if (pathname === '/zygote') {
         return (
           <div>
             <FlatButton label='Rotate' className='querySystemButton' ref='querySystemButton' onClick={this.rotateZygote.bind(this, 'Condition')} style={this.data.style.buttonText} ></FlatButton>
@@ -525,7 +562,7 @@ export class Footer extends React.Component {
         );
 
       // VIDEOCONFERENCING
-      } else if (Meteor.userId() && (Session.equals('pathname', '/videoconferencing'))) {
+      } else if (pathname === '/videoconferencing') {
         return (
           <div>
             <FlatButton label='Phonebook' className='querySystemButton' ref='querySystemButton' onClick={this.showPhonebook.bind(this, 'Condition')} style={this.data.style.buttonText} ></FlatButton>
@@ -534,17 +571,32 @@ export class Footer extends React.Component {
           </div>
         );
 
-        // ENDPOINTS
-      } else if (Meteor.userId() && (Session.equals('pathname', '/endpoints'))) {
+      // ENDPOINTS
+      } else if (pathname === '/endpoints') {
         return (
           <div>
             <FlatButton label='Clear' className='clearEndpoints' ref='querySystemButton' onClick={this.clearEndpoints} style={this.data.style.buttonText} ></FlatButton>
-            <FlatButton label='Init Graph' ref='querySystemButton' onClick={this.initBlockchainGraph} style={this.data.style.buttonText} ></FlatButton>
+          </div>
+        );
+
+      // DIAGNOSTIC REPORTS
+      } else if (pathname === '/diagnostic-reports') {
+        return (
+          <div>
+            <FlatButton label='Imaging Studies' ref='cornerstoneViewer' onClick={this.openLink.bind(this, '/imaging-studies')} style={this.data.style.buttonText} ></FlatButton>
+          </div>
+        );
+
+      // IMAGING STUDIES
+      } else if (pathname === '/imaging-studies') {
+        return (
+          <div>
+            <FlatButton label='Cornerstone DICOM Viewer' ref='cornerstoneViewer' onClick={this.cornerstoneViewer} style={this.data.style.buttonText} ></FlatButton>
           </div>
         );
 
       // GRAPHS
-      } else if (Meteor.userId() && (Session.equals('pathname', '/blockchain-graphs'))) {
+      } else if (pathname === '/blockchain-graphs') {
         return (
           <div>
             <FlatButton label='Config' className='configGraph' ref='querySystemButton' onClick={ this.configBlockchain } style={this.data.style.buttonText} ></FlatButton>
@@ -552,34 +604,179 @@ export class Footer extends React.Component {
           </div>
         );
 
+        
+      // CONSENTS
+      } else if (pathname === '/consents') {
+        return (
+          <div>
+            <FlatButton label='Search' className='configGraph' ref='querySystemButton' onClick={ this.searchConsents } style={this.data.style.buttonText} ></FlatButton>
+          </div>
+        );        
 
-      // Power of Attorney
-    } else if (Meteor.userId() && (Session.equals('pathname', '/power-of-attorney'))) {
-      return (
-        <div>
-          <FlatButton label='State' className='configGraph' ref='querySystemButton' onClick={ this.toggleStates } style={this.data.style.buttonText} ></FlatButton>
-        </div>
-      );        
+
+      // POWER OF ATTOURNEY
+      } else if (pathname === '/power-of-attorney') {
+        return (
+          <div>
+            <FlatButton label='State' className='configGraph' ref='querySystemButton' onClick={ this.toggleStates } style={this.data.style.buttonText} ></FlatButton>
+          </div>
+        );        
 
 
-        // NOTIFICATIONS
-      } else if (Meteor.userId() && (Session.equals('pathname', '/notifications')) && get(Meteor, 'settings.public.defaults.notificationMenu')) {
+      // NOTIFICATIONS
+      } else if ((pathname === '/notifications') && get(Meteor, 'settings.public.defaults.notificationMenu')) {
         return (
           <div>
             <FlatButton label='Transfer Current Patient' className='querySystemButton' ref='querySystemButton' onClick={this.transferCurrentPatient.bind(this)} style={this.data.style.buttonText} ></FlatButton>
           </div>
         );
 
+      // WALLET DASHBOARD
+      } else if ((pathname === '/wallet-dashboard') || (pathname.includes('authn'))) {
+        return (
+          <div>
+            <FlatButton label='Query HAPI for Provenances' className='querySystemButton' ref='querySystemButton' onClick={this.queryHapiProvenances.bind(this)} style={this.data.style.buttonText} ></FlatButton>
+            <FlatButton label='Query HAPI for Consents' className='querySystemButton' ref='querySystemButton' onClick={this.queryHapiConsents.bind(this)} style={this.data.style.buttonText} ></FlatButton>
+          </div>
+        );
+
+
       } else {
         // anything else
         return (
           <div></div>
         );
+      }
+
+  }
+  webAuthn(){
+    window.open('https://poc-node-1.fhirblocks.io/oauth2/wan-auth','MyWindow', "width=1024, height=600"); 
+  }
+  queryHapiConsents(){
+    console.log('queryHapiConsents')
+
+    HTTP.get('https://hapi.fhir.org/baseDstu3/Consent?_pretty=true&_format=json&_organization=Duke', function(error, result){
+      if(error){
+        console.error(error)        
+      }
+      if(result){
+        // console.info(result)
+        let resultContent = JSON.parse(result.content);
+        console.info(resultContent)
+        
+        if(resultContent.resourceType === "Bundle"){
+          resultContent.entry.forEach(function(record){
+            let consentValidator = ConsentSchema.newContext();
+            consentValidator.validate(record.resource)
+        
+            console.log('IsValid: ', consentValidator.isValid())
+            console.log('ValidationErrors: ', consentValidator.validationErrors());        
+            
+            Consents._collection.upsert(record.resource.id, record.resource)
+    
+          })
+        } 
 
       }
-    }
+    })
+    
+    Session.set('hapiResults', {})
+  }
+  queryHapiPatients(){
+    // 
+    console.log('queryHapiPatients')
+
+    HTTP.get('https://hapi.fhir.org/baseDstu3/Patient?_pretty=true&_format=json&_count=100&_agent=Duke', function(error, result){
+      if(error){
+        console.error(error)        
+      }
+      if(result){
+        // console.info(result)
+        let resultContent = JSON.parse(result.content);
+        console.info(resultContent)
+        
+        if(resultContent.resourceType === "Bundle"){
+          resultContent.entry.forEach(function(record){
+            let patientValidator = PatientSchema.newContext();
+            patientValidator.validate(record.resource)
+        
+            console.log('IsValid: ', patientValidator.isValid())
+            console.log('ValidationErrors: ', patientValidator.validationErrors());        
+            
+            Patients._collection.upsert(record.resource.id, record.resource)
+    
+          })
+        } 
+
+      }
+    })
+    
+    Session.set('hapiPatients', {})
+  }  
+  queryHapiProvenances(){
+    // 
+    console.log('queryHapiProvenances')
+
+    HTTP.get('https://hapi.fhir.org/baseDstu3/Provenance?_pretty=true&_format=json&_count=100&_agent=Duke', function(error, result){
+      if(error){
+        console.error(error)        
+      }
+      if(result){
+        // console.info(result)
+        let resultContent = JSON.parse(result.content);
+        console.info(resultContent)
+        
+        if(resultContent.resourceType === "Bundle"){
+          resultContent.entry.forEach(function(record){
+            let provenanceValidator = ProvenanceSchema.newContext();
+            provenanceValidator.validate(record.resource)
+        
+            console.log('IsValid: ', provenanceValidator.isValid())
+            console.log('ValidationErrors: ', provenanceValidator.validationErrors());        
+            
+            Provenances._collection.upsert(record.resource.id, record.resource)
+    
+          })
+        } 
+
+      }
+    })
+    
+    Session.set('hapiProvenances', {})
+  }
+  queryHapiDocumentReferences(){
+    // 
+    console.log('queryHapiProvenances')
+
+    HTTP.get('https://hapi.fhir.org/baseDstu3/DocumentReference?_pretty=true&_format=json&_count=100', function(error, result){
+      if(error){
+        console.error(error)        
+      }
+      if(result){
+        // console.info(result)
+        let resultContent = JSON.parse(result.content);
+        console.info(resultContent)
+        
+        if(resultContent.resourceType === "Bundle"){
+          resultContent.entry.forEach(function(record){
+            let documentReferenceValidator = DocumentReferenceSchema.newContext();
+            documentReferenceValidator.validate(record.resource)
+        
+            console.log('IsValid: ', documentReferenceValidator.isValid())
+            console.log('ValidationErrors: ', documentReferenceValidator.validationErrors());        
+            
+            DocumentReferences._collection.upsert(record.resource.id, record.resource)
+          })
+        } 
+
+      }
+    })
+    
+    Session.set('hapiProvenances', {})
   }
   renderEastNavbar(displayThemeNavbar){
+    console.log('Footer.renderEastNavbar')
+
     if (displayThemeNavbar) {
       return (<div>
           {/* <OpacitySlider style={this.data.eastStyle} /> */}
@@ -593,14 +790,18 @@ export class Footer extends React.Component {
           <ToolbarTitle
             id='privacyScreen'
             text='privacy | '
-            style={{fontSize: '18px', top: '-4px', cursor: 'pointer'}}
+            style={{
+              fontSize: '18px', 
+              top: '-4px', 
+              cursor: 'pointer'
+            }}
             onClick={this.clickOnBlurButton }
           />
 
           <ToolbarTitle
             id='connectionStatus'
             text={this.data.status}
-            style={{fontSize: '18px', top: '-4px', cursor: 'pointer'}}
+            style={ this.data.style.southEastButtons }
             onClick={this.openInfo }
           />
         </div>
@@ -608,14 +809,24 @@ export class Footer extends React.Component {
     }
   }
   openInfo(){
-    Session.toggle('secondPanelVisible');
-    // browserHistory.push('/info');
+    // if we haven't disabled the secondary panel
+    if (get(Meteor, 'settings.public.defaults.disableSecondaryPanel') !== true) {
+      // then toggle it when clicked
+      Session.toggle('secondPanelVisible');
+    }
   }
   render () {
+    console.log('this.data.pathname', this.data.pathname)
+    console.log('this.data.userId', this.data.userId)
+
+    let westNavbar;
+    if(this.data.userId){
+      westNavbar = this.renderWestNavbar(this.data.pathname);
+    }
     return(
       <div id='appFooter' style={this.data.footerStyle}>
         <AppBar
-          iconElementLeft={ this.renderWestNavbar(this.data.displayThemeNavbar) }
+          iconElementLeft={ westNavbar }
           iconElementRight={ this.renderEastNavbar(this.data.displayThemeNavbar) }
           style={this.data.footerStyle}
           titleStyle={{color: 'black'}}

@@ -11,7 +11,7 @@ import { Footer } from '/imports/ui/layouts/Footer';
 import { GlassApp } from '/imports/ui/layouts/GlassApp';
 import { GlassCard, VerticalCanvas, FullPageCanvas } from 'meteor/clinical:glass-ui';
 import { Header } from '/imports/ui/layouts/Header';
-import { Image } from '/imports/ui/components/Image';
+import { DicomImage } from '/imports/ui/components/DicomImage';
 import { SciFiOrbital } from '/imports/ui/components/SciFiOrbital';
 import { Session } from 'meteor/session';
 import SidebarTray from '/imports/ui/layouts/SidebarTray';
@@ -58,12 +58,12 @@ export class App extends React.Component {
       // the user is logged in as a normal user
       return (
         <GlassCard style={this.data.style.card} >
-          <Image />
+          <DicomImage />
         </GlassCard>
       );
 
       // Conditions (Zygote)
-    } else if (Meteor.userId() && Session.equals('pathname', '/conditions')) {
+    } else if (Meteor.userId() && Session.equals('pathname', '/conditions') && get(Meteor, 'settings.public.apps.ZygoteAvatar')) {
       return (
         <GlassCard style={this.data.style.card} height='auto'>
           <CardText>
@@ -159,6 +159,11 @@ export class App extends React.Component {
     // if(get(Meteor, 'settings.public.defaults.nfcOrbital')){
     //   orbital = <SciFiPage />;
     // }
+
+    console.log('this.props.location.query', this.props.location.query)
+    Session.set('window.location', this.props.location)
+    Session.set('ehrLaunchContext', get(this, 'props.location.query.launch'))
+  
     return (
         <MuiThemeProvider muiTheme={muiTheme}>
           <GlassApp>

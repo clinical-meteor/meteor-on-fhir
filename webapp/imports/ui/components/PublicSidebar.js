@@ -81,7 +81,7 @@ export class PublicSidebar extends React.Component {
       <List style={{paddingLeft: '20px', position: 'static'}}>
 
         { index }
-        { publicElements }
+        {/* { publicElements } */}
         { registrationLinks }
 
         <IndexLinkContainer to='/about'>

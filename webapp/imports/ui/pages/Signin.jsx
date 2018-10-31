@@ -1,4 +1,4 @@
-import { Bert } from 'meteor/clinical:alert';
+// import { Bert } from 'meteor/clinical:alert';
 import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session';
 import { MobilePadding } from '/imports/ui/components/MobilePadding';
@@ -6,17 +6,17 @@ import React  from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin  from 'react-mixin';
 
-import { VerticalCanvas, FullPageCanvas, Theme, GlassCard } from 'meteor/clinical:glass-ui';
-import { CardText, CardActions, CardHeader, CardTitle, TextField, FlatButton, RaisedButton } from 'material-ui'
+import { FullPageCanvas, GlassCard } from 'meteor/clinical:glass-ui';
+import { CardText, CardActions, CardTitle, TextField, RaisedButton } from 'material-ui'
 
 import { browserHistory } from 'react-router';
 import { Row, Col } from 'react-bootstrap';
 
 import { lightBaseTheme, darkBaseTheme } from 'material-ui/styles';
-import { has, get } from 'lodash';
+import { get } from 'lodash';
 
-if(Package['clinical:smart-on-fhir-client']){
-  import { OAuth } from 'meteor/clinical:smart-on-fhir-client';
+if(Package['symptomatic:smart-on-fhir-client']){
+  import { OAuth } from 'meteor/symptomatic:smart-on-fhir-client';
 }
 
 Session.setDefault('signinWithSearch', '');
@@ -60,7 +60,7 @@ export class Signin extends React.Component {
       }).fetch()
     }
 
-    if(Package['clinical:smart-on-fhir-client']){
+    if(Package['symptomatic:smart-on-fhir-client']){
       if(ServiceConfiguration){
         data.services = ServiceConfiguration.configurations.find().fetch()
       }   
@@ -151,14 +151,16 @@ export class Signin extends React.Component {
         // depending on which signin component we used
         if (self.props.state && self.props.state.nextPathname) {
           browserHistory.push(location.state.nextPathname);
-        } else {
+        } else if (Roles.userIsInRole(Meteor.userId(), 'practitioner') && get(Meteor.user(), 'profile.firstTimeVisit')) {
+          browserHistory.push('/welcome/practitioner');
+        } else if (Roles.userIsInRole(Meteor.userId(), 'sysadmin') && get(Meteor.user(), 'profile.firstTimeVisit')) {
+            browserHistory.push('/welcome/sysadmin');
+        } else if(get(Meteor, 'settings.public.defaults.route')){
           // but normally we just use the default route specified in settings.json
-          if(get(Meteor, 'settings.public.defaults.route')){
-            browserHistory.push(get(Meteor, 'settings.public.defaults.route', '/'));
-          } else {
-            // and fall back to the root if not specified
-            browserHistory.push('/');      
-          }          
+          browserHistory.push(get(Meteor, 'settings.public.defaults.route', '/'));
+        } else {
+          // and fall back to the root if not specified
+          browserHistory.push('/');      
         }
       }
     });
@@ -187,6 +189,7 @@ export class Signin extends React.Component {
               primary={true}
               onClick={ self.signInWith.bind(this, service.service) }
               fullWidth
+              labelStyle={{textTransform: 'capitalize'}}
               />    
               <br />
               <br />
@@ -201,7 +204,7 @@ export class Signin extends React.Component {
 
     var signInWith;
 
-    if(Package['clinical:smart-on-fhir-client']){
+    if(Package['symptomatic:smart-on-fhir-client']){
       signInWith = <Col lgOffset={4} mdOffset={2} lg={2} md={3}>
         <GlassCard zDepth={3} height="auto" >
           <CardTitle

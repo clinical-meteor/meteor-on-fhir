@@ -135,7 +135,7 @@ export class ThemePage extends React.Component {
 
                   <div id='backgroundImageGallary' style={{display: 'inline-block', paddingLeft: '4px', paddingTop: '4px'}}>
 
-                    { themingAssets.map(asset => <Image name={asset.name} src={asset.src} style={backgroundThumbnail} responsive onClick={this.onImageClick.bind(this, asset.src)} />) }
+                    { themingAssets.map(asset => <Image name={asset.name} ref={asset.name} src={asset.src} style={backgroundThumbnail} responsive onClick={this.onImageClick.bind(this, asset.src)} />) }
 
                     <Image responsive style={purpleTile} onClick={this.onColorClick} />
                     <Image responsive style={orangeTile} onClick={this.onColorClick} />

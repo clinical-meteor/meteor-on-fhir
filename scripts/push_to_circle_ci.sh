@@ -15,7 +15,7 @@ meteor remove symptomatic:videoconferencing
 meteor remove symptomatic:vault-server
 
 # add default plugins
-meteor remove clinical:smart-on-fhir-client
+meteor remove symptomtic:smart-on-fhir-client
 meteor add clinical:plugin-default-landing-page
 
 git push origin $branch

@@ -9,3 +9,5 @@ scrap/*
 build
 build/*
 
+.desktop-installer
+.desktop-installer/*

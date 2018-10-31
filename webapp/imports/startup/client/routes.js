@@ -7,9 +7,10 @@ import { render } from 'react-dom';
 
 import { App } from '/imports/ui/layouts/App';
 
-import { AboutPage } from '/imports/ui/pages/AboutPage';
 import { AppInfoPage } from '/imports/ui/pages/AppInfoPage';
 import { MainIndex } from '/imports/ui/pages/MainIndex';
+import { FhirResourcesIndex } from '/imports/ui/pages/FhirResourcesIndex';
+
 import { Meteor } from 'meteor/meteor';
 import { NotFound } from '/imports/ui/pages/NotFound';
 import { NotificationsPage } from '/imports/ui/pages/NotificationsPage';
@@ -20,16 +21,17 @@ import { Signin } from '/imports/ui/pages/Signin';
 import { Signup } from '/imports/ui/pages/Signup';
 import { ThemePage } from '/imports/ui/pages/ThemePage';
 import { UsersPage } from '/imports/ui/pages/UsersPage';
-import { VerticalCanvas } from 'meteor/clinical:glass-ui';
 import { WelcomePatientPage } from '/imports/ui/pages/WelcomePatientPage';
+import { WelcomePractitionerPage } from '/imports/ui/pages/WelcomePractitionerPage';
+import { WelcomeAdminPage } from '/imports/ui/pages/WelcomeAdminPage';
+import { DicomViewerPage } from '/imports/ui/pages/DicomViewerPage';
+
 import { MyProfilePage } from '/imports/ui/pages/MyProfilePage';
 
 import { PreferencesPage } from '/imports/ui/pages/PreferencesPage';
 import { PasswordManagementPage } from '/imports/ui/pages/PasswordManagementPage';
 import { AuthorizationGrantsPage } from '/imports/ui/pages/AuthorizationGrantsPage';
-// import { OAuthClientPage } from '/imports/ui/pages/OAuthClientPage';
-
-
+import { MetadataPage } from '/imports/ui/pages/MetadataPage';
 
 import { ChecklistsPage } from '/imports/ui/workflows/lists/ChecklistsPage';
 import { get } from 'lodash';
@@ -48,7 +50,7 @@ Object.keys(Package).forEach(function(packageName){
 // we're storing the current route URL in a reactive variable
 // which will be used to update active controls
 // mostly used to toggle header and footer buttons
-Session.setDefault('pathname', '/');
+Session.setDefault('pathname', window.location.pathname);
 browserHistory.listen(function(event) {
   Session.set('pathname', event.pathname);
 });
@@ -130,6 +132,8 @@ Meteor.startup(() => {
       <Route path="/" component={ App }>
       <IndexRoute name="index" component={ MainIndex } onEnter={ requireAuth } />
 
+        <Route name="fhirResources" path="/fhir-resources-index" component={ FhirResourcesIndex } />
+
         <Route name="signin" path="/signin" component={ Signin } />
         <Route name="recover-password" path="/recover-password" component={ RecoverPassword } />
         <Route name="reset-password" path="/reset-password/:token" component={ ResetPassword } />
@@ -143,18 +147,25 @@ Meteor.startup(() => {
         <Route name="users" path="/users" component={ UsersPage } onEnter={ requireAuth } />
 
         <Route name="welcomePatient" path="/welcome/patient" component={ WelcomePatientPage } onEnter={ requireAuth }/>
+        <Route name="welcomePractitioner" path="/welcome/practitioner" component={ WelcomePractitionerPage } onEnter={ requireAuth }/>
+        <Route name="welcomeAdmin" path="/welcome/sysadmin" component={ WelcomeAdminPage } onEnter={ requireAuth }/>
 
-        {/* <Route name="appInfo" path="/info" component={ AppInfoPage } /> */}
-
+        <Route name="dicomViewer" path="/dicom-viewer" component={ DicomViewerPage }  onEnter={ requireAuth }/>
         <Route name="checklists" path="/checklists" component={ ChecklistsPage }  onEnter={ requireAuth }/>
         <Route name="notifications" path="/notifications" component={ NotificationsPage }  onEnter={ requireAuth }/>
 
         <Route name="password" path="/password" component={ PasswordManagementPage }  onEnter={ requireAuth }/>
         <Route name="preferences" path="/preferences" component={ PreferencesPage }  onEnter={ requireAuth }/>
         <Route name="oauthGrants" path="/oauth-grants" component={ AuthorizationGrantsPage }  onEnter={ requireAuth }/>
-        {/* <Route name="oauthClient" path="/oauth-client" component={ OAuthClientPage }  onEnter={ requireAuth }/> */}
-        
-        { dynamicRoutes.map(route => <Route name={route.name} key={route.name} path={route.path} component={ route.component } />) }
+        <Route name="metadataPage" path="/metadata" component={ MetadataPage } />
+
+        { dynamicRoutes.map(route => <Route 
+          name={route.name} 
+          key={route.name} 
+          path={route.path} 
+          component={ route.component } 
+          onEnter={ route.requireAuth ? requireAuth : null } 
+          />) }
               
         <Route path="*" component={ NotFound } />              
       </Route>

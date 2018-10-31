@@ -5,7 +5,7 @@ import './routes.js';
 import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session';
 
-import { Bert} from 'meteor/clinical:alert';
+// import { Bert} from 'meteor/clinical:alert';
 import { get } from 'lodash';
 
 
@@ -13,6 +13,8 @@ import { get } from 'lodash';
 Session.setDefault('accessToken', '');
 
 Meteor.startup(function (){
+
+  document.title = get(Meteor, 'settings.public.title');
 
   console.log('Bert', Bert)
   Bert.defaults.style = 'growl-top-right';
@@ -64,6 +66,9 @@ Meteor.startup(function (){
     },
     passwordSignupFields: 'USERNAME_AND_OPTIONAL_EMAIL'
   });  
+
+
+  
 });
 
 
