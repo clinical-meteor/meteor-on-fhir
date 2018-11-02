@@ -723,7 +723,7 @@ export class Footer extends React.Component {
     // 
     console.log('queryHapiProvenances')
 
-    HTTP.get('https://hapi.fhir.org/baseDstu3/Provenance?_pretty=true&_format=json&_count=1000&_agent=Duke', function(error, result){
+    HTTP.get('https://hapi.fhir.org/baseDstu3/Provenance?_pretty=true&_format=json&_count=500&_agent=Duke', function(error, result){
       if(error){
         console.error(error)        
       }
