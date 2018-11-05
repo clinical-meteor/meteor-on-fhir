@@ -15,6 +15,7 @@ import { Meteor } from 'meteor/meteor';
 import { NotFound } from '/imports/ui/pages/NotFound';
 import { NotificationsPage } from '/imports/ui/pages/NotificationsPage';
 import { PrivacyPage } from '/imports/ui/pages/PrivacyPage';
+import { TermsConditionsPage } from '/imports/ui/pages/TermsConditionsPage';
 import { RecoverPassword } from '/imports/ui/pages/RecoverPassword';
 import { ResetPassword } from '/imports/ui/pages/ResetPassword';
 import { Signin } from '/imports/ui/pages/Signin';
@@ -141,6 +142,8 @@ Meteor.startup(() => {
 
         <Route name="about" path="/about" component={ AppInfoPage } />
         <Route name="privacy" path="/privacy" component={ PrivacyPage } />
+        <Route name="termsConditions" path="/terms-and-conditions" component={ TermsConditionsPage } />
+
         <Route name="theming" path="/theming" component={ ThemePage } onEnter={ requireAuth } />
         <Route name="myprofile" path="/myprofile" component={ MyProfilePage } onEnter={ requireAuth } />
 

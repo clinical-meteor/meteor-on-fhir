@@ -22,6 +22,7 @@
     "version": "../scripts/version.sh"
   },
   "dependencies": {
+    "@babel/runtime": "7.0.0-beta.55",
     "ajv": "6.1.1",
     "async": "^2.6.0",
     "autoprefixer": "^6.4.1",
@@ -46,7 +47,7 @@
     "immutability-helper": "2.7.1",
     "jquery": "^3.3.1",
     "jquery-validation": "^1.17.0",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.11",
     "material-ui": "0.20.1",
     "moment": "^2.20.1",
     "onecolor": "^3.0.4",
