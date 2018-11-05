@@ -133,6 +133,10 @@ export class PatientSidebar extends React.Component {
              <MenuItem primaryText='Privacy' href='/privacy' />
           </LinkContainer>
 
+          <LinkContainer to='/terms-and-conditions'>
+            <MenuItem primaryText='Terms and Conditions' href='/terms-and-conditions' />
+          </LinkContainer>
+
           <LinkContainer to='/signin'>
              <MenuItem id='logoutMenuItem' className='logoutMenuItem' primaryText='Logout' onClick={this.handleLogout} />
           </LinkContainer>

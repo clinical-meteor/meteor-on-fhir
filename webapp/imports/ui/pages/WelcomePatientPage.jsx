@@ -7,6 +7,8 @@ import React from 'react';
 import { VerticalCanvas, GlassCard } from 'meteor/clinical:glass-ui';
 import { browserHistory } from 'react-router';
 
+import { TermsConditionsCard } from '../components/TermsConditionsCard';
+
 export class WelcomePatientPage extends React.Component {
   constructor(props) {
     super(props);
@@ -50,7 +52,8 @@ export class WelcomePatientPage extends React.Component {
                 All software is provided 'as is'.  This is a work in progress, and some features are still under construction or marked experimental.
               </p>
             </CardText>
-            <CardTitle
+            <TermsConditionsCard />
+            {/* <CardTitle
               title="End User License Agreement"
             />
             <CardText>
@@ -78,7 +81,7 @@ export class WelcomePatientPage extends React.Component {
               <h4>12.  Entire Agreement</h4>  This EULA consitutes the entire agreement between Licensor and Licensee and supersedes all prior understandings of Licensor and Licensee, including any prior representation, statement, condition, or warranty with respect to the subject matter of this EULA. 
 
 
-            </CardText>
+            </CardText> */}
             <CardActions>
               <FlatButton id='acceptWelcomePageButton' label="Accept" onClick={this.handleGo} />
             </CardActions>

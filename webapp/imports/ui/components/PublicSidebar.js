@@ -92,6 +92,10 @@ export class PublicSidebar extends React.Component {
            <MenuItem primaryText='Privacy Page' href='/privacy' />
         </IndexLinkContainer>
 
+        <IndexLinkContainer to='/terms-and-conditions'>
+           <MenuItem primaryText='Terms and Conditions' href='/terms-and-conditions' />
+        </IndexLinkContainer>
+
       </List>
     );
   }
