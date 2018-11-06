@@ -1,17 +1,31 @@
-import { CardActions, CardText, CardTitle } from 'material-ui/Card';
+import { 
+  CardActions, 
+  CardText, 
+  CardTitle,   
+  FlatButton,
+  Step,
+  Stepper,
+  StepContent,
+  StepLabel,
+  RaisedButton
+} from 'material-ui';
 
 import { Alert } from 'react-bootstrap';
-import FlatButton from 'material-ui/FlatButton';
 import React from 'react';
 
 import { VerticalCanvas, GlassCard } from 'meteor/clinical:glass-ui';
 import { browserHistory } from 'react-router';
 
 import { TermsConditionsCard } from '../components/TermsConditionsCard';
+import { DefaultPrivacyPolicyCard } from '../components/PrivacyPolicyCard';
 
 export class WelcomePatientPage extends React.Component {
   constructor(props) {
     super(props);
+    this. state = {
+      finished: false,
+      stepIndex: 0
+    };
   }
 
   handleGo(){
@@ -20,71 +34,205 @@ export class WelcomePatientPage extends React.Component {
     }});
     browserHistory.push('/');
   }
+  handleNext = () => {
+    const {stepIndex} = this.state;
+    this.setState({
+      stepIndex: stepIndex + 1,
+      finished: stepIndex >= 2,
+    });
+  };
+  handlePrev = () => {
+    const {stepIndex} = this.state;
+    if (stepIndex > 0) {
+      this.setState({stepIndex: stepIndex - 1});
+    }
+  };
+  getStepContent(stepIndex) {
+    switch (stepIndex) {
+      case 0:
+        return 'Select campaign settings...';
+      case 1:
+        return 'What is an ad group anyways?';
+      case 2:
+        return 'This is the bit I really care about!';
+      case 3:
+        return 'This is the bit I really care about!';
+      case 4:
+        return 'This is the bit I really care about!';
+      default:
+        return 'You\'re a long way from home sonny jim!';
+    }
+  }
+  renderStepActions(step) {
+    const {stepIndex} = this.state;
 
+    let actionButtonLabel;
+    switch (stepIndex) {
+      case 0:
+        actionButtonLabel = 'Next'
+        break;
+      case 1:
+        actionButtonLabel = 'Accept'
+        break;
+      case 2:
+        actionButtonLabel = 'Next'
+        break;
+      case 3:
+        actionButtonLabel = 'Next'
+        break;
+      case 4:
+        actionButtonLabel = 'Next'
+        break;
+      case 5:
+        actionButtonLabel = 'Next'
+        break;
+      case 6:
+        actionButtonLabel = 'Next'
+        break;
+      case 7:
+        actionButtonLabel = 'Next'
+        break;
+      case 8:
+        actionButtonLabel = 'Finish'
+        break;    
+      default:
+        break;
+    }
+
+    return (
+      <div style={{margin: '12px 0'}}>
+        <RaisedButton
+          label={ actionButtonLabel }
+          disableTouchRipple={true}
+          disableFocusRipple={true}
+          primary={true}
+          onClick={this.handleNext}
+          style={{marginRight: 12}}
+        />
+        {step > 0 && (
+          <FlatButton
+            label="Back"
+            disabled={stepIndex === 0}
+            disableTouchRipple={true}
+            disableFocusRipple={true}
+            onClick={this.handlePrev}
+          />
+        )}
+      </div>
+    );
+  }
   render(){
+    const {finished, stepIndex} = this.state;
+    const contentStyle = {margin: '0 16px'};
+
     return(
       <div id="welcomePatientPage">
         <VerticalCanvas>
-          <GlassCard style={{marginBottom: '20px'}}>
-            <CardTitle
-              title="Privacy Policy"
-            />
-            <CardText>
-              <p>
-                Welcome to the Meteor on FHIR Interface Engine demo - a next-gen healh information exchange, running on the latest web technologies.
-              </p>
-              <Alert bsStyle="danger">
-                <b>This is software is NOT running in HIPAA Compliance Mode.</b>
-              </Alert>
-              <p>
-                For demonstration purposes, this software is currently running on an insecure hosting platform that does not guarantee HIPAA security.  Do not store protected health information (PHI) in this instance.  This software is for demonstration and evaluation purposes only.  By accepting this policy, you agree not to store PHI in this system.  In an actual production environment, we would work with you and your team to install this software in a secured HIPAA compliance datacenter or cloud service provider.  
-              </p>
-              <p>
-                To enable HIPAA compliance, you'll need to remove the autopublish packages, write your own pub/sub functions, and then connect to a production Mongo database <i> that has data encryption at rest enabled</i>.
-              </p>
-              <pre>
-                # meteor remove autopublish <br />
-                # meteor remove clinical:autopublish <br />
-                # MONGO_URL=mongodb://[username]:[password]hostname.com:27017/databasename meteor --settings settings.prod.json
-              </pre>
-              <p>Please note that Mongo encrypted data at rest is an enterprise grade feature.  Please contact sales@symptomatic.io for licensing details.</p>
-              <p>
-                All software is provided 'as is'.  This is a work in progress, and some features are still under construction or marked experimental.
-              </p>
-            </CardText>
-            <TermsConditionsCard />
-            {/* <CardTitle
-              title="End User License Agreement"
-            />
-            <CardText>
-              <p>
-                The End-User License Agreement (this "EULA") is a legal agreement between you ("Licenssee") and Symptomatic Systems ("Licensor"), the author of Symptomatic Continuity of Care Document Generator, including all HTML files, Javascript files, graphics, animations, data, technology, development tools, scripts and programs, both in object code and source code (the "Software"), the deliverables provided pursuant to this EULA, which may include associated media, printed materials, and "online" or electronic documentation.                
-              </p>
-              <p>
-                By installing this Software, Licensee agrees to be bound by the terms and conditions set forth in this EULA.  If Licenseee does not agree to the terms and conditions set fourth in this EULA, then Licensee may not download, install, or use the Software.
-              </p>
-              <h4>1.  Grant of License</h4>
-
-              <h5>A) Scope of License</h5> Subject ot the terms of this EULA, Licensor hereby grants to Licensee a royalty-free, non-exclusive license to possess and to use a copy of the Continuity of Care Document Builder for Mac, available via download from the Symptomatic.io website.              
-              <h5>B) Installation and Use</h5>  Licensee may install and use a maximum of one (1) copies of the Software and make multiple back-up copies of the Software, solely for Licensee's personal use.                
-              <h5>C) Reporudction and Distribution</h5>  Licensee may reproduce and distribute an .                
-              <h4>2.  Description of Rights and Limitations</h4>
-              <h4>3.  Title to Software</h4> Licensor represents and warrants that it has the legal right to enter into and perform its obligations under this EULA, and that use by the Licensee of the Software, in accordance with the terms of this EULA, will not infrince upon the intellectual property rights of any third parties.
-              <h4>4.  Intellectual Property</h4> All now known or hereafter known tangible and intangible rights, title, interest, copyrights and moral rights in and to the Software, including but not limited to all images, photographs, animations, video, audio, music, text, data, computer code, algorithms, and information are owned by Licensor.  The Software is protected by all applicable copyright laws and international treaties.
-              <h4>5.  No Support</h4> Licensor has no obligation to provide support services for the Software.
-              <h4>6.  Duration</h4> 
-              <h4>7.  Jurisdiction</h4> This EULA shall be deemed to have been made in, and shall be construed pursuant to the laws of the State of Illinois, without regard to conflicts of laws provisions thereof.  Any legal action or proceeding relating to this EULA shall be brought exclusively in courts located in Chicago, IL, and each party consents to the jurisdiction thereof.  The prevailing party in any action to enforce this EULA shall be entitled to recover costs and expenses including attorneys' fees.  This EULA is made with the exclusive jurisdiction of the United State, and its jurisdiction shall supersede any other jurisdiction of either party's election.
-              <h4>8.  Non-Transferable</h4>  This EULA is not assignable or transferable by Licensee, and any attempt to do so would be void. 
-              <h4>9.  Severability</h4> No failure to exercise, and no delay in exercising, on the part of either party, any priviledge, any power or any rights hereunder will operate as a waiver thereof, nor will any single or partial exercise of any right or power hereunder preclude further exercise of any other right hereunder.  If any provision of this EULA shall be adjudged by any court of competent jurisdiction to be unenforceable or invalid, that provision shall be limited or eliminated ot the minimum extent necessary so that this EULA shall otherwise remain in full force and effect and enforceable.
-              <h4>10.  WARRANTY DISCLAIMER</h4> LICENSOR, AND AUTHOR OF THE SOFTWARE, HEREBY EXPRESSLY DISCLAIM ANY WARRANTY FOR THE SOFTWARE.  THE SOFTWARE AND ANY RELATED DOCUMENTATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT.  LICENSSEE ACCEPTS ANY AND ALL RISK ARISING OUT OF USE OR PERFORMANCE OF THE SOFTWARE.
-              <h4>11.  LIMITATION OF LIABILITY</h4>  LICENSOR SHALL NOT BE LIABLE TO LINCENSEE, OR ANY OTHER PERSON OR ENTITY CLAIMING THROUGH LICENSEE ANY LOSS OF PROFITS, INCOME, SAVINGS, OR ANY OTHER CONSEQUENTIAL, INCIDENTAL, SPECIAL, PUNITIVE, DIRECT OR INDIRECT DAMAGE, WHETHER ARISING IN CONTRACT, TORT, WARRANTY, OR OTHERWISE.  THESE LIMITATIONS SHALL APPLY REGARDLESS OF THE ESSENTIAL PURPOSE OF ANY LIMITED REMEDY.  UNDER NO CIRCUMSTANCES SHALL LICENSOR'S AGGREGATE LIABILITY TO LICENSEE, OR ANY OTHER PERSON OR ENTITY CLAIMING THROUGH LICENSEE, EXCEED THE FINANCIAL AMOUNT ACTUALLY PAID BY LICENSEE TO LICENSOR FOR THE SOFTWARE. 
-              <h4>12.  Entire Agreement</h4>  This EULA consitutes the entire agreement between Licensor and Licensee and supersedes all prior understandings of Licensor and Licensee, including any prior representation, statement, condition, or warranty with respect to the subject matter of this EULA. 
 
 
-            </CardText> */}
-            <CardActions>
-              <FlatButton id='acceptWelcomePageButton' label="Accept" onClick={this.handleGo} />
-            </CardActions>
+
+          <GlassCard style={{marginBottom: '20px'}} height='auto' >
+            <Stepper activeStep={stepIndex} orientation="vertical">
+            <Step>
+              <StepLabel style={{fontSize: '24px', fontWeight: 200}} >Getting Started</StepLabel>
+              <StepContent>
+                <p>Welcome to Symptomatic.  Let's begin getting your medical history setup.  Depending on your age and complexity of your medical conditions, this may be as simple as a 10 or 20 minute process, or it may take many weeks as you work with your healthcare providers to get electronic copies of your records.  You can come back to this setup page at any time and resume where you left off.  </p>
+
+                <Alert bsStyle="warning">
+                  <b>This software is in BETA and is not in production yet.  Some features have not been implemented yet, and no warrantees are currently being made for it's suitability or fitness for any purpose.</b>
+                </Alert>
+
+                {this.renderStepActions(0)}
+              </StepContent>
+            </Step>
+            <Step>
+              <StepLabel style={{fontSize: '24px', fontWeight: 200}} >Review Privacy Policy</StepLabel>
+              <StepContent>
+                <DefaultPrivacyPolicyCard />
+                {this.renderStepActions(1)}
+              </StepContent>
+            </Step>
+            <Step>
+              <StepLabel style={{fontSize: '24px', fontWeight: 200}} >Review Terms and Conditions</StepLabel>
+              <StepContent>
+                <TermsConditionsCard />
+                {this.renderStepActions(2)}
+              </StepContent>
+            </Step>
+            <Step>
+              <StepLabel style={{fontSize: '24px', fontWeight: 200}} >Specify your Name</StepLabel>
+              <StepContent>
+                <p>
+                  Try out different ad text to see what brings in the most customers,
+                  and learn how to enhance your ads using features like ad extensions.
+                  If you run into any problems with your ads, find out how to tell if
+                  they're running and how to resolve approval issues.
+                </p>
+                {this.renderStepActions(3)}
+              </StepContent>
+            </Step>
+            <Step>
+              <StepLabel style={{fontSize: '24px', fontWeight: 200}} >Specify your Sex & Gender</StepLabel>
+              <StepContent>
+                <p>
+                  Try out different ad text to see what brings in the most customers,
+                  and learn how to enhance your ads using features like ad extensions.
+                  If you run into any problems with your ads, find out how to tell if
+                  they're running and how to resolve approval issues.
+                </p>
+                {this.renderStepActions(4)}
+              </StepContent>
+            </Step>
+            <Step>
+              <StepLabel style={{fontSize: '24px', fontWeight: 200}} >Specify your Race & Ethnicity</StepLabel>
+              <StepContent>
+                <p>
+                  Try out different ad text to see what brings in the most customers,
+                  and learn how to enhance your ads using features like ad extensions.
+                  If you run into any problems with your ads, find out how to tell if
+                  they're running and how to resolve approval issues.
+                </p>
+                {this.renderStepActions(5)}
+              </StepContent>
+            </Step>
+            <Step>
+              <StepLabel style={{fontSize: '24px', fontWeight: 200}} >Import a Facebook Profile</StepLabel>
+              <StepContent>
+                {/* <p>
+                  Try out different ad text to see what brings in the most customers,
+                  and learn how to enhance your ads using features like ad extensions.
+                  If you run into any problems with your ads, find out how to tell if
+                  they're running and how to resolve approval issues.
+                </p>*/}
+                {this.renderStepActions(6)} 
+              </StepContent>
+            </Step>
+            <Step>
+              <StepLabel style={{fontSize: '24px', fontWeight: 200}} >Import a Medical Chart</StepLabel>
+              <StepContent>
+                {/* <p>
+                  Try out different ad text to see what brings in the most customers,
+                  and learn how to enhance your ads using features like ad extensions.
+                  If you run into any problems with your ads, find out how to tell if
+                  they're running and how to resolve approval issues.
+                </p>*/}
+                {this.renderStepActions(7)} 
+              </StepContent>
+            </Step>
+            <Step>
+              <StepLabel style={{fontSize: '24px', fontWeight: 200}} >Review Your Timeline</StepLabel>
+              <StepContent>
+                {/* <p>
+                  Try out different ad text to see what brings in the most customers,
+                  and learn how to enhance your ads using features like ad extensions.
+                  If you run into any problems with your ads, find out how to tell if
+                  they're running and how to resolve approval issues.
+                </p>*/}
+                {this.renderStepActions(8)} 
+              </StepContent>
+            </Step>
+          </Stepper>
+          
           </GlassCard>
         </VerticalCanvas>
       </div>

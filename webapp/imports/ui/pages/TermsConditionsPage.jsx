@@ -1,3 +1,7 @@
+import { 
+  CardTitle
+} from 'material-ui';
+
 import React from 'react';
 
 import { DefaultPrivacyPolicyCard } from '/imports/ui/components/PrivacyPolicyCard';
@@ -15,6 +19,9 @@ export class TermsConditionsPage extends React.Component {
       <div id="TermsConditionsPage">
         <VerticalCanvas>
           <GlassCard height='auto'>
+            <CardTitle
+              title="Terms and Conditions"
+            />
             <TermsConditionsCard />            
           </GlassCard>
         </VerticalCanvas>

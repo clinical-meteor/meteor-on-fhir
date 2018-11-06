@@ -9,9 +9,9 @@ export class DefaultPrivacyPolicyCard extends React.Component {
   render(){
     return (
       <div>
-        <CardTitle
+        {/* <CardTitle
           title="Privacy Policy"
-        />
+        /> */}
          <CardText>
           <p>Symptomatic Timeline is an application is provided by Symptomatic, LLC, an Illinois company based out of the Polsky Center for Entrepreneurship (University of Chicago), and MATTER.health, a Chicago area health incubator.</p>
 
