@@ -118,7 +118,17 @@ export class PatientSidebar extends React.Component {
              <MenuItem id="fhirResourcePageItem" primaryText='FHIR Resources' href='/fhir-resources-index' />
           </LinkContainer>
           <LinkContainer to='/data-management'>
-             <MenuItem primaryText='Data Management' href='/theming' />
+             <MenuItem primaryText='Data Management' href='/data-management' />
+          </LinkContainer>
+          <hr />
+          <LinkContainer to='/welcome-patient'>
+             <MenuItem primaryText='Getting Started' href='/welcome-patient' />
+          </LinkContainer>
+          <LinkContainer to='/import-chart'>
+             <MenuItem primaryText='Import Patient Record' href='/import-chart' />
+          </LinkContainer>
+          <LinkContainer to='/fast-import-chart'>
+             <MenuItem primaryText='Quick Import' href='/fast-import-chart' />
           </LinkContainer>
           <hr />
           <LinkContainer to='/theming'>
@@ -131,6 +141,10 @@ export class PatientSidebar extends React.Component {
 
           <LinkContainer to='/privacy'>
              <MenuItem primaryText='Privacy' href='/privacy' />
+          </LinkContainer>
+
+          <LinkContainer to='/terms-and-conditions'>
+            <MenuItem primaryText='Terms and Conditions' href='/terms-and-conditions' />
           </LinkContainer>
 
           <LinkContainer to='/signin'>

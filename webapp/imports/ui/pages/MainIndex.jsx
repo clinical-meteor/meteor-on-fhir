@@ -581,7 +581,7 @@ export class MainIndex extends React.Component {
           <MenuTile          
             id='importChartTile'
             active={true}
-            path='/import-chart'
+            path='/fast-import-chart'
             icon='MdList'
             iconSize={85}
             subtitle='Import Chart'

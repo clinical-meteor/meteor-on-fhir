@@ -157,4 +157,5 @@ percolate:synced-cron
 # symptomatic:landing-page
 # symptomatic:clinical-scenarios
 # symptomatic:geomapping
+# symptomatic:smart-on-fhir-config
 # symptomatic:ihealth-cloud-api
