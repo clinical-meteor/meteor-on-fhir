@@ -159,7 +159,16 @@ export class Header extends React.Component {
       browserHistory.push('/');      
     }
   }
+  setGeojsonUrl(event, text){
+    console.log('setGeojsonUrl', text);
 
+    Session.set('geojsonUrl', text)
+  }
+  mapMyAddress(){
+    if(get(Meteor.user(), 'profile.locations.home.position.latitude') && get(Meteor.user(), 'profile.locations.home.position.longitude')){
+      browserHistory.push('/maps');
+    }        
+  }
   render () {
     return(
       <div>
@@ -185,8 +194,13 @@ export class Header extends React.Component {
               <TextField
               hintText="Search"
               style={this.data.style.searchbarInput}
+              onChange={ this.setGeojsonUrl.bind(this)}
               fullWidth
             />
+            <FlatButton 
+              label='Map My Address' 
+              onClick={this.mapMyAddress.bind(this)}
+              />
           </div>}
           style={this.data.style.searchbar}
           showMenuIconButton={false}
