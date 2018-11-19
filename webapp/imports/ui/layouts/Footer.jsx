@@ -28,6 +28,9 @@ Session.setDefault('gender', 'Pink');
 Session.setDefault('timelineBackground', false);
 Session.setDefault('continuityOfCareDoc', null);
 
+// Session.setDefault('patientDialogOpen', false);
+// Session.setDefault('terminologyDialogOpen', false);
+
 
 
 export class Footer extends React.Component {
@@ -425,6 +428,12 @@ export class Footer extends React.Component {
   searchConsents(){
     Session.set('consentDialogOpen', true);
   }
+  searchPatients(){
+    Session.set('patientDialogOpen', true);
+  }
+  searchTerminologies(){
+    Session.set('terminologyDialogOpen', true);
+  }
   newList(){
     Session.set('selectedChecklist', Lists.insert({
       "resourceType": "List",
@@ -464,7 +473,9 @@ export class Footer extends React.Component {
       } else if ((pathname === '/patients') && get(Meteor, 'settings.public.modules.epic')) {
         // the user is logged in as a normal user
         return (
-          <div></div>
+          <div>
+            <FlatButton label='Search Patients' className='configGraph' ref='querySystemButton' onClick={ this.searchPatients } style={this.data.style.buttonText} ></FlatButton>
+          </div>
         );
 
       // PRACTITIONERS
