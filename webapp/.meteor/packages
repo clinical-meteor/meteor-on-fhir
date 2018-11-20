@@ -162,6 +162,6 @@ percolate:synced-cron
 # symptomatic:clinical-scenarios
 
 # symptomatic:ihealth-cloud-api
-# fhirblocks:core
-# symptomatic:smart-on-fhir-client
-# symptomatic:continuity-of-care
+fhirblocks:core
+symptomatic:smart-on-fhir-client
+symptomatic:continuity-of-care
