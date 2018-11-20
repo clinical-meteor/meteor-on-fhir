@@ -116,7 +116,7 @@ clinical:hl7-resource-contract
 # clinical:hl7-resource-clinical-impression
 clinical:hl7-resource-device
 clinical:hl7-resource-diagnostic-report
-clinical:hl7-resource-document-reference
+# clinical:hl7-resource-document-reference
 clinical:hl7-resource-endpoint
 clinical:hl7-resource-goal
 clinical:hl7-resource-immunization
@@ -132,6 +132,7 @@ clinical:hl7-resource-patient
 clinical:hl7-resource-person
 clinical:hl7-resource-practitioner
 clinical:hl7-resource-procedure
+clinical:hl7-resource-provenance
 # clinical:hl7-resource-questionnaire
 # clinical:hl7-resource-questionnaire-response
 clinical:hl7-resource-risk-assessment
@@ -161,6 +162,6 @@ percolate:synced-cron
 # symptomatic:clinical-scenarios
 
 # symptomatic:ihealth-cloud-api
-fhirblocks:core
-symptomatic:smart-on-fhir-client
-symptomatic:continuity-of-care
+# fhirblocks:core
+# symptomatic:smart-on-fhir-client
+# symptomatic:continuity-of-care

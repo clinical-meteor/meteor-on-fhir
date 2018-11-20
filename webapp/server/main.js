@@ -25,7 +25,7 @@ Meteor.startup(function(){
   // meteor-on-fhir during hackathons, research, and various
   // projects where HIPAA grade security isn't always needed
 
-  if(Package['browser-policy-common']){
+  if(Package['browser-policy-content']){
     console.log('Configuring content-security-policy.');
 
     import { BrowserPolicy } from 'meteor/browser-policy-common';
