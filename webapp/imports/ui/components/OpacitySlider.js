@@ -27,12 +27,12 @@ OpacitySlider = createReactClass({
   },
   render () {
     return(
-      <div style={{width: "300px", top: '0px', right: '20px', position: 'absolute'}}>
+      <div className='opacitySliderDiv' style={{width: "300px", top: '0px', right: '20px', position: 'relative'}}>
         <Slider
           min={0}
           max={1}
           step={0.01}
-          ref="opacitySlider"
+          name="opacitySlider"
           value={this.data.opacity}
           onChange={this.onChange }
           style={this.data.style.slider}

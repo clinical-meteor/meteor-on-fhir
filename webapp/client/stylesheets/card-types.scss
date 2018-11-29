@@ -16,3 +16,11 @@ $default-width: 70px;
     @if $cardType == default { width: $default-width; }
   }
 };
+
+
+
+.alert {
+  color: '#666666';
+  background-color: "#dddddd";
+  border: "#cccccc";
+}
