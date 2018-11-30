@@ -3,43 +3,7 @@ import { CardTitle, Card, CardText, CardActions } from 'material-ui';
 import { Glass, GlassCard } from 'meteor/clinical:glass-ui';
 import { browserHistory } from 'react-router';
 
-import StreetView from 'react-icons/lib/fa/street-view';
-import Heartbeat from 'react-icons/lib/fa/heartbeat';
-import Eye from 'react-icons/lib/fa/eye';
-import EyeDropper from 'react-icons/lib/fa/eyedropper';
-import Flask from 'react-icons/lib/fa/flask';
-import ErlenmeyerFlask from 'react-icons/lib/io/erlenmeyer-flask';
-import ErlenmeyerFlaskBubbles from 'react-icons/lib/io/erlenmeyer-flask-bubbles';
-import List from 'react-icons/lib/fa/list';
-import MapMarker from 'react-icons/lib/fa/map-marker';
-import Medkit from 'react-icons/lib/fa/medkit';
-import MedkitNormal from 'react-icons/lib/io/ios-medkit';
-import MedkitOutline from 'react-icons/lib/io/ios-medkit-outline';
-import Mobile from 'react-icons/lib/fa/mobile';
-import Moon from 'react-icons/lib/fa/moon-o';
-import Building from 'react-icons/lib/fa/building';
-import Check from 'react-icons/lib/fa/check-circle';
-import Pulse from 'react-icons/lib/go/pulse';
-import Broadcast from 'react-icons/lib/go/broadcast';
-import Bug from 'react-icons/lib/go/bug';
-import Person from 'react-icons/lib/go/person';
-import Organization from 'react-icons/lib/go/organization';
-import Clipboard from 'react-icons/lib/io/clipboard';
-import PulseNormal from 'react-icons/lib/io/ios-pulse';
-import PulseStrong from 'react-icons/lib/io/ios-pulse-strong';
-import Nuclear from 'react-icons/lib/io/nuclear';
-import NoSmoking from 'react-icons/lib/io/no-smoking';
-import Leaf from 'react-icons/lib/io/leaf';
-import Ribbon from 'react-icons/lib/io/ribbon-b';
-import Nutrition from 'react-icons/lib/io/ios-nutrition';
-import MdLocalPhramacy from 'react-icons/lib/md/local-pharmacy';
-import MdAddAlert from 'react-icons/lib/md/add-alert';
-import MdList from 'react-icons/lib/md/list';
-import MdDashboard from 'react-icons/lib/md/dashboard';
-import MdDataUsage from 'react-icons/lib/md/data-usage';
-import MdFingerprint from 'react-icons/lib/md/fingerprint';
-import MdHearing from 'react-icons/lib/md/hearing';
-import MdImportantDevices from 'react-icons/lib/md/important-devices';
+import FaList from 'react-icons/fa';
 
 const style = {
   indexCardPadding: {

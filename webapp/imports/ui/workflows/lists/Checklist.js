@@ -11,6 +11,8 @@ import { Meteor } from 'meteor/meteor';
 import { Table } from 'react-bootstrap';
 import Checkbox from 'material-ui/Checkbox';
 
+import { get } from 'lodash';
+
 
 Session.setDefault('checklistPageTabIndex', 0);
 Session.setDefault('checklistSearchFilter', '');
@@ -42,11 +44,12 @@ export class Checklist extends React.Component {
       if (list) {
         data.entry = [];
         list.entry.forEach(function(task){
-          if (task.flag.text == "Completed") {
+          task.selected = false;
+
+          if (get(task, 'flag.text' == "Completed")) {
             task.selected = true;
-          } else {
-            task.selected = false;
           }
+          
           data.entry.push(task);
         });
       }  

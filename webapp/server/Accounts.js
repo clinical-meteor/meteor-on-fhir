@@ -79,3 +79,103 @@ Accounts.onCreateUser(function(options, user) {
 
   return user;
 });
+
+
+
+
+Accounts.onLogin(function(loginObject) {
+  console.log('Accounts.onLogin().foo', loginObject)
+
+  let userId = get(loginObject, 'user._id');
+  console.log('userId', userId);
+
+  var consents;
+  
+  if(!get(loginObject, 'user.profile.consents')){
+    var defaultConsents = {
+      performanceAnalytics: {
+        "resourceType": "Consent",
+        "id": "Consent/" + userId + "/performanceAnalytics",
+        "status": "active",
+        "patient": {
+          "reference": "Patient/" + userId
+        },
+        "dateTime": new Date(),
+        "consentingParty": [{
+          "reference": "Patient/" + userId
+        }],
+        "category": [],
+        "organization": [{
+          "reference": "Organization/Symptomatic",
+          "display": "Symptomatic"
+        }],
+        "policyRule": "http://hl7.org/fhir/ConsentPolicy/opt-in",
+        "except": []
+    },
+      medicalCodeLookup: {
+        "resourceType": "Consent",
+        "id": "Consent/" + userId + "/medicalCodeLookup",
+        "status": "active",
+        "patient": {
+          "reference": "Patient/" + userId
+        },
+        "dateTime": new Date(),
+        "consentingParty": [{
+          "reference": "Patient/" + userId
+        }],
+        "category": [],
+        "organization": [{
+          "reference": "Organization/Symptomatic",
+          "display": "Symptomatic"
+        }],
+        "policyRule": "http://hl7.org/fhir/ConsentPolicy/opt-in",
+        "except": []
+      },
+      patientEducationReferences: {
+        "resourceType": "Consent",
+        "id": "Consent/" + userId + "/patientEducationReferences",
+        "status": "active",
+        "patient": {
+          "reference": "Patient/" + userId
+        },
+        "dateTime": new Date(),
+        "consentingParty": [{
+          "reference": "Patient/" + userId
+        }],
+        "category": [],
+        "organization": [{
+          "reference": "Organization/Symptomatic",
+          "display": "Symptomatic"
+        }],
+        "policyRule": "http://hl7.org/fhir/ConsentPolicy/opt-in",
+        "except": []
+      },
+      geocoding: {
+        "resourceType": "Consent",
+        "id": "Consent/" + userId + "/geocoding",
+        "status": "active",
+        "patient": {
+          "reference": "Patient/" + userId
+        },
+        "dateTime": new Date(),
+        "consentingParty": [{
+          "reference": "Patient/" + userId
+        }],
+        "category": [],
+        "organization": [{
+          "reference": "Organization/Symptomatic",
+          "display": "Symptomatic"
+        }],
+        "policyRule": "http://hl7.org/fhir/ConsentPolicy/opt-in",
+        "except": []
+      }
+    }
+    Meteor.users.update({_id: userId}, {$set: {
+      'profile.consents': defaultConsents
+    }});
+
+    console.log('userId', userId);
+  };
+
+
+});

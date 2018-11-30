@@ -4,7 +4,7 @@
 import { Alert, Grid, Container, Col, Row } from 'react-bootstrap';
 
 import { CardTitle, Card, CardText, CardActions } from 'material-ui';
-import { Glass, GlassCard, FullPageCanvas, VerticalCanvas } from 'meteor/clinical:glass-ui';
+import { Glass, GlassCard, FullPageCanvas, DynamicSpacer } from 'meteor/clinical:glass-ui';
 import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session';
 
@@ -17,44 +17,51 @@ import PropTypes from 'prop-types';
 
 import { MenuTile } from '/imports/ui/components/MenuTile';
 
-import StreetView from 'react-icons/lib/fa/street-view';
-import Heartbeat from 'react-icons/lib/fa/heartbeat';
-import Eye from 'react-icons/lib/fa/eye';
-import EyeDropper from 'react-icons/lib/fa/eyedropper';
-import Flask from 'react-icons/lib/fa/flask';
-import ErlenmeyerFlask from 'react-icons/lib/io/erlenmeyer-flask';
-import ErlenmeyerFlaskBubbles from 'react-icons/lib/io/erlenmeyer-flask-bubbles';
-import List from 'react-icons/lib/fa/list';
-import MapMarker from 'react-icons/lib/fa/map-marker';
-import Medkit from 'react-icons/lib/fa/medkit';
-import MedkitNormal from 'react-icons/lib/io/ios-medkit';
-import MedkitOutline from 'react-icons/lib/io/ios-medkit-outline';
-import Mobile from 'react-icons/lib/fa/mobile';
-import Moon from 'react-icons/lib/fa/moon-o';
-import Building from 'react-icons/lib/fa/building';
-import Check from 'react-icons/lib/fa/check-circle';
-import Pulse from 'react-icons/lib/go/pulse';
-import Broadcast from 'react-icons/lib/go/broadcast';
-import Bug from 'react-icons/lib/go/bug';
-import Person from 'react-icons/lib/go/person';
-import Organization from 'react-icons/lib/go/organization';
-import Clipboard from 'react-icons/lib/io/clipboard';
-import PulseNormal from 'react-icons/lib/io/ios-pulse';
-import PulseStrong from 'react-icons/lib/io/ios-pulse-strong';
-import Nuclear from 'react-icons/lib/io/nuclear';
-import NoSmoking from 'react-icons/lib/io/no-smoking';
-import Leaf from 'react-icons/lib/io/leaf';
-import Ribbon from 'react-icons/lib/io/ribbon-b';
-import Nutrition from 'react-icons/lib/io/ios-nutrition';
-import MdLocalPhramacy from 'react-icons/lib/md/local-pharmacy';
-import MdAddAlert from 'react-icons/lib/md/add-alert';
-import MdList from 'react-icons/lib/md/list';
-import MdDashboard from 'react-icons/lib/md/dashboard';
-import MdDataUsage from 'react-icons/lib/md/data-usage';
-import MdFingerprint from 'react-icons/lib/md/fingerprint';
-import MdHearing from 'react-icons/lib/md/hearing';
-import MdImportantDevices from 'react-icons/lib/md/important-devices';
-import MdClearAll from 'react-icons/lib/md/clear-all';
+import { ObservationsTable } from 'meteor/clinical:hl7-resource-observation';
+
+import FaStreetView from 'react-icons/fa';
+import FaHeartbeat from 'react-icons/fa';
+import FaEye from 'react-icons/fa';
+import FaEyeDropper from 'react-icons/fa';
+import FaFlask from 'react-icons/fa';
+import IoMdErlenmeyerFlask from 'react-icons/io';
+import IoMdErlenmeyerFlaskBubbles from 'react-icons/io';
+import FaList from 'react-icons/fa';
+import FaMapMarker from 'react-icons/fa';
+import FaMedkit from 'react-icons/fa';
+import IoMdMedkitNormal from 'react-icons/io';
+import IoMdMedkitOutline from 'react-icons/io';
+import FaMobile from 'react-icons/fa';
+import FaMoon from 'react-icons/fa';
+import FaBuilding from 'react-icons/fa';
+import FaCheck from 'react-icons/fa';
+import GoPulse from 'react-icons/go';
+import GoBroadcast from 'react-icons/go';
+import GoBug from 'react-icons/go';
+import GoPerson from 'react-icons/go';
+import GoOrganization from 'react-icons/go';
+import IoMdClipboard from 'react-icons/io';
+import IoMdPulseNormal from 'react-icons/io';
+import IoMdPulseStrong from 'react-icons/io';
+import IoMdNuclear from 'react-icons/io';
+import IoMdNoSmoking from 'react-icons/io';
+import IoMdLeaf from 'react-icons/io';
+import IoMdRibbon from 'react-icons/io';
+import IoMdNutrition from 'react-icons/io';
+import MdLocalPhramacy from 'react-icons/md';
+import MdAddAlert from 'react-icons/md';
+import MdList from 'react-icons/md';
+import MdDashboard from 'react-icons/md';
+import MdDataUsage from 'react-icons/md';
+import MdFingerprint from 'react-icons/md';
+import MdHearing from 'react-icons/md';
+import MdImportantDevices from 'react-icons/md';
+
+// import Pulse from 'react-icons/lib/io/ios-pulse';
+// import Male from 'react-icons/lib/io/ios-male';
+// import Female from 'react-icons/lib/io/ios-female';
+
+
 
 import { VitalMeasurements } from 'meteor/clinical:hl7-resource-observation';
 
@@ -80,6 +87,12 @@ export class MainIndex extends React.Component {
           paddingRight: '5px',
           //border: '1px solid orange'
         }
+      },
+      col: {
+        md: 12,
+        mdOffset: 0,
+        lg: 6,
+        lgOffset: 0
       },
       user: {
         isAdmin: false,
@@ -223,89 +236,35 @@ export class MainIndex extends React.Component {
 
     return (
       <div id='indexPage'>
-        <VerticalCanvas>
-          <div>
-            {this.renderAdminTiles(this.data.user)}
+        <FullPageCanvas>
+          <Col lgOffset={this.data.col.lgOffset} lg={this.data.col.lg} mdOffset={this.data.col.mdOffset} md={this.data.col.md}>
+            {/* {this.renderAdminTiles(this.data.user)}
 
             {this.renderAppsSection(this.data.user)}
-            { appRow }
+            { appRow } */}
+
+
 
             <VitalMeasurements />
+            <DynamicSpacer />
 
-            {/* 
-            <div>
-              <CardTitle title="Dashboard Configuration" style={this.data.style.sectionTitle} /> 
-              <br/>
-            </div> 
-            
-            <Grid>
-              <Row>
-                <Alert bsStyle="warning">
-                    <strong>Instructions</strong> <br />
-                      It appears you haven't specified a default route for your application.  You will probably want to replace this page with a custom dashboard, welcome page, visualization, or utility.  
+            <GlassCard>
+              <ObservationsTable 
+                showSubjects={false}
+                showDevices={false}
+              />
+            </GlassCard>
 
-                      <br /><br />
-                      <ol>
-                        <li>
-                          Make sure you are using a settings file:
-                          <pre>meteor --settings /path/to/settings.json</pre>
-                        </li>
-                        <li>
-                          Your settings file should specify a default route:
-                          <pre>Meteor.settings.public.defaults.route</pre>
-                        </li>
-                        <li>
-                          Make sure you've added the plugin that contains the dashboard component:
-                          <pre>meteor add namespace:my-package</pre>
-                        </li>
-                      </ol>
-                      <br />
-
-                      <strong>Developing Your Own Dashboard</strong> <br />
-                      If you are a developer, you may want to develop a custom plugin from scratch.  
-                      <br /> <br />
-                      <ul>
-                        <li>
-                          Start with the <a href='https://github.com/symptomatic/software-development-kit'>Symptomatic Software Development Kit</a>
-                        </li>
-                        <li>
-                          Reference the <a href='https://github.com/symptomatic/example-plugin'>Symptomatic Example Plugin</a> for an example.  
-                        </li>
-                        <li>
-                          Make sure that your <strong>index.js</strong> is added as the main ES6 module of your package.
-                        </li>
-                        <li>
-                          Make sure that a <strong>DynamicRoute</strong> is exported from the <strong>index.jsx</strong> file of your custom package.
-                        </li>
-                        <li>
-                          Make sure that your <strong>DynamicRoute</strong> uses the custom React component that you've developed.
-                        </li>
-                      </ul>
-                </Alert>
-              </Row>
-            </Grid>
-            */}
-
-            <br/>
+            {/* <br/>
             {this.renderUnderConstructionSection(this.data.user)}          
 
-            {this.renderExperimentalSection(this.data.user)}
-          </div>
+            {this.renderExperimentalSection(this.data.user)} */}
+          </Col>
 
-        </VerticalCanvas>
+        </FullPageCanvas>
       </div>
     );
   }
-  // renderTile()
-  // // id, active, path, icon, subtitle
-  // {
-  //   id: 'immunizationsTile',
-  //   active: true,
-  //   path: '/immunizations',
-  //   icon: 'EyeDropper',
-  //   title: this.data.local.immunizations,
-  //   subtitle: 'Immunizations'
-  // }
 
   renderTile(user, tileConfig){
     if (user.isPatient || user.isPractitioner || user.isAdmin) {
@@ -581,7 +540,7 @@ export class MainIndex extends React.Component {
           <MenuTile          
             id='importChartTile'
             active={true}
-            path='/fast-import-chart'
+            path='/import-chart'
             icon='MdList'
             iconSize={85}
             subtitle='Import Chart'

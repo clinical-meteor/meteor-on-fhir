@@ -112,7 +112,7 @@ clinical:hl7-resource-careplan
 clinical:hl7-resource-condition
 clinical:hl7-resource-communication
 clinical:hl7-resource-consent
-clinical:hl7-resource-contract
+# clinical:hl7-resource-contract
 # clinical:hl7-resource-clinical-impression
 clinical:hl7-resource-device
 clinical:hl7-resource-diagnostic-report
@@ -120,7 +120,7 @@ clinical:hl7-resource-diagnostic-report
 clinical:hl7-resource-endpoint
 clinical:hl7-resource-goal
 clinical:hl7-resource-immunization
-#clinical:hl7-resource-imaging-study
+# clinical:hl7-resource-imaging-study
 clinical:hl7-resource-location
 clinical:hl7-resource-list
 clinical:hl7-resource-medication
@@ -132,7 +132,8 @@ clinical:hl7-resource-patient
 clinical:hl7-resource-person
 clinical:hl7-resource-practitioner
 clinical:hl7-resource-procedure
-clinical:hl7-resource-provenance
+clinical:hl7-resource-procedure-request
+# clinical:hl7-resource-provenance
 # clinical:hl7-resource-questionnaire
 # clinical:hl7-resource-questionnaire-response
 clinical:hl7-resource-risk-assessment
@@ -158,4 +159,8 @@ symptomatic:landing-page
 symptomatic:clinical-scenarios
 symptomatic:geomapping
 symptomatic:smart-on-fhir-config
+<<<<<<< HEAD
+=======
+symptomatic:card-readers
+>>>>>>> 15163b6d1d7eb8f0e9f8349ad0c2cf8150607482
 # symptomatic:ihealth-cloud-api

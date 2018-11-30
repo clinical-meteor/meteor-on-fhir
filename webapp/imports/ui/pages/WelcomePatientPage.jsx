@@ -1,3 +1,7 @@
+import React from 'react';
+import ReactMixin from 'react-mixin';
+import { ReactMeteorData } from 'meteor/react-meteor-data';
+
 import { 
   CardActions, 
   CardText, 
@@ -7,17 +11,28 @@ import {
   Stepper,
   StepContent,
   StepLabel,
-  RaisedButton
+  RaisedButton,
+  TextField
 } from 'material-ui';
 
-import { Alert } from 'react-bootstrap';
-import React from 'react';
-
-import { VerticalCanvas, GlassCard } from 'meteor/clinical:glass-ui';
+import { VerticalCanvas, GlassCard, DynamicSpacer } from 'meteor/clinical:glass-ui';
 import { browserHistory } from 'react-router';
 
+import { Alert, Grid, Container, Col, Row } from 'react-bootstrap';
+
 import { TermsConditionsCard } from '../components/TermsConditionsCard';
-import { DefaultPrivacyPolicyCard } from '../components/PrivacyPolicyCard';
+import { PrivacyPolicyCard } from '../components/PrivacyPolicyCard';
+
+import { FaInfoCircle } from 'react-icons/fa';
+import { FaMars } from 'react-icons/fa';
+import { FaVenus } from 'react-icons/fa';
+import { FaMercury } from 'react-icons/fa';
+import { FaTransgenderAlt } from 'react-icons/fa';
+import { FaTransgender } from 'react-icons/fa';
+
+
+
+
 
 export class WelcomePatientPage extends React.Component {
   constructor(props) {
@@ -27,6 +42,14 @@ export class WelcomePatientPage extends React.Component {
       stepIndex: 0
     };
   }
+  getMeteorData() {
+    let data = {
+      style: {},
+    };
+
+    return data;
+  }
+
 
   handleGo(){
     Meteor.users.update({_id: Meteor.userId()}, {$set: {
@@ -148,7 +171,7 @@ export class WelcomePatientPage extends React.Component {
             <Step>
               <StepLabel style={{fontSize: '24px', fontWeight: 200}} >Review Privacy Policy</StepLabel>
               <StepContent>
-                <DefaultPrivacyPolicyCard />
+                <PrivacyPolicyCard />
                 {this.renderStepActions(1)}
               </StepContent>
             </Step>
@@ -163,10 +186,19 @@ export class WelcomePatientPage extends React.Component {
               <StepLabel style={{fontSize: '24px', fontWeight: 200}} >Specify your Name</StepLabel>
               <StepContent>
                 <p>
-                  Try out different ad text to see what brings in the most customers,
-                  and learn how to enhance your ads using features like ad extensions.
-                  If you run into any problems with your ads, find out how to tell if
-                  they're running and how to resolve approval issues.
+                  Please enter your full legal name, as it appears on your driver's license or passport.  We will parse out given and family names, and allow you to specify nicknames and aliases.
+                </p>
+                <TextField
+                  id='nameInput'
+                  name='humanNameInput'
+                  floatingLabelText="Full Name"
+                  hintText='Jane Doe'
+                  floatingLabelFixed={true}
+                  fullWidth
+                  /><br/>
+
+                <p>
+                  <FaInfoCircle /> People spell their names differently all over the world.  Sometimes they list their family name last (common in the United States), but sometimes they list it first (Asia).  In some parts of the world, people only receive one name.  And othertimes they receive three or four names with suffixes.  
                 </p>
                 {this.renderStepActions(3)}
               </StepContent>
@@ -175,59 +207,269 @@ export class WelcomePatientPage extends React.Component {
               <StepLabel style={{fontSize: '24px', fontWeight: 200}} >Specify your Sex & Gender</StepLabel>
               <StepContent>
                 <p>
-                  Try out different ad text to see what brings in the most customers,
-                  and learn how to enhance your ads using features like ad extensions.
-                  If you run into any problems with your ads, find out how to tell if
-                  they're running and how to resolve approval issues.
+                  Please specify your legal / administrative gender as it appears on your driver's license or passport. This is optional, and provides opt-in functionality to Symptomatic.  Administrative Gender is distinct from your biological, anatomical, or chromosomal sex.  
                 </p>
+                  <RaisedButton
+                    // href="https://github.com/clinical-meteor/meteor-on-fhir/releases/download/v1.0-prerelease-3/Symptomatic.Desktop-0.9.4.dmg"
+                    // target="_blank"
+                    label="Male"
+                    backgroundColor="gray"
+                    labelColor= "#ffffff"
+                    color='#ffffff'
+                    icon={<FaMars color="#ffffff" />}                  
+                    primary={false}
+                    style={{marginRight: '20px'}}
+                  />
+                  <RaisedButton
+                    // href="https://github.com/clinical-meteor/meteor-on-fhir/releases/download/v1.0-prerelease-3/Symptomatic.Desktop-0.9.4.dmg"
+                    // target="_blank"
+                    label="Other"
+                    backgroundColor="gray"
+                    labelColor= "#ffffff"
+                    color='#ffffff'
+                    icon={<FaTransgenderAlt color="#ffffff" />}                  
+                    primary={false}
+                    style={{marginRight: '20px'}}
+                  />
+                  <RaisedButton
+                    // href="https://github.com/clinical-meteor/meteor-on-fhir/releases/download/v1.0-prerelease-3/Symptomatic.Desktop-0.9.4.dmg"
+                    // target="_blank"
+                    label="Female"
+                    backgroundColor="gray"
+                    labelColor= "#ffffff"
+                    color='#ffffff'
+                    icon={<FaVenus color="#ffffff" />}                  
+                    primary={false}
+                    style={{marginRight: '20px'}}
+                  />
+                  <RaisedButton
+                    // href="https://github.com/clinical-meteor/meteor-on-fhir/releases/download/v1.0-prerelease-3/Symptomatic.Desktop-0.9.4.dmg"
+                    // target="_blank"
+                    label="Unknown"
+                    backgroundColor="gray"
+                    labelColor= "#ffffff"
+                    color='#ffffff'
+                    icon={<FaMercury color="#ffffff" />}                  
+                    primary={false}
+                    style={{marginRight: '20px'}}
+                  />
+                <DynamicSpacer />
+
+                <p>
+                  Please specify your karyotype, if known.  You can generally assume XX or XY based on your administrative gender, but this is not assured!
+                </p>
+
+                  <RaisedButton 
+                    backgroundColor="gray"
+                    labelColor= "#ffffff"
+                    color='#ffffff'
+                    primary={false}
+                    style={{marginRight: '20px'}}
+                    label='XY' />
+                  <RaisedButton 
+                    backgroundColor="gray"
+                    labelColor= "#ffffff"
+                    color='#ffffff'
+                    primary={false}
+                    style={{marginRight: '20px'}}
+                    label='XX' />
+                  <RaisedButton 
+                    backgroundColor="gray"
+                    labelColor= "#ffffff"
+                    color='#ffffff'
+                    primary={false}
+                    style={{marginRight: '20px'}}                    
+                    label='XXY' />
+                  <RaisedButton 
+                    backgroundColor="gray"
+                    labelColor= "#ffffff"
+                    color='#ffffff'
+                    primary={false}
+                    style={{marginRight: '20px'}}                    
+                    label='XX/XY' />
+                  <RaisedButton 
+                    backgroundColor="gray"
+                    labelColor= "#ffffff"
+                    color='#ffffff'
+                    primary={false}
+                    style={{marginRight: '20px'}}                    
+                    label='XO' /> 
+                  <RaisedButton 
+                    backgroundColor="gray"
+                    labelColor= "#ffffff"
+                    color='#ffffff'
+                    primary={false}
+                    style={{marginRight: '20px'}}                    
+                    label='Unknown' />
+
+                <DynamicSpacer />
+                <p>
+                  Please specify your anatomy.  This is optional, and enables functionality such as.
+                </p>
+                <RaisedButton 
+                    backgroundColor="gray"
+                    labelColor= "#ffffff"
+                    color='#ffffff'
+                    primary={false}
+                    style={{marginRight: '20px'}}
+                    label='Phallic / Android' />
+                  <RaisedButton 
+                    backgroundColor="gray"
+                    labelColor= "#ffffff"
+                    color='#ffffff'
+                    primary={false}
+                    style={{marginRight: '20px'}}
+                    label='Yanic / Gynoid' />
+                  <RaisedButton 
+                    backgroundColor="gray"
+                    labelColor= "#ffffff"
+                    color='#ffffff'
+                    primary={false}
+                    style={{marginRight: '20px'}}
+                    label='Prefer Not to Say' />
+
+                <DynamicSpacer />
                 {this.renderStepActions(4)}
               </StepContent>
             </Step>
             <Step>
               <StepLabel style={{fontSize: '24px', fontWeight: 200}} >Specify your Race & Ethnicity</StepLabel>
               <StepContent>
+                <DynamicSpacer />
                 <p>
-                  Try out different ad text to see what brings in the most customers,
-                  and learn how to enhance your ads using features like ad extensions.
-                  If you run into any problems with your ads, find out how to tell if
-                  they're running and how to resolve approval issues.
+                  Please specify your skin type (Fitzpatric Scale) and melanin count.  This is optional, and enables some dermatology and cancer screening functionality.   
                 </p>
+
+                  <RaisedButton 
+                    backgroundColor="gray"
+                    labelColor= "#ffffff"
+                    color='#ffffff'
+                    primary={false}
+                    style={{marginRight: '20px'}}                    
+                    label='Type I' />
+                  <RaisedButton 
+                    backgroundColor="gray"
+                    labelColor= "#ffffff"
+                    color='#ffffff'
+                    primary={false}
+                    style={{marginRight: '20px'}}                    
+                    label='Type II' />
+                  <RaisedButton 
+                    backgroundColor="gray"
+                    labelColor= "#ffffff"
+                    color='#ffffff'
+                    primary={false}
+                    style={{marginRight: '20px'}}                    
+                    label='Type III' />
+                  <RaisedButton 
+                    backgroundColor="gray"
+                    labelColor= "#ffffff"
+                    color='#ffffff'
+                    primary={false}
+                    style={{marginRight: '20px'}}                    
+                    label='Type IV' />
+                  <RaisedButton 
+                    backgroundColor="gray"
+                    labelColor= "#ffffff"
+                    color='#ffffff'
+                    primary={false}
+                    style={{marginRight: '20px'}}                    
+                    label='Type V' />
+                  <RaisedButton 
+                    backgroundColor="gray"
+                    labelColor= "#ffffff"
+                    color='#ffffff'
+                    primary={false}
+                    style={{marginRight: '20px'}}                    
+                    label='Type VI' />
+
+                <DynamicSpacer />
                 {this.renderStepActions(5)}
               </StepContent>
             </Step>
             <Step>
               <StepLabel style={{fontSize: '24px', fontWeight: 200}} >Import a Facebook Profile</StepLabel>
               <StepContent>
-                {/* <p>
-                  Try out different ad text to see what brings in the most customers,
-                  and learn how to enhance your ads using features like ad extensions.
-                  If you run into any problems with your ads, find out how to tell if
-                  they're running and how to resolve approval issues.
-                </p>*/}
+                <DynamicSpacer />
+
+                  <p>
+                    Your Facebook profile contains a lot of information that may be relevant to your healthcare.  We're primarily interested in gathering a) your care circle that you rely on in emergencies and times of illness, b) mental health conditions that you may have blogged about, and c) any photos of injuries you may have shared.
+                  </p>
+                  <RaisedButton 
+                    backgroundColor="gray"
+                    labelColor= "#ffffff"
+                    color='#ffffff'
+                    primary={false}
+                    style={{marginRight: '20px'}}                    
+                    label='Import Facebook Profile' 
+                    />
+                  <DynamicSpacer />
+
                 {this.renderStepActions(6)} 
               </StepContent>
             </Step>
             <Step>
               <StepLabel style={{fontSize: '24px', fontWeight: 200}} >Import a Medical Chart</StepLabel>
               <StepContent>
-                {/* <p>
-                  Try out different ad text to see what brings in the most customers,
-                  and learn how to enhance your ads using features like ad extensions.
-                  If you run into any problems with your ads, find out how to tell if
-                  they're running and how to resolve approval issues.
-                </p>*/}
+
+                  <DynamicSpacer />
+                  <p>
+                    Your medical charts may be spread out through many healthcare systems.  Using industry standard interoperability protocols, we're going to try to fetch those records and consolidate them.
+                  </p>
+
+                  <RaisedButton 
+                    backgroundColor="gray"
+                    labelColor= "#ffffff"
+                    color='#ffffff'
+                    primary={false}
+                    style={{marginRight: '20px'}}                    
+                    label='Apple HealthRecord' />
+                  <RaisedButton 
+                    backgroundColor="gray"
+                    labelColor= "#ffffff"
+                    color='#ffffff'
+                    primary={false}
+                    style={{marginRight: '20px'}}                    
+                    label='Epic MyChart' />
+                  <RaisedButton 
+                    backgroundColor="gray"
+                    labelColor= "#ffffff"
+                    color='#ffffff'
+                    primary={false}
+                    style={{marginRight: '20px'}}                    
+                    label='Cerner CareAnywhere' />
+                  <RaisedButton 
+                    backgroundColor="gray"
+                    labelColor= "#ffffff"
+                    color='#ffffff'
+                    primary={false}
+                    style={{marginRight: '20px'}}                    
+                    label='Allscripts FollowMyHealth' />
+
+                <DynamicSpacer />
                 {this.renderStepActions(7)} 
               </StepContent>
             </Step>
             <Step>
               <StepLabel style={{fontSize: '24px', fontWeight: 200}} >Review Your Timeline</StepLabel>
               <StepContent>
-                {/* <p>
-                  Try out different ad text to see what brings in the most customers,
-                  and learn how to enhance your ads using features like ad extensions.
-                  If you run into any problems with your ads, find out how to tell if
-                  they're running and how to resolve approval issues.
-                </p>*/}
+
+                  <RaisedButton 
+                    backgroundColor="gray"
+                    labelColor= "#ffffff"
+                    color='#ffffff'
+                    primary={false}
+                    style={{marginRight: '20px'}}                    
+                    label='Continuity of Care Document' />
+                  <RaisedButton 
+                    backgroundColor="gray"
+                    labelColor= "#ffffff"
+                    color='#ffffff'
+                    primary={false}
+                    style={{marginRight: '20px'}}                    
+                    label='MyTimeline' />
+
+                <DynamicSpacer />
                 {this.renderStepActions(8)} 
               </StepContent>
             </Step>
@@ -239,4 +481,6 @@ export class WelcomePatientPage extends React.Component {
     );
   }
 }
+
+ReactMixin(WelcomePatientPage.prototype, ReactMeteorData);
 export default WelcomePatientPage;

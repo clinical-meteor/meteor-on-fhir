@@ -68,9 +68,6 @@ export class PatientSidebar extends React.Component {
       index = <LinkContainer to={ this.data.indexRoute } >
         <MenuItem id="indexPageItem" className="indexItem" href={ this.data.indexRoute } primaryText='Index' />
       </LinkContainer>;
-      // index = <LinkContainer to='/'>
-      //   <MenuItem className="indexItem" href='/' primaryText='Index' />
-      // </LinkContainer>;
     }
     
     //----------------------------------------------------------------------
@@ -98,20 +95,31 @@ export class PatientSidebar extends React.Component {
       }
     });
 
+    var continuityOfCareElements;
+    if(Package['symptomatic:continuity-of-care']){
+      continuityOfCareElements = <div>
+          <hr />
+          <LinkContainer to='/continuity-of-care'>
+             <MenuItem id="continuityOfCareItem" primaryText='Continuity of Care' href='/continuity-of-care' />
+          </LinkContainer>
+          <LinkContainer to='/timeline-sidescroll'>
+             <MenuItem id="timelineItem" primaryText='Timeline' href='/timeline-sidescroll' />
+          </LinkContainer>
+      </div>
+    }
+
     return(
       <div id='patientSidebar'>
         <List style={{paddingLeft: '20px', position: 'static'}}>
 
          { index }
-
-          {/* <LinkContainer to='/'>
-            <MenuItem id="indexPageItem" className="indexItem" href='/' primaryText='Index' />
-          </LinkContainer> */}
+         { continuityOfCareElements }
 
           <hr />
 
           { healthlog }              
           { dynamicElements }
+
 
           <hr />
           <LinkContainer to='/fhir-resources-index'>
@@ -121,8 +129,8 @@ export class PatientSidebar extends React.Component {
              <MenuItem primaryText='Data Management' href='/data-management' />
           </LinkContainer>
           <hr />
-          <LinkContainer to='/welcome-patient'>
-             <MenuItem primaryText='Getting Started' href='/welcome-patient' />
+          <LinkContainer to='/welcome/patient'>
+             <MenuItem primaryText='Getting Started' href='/welcome/patient' />
           </LinkContainer>
           <LinkContainer to='/import-chart'>
              <MenuItem primaryText='Import Patient Record' href='/import-chart' />
