@@ -159,8 +159,6 @@ symptomatic:landing-page
 symptomatic:clinical-scenarios
 symptomatic:geomapping
 symptomatic:smart-on-fhir-config
-<<<<<<< HEAD
-=======
-symptomatic:card-readers
->>>>>>> 15163b6d1d7eb8f0e9f8349ad0c2cf8150607482
+
+# symptomatic:card-readers
 # symptomatic:ihealth-cloud-api

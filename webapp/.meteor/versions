@@ -4,6 +4,7 @@ accounts-ui@1.3.1
 accounts-ui-unstyled@1.4.1
 alanning:roles@1.2.16
 aldeed:collection2@3.0.0
+aldeed:simple-schema@1.3.3
 allow-deny@1.1.0
 audit-argument-checks@1.0.7
 autoupdate@1.5.0
@@ -40,32 +41,26 @@ clinical:hl7-resource-binary@1.1.1
 clinical:hl7-resource-bundle@1.4.2
 clinical:hl7-resource-careplan@1.3.11
 clinical:hl7-resource-communication@0.1.2
-clinical:hl7-resource-condition@1.7.21
+clinical:hl7-resource-condition@1.7.22
 clinical:hl7-resource-consent@3.4.18
 clinical:hl7-resource-datatypes@4.0.3
-clinical:hl7-resource-device@1.3.7
+clinical:hl7-resource-device@1.3.8
 clinical:hl7-resource-diagnostic-report@1.6.5
 clinical:hl7-resource-endpoint@3.1.2
 clinical:hl7-resource-goal@1.3.7
 clinical:hl7-resource-immunization@1.2.7
-<<<<<<< HEAD
-clinical:hl7-resource-list@1.4.2
-clinical:hl7-resource-location@1.5.8
-clinical:hl7-resource-medication@1.3.6
-=======
 clinical:hl7-resource-list@1.4.3
-clinical:hl7-resource-location@1.5.10
+clinical:hl7-resource-location@1.5.8
 clinical:hl7-resource-medication@1.3.7
->>>>>>> 15163b6d1d7eb8f0e9f8349ad0c2cf8150607482
 clinical:hl7-resource-medication-order@1.6.2
 clinical:hl7-resource-medication-statement@1.3.6
-clinical:hl7-resource-observation@1.4.8
+clinical:hl7-resource-observation@1.4.9
 clinical:hl7-resource-organization@1.6.11
-clinical:hl7-resource-patient@3.4.13
+clinical:hl7-resource-patient@3.4.16
 clinical:hl7-resource-person@1.2.3
 clinical:hl7-resource-practitioner@3.3.7
-clinical:hl7-resource-procedure@1.5.8
-clinical:hl7-resource-procedure-request@1.5.10
+clinical:hl7-resource-procedure@1.5.9
+clinical:hl7-resource-procedure-request@1.0.4
 clinical:hl7-resource-risk-assessment@1.5.4
 clinical:hl7-resource-subscription@3.5.10
 clinical:keybindings@1.4.7
@@ -118,6 +113,7 @@ mdg:validation-error@0.5.1
 meteor@1.9.2
 meteor-base@1.4.0
 meteor-platform@1.2.6
+meteorhacks:async@1.0.0
 minifier-css@1.4.0
 minifier-js@2.4.0
 minimongo@1.4.5
@@ -138,6 +134,7 @@ npm-mongo@3.1.1
 observe-sequence@1.0.16
 ordered-dict@1.1.0
 percolate:synced-cron@1.3.2
+prime8consulting:meteor-oauth2-server@0.0.3
 promise@0.11.1
 raix:eventemitter@0.1.3
 random@1.1.0
@@ -160,26 +157,14 @@ spacebars@1.0.15
 spacebars-compiler@1.1.3
 srp@1.0.12
 standard-minifier-js@2.4.0
-<<<<<<< HEAD
 symptomatic:clinical-scenarios@0.1.0
-symptomatic:continuity-of-care@0.1.10
+symptomatic:continuity-of-care@0.1.12
 symptomatic:example-plugin@0.1.17
 symptomatic:geomapping@0.0.6
-symptomatic:landing-page@0.1.6
-symptomatic:smart-on-fhir-client@0.1.55
-symptomatic:smart-on-fhir-config@0.1.52
-symptomatic:theming@0.0.4
-=======
-symptomatic:card-readers@0.1.17
-symptomatic:clinical-scenarios@0.1.0
-symptomatic:continuity-of-care@0.1.11
-symptomatic:example-plugin@0.1.17
-symptomatic:geomapping@0.0.6
-symptomatic:landing-page@0.1.6
+symptomatic:landing-page@0.1.7
 symptomatic:smart-on-fhir-client@0.1.56
 symptomatic:smart-on-fhir-config@0.1.52
 symptomatic:theming@0.0.5
->>>>>>> 15163b6d1d7eb8f0e9f8349ad0c2cf8150607482
 templating@1.2.15
 templating-compiler@1.2.15
 templating-runtime@1.2.15

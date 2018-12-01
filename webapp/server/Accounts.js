@@ -96,7 +96,7 @@ Accounts.onLogin(function(loginObject) {
       performanceAnalytics: {
         "resourceType": "Consent",
         "id": "Consent/" + userId + "/performanceAnalytics",
-        "status": "active",
+        "status": "inactive",
         "patient": {
           "reference": "Patient/" + userId
         },
@@ -115,7 +115,7 @@ Accounts.onLogin(function(loginObject) {
       medicalCodeLookup: {
         "resourceType": "Consent",
         "id": "Consent/" + userId + "/medicalCodeLookup",
-        "status": "active",
+        "status": "inactive",
         "patient": {
           "reference": "Patient/" + userId
         },
@@ -134,7 +134,7 @@ Accounts.onLogin(function(loginObject) {
       patientEducationReferences: {
         "resourceType": "Consent",
         "id": "Consent/" + userId + "/patientEducationReferences",
-        "status": "active",
+        "status": "inactive",
         "patient": {
           "reference": "Patient/" + userId
         },
@@ -153,7 +153,7 @@ Accounts.onLogin(function(loginObject) {
       geocoding: {
         "resourceType": "Consent",
         "id": "Consent/" + userId + "/geocoding",
-        "status": "active",
+        "status": "inactive",
         "patient": {
           "reference": "Patient/" + userId
         },

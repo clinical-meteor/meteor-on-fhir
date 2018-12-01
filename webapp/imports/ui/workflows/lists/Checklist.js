@@ -1,6 +1,7 @@
 import React  from 'react';
 import ReactMixin  from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
+import PropTypes from 'prop-types';
 
 import { Tabs, Tab } from 'material-ui/Tabs';
 import { CardTitle, CardText } from 'material-ui/Card';
@@ -144,5 +145,8 @@ export class Checklist extends React.Component {
 }
 
 
-
+Checklist.propTypes = {
+  id: PropTypes.string
+};
 ReactMixin(Checklist.prototype, ReactMeteorData);
+export default Checklist;
