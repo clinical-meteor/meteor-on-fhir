@@ -97,6 +97,14 @@ scripts/remove_restricted_media_assets.sh
 cd webapp
 mv public/geodata ..
 
+# add ios 
+meteor add-platform ios
+
+# add healthkit
+# https://github.com/EddyVerbruggen/HealthKit/issues/103
+meteor add cordova:com.telerik.plugins.healthkit@https://github.com/EddyVerbruggen/HealthKit.git#5174fde920092c94fe3dd3dead64700d293d9235
+
+
 # development
 # this can be tricky, because http://localhost:3000 may need to be a local IP address
 # you may need to use `ifconfig` to find that address

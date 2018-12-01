@@ -1,7 +1,7 @@
 {
     "basic": "v1.0-prerelease-3",
-    "complete": "v1.0-prerelease-3-92-g2fa2e61",
-    "branch": "baltimore",
-    "commit": "2fa2e61dfc16312b6a9894a64afde20154f5fc3b",
-    "timestamp": "2018-09-23"
+    "complete": "v1.0-prerelease-3-187-g680b1a5",
+    "branch": "nov-devdays",
+    "commit": "680b1a5dec714e2f11dd4a972b2a89e01bb544e4",
+    "timestamp": "2018-12-01"
 }

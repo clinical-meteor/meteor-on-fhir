@@ -2,13 +2,13 @@
 /* eslint-disable quote-props */
 
 App.info({
-  id: 'io.sympatomatic.desktop',
+  id: 'io.symptomatic.phr',
   name: 'Symptomatic',
-  description: 'Continuity of Care Document Viewer',
+  description: 'HealthRecord Timeline Viewer',
   author: 'Abigail Watson',
   email: 'abigail@symptomatic.io',
   website: 'https://www.symptomatic.io',
-  version: '0.5.0'
+  version: '0.6.0'
 });
 
 App.icons({
