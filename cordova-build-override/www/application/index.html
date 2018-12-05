@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, viewport-fit=cover">
+  <meta name="msapplication-tap-highlight" content="no">
+  <meta http-equiv="Content-Security-Policy" content="default-src * gap: data: blob: 'unsafe-inline' 'unsafe-eval' ws: wss:;">
+  <link rel="stylesheet" type="text/css" class="__meteor-css__" href="/__cordova/merged-stylesheets.css?hash=522e0bf50cbc11a218db61675ef148dd110ecccd">
+<meta charset="utf-8">
+  <title>Symptomatic</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+  <link rel="shortcut icon" type="image/png" href="favicon.png?v1" sizes="16x16 32x32 64x64">
+  <link rel="apple-touch-icon" sizes="120x120" href="apple-touch-icon-precomposed.png">
+
+  <meta name="description" content="A description for the application.">
+  <meta name="viewport" content="initial-scale=0.6, minimal-ui, maximum-scale=0.6, minimum-scale=0.6, user-scalable=0, width=device-width, height=device-height, user-scalable=no" />
+  <script type="text/javascript">
+    __meteor_runtime_config__ = JSON.parse(decodeURIComponent("%7B%22meteorRelease%22%3A%22METEOR%401.8.0.1%22%2C%22ROOT_URL%22%3A%22http%3A%2F%2Fmeteor-on-fhir.meteorapp.com%2F%22%2C%22ROOT_URL_PATH_PREFIX%22%3A%22%22%2C%22DDP_DEFAULT_CONNECTION_URL%22%3A%22http%3A%2F%2Fmeteor-on-fhir.meteorapp.com%2F%22%2C%22autoupdate%22%3A%7B%22versions%22%3A%7B%22web.cordova%22%3A%7B%22version%22%3A%22449e35e4832861efbd2cb36be497fe701a8dbb76%22%2C%22versionRefreshable%22%3A%22409213db49a5983d5aff52fdf389c7c95e6a1db1%22%2C%22versionNonRefreshable%22%3A%227a5a6b9735e8cc6ec9138a87eee56612a8d0b255%22%7D%7D%7D%2C%22appId%22%3A%22vqze4o4fmojp1vxyybb%22%2C%22meteorEnv%22%3A%7B%22NODE_ENV%22%3A%22development%22%2C%22TEST_METADATA%22%3A%22%7B%7D%22%7D%2C%22PUBLIC_SETTINGS%22%3A%7B%22title%22%3A%22Symptomatic%22%2C%22logging%22%3A%22debug%22%2C%22credentials%22%3A%7B%7D%2C%22theme%22%3A%7B%22showVideoBackground%22%3Afalse%2C%22darkroomTextEnabled%22%3Afalse%2C%22backgroundImagePath%22%3A%22%2Fpackages%2Fsymptomatic_theming%2Fbackgrounds%2FGradient-Desaturated.png%22%7D%2C%22home%22%3A%7B%22showUnderConstruction%22%3Afalse%2C%22showExperimental%22%3Afalse%2C%22showApps%22%3Atrue%2C%22showFhirMenu%22%3Atrue%2C%22showRegistration%22%3Atrue%7D%2C%22guests%22%3A%7B%22allowDataCollection%22%3Atrue%7D%2C%22defaults%22%3A%7B%22route%22%3A%22%2Fcontinuity-of-care%22%2C%22landingPage%22%3A%22%2Fsignin%22%2C%22requireAuthorization%22%3Atrue%2C%22avatars%22%3Afalse%2C%22barcodes%22%3Atrue%2C%22hexgridMenu%22%3Atrue%2C%22nfcOrbital%22%3Afalse%2C%22notificationMenu%22%3Afalse%2C%22searchbarVisible%22%3Atrue%2C%22displayNavbars%22%3Atrue%2C%22disableHeader%22%3Afalse%2C%22disableFooter%22%3Afalse%2C%22displayBlockchainComponents%22%3Atrue%2C%22darkroom%22%3Afalse%2C%22iFrameEnabled%22%3Afalse%2C%22iFrameUrl%22%3A%22https%3A%2F%2Fwww.wikipedia.com%2F%22%2C%22paginationLimit%22%3A100%2C%22subscriptionLimit%22%3A1000%2C%22cards%22%3A%7B%22height%22%3A%22auto%22%2C%22opacity%22%3A0.95%7D%2C%22registration%22%3A%7B%22displayAccessCode%22%3Atrue%2C%22signInWith%22%3Afalse%7D%2C%22sidebar%22%3A%7B%22showHealthlog%22%3Afalse%2C%22showIndex%22%3Afalse%2C%22hidden%22%3A%5B%22%2Fallergies%22%2C%22%2Fconditions%22%2C%22%2Fcare-plans%22%2C%22%2Fcareplan%22%2C%22%2Fcommunications%22%2C%22%2Fconsents%22%2C%22%2Fcontracts%22%2C%22%2Fdiagnostic-reports%22%2C%22%2Fendpoints%22%2C%22%2Fimaging-studies%22%2C%22%2Fimmunizations%22%2C%22%2Fgoals%22%2C%22%2Flocations%22%2C%22%2Fdevices%22%2C%22%2Fmedications%22%2C%22%2Fmedication-orders%22%2C%22%2Fmedication-statements%22%2C%22%2Fobservations%22%2C%22%2Forganizations%22%2C%22%2Fpatients%22%2C%22%2Fpractitioners%22%2C%22%2Fpersons%22%2C%22%2Fprocedures%22%2C%22%2Frisk-assessments%22%2C%22%2Fsubscriptions%22%2C%22%2Fhello-world%22%2C%22%2Fvitals-tracking%22%2C%22%2Fexample-route%22%5D%7D%7D%2C%22google%22%3A%7B%22maps%22%3A%7B%22apiKey%22%3A%22AIzaSyCC3PHFkh1UvzuK9yykLa847jx2NeAU4LI%22%2C%22geodataUrl%22%3A%22https%3A%2F%2Fdata.cityofchicago.org%2Fresource%2F6zsd-86xi.geojson%22%7D%7D%2C%22vitals%22%3A%7B%22showSpoonCounter%22%3Afalse%7D%2C%22interfaces%22%3A%7B%22default%22%3A%7B%22status%22%3A%22inactive%22%2C%22channel%22%3A%7B%22endpoint%22%3A%22http%3A%2F%2Flocalhost%3A80%22%7D%2C%22auth%22%3A%7B%22username%22%3A%22foo%22%2C%22password%22%3A%22bar%22%7D%7D%7D%2C%22meshNetwork%22%3A%7B%22upstreamSync%22%3A%22http%3A%2F%2Fmeteor-on-fhir.meteorapp.com%2Ffhir-3.0.0%22%2C%22autosync%22%3Afalse%7D%2C%22modules%22%3A%7B%22data%22%3Atrue%2C%22forum%22%3Atrue%2C%22genome%22%3Atrue%2C%22healthlog%22%3Atrue%2C%22dermatograms%22%3Atrue%2C%22telemedicine%22%3Atrue%2C%22inbound%22%3Atrue%2C%22outbound%22%3Atrue%2C%22epic%22%3Atrue%2C%22statisticsLogging%22%3Atrue%2C%22apps%22%3A%7B%22ChecklistManifesto%22%3Atrue%2C%22ContinuityOfCare%22%3Atrue%2C%22Videoconferencing%22%3Atrue%2C%22ZygoteAvatar%22%3Atrue%2C%22Radiology%22%3Atrue%2C%22SmartExamRoom%22%3Atrue%2C%22VitalSignsTracking%22%3Atrue%2C%22HealthDashboard%22%3Atrue%2C%22ImportChart%22%3Atrue%2C%22Timeline%22%3Atrue%7D%2C%22fhir%22%3A%7B%22AllergyIntolerances%22%3Atrue%2C%22AuditEvents%22%3Atrue%2C%22BodySites%22%3Atrue%2C%22CarePlans%22%3Atrue%2C%22Conditions%22%3Atrue%2C%22Consents%22%3Atrue%2C%22Contracts%22%3Atrue%2C%22Devices%22%3Atrue%2C%22DiagnosticReports%22%3Atrue%2C%22Goals%22%3Atrue%2C%22ImagingStudies%22%3Atrue%2C%22Immunizations%22%3Atrue%2C%22Locations%22%3Atrue%2C%22Lists%22%3Atrue%2C%22Medications%22%3Atrue%2C%22MedicationOrders%22%3Atrue%2C%22MedicationStatements%22%3Atrue%2C%22Organizations%22%3Atrue%2C%22Observations%22%3Atrue%2C%22Patients%22%3Atrue%2C%22Persons%22%3Atrue%2C%22Practitioners%22%3Atrue%2C%22Procedures%22%3Atrue%2C%22Questionnaires%22%3Atrue%2C%22QuestionnaireResponses%22%3Atrue%2C%22RelatedPersons%22%3Atrue%2C%22RiskAssessments%22%3Atrue%7D%7D%7D%7D"));
+    if (/Android/i.test(navigator.userAgent)) {
+      if (!__meteor_runtime_config__.httpProxyPort) {
+        __meteor_runtime_config__.ROOT_URL = (__meteor_runtime_config__.ROOT_URL || '').replace(/localhost/i, '10.0.2.2');
+        __meteor_runtime_config__.DDP_DEFAULT_CONNECTION_URL = (__meteor_runtime_config__.DDP_DEFAULT_CONNECTION_URL || '').replace(/localhost/i, '10.0.2.2');
+      }
+    }
+  </script>
+
+  <script type="text/javascript" src="/cordova.js"></script>
+  <script type="text/javascript" src="/__cordova/packages/meteor.js?hash=f02c61cd69d98a091d98d62dff022bd106b404cf"></script>
+  <script type="text/javascript" src="/__cordova/packages/meteor-base.js?hash=29010b127daf4ebacaaf9db9b8a61487e57d7d86"></script>
+  <script type="text/javascript" src="/__cordova/packages/modules-runtime.js?hash=d3c3e5d67c95f97a60888bda7373292efad3be5e"></script>
+  <script type="text/javascript" src="/__cordova/packages/modules.js?hash=f13b72f7a37cf3b74233950ee1cf33fdcb661c18"></script>
+  <script type="text/javascript" src="/__cordova/packages/modern-browsers.js?hash=54726531b4795563b9a80c7b5a0cd309bbcf0864"></script>
+  <script type="text/javascript" src="/__cordova/packages/babel-compiler.js?hash=8c5705ac79152fc21e82c438dba99009224c6cec"></script>
+  <script type="text/javascript" src="/__cordova/packages/ecmascript.js?hash=6aac20a70923a44476d944a4d125196412f1aa5a"></script>
+  <script type="text/javascript" src="/__cordova/packages/es5-shim.js?hash=119720a5514169e0b977a27369173568036f4ec9"></script>
+  <script type="text/javascript" src="/__cordova/packages/ecmascript-runtime.js?hash=f47aa897b4de5ae6f0c0017bb5398dfb81681191"></script>
+  <script type="text/javascript" src="/__cordova/packages/babel-runtime.js?hash=9a06c8d9744a0bbc079475d7a4faff8d74bba04d"></script>
+  <script type="text/javascript" src="/__cordova/packages/promise.js?hash=d9e4dc021ee9064fef1fc28a5aadbfee32e21cf2"></script>
+  <script type="text/javascript" src="/__cordova/packages/fetch.js?hash=dc6073bc83f15340394cf203bafdf91fe83516ea"></script>
+  <script type="text/javascript" src="/__cordova/packages/dynamic-import.js?hash=27d6e4d87c1504b5695c8c8d1c654df1d2ea5521"></script>
+  <script type="text/javascript" src="/__cordova/packages/ecmascript-runtime-client.js?hash=996bb1c34bd2de29f87c81accc98a4cf87c15daa"></script>
+  <script type="text/javascript" src="/__cordova/packages/base64.js?hash=9101683b5eeca2f344cb4934c9c2f5aef8ba134a"></script>
+  <script type="text/javascript" src="/__cordova/packages/ejson.js?hash=520c3e546bb4f0c97c5b18e086dd229424f428ce"></script>
+  <script type="text/javascript" src="/__cordova/packages/check.js?hash=17740dc660512ae317b112017af38cb598d9162c"></script>
+  <script type="text/javascript" src="/__cordova/packages/tracker.js?hash=df40af186bdeadea71aa34772a2970d92b8eed52"></script>
+  <script type="text/javascript" src="/__cordova/packages/diff-sequence.js?hash=eb3a277890e23fbecdadf90a5ccdcb70ddd66700"></script>
+  <script type="text/javascript" src="/__cordova/packages/geojson-utils.js?hash=3e02b1981c00dafa06c1c5c3c12087fadfd93912"></script>
+  <script type="text/javascript" src="/__cordova/packages/id-map.js?hash=c262253aad38df3410e7795432847b180c1d9653"></script>
+  <script type="text/javascript" src="/__cordova/packages/random.js?hash=941f74f9d4c00e1714ae6292586a0be32b206b4f"></script>
+  <script type="text/javascript" src="/__cordova/packages/mongo-id.js?hash=4445bb7d417cff037e99ec799b728ee7aab3d46f"></script>
+  <script type="text/javascript" src="/__cordova/packages/ordered-dict.js?hash=d863039d5070f0e97399d98a38eaca84bd02ce99"></script>
+  <script type="text/javascript" src="/__cordova/packages/minimongo.js?hash=8ffe5b5def488b14c7f7736c0d7ac8060524dfa6"></script>
+  <script type="text/javascript" src="/__cordova/packages/retry.js?hash=896f7f9718206802440abe0cf24dde06986bf936"></script>
+  <script type="text/javascript" src="/__cordova/packages/callback-hook.js?hash=2e5859b01a2140fbd4fafb95e444372fe6ea07ce"></script>
+  <script type="text/javascript" src="/__cordova/packages/ddp-common.js?hash=81b595e9c1f8ba525965d92fc5649b5c84414387"></script>
+  <script type="text/javascript" src="/__cordova/packages/reload.js?hash=827d2fbe0b0125bdad9d23892644c39ace00ec48"></script>
+  <script type="text/javascript" src="/__cordova/packages/socket-stream-client.js?hash=8e9d5b48ffa807d7bf66bcc457a5eccfa2abe87f"></script>
+  <script type="text/javascript" src="/__cordova/packages/ddp-client.js?hash=35a5cad3892660c9d1dae66c2b9169957624fe5a"></script>
+  <script type="text/javascript" src="/__cordova/packages/ddp.js?hash=675438ff1bf207eeda74d574359af6643aefb5fd"></script>
+  <script type="text/javascript" src="/__cordova/packages/ddp-server.js?hash=957d5129a2d0d54aeef0887dbb6bef7e7dfca6a2"></script>
+  <script type="text/javascript" src="/__cordova/packages/allow-deny.js?hash=45bd2c39dd703ab1173483fbccda7229fd4b6baf"></script>
+  <script type="text/javascript" src="/__cordova/packages/mongo-dev-server.js?hash=923b1f5dbbe3e6636ae95b0120f9f08ed36988a7"></script>
+  <script type="text/javascript" src="/__cordova/packages/mongo.js?hash=fc78045e18ea7851d3d39f11b99d89ab34b636a0"></script>
+  <script type="text/javascript" src="/__cordova/packages/reactive-dict.js?hash=2fad19fafeaf070704f89b4a9903df0de2ad77fb"></script>
+  <script type="text/javascript" src="/__cordova/packages/session.js?hash=1672971be52ae54c5d61f2fd34ba5fb4de4cd8fd"></script>
+  <script type="text/javascript" src="/__cordova/packages/jquery.js?hash=699d1bc3c40269647d37a2122535584956ec67d8"></script>
+  <script type="text/javascript" src="/__cordova/packages/underscore.js?hash=a29c47e75bce51635cf7f8fcc19c4884c10291d3"></script>
+  <script type="text/javascript" src="/__cordova/packages/momentjs_moment.js?hash=052e5aa0b5b37988103abecd410f120735d2cdc6"></script>
+  <script type="text/javascript" src="/__cordova/packages/tmeasday_check-npm-versions.js?hash=bb775e63fd7e2bb385172984cb3a286310d415cf"></script>
+  <script type="text/javascript" src="/__cordova/packages/react-meteor-data.js?hash=ab108ea05e0a9a6a9ab1f0078bb3de8339b29187"></script>
+  <script type="text/javascript" src="/__cordova/packages/less.js?hash=417ec01307978ca7d85dd870298e20b79ab3a9ac"></script>
+  <script type="text/javascript" src="/__cordova/packages/raix_eventemitter.js?hash=65773212e18058096e52169d542fec18a3b368ed"></script>
+  <script type="text/javascript" src="/__cordova/packages/aldeed_collection2.js?hash=de3d480ea97dcb145cf843236a9db83f05211d73"></script>
+  <script type="text/javascript" src="/__cordova/packages/dburles_collection-helpers.js?hash=cb6117583667bf505f72ce77b11c1e2437cbee20"></script>
+  <script type="text/javascript" src="/__cordova/packages/reywood_publish-composite.js?hash=839ffbb98d27b073dbfce65f2f50af26d97edfab"></script>
+  <script type="text/javascript" src="/__cordova/packages/mdg_validated-method.js?hash=4a52b252eae25b8af4e82def3e60d475ec38df4a"></script>
+  <script type="text/javascript" src="/__cordova/packages/mdg_validation-error.js?hash=a2f70fe2218d7dc6b2cbe1006e00d4886d8213c6"></script>
+  <script type="text/javascript" src="/__cordova/packages/ddp-rate-limiter.js?hash=f9956eaa3feb7f66d0826a0668a463780815f461"></script>
+  <script type="text/javascript" src="/__cordova/packages/localstorage.js?hash=d871d6d03bff8eb2629ca80a2c46d012db51c518"></script>
+  <script type="text/javascript" src="/__cordova/packages/reactive-var.js?hash=594fc3b2bc4dd3630b2534679abd98ee7fffae44"></script>
+  <script type="text/javascript" src="/__cordova/packages/observe-sequence.js?hash=027fc9f2ee79693a7ad95bebcb456b9753cb463e"></script>
+  <script type="text/javascript" src="/__cordova/packages/deps.js?hash=587d82599daaca0a4b4f1fe7967806a133c1ea19"></script>
+  <script type="text/javascript" src="/__cordova/packages/htmljs.js?hash=c52d96e73a36896980b68a9b66c659292f8e393f"></script>
+  <script type="text/javascript" src="/__cordova/packages/blaze.js?hash=51f4a3bdae106610ee48d8eff291f3628713d847"></script>
+  <script type="text/javascript" src="/__cordova/packages/accounts-base.js?hash=eb334caa004145bf31050962f694f779f0a6a4d9"></script>
+  <script type="text/javascript" src="/__cordova/packages/lai_collection-extensions.js?hash=7037b293739b972e067b777de85cbf2d29eec503"></script>
+  <script type="text/javascript" src="/__cordova/packages/dburles_mongo-collection-instances.js?hash=87469c42afbe04e01df506446769f27b16b50fa6"></script>
+  <script type="text/javascript" src="/__cordova/packages/browser-policy.js?hash=588491c9e27118a4f4325e7ee912b1f344164494"></script>
+  <script type="text/javascript" src="/__cordova/packages/audit-argument-checks.js?hash=30d74d98c9de4467a475431cd279c8a9e948e5a2"></script>
+  <script type="text/javascript" src="/__cordova/packages/webapp.js?hash=a547a26e4bf5c15d55314cf98f6b5911c4cb0583"></script>
+  <script type="text/javascript" src="/__cordova/packages/universe_i18n.js?hash=2ea8105ed8775037eb734e609d82ced9a6867f17"></script>
+  <script type="text/javascript" src="/__cordova/packages/alanning_roles.js?hash=fc73753fe0fbf1900e6f13b55608c4a414db0bdb"></script>
+  <script type="text/javascript" src="/__cordova/packages/sha.js?hash=8636b1badb9f5126ed7938edcb2092ec0cddf708"></script>
+  <script type="text/javascript" src="/__cordova/packages/srp.js?hash=a9824749c8c443cd1a5615dda98a7a8e8b6ddb7e"></script>
+  <script type="text/javascript" src="/__cordova/packages/accounts-password.js?hash=76b7e23cae4dd6276f9e1380d8f6b52f8dde27c8"></script>
+  <script type="text/javascript" src="/__cordova/packages/service-configuration.js?hash=189547f4eefbb1e20e38ab84cebcae5677a3d94e"></script>
+  <script type="text/javascript" src="/__cordova/packages/spacebars.js?hash=6f2be25813c793c0b363a6a91ebb029723f294ec"></script>
+  <script type="text/javascript" src="/__cordova/packages/templating-compiler.js?hash=94166acdd16398e4692129af29e2fb1292157a12"></script>
+  <script type="text/javascript" src="/__cordova/packages/templating-runtime.js?hash=9b008466a63cfaa8a7f0a8703fb4a6d8d253fb06"></script>
+  <script type="text/javascript" src="/__cordova/packages/templating.js?hash=bdb2d25c8c2ecf9a55d420f7d84e264af6b08e3d"></script>
+  <script type="text/javascript" src="/__cordova/packages/accounts-ui-unstyled.js?hash=fa9d269d3e4e37b5746678b718cff911846e9f4f"></script>
+  <script type="text/javascript" src="/__cordova/packages/accounts-ui.js?hash=bd57d6600df9568f7ec9633136eda91517a70260"></script>
+  <script type="text/javascript" src="/__cordova/packages/autoupdate.js?hash=9acfb6ad0ef4bdeaea41f085f90be90a821fee48"></script>
+  <script type="text/javascript" src="/__cordova/packages/meteor-platform.js?hash=027141c1b6f125bf49638ec0fa56cceb551d0a4f"></script>
+  <script type="text/javascript" src="/__cordova/packages/url.js?hash=884daa4de025adfe013f660c659dbf453c984029"></script>
+  <script type="text/javascript" src="/__cordova/packages/logging.js?hash=f8d79ea1ab53a086f0dc43d9323993805cb8d5c0"></script>
+  <script type="text/javascript" src="/__cordova/packages/livedata.js?hash=811a830b121820dfa3b755a47c2b7ecf871458ba"></script>
+  <script type="text/javascript" src="/__cordova/packages/ui.js?hash=031fb920f319365bcbefef5b67033495d338c395"></script>
+  <script type="text/javascript" src="/__cordova/packages/fastclick.js?hash=4d0ca2a69883e6b31a94eb639af55d50e0ee68c0"></script>
+  <script type="text/javascript" src="/__cordova/packages/mobile-status-bar.js?hash=22e0e71729cc0caacdaeee81969491091a44581e"></script>
+  <script type="text/javascript" src="/__cordova/packages/launch-screen.js?hash=8b03c50c1ca0d26c3c261c661bcbc74065194977"></script>
+  <script type="text/javascript" src="/__cordova/packages/clinical_oauth.js?hash=ee1efa2511ad20c575a8fee49eb83b4a9cd30759"></script>
+  <script type="text/javascript" src="/__cordova/packages/clinical_accounts-oauth.js?hash=98ca472e9894460eb7175bc08dd6e1f59fa58d82"></script>
+  <script type="text/javascript" src="/__cordova/packages/crosswalk.js?hash=2fac19d532d507f7dc99686102911a2a580a1e09"></script>
+  <script type="text/javascript" src="/__cordova/packages/mobile-experience.js?hash=2751f9ec11102d1106042c462b340c3fcfcb1990"></script>
+  <script type="text/javascript" src="/__cordova/packages/chriswessels_hammer.js?hash=ac48c634630519ce6dd716586a92bdbe2f54a1eb"></script>
+  <script type="text/javascript" src="/__cordova/packages/juliancwirko_postcss.js?hash=4ce4f49ba7b43006b8b920cc19cfae490f01b20d"></script>
+  <script type="text/javascript" src="/__cordova/packages/standard-minifier-js.js?hash=bc14de2febfbe660c47e5917f00a34efe4b2f865"></script>
+  <script type="text/javascript" src="/__cordova/packages/simple_json-routes.js?hash=231f64a67ae7201f24b10dcf31074ddd5e37ac54"></script>
+  <script type="text/javascript" src="/__cordova/packages/http.js?hash=021da52f029416901f37e5c36569c737c737bcb9"></script>
+  <script type="text/javascript" src="/__cordova/packages/simple_dev-error-overlay.js?hash=effb97ecbd5680c41fb7d1f6938e20ed9f725fcd"></script>
+  <script type="text/javascript" src="/__cordova/packages/fortawesome_fontawesome.js?hash=004ef0be7c739f107725c9c0a947f625e413e436"></script>
+  <script type="text/javascript" src="/__cordova/packages/clinical_fonts.js?hash=269e31420b3a528cae924deb7e43860973f6313d"></script>
+  <script type="text/javascript" src="/__cordova/packages/clinical_extended-api.js?hash=92315dd0c79c5f2fb9f13f4bc6e4a4418f5e4406"></script>
+  <script type="text/javascript" src="/__cordova/packages/clinical_auto-resizing.js?hash=6e40a84c91e98c5a0c019920f0339c8a265a47e3"></script>
+  <script type="text/javascript" src="/__cordova/packages/clinical_theming.js?hash=71a1c0c058a2e5cfa3d5e8bba2c7854d35936d49"></script>
+  <script type="text/javascript" src="/__cordova/packages/socialize_server-time.js?hash=cadb1f921279bc5c5b4190d4858f66306ce76384"></script>
+  <script type="text/javascript" src="/__cordova/packages/tmeasday_publish-with-relations.js?hash=328a22b7a6f6e6c0074d05ca8237bf6a03279e86"></script>
+  <script type="text/javascript" src="/__cordova/packages/matb33_collection-hooks.js?hash=45c234febfbb4aa3e79cf559c3f2e6b81ce86707"></script>
+  <script type="text/javascript" src="/__cordova/packages/clinical_base-model.js?hash=ad02e6647a18893dabd54223af4726f320a2e4a6"></script>
+  <script type="text/javascript" src="/__cordova/packages/clinical_user-model.js?hash=0cce54f0c58fc270a4a6800ef3321db2733bc95a"></script>
+  <script type="text/javascript" src="/__cordova/packages/mousetrap_mousetrap.js?hash=ebac48c112a747b7481a15ffd155d3b3f1972436"></script>
+  <script type="text/javascript" src="/__cordova/packages/clinical_keybindings.js?hash=049e6440a5fa549b892d64453b135aeacd44bddc"></script>
+  <script type="text/javascript" src="/__cordova/packages/clinical_hl7-resource-datatypes.js?hash=a50bdad13bfc3aad435da9debbb2c7c862a6978d"></script>
+  <script type="text/javascript" src="/__cordova/packages/clinical_hl7-resource-bundle.js?hash=4b0a3036f7acba45d1cebba2669ebe24f6906f70"></script>
+  <script type="text/javascript" src="/__cordova/packages/clinical_hl7-resource-binary.js?hash=da8995b0f12d6c6e2569a471b80bd0ecea7a1121"></script>
+  <script type="text/javascript" src="/__cordova/packages/clinical_glass-ui.js?hash=c955271c0f1f6c9c1a3099e70acb453117ebe9cf"></script>
+  <script type="text/javascript" src="/__cordova/packages/clinical_hl7-resource-audit-event.js?hash=855b0b6521633bf96d7ba1ae5f2e8db576bbf577"></script>
+  <script type="text/javascript" src="/__cordova/packages/clinical_hipaa-logger.js?hash=016b56bb0a285cb42df6fe0f48c7c1367fd4172c"></script>
+  <script type="text/javascript" src="/__cordova/packages/hot-code-push.js?hash=406b6d93681fb93e7e4938f9ad58fd43716ba94e"></script>
+  <script type="text/javascript" src="/__cordova/packages/clinical_default-landing-page.js?hash=5ec6e476b1a6265008c5fd0e06334f592bf60545"></script>
+  <script type="text/javascript" src="/__cordova/packages/fourseven_scss.js?hash=319ecf3efcacd2eb27ab9fe350933155c38af777"></script>
+  <script type="text/javascript" src="/__cordova/packages/clinical_alert.js?hash=428e1ff93100d8e6ed09a241a7e5e3426e4331ae"></script>
+  <script type="text/javascript" src="/__cordova/packages/mrt_moment.js?hash=bf95a2a4c72a95e8e9fc06068a1d31a19923c2c5"></script>
+  <script type="text/javascript" src="/__cordova/packages/grove_less.js?hash=47e6fda77d9a14c0a16fa26e54e825d7ac074673"></script>
+  <script type="text/javascript" src="/__cordova/packages/clinical_hipaa-audit-log.js?hash=363702cbc9b17114d13df08b494aa8982de007f1"></script>
+  <script type="text/javascript" src="/__cordova/packages/clinical_desktop-publish.js?hash=85d31941c7e476d3bd37395a1c15e56fba9745f7"></script>
+  <script type="text/javascript" src="/__cordova/packages/clinical_hl7-resource-allergy-intolerance.js?hash=f98e45f8fe0d82f18948b7dde63ea566a8e8b6b3"></script>
+  <script type="text/javascript" src="/__cordova/packages/clinical_hl7-resource-goal.js?hash=2e40af74ec61d121c55f710f170f433bfa21855e"></script>
+  <script type="text/javascript" src="/__cordova/packages/clinical_hl7-resource-condition.js?hash=c9dc367eca32558a0914fbd8a2d0487c270c7565"></script>
+  <script type="text/javascript" src="/__cordova/packages/clinical_hl7-resource-medication.js?hash=2342ec5022da6b19b8a917abc8eecef010f70f7b"></script>
+  <script type="text/javascript" src="/__cordova/packages/clinical_hl7-resource-patient.js?hash=22272f54395df8e4cc431c1cdafc0237a40e53cf"></script>
+  <script type="text/javascript" src="/__cordova/packages/clinical_hl7-resource-careplan.js?hash=2f7f44ab18258e4de38cd5731519b10c6158b12e"></script>
+  <script type="text/javascript" src="/__cordova/packages/clinical_hl7-resource-communication.js?hash=314baad3bf5a3b60bcd2790546c1cbf2108c7d48"></script>
+  <script type="text/javascript" src="/__cordova/packages/coffeescript.js?hash=626b0da720336fa25224da7127fc7f1b7202a4db"></script>
+  <script type="text/javascript" src="/__cordova/packages/digilord_faker.js?hash=a6756e83ad75578136c0446008df88d89cb74be8"></script>
+  <script type="text/javascript" src="/__cordova/packages/clinical_hl7-resource-consent.js?hash=9c41f1d01c8c75b843d1fbf015d992752aee9d3d"></script>
+  <script type="text/javascript" src="/__cordova/packages/clinical_hl7-resource-device.js?hash=8da06d52967cbfc51ea1bcf6bd95401e6247a44f"></script>
+  <script type="text/javascript" src="/__cordova/packages/clinical_hl7-resource-diagnostic-report.js?hash=ce9ed7f438bf3f65c04db623f03a9a912e43184a"></script>
+  <script type="text/javascript" src="/__cordova/packages/clinical_hl7-resource-endpoint.js?hash=d59b55bbf8c669c85bd0e278d5dc594d71544101"></script>
+  <script type="text/javascript" src="/__cordova/packages/clinical_hl7-resource-immunization.js?hash=bab07d0a1e718fe4ca80f169fdc4453a813d9497"></script>
+  <script type="text/javascript" src="/__cordova/packages/clinical_hl7-resource-location.js?hash=c0ff65158cccb7ceb067e19881206ba8005706dd"></script>
+  <script type="text/javascript" src="/__cordova/packages/clinical_hl7-resource-list.js?hash=8548123a7393a40ecd4d73d562d840e51c36e032"></script>
+  <script type="text/javascript" src="/__cordova/packages/clinical_hl7-resource-medication-order.js?hash=357d8821d0ae534d5358f7d03608573a1dd1a57d"></script>
+  <script type="text/javascript" src="/__cordova/packages/clinical_hl7-resource-medication-statement.js?hash=0ae5ae512ed5edb4a5123792276758b4fbf01429"></script>
+  <script type="text/javascript" src="/__cordova/packages/clinical_hl7-resource-organization.js?hash=b6374bd7295a7faf3939c6ba8f7dc6fb34c1530e"></script>
+  <script type="text/javascript" src="/__cordova/packages/clinical_hl7-resource-observation.js?hash=1bcd4d902c050d9458a75ae8b0a4ad8d36e2ae57"></script>
+  <script type="text/javascript" src="/__cordova/packages/clinical_hl7-resource-person.js?hash=4d69951aa490cbcc96ebf2904727cf23f004aadc"></script>
+  <script type="text/javascript" src="/__cordova/packages/clinical_hl7-resource-practitioner.js?hash=11c7b6b473c2574eea7f849c3a8e83d3812fc18d"></script>
+  <script type="text/javascript" src="/__cordova/packages/clinical_hl7-resource-procedure.js?hash=9b2da55deaf0384dce6d51de22727cf840cc6ebf"></script>
+  <script type="text/javascript" src="/__cordova/packages/aldeed_simple-schema.js?hash=8e91b2b4e9be8e4c1cb61284894c05be5b65bfcd"></script>
+  <script type="text/javascript" src="/__cordova/packages/prime8consulting_meteor-oauth2-server.js?hash=1ba9c788583dc213391db1e597c11dfb466702a1"></script>
+  <script type="text/javascript" src="/__cordova/packages/clinical_hl7-resource-procedure-request.js?hash=e514f1481978c71331673829dd5a2ee44a94aa5e"></script>
+  <script type="text/javascript" src="/__cordova/packages/clinical_hl7-resource-risk-assessment.js?hash=d490e91b1efc1101bd115d1051930fdb343a4f86"></script>
+  <script type="text/javascript" src="/__cordova/packages/clinical_hl7-resource-subscription.js?hash=3080a3f0821857af4815c8225781e23df38b57a5"></script>
+  <script type="text/javascript" src="/__cordova/packages/percolate_synced-cron.js?hash=bd3acb89cf3a83ee64d02dae31aa42e776a88371"></script>
+  <script type="text/javascript" src="/__cordova/packages/symptomatic_theming.js?hash=90098988c7c5f94f651e0d6a66092265d5b0aec3"></script>
+  <script type="text/javascript" src="/__cordova/packages/symptomatic_continuity-of-care.js?hash=91fe20220a721eb17cabc996ad7b8862296024bf"></script>
+  <script type="text/javascript" src="/__cordova/packages/browser-policy-common.js?hash=ee8ffedcae8be3c8b432ede0976c30180cd3877d"></script>
+  <script type="text/javascript" src="/__cordova/packages/symptomatic_smart-on-fhir-client.js?hash=2140c81d1f87c1ad9a85166ee80fa22af76a91ac"></script>
+  <script type="text/javascript" src="/__cordova/packages/symptomatic_smart-on-fhir-config.js?hash=1bc82ff863eca69a23556fef99a79b3274b3b9ed"></script>
+  <script type="text/javascript" src="/__cordova/packages/symptomatic_clinical-scenarios.js?hash=29acd9b863ed7646f099c3b48327dce77816f8bc"></script>
+  <script type="text/javascript" src="/__cordova/app/global-imports.js?hash=2e7c9dd1095a25bfac25bf1b03878f7c7f94c202"></script>
+  <script type="text/javascript" src="/__cordova/app/app.js?hash=ee4f477cc3a4889cc1b74b5d9e04b183a46f453f"></script>
+
+</head>
+
+<body></body>
+</html>

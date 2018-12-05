@@ -1,0 +1,194 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {
+      "config.xml": {
+        "parents": {
+          "/*": [
+            {
+              "xml": "<feature name=\"CDVWKWebViewEngine\"><param name=\"ios-package\" value=\"CDVWKWebViewEngine\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<preference name=\"CordovaWebViewEngine\" value=\"CDVWKWebViewEngine\" />",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"WebAppLocalServer\"><param name=\"ios-package\" value=\"METWebAppLocalServer\" /><param name=\"onload\" value=\"true\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"StatusBar\"><param name=\"ios-package\" value=\"CDVStatusBar\" /><param name=\"onload\" value=\"true\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<preference name=\"StatusBarOverlaysWebView\" value=\"true\" />",
+              "count": 1
+            },
+            {
+              "xml": "<preference name=\"StatusBarStyle\" value=\"lightcontent\" />",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"SplashScreen\"><param name=\"ios-package\" value=\"CDVSplashScreen\" /><param name=\"onload\" value=\"true\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"InAppBrowser\"><param name=\"ios-package\" value=\"CDVInAppBrowser\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"HealthKit\"><param name=\"ios-package\" value=\"HealthKit\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"CDVOrientation\"><param name=\"ios-package\" value=\"CDVOrientation\" /></feature>",
+              "count": 1
+            }
+          ]
+        }
+      },
+      "*-Info.plist": {
+        "parents": {
+          "NSHealthShareUsageDescription": [
+            {
+              "xml": "<string> </string>",
+              "count": 1
+            }
+          ],
+          "NSHealthUpdateUsageDescription": [
+            {
+              "xml": "<string> </string>",
+              "count": 1
+            }
+          ]
+        }
+      },
+      "*/Entitlements-Debug.plist": {
+        "parents": {
+          "com.apple.developer.healthkit": [
+            {
+              "xml": "<true />",
+              "count": 1
+            }
+          ]
+        }
+      },
+      "*/Entitlements-Release.plist": {
+        "parents": {
+          "com.apple.developer.healthkit": [
+            {
+              "xml": "<true />",
+              "count": 1
+            }
+          ]
+        }
+      }
+    }
+  },
+  "installed_plugins": {
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "io.symptomatic.phr"
+    },
+    "cordova-plugin-wkwebview-engine": {
+      "PACKAGE_NAME": "io.symptomatic.phr"
+    },
+    "cordova-plugin-meteor-webapp": {
+      "PACKAGE_NAME": "io.symptomatic.phr"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "io.symptomatic.phr"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "io.symptomatic.phr"
+    },
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "io.symptomatic.phr"
+    },
+    "cordova-plugin-crosswalk-webview": {
+      "PACKAGE_NAME": "io.symptomatic.phr"
+    },
+    "com.telerik.plugins.healthkit": {
+      "HEALTH_READ_PERMISSION": " ",
+      "HEALTH_WRITE_PERMISSION": " ",
+      "PACKAGE_NAME": "io.symptomatic.phr"
+    },
+    "cordova-plugin-screen-orientation": {
+      "PACKAGE_NAME": "io.symptomatic.phr"
+    }
+  },
+  "dependent_plugins": {},
+  "modules": [
+    {
+      "id": "cordova-plugin-wkwebview-engine.ios-wkwebview-exec",
+      "file": "plugins/cordova-plugin-wkwebview-engine/src/www/ios/ios-wkwebview-exec.js",
+      "pluginId": "cordova-plugin-wkwebview-engine",
+      "clobbers": [
+        "cordova.exec"
+      ]
+    },
+    {
+      "id": "cordova-plugin-meteor-webapp.WebAppLocalServer",
+      "file": "plugins/cordova-plugin-meteor-webapp/www/webapp_local_server.js",
+      "pluginId": "cordova-plugin-meteor-webapp",
+      "merges": [
+        "WebAppLocalServer"
+      ]
+    },
+    {
+      "id": "cordova-plugin-statusbar.statusbar",
+      "file": "plugins/cordova-plugin-statusbar/www/statusbar.js",
+      "pluginId": "cordova-plugin-statusbar",
+      "clobbers": [
+        "window.StatusBar"
+      ]
+    },
+    {
+      "id": "cordova-plugin-splashscreen.SplashScreen",
+      "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+      "pluginId": "cordova-plugin-splashscreen",
+      "clobbers": [
+        "navigator.splashscreen"
+      ]
+    },
+    {
+      "id": "cordova-plugin-inappbrowser.inappbrowser",
+      "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+      "pluginId": "cordova-plugin-inappbrowser",
+      "clobbers": [
+        "cordova.InAppBrowser.open",
+        "window.open"
+      ]
+    },
+    {
+      "id": "com.telerik.plugins.healthkit.HealthKit",
+      "file": "plugins/com.telerik.plugins.healthkit/www/HealthKit.js",
+      "pluginId": "com.telerik.plugins.healthkit",
+      "clobbers": [
+        "window.plugins.healthkit"
+      ]
+    },
+    {
+      "id": "cordova-plugin-screen-orientation.screenorientation",
+      "file": "plugins/cordova-plugin-screen-orientation/www/screenorientation.js",
+      "pluginId": "cordova-plugin-screen-orientation",
+      "clobbers": [
+        "cordova.plugins.screenorientation"
+      ]
+    }
+  ],
+  "plugin_metadata": {
+    "cordova-plugin-whitelist": "1.3.2",
+    "cordova-plugin-wkwebview-engine": "1.1.3",
+    "cordova-plugin-meteor-webapp": "1.6.0",
+    "cordova-plugin-statusbar": "2.3.0",
+    "cordova-plugin-splashscreen": "4.1.0",
+    "cordova-plugin-inappbrowser": "1.7.1",
+    "cordova-plugin-crosswalk-webview": "2.2.0",
+    "com.telerik.plugins.healthkit": "0.5.6",
+    "cordova-plugin-screen-orientation": "3.0.1"
+  }
+}

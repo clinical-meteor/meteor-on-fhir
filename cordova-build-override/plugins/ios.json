@@ -1,0 +1,41 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "io.symptomatic.phr"
+    },
+    "cordova-plugin-wkwebview-engine": {
+      "PACKAGE_NAME": "io.symptomatic.phr"
+    },
+    "cordova-plugin-meteor-webapp": {
+      "PACKAGE_NAME": "io.symptomatic.phr"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "io.symptomatic.phr"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "io.symptomatic.phr"
+    },
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "io.symptomatic.phr"
+    },
+    "cordova-plugin-crosswalk-webview": {
+      "PACKAGE_NAME": "io.symptomatic.phr"
+    },
+    "com.telerik.plugins.healthkit": {
+      "HEALTH_READ_PERMISSION": " ",
+      "HEALTH_WRITE_PERMISSION": " ",
+      "PACKAGE_NAME": "io.symptomatic.phr"
+    },
+    "cordova-plugin-screen-orientation": {
+      "PACKAGE_NAME": "io.symptomatic.phr"
+    }
+  },
+  "dependent_plugins": {}
+}
