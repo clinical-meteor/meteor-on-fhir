@@ -64,7 +64,7 @@ export class PatientSidebar extends React.Component {
   render () {
 
     var index;
-    if(!get(Meteor, 'settings.public.defaults.sidebar.hideIndex')){
+    if(get(Meteor, 'settings.public.defaults.sidebar.showIndex')){
       index = <LinkContainer to={ this.data.indexRoute } >
         <MenuItem id="indexPageItem" className="indexItem" href={ this.data.indexRoute } primaryText='Index' />
       </LinkContainer>;
@@ -75,7 +75,7 @@ export class PatientSidebar extends React.Component {
 
     var healthlog;
 
-    if(get(Meteor, 'settings.public.modules.healthlog')){
+    if(get(Meteor, 'settings.public.defaults.sidebar.showHealthlog')){
       healthlog = <LinkContainer to='/vitals-tracking'>
         <MenuItem primaryText='Healthlog' href='/vitals-tracking' />
       </LinkContainer>;
@@ -95,6 +95,20 @@ export class PatientSidebar extends React.Component {
       }
     });
 
+    var smartOnFhirImports = [];
+    // we don't want SMART on FHIR links on iPhone (for now)
+    // because they will be accessing records through HealthRecords
+    if(Package['symptomatic:smart-on-fhir-client'] && !['iPhone'].includes(window.navigator.platform)){
+      smartOnFhirImports.push(<div>
+        <LinkContainer to='/import-chart'>
+            <MenuItem primaryText='Import Patient Record' href='/import-chart' />
+        </LinkContainer>
+        <LinkContainer to='/fast-import-chart'>
+            <MenuItem primaryText='Quick Import' href='/fast-import-chart' />
+        </LinkContainer>
+      </div>)
+    }
+
     var continuityOfCareElements;
     if(Package['symptomatic:continuity-of-care']){
       continuityOfCareElements = <div>
@@ -112,12 +126,13 @@ export class PatientSidebar extends React.Component {
       <div id='patientSidebar'>
         <List style={{paddingLeft: '20px', position: 'static'}}>
 
-         { index }
-         { continuityOfCareElements }
+          { index }
+          { healthlog }         
+            
+          { continuityOfCareElements }
 
           <hr />
-
-          { healthlog }              
+     
           { dynamicElements }
 
 
@@ -132,12 +147,9 @@ export class PatientSidebar extends React.Component {
           <LinkContainer to='/welcome/patient'>
              <MenuItem primaryText='Getting Started' href='/welcome/patient' />
           </LinkContainer>
-          <LinkContainer to='/import-chart'>
-             <MenuItem primaryText='Import Patient Record' href='/import-chart' />
-          </LinkContainer>
-          <LinkContainer to='/fast-import-chart'>
-             <MenuItem primaryText='Quick Import' href='/fast-import-chart' />
-          </LinkContainer>
+
+          { smartOnFhirImports }
+
           <hr />
           <LinkContainer to='/theming'>
              <MenuItem primaryText='Theming' href='/theming' />

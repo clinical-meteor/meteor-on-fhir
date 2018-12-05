@@ -60,7 +60,7 @@ function getOS() {
 
 let disabledStyle = {backgroundColor: '#eeeeee', color: '#333333', borderColor: '#dddddd'};
 
-export class PrivacyPolicyCard extends React.Component {
+export class PrivacyControlsCard extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -88,6 +88,10 @@ export class PrivacyPolicyCard extends React.Component {
       },
       accessTokens: []
     };
+
+    if(['iPhone'].includes(window.navigator.platform)){
+      data.consentBsStyles.fileVault = 'success';
+    }
 
     return data;
   }
@@ -196,8 +200,8 @@ export class PrivacyPolicyCard extends React.Component {
     let osText = getOS();
     let detectedFileEncryption = false;
 
-    if(['iPhone', 'iPad', 'iPod'].includes(window.navigator.platform)){
-      encryptionText = "iOS Detected!  Devices running iOS 11.3 or later support Apple HealthRecord, which stores your records in an encrypted HIPAA compliant zone on your device.  Please make sure your device is upgraded to v11.3 or later. ";
+    if(['iPhone'].includes(window.navigator.platform)){
+      encryptionText = "iPhone detected!  Devices running iOS 11.3 or later on an iPhone support Apple HealthRecord, which stores your records in an encrypted HIPAA compliant zone on your device.  Please make sure your device is upgraded to v11.3 or later. ";
       detectedFileEncryption = true;
     } else if(['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K', 'Mac OS'].includes(window.navigator.platform)){
       if(get(Meteor, 'settings.public.fileVault') === "on"){
@@ -222,7 +226,8 @@ export class PrivacyPolicyCard extends React.Component {
 
     return (
       <div>
-         <CardTitle title='Privacy Policy' />
+         {/* <CardTitle title='Privacy Policy' />
+
          <CardText style={{margin: '20px'}}>
             <p >Symptomatic Timeline is an application is provided by Symptomatic, LLC, an Illinois company based out of the Polsky Center for Entrepreneurship (University of Chicago), and MATTER.health, a Chicago area health incubator.</p>
 
@@ -230,16 +235,12 @@ export class PrivacyPolicyCard extends React.Component {
 
             <p>Symptomatic Timeline is designed to not store protected health information (PHI) on our servers, which greatly reduces the risk of HIPAA breaches.  However, we have also implemented policies, procedures, audit trails, and encryption to be HIPAA compliant, as some of our other applications require this level of regulatory oversight.  We are happy and willing to sign business associate agreements (BAA) with covered entities that require them. </p>
 
-            {/* <p>Generally speaking, this app does not store protected health information, although it does store some user account information, and administrative data such as HIPAA audit log and consent authorizations.  This app allows you to export and save your health data to your local device; so after using this app, you may chose to store data on your local device; in which case, protecting your health information and privacy will be your responsibility.</p> */}
-
-            {/* <p>Symptomatic Timeline does not relay or route protected health information to other servers or devices.  Some tracking information about application usage is sent to Google Analytics to help us understand usage patterns and improve the product.  This app also generates aggregate and generalized data using de-identified data.  The user may also choose to geocode their home address, which involves sending anonymized address to Google geocoding servers.</p> */}
-
             <p>Users specifically approve each time their protected health information is accessed.  This app allows users to obtain a complete record of the data that it has stored about them.  This app allows users to delete all of the data that it has stored about them.</p>
 
             <p>In summary, this data fetches protected health information directly from FHIR compliant servers to the user’s mobile device or desktop, displays it in a timeline, provides context to understand the medical chart, and then allows users to export/download the result.  The app does not directly store user PHI on our servers.</p>
-          </CardText>
+          </CardText> */}
 
-          {/* <CardTitle title='Privacy Controls' />
+          <CardTitle title='Privacy Controls' />
           <CardText style={{margin: '20px', marginTop: '0px'}}>
             <Alert bsStyle="success">
               <Toggle
@@ -250,6 +251,7 @@ export class PrivacyPolicyCard extends React.Component {
               />
               This app may send core data to Symptomatic services, including account username/password, audit logs, consent, and other infrastructure data.  This data is necessary for this application to work and to maintain legal and regulatory compliance.  These core services avoid Protected Health Information (PHI) as much as possible, although medical record numbers and patient name is frequently included.  
             </Alert>
+            {/* <DynamicSpacer /> */}
             <Alert bsStyle={this.data.consentBsStyles.fileVault} >
               <Toggle
                 label="Disk Encryption (i.e. Encrypted Data at Rest)"
@@ -269,6 +271,8 @@ export class PrivacyPolicyCard extends React.Component {
               />
               { performanceAnalyticsText }              
             </Alert>
+            {/* <DynamicSpacer /> */}
+
             <Alert bsStyle={this.data.consentBsStyles.medicalCodeLookup} style={this.data.consentStyles.medicalCodeLookup} >
               <Toggle
                 label="Medical Code Lookups - LOINC, SNOMED, and RxNORM"
@@ -277,6 +281,7 @@ export class PrivacyPolicyCard extends React.Component {
               />
               { medicalCodeLookupText }                 
             </Alert>
+            {/* <DynamicSpacer /> */}
             <Alert bsStyle={this.data.consentBsStyles.patientEducationReferences} style={this.data.consentStyles.patientEducationReferences} >
               <Toggle
                 label="Patient Education References"
@@ -285,6 +290,7 @@ export class PrivacyPolicyCard extends React.Component {
               />
                 { patientEducationReferencesText }
               </Alert>
+            {/* <DynamicSpacer /> */}
             <Alert bsStyle={this.data.consentBsStyles.geocoding} style={this.data.consentStyles.geocoding} >
               <Toggle
                 label="Geocoding"
@@ -292,15 +298,40 @@ export class PrivacyPolicyCard extends React.Component {
                 onToggle={ this.toggleGeocoding.bind(this) }
               />
                 { geocodingText }  
-            </Alert> 
+            </Alert>
+            {/* <DynamicSpacer /> */}
 
+            {/* <DynamicSpacer /> */}
+            {/* <Alert bsStyle={this.data.consentBsStyles.accessTokens} style={this.data.consentStyles.accessTokens}>
+              <Toggle
+                label="Access Tokens"
+                defaultToggled={true}
+                style={styles.toggle}
+              />
+              { accessTokensText }
+              <DynamicSpacer />
 
-         </CardText>*/}
+              <Table>
+                <thead>
+                  <tr>
+                    <th className='serviceName'>Service Name</th>
+                    <th className='token'>Token</th>
+                    <th className='expiration'>Expiration</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {accessTokenRows}
+                </tbody>
+              </Table>
+                            
+            </Alert> */}
+
+         </CardText>
         </div>
     );
   }
 }
 
-ReactMixin(PrivacyPolicyCard.prototype, ReactMeteorData);
-export default PrivacyPolicyCard;
+ReactMixin(PrivacyControlsCard.prototype, ReactMeteorData);
+export default PrivacyControlsCard;
 

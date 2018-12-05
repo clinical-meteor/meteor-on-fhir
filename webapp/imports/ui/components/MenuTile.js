@@ -3,7 +3,45 @@ import { CardTitle, Card, CardText, CardActions } from 'material-ui';
 import { Glass, GlassCard } from 'meteor/clinical:glass-ui';
 import { browserHistory } from 'react-router';
 
+import {FaStreetView} from 'react-icons/fa';
+import {IoMdClipboard} from 'react-icons/io';
+import {FaHeartbeat} from 'react-icons/fa';
+import {FaMobile} from 'react-icons/fa';
+import {IoLogoNoSmoking} from 'react-icons/io';
+import {FaEyeDropper} from 'react-icons/fa';
+import {IoMdNuclear} from 'react-icons/io';
+import {FaMapMarker} from 'react-icons/fa';
+import {FaFlask} from 'react-icons/fa';
+import {GoPulse} from 'react-icons/go';
+import {FaBuilding} from 'react-icons/fa';
+import {GoPerson} from 'react-icons/go';
+import {MdAddAlert} from 'react-icons/md';
+import {MdLocalPharmacy} from 'react-icons/md';
+import {IoMdRibbon} from 'react-icons/io';
+import {MdImportantDevices} from 'react-icons/md';
+
+import MdFingerprint from 'react-icons/md';
+import MdList from 'react-icons/md';
+import MdHearing from 'react-icons/md';
+
+import FaEye from 'react-icons/fa';
+import IoMdErlenmeyerFlask from 'react-icons/io';
+import IoMdErlenmeyerFlaskBubbles from 'react-icons/io';
 import FaList from 'react-icons/fa';
+import FaMedkit from 'react-icons/fa';
+import IoMdMedkitNormal from 'react-icons/io';
+import IoMdMedkitOutline from 'react-icons/io';
+import FaMoon from 'react-icons/fa';
+import FaCheck from 'react-icons/fa';
+import GoBroadcast from 'react-icons/go';
+import GoBug from 'react-icons/go';
+import GoOrganization from 'react-icons/go';
+import IoMdPulseNormal from 'react-icons/io';
+import IoMdPulseStrong from 'react-icons/io';
+import IoMdLeaf from 'react-icons/io';
+import IoMdNutrition from 'react-icons/io';
+import MdDashboard from 'react-icons/md';
+import MdDataUsage from 'react-icons/md';
 
 const style = {
   indexCardPadding: {
@@ -56,8 +94,8 @@ export class MenuTile extends React.Component {
 
     var icon;
     switch (this.props.icon) {
-        case "Pulse":
-          icon = <Pulse size={ this.props.iconSize } />;
+        case "GoPulse":
+          icon = <GoPulse size={ this.props.iconSize } />;
           break;
           case "MdList":
           icon = <MdList size={this.props.iconSize} />;
@@ -68,48 +106,51 @@ export class MenuTile extends React.Component {
           case "MdImportantDevices":
           icon = <MdImportantDevices size={this.props.iconSize} />;
           break;
-          case "Building":
-          icon = <Building size={this.props.iconSize} />;
+          case "FaBuilding":
+          icon = <FaBuilding size={this.props.iconSize} />;
           break;
-          case "MapMarker":
-          icon = <MapMarker size={this.props.iconSize} />;
+          case "FaMapMarker":
+          icon = <FaMapMarker size={this.props.iconSize} />;
           break;
-          case "Flask":
-          icon = <Flask size={this.props.iconSize} />;
+          case "FaFlask":
+          icon = <FaFlask size={this.props.iconSize} />;
           break;
-          case "Mobile":
-          icon = <Mobile size={this.props.iconSize} />;
+          case "FaMobile":
+          icon = <FaMobile size={this.props.iconSize} />;
           break;
-          case "Heartbeat":
-          icon = <Heartbeat size={this.props.iconSize} />;
+          case "FaHeartbeat":
+          icon = <FaHeartbeat size={this.props.iconSize} />;
           break;          
 
           case "MdAddAlert":
           icon = <MdAddAlert size={this.props.iconSize} />;
           break;
-          case "MdLocalPhramacy":
-          icon = <MdLocalPhramacy size={this.props.iconSize} />;
+          case "MdLocalPharmacy":
+          icon = <MdLocalPharmacy size={this.props.iconSize} />;
           break;
-          case "Clipboard":
-          icon = <Clipboard size={this.props.iconSize} />;
+          case "IoMdClipboard":
+          icon = <IoMdClipboard size={this.props.iconSize} />;
           break;
-          case "NoSmoking":
-          icon = <NoSmoking size={this.props.iconSize} />;
+          case "IoLogoNoSmoking":
+          icon = <IoLogoNoSmoking size={this.props.iconSize} />;
           break;
-          case "StreetView":
-          icon = <StreetView size={this.props.iconSize} />;
+          case "FaStreetView":
+          icon = <FaStreetView size={this.props.iconSize} />;
           break;
-          case "Immunizations":
-          icon = <Immunizations size={this.props.iconSize} />;
+          case "FaEyeDropper":
+          icon = <FaEyeDropper size={this.props.iconSize} />;
           break;          
-          case "EyeDropper":
-          icon = <EyeDropper size={this.props.iconSize} />;
-          break;          
-          case "Person":
-          icon = <Person size={this.props.iconSize} />;
+          case "GoPerson":
+          icon = <GoPerson size={this.props.iconSize} />;
           break;  
-          case "Nuclear":
-          icon = <Nuclear size={this.props.iconSize} />;
+          case "IoMdNuclear":
+          icon = <IoMdNuclear size={this.props.iconSize} />;
+          break;  
+          case "MdHearing":
+          icon = <MdHearing size={this.props.iconSize} />;
+          break;  
+          case "IoMdRibbon":
+          icon = <IoMdRibbon size={this.props.iconSize} />;
           break;  
 
         default:  

@@ -204,7 +204,7 @@ export class Signin extends React.Component {
 
     var signInWith;
 
-    if(Package['symptomatic:smart-on-fhir-client']){
+    if(Package['symptomatic:smart-on-fhir-client'] && get(Meteor, 'settings.publich.registration.signInWith')){
       signInWith = <Col lgOffset={4} mdOffset={2} lg={2} md={3}>
         <GlassCard zDepth={3} height="auto" >
           <CardTitle

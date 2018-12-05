@@ -24,6 +24,7 @@ import { Alert, Grid, Container, Col, Row } from 'react-bootstrap';
 
 import { TermsConditionsCard } from '../components/TermsConditionsCard';
 import { PrivacyPolicyCard } from '../components/PrivacyPolicyCard';
+import { PrivacyControlsCard } from '../components/PrivacyControlsCard';
 
 import { FaInfoCircle } from 'react-icons/fa';
 import { FaMars } from 'react-icons/fa';
@@ -33,6 +34,8 @@ import { FaTransgenderAlt } from 'react-icons/fa';
 import { FaTransgender } from 'react-icons/fa';
 
 import { Image } from 'react-bootstrap';
+
+import { MedicalRecordImporter } from 'meteor/symptomatic:continuity-of-care';
 
 
 Session.setDefault('genderMaleBtn', false);
@@ -143,7 +146,7 @@ export class WelcomePatientPage extends React.Component {
         actionButtonLabel = 'Accept'
         break;
       case 3:
-        actionButtonLabel = 'Next'
+        actionButtonLabel = 'Accept'
         break;
       case 4:
         actionButtonLabel = 'Next'
@@ -158,6 +161,9 @@ export class WelcomePatientPage extends React.Component {
         actionButtonLabel = 'Next'
         break;
       case 8:
+        actionButtonLabel = 'Next'
+        break;    
+      case 9:
         actionButtonLabel = 'Finish'
         break;    
       default:
@@ -281,16 +287,67 @@ export class WelcomePatientPage extends React.Component {
     const contentStyle = {margin: '0 16px'};
 
     var dermatogramRow;
-    if(Package['symptomatic:continuity-of-care']){
-      dermatogramRow = <Row>
-        <Col md={6} style={{textAlign: 'center'}}>
-          <Image responsive src='/packages/symptomatic_continuity-of-care/assets/dermatogram-female-front.png' onClick={this.onFemaleDermatogramClick} style={{maxHeight: '400px', display: 'inline-block', cursor: 'pointer'}} />   
-        </Col>
-        <Col md={6} style={{textAlign: 'center'}}>
-          <Image responsive src='/packages/symptomatic_continuity-of-care/assets/dermatogram-male-front.png' onClick={this.onMaleDermatogramClick} style={{maxHeight: '400px', display: 'inline-block', cursor: 'pointer'}} />   
-        </Col>
-      </Row>
+    var welcomeIntro;
 
+    if(Package['symptomatic:continuity-of-care']){
+      // if(['iPhone'].includes(window.navigator.platform)){
+      //   dermatogramRow = <Row>
+      //     <Col sm={6} style={{textAlign: 'center'}}>
+      //       <RaisedButton
+      //         label="Female"
+      //         backgroundColor="gray"
+      //         labelColor= "#ffffff"
+      //         color='#ffffff'
+      //         icon={<FaVenus color="#ffffff" style={{width: '100%'}} />}                  
+      //         primary={ get(this, 'data.buttons.gender.female') }
+      //         onClick= { this.onFemaleDermatogramClick }
+      //         style={{marginRight: '20px', width: '200px', height: '200px'}}
+      //       />
+
+      //     </Col>
+      //     <Col sm={6} style={{textAlign: 'center'}}>
+      //       <RaisedButton
+      //         label="Male"
+      //         backgroundColor="gray"
+      //         labelColor= "#ffffff"
+      //         color='#ffffff'
+      //         icon={<FaMars color="#ffffff" style={{width: '100%'}} />}                  
+      //         primary={ get(this, 'data.buttons.gender.male') }
+      //         style={{marginRight: '20px', width: '200px', height: '200px'}}
+      //         onClick= { this.onMaleDermatogramClick }
+      //         />
+
+      //     </Col>
+      //   </Row>
+      // } else {
+        dermatogramRow = <Row>
+          <Col xs={6} style={{textAlign: 'center'}}>
+            <Image responsive src='/packages/symptomatic_continuity-of-care/assets/dermatogram-female-front.png' onClick={this.onFemaleDermatogramClick} style={{maxHeight: '400px', display: 'inline-block', cursor: 'pointer'}} />   
+          </Col>
+          <Col xs={6} style={{textAlign: 'center'}}>
+            <Image responsive src='/packages/symptomatic_continuity-of-care/assets/dermatogram-male-front.png' onClick={this.onMaleDermatogramClick} style={{maxHeight: '400px', display: 'inline-block', cursor: 'pointer'}} />   
+          </Col>
+        </Row>
+      // }
+
+      if(['iPhone'].includes(window.navigator.platform)){
+        welcomeIntro = <div>
+          <p style={{fontSize: '18px'}}>We've detected that you're using iOS and may have HealthRecords installed.  Would you like to import them?</p>
+          <RaisedButton 
+            // backgroundColor="gray"
+            // labelColor= "#ffffff"
+            // color='#ffffff'
+            primary={true}
+            style={{marginRight: '20px', fontWeight: 200}}     
+            onClick={ MedicalRecordImporter.healthRecord() }               
+            label='Import Apple HealthRecords' />
+        </div>
+
+      } else {
+        welcomeIntro = <div>
+          <p style={{fontSize: '18px'}}>We just scanned the usual places on this device where medical records are stored, and didn't find any.  Autoimport is not currently available, but that's okay!  We can continue with manual configuration and setup.  </p>
+        </div>
+      }
     }
 
     var mainPanel; 
@@ -298,16 +355,17 @@ export class WelcomePatientPage extends React.Component {
       case 0:
         mainPanel = <div>
           <Alert bsStyle="warning">
-            <b style={{fontSize: '14px', fontWeight: 200}}>This software is in <b>BETA</b> and is not in production yet.  Some features have not been implemented yet, and no warrantees are being made.  Functionality is currently limited to Apple HealthRecord data.</b>
+            <b style={{fontSize: '18px', fontWeight: 200}}>This software is in <b>BETA</b> and is not in production yet.  Some features have not been implemented yet, and no warrantees are being made.  Functionality is currently limited to Apple HealthRecord data.</b>
           </Alert>
 
           <CardText>
             <h1 style={{fontSize: '72px', fontWeight: 200}} >Welcome!</h1>
             <DynamicSpacer />
-            <p style={{fontSize: '28px'}}>Let's begin getting your medical history setup.  Depending on your age and complexity of your medical conditions, this may be as simple as a 10 or 20 minute process.  Or it may take many weeks as you work with your healthcare providers to get electronic copies of your records.  </p>
+            { welcomeIntro }
+            {/* <p style={{fontSize: '28px'}}>Let's begin getting your medical history setup.  Depending on your age and complexity of your medical conditions, this may be as simple as a 10 or 20 minute process.  Or it may take many weeks as you work with your healthcare providers to get electronic copies of your records.  </p> */}
 
             <DynamicSpacer />
-            <p style={{fontSize: '28px'}}>You can come back to this setup page at any time and resume where you left off.  </p>
+            <p style={{fontSize: '18px'}}>You can come back to this setup page at any time and resume where you left off.  </p>
 
             {this.renderStepActions(0)}
           </CardText>
@@ -323,6 +381,14 @@ export class WelcomePatientPage extends React.Component {
         break;
       case 2:
         mainPanel = <div>
+          <CardText>
+            <PrivacyControlsCard />
+            {this.renderStepActions(1)}
+          </CardText>
+        </div>        
+        break;
+      case 3:
+        mainPanel = <div>
           <CardTitle title="Terms and Conditions" />
           <CardText>
             <TermsConditionsCard />
@@ -330,7 +396,7 @@ export class WelcomePatientPage extends React.Component {
           </CardText>
         </div>              
         break;
-      case 3:
+      case 4:
         mainPanel = <div>
           <CardTitle title="Names and Aliases" />
           <CardText>
@@ -379,7 +445,7 @@ export class WelcomePatientPage extends React.Component {
           </CardText>
         </div>                
         break;
-      case 4:
+      case 5:
         mainPanel = <div>
           <CardTitle title="Sex and Gender" />
           <CardText>
@@ -539,7 +605,7 @@ export class WelcomePatientPage extends React.Component {
           </CardText>
         </div>          
         break;
-      case 5:
+      case 6:
         mainPanel = <div>
           <CardTitle title="Dermatology" />
           <CardText>
@@ -597,7 +663,7 @@ export class WelcomePatientPage extends React.Component {
           </CardText>
         </div>                
         break;
-      case 6:
+      case 7:
         mainPanel = <div>
           <Alert bsStyle="warning">
             <b style={{fontSize: '14px', fontWeight: 200}}>This software is in <b>BETA</b> and is not in production yet.  Some features have not been implemented yet, and no warrantees are being made.  Functionality is currently limited to Apple HealthRecord data.</b>
@@ -628,7 +694,7 @@ export class WelcomePatientPage extends React.Component {
 
         </div>          
         break;
-      case 7:
+      case 8:
         mainPanel = <div>
           <CardText>
             <DynamicSpacer />
@@ -636,13 +702,13 @@ export class WelcomePatientPage extends React.Component {
                 Your medical charts may be spread out through many healthcare systems.  Using industry standard interoperability protocols, we're going to try to fetch those records and consolidate them.
               </p>
 
-              <RaisedButton 
+              {/* <RaisedButton 
                 backgroundColor="gray"
                 labelColor= "#ffffff"
                 color='#ffffff'
                 primary={false}
                 style={{marginRight: '20px'}}                    
-                label='Apple HealthRecord' />
+                label='Apple HealthRecord' /> */}
               <RaisedButton 
                 backgroundColor="gray"
                 labelColor= "#ffffff"
@@ -674,7 +740,7 @@ export class WelcomePatientPage extends React.Component {
           </CardText>
         </div>              
         break;
-      case 8:
+      case 9:
         mainPanel = <div>
           <CardText>
             <RaisedButton 
@@ -697,26 +763,32 @@ export class WelcomePatientPage extends React.Component {
           </CardText>
         </div>            
         break;
-      case 9:
-        mainPanel = <div>
-
-        </div>              
-        break;    
       default:
         break;
     }
+
+    let stepperStyle = {
+      marginBottom: '20px'
+    }
+    if(['iPhone'].includes(window.navigator.platform)){
+      stepperStyle.display = 'none';
+    }
+
     return(
       <div id="welcomePatientPage">
         <FullPageCanvas>
           <Col md={2} >
 
-            <GlassCard style={{marginBottom: '20px'}} height='auto' >
+            <GlassCard style={ stepperStyle } height='auto' >
               <Stepper activeStep={stepIndex} orientation="vertical">
               <Step>
                 <StepLabel style={{fontSize: '18px', fontWeight: 200}} >Getting Started</StepLabel>
               </Step>
               <Step>
                 <StepLabel style={{fontSize: '18px', fontWeight: 200}} >Privacy Policy</StepLabel>
+              </Step>
+              <Step>
+                <StepLabel style={{fontSize: '18px', fontWeight: 200}} >Privacy Controls</StepLabel>
               </Step>
               <Step>
                 <StepLabel style={{fontSize: '18px', fontWeight: 200}} >Terms and Conditions</StepLabel>

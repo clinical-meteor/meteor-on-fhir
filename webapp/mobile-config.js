@@ -8,15 +8,17 @@ App.info({
   author: 'Abigail Watson',
   email: 'abigail@symptomatic.io',
   website: 'https://www.symptomatic.io',
-  version: '0.6.0'
+  version: '0.6.3'
 });
 
 App.icons({
   // iOS
-  'iphone': 'resources/icons/Icon-60.png',
   'iphone_2x': 'resources/icons/Icon-60@2x.png',
+  'iphone_3x': 'resources/icons/Icon-180.png',
   'ipad': 'resources/icons/Icon-76.png',
+  'ipad_pro': 'resources/icons/Icon-167.png',
   'ipad_2x': 'resources/icons/Icon-76@2x.png',
+  'app_store': 'resources/icons/icon-1024.png'
 
   // Android
   //'android_ldpi': 'resources/icons/icon-36x36.png',
@@ -43,7 +45,7 @@ App.launchScreens({
   //'android_hdpi_portrait': 'resources/splash/splash-480x800.png',
   //'android_hdpi_landscape': 'resources/splash/splash-800x480.png',
   //'android_xhdpi_portrait': 'resources/splash/splash-720x1280.png',
-  //'android_xhdpi_landscape': 'resources/splash/splash-1280x720.png',
+  //'android_xhdpi_landscape': 'resources/splash/splash-1280x720.png'
 });
 
 // Set PhoneGap/Cordova preferences
@@ -70,3 +72,73 @@ App.setPreference("BackupWebStorage", "local");
 //   APP_ID: '1234567890',
 //   API_KEY: 'supersecretapikey'
 // });
+
+// App.appendToConfig(`
+//   <edit-config target="NSHealthClinicalHealthRecordsShareUsageDescription" file="*-Info.plist" mode="merge">
+//     <string>App needs read access</string>
+//   </edit-config>
+// `);
+// App.appendToConfig(`
+//   <edit-config target="NSHealthUpdateUsageDescription" file="*-Info.plist" mode="merge">
+//     <string>App needs read write</string>
+//   </edit-config>
+// `);
+// App.appendToConfig(`
+//   <edit-config target="NSHealthShareUsageDescription" file="*-Info.plist" mode="merge">
+//     <string>App needs read access</string>
+//   </edit-config>
+// `);
+
+App.configurePlugin('com.telerik.plugins.healthkit', {
+  'config-file': {
+    target: '*-Info.plist', 
+    parent: 'NSHealthClinicalHealthRecordsShareUsageDescription'
+  },
+  'string': {
+    text: 'App needs read access'
+  }
+});
+App.configurePlugin('com.telerik.plugins.healthkit', {
+  'config-file': {
+    target: '*-Info.plist', 
+    parent: 'NSHealthShareUsageDescription',
+    string: {
+      text: 'App needs read access'
+    }
+  }
+});
+App.configurePlugin('com.telerik.plugins.healthkit', {
+  'config-file': {
+    target: '*-Info.plist', 
+    parent: 'NSHealthUpdateUsageDescription',
+    string: {
+      text: 'App needs write access'
+    }
+  }
+});
+
+// App.configurePlugin('com.telerik.plugins.healthkit', {
+//   'edit-config': {
+//     file: '*-Info.plist', 
+//     mode: 'merge', 
+//     target: 'NSHealthClinicalHealthRecordsShareUsageDescription'
+//   },
+//   'string': {
+//     text: 'App needs read access'
+//   }
+// });
+
+// App.configurePlugin('com.telerik.plugins.healthkit', {
+//   NSHealthClinicalHealthRecordsShareUsageDescription: 'App needs read access',
+//   NSHealthShareUsageDescription: 'App needs read access',
+//   NSHealthUpdateUsageDescription: 'App needs write access'
+// });
+
+// App.appendToConfig(`
+//   <splash src="../../../app/path/to/Default@2x~universal~anyany.png" />
+//   <splash src="../../../app/path/to/Default@3x~universal~anyany.png" />
+// `);
+
+
+// XML Tags for info.plist
+App.appendToConfig('<allow-navigation href="https://www.wikipedia.com/" />')

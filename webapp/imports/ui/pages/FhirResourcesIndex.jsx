@@ -42,7 +42,7 @@ import IoMdClipboard from 'react-icons/io';
 import IoMdPulseNormal from 'react-icons/io';
 import IoMdPulseStrong from 'react-icons/io';
 import IoMdNuclear from 'react-icons/io';
-import IoMdNoSmoking from 'react-icons/io';
+import IoLogoNoSmoking from 'react-icons/io';
 import IoMdLeaf from 'react-icons/io';
 import IoMdRibbon from 'react-icons/io';
 import IoMdNutrition from 'react-icons/io';
@@ -72,8 +72,7 @@ export class FhirResourcesIndex extends React.Component {
         },
         column: {
           paddingLeft: '5px',
-          paddingRight: '5px',
-          //border: '1px solid orange'
+          paddingRight: '5px'
         }
       },
       user: {
@@ -270,21 +269,21 @@ export class FhirResourcesIndex extends React.Component {
       id: 'goalsTile',
       active: true,
       path: '/goals',
-      icon: 'NoSmoking',
+      icon: 'IoLogoNoSmoking',
       subtitle: 'Goals'
     },  {
       collection: "Immunizations",
       id: 'immunizationsTile',
       active: true,
       path: '/immunizations',
-      icon: 'EyeDropper',
+      icon: 'FaEyeDropper',
       subtitle: 'Immunizations',
     }, {
       collection: "ImagingStudies",
       id: 'imagingStudiesTile',
       active: true,
       path: '/imaging-studies',
-      icon: 'Nuclear',
+      icon: 'IoMdNuclear',
       subtitle: 'Imaging Studies',
     }, {
       collection: "Locations",
@@ -305,14 +304,14 @@ export class FhirResourcesIndex extends React.Component {
       id: 'medicationsTile',
       active: true,
       path: '/medications',
-      icon: 'Flask',
+      icon: 'FaFlask',
       subtitle: 'Medications'
     }, {
       collection: "Observations",
       id: 'observationsTile',
       active: true,
       path: '/observations',
-      icon: 'Pulse',
+      icon: 'GoPulse',
       subtitle: 'Observations'
     }, {
       collection: "Organizations",
@@ -326,21 +325,28 @@ export class FhirResourcesIndex extends React.Component {
       id: 'proceduresTile',
       active: true,
       path: '/procedures',
-      icon: 'Nuclear',
+      icon: 'IoMdNuclear',
       subtitle: 'Procedures'
     }, {
       collection: "Patients",
       id: 'patientsTile',
       active: true,
       path: '/patients',
-      icon: 'Person',
+      icon: 'GoPerson',
       subtitle: 'Patients'
+    }, {
+      collection: "Persons",
+      id: 'personsTile',
+      active: true,
+      path: '/persons',
+      icon: 'GoPerson',
+      subtitle: 'Persons'
     }, {
       collection: "Practitioners",
       id: 'practitionersTile',
       active: true,
       path: '/practitioners',
-      icon: 'Person',
+      icon: 'GoPerson',
       subtitle: 'Practitioners'
     }, {
       collection: "RiskAssessments",
@@ -382,7 +388,7 @@ export class FhirResourcesIndex extends React.Component {
       id: 'sequencesTile',
       active: true,
       path: '/sequences',
-      icon: 'Ribbon',
+      icon: 'IoMdRibbon',
       subtitle: 'Sequences'
     }, {
       collection: "Subscriptions",
@@ -451,20 +457,20 @@ export class FhirResourcesIndex extends React.Component {
     //console.log('tilesToRender', tilesToRender)
     
 
-    var appRow = <Row>
-      <Col sm={3} style={this.data.style.column} >
-        {this.renderImportChart(this.data.user)}
-      </Col>
-      <Col sm={3} style={this.data.style.column} >
-        {this.renderChecklists(this.data.user)}
-      </Col>
-      <Col sm={3} style={this.data.style.column}>
-        {this.renderContinuityOfCare(this.data.user)}
-      </Col>
-      <Col sm={3} style={this.data.style.column}>
-        {this.renderTimeline(this.data.user)}
-      </Col>
-    </Row>
+    // var appRow = <Row>
+    //   <Col sm={3} style={this.data.style.column} >
+    //     {this.renderImportChart(this.data.user)}
+    //   </Col>
+    //   <Col sm={3} style={this.data.style.column} >
+    //     {this.renderChecklists(this.data.user)}
+    //   </Col>
+    //   <Col sm={3} style={this.data.style.column}>
+    //     {this.renderContinuityOfCare(this.data.user)}
+    //   </Col>
+    //   <Col sm={3} style={this.data.style.column}>
+    //     {this.renderTimeline(this.data.user)}
+    //   </Col>
+    // </Row>
 
 
     return (
@@ -508,46 +514,6 @@ export class FhirResourcesIndex extends React.Component {
       );
     }
   }
-  // renderExperimentalSection(user){
-  //   if (get(Meteor, 'settings.public.home.showExperimental')) {
-  //     if (user.isAdmin || user.isPractitioner) {
-  //       return(
-  //         <div>
-  //           <CardTitle title="Experimental" style={this.data.style.sectionTitle} />  
-  //           <br/>
-  //           {this.renderExperimentalTiles(this.data.user)}
-
-  //         </div>
-  //       );
-  //     }
-  //   }
-  // }
-  // renderUnderConstructionSection(user){
-  //   if (get(Meteor, 'settings.public.home.showUnderConstruction')) {
-  //     if (user.isAdmin || user.isPractitioner) {
-  //       return(
-  //         <div>
-  //           <CardTitle title="Under Construction" style={this.data.style.sectionTitle} /> 
-  //           <br/>
-  //           {this.renderTilesUnderConstruction(this.data.user)}
-  //           {this.renderImagingStudy(this.data.user)}
-  //         </div>
-  //       );
-  //     }
-  //   }
-  // }  
-  // renderAppsSection(user){
-  //   if (get(Meteor, 'settings.public.home.showApps')) {
-  //     if (user.isAdmin || user.isPractitioner || user.isPatient) {
-  //       return(
-  //         <div>
-  //           <CardTitle title="Apps" style={this.data.style.sectionTitle} /> 
-  //           <br/>
-  //         </div>
-  //       );
-  //     }
-  //   }
-  // }    
   renderFhirSection(user){
     if (get(Meteor, 'settings.public.home.showFhirMenu')) {
       if (user.isAdmin || user.isPractitioner || user.isPatient || user.isUser) {
@@ -564,64 +530,6 @@ export class FhirResourcesIndex extends React.Component {
 
 
 
-
-  // renderAdminTiles(user){
-  //   if (user.isAdmin) {
-  //     return (
-  //       <div>
-  //         <CardTitle title="Admin Functionality" style={this.data.style.sectionTitle} />  
-  //         <br />  
-
-  //         <Row>
-  //           <Col sm={3} style={this.data.style.column}>
-  //             <MenuTile          
-  //               id='oauthConfigTile'
-  //               active={true}
-  //               path='/oauth-client'
-  //               icon='IoMdClipboard'
-  //               iconSize={65}
-  //               subtitle='Authorization Grants'
-  //             />  
-  //           </Col>
-  //           <Col sm={3} style={this.data.style.column}>
-  //             <MenuTile          
-  //               id='hipaaLogTile'
-  //               active={true}
-  //               path='/hipaa-log'
-  //               icon='IoMdClipboard'
-  //               iconSize={65}
-  //               subtitle='Audit Events'
-  //             />  
-  //           </Col>
-  //           <Col sm={3} style={this.data.style.column} >
-  //             <MenuTile          
-  //               id='inboundMessagesTile'
-  //               active={true}
-  //               path='/inbound-messages'
-  //               iconSize={65}
-  //               subtitle='Inbound Messages' />  
-  //           </Col>
-  //           <Col sm={3} style={this.data.style.column}>
-  //             <MenuTile          
-  //               id='outboundMessagesTile'
-  //               active={true}
-  //               path='/outbound-messages'
-  //               iconSize={65}
-  //               subtitle='Outbound Messages' />  
-  //           </Col>
-  //           {/* <Col sm={3} style={this.data.style.column}>
-  //             <MenuTile          
-  //               id='dataManagementTile'
-  //               active={true}
-  //               path='/data-management'
-  //               iconSize={65}
-  //               subtitle='Data Management' />  
-  //           </Col> */}
-  //         </Row>         
-  //       </div>
-  //     )
-  //   }
-  // }
 
   renderExperimentalTiles(user){
     if (user.isPatient || user.isPractitioner || user.isAdmin) {
@@ -858,40 +766,6 @@ export class FhirResourcesIndex extends React.Component {
     }
   }
 
-
-  // renderTilesUnderConstruction(user, showUnderConstruction){
-  //   // if (showUnderConstruction) {
-  //   if (true) {
-  //     if (user.isPractitioner || user.isAdmin) {
-  //       return (
-  //         <div>
-
-  //           <div id='diagnosticReportsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/diagnostic-reports') } >
-  //             <GlassCard style={this.data.style.indexCard} >
-  //               <CardTitle
-  //                 title={<FaHeartbeat />}
-  //                 subtitle='Diagnostic Reports'
-  //                 titleStyle={this.data.style.title}
-  //                 subtitleStyle={this.data.style.subtitle}
-  //               />
-  //             </GlassCard>
-  //           </div>    
-
-  //           <div id='bodySitesTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/body-sites') } >
-  //             <GlassCard style={this.data.style.indexCard} >
-  //               <CardTitle
-  //                 title={<FaHeartbeat />}
-  //                 subtitle='Body Sites'
-  //                 titleStyle={this.data.style.title}
-  //                 subtitleStyle={this.data.style.subtitle}
-  //               />
-  //             </GlassCard>
-  //           </div>
-
-  //         </div>);
-  //     }
-  //   }
-  // }
 
 
   openDiscussionForum(){

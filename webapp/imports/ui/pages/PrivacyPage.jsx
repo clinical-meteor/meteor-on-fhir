@@ -1,7 +1,8 @@
 import React from 'react';
 
 import { PrivacyPolicyCard } from '/imports/ui/components/PrivacyPolicyCard';
-import { GlassCard, VerticalCanvas } from 'meteor/clinical:glass-ui';
+import { PrivacyControlsCard } from '/imports/ui/components/PrivacyControlsCard';
+import { GlassCard, VerticalCanvas, DynamicSpacer } from 'meteor/clinical:glass-ui';
 
 import { Card, CardMedia, CardTitle, CardText, CardActions } from 'material-ui';
 
@@ -11,12 +12,17 @@ export class PrivacyPage extends React.Component {
   }
 
   render(){
+
+    var privacyControls;
+    if(Meteor.userId()){
+      privacyControls = <PrivacyControlsCard /> ;
+    }
     return(
       <div id="privacyPage">
         <VerticalCanvas>
           <GlassCard height='auto'>
-            <CardTitle title='Privacy Policy' />
             <PrivacyPolicyCard />            
+            { privacyControls}  
           </GlassCard>
         </VerticalCanvas>
       </div>
