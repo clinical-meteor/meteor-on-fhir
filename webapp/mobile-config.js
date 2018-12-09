@@ -13,12 +13,31 @@ App.info({
 
 App.icons({
   // iOS
+  'app_store': 'resources/icons/icon-1024.png'
   'iphone_2x': 'resources/icons/Icon-60@2x.png',
   'iphone_3x': 'resources/icons/Icon-180.png',
-  'ipad': 'resources/icons/Icon-76.png',
-  'ipad_pro': 'resources/icons/Icon-167.png',
   'ipad_2x': 'resources/icons/Icon-76@2x.png',
-  'app_store': 'resources/icons/icon-1024.png'
+  'ipad_pro': 'resources/icons/Icon-167.png',
+
+  'ios_settings_2x': 'resources/icons/Icon-58.png',
+  'ios_settings_3x': 'resources/icons/Icon-87.png',
+  'ios_spotlight_2x': 'resources/icons/Icon-80.png',
+  'ios_spotlight_3x': 'resources/icons/Icon-120.png',
+  'ios_notifications_2x': 'resources/icons/Icon-40.png',
+  'ios_notifications_3x': 'resources/icons/Icon-60.png',
+  
+  'ipad': 'resources/icons/Icon-76.png',
+
+  'ios_settings': 'resources/icons/Icon-29.png',
+  'ios_spotlight': 'resources/icons/Icon-40.png',
+  'ios_notifications': 'resources/icons/Icon-20.png',
+   
+  'iphone_legacy': 'resources/icons/Icon-57.png',
+  'iphone_legacy_2x': 'resources/icons/Icon-114.png',
+  'ipad_spotlight_legacy': 'resources/icons/Icon-50.png',
+  'ipad_spotlight_legacy_2x': 'resources/icons/Icon-100.png',
+  'ipad_app_legacy': 'resources/icons/Icon-72.png',
+  'ipad_app_legacy_2x': 'resources/icons/Icon-144.png'
 
   // Android
   //'android_ldpi': 'resources/icons/icon-36x36.png',

@@ -45,11 +45,22 @@ export class Signin extends React.Component {
         },
         floatingLabelFocusStyle: {
           color: lightBaseTheme.palette.secondaryTextColor
-        }
+        },
+        pageBackground: {}
       },
       endpoints: [],
       services: []
     };
+
+    if(get(Meteor, 'settings.public.defaults.registration.background')){
+      data.style.pageBackground = {
+        backgroundImage: 'url(' + get(Meteor, 'settings.public.defaults.registration.background') + ')',
+        WebkitBackgroundSize: 'cover',
+        MozBackgroundSize: 'cover',
+        OBackgroundSize: 'cover',
+        backgroundSize: 'cover'
+      }
+    }
 
     if( Endpoints.find().count() > 0){
       data.endpoints = Endpoints.find({
@@ -235,9 +246,9 @@ export class Signin extends React.Component {
     }
 
     return (
-      <div id="signinPage">
+      <div id="signinPage" style={this.data.style.pageBackground}>
         <MobilePadding>
-          <FullPageCanvas>
+          <FullPageCanvas >
               <Row>
                 <Col lg={5} md={ 6 } sm={ 12 }>
                   <h4 className="page-header" style={this.data.style.underlineStyle}>Sign In</h4>
