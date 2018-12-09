@@ -48,14 +48,6 @@ module.exports = [
     "clobbers": [
       "window.plugins.healthkit"
     ]
-  },
-  {
-    "id": "cordova-plugin-screen-orientation.screenorientation",
-    "file": "plugins/cordova-plugin-screen-orientation/www/screenorientation.js",
-    "pluginId": "cordova-plugin-screen-orientation",
-    "clobbers": [
-      "cordova.plugins.screenorientation"
-    ]
   }
 ];
 module.exports.metadata = 
@@ -68,8 +60,7 @@ module.exports.metadata =
   "cordova-plugin-splashscreen": "4.1.0",
   "cordova-plugin-inappbrowser": "1.7.1",
   "cordova-plugin-crosswalk-webview": "2.2.0",
-  "com.telerik.plugins.healthkit": "0.5.6",
-  "cordova-plugin-screen-orientation": "3.0.1"
+  "com.telerik.plugins.healthkit": "0.5.6"
 };
 // BOTTOM OF METADATA
 });

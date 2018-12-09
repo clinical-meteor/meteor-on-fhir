@@ -14,6 +14,11 @@ Session.setDefault('accessToken', '');
 
 Meteor.startup(function (){
 
+  // var console = {};
+  // console.log = function(){};
+  // window.console = console;
+
+
   document.title = get(Meteor, 'settings.public.title');
 
   console.log('Bert', Bert)

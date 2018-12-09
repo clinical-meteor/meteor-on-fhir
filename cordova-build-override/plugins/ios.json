@@ -29,11 +29,8 @@
       "PACKAGE_NAME": "io.symptomatic.phr"
     },
     "com.telerik.plugins.healthkit": {
-      "HEALTH_READ_PERMISSION": " ",
-      "HEALTH_WRITE_PERMISSION": " ",
-      "PACKAGE_NAME": "io.symptomatic.phr"
-    },
-    "cordova-plugin-screen-orientation": {
+      "HEALTH_READ_PERMISSION": "App needs read access",
+      "HEALTH_WRITE_PERMISSION": "App needs write access",
       "PACKAGE_NAME": "io.symptomatic.phr"
     }
   },

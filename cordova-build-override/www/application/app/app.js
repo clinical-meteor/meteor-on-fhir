@@ -17255,6 +17255,9 @@ module.link("lodash", {
 // OAuth Access Token
 Session.setDefault('accessToken', '');
 Meteor.startup(function () {
+  // var console = {};
+  // console.log = function(){};
+  // window.console = console;
   document.title = get(Meteor, 'settings.public.title');
   console.log('Bert', Bert);
   Bert.defaults.style = 'growl-top-right'; // Global session variables for user interface elements

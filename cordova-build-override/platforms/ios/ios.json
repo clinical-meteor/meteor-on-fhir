@@ -43,10 +43,6 @@
             {
               "xml": "<feature name=\"HealthKit\"><param name=\"ios-package\" value=\"HealthKit\" /></feature>",
               "count": 1
-            },
-            {
-              "xml": "<feature name=\"CDVOrientation\"><param name=\"ios-package\" value=\"CDVOrientation\" /></feature>",
-              "count": 1
             }
           ]
         }
@@ -55,14 +51,20 @@
         "parents": {
           "NSHealthShareUsageDescription": [
             {
-              "xml": "<string> </string>",
+              "xml": "<string>App needs read access</string>",
               "count": 1
             }
           ],
           "NSHealthUpdateUsageDescription": [
             {
-              "xml": "<string> </string>",
+              "xml": "<string>App needs write access</string>",
               "count": 1
+            }
+          ],
+          "NSHealthClinicalHealthRecordsShareUsageDescription": [
+            {
+              "xml": "<string>App needs read access</string>",
+              "count": 2
             }
           ]
         }
@@ -112,11 +114,8 @@
       "PACKAGE_NAME": "io.symptomatic.phr"
     },
     "com.telerik.plugins.healthkit": {
-      "HEALTH_READ_PERMISSION": " ",
-      "HEALTH_WRITE_PERMISSION": " ",
-      "PACKAGE_NAME": "io.symptomatic.phr"
-    },
-    "cordova-plugin-screen-orientation": {
+      "HEALTH_READ_PERMISSION": "App needs read access",
+      "HEALTH_WRITE_PERMISSION": "App needs write access",
       "PACKAGE_NAME": "io.symptomatic.phr"
     }
   },
@@ -170,14 +169,6 @@
       "clobbers": [
         "window.plugins.healthkit"
       ]
-    },
-    {
-      "id": "cordova-plugin-screen-orientation.screenorientation",
-      "file": "plugins/cordova-plugin-screen-orientation/www/screenorientation.js",
-      "pluginId": "cordova-plugin-screen-orientation",
-      "clobbers": [
-        "cordova.plugins.screenorientation"
-      ]
     }
   ],
   "plugin_metadata": {
@@ -188,7 +179,6 @@
     "cordova-plugin-splashscreen": "4.1.0",
     "cordova-plugin-inappbrowser": "1.7.1",
     "cordova-plugin-crosswalk-webview": "2.2.0",
-    "com.telerik.plugins.healthkit": "0.5.6",
-    "cordova-plugin-screen-orientation": "3.0.1"
+    "com.telerik.plugins.healthkit": "0.5.6"
   }
 }

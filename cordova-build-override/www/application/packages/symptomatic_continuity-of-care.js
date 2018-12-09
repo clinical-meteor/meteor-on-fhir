@@ -5160,12 +5160,11 @@ function (_Component) {
   }();
 
   _proto.handleRedraw = function () {
-    function handleRedraw() {
-      alert('rotate');
-      this.$el.setOptions({
-        height: Session.get('appHeight') - 128 + 'px'
-      });
-      this.$el.redraw();
+    function handleRedraw() {// alert('rotate')
+      // this.$el.setOptions({
+      //   height: (Session.get('appHeight') - 128)+ 'px'
+      // })
+      // this.$el.redraw();
     }
 
     return handleRedraw;
@@ -5179,8 +5178,8 @@ function (_Component) {
       this.$el = new vis.Timeline(container, undefined, this.props.options);
       events.forEach(function (event) {
         _this.$el.on(event, _this.props[event + "Handler"]);
-      });
-      window.addEventListener("orientationchange", this.handleRedraw);
+      }); // window.addEventListener("orientationchange", this.handleRedraw );
+
       this.init();
     }
 

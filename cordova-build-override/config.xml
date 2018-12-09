@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<widget id="io.symptomatic.phr" version="0.6.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="io.symptomatic.phr" version="0.6.6" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>Symptomatic</name>
   <description>HealthRecord Timeline Viewer</description>
   <author href="https://www.symptomatic.io" email="abigail@symptomatic.io">Abigail Watson</author>
@@ -18,6 +18,9 @@
   <preference name="Orientation" value="default"/>
   <preference name="BackupWebStorage" value="local"/>
   <allow-navigation href="https://www.wikipedia.com/" />
+  <config-file parent="NSHealthClinicalHealthRecordsShareUsageDescription" target="*-Info.plist">
+<string>App needs read access</string>
+</config-file>
   <content src="http://localhost:12224/"/>
   <allow-intent href="tel:*"/>
   <allow-intent href="geo:*"/>

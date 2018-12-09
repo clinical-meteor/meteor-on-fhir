@@ -1,5 +1,4 @@
-com.telerik.plugins.healthkit@https://github.com/rossmartin/HealthKit.git#2db3a359fd12f90ec9c0817d4b7b1bc9b8ea458b
+com.telerik.plugins.healthkit@https://github.com/rossmartin/HealthKit.git#994bf6b1696ae504793067f7107c4baa6923a8ad
 cordova-plugin-splashscreen@4.1.0
-cordova-plugin-statusbar@2.3.0
-cordova-plugin-screen-orientation@3.0.1
+
 
