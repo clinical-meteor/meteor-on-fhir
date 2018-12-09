@@ -2,7 +2,7 @@ import React from 'react';
 import ReactMixin  from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
-import { Row, Col, Alert, FormGroup, FormControl, Button } from 'react-bootstrap';
+import { Row, Col, Alert, FormGroup, FormControl } from 'react-bootstrap';
 import { handleRecoverPassword } from '/imports/client/entry/handleRecoverPassword';
 
 import { MobilePadding } from '/imports/ui/components/MobilePadding';
@@ -15,8 +15,39 @@ import TextField from 'material-ui/TextField';
 import Theme from '/imports/api/Theme';
 import { lightBaseTheme, darkBaseTheme } from 'material-ui/styles';
 
-import { VerticalCanvas } from 'meteor/clinical:glass-ui';
+import { VerticalCanvas, FullPageCanvas, GlassCard, Glass } from 'meteor/clinical:glass-ui';
 import { get } from 'lodash';
+
+// import Button from '@material-ui/core/Button';
+// import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+
+// const theme = createMuiTheme({
+//   palette: {
+//     primary: {
+//       main: '#03a9f4'
+//     },
+//     secondary: {
+//       main: '#af52bf'
+//     }
+//   }
+// });
+
+// const theme = createMuiTheme({
+//   palette: {
+//     primary: {
+//       light: '#757ce8',
+//       main: '#3f50b5',
+//       dark: '#002884',
+//       contrastText: '#fff',
+//     },
+//     secondary: {
+//       light: '#ff7961',
+//       main: '#f44336',
+//       dark: '#ba000d',
+//       contrastText: '#000',
+//     },
+//   },
+// });
 
 export class RecoverPassword extends React.Component {
   componentDidMount() {
@@ -48,7 +79,8 @@ export class RecoverPassword extends React.Component {
         },
         floatingLabelFocusStyle: {
           color: lightBaseTheme.palette.secondaryTextColor
-        }
+        },
+        pageBackground: {}
       }
     };
     if (get(Meteor, 'settings.public.theme.darkroomTextEnabled')) {
@@ -61,6 +93,9 @@ export class RecoverPassword extends React.Component {
       data.style.floatingLabelFocusStyle.color = darkBaseTheme.palette.secondaryTextColor;
     }
 
+
+    data.style.pageBackground = Glass.getContextImage();
+
     if(process.env.NODE_ENV === "test") console.log("Signin[data]", data);
     return data;
   }
@@ -70,9 +105,9 @@ export class RecoverPassword extends React.Component {
 
   render() {
     return(
-      <div id='recoverPasswordPage'>
+      <div id='recoverPasswordPage' style={this.data.style.pageBackground}>
         <MobilePadding>
-          <VerticalCanvas>
+          <FullPageCanvas>
             <h4 className="page-header" style={this.data.style.underlineStyle}>Recover Password</h4>
             <Alert bsStyle="info">
               Enter your email address below to receive a link to reset your password.
@@ -91,13 +126,15 @@ export class RecoverPassword extends React.Component {
                   underlineStyle={this.data.style.underlineStyle}
                   floatingLabelStyle={this.data.style.floatingLabelStyle}
                   floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
+                  floatingLabelFixed={true} 
+                  hintText='janedoe@symptomatic.io'
                   fullWidth
                   /><br/>
               </FormGroup>
-              <RaisedButton id='recoverPasswordButton' type="submit" onClick={this.recoverPassword } label='Recover Password' primary={true} />
+              <RaisedButton primary={true} id='recoverPasswordButton' type="submit" onClick={this.recoverPassword } label="Recover Password" />
 
             </form>
-          </VerticalCanvas>
+          </FullPageCanvas>
         </MobilePadding>
       </div>
     );

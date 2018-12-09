@@ -157,7 +157,7 @@ symptomatic:smart-on-fhir-client
 symptomatic:smart-on-fhir-config
 symptomatic:clinical-scenarios
 # symptomatic:example-plugin
-# symptomatic:landing-page
+symptomatic:landing-page
 # symptomatic:geomapping
 
 # symptomatic:card-readers

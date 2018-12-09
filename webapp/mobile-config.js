@@ -13,7 +13,7 @@ App.info({
 
 App.icons({
   // iOS
-  'app_store': 'resources/icons/icon-1024.png'
+  'app_store': 'resources/icons/icon-1024.png',
   'iphone_2x': 'resources/icons/Icon-60@2x.png',
   'iphone_3x': 'resources/icons/Icon-180.png',
   'ipad_2x': 'resources/icons/Icon-76@2x.png',

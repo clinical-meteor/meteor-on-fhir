@@ -835,7 +835,6 @@ export class Footer extends React.Component {
     Session.set('hapiProvenances', {})
   }
   queryHapiDocumentReferences(){
-    // 
     console.log('queryHapiProvenances')
 
     HTTP.get('https://hapi.fhir.org/baseDstu3/DocumentReference?_pretty=true&_format=json&_count=100', function(error, result){
@@ -865,7 +864,7 @@ export class Footer extends React.Component {
     Session.set('hapiProvenances', {})
   }
   renderEastNavbar(displayThemeNavbar){
-    console.log('Footer.renderEastNavbar')
+    // console.log('Footer.renderEastNavbar')
 
     if (displayThemeNavbar) {
       return (<div>
@@ -906,8 +905,8 @@ export class Footer extends React.Component {
     }
   }
   render () {
-    console.log('this.data.pathname', this.data.pathname)
-    console.log('this.data.userId', this.data.userId)
+    // console.log('this.data.pathname', this.data.pathname)
+    // console.log('this.data.userId', this.data.userId)
 
     let westNavbar;
     if(this.data.userId){

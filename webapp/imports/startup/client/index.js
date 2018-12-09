@@ -21,7 +21,7 @@ Meteor.startup(function (){
 
   document.title = get(Meteor, 'settings.public.title');
 
-  console.log('Bert', Bert)
+  // console.log('Bert', Bert)
   Bert.defaults.style = 'growl-top-right';
 
 

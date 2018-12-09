@@ -6,7 +6,7 @@ import React  from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin  from 'react-mixin';
 
-import { FullPageCanvas, GlassCard } from 'meteor/clinical:glass-ui';
+import { FullPageCanvas, GlassCard, Glass } from 'meteor/clinical:glass-ui';
 import { CardText, CardActions, CardTitle, TextField, RaisedButton } from 'material-ui'
 
 import { browserHistory } from 'react-router';
@@ -52,15 +52,7 @@ export class Signin extends React.Component {
       services: []
     };
 
-    if(get(Meteor, 'settings.public.defaults.registration.background')){
-      data.style.pageBackground = {
-        backgroundImage: 'url(' + get(Meteor, 'settings.public.defaults.registration.background') + ')',
-        WebkitBackgroundSize: 'cover',
-        MozBackgroundSize: 'cover',
-        OBackgroundSize: 'cover',
-        backgroundSize: 'cover'
-      }
-    }
+
 
     if( Endpoints.find().count() > 0){
       data.endpoints = Endpoints.find({
@@ -85,6 +77,22 @@ export class Signin extends React.Component {
       data.style.underlineStyle.color = darkBaseTheme.palette.textColor;
       data.style.floatingLabelStyle.color = darkBaseTheme.palette.secondaryTextColor;
       data.style.floatingLabelFocusStyle.color = darkBaseTheme.palette.secondaryTextColor;
+    }
+
+    if(get(Meteor, 'settings.public.defaults.registration.background')){
+      data.style.pageBackground = {
+        backgroundImage: 'url(' + get(Meteor, 'settings.public.defaults.registration.background') + ')',
+        WebkitBackgroundSize: 'contain',
+        MozBackgroundSize: 'contain',
+        OBackgroundSize: 'contain',
+        backgroundSize: 'contain',
+        backgroundPositionY: 'bottom',
+        backgroundRepeat: 'no-repeat',
+        backgroundColor: 'white',
+        position: 'absolute',
+        height: '100%',
+        width: '100%'
+      }
     }
 
     if(process.env.NODE_ENV === "test") console.log("Signin[data]", data);
@@ -267,6 +275,8 @@ export class Signin extends React.Component {
                           underlineStyle={this.data.style.underlineStyle}
                           floatingLabelStyle={this.data.style.floatingLabelStyle}
                           floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
+                          floatingLabelFixed={true} 
+                          hintText='alias@business.com'
                           fullWidth
                         />              
                         <br/>
@@ -283,6 +293,8 @@ export class Signin extends React.Component {
                           underlineStyle={this.data.style.underlineStyle}
                           floatingLabelStyle={this.data.style.floatingLabelStyle}
                           floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
+                          floatingLabelFixed={true} 
+                          hintText='************'
                           fullWidth
                         />
                         <br/>

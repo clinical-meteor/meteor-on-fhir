@@ -1,6 +1,6 @@
 // base layout
 import { CardHeader, CardText, CardTitle } from 'material-ui/Card';
-import {teal400, teal600} from 'material-ui/styles/colors';
+import {blue400, blue600} from 'material-ui/styles/colors';
 import PropTypes from 'prop-types';
 
 import { ReactMeteorData } from 'meteor/react-meteor-data';
@@ -18,14 +18,15 @@ import SidebarTray from '/imports/ui/layouts/SidebarTray';
 
 import { get, has } from 'lodash';
 // import injectTapEventPlugin from 'react-tap-event-plugin';
+
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 const muiTheme = getMuiTheme({
   palette: {
-    primary1Color: teal400,
-    primary2Color: teal600,
-    pickerHeaderColor: teal400
+    primary1Color: blue400,
+    primary2Color: blue600,
+    pickerHeaderColor: blue600
   }
 });
 
@@ -160,7 +161,8 @@ export class App extends React.Component {
     //   orbital = <SciFiPage />;
     // }
 
-    console.log('this.props.location.query', this.props.location.query)
+    // console.log('this.props.location.query', this.props.location.query)
+
     Session.set('window.location', this.props.location)
     Session.set('ehrLaunchContext', get(this, 'props.location.query.launch'))
   
