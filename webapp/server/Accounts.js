@@ -89,8 +89,10 @@ Accounts.onLogin(function(loginObject) {
   let userId = get(loginObject, 'user._id');
   console.log('userId', userId);
 
-  var consents;
-  
+  // =================================================================
+  // CONSENTS
+
+  var consents;  
   if(!get(loginObject, 'user.profile.consents')){
     var defaultConsents = {
       performanceAnalytics: {
@@ -173,9 +175,32 @@ Accounts.onLogin(function(loginObject) {
     Meteor.users.update({_id: userId}, {$set: {
       'profile.consents': defaultConsents
     }});
-
+    
     console.log('userId', userId);
   };
+
+  // =================================================================
+  // FILTERS
+
+  var defaultFilters = {
+    remove: ['gonorrhoeae', 'eGFR', 'chlamydia' ],
+    mustHave: [],
+    resourceTypes: [
+      'Allergies', 
+      'CarePlans',
+      'Conditions', 
+      'Immunizations', 
+      'MedicationOrders', 
+      'MedicationStatements', 
+      'Observations', 
+      'Procedures' 
+    ]
+  };  
+  if(!get(loginObject, 'user.profile.filters')){    
+    Meteor.users.update({_id: userId}, {$set: {
+      'profile.filters': defaultFilters
+    }});
+  }
 
 
 });

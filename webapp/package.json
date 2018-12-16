@@ -72,6 +72,7 @@
     "react-scifi": "0.1.0-alpha",
     "react-swipeable": "^4.3.0",
     "simpl-schema": "1.5.3",
+    "validator": "^10.9.0",
     "xml2js": "0.4.19"
   },
   "devDependencies": {

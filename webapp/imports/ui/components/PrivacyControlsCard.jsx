@@ -240,8 +240,8 @@ export class PrivacyControlsCard extends React.Component {
             <p>In summary, this data fetches protected health information directly from FHIR compliant servers to the user’s mobile device or desktop, displays it in a timeline, provides context to understand the medical chart, and then allows users to export/download the result.  The app does not directly store user PHI on our servers.</p>
           </CardText> */}
 
-          <CardTitle title='Privacy Controls' />
-          <CardText style={{margin: '20px', marginTop: '0px'}}>
+          <CardTitle title='Privacy Controls' subtitle={ moment().format('YYYY MMM DD')} />
+          {/* <CardText style={{margin: '20px', marginTop: '0px'}}> */}
             <Alert bsStyle="success">
               <Toggle
                 label="Symptomatic Core Services"
@@ -326,7 +326,7 @@ export class PrivacyControlsCard extends React.Component {
                             
             </Alert> */}
 
-         </CardText>
+         {/* </CardText> */}
         </div>
     );
   }

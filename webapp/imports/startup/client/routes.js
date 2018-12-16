@@ -127,11 +127,26 @@ const requreSysadmin = (nextState, replace) => {
   }
 };
 
+let indexRoute;
+if(Package['symptomatic:continuity-of-care']){
+  import { ContinuityOfCarePage } from 'meteor/symptomatic:continuity-of-care';
+  indexRoute = ContinuityOfCarePage;
+} else {
+  indexRoute = MainIndex;  
+}
+
+
+
 Meteor.startup(() => {
+  var roles = get(Meteor.user(), 'roles');
+  if(roles && roles.includes('practitioner')){
+    Session.set('showSearchbar', true)
+  }
+
   render(
     <Router history={ browserHistory }>
       <Route path="/" component={ App }>
-      <IndexRoute name="index" component={ MainIndex } onEnter={ requireAuth } />
+      <IndexRoute name="index" component={ indexRoute } onEnter={ requireAuth } />
 
         <Route name="fhirResources" path="/fhir-resources-index" component={ FhirResourcesIndex } />
 

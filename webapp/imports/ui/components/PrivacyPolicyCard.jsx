@@ -220,10 +220,19 @@ export class PrivacyPolicyCard extends React.Component {
     //   )
     // }
 
+    var fontStyle = {
+      margin: '20px',
+      fontSize: '18px'
+    }
+
+    if(this.props.fontsize){
+      fontStyle.fontSize = this.props.fontsize;
+    }
+
     return (
       <div>
-         <CardTitle title='Privacy Policy' />
-         <CardText style={{margin: '20px'}}>
+         <CardTitle title='Privacy Policy' subtitle={ moment().format('YYYY MMM DD')} />
+         <CardText style={fontStyle}>
             <p >Symptomatic Timeline is an application is provided by Symptomatic, LLC, an Illinois company based out of the Polsky Center for Entrepreneurship (University of Chicago), and MATTER.health, a Chicago area health incubator.</p>
 
             <p>This app was initially produced by volunteers and the open source community.  Subsequent development was provided by consulting fees, and the app is now funded by purchases, subscriptions, and donations.  </p>

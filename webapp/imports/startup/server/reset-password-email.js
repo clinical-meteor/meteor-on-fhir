@@ -1,25 +1,25 @@
 import { Accounts } from 'meteor/accounts-base';
 
 
-Accounts.emailTemplates.siteName = 'Meteor Guide Todos Example';
-Accounts.emailTemplates.from = 'Meteor Todos Accounts <accounts@example.com>';
+Accounts.emailTemplates.siteName = 'Symptomatic Timeline';
+Accounts.emailTemplates.from = 'Symptomatic <catherder@symptomatic.io>';
 
 Accounts.emailTemplates.resetPassword = {
   subject() {
-    return 'Reset your password on Meteor Todos';
+    return 'Reset your password on Symptomatic';
   },
   text(user, url) {
     return `Hello!
 
-Click the link below to reset your password on Meteor Todos.
+      Thank you using Symptomatic.  Click the link below to reset your password with Symptomatic.
 
-${url}
+      ${url}
 
-If you didn't request this email, please ignore it.
+      If you didn't request this email, please ignore it.
 
-Thanks,
-The Meteor Todos team
-`;
+      Thanks,
+      The Symptomatic team
+    `;
   },
 //   html(user, url) {
 //     return `

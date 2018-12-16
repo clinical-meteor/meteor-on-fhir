@@ -11,9 +11,9 @@ import { get } from 'lodash';
 // Pick up any dynamic routes that are specified in packages, and include them
 var publicModules = [];
 Object.keys(Package).forEach(function(packageName){
-  if(Package[packageName].SidebarElements){
+  if(Package[packageName].PublicSidebarElements){
     // we try to build up a route from what's specified in the package
-    Package[packageName].SidebarElements.forEach(function(element){
+    Package[packageName].PublicSidebarElements.forEach(function(element){
       publicModules.push(element);      
     });    
   }
@@ -84,9 +84,11 @@ export class PublicSidebar extends React.Component {
         {/* { publicElements } */}
         { registrationLinks }
 
-        <IndexLinkContainer to='/about'>
-           <MenuItem primaryText='About' href='/about' />
-        </IndexLinkContainer>
+        <hr />
+
+        { publicElements }
+
+        <hr />
 
         <IndexLinkContainer to='/privacy'>
            <MenuItem primaryText='Privacy Page' href='/privacy' />

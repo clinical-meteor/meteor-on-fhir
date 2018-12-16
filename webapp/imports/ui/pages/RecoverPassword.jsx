@@ -10,51 +10,26 @@ import { browserHistory } from 'react-router';
 import { Accounts } from 'meteor/accounts-base';
 import { Bert } from 'meteor/clinical:alert';
 
-import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
+import { RaisedButton, TextField, CardTitle, CardText } from 'material-ui';
 import Theme from '/imports/api/Theme';
 import { lightBaseTheme, darkBaseTheme } from 'material-ui/styles';
 
 import { VerticalCanvas, FullPageCanvas, GlassCard, Glass } from 'meteor/clinical:glass-ui';
 import { get } from 'lodash';
+import validator from 'validator';
 
-// import Button from '@material-ui/core/Button';
-// import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
-// const theme = createMuiTheme({
-//   palette: {
-//     primary: {
-//       main: '#03a9f4'
-//     },
-//     secondary: {
-//       main: '#af52bf'
-//     }
-//   }
-// });
 
-// const theme = createMuiTheme({
-//   palette: {
-//     primary: {
-//       light: '#757ce8',
-//       main: '#3f50b5',
-//       dark: '#002884',
-//       contrastText: '#fff',
-//     },
-//     secondary: {
-//       light: '#ff7961',
-//       main: '#f44336',
-//       dark: '#ba000d',
-//       contrastText: '#000',
-//     },
-//   },
-// });
-
+Session.setDefault('recoverPasswordInput', '')
 export class RecoverPassword extends React.Component {
   componentDidMount() {
-    handleRecoverPassword({ component: this });
+    //handleRecoverPassword({ component: this });
   }
-  handleSubmit(event) {
-    event.preventDefault();
+  handleSubmit(event, foo) {
+    event.preventDefault();    
+
+    console.log('handleSubmit.event', event)
+    console.log('handleSubmit.foo', foo)
   }
   getMeteorData() {
     let data = {
@@ -81,8 +56,20 @@ export class RecoverPassword extends React.Component {
           color: lightBaseTheme.palette.secondaryTextColor
         },
         pageBackground: {}
-      }
+      },
+      error: {
+        text: ''
+      },
+      recoverPassword: Session.get('recoverPasswordInput') 
     };
+
+    console.log('validator.isEmail', validator.isEmail(Session.get('recoverPasswordInput')))
+    if(!validator.isEmail(Session.get('recoverPasswordInput'))){
+      data.error.text = 'Not an email.  Please check spelling and punctuation.'
+    }
+
+
+
     if (get(Meteor, 'settings.public.theme.darkroomTextEnabled')) {
       data.style.textColor.color = darkBaseTheme.palette.textColor;
       data.style.inputStyle.color = darkBaseTheme.palette.textColor;
@@ -99,43 +86,69 @@ export class RecoverPassword extends React.Component {
     if(process.env.NODE_ENV === "test") console.log("Signin[data]", data);
     return data;
   }
-  recoverPassword(){
-    console.log("recoverPassword");
+  recoverPassword(proxy, value){
+    console.log("recoverPasswordInput", value);
+
+    console.log('recoverPasswordInput', Session.get('recoverPasswordInput'));
+
+    Accounts.forgotPassword({
+      email: Session.get('recoverPasswordInput'),
+    }, (error) => {
+      if (error) {
+        Bert.alert(error.reason, 'warning');
+      } else {
+        Bert.alert('Check your inbox for a reset link!', 'info');
+      }
+    });
+  }
+  handleChange(event){
+    console.log("handleChange", event.target.value);
+    Session.set('recoverPasswordInput', event.target.value)
   }
 
   render() {
+    var email = 'janedoe@acme.com';
     return(
       <div id='recoverPasswordPage' style={this.data.style.pageBackground}>
-        <MobilePadding>
           <FullPageCanvas>
-            <h4 className="page-header" style={this.data.style.underlineStyle}>Recover Password</h4>
-            <Alert bsStyle="info">
-              Enter your email address below to receive a link to reset your password.
-            </Alert>
-            <form ref="recoverPassword" className="recover-password" onSubmit={ this.handleSubmit }>
-              <FormGroup>
-                <TextField
-                  id='recoverPasswordEmailInput'
-                  ref='emailAddress'
-                  name='emailAddress'
-                  type='email'
-                  floatingLabelText='Email Address'
-                  inputStyle={this.data.style.inputStyle}
-                  hintStyle={this.data.style.hintStyle}
-                  errorStyle={this.data.style.errorStyle}
-                  underlineStyle={this.data.style.underlineStyle}
-                  floatingLabelStyle={this.data.style.floatingLabelStyle}
-                  floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
-                  floatingLabelFixed={true} 
-                  hintText='janedoe@symptomatic.io'
-                  fullWidth
-                  /><br/>
-              </FormGroup>
-              <RaisedButton primary={true} id='recoverPasswordButton' type="submit" onClick={this.recoverPassword } label="Recover Password" />
+            <Row>
+              <Col md={ 6 } sm={ 12 }>
+                <Row>                    
+                  <Col mdOffset={2} md={10}>
+                    <GlassCard backgroundColor='rgba(128, 192, 224, 0.12)' >
+                    <CardTitle title='Recover Password' />
+                      <CardText>
+                          <FormGroup>
+                            <TextField
+                              id='recoverPasswordEmailInput'
+                              ref='emailAddress'
+                              name='emailAddress'
+                              type='email'
+                              floatingLabelText='Email Address'
+                              inputStyle={this.data.style.inputStyle}
+                              hintStyle={this.data.style.hintStyle}
+                              errorText={this.data.error.text}
+                              errorStyle={this.data.style.errorStyle}
+                              underlineStyle={this.data.style.underlineStyle}
+                              floatingLabelStyle={this.data.style.floatingLabelStyle}
+                              floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
+                              floatingLabelFixed={true} 
+                              onChange={this.handleChange }
+                              hintText='janedoe@symptomatic.io'
+                              fullWidth
+                              /><br/>
+                          </FormGroup>
 
-            </form>
+
+                        <RaisedButton primary={true} id='recoverPasswordButton' type="submit" onClick={this.recoverPassword } label="Recover Password" fullWidth />
+
+                      </CardText>
+                    </GlassCard>
+                  </Col>
+                </Row>
+              </Col>
+            </Row>
           </FullPageCanvas>
-        </MobilePadding>
       </div>
     );
   }

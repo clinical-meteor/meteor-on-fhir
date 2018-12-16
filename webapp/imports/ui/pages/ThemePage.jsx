@@ -125,13 +125,16 @@ export class ThemePage extends React.Component {
       }
     });
 
-
+    var controlPaneStyle = {}
+    if(['iPhone'].includes(window.navigator.platform)){
+      controlPaneStyle.display = 'none';
+    }     
 
     return(
       <div id='aboutPage'>
         <FullPageCanvas>
           <Row>
-            <Col md={3} >
+            <Col md={3} style={controlPaneStyle}>
               <GlassCard>
                 <CardTitle
                   title='Theme'

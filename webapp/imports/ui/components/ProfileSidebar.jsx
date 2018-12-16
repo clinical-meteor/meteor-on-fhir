@@ -118,10 +118,6 @@ export class ProfileSidebar extends React.Component {
              <MenuItem id='logoutMenuItem' primaryText='Preferences' href='/preferences' onClick={this.handlePreferences} />
           </LinkContainer>
 
-          <LinkContainer to='/oauth-grants'>
-             <MenuItem id='logoutMenuItem' primaryText='Authorization Grants' href='/oauth-grants' onClick={this.handlePreferences} />
-          </LinkContainer>       
-
           <LinkContainer to='/signin'>
              <MenuItem id='logoutMenuItem' className='logoutMenuItem' primaryText='Logout' href='/signin' onClick={this.handleLogout} />
           </LinkContainer>   

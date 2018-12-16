@@ -14,15 +14,22 @@ Session.setDefault('accessToken', '');
 
 Meteor.startup(function (){
 
-  // var console = {};
-  // console.log = function(){};
-  // window.console = console;
 
+
+  // Accounts.onLogin(function(){
+  //   // console.log(user.user._id)
+  //   var roles = get(Meteor.user(), 'roles');
+  //   if(roles.includes('practitioner')){
+  //     Session.set('showSearchbar', true)
+  //   }
+  // });
+  
 
   document.title = get(Meteor, 'settings.public.title');
 
   // console.log('Bert', Bert)
   Bert.defaults.style = 'growl-top-right';
+  Bert.defaults.type = 'info';
 
 
   // Global session variables for user interface elements

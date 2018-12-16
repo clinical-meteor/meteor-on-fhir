@@ -455,7 +455,7 @@ export class Footer extends React.Component {
     }
   }
   renderWestNavbar(pathname){
-      console.log('Footer.renderWestNavbar', pathname)
+      // console.log('Footer.renderWestNavbar', pathname)
 
       let self = this;
 
@@ -513,9 +513,9 @@ export class Footer extends React.Component {
       }, {
         pathname: '/data-management',
         component: <div>
-          <FlatButton label='Prepare CCD' id="exportContinuityOfCareDoc" className='exportCcd' ref='exportContinuityOfCareDoc' style={this.data.style.buttonText} onClick={this.exportContinuityOfCareDoc}></FlatButton>
+          {/* <FlatButton label='Prepare CCD' id="exportContinuityOfCareDoc" className='exportCcd' ref='exportContinuityOfCareDoc' style={this.data.style.buttonText} onClick={this.exportContinuityOfCareDoc}></FlatButton>
           <FlatButton label='Download' id="downloadContinuityOfCareDoc" className='exportCcd' ref='exportContinuityOfCareDoc' style={this.data.style.buttonText} onClick={this.downloadContinuityOfCareDoc}></FlatButton>
-          <a id="downloadAnchorElement" style={{display: "none"}} ></a>            
+          <a id="downloadAnchorElement" style={{display: "none"}} ></a>             */}
         </div>
       }, {
         pathname: '/zygote',
