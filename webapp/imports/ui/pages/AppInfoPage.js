@@ -141,3 +141,4 @@ export class AppInfoPage extends React.Component {
 
 
 ReactMixin(AppInfoPage.prototype, ReactMeteorData);
+export default AppInfoPage;

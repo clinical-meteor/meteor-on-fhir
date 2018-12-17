@@ -160,7 +160,7 @@ export class PatientSidebar extends React.Component {
           </LinkContainer>
       </div>
 
-      supportElements = <LinkContainer to='/support'>
+      supportElements = <LinkContainer key='Support' to='/support'>
           <MenuItem primaryText='Help & Support' href='/support' />
       </LinkContainer>
 
