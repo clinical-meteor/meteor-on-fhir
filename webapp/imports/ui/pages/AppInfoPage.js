@@ -13,13 +13,13 @@ import { get } from 'lodash';
 
 const styles = {
   errorStyle: {
-    color: orange500
+    color: blue500
   },
   underlineStyle: {
-    borderColor: orange500
+    borderColor: blue500
   },
   floatingLabelStyle: {
-    color: orange500
+    color: blue500
   },
   floatingLabelFocusStyle: {
     color: blue500

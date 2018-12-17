@@ -161,6 +161,8 @@ App.configurePlugin('com.telerik.plugins.healthkit', {
 
 // XML Tags for info.plist
 App.appendToConfig('<allow-navigation href="https://www.wikipedia.com/" />')
+App.appendToConfig('<allow-navigation href="https://groups.google.com/a/symptomatic.io/forum/#!forum/support" />')
+App.appendToConfig('<allow-navigation href="https://www.linkedin.com/groups/12150525" />')
 
 
 App.appendToConfig(`<config-file parent="NSHealthClinicalHealthRecordsShareUsageDescription" target="*-Info.plist">

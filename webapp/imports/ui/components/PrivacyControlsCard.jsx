@@ -225,23 +225,10 @@ export class PrivacyControlsCard extends React.Component {
     // }
 
     return (
-      <div>
-         {/* <CardTitle title='Privacy Policy' />
+      <div style={{textAlign: 'justify'}} >
 
-         <CardText style={{margin: '20px'}}>
-            <p >Symptomatic Timeline is an application is provided by Symptomatic, LLC, an Illinois company based out of the Polsky Center for Entrepreneurship (University of Chicago), and MATTER.health, a Chicago area health incubator.</p>
-
-            <p>This app was initially produced by volunteers and the open source community.  Subsequent development was provided by consulting fees, and the app is now funded by purchases, subscriptions, and donations.  </p>
-
-            <p>Symptomatic Timeline is designed to not store protected health information (PHI) on our servers, which greatly reduces the risk of HIPAA breaches.  However, we have also implemented policies, procedures, audit trails, and encryption to be HIPAA compliant, as some of our other applications require this level of regulatory oversight.  We are happy and willing to sign business associate agreements (BAA) with covered entities that require them. </p>
-
-            <p>Users specifically approve each time their protected health information is accessed.  This app allows users to obtain a complete record of the data that it has stored about them.  This app allows users to delete all of the data that it has stored about them.</p>
-
-            <p>In summary, this data fetches protected health information directly from FHIR compliant servers to the user’s mobile device or desktop, displays it in a timeline, provides context to understand the medical chart, and then allows users to export/download the result.  The app does not directly store user PHI on our servers.</p>
-          </CardText> */}
 
           <CardTitle title='Privacy Controls' subtitle={ moment().format('YYYY MMM DD')} />
-          {/* <CardText style={{margin: '20px', marginTop: '0px'}}> */}
             <Alert bsStyle="success">
               <Toggle
                 label="Symptomatic Core Services"
@@ -251,7 +238,6 @@ export class PrivacyControlsCard extends React.Component {
               />
               This app may send core data to Symptomatic services, including account username/password, audit logs, consent, and other infrastructure data.  This data is necessary for this application to work and to maintain legal and regulatory compliance.  These core services avoid Protected Health Information (PHI) as much as possible, although medical record numbers and patient name is frequently included.  
             </Alert>
-            {/* <DynamicSpacer /> */}
             <Alert bsStyle={this.data.consentBsStyles.fileVault} >
               <Toggle
                 label="Disk Encryption (i.e. Encrypted Data at Rest)"
@@ -271,7 +257,6 @@ export class PrivacyControlsCard extends React.Component {
               />
               { performanceAnalyticsText }              
             </Alert>
-            {/* <DynamicSpacer /> */}
 
             <Alert bsStyle={this.data.consentBsStyles.medicalCodeLookup} style={this.data.consentStyles.medicalCodeLookup} >
               <Toggle
@@ -281,7 +266,7 @@ export class PrivacyControlsCard extends React.Component {
               />
               { medicalCodeLookupText }                 
             </Alert>
-            {/* <DynamicSpacer /> */}
+
             <Alert bsStyle={this.data.consentBsStyles.patientEducationReferences} style={this.data.consentStyles.patientEducationReferences} >
               <Toggle
                 label="Patient Education References"
@@ -290,7 +275,7 @@ export class PrivacyControlsCard extends React.Component {
               />
                 { patientEducationReferencesText }
               </Alert>
-            {/* <DynamicSpacer /> */}
+
             <Alert bsStyle={this.data.consentBsStyles.geocoding} style={this.data.consentStyles.geocoding} >
               <Toggle
                 label="Geocoding"
@@ -299,34 +284,7 @@ export class PrivacyControlsCard extends React.Component {
               />
                 { geocodingText }  
             </Alert>
-            {/* <DynamicSpacer /> */}
 
-            {/* <DynamicSpacer /> */}
-            {/* <Alert bsStyle={this.data.consentBsStyles.accessTokens} style={this.data.consentStyles.accessTokens}>
-              <Toggle
-                label="Access Tokens"
-                defaultToggled={true}
-                style={styles.toggle}
-              />
-              { accessTokensText }
-              <DynamicSpacer />
-
-              <Table>
-                <thead>
-                  <tr>
-                    <th className='serviceName'>Service Name</th>
-                    <th className='token'>Token</th>
-                    <th className='expiration'>Expiration</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {accessTokenRows}
-                </tbody>
-              </Table>
-                            
-            </Alert> */}
-
-         {/* </CardText> */}
         </div>
     );
   }

@@ -9,6 +9,7 @@ import {
   CardText, 
   CardTitle,   
   FlatButton,
+  DatePicker,
   Step,
   Stepper,
   StepContent,
@@ -119,12 +120,41 @@ export class WelcomePatientPage extends React.Component {
         given: get(Meteor.user(), 'profile.name.given'),
         text: get(Meteor.user(), 'profile.name.text'),
       },
+      fitzpatrick: {
+        i: false,
+        ii: false,
+        iii: false,
+        iv: false,
+        v: false,
+        vi: false
+      },
       dateOfBirth: get(Meteor.user(), 'profile.dateOfBirth', 'unknown'),
       HKCharacteristicTypeIdentifierDateOfBirth: Session.get('HKCharacteristicTypeIdentifierDateOfBirth'),
       HKCharacteristicTypeIdentifierBiologicalSex: Session.get('HKCharacteristicTypeIdentifierBiologicalSex'),
       HKCharacteristicTypeIdentifierBloodType: Session.get('HKCharacteristicTypeIdentifierBloodType'),
       HKCharacteristicTypeIdentifierFitzpatrickSkinType: Session.get('HKCharacteristicTypeIdentifierFitzpatrickSkinType'),
     };
+
+    if(Session.get('selectedFitzpatrick')){
+      if(Session.equals('selectedFitzpatrick', 'I')){
+        data.fitzpatrick.i = true;
+      }
+      if(Session.equals('selectedFitzpatrick', 'II')){
+        data.fitzpatrick.ii = true;
+      }
+      if(Session.equals('selectedFitzpatrick', 'III')){
+        data.fitzpatrick.iii = true;
+      }
+      if(Session.equals('selectedFitzpatrick', 'IV')){
+        data.fitzpatrick.iv = true;
+      }
+      if(Session.equals('selectedFitzpatrick', 'V')){
+        data.fitzpatrick.v = true;
+      }
+      if(Session.equals('selectedFitzpatrick', 'VI')){
+        data.fitzpatrick.vi = true;
+      }
+    }
     
 
     return data;
@@ -212,7 +242,7 @@ export class WelcomePatientPage extends React.Component {
     }
 
     return (
-      <div style={{margin: '12px 0'}}>
+      <div>
         {step > 0 && (
           <FlatButton
             label="Back"
@@ -342,10 +372,33 @@ export class WelcomePatientPage extends React.Component {
   setFitzpatric(type){
     console.log('setFitzpatric', type)
     Session.set('HKCharacteristicTypeIdentifierFitzpatrickSkinType', type)
+    Session.set('selectedFitzpatrick', type)
   }
   gotoTimeline(){
     browserHistory.push('/timeline-sidescroll');
   }
+  fitzpatrickClick(value){
+    console.log('fitzpatrickClick', value)
+    Session.set('selectedFitzpatrick', value)
+  }
+  changeDateOfBirth(field, event, textValue){
+    console.log("WelcomePatientPage.changeDateOfBirth", field, textValue);
+
+    Session.set('HKCharacteristicTypeIdentifierDateOfBirth', textValue)
+
+    // let formData = Object.assign({}, this.state.form);
+    // let observationData = Object.assign({}, this.state.observation);
+
+    // formData = this.updateFormData(formData, field, textValue);
+    // observationData = this.updateObservation(observationData, field, textValue);
+
+    // if(process.env.NODE_ENV === "test") console.log("observationData", observationData);
+    // if(process.env.NODE_ENV === "test") console.log("formData", formData);
+
+    // this.setState({observation: observationData})
+    // this.setState({form: formData})
+  }
+  
   render(){
     const {finished, stepIndex} = this.state;
     const contentStyle = {margin: '0 16px'};
@@ -406,24 +459,28 @@ export class WelcomePatientPage extends React.Component {
     }
 
     if(Package['symptomatic:continuity-of-care']){
-        var dermatogramStyle = {
+
+        var dermatogramStyleFemale = {
           maxHeight: '400px', 
           display: 'inline-block', 
           cursor: 'pointer'
-        }
-        var dermatogramStyleFemale = dermatogramStyle;
-        var dermatogramStyleMale = dermatogramStyle;
+        };
+        var dermatogramStyleMale = {
+          maxHeight: '400px', 
+          display: 'inline-block', 
+          cursor: 'pointer'
+        };
         
-        var gender = get(Meteor.user(), 'profile.gender');
-        if(gender === "male"){
-          dermatogramStyleMale.boderBottom = '2px solid cornflowerblue';
+        //var gender = get(Meteor.user(), 'profile.gender');
+        if(get(this, 'data.button.gender.male')){
+          dermatogramStyleMale.borderBottom = '2px solid cornflowerblue';
         }
-        if(gender === "female"){
-          dermatogramStyleFemale.boderBottom = '2px solid cornflowerblue';
+        if(get(this, 'data.button.gender.female')){
+          dermatogramStyleFemale.borderBottom = '2px solid cornflowerblue';
         }
 
         if(['iPhone'].includes(window.navigator.platform)){
-          dermatogramStyle.maxHeight = '250px';
+          dermatogramStyle.maxHeight = '200px';
         }
         dermatogramRow = <Row style={{
           textAlign: 'center',
@@ -443,110 +500,171 @@ export class WelcomePatientPage extends React.Component {
 
 
 
+      var fitzStyleI = {
+        marginRight: '20px',
+        borderRadius: '4px'
+      };
+      var fitzStyleII = {
+        marginRight: '20px',
+        borderRadius: '4px'
+      };
+      var fitzStyleIII = {
+        marginRight: '20px',
+        borderRadius: '4px'
+      };
+      var fitzStyleIV = {
+        marginRight: '20px',
+        borderRadius: '4px'
+      };
+      var fitzStyleV = {
+        marginRight: '20px',
+        borderRadius: '4px'
+      };
+      var fitzStyleVI = {
+        marginRight: '20px',
+        borderRadius: '4px'
+      };
+
+      if(this.data.fitzpatrick.i){
+        fitzStyleI.border = '3px solid cornflowerblue';
+      }
+      if(this.data.fitzpatrick.ii){
+        fitzStyleII.border = '3px solid cornflowerblue';
+      }
+      if(this.data.fitzpatrick.iii){
+        fitzStyleIII.border = '3px solid cornflowerblue';
+      }
+      if(this.data.fitzpatrick.iv){
+        fitzStyleIV.border = '3px solid cornflowerblue';
+      }
+      if(this.data.fitzpatrick.v){
+        fitzStyleV.border = '3px solid cornflowerblue';
+      }
+      if(this.data.fitzpatrick.vi){
+        fitzStyleVI.border = '3px solid cornflowerblue';
+      }
 
 
 
       fitzpatrickRow = <Row style={{
         textAlign: 'center',
         position: 'relative',
-        top: ((Session.get('appHeight') - 128 ) * 0.5 - 300) + 'px'
+        top: ((Session.get('appHeight') - 128 ) * 0.5 - 200) + 'px'
       }}>
-        <Col xs={2} style={{textAlign: 'center'}}>
-          <Paper 
-            onClick={ this.setFitzpatric.bind(this, 'I') }
-            style={{
-              width: '100%',
-              minHeight: '200px',
-              backgroundColor: '#F5E4CA'            
-            }} />
-          <RaisedButton 
-            fullWidth
-            backgroundColor="gray"
-            backgroundColor='#ffffff'
-            primary={false}
-            style={{marginRight: '20px'}}                    
-            label='Type I' />
+        <Col md={6} style={{marginBottom: '10px' }}>
+          <Col xs={4} style={{textAlign: 'center', marginBottom: '20px'}}>
+            <div style={fitzStyleI} >
+              <Paper 
+                onClick={ this.setFitzpatric.bind(this, 'I') }
+                style={{
+                  width: '100%',
+                  minHeight: '200px',
+                  backgroundColor: '#F5E4CA'            
+                }} />
+              <RaisedButton 
+                fullWidth
+                backgroundColor="gray"
+                backgroundColor='#ffffff'
+                primary={false}
+                  
+                onClick={this.fitzpatrickClick.bind(this, 'I')}             
+                label='Type I' />
+            </div>
+          </Col>
+          <Col xs={4} style={{textAlign: 'center', marginBottom: '20px'}}>
+            <div style={fitzStyleII}>
+              <Paper 
+                onClick={ this.setFitzpatric.bind(this, 'II') }
+                style={{
+                  width: '100%',
+                  minHeight: '200px',
+                  backgroundColor: '#EABA99'
+                }} />
+              <RaisedButton 
+                fullWidth
+                backgroundColor="gray"
+                backgroundColor='#ffffff'
+                primary={false}                                
+                onClick={this.fitzpatrickClick.bind(this, 'II')}             
+                label='Type II' />
+            </div>
+          </Col>
+          <Col xs={4} style={{textAlign: 'center', marginBottom: '20px'}}>
+            <div style={fitzStyleIII}>
+              <Paper 
+                onClick={ this.setFitzpatric.bind(this, 'III') }
+                style={{
+                  width: '100%',
+                  minHeight: '200px',
+                  backgroundColor: '#EDBB90'
+                }} />
+              <RaisedButton 
+                fullWidth
+                backgroundColor="gray"
+                backgroundColor='#ffffff'
+                primary={false}                                
+                onClick={this.fitzpatrickClick.bind(this, 'III')}  
+                label='Type III' />
+            </div>
+          </Col>        
         </Col>
-        <Col xs={2} style={{textAlign: 'center'}}>
-          <Paper 
-            onClick={ this.setFitzpatric.bind(this, 'II') }
-            style={{
-              width: '100%',
-              minHeight: '200px',
-              backgroundColor: '#EABA99'
-            }} />
-          <RaisedButton 
-            fullWidth
-            backgroundColor="gray"
-            backgroundColor='#ffffff'
-            primary={false}
-            style={{marginRight: '20px'}}                    
-            label='Type II' />
+        <Col md={6}>
+          <Col xs={4} style={{textAlign: 'center'}}>
+            <div style={fitzStyleIV}>
+              <Paper 
+                onClick={ this.setFitzpatric.bind(this, 'IV') }
+                style={{
+                  width: '100%',
+                  minHeight: '200px',
+                  backgroundColor: '#BC8E6A'
+                }} />
+              <RaisedButton 
+                fullWidth
+                backgroundColor="gray"
+                backgroundColor='#ffffff'
+                primary={false}                  
+                onClick={this.fitzpatrickClick.bind(this, 'IV')}  
+                label='Type IV' />
+            </div>
+          </Col>
+          <Col xs={4} style={{textAlign: 'center'}}>
+            <div style={fitzStyleV}>
+              <Paper 
+                onClick={ this.setFitzpatric.bind(this, 'V') }
+                style={{
+                  width: '100%',
+                  minHeight: '200px',
+                  backgroundColor: '#905133'
+                }} />
+              <RaisedButton 
+                fullWidth
+                backgroundColor="gray"
+                backgroundColor='#ffffff'
+                primary={false}                            
+                onClick={this.fitzpatrickClick.bind(this, 'V')}  
+                label='Type V' />
+            </div>  
+          </Col>
+          <Col xs={4} style={{textAlign: 'center'}}>
+            <div style={fitzStyleVI}>
+              <Paper 
+                onClick={ this.setFitzpatric.bind(this, 'VI') }
+                style={{
+                  width: '100%',
+                  minHeight: '200px',
+                  backgroundColor: '#533F38'
+                }} />
+              <RaisedButton 
+                fullWidth
+                backgroundColor="gray"
+                backgroundColor='#ffffff'
+                primary={false}                              
+                onClick={this.fitzpatrickClick.bind(this, 'VI')}  
+                label='Type VI' />
+            </div>
+          </Col>
         </Col>
-        <Col xs={2} style={{textAlign: 'center'}}>
-          <Paper 
-            onClick={ this.setFitzpatric.bind(this, 'III') }
-            style={{
-              width: '100%',
-              minHeight: '200px',
-              backgroundColor: '#EDBB90'
-            }} />
-          <RaisedButton 
-            fullWidth
-            backgroundColor="gray"
-            backgroundColor='#ffffff'
-            primary={false}
-            style={{marginRight: '20px'}}                    
-            label='Type III' />
-        </Col>
-        <Col xs={2} style={{textAlign: 'center'}}>
-          <Paper 
-            onClick={ this.setFitzpatric.bind(this, 'IV') }
-            style={{
-              width: '100%',
-              minHeight: '200px',
-              backgroundColor: '#BC8E6A'
-            }} />
-          <RaisedButton 
-            fullWidth
-            backgroundColor="gray"
-            backgroundColor='#ffffff'
-            primary={false}
-            style={{marginRight: '20px'}}                    
-            label='Type IV' />
-        </Col>
-        <Col xs={2} style={{textAlign: 'center'}}>
-          <Paper 
-            onClick={ this.setFitzpatric.bind(this, 'V') }
-            style={{
-              width: '100%',
-              minHeight: '200px',
-              backgroundColor: '#905133'
-            }} />
-          <RaisedButton 
-            fullWidth
-            backgroundColor="gray"
-            backgroundColor='#ffffff'
-            primary={false}
-            style={{marginRight: '20px'}}                    
-            label='Type V' />
-        </Col>
-        <Col xs={2} style={{textAlign: 'center'}}>
-          <Paper 
-            onClick={ this.setFitzpatric.bind(this, 'VI') }
-            style={{
-              width: '100%',
-              minHeight: '200px',
-              backgroundColor: '#533F38'
-            }} />
-          <RaisedButton 
-            fullWidth
-            backgroundColor="gray"
-            backgroundColor='#ffffff'
-            primary={false}
-            style={{marginRight: '20px'}}                    
-            label='Type VI' />
-        </Col>
+
       </Row>
 
 
@@ -636,12 +754,20 @@ export class WelcomePatientPage extends React.Component {
       }
     }
 
+    var stepActionStyle = {
+      position: 'absolute', 
+      right: '0px', 
+      bottom: '0px', 
+      float: 'right',
+      zIndex: 10000
+    }
+
     var mainPanel; 
     switch (stepIndex) {
       case 0:
         mainPanel = <div style={{textAlign: 'center', height: '100%'}}>
           <GlassCard height='auto'>
-            <Alert bsStyle="warning">
+            <Alert bsStyle="warning" style={{position: 'absolute', marginRight: '20px'}}>
               <b style={{fontSize: '18px', fontWeight: 200, textAlign: 'left'}}>This software is in <b>BETA</b> and is not in production yet.  Some features have not been implemented yet, and no warrantees are being made.  Functionality is currently limited to Apple HealthRecord data.</b>
             </Alert>
 
@@ -650,9 +776,11 @@ export class WelcomePatientPage extends React.Component {
                 <h1 style={{fontSize: '72px', fontWeight: 200}} >Welcome!</h1>
             </div>
             </CardText>
-            <div style={{position: 'absolute', right: '0px', bottom: '0px'}}>
+            <CardActions style={stepActionStyle} >
               {this.renderStepActions(0)}
-            </div>
+            </CardActions>
+            {/* <div style={stepActionStyle}>
+            </div> */}
           </GlassCard>
         </div>
         break;
@@ -693,9 +821,12 @@ export class WelcomePatientPage extends React.Component {
                 </Row>
               </Grid>
             </CardText>
-            <div style={{position: 'absolute', right: '0px', bottom: '0px'}}>
+            {/* <div style={stepActionStyle}>
               {this.renderStepActions(1)}
-            </div>
+            </div> */}
+            <CardActions style={stepActionStyle} >
+              {this.renderStepActions(1)}
+            </CardActions>
           </GlassCard>
         </div>        
         break;
@@ -707,9 +838,12 @@ export class WelcomePatientPage extends React.Component {
                 <PrivacyPolicyCard fontsize='18px' />
               </Grid>
             </CardText>
-            <div style={{position: 'absolute', right: '0px', bottom: '0px'}}>
+            <CardActions style={stepActionStyle} >
               {this.renderStepActions(2)}
-            </div>
+            </CardActions>
+            {/* <div style={stepActionStyle}>
+              {this.renderStepActions(2)}
+            </div> */}
           </GlassCard>
         </div>        
         break;
@@ -721,9 +855,12 @@ export class WelcomePatientPage extends React.Component {
                 <PrivacyControlsCard />
               </Grid>
             </CardText>
-            <div style={{position: 'absolute', right: '0px', bottom: '0px'}}>
+            <CardActions style={stepActionStyle} >
               {this.renderStepActions(3)}
-            </div>
+            </CardActions>
+            {/* <div style={stepActionStyle}>
+              {this.renderStepActions(3)}
+            </div> */}
           </GlassCard>
         </div>        
         break;
@@ -736,9 +873,12 @@ export class WelcomePatientPage extends React.Component {
                   <TermsConditionsCard />
                 </CardText>
               </Grid>
-            <div style={{position: 'absolute', right: '0px', bottom: '0px'}}>
+              <CardActions style={stepActionStyle} >
+                {this.renderStepActions(4)}
+              </CardActions>
+              {/* <div style={stepActionStyle}>
               {this.renderStepActions(4)}
-            </div>
+            </div> */}
           </GlassCard>
         </div>              
         break;
@@ -755,9 +895,13 @@ export class WelcomePatientPage extends React.Component {
                 </Row>
               </Grid>
             </CardText>
-            <div style={{position: 'absolute', right: '0px', bottom: '0px'}}>
+            <CardActions style={stepActionStyle} >
               {this.renderStepActions(5)}
-            </div>
+            </CardActions>
+
+            {/* <div style={stepActionStyle}>
+              {this.renderStepActions(5)}
+            </div> */}
           </GlassCard>
         </div>              
         break;        
@@ -810,14 +954,22 @@ export class WelcomePatientPage extends React.Component {
                   <b style={{fontSize: '14px', fontWeight: 200}}>People spell their names differently all over the world.  Sometimes they list their family name last (common in the United States), but sometimes they list it first (Asia).  In some parts of the world, people only receive one name.  And othertimes they receive three or four names with suffixes.</b>
                 </Alert>
               </CardText>
-              <div style={{position: 'absolute', right: '0px', bottom: '0px', zIndex: 10000}}>
+              <CardActions style={stepActionStyle} >
                 {this.renderStepActions(6)}
-              </div>
+              </CardActions>
+
+              {/* <div style={stepActionStyle}>
+                {this.renderStepActions(6)}
+              </div> */}
             </Grid>
           </GlassCard>
         </div>                
        break;
       case 7:
+        var effectiveDateTime = this.data.HKCharacteristicTypeIdentifierDateOfBirth;
+        if(typeof effectiveDateTime === "string"){
+          effectiveDateTime = moment(effectiveDateTime);
+        }
         mainPanel = <div>
           <GlassCard height='auto'>
             <Grid>
@@ -825,28 +977,36 @@ export class WelcomePatientPage extends React.Component {
               <CardText>
                 <Row>
                   <Col mdOffset={3} md={6} >
-                    <TextField
+                    <DatePicker 
+                      name='dateOfBirthInput'
+                      hintText="YYYY-MM-DD" 
+                      container="inline" 
+                      mode="landscape"
+                      value={ effectiveDateTime ? effectiveDateTime : null}    
+                      onChange={ this.changeDateOfBirth.bind(this, 'effectiveDateTime')}      
+                      fullWidth
+                    />
+                    
+                    {/* <TextField
                       id='dateOfBirthInput'
                       name='dateOfBirthInput'
                       floatingLabelText="Date of Birth"
                       hintText='YYYY-MM-DD'
-                      value={this.data.dateOfBirth}
+                      defaultValue={this.data.HKCharacteristicTypeIdentifierDateOfBirth}
                       floatingLabelFixed={true}
                       fullWidth
-                      /><br/>
+                      /><br/> */}
                   </Col>
                 </Row>
-
-                <DynamicSpacer />
-                <DynamicSpacer />
-
-                {/* <Alert bsStyle="info">
-                  <b style={{fontSize: '14px', fontWeight: 200}}>People spell their names differently all over the world.  Sometimes they list their family name last (common in the United States), but sometimes they list it first (Asia).  In some parts of the world, people only receive one name.  And othertimes they receive three or four names with suffixes.</b>
-                </Alert> */}
+                {/* <DynamicSpacer /> */}
               </CardText>
-              <div style={{position: 'absolute', right: '0px', bottom: '0px', zIndex: 10000}}>
+              <CardActions style={stepActionStyle} >
                 {this.renderStepActions(7)}
-              </div>
+              </CardActions>
+
+              {/* <div style={stepActionStyle}>
+                {this.renderStepActions(7)}
+              </div> */}
             </Grid>
           </GlassCard>
         </div>                
@@ -857,7 +1017,6 @@ export class WelcomePatientPage extends React.Component {
           <GlassCard height='auto'>
           <Grid>
             <CardTitle title="Sex and Gender" subtitle='' />
-            <DynamicSpacer />
             <CardText>
               { dermatogramRow }
             </CardText>
@@ -941,7 +1100,7 @@ export class WelcomePatientPage extends React.Component {
                     style={{marginRight: '20px'}}
                     onClick= { this.toggleAnatomyUndisclosed }
                     fullWidth
-                    label='Androgeny' />
+                    label='Infertility' />
                 </Col>
                 <Col xs={4}>
                 <RaisedButton 
@@ -958,60 +1117,77 @@ export class WelcomePatientPage extends React.Component {
               </CardText>
 
               <DynamicSpacer />
-              <DynamicSpacer />
 
               <div style={karyotypeStyle} >
                 <CardTitle title="Karyotype / Chromosomes" style={{ fontSize: '18px',  marginBottom: '0px', padding: '0px'}} />
                 <CardText>
                   <Row>
-                    <RaisedButton 
-                      backgroundColor="gray"
-                      labelColor= "#ffffff"
-                      color='#ffffff'
-                      primary={ get(this, 'data.buttons.karyotype.unknown') }
-                      style={{marginRight: '20px'}}                    
-                      onClick= { this.toggleKaryotypeUnknown }
-                      label='Unknown' />
-                    <RaisedButton 
-                      backgroundColor="gray"
-                      labelColor= "#ffffff"
-                      color='#ffffff'
-                      primary={ get(this, 'data.buttons.karyotype.xx') }
-                      style={{marginRight: '20px'}}
-                      onClick= { this.toggleKaryotypeXx }
-                      label='XX' />
-                    <RaisedButton 
-                      backgroundColor="gray"
-                      labelColor= "#ffffff"
-                      color='#ffffff'
-                      primary={ get(this, 'data.buttons.karyotype.xy') }
-                      style={{marginRight: '20px'}}
-                      onClick= { this.toggleKaryotypeXy }
-                      label='XY' />
-                    <RaisedButton 
-                      backgroundColor="gray"
-                      labelColor= "#ffffff"
-                      color='#ffffff'
-                      primary={ get(this, 'data.buttons.karyotype.xxy') }
-                      style={{marginRight: '20px'}}                    
-                      onClick= { this.toggleKaryotypeXxy }
-                      label='XXY' />
-                    <RaisedButton 
-                      backgroundColor="gray"
-                      labelColor= "#ffffff"
-                      color='#ffffff'
-                      primary={ get(this, 'data.buttons.karyotype.xxxy') }
-                      style={{marginRight: '20px'}}                    
-                      onClick= { this.toggleKaryotypeXxxy }
-                      label='XX/XY' />
-                    <RaisedButton 
-                      backgroundColor="gray"
-                      labelColor= "#ffffff"
-                      color='#ffffff'
-                      primary={ get(this, 'data.buttons.karyotype.xo') }
-                      style={{marginRight: '20px'}}                    
-                      onClick= { this.toggleKaryotypeXo }
-                      label='XO' /> 
+                    <Col xs={2}>
+                      <RaisedButton 
+                        backgroundColor="gray"
+                        labelColor= "#ffffff"
+                        color='#ffffff'
+                        primary={ get(this, 'data.buttons.karyotype.unknown') }
+                        style={{marginRight: '20px'}}                    
+                        onClick= { this.toggleKaryotypeUnknown }
+                        fullWidth
+                        label='Unknown' />                    
+                    </Col>
+                    <Col xs={2}>
+                      <RaisedButton 
+                        backgroundColor="gray"
+                        labelColor= "#ffffff"
+                        color='#ffffff'
+                        primary={ get(this, 'data.buttons.karyotype.xx') }
+                        style={{marginRight: '20px'}}
+                        onClick= { this.toggleKaryotypeXx }
+                        fullWidth
+                        label='XX' />                    
+                    </Col>
+                    <Col xs={2}>
+                      <RaisedButton 
+                        backgroundColor="gray"
+                        labelColor= "#ffffff"
+                        color='#ffffff'
+                        primary={ get(this, 'data.buttons.karyotype.xy') }
+                        style={{marginRight: '20px'}}
+                        onClick= { this.toggleKaryotypeXy }
+                        fullWidth
+                        label='XY' />                    
+                    </Col>
+                    <Col xs={2}>
+                      <RaisedButton 
+                        backgroundColor="gray"
+                        labelColor= "#ffffff"
+                        color='#ffffff'
+                        primary={ get(this, 'data.buttons.karyotype.xxy') }
+                        style={{marginRight: '20px'}}                    
+                        onClick= { this.toggleKaryotypeXxy }
+                        fullWidth
+                        label='XXY' />                    
+                    </Col>
+                    <Col xs={2}>
+                      <RaisedButton 
+                        backgroundColor="gray"
+                        labelColor= "#ffffff"
+                        color='#ffffff'
+                        primary={ get(this, 'data.buttons.karyotype.xxxy') }
+                        style={{marginRight: '20px'}}                    
+                        onClick= { this.toggleKaryotypeXxxy }
+                        fullWidth
+                        label='XX/XY' />                    
+                    </Col>
+                    <Col xs={2}>
+                      <RaisedButton 
+                        backgroundColor="gray"
+                        labelColor= "#ffffff"
+                        color='#ffffff'
+                        primary={ get(this, 'data.buttons.karyotype.xo') }
+                        style={{marginRight: '20px'}}                    
+                        onClick= { this.toggleKaryotypeXo }
+                        fullWidth
+                        label='XO' />                     
+                    </Col>
                   </Row>
 
                   <DynamicSpacer />
@@ -1026,10 +1202,12 @@ export class WelcomePatientPage extends React.Component {
               {/* </Grid> */}
 
             </Grid>
-
-            <div style={{position: 'absolute', right: '0px', bottom: '0px'}}>
+            <CardActions style={stepActionStyle} >
               {this.renderStepActions(8)}
-            </div>
+            </CardActions>
+            {/* <div style={stepActionStyle}>
+              {this.renderStepActions(8)}
+            </div> */}
           </GlassCard>
         </div>          
         break;
@@ -1045,9 +1223,12 @@ export class WelcomePatientPage extends React.Component {
 
 
             </CardText>
-            <div style={{position: 'absolute', right: '0px', bottom: '0px'}}>
+            <CardActions style={stepActionStyle} >
               {this.renderStepActions(9)}
-            </div>
+            </CardActions>
+            {/* <div style={stepActionStyle}>
+              {this.renderStepActions(9)}
+            </div> */}
           </GlassCard>
         </div>                
         break;
@@ -1073,9 +1254,9 @@ export class WelcomePatientPage extends React.Component {
               </div>
               <DynamicSpacer />
             </CardText>
-            <div style={{position: 'absolute', right: '0px', bottom: '0px'}}>
+            <CardActions style={stepActionStyle}>
               {this.renderStepActions(10)}
-            </div>
+            </CardActions>
           </GlassCard>
         </div>          
         break;
@@ -1087,7 +1268,7 @@ export class WelcomePatientPage extends React.Component {
               <DynamicSpacer />
 
                 <div style={messageStyle}>
-                  <p>
+                  <p style={{textAlign: 'justify'}}>
                     Your medical charts may be spread out through many healthcare systems.  Using industry standard interoperability protocols, we're going to try to fetch those records and consolidate them.
                   </p>
 
@@ -1103,7 +1284,7 @@ export class WelcomePatientPage extends React.Component {
                     labelColor= "#ffffff"
                     color='#ffffff'
                     primary={false}
-                    style={{marginRight: '20px'}}                    
+                    style={{marginRight: '20px', marginBottom: '20px'}}                    
                     disabled={true}
                     label='Epic MyChart' />
                   <RaisedButton 
@@ -1112,7 +1293,7 @@ export class WelcomePatientPage extends React.Component {
                     color='#ffffff'
                     primary={false}
                     disabled={true}
-                    style={{marginRight: '20px'}}                    
+                    style={{marginRight: '20px', marginBottom: '20px'}}                    
                     label='Cerner CareAnywhere' />
                   <RaisedButton 
                     backgroundColor="gray"
@@ -1120,14 +1301,14 @@ export class WelcomePatientPage extends React.Component {
                     color='#ffffff'
                     primary={false}
                     disabled={true}
-                    style={{marginRight: '20px'}}                    
+                    style={{marginRight: '20px', marginBottom: '20px'}}                    
                     label='Allscripts FollowMyHealth' />
                 </div>
               <DynamicSpacer />
             </CardText>
-            <div style={{position: 'absolute', right: '0px', bottom: '0px'}}>
+            <CardActions style={stepActionStyle}>
               {this.renderStepActions(11)}
-            </div>
+            </CardActions>
           </GlassCard>
         </div>              
         break;
@@ -1136,7 +1317,7 @@ export class WelcomePatientPage extends React.Component {
             <Row style={{minHeight: '200px'}}>
               <Col md={12} >
                 <GlassCard height='auto'>
-                  <CardText>                    
+                  <CardText>  
                     <div style={messageStyle} >
                         <h1 style={{fontSize: '72px', fontWeight: 200}} >All done!</h1>
                         <RaisedButton label="View Timeline" onClick={ this.gotoTimeline } primary={true} />
@@ -1164,6 +1345,8 @@ export class WelcomePatientPage extends React.Component {
                 </GlassCard>
               </Col>
             </Row> */}
+
+
         </div>            
         break;
       default:

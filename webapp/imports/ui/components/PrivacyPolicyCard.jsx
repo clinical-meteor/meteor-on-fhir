@@ -222,7 +222,8 @@ export class PrivacyPolicyCard extends React.Component {
 
     var fontStyle = {
       margin: '20px',
-      fontSize: '18px'
+      fontSize: '18px',
+      textAlign: 'justify'
     }
 
     if(this.props.fontsize){
