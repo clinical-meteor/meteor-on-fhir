@@ -46,6 +46,13 @@
         "removeEmptyStrings": false
       },
       "sidebar": {
+        "menuItems": {
+          "Index": false,
+          "Healthlog": false,
+          "GettingStarted": false,
+          "DataManagement": false,
+          "FhirResources": false
+        },
         "hidden": [
           "/allergies",
           "/conditions",

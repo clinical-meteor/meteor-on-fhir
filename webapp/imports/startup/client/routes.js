@@ -57,7 +57,20 @@ Object.keys(Package).forEach(function(packageName){
   if(Package[packageName].WelcomeAdminPage){
     WelcomeAdminPage = Package[packageName].WelcomeAdminPage;
   }
+
+  if(Package[packageName].ContinuityOfCarePage){
+    IndexRoute = Package[packageName].ContinuityOfCarePage;
+  }
+  if(Package[packageName].WelcomePatientPage){
+    WelcomePatientPage = Package[packageName].WelcomePatientPage;
+  }
 });
+
+
+
+
+
+
 
 // we're storing the current route URL in a reactive variable
 // which will be used to update active controls
@@ -138,16 +151,6 @@ const requreSysadmin = (nextState, replace) => {
   }
 };
 
-let indexRoute;
-// TODO:  refactor and remove symptomatic dependencies 
-// perhaps search for an export?
-if(Package['symptomatic:continuity-of-care']){
-  import { ContinuityOfCarePage } from 'meteor/symptomatic:continuity-of-care';
-  indexRoute = ContinuityOfCarePage;
-} else {
-  indexRoute = MainIndex;  
-}
-
 
 
 Meteor.startup(() => {
@@ -159,7 +162,7 @@ Meteor.startup(() => {
   render(
     <Router history={ browserHistory }>
       <Route path="/" component={ App }>
-      <IndexRoute name="index" component={ indexRoute } onEnter={ requireAuth } />
+      <IndexRoute name="index" component={ IndexRoute } onEnter={ requireAuth } />
 
         <Route name="fhirResources" path="/fhir-resources-index" component={ FhirResourcesIndex } />
 
