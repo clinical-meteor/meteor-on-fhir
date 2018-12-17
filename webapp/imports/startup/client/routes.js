@@ -59,7 +59,7 @@ Object.keys(Package).forEach(function(packageName){
   }
 
   if(Package[packageName].ContinuityOfCarePage){
-    IndexRoute = Package[packageName].ContinuityOfCarePage;
+    MainIndex = Package[packageName].ContinuityOfCarePage;
   }
   if(Package[packageName].WelcomePatientPage){
     WelcomePatientPage = Package[packageName].WelcomePatientPage;
@@ -162,7 +162,7 @@ Meteor.startup(() => {
   render(
     <Router history={ browserHistory }>
       <Route path="/" component={ App }>
-      <IndexRoute name="index" component={ IndexRoute } onEnter={ requireAuth } />
+        <IndexRoute name="index" component={ MainIndex } onEnter={ requireAuth } />
 
         <Route name="fhirResources" path="/fhir-resources-index" component={ FhirResourcesIndex } />
 
