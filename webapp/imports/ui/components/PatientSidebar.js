@@ -63,22 +63,57 @@ export class PatientSidebar extends React.Component {
   }
   render () {
 
+    //----------------------------------------------------------------------
+    // Index Item
+
     var index;
-    if(get(Meteor, 'settings.public.defaults.sidebar.showIndex')){
+    if(get(Meteor, 'settings.public.defaults.sidebar.menuItems.Index')){
       index = <LinkContainer key='indexItem'  to={ this.data.indexRoute } >
         <MenuItem id="indexPageItem" className="indexItem" href={ this.data.indexRoute } primaryText='Index' />
       </LinkContainer>;
     }
     
     //----------------------------------------------------------------------
-    // Core Modules 
+    // HealthLog
 
     var healthlog;
-
-    if(get(Meteor, 'settings.public.defaults.sidebar.showHealthlog')){
+    if(get(Meteor, 'settings.public.defaults.sidebar.menuItems.Healthlog')){
       healthlog = <LinkContainer key='vitalsItem' to='/vitals-tracking'>
         <MenuItem primaryText='Healthlog' href='/vitals-tracking' />
       </LinkContainer>;
+    }
+
+    //----------------------------------------------------------------------
+    // GettingStarted
+
+    var gettingStarted;
+    if(get(Meteor, 'settings.public.defaults.sidebar.menuItems.GettingStarted')){
+      gettingStarted = <LinkContainer key='gettingStartedItem' to='/welcome/patient'>
+        <MenuItem primaryText='Getting Started' href='/welcome/patient' />
+      </LinkContainer>;
+    }
+
+
+    //----------------------------------------------------------------------
+    // DataManagement
+
+    var dataManagement;
+    if(get(Meteor, 'settings.public.defaults.sidebar.menuItems.DataManagement')){
+      dataManagement = <LinkContainer key='dataItem' to='/data-management'>
+        <MenuItem primaryText='Data Management' href='/data-management' />
+      </LinkContainer>;
+    }
+
+    //----------------------------------------------------------------------
+    // FHIR Resources
+    
+    var fhirResources;
+    if(get(Meteor, 'settings.public.defaults.sidebar.menuItems.FhirResources')){
+      if(!['iPhone'].includes(window.navigator.platform)){
+        fhirResources = <LinkContainer key='fhirItem' to='/fhir-resources-index'>
+          <MenuItem id="fhirResourcePageItem" primaryText='FHIR Resources' href='/fhir-resources-index' />
+      </LinkContainer>
+      }
     }
 
     //----------------------------------------------------------------------
@@ -131,12 +166,7 @@ export class PatientSidebar extends React.Component {
 
     }
 
-    var fhirResources;
-    if(!['iPhone'].includes(window.navigator.platform)){
-      fhirResources = <LinkContainer key='fhirItem' to='/fhir-resources-index'>
-        <MenuItem id="fhirResourcePageItem" primaryText='FHIR Resources' href='/fhir-resources-index' />
-    </LinkContainer>
-    }
+
 
     return(
       <div id='patientSidebar'>
@@ -153,14 +183,10 @@ export class PatientSidebar extends React.Component {
 
           { fhirResources }
 
-          <LinkContainer key='dataItem' to='/data-management'>
-             <MenuItem primaryText='Data Management' href='/data-management' />
-          </LinkContainer>
+          { dataManagement }
           <hr />
-          <LinkContainer key='gettingStartedItem' to='/welcome/patient'>
-             <MenuItem primaryText='Getting Started' href='/welcome/patient' />
-          </LinkContainer>
 
+          { gettingStarted }
           { smartOnFhirImports }
 
           <hr />

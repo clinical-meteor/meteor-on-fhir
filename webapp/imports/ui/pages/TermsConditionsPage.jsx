@@ -9,6 +9,16 @@ import { GlassCard, VerticalCanvas } from 'meteor/clinical:glass-ui';
 
 import { TermsConditionsCard } from '../components/TermsConditionsCard';
 
+
+// if we find a TermsConditionsCard card in one of the packages
+// we want to override the local version
+Object.keys(Package).forEach(function(packageName){
+  if(Package[packageName].TermsConditionsCard){
+    TermsConditionsCard = Package[packageName].TermsConditionsCard;
+  }
+});
+
+
 export class TermsConditionsPage extends React.Component {
   constructor(props) {
     super(props);

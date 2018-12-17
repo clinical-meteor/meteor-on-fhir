@@ -212,17 +212,6 @@ export class PrivacyControlsCard extends React.Component {
     }
 
 
-    // let accessTokenRows = [];
-    // for (let index = 0; index < this.data.accessTokens.length; index++) {
-
-    //   accessTokenRows.push(
-    //     <tr className='accessTokenRow' key={i} >
-    //       <td className='serviceName'>{ get(this, 'data.accessToken.serviceName') }</td>
-    //       <td className='token'>{ get(this, 'data.accessToken.token') }</td>
-    //       <td className='expiration'>{ get(this, 'data.accessToken.expiration') }</td>
-    //     </tr>
-    //   )
-    // }
 
     return (
       <div style={{textAlign: 'justify'}} >

@@ -1,10 +1,22 @@
 import React from 'react';
 
+import { GlassCard, VerticalCanvas, DynamicSpacer } from 'meteor/clinical:glass-ui';
+import { Card, CardMedia, CardTitle, CardText, CardActions } from 'material-ui';
+
 import { PrivacyPolicyCard } from '/imports/ui/components/PrivacyPolicyCard';
 import { PrivacyControlsCard } from '/imports/ui/components/PrivacyControlsCard';
-import { GlassCard, VerticalCanvas, DynamicSpacer } from 'meteor/clinical:glass-ui';
 
-import { Card, CardMedia, CardTitle, CardText, CardActions } from 'material-ui';
+// if we find a PrivacyPolicy or PrivacyControl card in one of the packages
+// we want to override the local version
+Object.keys(Package).forEach(function(packageName){
+  if(Package[packageName].PrivacyPolicyCard){
+    PrivacyPolicyCard = Package[packageName].PrivacyPolicyCard;
+  }
+  if(Package[packageName].PrivacyControlsCard){
+    PrivacyControlsCard = Package[packageName].PrivacyControlsCard;
+  }
+});
+
 
 export class PrivacyPage extends React.Component {
   constructor(props) {
@@ -12,9 +24,8 @@ export class PrivacyPage extends React.Component {
   }
 
   render(){
-
     var privacyControls;
-    if(Meteor.userId()){
+    if(Meteor.userId() && (typeof PrivacyControlsCard === "object")){
       privacyControls = <PrivacyControlsCard /> ;
     }
     return(

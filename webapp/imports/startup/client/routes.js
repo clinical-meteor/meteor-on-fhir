@@ -46,6 +46,17 @@ Object.keys(Package).forEach(function(packageName){
       dynamicRoutes.push(route);      
     });    
   }
+
+  // we can even override entire pages
+  if(Package[packageName].WelcomePatientPage){
+    WelcomePatientPage = Package[packageName].WelcomePatientPage;
+  }
+  if(Package[packageName].WelcomePractitionerPage){
+    WelcomePractitionerPage = Package[packageName].WelcomePractitionerPage;
+  }
+  if(Package[packageName].WelcomeAdminPage){
+    WelcomeAdminPage = Package[packageName].WelcomeAdminPage;
+  }
 });
 
 // we're storing the current route URL in a reactive variable

@@ -48,11 +48,8 @@ getMeteorData() {
           title="Mission Statement"
         />
          <CardText>
-          Get 100M people a personal health record by 2025.
 
          </CardText>
-
-         <img src='/SymptomaticWordCloud.png' style={{width: '100%'}} />
       </div>
     );
   }

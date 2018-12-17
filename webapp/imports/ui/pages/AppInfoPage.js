@@ -27,6 +27,18 @@ const styles = {
 };
 
 
+
+// if we find a AboutAppCard card in one of the packages
+// we want to override the local version
+Object.keys(Package).forEach(function(packageName){
+  if(Package[packageName].AboutAppCard){
+    AboutAppCard = Package[packageName].AboutAppCard;
+  }
+});
+
+
+
+
 export class AppInfoPage extends React.Component {
   constructor(props) {
     super(props);

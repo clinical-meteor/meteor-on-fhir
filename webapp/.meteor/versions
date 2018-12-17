@@ -65,7 +65,6 @@ clinical:hl7-resource-risk-assessment@1.5.4
 clinical:hl7-resource-subscription@3.5.10
 clinical:keybindings@1.4.7
 clinical:oauth@1.2.28
-clinical:theming@0.4.10
 clinical:user-model@1.6.3
 coffeescript@1.0.17
 crosswalk@1.7.1

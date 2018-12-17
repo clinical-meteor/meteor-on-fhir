@@ -95,7 +95,6 @@ simple:dev-error-overlay
 clinical:fonts
 clinical:extended-api
 clinical:auto-resizing
-clinical:theming
 clinical:user-model
 clinical:keybindings
 clinical:hipaa-logger
