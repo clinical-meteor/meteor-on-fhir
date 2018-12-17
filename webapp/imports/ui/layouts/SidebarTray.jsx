@@ -14,6 +14,9 @@ import User from '/imports/api/User';
 import MenuItem from '/imports/ui/components/MenuItem';
 import MenuPatientSummary from '/imports/ui/components/MenuPatientSummary';
 
+import { withStyles } from '@material-ui/core/styles';
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
+
 import { has, get } from 'lodash';
 
 Session.setDefault('backgroundImagePath', 'url(\"images\/ForestInMist.jpg\")');
@@ -29,6 +32,12 @@ Session.setDefault('drawerActive', false);
 export class SidebarTray extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      top: false,
+      left: false,
+      bottom: false,
+      right: false,
+    };
   }
   getMeteorData() {
 
@@ -96,7 +105,16 @@ export class SidebarTray extends React.Component {
     Meteor.setTimeout(function(){
       Session.toggle('drawerActive');
     }, 200);
+    // this.setState({
+    //   [side]: open,
+    // });
   }
+  toggleDrawer = (side, isOpen) => () => {
+    Session.set('drawerActive', isOpen)
+    // this.setState({
+    //   left: !this.state.left
+    // });
+  };
   renderSidebar(isAdmin) {
     
     if (Meteor.user()) {
@@ -106,11 +124,13 @@ export class SidebarTray extends React.Component {
         if (get(Meteor.user(), 'roles[0]') === 'practitioner') {
           return <PractitionerSidebar /> ;
         } else {
-          if (Meteor.userId() && ['/myprofile', '/preferences', 'oauth-grants', '/password'].includes(Session.get('pathname'))) {
-            return <ProfileSidebar /> ;
-          } else {
-            return <PatientSidebar /> ;
-          }
+          return <PatientSidebar /> ;
+
+          // if (Meteor.userId() && ['/myprofile', '/preferences', 'oauth-grants', '/password'].includes(Session.get('pathname'))) {
+          //   return <ProfileSidebar /> ;
+          // } else {
+          //   return <PatientSidebar /> ;
+          // }
         }
       }
     } else {
@@ -127,29 +147,39 @@ export class SidebarTray extends React.Component {
 
     return (
       <div id='SidebarTray'>
-        <Drawer
+
+        <SwipeableDrawer
           open={this.data.state.drawerActive}
-          docked={this.data.state.dockedSidebar}
-          onRequestChange={ this.closeOpenedSidebar }
-          >
+          onClose={this.toggleDrawer('left', false)}
+          onOpen={this.toggleDrawer('left', true)}
+        >
 
-          <div onClick={ this.closeOpenedSidebar }>
 
-              <IndexLinkContainer id="userIdentification" to='/myprofile' >
-                 <MenuPatientSummary>
-                  <CardHeader
-                    id='patientSummaryCard'
-                    title={this.data.card.title}
-                    subtitle={this.data.card.subtitle}
-                    style={{cursor: 'pointer'}}
-                  />
-                </MenuPatientSummary>
-              </IndexLinkContainer>
 
-              { this.renderSidebar(this.data.state.isAdmin) }
+          {/* <Drawer
+            open={this.data.state.drawerActive}
+            docked={this.data.state.dockedSidebar}
+            onRequestChange={ this.closeOpenedSidebar }
+            > */}
 
-          </div>
-        </Drawer>
+            <div onClick={ this.closeOpenedSidebar }>
+
+                <IndexLinkContainer id="userIdentification" to='/myprofile' >
+                  <MenuPatientSummary>
+                    <CardHeader
+                      id='patientSummaryCard'
+                      title={this.data.card.title}
+                      subtitle={this.data.card.subtitle}
+                      style={{cursor: 'pointer'}}
+                    />
+                  </MenuPatientSummary>
+                </IndexLinkContainer>
+
+                { this.renderSidebar(this.data.state.isAdmin) }
+
+            </div>
+          {/* </Drawer> */}
+        </SwipeableDrawer>
 
         <div id='mainPanel'>
           <div onClick={this.closeOpenedSidebar} style={{ flex: 1, overflowY: 'auto', width: '100%' }}>

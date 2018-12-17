@@ -97,6 +97,14 @@ scripts/remove_restricted_media_assets.sh
 cd webapp
 mv public/geodata ..
 
+# add ios 
+meteor add-platform ios
+
+# add healthkit
+# https://github.com/EddyVerbruggen/HealthKit/issues/103
+meteor add cordova:com.telerik.plugins.healthkit@https://github.com/EddyVerbruggen/HealthKit.git#5174fde920092c94fe3dd3dead64700d293d9235
+
+
 # development
 # this can be tricky, because http://localhost:3000 may need to be a local IP address
 # you may need to use `ifconfig` to find that address
@@ -163,7 +171,7 @@ rm -rf .desktop-installer
 meteor npm install
 
 # upload to Galaxy
-TIMEOUT_SCALE_FACTOR=10 DEPLOY_HOSTNAME=us-east-1.galaxy-deploy.meteor.com MONGO_URL=mongodb://<dbuser>:<dbpassword>@ds019638.mlab.com:19638/clinical-meteor meteor deploy --settings configs/settings.galaxy.json meteor-on-fhir.meteorapp.com
+TIMEOUT_SCALE_FACTOR=10 DEPLOY_HOSTNAME=us-east-1.galaxy-deploy.meteor.com meteor deploy --settings configs/settings.galaxy.json meteor-on-fhir.meteorapp.com
 ```   
 
 #### H. Azure Configuration  

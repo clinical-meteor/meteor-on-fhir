@@ -17,44 +17,43 @@ import PropTypes from 'prop-types';
 
 import { MenuTile } from '/imports/ui/components/MenuTile';
 
-import StreetView from 'react-icons/lib/fa/street-view';
-import Heartbeat from 'react-icons/lib/fa/heartbeat';
-import Eye from 'react-icons/lib/fa/eye';
-import EyeDropper from 'react-icons/lib/fa/eyedropper';
-import Flask from 'react-icons/lib/fa/flask';
-import ErlenmeyerFlask from 'react-icons/lib/io/erlenmeyer-flask';
-import ErlenmeyerFlaskBubbles from 'react-icons/lib/io/erlenmeyer-flask-bubbles';
-import List from 'react-icons/lib/fa/list';
-import MapMarker from 'react-icons/lib/fa/map-marker';
-import Medkit from 'react-icons/lib/fa/medkit';
-import MedkitNormal from 'react-icons/lib/io/ios-medkit';
-import MedkitOutline from 'react-icons/lib/io/ios-medkit-outline';
-import Mobile from 'react-icons/lib/fa/mobile';
-import Moon from 'react-icons/lib/fa/moon-o';
-import Building from 'react-icons/lib/fa/building';
-import Check from 'react-icons/lib/fa/check-circle';
-import Pulse from 'react-icons/lib/go/pulse';
-import Broadcast from 'react-icons/lib/go/broadcast';
-import Bug from 'react-icons/lib/go/bug';
-import Person from 'react-icons/lib/go/person';
-import Organization from 'react-icons/lib/go/organization';
-import Clipboard from 'react-icons/lib/io/clipboard';
-import PulseNormal from 'react-icons/lib/io/ios-pulse';
-import PulseStrong from 'react-icons/lib/io/ios-pulse-strong';
-import Nuclear from 'react-icons/lib/io/nuclear';
-import NoSmoking from 'react-icons/lib/io/no-smoking';
-import Leaf from 'react-icons/lib/io/leaf';
-import Ribbon from 'react-icons/lib/io/ribbon-b';
-import Nutrition from 'react-icons/lib/io/ios-nutrition';
-import MdLocalPhramacy from 'react-icons/lib/md/local-pharmacy';
-import MdAddAlert from 'react-icons/lib/md/add-alert';
-import MdList from 'react-icons/lib/md/list';
-import MdDashboard from 'react-icons/lib/md/dashboard';
-import MdDataUsage from 'react-icons/lib/md/data-usage';
-import MdFingerprint from 'react-icons/lib/md/fingerprint';
-import MdHearing from 'react-icons/lib/md/hearing';
-import MdImportantDevices from 'react-icons/lib/md/important-devices';
-import MdClearAll from 'react-icons/lib/md/clear-all';
+import FaStreetView from 'react-icons/fa';
+import FaHeartbeat from 'react-icons/fa';
+import FaEye from 'react-icons/fa';
+import FaEyeDropper from 'react-icons/fa';
+import FaFlask from 'react-icons/fa';
+import IoMdErlenmeyerFlask from 'react-icons/io';
+import IoMdErlenmeyerFlaskBubbles from 'react-icons/io';
+import FaList from 'react-icons/fa';
+import FaMapMarker from 'react-icons/fa';
+import FaMedkit from 'react-icons/fa';
+import IoMdMedkitNormal from 'react-icons/io';
+import IoMdMedkitOutline from 'react-icons/io';
+import FaMobile from 'react-icons/fa';
+import FaMoon from 'react-icons/fa';
+import FaBuilding from 'react-icons/fa';
+import FaCheck from 'react-icons/fa';
+import GoPulse from 'react-icons/go';
+import GoBroadcast from 'react-icons/go';
+import GoBug from 'react-icons/go';
+import GoPerson from 'react-icons/go';
+import GoOrganization from 'react-icons/go';
+import IoMdClipboard from 'react-icons/io';
+import IoMdPulseNormal from 'react-icons/io';
+import IoMdPulseStrong from 'react-icons/io';
+import IoMdNuclear from 'react-icons/io';
+import IoLogoNoSmoking from 'react-icons/io';
+import IoMdLeaf from 'react-icons/io';
+import IoMdRibbon from 'react-icons/io';
+import IoMdNutrition from 'react-icons/io';
+import MdLocalPhramacy from 'react-icons/md';
+import MdAddAlert from 'react-icons/md';
+import MdList from 'react-icons/md';
+import MdDashboard from 'react-icons/md';
+import MdDataUsage from 'react-icons/md';
+import MdFingerprint from 'react-icons/md';
+import MdHearing from 'react-icons/md';
+import MdImportantDevices from 'react-icons/md';
 
 
 Session.setDefault('filterMainTiles', false);
@@ -73,8 +72,7 @@ export class FhirResourcesIndex extends React.Component {
         },
         column: {
           paddingLeft: '5px',
-          paddingRight: '5px',
-          //border: '1px solid orange'
+          paddingRight: '5px'
         }
       },
       user: {
@@ -201,21 +199,21 @@ export class FhirResourcesIndex extends React.Component {
       id: 'allergyIntoleranceTile',
       active: true,
       path: '/allergies',
-      icon: 'StreetView',
+      icon: 'FaStreetView',
       subtitle: 'Allergy Intolerances'
     }, {
       collection: "AuditEvents",
       id: 'auditEventsTile',
       active: true,
       path: '/audit-events',
-      icon: 'Clipboard',
+      icon: 'IoMdClipboard',
       subtitle: 'Audit Events'
     }, {
       collection: "CarePlans",
       id: 'carePlansTile',
       active: true,
       path: '/care-plans',
-      icon: 'Clipboard',
+      icon: 'IoMdClipboard',
       subtitle: 'Care Plan'
     }, {
       collection: "ClinicalImpressions",
@@ -229,119 +227,126 @@ export class FhirResourcesIndex extends React.Component {
       id: 'conditionsTile',
       active: true,
       path: '/conditions',
-      icon: 'Heartbeat',
+      icon: 'FaHeartbeat',
       subtitle: 'Conditions'
     }, {
       collection: "Consents",
       id: 'consentsTile',
       active: true,
       path: '/consents',
-      icon: 'Clipboard',
+      icon: 'IoMdClipboard',
       subtitle: 'Consents'
     }, {
       collection: "Contracts",
       id: 'contractsTile',
       active: true,
       path: '/contracts',
-      icon: 'Clipboard',
+      icon: 'IoMdClipboard',
       subtitle: 'Contracts'
     }, {
       collection: "Communications",
       id: 'contractsTile',
       active: true,
       path: '/communications',
-      icon: 'Mobile',
+      icon: 'FaMobile',
       subtitle: 'Communications'
     }, {
       collection: "Devices",
       id: 'devicesTile',
       active: true,
       path: '/devices',
-      icon: 'Mobile',
+      icon: 'FaMobile',
       subtitle: 'Devices'
     }, {
       collection: "DiagnosticReports",
       id: 'diagnosticReportsTile',
       active: true,
       path: '/diagnostic-reports',
-      icon: 'Clipboard',
+      icon: 'IoMdClipboard',
       subtitle: 'Diagnostic Reports'
     }, {
       collection: "Goals",
       id: 'goalsTile',
       active: true,
       path: '/goals',
-      icon: 'NoSmoking',
+      icon: 'IoLogoNoSmoking',
       subtitle: 'Goals'
     },  {
       collection: "Immunizations",
       id: 'immunizationsTile',
       active: true,
       path: '/immunizations',
-      icon: 'EyeDropper',
+      icon: 'FaEyeDropper',
       subtitle: 'Immunizations',
     }, {
       collection: "ImagingStudies",
       id: 'imagingStudiesTile',
       active: true,
       path: '/imaging-studies',
-      icon: 'Nuclear',
+      icon: 'IoMdNuclear',
       subtitle: 'Imaging Studies',
     }, {
       collection: "Locations",
       id: 'locationsTile',
       active: true,
       path: '/locations',
-      icon: 'MapMarker',
+      icon: 'FaMapMarker',
       subtitle: 'Locations'
     }, {
       collection: "Lists",
       id: 'listsTile',
       active: true,
       path: '/checklists',
-      icon: 'MapMarker',
+      icon: 'FaMapMarker',
       subtitle: 'Lists'
     }, {
       collection: "Medications",
       id: 'medicationsTile',
       active: true,
       path: '/medications',
-      icon: 'Flask',
+      icon: 'FaFlask',
       subtitle: 'Medications'
     }, {
       collection: "Observations",
       id: 'observationsTile',
       active: true,
       path: '/observations',
-      icon: 'Pulse',
+      icon: 'GoPulse',
       subtitle: 'Observations'
     }, {
       collection: "Organizations",
       id: 'organizationsTile',
       active: true,
       path: '/organizations',
-      icon: 'Building',
+      icon: 'FaBuilding',
       subtitle: 'Organizations'
     }, {
       collection: "Procedures",
       id: 'proceduresTile',
       active: true,
       path: '/procedures',
-      icon: 'Nuclear',
+      icon: 'IoMdNuclear',
       subtitle: 'Procedures'
     }, {
       collection: "Patients",
       id: 'patientsTile',
       active: true,
       path: '/patients',
-      icon: 'Person',
+      icon: 'GoPerson',
       subtitle: 'Patients'
+    }, {
+      collection: "Persons",
+      id: 'personsTile',
+      active: true,
+      path: '/persons',
+      icon: 'GoPerson',
+      subtitle: 'Persons'
     }, {
       collection: "Practitioners",
       id: 'practitionersTile',
       active: true,
       path: '/practitioners',
-      icon: 'Person',
+      icon: 'GoPerson',
       subtitle: 'Practitioners'
     }, {
       collection: "RiskAssessments",
@@ -369,21 +374,21 @@ export class FhirResourcesIndex extends React.Component {
       id: 'questionnairesTile',
       active: true,
       path: '/questionnaires',
-      icon: 'Clipboard',
+      icon: 'IoMdClipboard',
       subtitle: 'Questionnaires'
     }, {
       collection: "QuestionnaireResponses",
       id: 'questionnaireResponsesTile',
       active: true,
       path: '/questionnaire-responsess',
-      icon: 'Clipboard',
+      icon: 'IoMdClipboard',
       subtitle: 'Questionnaire Responses'
     }, {
       collection: "Sequences",
       id: 'sequencesTile',
       active: true,
       path: '/sequences',
-      icon: 'Ribbon',
+      icon: 'IoMdRibbon',
       subtitle: 'Sequences'
     }, {
       collection: "Subscriptions",
@@ -452,20 +457,20 @@ export class FhirResourcesIndex extends React.Component {
     //console.log('tilesToRender', tilesToRender)
     
 
-    var appRow = <Row>
-      <Col sm={3} style={this.data.style.column} >
-        {this.renderImportChart(this.data.user)}
-      </Col>
-      <Col sm={3} style={this.data.style.column} >
-        {this.renderChecklists(this.data.user)}
-      </Col>
-      <Col sm={3} style={this.data.style.column}>
-        {this.renderContinuityOfCare(this.data.user)}
-      </Col>
-      <Col sm={3} style={this.data.style.column}>
-        {this.renderTimeline(this.data.user)}
-      </Col>
-    </Row>
+    // var appRow = <Row>
+    //   <Col sm={3} style={this.data.style.column} >
+    //     {this.renderImportChart(this.data.user)}
+    //   </Col>
+    //   <Col sm={3} style={this.data.style.column} >
+    //     {this.renderChecklists(this.data.user)}
+    //   </Col>
+    //   <Col sm={3} style={this.data.style.column}>
+    //     {this.renderContinuityOfCare(this.data.user)}
+    //   </Col>
+    //   <Col sm={3} style={this.data.style.column}>
+    //     {this.renderTimeline(this.data.user)}
+    //   </Col>
+    // </Row>
 
 
     return (
@@ -509,46 +514,6 @@ export class FhirResourcesIndex extends React.Component {
       );
     }
   }
-  // renderExperimentalSection(user){
-  //   if (get(Meteor, 'settings.public.home.showExperimental')) {
-  //     if (user.isAdmin || user.isPractitioner) {
-  //       return(
-  //         <div>
-  //           <CardTitle title="Experimental" style={this.data.style.sectionTitle} />  
-  //           <br/>
-  //           {this.renderExperimentalTiles(this.data.user)}
-
-  //         </div>
-  //       );
-  //     }
-  //   }
-  // }
-  // renderUnderConstructionSection(user){
-  //   if (get(Meteor, 'settings.public.home.showUnderConstruction')) {
-  //     if (user.isAdmin || user.isPractitioner) {
-  //       return(
-  //         <div>
-  //           <CardTitle title="Under Construction" style={this.data.style.sectionTitle} /> 
-  //           <br/>
-  //           {this.renderTilesUnderConstruction(this.data.user)}
-  //           {this.renderImagingStudy(this.data.user)}
-  //         </div>
-  //       );
-  //     }
-  //   }
-  // }  
-  // renderAppsSection(user){
-  //   if (get(Meteor, 'settings.public.home.showApps')) {
-  //     if (user.isAdmin || user.isPractitioner || user.isPatient) {
-  //       return(
-  //         <div>
-  //           <CardTitle title="Apps" style={this.data.style.sectionTitle} /> 
-  //           <br/>
-  //         </div>
-  //       );
-  //     }
-  //   }
-  // }    
   renderFhirSection(user){
     if (get(Meteor, 'settings.public.home.showFhirMenu')) {
       if (user.isAdmin || user.isPractitioner || user.isPatient || user.isUser) {
@@ -565,64 +530,6 @@ export class FhirResourcesIndex extends React.Component {
 
 
 
-
-  // renderAdminTiles(user){
-  //   if (user.isAdmin) {
-  //     return (
-  //       <div>
-  //         <CardTitle title="Admin Functionality" style={this.data.style.sectionTitle} />  
-  //         <br />  
-
-  //         <Row>
-  //           <Col sm={3} style={this.data.style.column}>
-  //             <MenuTile          
-  //               id='oauthConfigTile'
-  //               active={true}
-  //               path='/oauth-client'
-  //               icon='Clipboard'
-  //               iconSize={65}
-  //               subtitle='Authorization Grants'
-  //             />  
-  //           </Col>
-  //           <Col sm={3} style={this.data.style.column}>
-  //             <MenuTile          
-  //               id='hipaaLogTile'
-  //               active={true}
-  //               path='/hipaa-log'
-  //               icon='Clipboard'
-  //               iconSize={65}
-  //               subtitle='Audit Events'
-  //             />  
-  //           </Col>
-  //           <Col sm={3} style={this.data.style.column} >
-  //             <MenuTile          
-  //               id='inboundMessagesTile'
-  //               active={true}
-  //               path='/inbound-messages'
-  //               iconSize={65}
-  //               subtitle='Inbound Messages' />  
-  //           </Col>
-  //           <Col sm={3} style={this.data.style.column}>
-  //             <MenuTile          
-  //               id='outboundMessagesTile'
-  //               active={true}
-  //               path='/outbound-messages'
-  //               iconSize={65}
-  //               subtitle='Outbound Messages' />  
-  //           </Col>
-  //           {/* <Col sm={3} style={this.data.style.column}>
-  //             <MenuTile          
-  //               id='dataManagementTile'
-  //               active={true}
-  //               path='/data-management'
-  //               iconSize={65}
-  //               subtitle='Data Management' />  
-  //           </Col> */}
-  //         </Row>         
-  //       </div>
-  //     )
-  //   }
-  // }
 
   renderExperimentalTiles(user){
     if (user.isPatient || user.isPractitioner || user.isAdmin) {
@@ -834,7 +741,7 @@ export class FhirResourcesIndex extends React.Component {
             id='continuityOfCareTile'
             active={true}
             path='/continuity-of-care'
-            icon='Heartbeat'
+            icon='FaHeartbeat'
             iconSize={85}
             subtitle='Continuity of Care'
           />
@@ -859,40 +766,6 @@ export class FhirResourcesIndex extends React.Component {
     }
   }
 
-
-  // renderTilesUnderConstruction(user, showUnderConstruction){
-  //   // if (showUnderConstruction) {
-  //   if (true) {
-  //     if (user.isPractitioner || user.isAdmin) {
-  //       return (
-  //         <div>
-
-  //           <div id='diagnosticReportsTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/diagnostic-reports') } >
-  //             <GlassCard style={this.data.style.indexCard} >
-  //               <CardTitle
-  //                 title={<Heartbeat />}
-  //                 subtitle='Diagnostic Reports'
-  //                 titleStyle={this.data.style.title}
-  //                 subtitleStyle={this.data.style.subtitle}
-  //               />
-  //             </GlassCard>
-  //           </div>    
-
-  //           <div id='bodySitesTile' style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/body-sites') } >
-  //             <GlassCard style={this.data.style.indexCard} >
-  //               <CardTitle
-  //                 title={<Heartbeat />}
-  //                 subtitle='Body Sites'
-  //                 titleStyle={this.data.style.title}
-  //                 subtitleStyle={this.data.style.subtitle}
-  //               />
-  //             </GlassCard>
-  //           </div>
-
-  //         </div>);
-  //     }
-  //   }
-  // }
 
 
   openDiscussionForum(){

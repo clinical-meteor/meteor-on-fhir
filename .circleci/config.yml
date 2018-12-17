@@ -24,6 +24,7 @@ jobs:
       TOOL_NODE_FLAGS: --max_old_space_size=3072
       CIRCLE_ENV: test
       NODE_ENV: test
+      NIGHTWATCH: true
       DEBUG: true
       LANG: C.UTF-8
       LANGUAGE: C.UTF-8

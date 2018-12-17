@@ -2,19 +2,20 @@ import React  from 'react';
 import ReactMixin  from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
-import TextField from 'material-ui/TextField';
+import { CardText, CardActions, CardTitle, TextField, RaisedButton } from 'material-ui';
 
 import { Row, Col } from 'react-bootstrap';
 
-import { VerticalCanvas, Theme } from 'meteor/clinical:glass-ui';
 import { MobilePadding } from '/imports/ui/components/MobilePadding';
 
 import { browserHistory } from 'react-router';
 import { Accounts } from 'meteor/accounts-base';
 import { Roles } from 'meteor/alanning:roles';
 
-import RaisedButton from 'material-ui/RaisedButton';
 import { lightBaseTheme, darkBaseTheme } from 'material-ui/styles';
+
+import { FullPageCanvas, GlassCard, Glass, DynamicSpacer } from 'meteor/clinical:glass-ui';
+
 import { has, get, set } from 'lodash';
 
 if(process.env.NODE_ENV === "test") console.log("Signup[lightBaseTheme]", lightBaseTheme);
@@ -59,7 +60,8 @@ export class Signup extends React.Component {
         },
         floatingLabelFocusStyle: {
           color: lightBaseTheme.palette.secondaryTextColor
-        }
+        },
+        pageBackground: {}
       },
       errorText: {
         accessCode: '',
@@ -80,6 +82,23 @@ export class Signup extends React.Component {
       data.style.floatingLabelFocusStyle.color = darkBaseTheme.palette.secondaryTextColor;
     }
 
+    // if(get(Meteor, 'settings.public.defaults.registration.background')){
+    //   data.style.pageBackground = {
+    //     backgroundImage: 'url(' + get(Meteor, 'settings.public.defaults.registration.background') + ')',
+    //     WebkitBackgroundSize: 'contain',
+    //     MozBackgroundSize: 'contain',
+    //     OBackgroundSize: 'contain',
+    //     backgroundSize: 'contain',
+    //     backgroundPositionY: 'bottom',
+    //     backgroundRepeat: 'no-repeat',
+    //     backgroundColor: 'white',
+    //     position: 'absolute',
+    //     height: '100%',
+    //     width: '100%'
+    //   }
+    // }
+
+    data.style.pageBackground = Glass.getContextImage();
     
     switch(Session.get('signUpErrorMessage')) {
       case 'Password may not be empty':
@@ -140,113 +159,127 @@ export class Signup extends React.Component {
 
 
     return (
-      <div id='signupPage'>
-        <MobilePadding>
-          <VerticalCanvas>
-                <h4 className='page-header' style={this.data.style.underlineStyle}>Sign Up</h4>
-                <form ref='signup' className='signup' onSubmit={ this.handleSubmit }>
-                  <Row>
-                    <Col xs={ 6 } sm={ 6 }>
-                      <TextField
-                        id='givenNameInput'
-                        name='givenName'
-                        floatingLabelText='Given Name'
-                        inputStyle={this.data.style.inputStyle}
-                        hintStyle={this.data.style.hintStyle}
-                        errorText={this.data.errorText.givenName}
-                        errorStyle={this.data.style.errorStyle}
-                        underlineStyle={this.data.style.underlineStyle}
-                        floatingLabelStyle={this.data.style.floatingLabelStyle}
-                        floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
-                        onKeyPress={this.handleKeyPress.bind(this)}
-                        onChange={this.changeState.bind(this, 'givenName')}
-                        value={ get(formData, 'givenName') }
-                        hintText='Jane'
-                        floatingLabelFixed={true}
-                        fullWidth
-                        /><br/>
-                    </Col>
-                    <Col xs={ 6 } sm={ 6 }>
-                      <TextField
-                        id='familyNameInput'
-                        name='familyName'
-                        type='text'
-                        floatingLabelText='Family Name'
-                        inputStyle={this.data.style.inputStyle}
-                        hintStyle={this.data.style.hintStyle}
-                        errorText={this.data.errorText.familyName}
-                        errorStyle={this.data.style.errorStyle}
-                        underlineStyle={this.data.style.underlineStyle}
-                        floatingLabelStyle={this.data.style.floatingLabelStyle}
-                        floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
-                        onKeyPress={this.handleKeyPress.bind(this)}
-                        onChange={this.changeState.bind(this, 'familyName')}
-                        floatingLabelFixed={true}
-                        hintText='Doe'
-                        value={ get(formData, 'familyName') }
-                        fullWidth
-                        /><br/>
-                    </Col>
-                  </Row>
-                    <TextField
-                      id='emailAddressInput'
-                      name='emailAddress'
-                      type='text'
-                      floatingLabelText='Email Address'
-                      inputStyle={this.data.style.inputStyle}
-                      errorText={this.data.errorText.emailAddress}
-                      errorStyle={this.data.style.errorStyle}
-                      hintStyle={this.data.style.hintStyle}
-                      underlineStyle={this.data.style.underlineStyle}
-                      floatingLabelStyle={this.data.style.floatingLabelStyle}
-                      floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
-                      onKeyPress={this.handleKeyPress.bind(this)}
-                      onChange={this.changeState.bind(this, 'emailAddress')}
-                      value={ get(formData, 'emailAddress') }
-                      hintText='janedoe@gmail.com'
-                      floatingLabelFixed={true}
-                      fullWidth
-                      /><br/>
-                    <TextField
-                      id='passwordInput'
-                      name='password'
-                      type='password'
-                      floatingLabelText='Password'
-                      inputStyle={this.data.style.inputStyle}
-                      errorText={this.data.errorText.password}
-                      errorStyle={this.data.style.errorStyle}
-                      hintStyle={this.data.style.hintStyle}
-                      underlineStyle={this.data.style.underlineStyle}
-                      floatingLabelStyle={this.data.style.floatingLabelStyle}
-                      floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
-                      onKeyPress={this.handleKeyPress.bind(this)}
-                      onChange={this.changeState.bind(this, 'password')}
-                      value={ get(formData, 'password') }
-                      hintText='**********'
-                      floatingLabelFixed={true}
-                      fullWidth
-                      /><br/>
+      <div id='signupPage' style={this.data.style.pageBackground} >
+          <FullPageCanvas>
+            <Row>
+              <Col md={ 6 } sm={ 12 }>
+                <Row>                    
+                  <Col mdOffset={2} md={10}>
+                    <GlassCard backgroundColor='rgba(128, 192, 224, 0.12)' >
+                      <CardTitle title='Sign Up' />
+                      <CardText>
+                        <form ref='signup' className='signup' onSubmit={ this.handleSubmit }>
+                        <Row>
+                          <Col md={6}>
+                            <TextField
+                              id='givenNameInput'
+                              name='givenName'
+                              floatingLabelText='Given Name'
+                              inputStyle={this.data.style.inputStyle}
+                              hintStyle={this.data.style.hintStyle}
+                              errorText={this.data.errorText.givenName}
+                              errorStyle={this.data.style.errorStyle}
+                              underlineStyle={this.data.style.underlineStyle}
+                              floatingLabelStyle={this.data.style.floatingLabelStyle}
+                              floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
+                              onKeyPress={this.handleKeyPress.bind(this)}
+                              onChange={this.changeState.bind(this, 'givenName')}
+                              value={ get(formData, 'givenName') }
+                              hintText='Jane'
+                              floatingLabelFixed={true}
+                              fullWidth
+                              /><br/>
+                          </Col>
+                          <Col md={6}>
+                            <TextField
+                              id='familyNameInput'
+                              name='familyName'
+                              type='text'
+                              floatingLabelText='Family Name'
+                              inputStyle={this.data.style.inputStyle}
+                              hintStyle={this.data.style.hintStyle}
+                              errorText={this.data.errorText.familyName}
+                              errorStyle={this.data.style.errorStyle}
+                              underlineStyle={this.data.style.underlineStyle}
+                              floatingLabelStyle={this.data.style.floatingLabelStyle}
+                              floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
+                              onKeyPress={this.handleKeyPress.bind(this)}
+                              onChange={this.changeState.bind(this, 'familyName')}
+                              floatingLabelFixed={true}
+                              hintText='Doe'
+                              value={ get(formData, 'familyName') }
+                              fullWidth
+                              /><br/>
+                          </Col>
+                        </Row>
+                        <Row>
+                          <Col md={12}>
+                            <TextField
+                              id='emailAddressInput'
+                              name='emailAddress'
+                              type='text'
+                              floatingLabelText='Email Address'
+                              inputStyle={this.data.style.inputStyle}
+                              errorText={this.data.errorText.emailAddress}
+                              errorStyle={this.data.style.errorStyle}
+                              hintStyle={this.data.style.hintStyle}
+                              underlineStyle={this.data.style.underlineStyle}
+                              floatingLabelStyle={this.data.style.floatingLabelStyle}
+                              floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
+                              onKeyPress={this.handleKeyPress.bind(this)}
+                              onChange={this.changeState.bind(this, 'emailAddress')}
+                              value={ get(formData, 'emailAddress') }
+                              hintText='janedoe@gmail.com'
+                              floatingLabelFixed={true}
+                              fullWidth
+                              /><br/>
+                            <TextField
+                              id='passwordInput'
+                              name='password'
+                              type='password'
+                              floatingLabelText='Password'
+                              inputStyle={this.data.style.inputStyle}
+                              errorText={this.data.errorText.password}
+                              errorStyle={this.data.style.errorStyle}
+                              hintStyle={this.data.style.hintStyle}
+                              underlineStyle={this.data.style.underlineStyle}
+                              floatingLabelStyle={this.data.style.floatingLabelStyle}
+                              floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
+                              onKeyPress={this.handleKeyPress.bind(this)}
+                              onChange={this.changeState.bind(this, 'password')}
+                              value={ get(formData, 'password') }
+                              hintText='**********'
+                              floatingLabelFixed={true}
+                              fullWidth
+                              /><br/>
 
-                    { acccessCode }
+                            { acccessCode }
 
-                  <br/>
-                  <br/>
-                  <br/>
-                  <br/>
-                  <RaisedButton
-                    id='signupButton'
-                    onClick={this.handleTouchTap.bind(this)}
-                    label='Sign Up'
-                    primary={true} />
-                  <RaisedButton
-                    id='alreadyHaveAccountButton'
-                    onClick={this.signinRoute }
-                    label='Already have an account?'
-                    style={{marginLeft: '20px'}} />
-                </form>
+                            <RaisedButton
+                              id='signupButton'
+                              onClick={this.handleTouchTap.bind(this)}
+                              label='Sign Up'
+                              fullWidth
+                              primary={true} />
 
-          </VerticalCanvas>
-        </MobilePadding>
+                            <DynamicSpacer />
+                            <RaisedButton
+                              id='alreadyHaveAccountButton'
+                              onClick={this.signinRoute }
+                              label='Already have an account?'
+                              fullWidth
+                            />
+
+                          </Col>
+                        </Row>                    
+                      </form>
+                      </CardText>
+                    </GlassCard>
+                  </Col>
+                </Row>
+              </Col>
+            </Row>
+          </FullPageCanvas>
       </div>
     );
   }

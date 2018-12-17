@@ -1,6 +1,8 @@
 import '/imports/startup/server';
 import '/imports/api/users/methods';
 
+const { exec } = require('child_process');
+
 
 Meteor.startup(function(){
   console.log('Meteor.startup() is initializing....');
@@ -70,6 +72,46 @@ Meteor.startup(function(){
     // BrowserPolicy.content.allowImageOrigin("open-ic-epic.com")  
     // BrowserPolicy.content.allowObjectOrigin('open-ic-epic.com')
   }
+
+
+
+  // Detect the operating system.
+  // possible values are: 'darwin', 'freebsd', 'linux', 'sunos' or 'win32'
+  var isWin = process.platform === "win32";
+  var isMac = process.platform === "darwin";
+
+  console.log('Detecting operating system: ' + process.platform);
+  
+  // // Execute a child process...
+  // exec('fsutil fsinfo volumeinfo c:', (err, stdout, stderr) => {
+  //   if (err) {
+  //     // node couldn't execute the command
+  //     return;
+  //   }
+
+  //   // the *entire* stdout and stderr (buffered)
+  //   console.log(`fsutil fsinfo volumeinfo c: ${stdout}`);
+  // });
+
+  // Execute a child process...
+  exec('fdesetup status', (err, stdout, stderr) => {
+    if (err) {
+      // node couldn't execute the command
+      return;
+    }
+
+    // the *entire* stdout and stderr (buffered)
+    console.log(`fdesetup status: ${stdout}`);
+
+    if(stdout.includes("FileVault is On.")){
+      console.log('Should tell the client that FileVault is on')
+      Meteor.settings.public.fileVault = 'on';
+    } else {
+      Meteor.settings.public.fileVault = 'off';
+    }
+  });
+
+
 
   console.log('Meteor.startup() completed....');
 })

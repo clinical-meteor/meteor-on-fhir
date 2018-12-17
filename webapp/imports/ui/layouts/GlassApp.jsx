@@ -81,7 +81,7 @@ export class GlassApp extends React.Component {
             }
           } else {
             data.app.style = {
-              backgroundImage: 'url(' + Meteor.user().profile.theme.backgroundImagePath + ')',
+              backgroundImage: 'url(' + get(Meteor.user(), 'profile.theme.backgroundImagePath') + ')',
               WebkitBackgroundSize: 'cover',
               MozBackgroundSize: 'cover',
               OBackgroundSize: 'cover',

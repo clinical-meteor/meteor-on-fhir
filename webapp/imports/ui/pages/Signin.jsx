@@ -6,7 +6,7 @@ import React  from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin  from 'react-mixin';
 
-import { FullPageCanvas, GlassCard } from 'meteor/clinical:glass-ui';
+import { FullPageCanvas, GlassCard, Glass, DynamicSpacer } from 'meteor/clinical:glass-ui';
 import { CardText, CardActions, CardTitle, TextField, RaisedButton } from 'material-ui'
 
 import { browserHistory } from 'react-router';
@@ -45,11 +45,14 @@ export class Signin extends React.Component {
         },
         floatingLabelFocusStyle: {
           color: lightBaseTheme.palette.secondaryTextColor
-        }
+        },
+        pageBackground: {}
       },
       endpoints: [],
       services: []
     };
+
+
 
     if( Endpoints.find().count() > 0){
       data.endpoints = Endpoints.find({
@@ -76,6 +79,24 @@ export class Signin extends React.Component {
       data.style.floatingLabelFocusStyle.color = darkBaseTheme.palette.secondaryTextColor;
     }
 
+    // if(get(Meteor, 'settings.public.defaults.registration.background')){
+    //   data.style.pageBackground = {
+    //     backgroundImage: 'url(' + get(Meteor, 'settings.public.defaults.registration.background') + ')',
+    //     WebkitBackgroundSize: 'contain',
+    //     MozBackgroundSize: 'contain',
+    //     OBackgroundSize: 'contain',
+    //     backgroundSize: 'contain',
+    //     backgroundPositionY: 'bottom',
+    //     backgroundRepeat: 'no-repeat',
+    //     backgroundColor: 'white',
+    //     position: 'absolute',
+    //     height: '100%',
+    //     width: '100%'
+    //   }
+    // }
+
+    data.style.pageBackground = Glass.getContextImage();
+
     if(process.env.NODE_ENV === "test") console.log("Signin[data]", data);
     return data;
   }
@@ -84,6 +105,9 @@ export class Signin extends React.Component {
   }
   forgotPasswordRoute(){
     browserHistory.push('/recover-password');
+  }
+  registerRoute(){
+    browserHistory.push('/signup');
   }
   signInWith(serviceName, event){
     console.log('Signin.signInWith', serviceName)
@@ -145,7 +169,7 @@ export class Signin extends React.Component {
       if (error) {
         Bert.alert(error.reason, 'warning');
       } else {
-        Bert.alert('Logged in!', 'success');
+        Bert.alert('Logged in!', 'info');
 
         // we might have received a custom path to route to
         // depending on which signin component we used
@@ -204,7 +228,7 @@ export class Signin extends React.Component {
 
     var signInWith;
 
-    if(Package['symptomatic:smart-on-fhir-client']){
+    if(Package['symptomatic:smart-on-fhir-client'] && get(Meteor, 'settings.publich.registration.signInWith')){
       signInWith = <Col lgOffset={4} mdOffset={2} lg={2} md={3}>
         <GlassCard zDepth={3} height="auto" >
           <CardTitle
@@ -235,50 +259,67 @@ export class Signin extends React.Component {
     }
 
     return (
-      <div id="signinPage">
-        <MobilePadding>
-          <FullPageCanvas>
+      <div id="signinPage" style={this.data.style.pageBackground}>
+        {/* <MobilePadding> */}
+          <FullPageCanvas >
               <Row>
-                <Col lg={5} md={ 6 } sm={ 12 }>
-                  <h4 className="page-header" style={this.data.style.underlineStyle}>Sign In</h4>
-                  <Row>
+                <Col md={ 6 } sm={ 12 }>
+                  {/* <h4 className="page-header" style={this.data.style.underlineStyle}>Sign In</h4> */}
+                  <Row>                    
                     <Col mdOffset={2} md={10}>
-                      <form ref="signin" className="signin" >
-                        <TextField
-                          type="email"
-                          ref="emailAddress"
-                          name="emailAddress"
-                          floatingLabelText="Email Address"
-                          onKeyPress={this.handleKeyPress.bind(this)}
-                          inputStyle={this.data.style.inputStyle}
-                          hintStyle={this.data.style.hintStyle}
-                          errorStyle={this.data.style.errorStyle}
-                          underlineStyle={this.data.style.underlineStyle}
-                          floatingLabelStyle={this.data.style.floatingLabelStyle}
-                          floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
-                          fullWidth
-                        />              
-                        <br/>
-                        <br/>    
-                        <TextField
-                          type="password"
-                          ref="password"
-                          name="password"
-                          floatingLabelText="Password"
-                          onKeyPress={this.handleKeyPress.bind(this)}
-                          inputStyle={this.data.style.inputStyle}
-                          hintStyle={this.data.style.hintStyle}
-                          errorStyle={this.data.style.errorStyle}
-                          underlineStyle={this.data.style.underlineStyle}
-                          floatingLabelStyle={this.data.style.floatingLabelStyle}
-                          floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
-                          fullWidth
-                        />
-                        <br/>
-                        <br/>
-                        <RaisedButton id="signinButton" onClick={this.handleTouchTap.bind(this)} label="Signin" primary={true} />
-                        <RaisedButton id="forgotPasswordButton" onClick={this.forgotPasswordRoute } label="Forgot password?" style={{marginLeft: "20px"}} />
-                      </form>
+                      <GlassCard backgroundColor='rgba(128, 192, 224, 0.12)' >
+                        <CardTitle title='Sign In' />
+                        <CardText>
+                          <form ref="signin" className="signin" >
+                            <TextField
+                              type="email"
+                              ref="emailAddress"
+                              name="emailAddress"
+                              floatingLabelText="Email Address"
+                              onKeyPress={this.handleKeyPress.bind(this)}
+                              inputStyle={this.data.style.inputStyle}
+                              hintStyle={this.data.style.hintStyle}
+                              errorStyle={this.data.style.errorStyle}
+                              underlineStyle={this.data.style.underlineStyle}
+                              floatingLabelStyle={this.data.style.floatingLabelStyle}
+                              floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
+                              floatingLabelFixed={true} 
+                              hintText='jane@acme.com'
+                              fullWidth
+                            />              
+  
+                            <TextField
+                              type="password"
+                              ref="password"
+                              name="password"
+                              floatingLabelText="Password"
+                              onKeyPress={this.handleKeyPress.bind(this)}
+                              inputStyle={this.data.style.inputStyle}
+                              hintStyle={this.data.style.hintStyle}
+                              errorStyle={this.data.style.errorStyle}
+                              underlineStyle={this.data.style.underlineStyle}
+                              floatingLabelStyle={this.data.style.floatingLabelStyle}
+                              floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
+                              floatingLabelFixed={true} 
+                              hintText='************'
+                              fullWidth
+                            />
+                            <DynamicSpacer />
+                            <RaisedButton id="signinButton" onClick={this.handleTouchTap.bind(this)} label="Signin" primary={true} fullWidth />
+                            <DynamicSpacer />
+                            <Row>
+                              <Col xs={8}>
+                                <RaisedButton id="forgotPasswordButton" onClick={this.forgotPasswordRoute } label="Forgot password?" fullWidth />
+                                <br />
+                              </Col>
+                              <Col xs={4}>
+                                <RaisedButton id="registerButton" onClick={this.registerRoute } label="Register" fullWidth />
+                                <br />
+                              </Col>
+                            </Row>
+                          </form>
+                        </CardText>
+                      </GlassCard>
                     </Col>
                   </Row>
                   <br/>
@@ -288,7 +329,7 @@ export class Signin extends React.Component {
               </Row>
 
           </FullPageCanvas>
-        </MobilePadding>
+        {/* </MobilePadding> */}
       </div>
     );
   }

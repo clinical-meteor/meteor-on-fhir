@@ -1,7 +1,7 @@
 {
   "public": {
     "title": "Meteor on FHIR",      
-    "baseUrl":"https://fhir-timeline.meteorapp.com/",
+    "baseUrl":"",
     "logging": "none",
     "theme": {
       "showVideoBackground": false,
@@ -37,7 +37,8 @@
         "opacity": 0.95
       },
       "registration": {
-        "displayAccessCode": true
+        "displayAccessCode": true,
+        "signInWith": false
       },
       "schemas": {
         "validate": false,
@@ -45,6 +46,13 @@
         "removeEmptyStrings": false
       },
       "sidebar": {
+        "menuItems": {
+          "Index": false,
+          "Healthlog": false,
+          "GettingStarted": false,
+          "DataManagement": false,
+          "FhirResources": false
+        },
         "hidden": [
           "/allergies",
           "/conditions",

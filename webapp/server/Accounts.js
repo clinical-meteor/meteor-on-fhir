@@ -79,3 +79,128 @@ Accounts.onCreateUser(function(options, user) {
 
   return user;
 });
+
+
+
+
+Accounts.onLogin(function(loginObject) {
+  console.log('Accounts.onLogin().foo', loginObject)
+
+  let userId = get(loginObject, 'user._id');
+  console.log('userId', userId);
+
+  // =================================================================
+  // CONSENTS
+
+  var consents;  
+  if(!get(loginObject, 'user.profile.consents')){
+    var defaultConsents = {
+      performanceAnalytics: {
+        "resourceType": "Consent",
+        "id": "Consent/" + userId + "/performanceAnalytics",
+        "status": "inactive",
+        "patient": {
+          "reference": "Patient/" + userId
+        },
+        "dateTime": new Date(),
+        "consentingParty": [{
+          "reference": "Patient/" + userId
+        }],
+        "category": [],
+        "organization": [{
+          "reference": "Organization/Symptomatic",
+          "display": "Symptomatic"
+        }],
+        "policyRule": "http://hl7.org/fhir/ConsentPolicy/opt-in",
+        "except": []
+    },
+      medicalCodeLookup: {
+        "resourceType": "Consent",
+        "id": "Consent/" + userId + "/medicalCodeLookup",
+        "status": "inactive",
+        "patient": {
+          "reference": "Patient/" + userId
+        },
+        "dateTime": new Date(),
+        "consentingParty": [{
+          "reference": "Patient/" + userId
+        }],
+        "category": [],
+        "organization": [{
+          "reference": "Organization/Symptomatic",
+          "display": "Symptomatic"
+        }],
+        "policyRule": "http://hl7.org/fhir/ConsentPolicy/opt-in",
+        "except": []
+      },
+      patientEducationReferences: {
+        "resourceType": "Consent",
+        "id": "Consent/" + userId + "/patientEducationReferences",
+        "status": "inactive",
+        "patient": {
+          "reference": "Patient/" + userId
+        },
+        "dateTime": new Date(),
+        "consentingParty": [{
+          "reference": "Patient/" + userId
+        }],
+        "category": [],
+        "organization": [{
+          "reference": "Organization/Symptomatic",
+          "display": "Symptomatic"
+        }],
+        "policyRule": "http://hl7.org/fhir/ConsentPolicy/opt-in",
+        "except": []
+      },
+      geocoding: {
+        "resourceType": "Consent",
+        "id": "Consent/" + userId + "/geocoding",
+        "status": "inactive",
+        "patient": {
+          "reference": "Patient/" + userId
+        },
+        "dateTime": new Date(),
+        "consentingParty": [{
+          "reference": "Patient/" + userId
+        }],
+        "category": [],
+        "organization": [{
+          "reference": "Organization/Symptomatic",
+          "display": "Symptomatic"
+        }],
+        "policyRule": "http://hl7.org/fhir/ConsentPolicy/opt-in",
+        "except": []
+      }
+    }
+    Meteor.users.update({_id: userId}, {$set: {
+      'profile.consents': defaultConsents
+    }});
+    
+    console.log('userId', userId);
+  };
+
+  // =================================================================
+  // FILTERS
+
+  var defaultFilters = {
+    remove: ['gonorrhoeae', 'eGFR', 'chlamydia' ],
+    mustHave: [],
+    resourceTypes: [
+      'Allergies', 
+      'CarePlans',
+      'Conditions', 
+      'Immunizations', 
+      'MedicationOrders', 
+      'MedicationStatements', 
+      'Observations', 
+      'Procedures' 
+    ]
+  };  
+  if(!get(loginObject, 'user.profile.filters')){    
+    Meteor.users.update({_id: userId}, {$set: {
+      'profile.filters': defaultFilters
+    }});
+  }
+
+
+});

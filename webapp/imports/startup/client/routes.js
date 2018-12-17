@@ -15,6 +15,7 @@ import { Meteor } from 'meteor/meteor';
 import { NotFound } from '/imports/ui/pages/NotFound';
 import { NotificationsPage } from '/imports/ui/pages/NotificationsPage';
 import { PrivacyPage } from '/imports/ui/pages/PrivacyPage';
+import { TermsConditionsPage } from '/imports/ui/pages/TermsConditionsPage';
 import { RecoverPassword } from '/imports/ui/pages/RecoverPassword';
 import { ResetPassword } from '/imports/ui/pages/ResetPassword';
 import { Signin } from '/imports/ui/pages/Signin';
@@ -45,7 +46,31 @@ Object.keys(Package).forEach(function(packageName){
       dynamicRoutes.push(route);      
     });    
   }
+
+  // we can even override entire pages
+  if(Package[packageName].WelcomePatientPage){
+    WelcomePatientPage = Package[packageName].WelcomePatientPage;
+  }
+  if(Package[packageName].WelcomePractitionerPage){
+    WelcomePractitionerPage = Package[packageName].WelcomePractitionerPage;
+  }
+  if(Package[packageName].WelcomeAdminPage){
+    WelcomeAdminPage = Package[packageName].WelcomeAdminPage;
+  }
+
+  if(Package[packageName].ContinuityOfCarePage){
+    MainIndex = Package[packageName].ContinuityOfCarePage;
+  }
+  if(Package[packageName].WelcomePatientPage){
+    WelcomePatientPage = Package[packageName].WelcomePatientPage;
+  }
 });
+
+
+
+
+
+
 
 // we're storing the current route URL in a reactive variable
 // which will be used to update active controls
@@ -126,11 +151,18 @@ const requreSysadmin = (nextState, replace) => {
   }
 };
 
+
+
 Meteor.startup(() => {
+  var roles = get(Meteor.user(), 'roles');
+  if(roles && roles.includes('practitioner')){
+    Session.set('showSearchbar', true)
+  }
+
   render(
     <Router history={ browserHistory }>
       <Route path="/" component={ App }>
-      <IndexRoute name="index" component={ MainIndex } onEnter={ requireAuth } />
+        <IndexRoute name="index" component={ MainIndex } onEnter={ requireAuth } />
 
         <Route name="fhirResources" path="/fhir-resources-index" component={ FhirResourcesIndex } />
 
@@ -141,6 +173,8 @@ Meteor.startup(() => {
 
         <Route name="about" path="/about" component={ AppInfoPage } />
         <Route name="privacy" path="/privacy" component={ PrivacyPage } />
+        <Route name="termsConditions" path="/terms-and-conditions" component={ TermsConditionsPage } />
+
         <Route name="theming" path="/theming" component={ ThemePage } onEnter={ requireAuth } />
         <Route name="myprofile" path="/myprofile" component={ MyProfilePage } onEnter={ requireAuth } />
 

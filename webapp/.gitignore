@@ -6,3 +6,5 @@ version.desktop
 
 .desktop-installer
 .desktop-installer/*
+
+resources/*
