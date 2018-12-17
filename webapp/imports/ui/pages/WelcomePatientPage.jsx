@@ -39,7 +39,17 @@ import { MdImportantDevices } from 'react-icons/md';
 
 import { Image } from 'react-bootstrap';
 
-import { MedicalRecordImporter } from 'meteor/symptomatic:continuity-of-care';
+// import { MedicalRecordImporter } from 'meteor/symptomatic:continuity-of-care';
+
+// Pick up any dynamic routes that are specified in packages, and include them
+var dynamicRoutes = [];
+var medicalRecordImporter;
+Object.keys(Package).forEach(function(packageName){
+  if(Package[packageName].MedicalRecordImporter){
+
+    medicalRecordImporter = Package[packageName].MedicalRecordImporter;
+  }
+});
 
 
 Session.setDefault('genderMaleBtn', false);
@@ -356,7 +366,7 @@ export class WelcomePatientPage extends React.Component {
   }
   importCoreBiomarkers(){
     console.log('importCoreBiomarkers')
-    MedicalRecordImporter.coreBiomarkers();
+    medicalRecordImporter.coreBiomarkers();
   }
   mergeIntoSymptomatic(){
     console.log('mergeIntoSymptomatic')
@@ -458,7 +468,7 @@ export class WelcomePatientPage extends React.Component {
       alertStyle.minHeight = '240px'
     }
 
-    if(Package['symptomatic:continuity-of-care']){
+    if(Package['symptomatic:continuity-of-care'] ){
 
         var dermatogramStyleFemale = {
           maxHeight: '400px', 

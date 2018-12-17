@@ -128,6 +128,8 @@ const requreSysadmin = (nextState, replace) => {
 };
 
 let indexRoute;
+// TODO:  refactor and remove symptomatic dependencies 
+// perhaps search for an export?
 if(Package['symptomatic:continuity-of-care']){
   import { ContinuityOfCarePage } from 'meteor/symptomatic:continuity-of-care';
   indexRoute = ContinuityOfCarePage;

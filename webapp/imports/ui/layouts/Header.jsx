@@ -191,6 +191,7 @@ export class Header extends React.Component {
     var menuIcon;
     if(get(Meteor, 'settings.public.defaults.header.menuIcon')){
       menuIcon = <img 
+        id='sidebarToggleButton'
         src={ get(Meteor, 'settings.public.defaults.header.menuIcon') } 
         onClick={ this.toggleDrawerActive }
         style={{
