@@ -258,6 +258,11 @@ export class Signin extends React.Component {
       </Col>
     }
 
+    let glassColor = 'rgba(128, 128, 128, 0.12)';
+    if(get(Meteor, 'settings.public.theme.glassColor')){
+      glassColor = get(Meteor, 'settings.public.theme.glassColor');
+    }
+
     return (
       <div id="signinPage" style={this.data.style.pageBackground}>
         {/* <MobilePadding> */}
@@ -267,7 +272,7 @@ export class Signin extends React.Component {
                   {/* <h4 className="page-header" style={this.data.style.underlineStyle}>Sign In</h4> */}
                   <Row>                    
                     <Col mdOffset={2} md={10}>
-                      <GlassCard backgroundColor='rgba(128, 192, 224, 0.12)' >
+                      <GlassCard backgroundColor={glassColor} >
                         <CardTitle title='Sign In' />
                         <CardText>
                           <form ref="signin" className="signin" >

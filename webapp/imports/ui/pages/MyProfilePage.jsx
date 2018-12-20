@@ -900,8 +900,9 @@ export class MyProfilePage extends React.Component {
       let state = Session.get('myProfileState');
 
       // janky, but it works, i guess
-      if ((state.confirm === Meteor.userId()) || (state.confirm === Meteor.user().emails[0].address)) {
-        if(process.env.NODE_ENV === "test") console.log('Confirm _id match.  Removing.');
+      // if ((state.confirm === Meteor.userId()) || (state.confirm === Meteor.user().emails[0].address)) {
+        // if ((state.confirm === Meteor.userId())) {
+        //   if(process.env.NODE_ENV === "test") console.log('Confirm _id match.  Removing.');
   
         removeUserById.call({
           _id:  Meteor.userId()
@@ -913,9 +914,9 @@ export class MyProfilePage extends React.Component {
             browserHistory.push('/signin');
           }
         });
-      } else {
-        console.log('Hmmm...  yeah, lets wait a bit and make sure we have the right user.');
-      }    
+      // } else {
+      //   console.log('Hmmm...  yeah, lets wait a bit and make sure we have the right user.');
+      // }    
     }
   }
   deleteAccount(){

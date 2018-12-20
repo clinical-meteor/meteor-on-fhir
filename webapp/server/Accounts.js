@@ -202,5 +202,4 @@ Accounts.onLogin(function(loginObject) {
     }});
   }
 
-
 });

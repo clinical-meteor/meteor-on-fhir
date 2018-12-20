@@ -157,6 +157,11 @@ export class Signup extends React.Component {
         />;
     }
 
+    let glassColor = 'rgba(128, 128, 128, 0.12)';
+    if(get(Meteor, 'settings.public.theme.glassColor')){
+      glassColor = get(Meteor, 'settings.public.theme.glassColor');
+    }
+
 
     return (
       <div id='signupPage' style={this.data.style.pageBackground} >
@@ -165,7 +170,7 @@ export class Signup extends React.Component {
               <Col md={ 6 } sm={ 12 }>
                 <Row>                    
                   <Col mdOffset={2} md={10}>
-                    <GlassCard backgroundColor='rgba(128, 192, 224, 0.12)' >
+                    <GlassCard backgroundColor={glassColor} >
                       <CardTitle title='Sign Up' />
                       <CardText>
                         <form ref='signup' className='signup' onSubmit={ this.handleSubmit }>
