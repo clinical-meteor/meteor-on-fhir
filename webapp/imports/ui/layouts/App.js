@@ -36,11 +36,17 @@ const muiTheme = getMuiTheme({
 
 Session.setDefault('iFrameLocation', '');
 Meteor.startup(function (){
-  if (has(Meteor.settings, 'public.defaults.iFrameUrl')){
-    Session.set('iFrameLocation', get(Meteor.settings, 'public.defaults.iFrameUrl'));
-  }
-  if (has(Meteor.settings, 'public.defaults.iFrameEnabled')){
-    Session.set('secondPanelVisible', get(Meteor.settings, 'public.defaults.iFrameEnabled'));
+  if(get(Meteor.user(), 'profile.consents.patientEducationReferences.status') === "active"){
+    if (has(Meteor.settings, 'public.defaults.iFrameUrl')){
+      Session.set('iFrameLocation', get(Meteor.settings, 'public.defaults.iFrameUrl'));
+    }
+    if (has(Meteor.settings, 'public.defaults.iFrameEnabled')){
+      Session.set('secondPanelVisible', get(Meteor.settings, 'public.defaults.iFrameEnabled'));
+    }  
+  } else {
+    // no consent to fetch patient materials
+    // setting the iframe to nothing
+    Session.set('iFrameLocation', '');
   }
 });
 

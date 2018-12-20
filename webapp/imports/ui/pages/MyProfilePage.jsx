@@ -537,6 +537,35 @@ export class MyProfilePage extends React.Component {
     //   </div>
     // //}
 
+    let geocodingCard;
+    if(get(Meteor.user(), 'profile.consents.geocoding.status') === "active"){
+      geocodingCard = <div>
+        <GlassCard>
+          <CardTitle title="Geocoding Preferences" subtitle='last updated: yyyy/mm/dd' style={{float: 'left'}} />
+            <CardTitle subtitle={this.data.address.latlng} style={{position: 'relative', right: '0px', top: '0px', float: 'right'}}/>
+            <CardText>
+              <DynamicSpacer />              
+              <TextField
+                hintText="http://data.cityofchicago.gov/map.geojson"
+                onChange={ this.setGeojsonUrl.bind(this)}
+                fullWidth
+              />
+            </CardText>
+            <CardActions>
+              <FlatButton 
+                label='Geocode' 
+                onClick={this.geocode.bind(this)}
+                />
+              <FlatButton 
+                label='Map My Address' 
+                onClick={this.mapMyAddress.bind(this)}
+                />
+            </CardActions>
+          </GlassCard>
+        <DynamicSpacer />
+      </div>
+    }    
+
     return(
       <div id='myProfilePage'>
         <FullPageCanvas style={{paddingBottom: '80px'}}> 
@@ -640,33 +669,8 @@ export class MyProfilePage extends React.Component {
 
 
 
-            <GlassCard>
-              <CardTitle title="Geocoding Preferences" subtitle='last updated: yyyy/mm/dd' style={{float: 'left'}} />
-              <CardTitle subtitle={this.data.address.latlng} style={{position: 'relative', right: '0px', top: '0px', float: 'right'}}/>
-              <CardText>
-                <DynamicSpacer />              
-                <TextField
-                  hintText="http://data.cityofchicago.gov/map.geojson"
-                  onChange={ this.setGeojsonUrl.bind(this)}
-                  fullWidth
-                />
-              </CardText>
-              <CardActions>
-                <FlatButton 
-                  label='Geocode' 
-                  onClick={this.geocode.bind(this)}
-                  />
-                <FlatButton 
-                  label='Map My Address' 
-                  onClick={this.mapMyAddress.bind(this)}
-                  />
-              </CardActions>
-            </GlassCard>
-            <DynamicSpacer />
+            { geocodingCard }
 
-
-
-            {/* { consentElement } */}
 
             { continuityOfCareCard }
 
