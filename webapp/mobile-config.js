@@ -8,7 +8,7 @@ App.info({
   author: 'Abigail Watson',
   email: 'abigail@symptomatic.io',
   website: 'https://www.symptomatic.io',
-  version: '0.8.8'
+  version: '0.8.9'
 });
 
 App.icons({
