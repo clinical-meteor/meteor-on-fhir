@@ -8,7 +8,7 @@ App.info({
   author: 'Abigail Watson',
   email: 'abigail@symptomatic.io',
   website: 'https://www.symptomatic.io',
-  version: '0.8.3'
+  version: '0.8.8'
 });
 
 App.icons({
@@ -153,6 +153,7 @@ App.configurePlugin('com.telerik.plugins.healthkit', {
   CLINICAL_READ_PERMISSION: 'App needs read access'
 });
 
+
 // App.appendToConfig(`
 //   <splash src="../../../app/path/to/Default@2x~universal~anyany.png" />
 //   <splash src="../../../app/path/to/Default@3x~universal~anyany.png" />
@@ -163,6 +164,7 @@ App.configurePlugin('com.telerik.plugins.healthkit', {
 App.appendToConfig('<allow-navigation href="https://www.wikipedia.com/" />')
 App.appendToConfig('<allow-navigation href="https://groups.google.com/a/symptomatic.io/forum/#!forum/support" />')
 App.appendToConfig('<allow-navigation href="https://www.linkedin.com/groups/12150525" />')
+App.appendToConfig('<allow-navigation href="https://www.ncbi.nlm.nih.gov/" />')
 
 
 App.appendToConfig(`<config-file parent="NSHealthClinicalHealthRecordsShareUsageDescription" target="*-Info.plist">
