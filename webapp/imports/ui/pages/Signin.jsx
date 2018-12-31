@@ -263,16 +263,23 @@ export class Signin extends React.Component {
       glassColor = get(Meteor, 'settings.public.theme.glassColor');
     }
 
+    let cardStyle = {
+      position: 'relative'
+    };
+    // if(['iPad'].includes(window.navigator.platform)){
+    cardStyle.top = (Session.get('appHeight') * 0.1) + 'px'
+    // }
+
     return (
       <div id="signinPage" style={this.data.style.pageBackground}>
         {/* <MobilePadding> */}
           <FullPageCanvas >
               <Row>
-                <Col md={ 6 } sm={ 12 }>
+                <Col mdOffset={3} md={ 6 } sm={ 12 }>
                   {/* <h4 className="page-header" style={this.data.style.underlineStyle}>Sign In</h4> */}
-                  <Row>                    
-                    <Col mdOffset={2} md={10}>
-                      <GlassCard backgroundColor={glassColor} >
+                  {/* <Row>                    
+                    <Col md={12}> */}
+                      <GlassCard backgroundColor={glassColor} style={cardStyle} >
                         <CardTitle title='Sign In' />
                         <CardText>
                           <form ref="signin" className="signin" >
@@ -325,8 +332,8 @@ export class Signin extends React.Component {
                           </form>
                         </CardText>
                       </GlassCard>
-                    </Col>
-                  </Row>
+                    {/* </Col>
+                  </Row> */}
                   <br/>
                   <br/>
                 </Col>                

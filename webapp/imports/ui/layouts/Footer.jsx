@@ -482,7 +482,8 @@ export class Footer extends React.Component {
             });
           })}  style={this.data.style.buttonText} ></FlatButton>
 
-          <FlatButton label='Filter' className='querySystemButton' ref='querySystemButton'></FlatButton>
+          <FlatButton label='Filter' className='querySystemButton' ref='querySystemButton' onClick={this.openLink.bind(this, '/filters')} ></FlatButton>
+          <FlatButton label='Graph' className='querySystemButton' ref='querySystemButton' onClick={this.openLink.bind(this, '/observations-graph')} ></FlatButton>
         </div>
       }, {
         pathname: '/checklists',

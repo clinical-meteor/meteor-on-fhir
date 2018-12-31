@@ -22,7 +22,7 @@
     "version": "../scripts/version.sh"
   },
   "dependencies": {
-    "@babel/runtime": "7.0.0-beta.55",
+    "@babel/runtime": "^7.2.0",
     "@material-ui/core": "3.6.1",
     "ajv": "6.1.1",
     "async": "^2.6.0",
@@ -86,7 +86,7 @@
     "eslint-plugin-meteor": "^4.0.0",
     "eslint-plugin-react": "^6.2.2",
     "meteor-node-stubs": "^0.2.3",
-    "nightwatch": "0.9.19",
+    "nightwatch": "1.0.18",
     "selenium-standalone-jar": "3.0.1",
     "selenium-server-standalone-jar": "3.5.0",
     "selenium-server-standalone": "2.53.1",

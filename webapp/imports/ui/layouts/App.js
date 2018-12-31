@@ -96,7 +96,7 @@ export class App extends React.Component {
       );
 
     // Website
-    } else if (Meteor.userId() && get(Meteor.settings, 'public.defaults.iFrameUrl')) {
+    } else if (Meteor.userId() && get(Meteor.settings, 'public.defaults.iFrameEnabled') && get(Meteor.settings, 'public.defaults.iFrameUrl')) {
       return (
         <GlassCard style={this.data.style.card} height='auto'>
           <CardText>

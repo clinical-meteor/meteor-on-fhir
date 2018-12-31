@@ -14,7 +14,6 @@ session@1.2.0
 email
 
 ### Standard Utilities
-jquery@1.11.10      
 underscore@1.0.10
 momentjs:moment
 

@@ -155,6 +155,7 @@ srp@1.0.12
 standard-minifier-js@2.4.0
 symptomatic:clinical-scenarios@0.1.0
 symptomatic:continuity-of-care@0.1.17
+symptomatic:example-plugin@0.1.17
 symptomatic:landing-page@0.1.11
 symptomatic:smart-on-fhir-client@0.1.56
 symptomatic:smart-on-fhir-config@0.1.52
