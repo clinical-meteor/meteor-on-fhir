@@ -172,6 +172,9 @@ export class PatientSidebar extends React.Component {
           <LinkContainer key='filtersItem' to='/filters'>
              <MenuItem id="filtersItem" primaryText='Filters' href='/filters' />
           </LinkContainer>
+          <LinkContainer key='observationGraphs' to='/observations-graph'>
+             <MenuItem id="observationGraphs" primaryText='Biomarker Trends' href='/observations-graph' />
+          </LinkContainer>
       </div>
 
       supportElements = <LinkContainer key='Support' to='/support'>

@@ -1,7 +1,7 @@
 // import { Bert } from 'meteor/clinical:alert';
 import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session';
-import { MobilePadding } from '/imports/ui/components/MobilePadding';
+
 import React  from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin  from 'react-mixin';
@@ -266,9 +266,7 @@ export class Signin extends React.Component {
     let cardStyle = {
       position: 'relative'
     };
-    // if(['iPad'].includes(window.navigator.platform)){
     cardStyle.top = (Session.get('appHeight') * 0.1) + 'px'
-    // }
 
     return (
       <div id="signinPage" style={this.data.style.pageBackground}>
