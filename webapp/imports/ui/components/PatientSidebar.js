@@ -99,9 +99,11 @@ export class PatientSidebar extends React.Component {
 
     var dataManagement;
     if(get(Meteor, 'settings.public.defaults.sidebar.menuItems.DataManagement')){
-      dataManagement = <LinkContainer key='dataItem' to='/data-management'>
-        <MenuItem primaryText='Data Management' href='/data-management' />
-      </LinkContainer>;
+      if(!['iPhone'].includes(window.navigator.platform)){
+        dataManagement = <LinkContainer key='dataItem' to='/data-management'>
+          <MenuItem primaryText='Data Management' href='/data-management' />
+        </LinkContainer>;
+      }
     }
 
     //----------------------------------------------------------------------
@@ -115,6 +117,18 @@ export class PatientSidebar extends React.Component {
       </LinkContainer>
       }
     }
+
+
+    //----------------------------------------------------------------------
+    // Spacer  
+
+    var spacer;
+    if(!['iPhone'].includes(window.navigator.platform)){
+      spacer = <hr />;
+    }
+
+
+
 
     //----------------------------------------------------------------------
     // Dynamic Modules  
@@ -158,6 +172,9 @@ export class PatientSidebar extends React.Component {
           <LinkContainer key='filtersItem' to='/filters'>
              <MenuItem id="filtersItem" primaryText='Filters' href='/filters' />
           </LinkContainer>
+          <LinkContainer key='observationGraphs' to='/observations-graph'>
+             <MenuItem id="observationGraphs" primaryText='Biomarker Trends' href='/observations-graph' />
+          </LinkContainer>
       </div>
 
       supportElements = <LinkContainer key='Support' to='/support'>
@@ -170,16 +187,16 @@ export class PatientSidebar extends React.Component {
 
     return(
       <div id='patientSidebar'>
-        <List style={{paddingLeft: '20px', position: 'static'}}>
+        <List id='iteratorContainer' style={{paddingLeft: '20px', position: 'static'}}>
 
           { index }
           { healthlog }         
             
           { continuityOfCareElements }
 
-          <hr />
+          { spacer }
      
-          { dynamicElements }
+          {/* { dynamicElements } */}
 
           { fhirResources }
 

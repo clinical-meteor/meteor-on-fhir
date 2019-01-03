@@ -1,7 +1,7 @@
 // import { Bert } from 'meteor/clinical:alert';
 import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session';
-import { MobilePadding } from '/imports/ui/components/MobilePadding';
+
 import React  from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin  from 'react-mixin';
@@ -258,16 +258,26 @@ export class Signin extends React.Component {
       </Col>
     }
 
+    let glassColor = 'rgba(128, 128, 128, 0.12)';
+    if(get(Meteor, 'settings.public.theme.glassColor')){
+      glassColor = get(Meteor, 'settings.public.theme.glassColor');
+    }
+
+    let cardStyle = {
+      position: 'relative'
+    };
+    cardStyle.top = (Session.get('appHeight') * 0.1) + 'px'
+
     return (
       <div id="signinPage" style={this.data.style.pageBackground}>
         {/* <MobilePadding> */}
           <FullPageCanvas >
               <Row>
-                <Col md={ 6 } sm={ 12 }>
+                <Col mdOffset={3} md={ 6 } sm={ 12 }>
                   {/* <h4 className="page-header" style={this.data.style.underlineStyle}>Sign In</h4> */}
-                  <Row>                    
-                    <Col mdOffset={2} md={10}>
-                      <GlassCard backgroundColor='rgba(128, 192, 224, 0.12)' >
+                  {/* <Row>                    
+                    <Col md={12}> */}
+                      <GlassCard backgroundColor={glassColor} style={cardStyle} >
                         <CardTitle title='Sign In' />
                         <CardText>
                           <form ref="signin" className="signin" >
@@ -320,8 +330,8 @@ export class Signin extends React.Component {
                           </form>
                         </CardText>
                       </GlassCard>
-                    </Col>
-                  </Row>
+                    {/* </Col>
+                  </Row> */}
                   <br/>
                   <br/>
                 </Col>                

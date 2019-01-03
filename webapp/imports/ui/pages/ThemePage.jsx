@@ -83,10 +83,10 @@ export class ThemePage extends React.Component {
     greenTile.background = '#AEC9A8';
 
     var purpleTile = JSON.parse(JSON.stringify(backgroundThumbnail));
-    purpleTile.background = '#800080';
+    purpleTile.background = 'lavender';
 
     var orangeTile = JSON.parse(JSON.stringify(backgroundThumbnail));
-    orangeTile.background = '#ffa500';
+    orangeTile.background = 'peachpuff';
 
     var goldenrodTile = JSON.parse(JSON.stringify(backgroundThumbnail));
     goldenrodTile.background = 'goldenrod';
@@ -119,7 +119,9 @@ export class ThemePage extends React.Component {
     Object.keys(Package).forEach(function(packageName){
       if(Package[packageName].ThemingAssets){
         // we try to build up a route from what's specified in the package
+        
         Package[packageName].ThemingAssets.forEach(function(asset){
+          
           themingAssets.push(asset);      
         });    
       }
@@ -148,6 +150,7 @@ export class ThemePage extends React.Component {
                     floatingLabelText='Color A'
                     floatingLabelFixed={true}
                     value={this.data.colors.colorA}
+                    disabled={true}
                     /><br/>
                   <TextField
                     ref='colorB'
@@ -156,6 +159,7 @@ export class ThemePage extends React.Component {
                     floatingLabelText='Color B'
                     floatingLabelFixed={true}
                     value={this.data.colors.colorB}
+                    disabled={true}
                     /><br/>
                   <TextField
                     ref='colorC'
@@ -164,6 +168,7 @@ export class ThemePage extends React.Component {
                     floatingLabelText='Color C'
                     floatingLabelFixed={true}
                     value={this.data.colors.colorC}
+                    disabled={true}
                     /><br/>
                   <TextField
                     ref='colorD'
@@ -172,6 +177,7 @@ export class ThemePage extends React.Component {
                     floatingLabelText='Color D'
                     floatingLabelFixed={true}
                     value={this.data.colors.colorD}
+                    disabled={true}
                     /><br/>
                   <TextField
                     ref='colorE'
@@ -180,6 +186,7 @@ export class ThemePage extends React.Component {
                     floatingLabelText='Color E'
                     floatingLabelFixed={true}
                     value={this.data.colors.colorE}
+                    disabled={true}
                     /><br/>
                   <TextField
                     ref='colorF'
@@ -188,6 +195,7 @@ export class ThemePage extends React.Component {
                     floatingLabelText='Color F'
                     floatingLabelFixed={true}
                     value={this.data.colors.colorF}
+                    disabled={true}
                     /><br/>
 
                 </CardText>
@@ -207,11 +215,17 @@ export class ThemePage extends React.Component {
                   fullWidth
                   icon={<FontIcon className="muidocs-icon-image-exposure" />}
                   onClick={this.clickOnDarkroomButton}
+                  disabled={true}
                   style={{backgroundColor: '#dddddd'}}>
                     Darkroom 
                 </RaisedButton>
               <DynamicSpacer />
-              <RaisedButton id='resetTheme' primary={false} onClick={this.resetTheme} fullWidth> Reset Theme </RaisedButton>
+              <RaisedButton 
+                id='resetTheme'                     
+                disabled={true}
+                primary={false} 
+                onClick={this.resetTheme} 
+                fullWidth> Reset Theme </RaisedButton>
               <DynamicSpacer />
               <DynamicSpacer />
 
@@ -228,9 +242,9 @@ export class ThemePage extends React.Component {
               </GlassCard> */}
               <Row id='backgroundImageGallary' >
 
-                { themingAssets.map(asset => <Col md={2}>
+                { themingAssets.map(asset => <Col md={2} key={asset.name}>
                     <GlassCard style={{marginBottom: '20px'}} >
-                      <Image name={asset.name} ref={asset.name} src={asset.src} style={backgroundThumbnail} responsive onClick={this.onImageClick.bind(this, asset.src)} />
+                      <Image name={asset.name} src={asset.src} style={backgroundThumbnail} responsive onClick={this.onImageClick.bind(this, asset.src)} />
                       {/* <Image responsive style={purpleTile} onClick={this.onColorClick} /> */}
                     </GlassCard>
                   </Col>)}

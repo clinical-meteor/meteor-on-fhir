@@ -74,18 +74,18 @@ export class GlassApp extends React.Component {
           data.app.style.background = 'inherit';
         }
 
-        if (Meteor.user().profile.theme.backgroundImagePath) {
+        if (get(Meteor.user(), 'profile.theme.backgroundImagePath')) {
           if(Session.get('timelineBackground')){
             data.app.style = {
               background: get(Meteor.user(), 'profile.theme.backgroundColor')
             }
           } else {
             data.app.style = {
-              backgroundImage: 'url(' + get(Meteor.user(), 'profile.theme.backgroundImagePath') + ')',
               WebkitBackgroundSize: 'cover',
               MozBackgroundSize: 'cover',
               OBackgroundSize: 'cover',
-              backgroundSize: 'cover'
+              backgroundSize: 'cover',
+              backgroundImage: 'url(' + get(Meteor.user(), 'profile.theme.backgroundImagePath') + ')'
             };  
           }
         }
@@ -105,6 +105,10 @@ export class GlassApp extends React.Component {
     data.app.style.width = '100%';
     data.app.style.height = '100%';
     data.app.style.position = 'fixed';
+    data.app.style.WebkitBackgroundSize = 'cover';
+    data.app.style.MozBackgroundSize = 'cover';
+    data.app.style.OBackgroundSize = 'cover';
+    data.app.style.backgroundSize = 'cover';
 
     if(process.env.NODE_ENV === "test") console.log("GlassApp[data]" , data);
     if(process.env.NODE_ENV === "test") console.log("Meteor.settings" , Meteor.settings);
@@ -151,11 +155,15 @@ export class GlassApp extends React.Component {
   }
 
   render(){
+    let backgroundStyle = this.data.app.style;
+    // console.log('backgroundStyle', backgroundStyle)
     return (
       <div id="glassApp">
         {this.renderBackground(this.data.app.showVideoBackground)}
-        <div style={this.data.app.style}>
-          {this.props.children}
+        <div id='backgroundWallpaper' style={backgroundStyle}>
+          <div id='wallpaperScrim'>
+            {this.props.children}
+          </div>
         </div>
       </div>
     );

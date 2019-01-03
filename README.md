@@ -89,35 +89,9 @@ Run the script to remove restricted media assets:
 scripts/remove_restricted_media_assets.sh
 ```
 
+ 
 
-#### E. Mobile Build   
-
-```sh
-# don't include geodata 
-cd webapp
-mv public/geodata ..
-
-# add ios 
-meteor add-platform ios
-
-# add healthkit
-# https://github.com/EddyVerbruggen/HealthKit/issues/103
-meteor add cordova:com.telerik.plugins.healthkit@https://github.com/EddyVerbruggen/HealthKit.git#5174fde920092c94fe3dd3dead64700d293d9235
-
-
-# development
-# this can be tricky, because http://localhost:3000 may need to be a local IP address
-# you may need to use `ifconfig` to find that address
-# beware network isolation, and make sure your phone and workstation are on the same network
-meteor run ios-device --mobile-server http://localhost:3000 --settings configs/settings.dev.json
-
-# production
-# we need to specify the production server
-meteor run ios-device --mobile-server http://meteor-on-fhir.meteorapp.com --settings packages/landing-page/configs/settings.symptomatic.io.json
-```    
-
-
-#### F. Desktop Build   
+#### E. Desktop Build   
 
 ```bash
  # build the executables and add them into the /public directory
@@ -155,7 +129,7 @@ meteor npm run desktop -- build-installer http://meteor-on-fhir.meteorapp.com
 ```    
 
 
-#### G. Deploy to Galaxy  
+#### F. Deploy to Galaxy  
 
 ```sh
 # remove the desktop pipeline before building for Galaxy
@@ -174,7 +148,7 @@ meteor npm install
 TIMEOUT_SCALE_FACTOR=10 DEPLOY_HOSTNAME=us-east-1.galaxy-deploy.meteor.com meteor deploy --settings configs/settings.galaxy.json meteor-on-fhir.meteorapp.com
 ```   
 
-#### H. Azure Configuration  
+#### G. Azure Configuration  
 
 ```sh
 az webapp deployment user set --user-name admin --password password
@@ -184,7 +158,7 @@ az appservice plan create --name appServicePlan --resource-group appName --sku S
 az webapp create --resource-group appResourceGroup --plan appServicePlan --name appname 
 ```    
 
-#### I. Azure Deployment 
+#### H. Azure Deployment 
 
 ```sh
 # prepare environment variables
@@ -221,7 +195,7 @@ curl -u admin https://appname.scm.azurewebsites.net/api/logstream/kudu/deploymen
 ```
 
 
-#### J. Synchronizing With Other Datalakes  
+#### I. Synchronizing With Other Datalakes  
 
 To enable network synchronizing, you'll need to specify an upstream sync partner in your `settings.json` file.  Afterwards, you can enable manual synchronization in the **Data Management* page.  
 
@@ -237,39 +211,9 @@ To enable network synchronizing, you'll need to specify an upstream sync partner
 ```
 
 
-#### K. Connect to an External EMR   
+#### J. Connect to an External EMR   
 [HL7 v2 to FHIR Interface Mapping](https://medium.com/@awatson1978/hl7-v2-to-fhir-interface-mapping-f83c6ecf6bee)  
 
-
-
-#### L. Dockerfile  
-Docker containers are pretty exciting, and we now support containerization and container composition of the Meteor on FHIR architecture.
-
-```sh
-# build the docker image
-cd webapp
-docker build -t symptomatic/meteor-on-fhir .
-
-# run the docker image; you'll need to set environment variables
-# beware that each container has it's own localhost address; so 127.0.0.1 won't point to the same container
-# you'll need to link containers and/or enable host or bridge networking
-docker run -d -e METEOR_SETTINGS="$(cat configs/settings.dev.json)" -e MONG_URL=mongodb://111.222.333.444:27017/meteor -p 80:3000 symptomatic/meteor-on-fhir
-
-# push the container to your infrastructure
-docker push symptomatic/meteor-on-fhir
-
-# or run the orchestration and monitor logs
-docker-compose up
-docker-compose logs
-
-# and general maintenance and devops
-docker images
-docker ps
-docker inspect
-```
-
-For more details on running Dockerized Meteor apps in production, see:
-https://projectricochet.com/blog/production-meteor-and-node-using-docker-part-vi
 
 
 #### Trouble Shooting

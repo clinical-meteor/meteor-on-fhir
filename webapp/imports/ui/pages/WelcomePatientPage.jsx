@@ -23,7 +23,7 @@ export class WelcomePatientPage extends React.Component {
     return(
       <div id="welcomePatientPage">
         <VerticalCanvas>
-          <GlassCard>
+          <GlassCard >
             <CardTitle
               title="Welcome!"
             />

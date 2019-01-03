@@ -8,7 +8,7 @@ App.info({
   author: 'Abigail Watson',
   email: 'abigail@symptomatic.io',
   website: 'https://www.symptomatic.io',
-  version: '0.8.1'
+  version: '0.8.10'
 });
 
 App.icons({
@@ -23,15 +23,17 @@ App.icons({
   'ios_settings_3x': 'resources/icons/Icon-87.png',
   'ios_spotlight_2x': 'resources/icons/Icon-80.png',
   'ios_spotlight_3x': 'resources/icons/Icon-120.png',
-  'ios_notifications_2x': 'resources/icons/Icon-40.png',
-  'ios_notifications_3x': 'resources/icons/Icon-60.png',
   
   'ipad': 'resources/icons/Icon-76.png',
 
   'ios_settings': 'resources/icons/Icon-29.png',
   'ios_spotlight': 'resources/icons/Icon-40.png',
-  'ios_notifications': 'resources/icons/Icon-20.png',
-   
+
+  // 'ios_notifications': 'resources/icons/Icon-20.png',
+  // 'ios_notifications_2x': 'resources/icons/Icon-40.png',
+  // 'ios_notifications_3x': 'resources/icons/Icon-60.png',
+
+  
   'iphone_legacy': 'resources/icons/Icon-57.png',
   'iphone_legacy_2x': 'resources/icons/Icon-114.png',
   'ipad_spotlight_legacy': 'resources/icons/Icon-50.png',
@@ -153,6 +155,7 @@ App.configurePlugin('com.telerik.plugins.healthkit', {
   CLINICAL_READ_PERMISSION: 'App needs read access'
 });
 
+
 // App.appendToConfig(`
 //   <splash src="../../../app/path/to/Default@2x~universal~anyany.png" />
 //   <splash src="../../../app/path/to/Default@3x~universal~anyany.png" />
@@ -163,6 +166,7 @@ App.configurePlugin('com.telerik.plugins.healthkit', {
 App.appendToConfig('<allow-navigation href="https://www.wikipedia.com/" />')
 App.appendToConfig('<allow-navigation href="https://groups.google.com/a/symptomatic.io/forum/#!forum/support" />')
 App.appendToConfig('<allow-navigation href="https://www.linkedin.com/groups/12150525" />')
+App.appendToConfig('<allow-navigation href="https://www.ncbi.nlm.nih.gov/" />')
 
 
 App.appendToConfig(`<config-file parent="NSHealthClinicalHealthRecordsShareUsageDescription" target="*-Info.plist">

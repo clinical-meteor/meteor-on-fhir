@@ -10,7 +10,7 @@ import React  from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin  from 'react-mixin';
 import { Session } from 'meteor/session';
-import User from '/imports/api/User';
+import User from 'meteor/clinical:user-model';
 import MenuItem from '/imports/ui/components/MenuItem';
 import MenuPatientSummary from '/imports/ui/components/MenuPatientSummary';
 
@@ -41,7 +41,8 @@ export class SidebarTray extends React.Component {
   }
   getMeteorData() {
 
-    var currentUser = new User(Meteor.user());
+    // var currentUser = new User(Meteor.user());
+    var currentUser = Meteor.user();
 
     let data = {
       state: {

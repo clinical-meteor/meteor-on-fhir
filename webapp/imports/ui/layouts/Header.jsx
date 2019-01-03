@@ -36,7 +36,6 @@ Sidebar = {
   }
 }
 
-// Session.setDefault('drawerActive', false)
 
 export class Header extends React.Component {
   getMeteorData() {
@@ -147,11 +146,13 @@ export class Header extends React.Component {
 
   renderNavigation(hasUser) {
     if(get(Meteor, 'settings.public.home.showRegistration')){
-      if (hasUser) {
-        return <AuthenticatedNavigation />;
-      } else {
-        return <PublicNavigation />;
-      }  
+      if(!['signup', 'signin', '/signup', '/signin'].includes(Session.get('pathname'))){
+        if (hasUser) {
+          return <AuthenticatedNavigation />;
+        } else {
+          return <PublicNavigation />;
+        }    
+      }
     }
   }
 

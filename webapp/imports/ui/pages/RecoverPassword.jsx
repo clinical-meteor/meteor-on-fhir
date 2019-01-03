@@ -108,14 +108,27 @@ export class RecoverPassword extends React.Component {
 
   render() {
     var email = 'janedoe@acme.com';
+
+    let glassColor = 'rgba(128, 128, 128, 0.12)';
+    if(get(Meteor, 'settings.public.theme.glassColor')){
+      glassColor = get(Meteor, 'settings.public.theme.glassColor');
+    }
+    
+    let cardStyle = {
+      position: 'relative'
+    };
+    // if(['iPad'].includes(window.navigator.platform)){
+    cardStyle.top = (Session.get('appHeight') * 0.1) + 'px'
+    // }
+    
     return(
       <div id='recoverPasswordPage' style={this.data.style.pageBackground}>
           <FullPageCanvas>
             <Row>
-              <Col md={ 6 } sm={ 12 }>
+              <Col  mdOffset={3} md={ 6 } sm={ 12 }>
                 <Row>                    
-                  <Col mdOffset={2} md={10}>
-                    <GlassCard backgroundColor='rgba(128, 192, 224, 0.12)' >
+                  <Col md={12}>
+                    <GlassCard backgroundColor={glassColor} style={cardStyle} >
                     <CardTitle title='Recover Password' />
                       <CardText>
                           <FormGroup>

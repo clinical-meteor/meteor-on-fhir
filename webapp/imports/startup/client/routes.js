@@ -39,11 +39,16 @@ import { get } from 'lodash';
 
 // Pick up any dynamic routes that are specified in packages, and include them
 var dynamicRoutes = [];
+var privacyRoutes = [];
 Object.keys(Package).forEach(function(packageName){
   if(Package[packageName].DynamicRoutes){
     // we try to build up a route from what's specified in the package
     Package[packageName].DynamicRoutes.forEach(function(route){
       dynamicRoutes.push(route);      
+
+      if(route.privacyEnabled){
+        privacyRoutes.push(route.path)
+      }
     });    
   }
 
@@ -64,12 +69,8 @@ Object.keys(Package).forEach(function(packageName){
   if(Package[packageName].WelcomePatientPage){
     WelcomePatientPage = Package[packageName].WelcomePatientPage;
   }
+
 });
-
-
-
-
-
 
 
 // we're storing the current route URL in a reactive variable
@@ -78,6 +79,12 @@ Object.keys(Package).forEach(function(packageName){
 Session.setDefault('pathname', window.location.pathname);
 browserHistory.listen(function(event) {
   Session.set('pathname', event.pathname);
+
+  if(privacyRoutes.includes(event.pathname)){
+    Session.set('glassBlurEnabled', true)
+  } else {
+    Session.set('glassBlurEnabled', false)
+  }
 });
 
 
