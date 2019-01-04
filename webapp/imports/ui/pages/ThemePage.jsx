@@ -1,20 +1,18 @@
 import { CardActions, CardText, CardTitle } from 'material-ui/Card';
-import { Tab, Tabs } from 'material-ui/Tabs';
+import { Tab, Tabs, FlatButton, FontIcon, RaisedButton, TextField } from 'material-ui';
 import { get, has } from 'lodash';
 
+import { Alert, Grid, Container, Col, Row } from 'react-bootstrap';
+
 import { Bert } from 'meteor/clinical:alert';
-import FlatButton from 'material-ui/FlatButton';
-import FontIcon from 'material-ui/FontIcon';
 import { Image } from 'react-bootstrap';
 import { Meteor } from 'meteor/meteor';
 import OpacitySlider from '/imports/ui/components/OpacitySlider';
-import RaisedButton from 'material-ui/RaisedButton';
 import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
 import { Session } from 'meteor/session';
-import TextField from 'material-ui/TextField';
-import { VerticalCanvas, Theme, GlassCard } from 'meteor/clinical:glass-ui';
+import { VerticalCanvas, FullPageCanvas, Theme, GlassCard, DynamicSpacer } from 'meteor/clinical:glass-ui';
 import { setUserTheme } from '../../api/users/methods';
 
 let defaultState = {
@@ -40,7 +38,8 @@ export class ThemePage extends React.Component {
         colorB: '',
         colorC: '',
         colorD: '',
-        colorE: ''
+        colorE: '',
+        colorF: ''
       }
     };
 
@@ -62,11 +61,12 @@ export class ThemePage extends React.Component {
   }
   render(){
     var backgroundThumbnail = {
-      width: '191px',
+      width: '100%',
       display: 'inline-block',
-      marginRight: '5px',
-      marginBottom: '5px',
-      height: '115px'
+      marginRight: '0px',
+      marginBottom: '0px',
+      height: '115px',
+      objectFit: 'cover'      
     };
 
     // deep clone
@@ -83,10 +83,13 @@ export class ThemePage extends React.Component {
     greenTile.background = '#AEC9A8';
 
     var purpleTile = JSON.parse(JSON.stringify(backgroundThumbnail));
-    purpleTile.background = '#800080';
+    purpleTile.background = 'lavender';
 
     var orangeTile = JSON.parse(JSON.stringify(backgroundThumbnail));
-    orangeTile.background = '#ffa500';
+    orangeTile.background = 'peachpuff';
+
+    var goldenrodTile = JSON.parse(JSON.stringify(backgroundThumbnail));
+    goldenrodTile.background = 'goldenrod';
 
 
     var blackTile = JSON.parse(JSON.stringify(backgroundThumbnail));
@@ -99,7 +102,11 @@ export class ThemePage extends React.Component {
     grayTile.background = '#999999';
 
     var smokeTile = JSON.parse(JSON.stringify(backgroundThumbnail));
-    smokeTile.background = '#eeeeee';
+    smokeTile.background = '#dddddd';
+
+
+    var eggshellTile = JSON.parse(JSON.stringify(backgroundThumbnail));
+    eggshellTile.background = '#eeeeee';
 
 
 
@@ -112,116 +119,212 @@ export class ThemePage extends React.Component {
     Object.keys(Package).forEach(function(packageName){
       if(Package[packageName].ThemingAssets){
         // we try to build up a route from what's specified in the package
+        
         Package[packageName].ThemingAssets.forEach(function(asset){
+          
           themingAssets.push(asset);      
         });    
       }
     });
 
-
+    var controlPaneStyle = {}
+    if(['iPhone'].includes(window.navigator.platform)){
+      controlPaneStyle.display = 'none';
+    }     
 
     return(
       <div id='aboutPage'>
-        <VerticalCanvas>
-          <GlassCard>
-            <CardTitle
-              title='Theme'
-              subtitle='Pick a background and color!'
-            />
-            <Tabs onChange={this.handleTabChange}>
-
-              <Tab label='Backgrounds' onActive={this.handleActive} style={{backgroundColor: 'white', color: 'black', borderBottom: '1px solid lightgray'}}>
-                <div style={{position: 'relative'}}>
-
-                  <div id='backgroundImageGallary' style={{display: 'inline-block', paddingLeft: '4px', paddingTop: '4px'}}>
-
-                    { themingAssets.map(asset => <Image name={asset.name} src={asset.src} style={backgroundThumbnail} responsive onClick={this.onImageClick.bind(this, asset.src)} />) }
-
-                    <Image responsive style={purpleTile} onClick={this.onColorClick} />
-                    <Image responsive style={orangeTile} onClick={this.onColorClick} />
-                    <Image responsive style={redTile} onClick={this.onColorClick} />
-                    <Image responsive style={greenTile} onClick={this.onColorClick} />
-                    <Image responsive style={blueTile} onClick={this.onColorClick} />
-
-                    <Image responsive style={whiteTile} onClick={this.onColorClick} />
-                    <Image responsive style={smokeTile} onClick={this.onColorClick} />
-                    <Image responsive style={grayTile} onClick={this.onColorClick} />
-                    <Image responsive style={charcoalTile} onClick={this.onColorClick} />
-                    <Image responsive style={blackTile} onClick={this.onColorClick} />
-
-                  </div>
-                </div>
-              </Tab>
-              <Tab label='Colors' style={{backgroundColor: 'white', color: 'black', borderBottom: '1px solid lightgray'}}>
+        <FullPageCanvas>
+          <Row>
+            <Col md={3} style={controlPaneStyle}>
+              <GlassCard>
+                <CardTitle
+                  title='Theme'
+                  subtitle='Pick a background and color!'
+                />                
                 <CardText>
-                  <div style={{position: 'relative'}}>
-                    <TextField
-                      ref='colorA'
-                      name='colorA'
-                      type='text'
-                      floatingLabelText='Color A'
-                      floatingLabelFixed={true}
-                      value={this.data.colors.colorA}
-                      /><br/>
-                    <TextField
-                      ref='colorB'
-                      name='colorB'
-                      type='text'
-                      floatingLabelText='Color B'
-                      floatingLabelFixed={true}
-                      value={this.data.colors.colorB}
-                      /><br/>
-                    <TextField
-                      ref='colorC'
-                      name='colorC'
-                      type='text'
-                      floatingLabelText='Color C'
-                      floatingLabelFixed={true}
-                      value={this.data.colors.colorC}
-                      /><br/>
-                    <TextField
-                      ref='colorD'
-                      name='colorD'
-                      type='text'
-                      floatingLabelText='Color D'
-                      floatingLabelFixed={true}
-                      value={this.data.colors.colorD}
-                      /><br/>
-                    <TextField
-                      ref='colorE'
-                      name='colorE'
-                      type='text'
-                      floatingLabelText='Color E'
-                      floatingLabelFixed={true}
-                      value={this.data.colors.colorE}
-                      /><br/>
-                  </div>
+                  <TextField
+                    ref='colorA'
+                    name='colorA'
+                    type='text'
+                    floatingLabelText='Color A'
+                    floatingLabelFixed={true}
+                    value={this.data.colors.colorA}
+                    disabled={true}
+                    /><br/>
+                  <TextField
+                    ref='colorB'
+                    name='colorB'
+                    type='text'
+                    floatingLabelText='Color B'
+                    floatingLabelFixed={true}
+                    value={this.data.colors.colorB}
+                    disabled={true}
+                    /><br/>
+                  <TextField
+                    ref='colorC'
+                    name='colorC'
+                    type='text'
+                    floatingLabelText='Color C'
+                    floatingLabelFixed={true}
+                    value={this.data.colors.colorC}
+                    disabled={true}
+                    /><br/>
+                  <TextField
+                    ref='colorD'
+                    name='colorD'
+                    type='text'
+                    floatingLabelText='Color D'
+                    floatingLabelFixed={true}
+                    value={this.data.colors.colorD}
+                    disabled={true}
+                    /><br/>
+                  <TextField
+                    ref='colorE'
+                    name='colorE'
+                    type='text'
+                    floatingLabelText='Color E'
+                    floatingLabelFixed={true}
+                    value={this.data.colors.colorE}
+                    disabled={true}
+                    /><br/>
+                  <TextField
+                    ref='colorF'
+                    name='colorF'
+                    type='text'
+                    floatingLabelText='Color F'
+                    floatingLabelFixed={true}
+                    value={this.data.colors.colorF}
+                    disabled={true}
+                    /><br/>
+
                 </CardText>
+              </GlassCard>
+              <DynamicSpacer />
 
-              </Tab>
-              {/*
-              <Tab label='Settings' style={{backgroundColor: 'white', color: 'black', borderBottom: '1px solid lightgray'}}>
-                <div style={{position: 'relative'}}>
-                  <label>Opacity</label>
-                  <OpacitySlider />
-                  <br />
-                  <label>Darkroom</label>
-                  <RaisedButton
-                    ref='darkroomButton'
-                    icon={<FontIcon className="muidocs-icon-image-exposure" />}
-                    onClick={this.clickOnDarkroomButton}
-                    style={{marginLeft: '20px', backgroundColor: '#dddddd'}} />
-                </div>
+              <GlassCard>
+                <CardTitle
+                  title='Opacity'
+                />                
+                <OpacitySlider />
+              </GlassCard>
+              <DynamicSpacer />
+                <RaisedButton
+                  id='darkroomButton'
+                  primary={false}
+                  fullWidth
+                  icon={<FontIcon className="muidocs-icon-image-exposure" />}
+                  onClick={this.clickOnDarkroomButton}
+                  disabled={true}
+                  style={{backgroundColor: '#dddddd'}}>
+                    Darkroom 
+                </RaisedButton>
+              <DynamicSpacer />
+              <RaisedButton 
+                id='resetTheme'                     
+                disabled={true}
+                primary={false} 
+                onClick={this.resetTheme} 
+                fullWidth> Reset Theme </RaisedButton>
+              <DynamicSpacer />
+              <DynamicSpacer />
 
-              </Tab>
-              */}
+            </Col>
+            <Col md={9} >
+              {/* <GlassCard>
+                <CardTitle
+                  title='Theme'
+                  subtitle='Pick a background and color!'
+                />
+                  <CardText>
 
-            </Tabs>
-            <CardActions>
-              <FlatButton id='resetTheme' primary={true} onClick={this.resetTheme}> Reset Theme </FlatButton>
-            </CardActions>
-          </GlassCard>
-        </VerticalCanvas>
+                    </CardText>
+              </GlassCard> */}
+              <Row id='backgroundImageGallary' >
+
+                { themingAssets.map(asset => <Col md={2} key={asset.name}>
+                    <GlassCard style={{marginBottom: '20px'}} >
+                      <Image name={asset.name} src={asset.src} style={backgroundThumbnail} responsive onClick={this.onImageClick.bind(this, asset.src)} />
+                      {/* <Image responsive style={purpleTile} onClick={this.onColorClick} /> */}
+                    </GlassCard>
+                  </Col>)}
+
+              </Row>
+              <DynamicSpacer />
+
+              <Row>
+                <Col md={2}>
+                  <GlassCard>
+                    <Image responsive style={purpleTile} onClick={this.onColorClick} />
+                  </GlassCard>
+                </Col>
+                <Col md={2}>
+                  <GlassCard>
+                    <Image responsive style={orangeTile} onClick={this.onColorClick} />
+                  </GlassCard>
+                </Col>
+                <Col md={2}>
+                  <GlassCard>
+                    <Image responsive style={redTile} onClick={this.onColorClick} />
+                  </GlassCard>
+                </Col>
+                <Col md={2}>
+                  <GlassCard>
+                    <Image responsive style={greenTile} onClick={this.onColorClick} />
+                  </GlassCard>
+                </Col>
+                <Col md={2}>
+                  <GlassCard>
+                    <Image responsive style={blueTile} onClick={this.onColorClick} />
+                  </GlassCard>
+                </Col>
+                <Col md={2}>
+                  <GlassCard>
+                    <Image responsive style={goldenrodTile} onClick={this.onColorClick} />
+                  </GlassCard>
+                </Col>
+              </Row>
+              <DynamicSpacer />
+
+
+
+              <Row>
+                <Col md={2}>
+                  <GlassCard>
+                    <Image responsive style={whiteTile} onClick={this.onColorClick} />
+                  </GlassCard>
+                </Col>
+                <Col md={2}>
+                  <GlassCard>
+                    <Image responsive style={eggshellTile} onClick={this.onColorClick} />                    
+                  </GlassCard>
+                </Col>
+                <Col md={2}>
+                  <GlassCard>
+                    <Image responsive style={smokeTile} onClick={this.onColorClick} />                    
+                  </GlassCard>
+                </Col>
+                <Col md={2}>
+                  <GlassCard>
+                    <Image responsive style={grayTile} onClick={this.onColorClick} />                    
+                  </GlassCard>
+                </Col>
+                <Col md={2}>
+                  <GlassCard>
+                    <Image responsive style={charcoalTile} onClick={this.onColorClick} />                    
+                  </GlassCard>
+                </Col>
+                <Col md={2}>
+                  <GlassCard>
+                    <Image responsive style={blackTile} onClick={this.onColorClick} />                    
+                  </GlassCard>
+                </Col>
+              </Row>
+
+
+            </Col>
+          </Row>
+        </FullPageCanvas>
       </div>
     );
   }
@@ -299,3 +402,4 @@ export class ThemePage extends React.Component {
 
 
 ReactMixin(ThemePage.prototype, ReactMeteorData);
+export default ThemePage;

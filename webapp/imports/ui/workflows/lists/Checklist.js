@@ -1,6 +1,7 @@
 import React  from 'react';
 import ReactMixin  from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
+import PropTypes from 'prop-types';
 
 import { Tabs, Tab } from 'material-ui/Tabs';
 import { CardTitle, CardText } from 'material-ui/Card';
@@ -10,6 +11,8 @@ import { Meteor } from 'meteor/meteor';
 
 import { Table } from 'react-bootstrap';
 import Checkbox from 'material-ui/Checkbox';
+
+import { get } from 'lodash';
 
 
 Session.setDefault('checklistPageTabIndex', 0);
@@ -42,11 +45,12 @@ export class Checklist extends React.Component {
       if (list) {
         data.entry = [];
         list.entry.forEach(function(task){
-          if (task.flag.text == "Completed") {
+          task.selected = false;
+
+          if (get(task, 'flag.text' == "Completed")) {
             task.selected = true;
-          } else {
-            task.selected = false;
           }
+          
           data.entry.push(task);
         });
       }  
@@ -141,5 +145,8 @@ export class Checklist extends React.Component {
 }
 
 
-
+Checklist.propTypes = {
+  id: PropTypes.string
+};
 ReactMixin(Checklist.prototype, ReactMeteorData);
+export default Checklist;

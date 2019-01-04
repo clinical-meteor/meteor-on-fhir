@@ -9,10 +9,13 @@ import { App } from '/imports/ui/layouts/App';
 
 import { AppInfoPage } from '/imports/ui/pages/AppInfoPage';
 import { MainIndex } from '/imports/ui/pages/MainIndex';
+import { FhirResourcesIndex } from '/imports/ui/pages/FhirResourcesIndex';
+
 import { Meteor } from 'meteor/meteor';
 import { NotFound } from '/imports/ui/pages/NotFound';
 import { NotificationsPage } from '/imports/ui/pages/NotificationsPage';
 import { PrivacyPage } from '/imports/ui/pages/PrivacyPage';
+import { TermsConditionsPage } from '/imports/ui/pages/TermsConditionsPage';
 import { RecoverPassword } from '/imports/ui/pages/RecoverPassword';
 import { ResetPassword } from '/imports/ui/pages/ResetPassword';
 import { Signin } from '/imports/ui/pages/Signin';
@@ -21,33 +24,67 @@ import { ThemePage } from '/imports/ui/pages/ThemePage';
 import { UsersPage } from '/imports/ui/pages/UsersPage';
 import { WelcomePatientPage } from '/imports/ui/pages/WelcomePatientPage';
 import { WelcomePractitionerPage } from '/imports/ui/pages/WelcomePractitionerPage';
+import { WelcomeAdminPage } from '/imports/ui/pages/WelcomeAdminPage';
+import { DicomViewerPage } from '/imports/ui/pages/DicomViewerPage';
+
 import { MyProfilePage } from '/imports/ui/pages/MyProfilePage';
 
 import { PreferencesPage } from '/imports/ui/pages/PreferencesPage';
 import { PasswordManagementPage } from '/imports/ui/pages/PasswordManagementPage';
 import { AuthorizationGrantsPage } from '/imports/ui/pages/AuthorizationGrantsPage';
-
+import { MetadataPage } from '/imports/ui/pages/MetadataPage';
 
 import { ChecklistsPage } from '/imports/ui/workflows/lists/ChecklistsPage';
 import { get } from 'lodash';
 
 // Pick up any dynamic routes that are specified in packages, and include them
 var dynamicRoutes = [];
+var privacyRoutes = [];
 Object.keys(Package).forEach(function(packageName){
   if(Package[packageName].DynamicRoutes){
     // we try to build up a route from what's specified in the package
     Package[packageName].DynamicRoutes.forEach(function(route){
       dynamicRoutes.push(route);      
+
+      if(route.privacyEnabled){
+        privacyRoutes.push(route.path)
+      }
     });    
   }
+
+  // we can even override entire pages
+  if(Package[packageName].WelcomePatientPage){
+    WelcomePatientPage = Package[packageName].WelcomePatientPage;
+  }
+  if(Package[packageName].WelcomePractitionerPage){
+    WelcomePractitionerPage = Package[packageName].WelcomePractitionerPage;
+  }
+  if(Package[packageName].WelcomeAdminPage){
+    WelcomeAdminPage = Package[packageName].WelcomeAdminPage;
+  }
+
+  if(Package[packageName].ContinuityOfCarePage){
+    MainIndex = Package[packageName].ContinuityOfCarePage;
+  }
+  if(Package[packageName].WelcomePatientPage){
+    WelcomePatientPage = Package[packageName].WelcomePatientPage;
+  }
+
 });
+
 
 // we're storing the current route URL in a reactive variable
 // which will be used to update active controls
 // mostly used to toggle header and footer buttons
-Session.setDefault('pathname', '/');
+Session.setDefault('pathname', window.location.pathname);
 browserHistory.listen(function(event) {
   Session.set('pathname', event.pathname);
+
+  if(privacyRoutes.includes(event.pathname)){
+    Session.set('glassBlurEnabled', true)
+  } else {
+    Session.set('glassBlurEnabled', false)
+  }
 });
 
 
@@ -121,11 +158,20 @@ const requreSysadmin = (nextState, replace) => {
   }
 };
 
+
+
 Meteor.startup(() => {
+  var roles = get(Meteor.user(), 'roles');
+  if(roles && roles.includes('practitioner')){
+    Session.set('showSearchbar', true)
+  }
+
   render(
     <Router history={ browserHistory }>
       <Route path="/" component={ App }>
-      <IndexRoute name="index" component={ MainIndex } onEnter={ requireAuth } />
+        <IndexRoute name="index" component={ MainIndex } onEnter={ requireAuth } />
+
+        <Route name="fhirResources" path="/fhir-resources-index" component={ FhirResourcesIndex } />
 
         <Route name="signin" path="/signin" component={ Signin } />
         <Route name="recover-password" path="/recover-password" component={ RecoverPassword } />
@@ -134,6 +180,8 @@ Meteor.startup(() => {
 
         <Route name="about" path="/about" component={ AppInfoPage } />
         <Route name="privacy" path="/privacy" component={ PrivacyPage } />
+        <Route name="termsConditions" path="/terms-and-conditions" component={ TermsConditionsPage } />
+
         <Route name="theming" path="/theming" component={ ThemePage } onEnter={ requireAuth } />
         <Route name="myprofile" path="/myprofile" component={ MyProfilePage } onEnter={ requireAuth } />
 
@@ -141,14 +189,17 @@ Meteor.startup(() => {
 
         <Route name="welcomePatient" path="/welcome/patient" component={ WelcomePatientPage } onEnter={ requireAuth }/>
         <Route name="welcomePractitioner" path="/welcome/practitioner" component={ WelcomePractitionerPage } onEnter={ requireAuth }/>
+        <Route name="welcomeAdmin" path="/welcome/sysadmin" component={ WelcomeAdminPage } onEnter={ requireAuth }/>
 
+        <Route name="dicomViewer" path="/dicom-viewer" component={ DicomViewerPage }  onEnter={ requireAuth }/>
         <Route name="checklists" path="/checklists" component={ ChecklistsPage }  onEnter={ requireAuth }/>
         <Route name="notifications" path="/notifications" component={ NotificationsPage }  onEnter={ requireAuth }/>
 
         <Route name="password" path="/password" component={ PasswordManagementPage }  onEnter={ requireAuth }/>
         <Route name="preferences" path="/preferences" component={ PreferencesPage }  onEnter={ requireAuth }/>
         <Route name="oauthGrants" path="/oauth-grants" component={ AuthorizationGrantsPage }  onEnter={ requireAuth }/>
-        
+        <Route name="metadataPage" path="/metadata" component={ MetadataPage } />
+
         { dynamicRoutes.map(route => <Route 
           name={route.name} 
           key={route.name} 

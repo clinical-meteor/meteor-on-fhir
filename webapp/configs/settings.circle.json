@@ -1,8 +1,8 @@
 {
   "public": {
     "title": "Meteor on FHIR",      
-    "baseUrl":"https://fhir-timeline.meteorapp.com/",
-    "logging": "debug",
+    "baseUrl":"",
+    "logging": "none",
     "theme": {
       "showVideoBackground": false,
       "darkroomTextEnabled": false,
@@ -37,9 +37,22 @@
         "opacity": 0.95
       },
       "registration": {
-        "displayAccessCode": true
+        "displayAccessCode": true,
+        "signInWith": false
+      },
+      "schemas": {
+        "validate": false,
+        "filter": false,
+        "removeEmptyStrings": false
       },
       "sidebar": {
+        "menuItems": {
+          "Index": false,
+          "Healthlog": false,
+          "GettingStarted": false,
+          "DataManagement": false,
+          "FhirResources": false
+        },
         "hidden": [
           "/allergies",
           "/conditions",
@@ -94,16 +107,19 @@
       "fhir": {
         "AllergyIntolerances": true,
         "AuditEvents": true,
-        "BodySites": true,
         "CarePlans": true,
         "Conditions": true,
+        "Consents": true,
+        "Contracts": true,
+        "ClinicalImpressions": true,
         "Devices": true,
         "DiagnosticReports": true,
         "Goals": true,
-        "ImagingStudies": false,
+        "ImagingStudies": true,
         "Immunizations": true,
         "Locations": false,
         "Lists": true,
+        "Locations": true,
         "Medications": true,
         "MedicationOrders": true,
         "MedicationStatements": true,
@@ -112,8 +128,11 @@
         "Patients": true,
         "Practitioners": true,
         "Procedures": true,
-        "Questionnaires": true,
-        "RiskAssessments": true
+        "Questionnaries": true,
+        "QuestionnaireResponses": true,
+        "RiskAssessments": true,
+        "Sequences": true,
+        "Subscriptions": true
       }
     }
   },

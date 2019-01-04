@@ -1,21 +1,24 @@
 import '/imports/startup/server';
 import '/imports/api/users/methods';
 
+const { exec } = require('child_process');
+
 
 Meteor.startup(function(){
-  console.log('Meteor app framework is initializing....');
+  console.log('Meteor.startup() is initializing....');
 
-    // pick up version info
-    try {
-      var version = {};
-      version = JSON.parse(Assets.getText("version.json"));    
-      Meteor.settings.public.version = version;
-    } catch(e) { 
-      Meteor.settings.public.version = {};
-    }
+  // pick up version info
+  try {
+    var version = {};
+    version = JSON.parse(Assets.getText("version.json"));    
+    Meteor.settings.public.version = version;
+  } catch(e) { 
+    Meteor.settings.public.version = {};
+  }
 
   // if OAuth is configured, load oauth configs into active memory
-  if(Package['clinical:smart-on-fhir-client']){
+  if(Package['symptomtic:smart-on-fhir-client']){
+    console.log('Resyncing OAuth configuration....');
     Meteor.call('resyncConfiguration');
   }
 
@@ -39,7 +42,9 @@ Meteor.startup(function(){
     BrowserPolicy.content.allowOriginForAll('*.wikipedia.org');
     BrowserPolicy.content.allowOriginForAll('fonts.googleapis.com');
     BrowserPolicy.content.allowOriginForAll('fonts.gstatic.com');
-    BrowserPolicy.content.allowImageOrigin("*")
+    BrowserPolicy.content.allowImageOrigin("* data:")
+    BrowserPolicy.content.allowOriginForAll('blob:');
+    BrowserPolicy.content.allowImageOrigin("blob:")
     BrowserPolicy.content.allowEval();
     BrowserPolicy.content.allowInlineScripts()
     BrowserPolicy.content.allowInlineStyles()  
@@ -67,4 +72,46 @@ Meteor.startup(function(){
     // BrowserPolicy.content.allowImageOrigin("open-ic-epic.com")  
     // BrowserPolicy.content.allowObjectOrigin('open-ic-epic.com')
   }
+
+
+
+  // Detect the operating system.
+  // possible values are: 'darwin', 'freebsd', 'linux', 'sunos' or 'win32'
+  var isWin = process.platform === "win32";
+  var isMac = process.platform === "darwin";
+
+  console.log('Detecting operating system: ' + process.platform);
+  
+  // // Execute a child process...
+  // exec('fsutil fsinfo volumeinfo c:', (err, stdout, stderr) => {
+  //   if (err) {
+  //     // node couldn't execute the command
+  //     return;
+  //   }
+
+  //   // the *entire* stdout and stderr (buffered)
+  //   console.log(`fsutil fsinfo volumeinfo c: ${stdout}`);
+  // });
+
+  // Execute a child process...
+  exec('fdesetup status', (err, stdout, stderr) => {
+    if (err) {
+      // node couldn't execute the command
+      return;
+    }
+
+    // the *entire* stdout and stderr (buffered)
+    console.log(`fdesetup status: ${stdout}`);
+
+    if(stdout.includes("FileVault is On.")){
+      console.log('Should tell the client that FileVault is on')
+      Meteor.settings.public.fileVault = 'on';
+    } else {
+      Meteor.settings.public.fileVault = 'off';
+    }
+  });
+
+
+
+  console.log('Meteor.startup() completed....');
 })

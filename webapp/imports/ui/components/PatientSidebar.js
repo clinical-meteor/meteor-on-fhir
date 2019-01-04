@@ -55,6 +55,7 @@ export class PatientSidebar extends React.Component {
   handleLogout() {
     console.log("handleLogout");
     Meteor.logout();
+    browserHistory.push('/signin')
   }
 
   handleProfile() {
@@ -62,26 +63,72 @@ export class PatientSidebar extends React.Component {
   }
   render () {
 
+    //----------------------------------------------------------------------
+    // Index Item
+
     var index;
-    if(!get(Meteor, 'settings.public.defaults.sidebar.hideIndex')){
-      index = <LinkContainer to={ this.data.indexRoute } >
+    if(get(Meteor, 'settings.public.defaults.sidebar.menuItems.Index')){
+      index = <LinkContainer key='indexItem'  to={ this.data.indexRoute } >
         <MenuItem id="indexPageItem" className="indexItem" href={ this.data.indexRoute } primaryText='Index' />
       </LinkContainer>;
-      // index = <LinkContainer to='/'>
-      //   <MenuItem className="indexItem" href='/' primaryText='Index' />
-      // </LinkContainer>;
     }
     
     //----------------------------------------------------------------------
-    // Core Modules 
+    // HealthLog
 
     var healthlog;
-
-    if(get(Meteor, 'settings.public.modules.healthlog')){
-      allergies = <LinkContainer to='/weblog'>
-        <MenuItem primaryText='Healthlog' href='/weblog' />
+    if(get(Meteor, 'settings.public.defaults.sidebar.menuItems.Healthlog')){
+      healthlog = <LinkContainer key='vitalsItem' to='/vitals-tracking'>
+        <MenuItem primaryText='Healthlog' href='/vitals-tracking' />
       </LinkContainer>;
     }
+
+    //----------------------------------------------------------------------
+    // GettingStarted
+
+    var gettingStarted;
+    if(get(Meteor, 'settings.public.defaults.sidebar.menuItems.GettingStarted')){
+      gettingStarted = <LinkContainer key='gettingStartedItem' to='/welcome/patient'>
+        <MenuItem primaryText='Getting Started' href='/welcome/patient' />
+      </LinkContainer>;
+    }
+
+
+    //----------------------------------------------------------------------
+    // DataManagement
+
+    var dataManagement;
+    if(get(Meteor, 'settings.public.defaults.sidebar.menuItems.DataManagement')){
+      if(!['iPhone'].includes(window.navigator.platform)){
+        dataManagement = <LinkContainer key='dataItem' to='/data-management'>
+          <MenuItem primaryText='Data Management' href='/data-management' />
+        </LinkContainer>;
+      }
+    }
+
+    //----------------------------------------------------------------------
+    // FHIR Resources
+    
+    var fhirResources;
+    if(get(Meteor, 'settings.public.defaults.sidebar.menuItems.FhirResources')){
+      if(!['iPhone'].includes(window.navigator.platform)){
+        fhirResources = <LinkContainer key='fhirItem' to='/fhir-resources-index'>
+          <MenuItem id="fhirResourcePageItem" primaryText='FHIR Resources' href='/fhir-resources-index' />
+      </LinkContainer>
+      }
+    }
+
+
+    //----------------------------------------------------------------------
+    // Spacer  
+
+    var spacer;
+    if(!['iPhone'].includes(window.navigator.platform)){
+      spacer = <hr />;
+    }
+
+
+
 
     //----------------------------------------------------------------------
     // Dynamic Modules  
@@ -96,37 +143,90 @@ export class PatientSidebar extends React.Component {
         </LinkContainer>);
       }
     });
+    dynamicElements.push(<br />);
+
+    var smartOnFhirImports = [];
+    // we don't want SMART on FHIR links on iPhone (for now)
+    // because they will be accessing records through HealthRecords
+    if(Package['symptomatic:smart-on-fhir-client'] && !['iPhone'].includes(window.navigator.platform)){
+      smartOnFhirImports.push(<LinkContainer key='importItem' to='/import-chart'>
+            <MenuItem primaryText='Import Patient Record' href='/import-chart' />
+        </LinkContainer>);
+      smartOnFhirImports.push(
+        <LinkContainer key='fastImportItem' to='/fast-import-chart'>
+            <MenuItem primaryText='Quick Import' href='/fast-import-chart' />
+        </LinkContainer>)
+    }
+
+    var continuityOfCareElements;
+    var supportElements;
+    if(Package['symptomatic:continuity-of-care']){
+      continuityOfCareElements = <div>
+          <hr />
+          <LinkContainer key='continuityOfCareItem' to='/continuity-of-care'>
+             <MenuItem id="continuityOfCareItem" primaryText='Continuity of Care' href='/continuity-of-care' />
+          </LinkContainer>
+          <LinkContainer key='timelineItem' to='/timeline-sidescroll'>
+             <MenuItem id="timelineItem" primaryText='Timeline' href='/timeline-sidescroll' />
+          </LinkContainer>
+          <LinkContainer key='filtersItem' to='/filters'>
+             <MenuItem id="filtersItem" primaryText='Filters' href='/filters' />
+          </LinkContainer>
+          <LinkContainer key='observationGraphs' to='/observations-graph'>
+             <MenuItem id="observationGraphs" primaryText='Biomarker Trends' href='/observations-graph' />
+          </LinkContainer>
+      </div>
+
+      supportElements = <LinkContainer key='Support' to='/support'>
+          <MenuItem primaryText='Help & Support' href='/support' />
+      </LinkContainer>
+
+    }
+
+
 
     return(
       <div id='patientSidebar'>
-        <List style={{paddingLeft: '20px', position: 'static'}}>
+        <List id='iteratorContainer' style={{paddingLeft: '20px', position: 'static'}}>
 
-         { index }
+          { index }
+          { healthlog }         
+            
+          { continuityOfCareElements }
 
-          {/* <LinkContainer to='/'>
-            <MenuItem id="indexPageItem" className="indexItem" href='/' primaryText='Index' />
-          </LinkContainer> */}
+          { spacer }
+     
+          {/* { dynamicElements } */}
 
+          { fhirResources }
+
+          { dataManagement }
           <hr />
 
-          { healthlog }              
-          { dynamicElements }
+          { gettingStarted }
+          { smartOnFhirImports }
 
           <hr />
-          <LinkContainer to='/data-management'>
-             <MenuItem primaryText='Data Management' href='/theming' />
-          </LinkContainer>
-          <hr />
-          <LinkContainer to='/theming'>
+          <LinkContainer key='themingItem' to='/theming'>
              <MenuItem primaryText='Theming' href='/theming' />
           </LinkContainer>
 
-          <LinkContainer to='/about'>
+          <LinkContainer key='aboutItem' to='/about'>
              <MenuItem primaryText='About' href='/about' />
           </LinkContainer>
 
-          <LinkContainer to='/signin'>
-             <MenuItem id='logoutMenuItem' className='logoutMenuItem' primaryText='Logout' href='/signin' onClick={this.handleLogout} />
+          { supportElements }
+
+          <LinkContainer key='privacyItem' to='/privacy'>
+             <MenuItem primaryText='Privacy' href='/privacy' />
+          </LinkContainer>
+
+          <LinkContainer key='termsItem'  to='/terms-and-conditions'>
+            <MenuItem primaryText='Terms and Conditions' href='/terms-and-conditions' />
+          </LinkContainer>
+
+          <LinkContainer key='logoutMenuItem' to='/signin'>
+             <MenuItem id='logoutMenuItem' className='logoutMenuItem' primaryText='Logout' onClick={this.handleLogout} />
           </LinkContainer>
         </List>
       </div>

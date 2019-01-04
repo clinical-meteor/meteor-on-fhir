@@ -36,6 +36,7 @@ Sidebar = {
   }
 }
 
+
 export class Header extends React.Component {
   getMeteorData() {
     let data = {
@@ -119,6 +120,8 @@ export class Header extends React.Component {
       data.hasUser = false;
     }
 
+
+
     return data;
   }
   getChildContext() {
@@ -143,11 +146,13 @@ export class Header extends React.Component {
 
   renderNavigation(hasUser) {
     if(get(Meteor, 'settings.public.home.showRegistration')){
-      if (hasUser) {
-        return <AuthenticatedNavigation />;
-      } else {
-        return <PublicNavigation />;
-      }  
+      if(!['signup', 'signin', '/signup', '/signin'].includes(Session.get('pathname'))){
+        if (hasUser) {
+          return <AuthenticatedNavigation />;
+        } else {
+          return <PublicNavigation />;
+        }    
+      }
     }
   }
 
@@ -159,8 +164,50 @@ export class Header extends React.Component {
       browserHistory.push('/');      
     }
   }
+  setGeojsonUrl(event, text){
+    console.log('setGeojsonUrl', text);
 
+    Session.set('geojsonUrl', text)
+  }
+  mapMyAddress(){
+    if(get(Meteor.user(), 'profile.locations.home.position.latitude') && get(Meteor.user(), 'profile.locations.home.position.longitude')){
+      browserHistory.push('/maps');
+    }        
+  }
+  menuIconClicked(event, text){
+    console.log('menuIconClicked', event, text)
+
+    Session.set('drawerActive', true)
+
+    // alert('foo!')
+
+    // if(Session.get('drawerActive')){
+    //   Session.set('drawerActive', false)
+    // } else {
+    //   Session.set('drawerActive', true)
+    // }
+  }
   render () {
+
+    var menuIcon;
+    if(get(Meteor, 'settings.public.defaults.header.menuIcon')){
+      menuIcon = <img 
+        id='sidebarToggleButton'
+        src={ get(Meteor, 'settings.public.defaults.header.menuIcon') } 
+        onClick={ this.toggleDrawerActive }
+        style={{
+          position: 'absolute',
+          top: '8px',
+          left: '10px',
+          cursor: 'pointer'
+      }}/>
+    } else {
+      menuIcon = <ActionReorder 
+          id='sidebarToggleButton'
+          style={{marginTop: '20px', marginLeft: '25px', marginRight: '10px', left: '0px', position: 'absolute', cursor: 'pointer'}}
+          onClick={this.toggleDrawerActive}
+        />
+    }
     return(
       <div>
         <AppBar
@@ -172,21 +219,22 @@ export class Header extends React.Component {
           style={this.data.style.appbar}
           titleStyle={this.data.style.title}
         >
-          <ActionReorder 
-            id='sidebarToggleButton'
-            style={{marginTop: '20px', marginLeft: '25px', marginRight: '10px', left: '0px', position: 'absolute', cursor: 'pointer'}}
-            onClick={this.toggleDrawerActive}
-            />
+          { menuIcon }        
         </AppBar>
 
         <AppBar
           id="appSearchBar"
           title={<div>
               <TextField
-              hintText="Search"
+              hintText="Patient Name"
               style={this.data.style.searchbarInput}
+              onChange={ this.setGeojsonUrl.bind(this)}
               fullWidth
             />
+            <FlatButton 
+              label='Search' 
+              onClick={this.mapMyAddress.bind(this)}
+              />
           </div>}
           style={this.data.style.searchbar}
           showMenuIconButton={false}

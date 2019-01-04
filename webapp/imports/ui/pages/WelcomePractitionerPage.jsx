@@ -24,7 +24,7 @@ export class WelcomePractitionerPage extends React.Component {
     return(
       <div id="welcomePractitionerPage">
         <VerticalCanvas>
-          <GlassCard>
+          <GlassCard style={{textAlign: 'justify'}} >
             <CardTitle
               title="Privacy Policy"
             />

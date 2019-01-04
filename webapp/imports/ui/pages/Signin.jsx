@@ -1,22 +1,22 @@
-import { Bert } from 'meteor/clinical:alert';
+// import { Bert } from 'meteor/clinical:alert';
 import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session';
-import { MobilePadding } from '/imports/ui/components/MobilePadding';
+
 import React  from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin  from 'react-mixin';
 
-import { VerticalCanvas, FullPageCanvas, Theme, GlassCard } from 'meteor/clinical:glass-ui';
-import { CardText, CardActions, CardHeader, CardTitle, TextField, FlatButton, RaisedButton } from 'material-ui'
+import { FullPageCanvas, GlassCard, Glass, DynamicSpacer } from 'meteor/clinical:glass-ui';
+import { CardText, CardActions, CardTitle, TextField, RaisedButton } from 'material-ui'
 
 import { browserHistory } from 'react-router';
 import { Row, Col } from 'react-bootstrap';
 
 import { lightBaseTheme, darkBaseTheme } from 'material-ui/styles';
-import { has, get } from 'lodash';
+import { get } from 'lodash';
 
-if(Package['clinical:smart-on-fhir-client']){
-  import { OAuth } from 'meteor/clinical:smart-on-fhir-client';
+if(Package['symptomatic:smart-on-fhir-client']){
+  import { OAuth } from 'meteor/symptomatic:smart-on-fhir-client';
 }
 
 Session.setDefault('signinWithSearch', '');
@@ -45,11 +45,14 @@ export class Signin extends React.Component {
         },
         floatingLabelFocusStyle: {
           color: lightBaseTheme.palette.secondaryTextColor
-        }
+        },
+        pageBackground: {}
       },
       endpoints: [],
       services: []
     };
+
+
 
     if( Endpoints.find().count() > 0){
       data.endpoints = Endpoints.find({
@@ -60,7 +63,7 @@ export class Signin extends React.Component {
       }).fetch()
     }
 
-    if(Package['clinical:smart-on-fhir-client']){
+    if(Package['symptomatic:smart-on-fhir-client']){
       if(ServiceConfiguration){
         data.services = ServiceConfiguration.configurations.find().fetch()
       }   
@@ -76,6 +79,24 @@ export class Signin extends React.Component {
       data.style.floatingLabelFocusStyle.color = darkBaseTheme.palette.secondaryTextColor;
     }
 
+    // if(get(Meteor, 'settings.public.defaults.registration.background')){
+    //   data.style.pageBackground = {
+    //     backgroundImage: 'url(' + get(Meteor, 'settings.public.defaults.registration.background') + ')',
+    //     WebkitBackgroundSize: 'contain',
+    //     MozBackgroundSize: 'contain',
+    //     OBackgroundSize: 'contain',
+    //     backgroundSize: 'contain',
+    //     backgroundPositionY: 'bottom',
+    //     backgroundRepeat: 'no-repeat',
+    //     backgroundColor: 'white',
+    //     position: 'absolute',
+    //     height: '100%',
+    //     width: '100%'
+    //   }
+    // }
+
+    data.style.pageBackground = Glass.getContextImage();
+
     if(process.env.NODE_ENV === "test") console.log("Signin[data]", data);
     return data;
   }
@@ -84,6 +105,9 @@ export class Signin extends React.Component {
   }
   forgotPasswordRoute(){
     browserHistory.push('/recover-password');
+  }
+  registerRoute(){
+    browserHistory.push('/signup');
   }
   signInWith(serviceName, event){
     console.log('Signin.signInWith', serviceName)
@@ -145,20 +169,22 @@ export class Signin extends React.Component {
       if (error) {
         Bert.alert(error.reason, 'warning');
       } else {
-        Bert.alert('Logged in!', 'success');
+        Bert.alert('Logged in!', 'info');
 
         // we might have received a custom path to route to
         // depending on which signin component we used
         if (self.props.state && self.props.state.nextPathname) {
           browserHistory.push(location.state.nextPathname);
-        } else {
+        } else if (Roles.userIsInRole(Meteor.userId(), 'practitioner') && get(Meteor.user(), 'profile.firstTimeVisit')) {
+          browserHistory.push('/welcome/practitioner');
+        } else if (Roles.userIsInRole(Meteor.userId(), 'sysadmin') && get(Meteor.user(), 'profile.firstTimeVisit')) {
+            browserHistory.push('/welcome/sysadmin');
+        } else if(get(Meteor, 'settings.public.defaults.route')){
           // but normally we just use the default route specified in settings.json
-          if(get(Meteor, 'settings.public.defaults.route')){
-            browserHistory.push(get(Meteor, 'settings.public.defaults.route', '/'));
-          } else {
-            // and fall back to the root if not specified
-            browserHistory.push('/');      
-          }          
+          browserHistory.push(get(Meteor, 'settings.public.defaults.route', '/'));
+        } else {
+          // and fall back to the root if not specified
+          browserHistory.push('/');      
         }
       }
     });
@@ -187,6 +213,7 @@ export class Signin extends React.Component {
               primary={true}
               onClick={ self.signInWith.bind(this, service.service) }
               fullWidth
+              labelStyle={{textTransform: 'capitalize'}}
               />    
               <br />
               <br />
@@ -201,7 +228,7 @@ export class Signin extends React.Component {
 
     var signInWith;
 
-    if(Package['clinical:smart-on-fhir-client']){
+    if(Package['symptomatic:smart-on-fhir-client'] && get(Meteor, 'settings.publich.registration.signInWith')){
       signInWith = <Col lgOffset={4} mdOffset={2} lg={2} md={3}>
         <GlassCard zDepth={3} height="auto" >
           <CardTitle
@@ -231,53 +258,80 @@ export class Signin extends React.Component {
       </Col>
     }
 
+    let glassColor = 'rgba(128, 128, 128, 0.12)';
+    if(get(Meteor, 'settings.public.theme.glassColor')){
+      glassColor = get(Meteor, 'settings.public.theme.glassColor');
+    }
+
+    let cardStyle = {
+      position: 'relative'
+    };
+    cardStyle.top = (Session.get('appHeight') * 0.1) + 'px'
+
     return (
-      <div id="signinPage">
-        <MobilePadding>
-          <FullPageCanvas>
+      <div id="signinPage" style={this.data.style.pageBackground}>
+        {/* <MobilePadding> */}
+          <FullPageCanvas >
               <Row>
-                <Col lg={5} md={ 6 } sm={ 12 }>
-                  <h4 className="page-header" style={this.data.style.underlineStyle}>Sign In</h4>
-                  <Row>
-                    <Col mdOffset={2} md={10}>
-                      <form ref="signin" className="signin" >
-                        <TextField
-                          type="email"
-                          ref="emailAddress"
-                          name="emailAddress"
-                          floatingLabelText="Email Address"
-                          onKeyPress={this.handleKeyPress.bind(this)}
-                          inputStyle={this.data.style.inputStyle}
-                          hintStyle={this.data.style.hintStyle}
-                          errorStyle={this.data.style.errorStyle}
-                          underlineStyle={this.data.style.underlineStyle}
-                          floatingLabelStyle={this.data.style.floatingLabelStyle}
-                          floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
-                          fullWidth
-                        />              
-                        <br/>
-                        <br/>    
-                        <TextField
-                          type="password"
-                          ref="password"
-                          name="password"
-                          floatingLabelText="Password"
-                          onKeyPress={this.handleKeyPress.bind(this)}
-                          inputStyle={this.data.style.inputStyle}
-                          hintStyle={this.data.style.hintStyle}
-                          errorStyle={this.data.style.errorStyle}
-                          underlineStyle={this.data.style.underlineStyle}
-                          floatingLabelStyle={this.data.style.floatingLabelStyle}
-                          floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
-                          fullWidth
-                        />
-                        <br/>
-                        <br/>
-                        <RaisedButton id="signinButton" onClick={this.handleTouchTap.bind(this)} label="Signin" primary={true} />
-                        <RaisedButton id="forgotPasswordButton" onClick={this.forgotPasswordRoute } label="Forgot password?" style={{marginLeft: "20px"}} />
-                      </form>
-                    </Col>
-                  </Row>
+                <Col mdOffset={3} md={ 6 } sm={ 12 }>
+                  {/* <h4 className="page-header" style={this.data.style.underlineStyle}>Sign In</h4> */}
+                  {/* <Row>                    
+                    <Col md={12}> */}
+                      <GlassCard backgroundColor={glassColor} style={cardStyle} >
+                        <CardTitle title='Sign In' />
+                        <CardText>
+                          <form ref="signin" className="signin" >
+                            <TextField
+                              type="email"
+                              ref="emailAddress"
+                              name="emailAddress"
+                              floatingLabelText="Email Address"
+                              onKeyPress={this.handleKeyPress.bind(this)}
+                              inputStyle={this.data.style.inputStyle}
+                              hintStyle={this.data.style.hintStyle}
+                              errorStyle={this.data.style.errorStyle}
+                              underlineStyle={this.data.style.underlineStyle}
+                              floatingLabelStyle={this.data.style.floatingLabelStyle}
+                              floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
+                              floatingLabelFixed={true} 
+                              hintText='jane@acme.com'
+                              fullWidth
+                            />              
+  
+                            <TextField
+                              type="password"
+                              ref="password"
+                              name="password"
+                              floatingLabelText="Password"
+                              onKeyPress={this.handleKeyPress.bind(this)}
+                              inputStyle={this.data.style.inputStyle}
+                              hintStyle={this.data.style.hintStyle}
+                              errorStyle={this.data.style.errorStyle}
+                              underlineStyle={this.data.style.underlineStyle}
+                              floatingLabelStyle={this.data.style.floatingLabelStyle}
+                              floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
+                              floatingLabelFixed={true} 
+                              hintText='************'
+                              fullWidth
+                            />
+                            <DynamicSpacer />
+                            <RaisedButton id="signinButton" onClick={this.handleTouchTap.bind(this)} label="Signin" primary={true} fullWidth />
+                            <DynamicSpacer />
+                            <Row>
+                              <Col xs={8}>
+                                <RaisedButton id="forgotPasswordButton" onClick={this.forgotPasswordRoute } label="Forgot password?" fullWidth />
+                                <br />
+                              </Col>
+                              <Col xs={4}>
+                                <RaisedButton id="registerButton" onClick={this.registerRoute } label="Register" fullWidth />
+                                <br />
+                              </Col>
+                            </Row>
+                          </form>
+                        </CardText>
+                      </GlassCard>
+                    {/* </Col>
+                  </Row> */}
                   <br/>
                   <br/>
                 </Col>                
@@ -285,7 +339,7 @@ export class Signin extends React.Component {
               </Row>
 
           </FullPageCanvas>
-        </MobilePadding>
+        {/* </MobilePadding> */}
       </div>
     );
   }

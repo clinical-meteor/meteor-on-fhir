@@ -78,7 +78,7 @@ Edit the `settings.dev.json` file, and update:
   "galaxy.meteor.com": {
     "env": {
       "MONGO_URL": "mongodb://username:password@mlab.com:25389/my-org-exchange-db",
-      "NODE_ENV": "produciton"
+      "NODE_ENV": "production"
     }
   }  
 }
@@ -89,27 +89,9 @@ Run the script to remove restricted media assets:
 scripts/remove_restricted_media_assets.sh
 ```
 
+ 
 
-#### E. Mobile Build   
-
-```sh
-# don't include geodata 
-cd webapp
-mv public/geodata ..
-
-# development
-# this can be tricky, because http://localhost:3000 may need to be a local IP address
-# you may need to use `ifconfig` to find that address
-# beware network isolation, and make sure your phone and workstation are on the same network
-NODE_ENV=dev meteor run ios-device --mobile-server http://localhost:3000 --settings configs/settings.dev.json
-
-# production
-# we need to specify the production server
-NODE_ENV=dev meteor run ios-device --mobile-server http://meteor-on-fhir.meteorapp.com --settings configs/settings.galaxy.json
-```    
-
-
-#### F. Desktop Build   
+#### E. Desktop Build   
 
 ```bash
  # build the executables and add them into the /public directory
@@ -122,26 +104,38 @@ meteor npm install --save meteor-desktop
 # add the .desktop directory, which has files needed by omega:meteor-desktop
 npm run desktop -- init
 
+# if there is already a desktop directory, move it to the .desktop dir
+# this will override the previous step
+mv webapp/desktop webapp/.desktop
+
+
 # run the app server locally, as if you were doing a mobile build
 # (you may be able to just use the running mobile build server)
 NODE_ENV=dev meteor --mobile-server http://localhost:3000 --settings configs/settings.galaxy.json
 
 # then to run the desktop app locally...
-npm run desktop
+# npm run desktop
 
 # or try the shortcut script
-meteor npm run-script desktop
+# meteor npm run-script desktop
 
 # If you want to build a production release, that connects to the main server, you'll need to specify a different URL
-meteor --mobile-server http://www.symptomatic.io --settings configs/settings.galaxy.json
-npm run desktop -- build-installer http://www.symptomatic.io
+# meteor --mobile-server http://www.symptomatic.io --settings configs/settings.galaxy.json
+# npm run desktop -- build-installer http://www.symptomatic.io
+
+meteor --mobile-server https://meteor-on-fhir.meteorapp.com --settings packages/landing-page/configs/settings.symptomatic.io.json
+meteor npm run desktop -- build-installer http://meteor-on-fhir.meteorapp.com
+
 ```    
 
 
-#### G. Deploy to Galaxy  
+#### F. Deploy to Galaxy  
 
 ```sh
 # remove the desktop pipeline before building for Galaxy
+mv webapp/.desktop webapp/desktop
+git commit -a -m 'desktop' 
+
 meteor reset
 meteor remove-platform ios
 meteor remove omega:meteor-desktop-watcher omega:meteor-desktop-bundler omega:meteor-desktop-localstorage
@@ -151,10 +145,10 @@ rm -rf .desktop-installer
 meteor npm install
 
 # upload to Galaxy
-TIMEOUT_SCALE_FACTOR=10 DEPLOY_HOSTNAME=us-east-1.galaxy-deploy.meteor.com MONGO_URL=mongodb://<dbuser>:<dbpassword>@ds019638.mlab.com:19638/clinical-meteor meteor deploy --settings configs/settings.galaxy.json meteor-on-fhir.meteorapp.com
+TIMEOUT_SCALE_FACTOR=10 DEPLOY_HOSTNAME=us-east-1.galaxy-deploy.meteor.com meteor deploy --settings configs/settings.galaxy.json meteor-on-fhir.meteorapp.com
 ```   
 
-#### H. Azure Configuration  
+#### G. Azure Configuration  
 
 ```sh
 az webapp deployment user set --user-name admin --password password
@@ -164,7 +158,7 @@ az appservice plan create --name appServicePlan --resource-group appName --sku S
 az webapp create --resource-group appResourceGroup --plan appServicePlan --name appname 
 ```    
 
-#### I. Azure Deployment 
+#### H. Azure Deployment 
 
 ```sh
 # prepare environment variables
@@ -201,7 +195,7 @@ curl -u admin https://appname.scm.azurewebsites.net/api/logstream/kudu/deploymen
 ```
 
 
-#### J. Synchronizing With Other Datalakes  
+#### I. Synchronizing With Other Datalakes  
 
 To enable network synchronizing, you'll need to specify an upstream sync partner in your `settings.json` file.  Afterwards, you can enable manual synchronization in the **Data Management* page.  
 
@@ -217,43 +211,26 @@ To enable network synchronizing, you'll need to specify an upstream sync partner
 ```
 
 
-#### K. Connect to an External EMR   
+#### J. Connect to an External EMR   
 [HL7 v2 to FHIR Interface Mapping](https://medium.com/@awatson1978/hl7-v2-to-fhir-interface-mapping-f83c6ecf6bee)  
 
 
 
-#### L. Dockerfile  
-Docker containers are pretty exciting, and we now support containerization and container composition of the Meteor on FHIR architecture.
-
+#### Trouble Shooting
 ```sh
-# build the docker image
-cd webapp
-docker build -t symptomatic/meteor-on-fhir .
+# Browser ERROR: 404 "/example-route" does not exist
+# A quick fix is edit the "route" to "/hello-world" in the webapp/packages/example-plugin/configs/settings.example.json 
+# "defaults": {
+#       "route": "/hello-world",
+#       ...
+#       }
 
-# run the docker image; you'll need to set environment variables
-# beware that each container has it's own localhost address; so 127.0.0.1 won't point to the same container
-# you'll need to link containers and/or enable host or bridge networking
-docker run -d -e METEOR_SETTINGS="$(cat configs/settings.dev.json)" -e MONG_URL=mongodb://111.222.333.444:27017/meteor -p 80:3000 symptomatic/meteor-on-fhir
+# ERROR: Failed to connect to 127.0.0.1:27017
+# You may need to restart mongod with the correct dbpath. Example:  
+mongod --dbpath ~/meteor-on-fhir/webapp/packages/example-plugin/data
 
-# push the container to your infrastructure
-docker push symptomatic/meteor-on-fhir
 
-# or run the orchestration and monitor logs
-docker-compose up
-docker-compose logs
-
-# and general maintenance and devops
-docker images
-docker ps
-docker inspect
 ```
-
-For more details on running Dockerized Meteor apps in production, see:
-https://projectricochet.com/blog/production-meteor-and-node-using-docker-part-vi
-
-
-
-
 
 #### Miscellaneous References    
 [Supporting Interoperability – Terminology, Subsets and Other Resources from Natl. Library of Medicine](https://www.nlm.nih.gov/hit_interoperability.html)  

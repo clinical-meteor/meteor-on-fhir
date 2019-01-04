@@ -1,11 +1,15 @@
+
 import { get } from 'lodash';
 
 // Support for playing D&D: Roll 3d6 for dexterity
 Accounts.onCreateUser(function(options, user) {
   console.log('------------------------------------------------');
   console.log('Accounts.onCreateUser');
-  process.env.TRACE && console.log('Meteor.settings', Meteor.settings);
-  process.env.TRACE && console.log('options', options);
+  console.log(' ');
+
+  process.env.DEBUG && console.log('user', user);
+  process.env.DEBUG && console.log('options', options);
+  console.log(' ');
 
   // console.log('options', options);
   // console.log('user', user);
@@ -61,8 +65,141 @@ Accounts.onCreateUser(function(options, user) {
     }
   }
 
+  // this lets us add OAuth services in the profile at account creation time
+  // when then get securely stored 
+  if(get(options, 'profile.services')){
+    let services = get(options, 'profile.services');
+    Object.keys(services).forEach(function(key){
+      user.services[key] = services[key];      
+    })
+    delete user.profile.services;
+  }
+
   process.env.DEBUG && console.log('modified user', user);
 
-
   return user;
+});
+
+
+
+
+Accounts.onLogin(function(loginObject) {
+  console.log('Accounts.onLogin().foo', loginObject)
+
+  let userId = get(loginObject, 'user._id');
+  console.log('userId', userId);
+
+  // =================================================================
+  // CONSENTS
+
+  var consents;  
+  if(!get(loginObject, 'user.profile.consents')){
+    var defaultConsents = {
+      performanceAnalytics: {
+        "resourceType": "Consent",
+        "id": "Consent/" + userId + "/performanceAnalytics",
+        "status": "inactive",
+        "patient": {
+          "reference": "Patient/" + userId
+        },
+        "dateTime": new Date(),
+        "consentingParty": [{
+          "reference": "Patient/" + userId
+        }],
+        "category": [],
+        "organization": [{
+          "reference": "Organization/Symptomatic",
+          "display": "Symptomatic"
+        }],
+        "policyRule": "http://hl7.org/fhir/ConsentPolicy/opt-in",
+        "except": []
+    },
+      medicalCodeLookup: {
+        "resourceType": "Consent",
+        "id": "Consent/" + userId + "/medicalCodeLookup",
+        "status": "inactive",
+        "patient": {
+          "reference": "Patient/" + userId
+        },
+        "dateTime": new Date(),
+        "consentingParty": [{
+          "reference": "Patient/" + userId
+        }],
+        "category": [],
+        "organization": [{
+          "reference": "Organization/Symptomatic",
+          "display": "Symptomatic"
+        }],
+        "policyRule": "http://hl7.org/fhir/ConsentPolicy/opt-in",
+        "except": []
+      },
+      patientEducationReferences: {
+        "resourceType": "Consent",
+        "id": "Consent/" + userId + "/patientEducationReferences",
+        "status": "inactive",
+        "patient": {
+          "reference": "Patient/" + userId
+        },
+        "dateTime": new Date(),
+        "consentingParty": [{
+          "reference": "Patient/" + userId
+        }],
+        "category": [],
+        "organization": [{
+          "reference": "Organization/Symptomatic",
+          "display": "Symptomatic"
+        }],
+        "policyRule": "http://hl7.org/fhir/ConsentPolicy/opt-in",
+        "except": []
+      },
+      geocoding: {
+        "resourceType": "Consent",
+        "id": "Consent/" + userId + "/geocoding",
+        "status": "inactive",
+        "patient": {
+          "reference": "Patient/" + userId
+        },
+        "dateTime": new Date(),
+        "consentingParty": [{
+          "reference": "Patient/" + userId
+        }],
+        "category": [],
+        "organization": [{
+          "reference": "Organization/Symptomatic",
+          "display": "Symptomatic"
+        }],
+        "policyRule": "http://hl7.org/fhir/ConsentPolicy/opt-in",
+        "except": []
+      }
+    }
+    Meteor.users.update({_id: userId}, {$set: {
+      'profile.consents': defaultConsents
+    }});
+    
+    console.log('userId', userId);
+  };
+
+  // =================================================================
+  // FILTERS
+
+  var defaultFilters = {
+    remove: ['gonorrhoeae', 'eGFR', 'chlamydia' ],
+    mustHave: [],
+    resourceTypes: [
+      'Allergies', 
+      'CarePlans',
+      'Conditions', 
+      'Immunizations', 
+      'MedicationOrders', 
+      'MedicationStatements', 
+      'Observations', 
+      'Procedures' 
+    ]
+  };  
+  if(!get(loginObject, 'user.profile.filters')){    
+    Meteor.users.update({_id: userId}, {$set: {
+      'profile.filters': defaultFilters
+    }});
+  }
+
 });

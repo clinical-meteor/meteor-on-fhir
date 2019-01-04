@@ -13,18 +13,30 @@ import { get } from 'lodash';
 
 const styles = {
   errorStyle: {
-    color: orange500
+    color: blue500
   },
   underlineStyle: {
-    borderColor: orange500
+    borderColor: blue500
   },
   floatingLabelStyle: {
-    color: orange500
+    color: blue500
   },
   floatingLabelFocusStyle: {
     color: blue500
   }
 };
+
+
+
+// if we find a AboutAppCard card in one of the packages
+// we want to override the local version
+Object.keys(Package).forEach(function(packageName){
+  if(Package[packageName].AboutAppCard){
+    AboutAppCard = Package[packageName].AboutAppCard;
+  }
+});
+
+
 
 
 export class AppInfoPage extends React.Component {
@@ -129,3 +141,4 @@ export class AppInfoPage extends React.Component {
 
 
 ReactMixin(AppInfoPage.prototype, ReactMeteorData);
+export default AppInfoPage;

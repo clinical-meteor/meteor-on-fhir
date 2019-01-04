@@ -36,7 +36,7 @@ Meteor.methods({
     console.log('==================================================================');
     console.log('Dropping test users...');
 
-    if ((process.env.NODE_ENV === 'test') || (process.env.NODE_ENV === 'circle')) {
+    if (process.env.NIGHTWATCH) {
       let count = 0;
       Meteor.users.find().forEach(function(user){
         if (user.emails && user.emails[0]) {

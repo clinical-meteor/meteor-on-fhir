@@ -13,12 +13,23 @@ jobs:
     working_directory: ~/clinical-meteor/meteor-on-fhir
     parallelism: 1
     shell: /bin/bash --login
+    resource_class: medium+
 
     # CircleCI 2.0 does not support environment variables that refer to each other the same way as 1.0 did.
     # If any of these refer to each other, rewrite them so that they don't or see https://circleci.com/docs/2.0/env-vars/#interpolating-environment-variables-to-set-other-environment-variables .
     environment:
       CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
       CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
+      NODE_OPTIONS: --max_old_space_size=3072
+      TOOL_NODE_FLAGS: --max_old_space_size=3072
+      CIRCLE_ENV: test
+      NODE_ENV: test
+      NIGHTWATCH: true
+      DEBUG: true
+      LANG: C.UTF-8
+      LANGUAGE: C.UTF-8
+      LC_ALL: C.UTF-8
+      LC_NUMERIC: en_US.UTF-8
       
     # In CircleCI 1.0 we used a pre-configured image with a large number of languages and other packages.
     # In CircleCI 2.0 you can now specify your own image, or use one of our pre-configured images.
@@ -32,18 +43,25 @@ jobs:
     docker:
     - image: circleci/node:8.9-browsers
       command: /sbin/init
-      name: meteorapp
+      name: meteor-on-fhir
       environment:
         CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
         CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
-        TZ: "/usr/share/zoneinfo/America/Los_Angeles"
+        TZ: "/usr/share/zoneinfo/America/Chicago"
         CIRCLE_ENV: test
         NODE_ENV: test
+        NIGHTWATCH: true
+        DEBUG: true
         CXX: g++-4.8
         DISPLAY: :99.0
         NPM_PREFIX: /home/ubuntu/nvm/v0.10.33
         MONGO_URL: mongodb://mongo:27017/meteor
-        DEBUG: true
+        NODE_OPTIONS: --max_old_space_size=3072
+        TOOL_NODE_FLAGS: --max_old_space_size=3072        
+        LANG: C.UTF-8
+        LANGUAGE: C.UTF-8
+        LC_ALL: C.UTF-8
+        LC_NUMERIC: en_US.UTF-8
     - image: mongo:3.4.4
       name: mongo
 
@@ -80,7 +98,7 @@ jobs:
     - run: mkdir -p .meteor
     
     # If Meteor is already cached, do not need to build it again.
-    - run: if [ ! -e .meteor/meteor ]; then curl https://install.meteor.com?=release=1.6.0.1 | /bin/sh; else echo "Meteor seems to be cached"; fi;
+    - run: if [ ! -e .meteor/meteor ]; then curl https://install.meteor.com?=release=1.8 | /bin/sh; else echo "Meteor seems to be cached"; fi;
 
     # Link the meteor executable into /usr/bin
     - run: sudo ln -s .meteor/meteor /usr/bin/meteor
@@ -96,6 +114,7 @@ jobs:
 
     #- before/after
     - run: cd webapp && cat .meteor/packages
+    - run: cd webapp && cat .meteor/versions
     - run: cd webapp && locale
 
     #- make sure we have our tests
@@ -112,7 +131,7 @@ jobs:
 
     - run: 
         name: Running tests
-        command: sleep 330 && cd webapp && meteor npm run-script circle-nightwatch -- --tag circle
+        command: sleep 300 && cd webapp && meteor npm run-script circle-nightwatch -- --tag circle
         no_output_timeout: 10m
         when: on_success    # always, on_success, on_fail 
 

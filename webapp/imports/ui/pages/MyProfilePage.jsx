@@ -12,7 +12,7 @@ import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import { FontIcon } from 'material-ui/FontIcon';
 
-import { VerticalCanvas, GlassCard, Glass, DynamicSpacer } from 'meteor/clinical:glass-ui';
+import { FullPageCanvas, VerticalCanvas, GlassCard, Glass, DynamicSpacer } from 'meteor/clinical:glass-ui';
 import { Meteor } from 'meteor/meteor';
 import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
@@ -72,8 +72,14 @@ export class MyProfilePage extends React.Component {
         synopsis: {
           //position: 'relative',         
           paddingLeft: '160px'
-        }
+        },
+        searchbarInput: Glass.darkroom({
+          left: '0px', 
+          width: '80%',
+          visibility: 'hidden'
+        }),
       },
+      patient: {},
       state: {
         index: 0,
         hasConfirmedDelete: false,
@@ -175,25 +181,47 @@ export class MyProfilePage extends React.Component {
       if(get(Meteor.user(), 'profile.avatar')) {
         data.user.profileImage = get(Meteor.user(), 'profile.avatar');
         data.header.avatar = get(Meteor.user(), 'profile.avatar');
-      } else {
-        data.user.profileImage = 'thumbnail.png';
-        data.header.avatar = 'thumbnail.png';
-      }
+        data.patient.photo = [{url: get(Meteor.user(), 'profile.avatar') }]
+      } 
+      // else {
+      //   data.user.profileImage = 'thumbnail.png';
+      //   data.header.avatar = 'thumbnail.png';
+      //   data.patient.photo = [{url: 'thumbnail.png' }]
+      // }
 
       // if (Meteor.user() && Meteor.user().profile && Meteor.user().profile.name) {
       if(get(Meteor.user(), 'profile.name')) {
         data.user.given = get(Meteor.user(), 'profile.name.given');
         data.user.family = get(Meteor.user(), 'profile.name.family')
         data.user.fullName = get(Meteor.user(), 'profile.name.given') + ' ' + get(Meteor.user(), 'profile.name.family');
+        data.patient.name = [{
+          given: [get(Meteor.user(), 'profile.name.given')],
+          family: [get(Meteor.user(), 'profile.name.family')],
+          text: get(Meteor.user(), 'profile.name.given') + ' ' + get(Meteor.user(), 'profile.name.family')
+        }]
       } else {
         data.user.given = '';
         data.user.family = '';
         data.user.fullName = '';
+        data.patient.name = [{
+          given: [''],
+          family: [''],
+          text: ''
+        }]
       }
 
       if(get(Meteor.user(), 'profile.gender')) {
         data.user.gender = get(Meteor.user(), 'profile.gender');
+        data.patient.gender = get(Meteor.user(), 'profile.gender');
       }
+
+
+
+      
+
+
+
+
 
       
       // if(Meteor.user() && Meteor.user().profile && Meteor.user().profile.locations  && Meteor.user().profile.locations.home && Meteor.user().profile.locations.home.address){
@@ -232,66 +260,66 @@ export class MyProfilePage extends React.Component {
       }
 
 
-      if(get(Meteor.user(), 'profile.continuityOfCare')){
-        if(get(Meteor.user(), 'profile.continuityOfCare.allergyIntolerances')){
-          data.ccd.AllergyIntolerances = get(Meteor.user(), 'profile.continuityOfCare.allergyIntolerances').length;
-        }
-        if(get(Meteor.user(), 'profile.continuityOfCare.carePlans')){
-          data.ccd.CarePlans = get(Meteor.user(), 'profile.continuityOfCare.carePlans').length;
-        }
-        if(get(Meteor.user(), 'profile.continuityOfCare.conditions')){
-          data.ccd.Conditions = get(Meteor.user(), 'profile.continuityOfCare.conditions').length;
-        }
+      // if(get(Meteor.user(), 'profile.continuityOfCare')){
+      //   if(get(Meteor.user(), 'profile.continuityOfCare.allergyIntolerances')){
+      //     data.ccd.AllergyIntolerances = get(Meteor.user(), 'profile.continuityOfCare.allergyIntolerances').length;
+      //   }
+      //   if(get(Meteor.user(), 'profile.continuityOfCare.carePlans')){
+      //     data.ccd.CarePlans = get(Meteor.user(), 'profile.continuityOfCare.carePlans').length;
+      //   }
+      //   if(get(Meteor.user(), 'profile.continuityOfCare.conditions')){
+      //     data.ccd.Conditions = get(Meteor.user(), 'profile.continuityOfCare.conditions').length;
+      //   }
 
-        if(get(Meteor.user(), 'profile.continuityOfCare.devices')){
-          data.ccd.Devices = get(Meteor.user(), 'profile.continuityOfCare.devices').length;
-        }
-        if(get(Meteor.user(), 'profile.continuityOfCare.diagnosticReports')){
-          data.ccd.DiagnosticReports = get(Meteor.user(), 'profile.continuityOfCare.diagnosticReports').length;
-        }
-        if(get(Meteor.user(), 'profile.continuityOfCare.goals')){
-          data.ccd.Goals = get(Meteor.user(), 'profile.continuityOfCare.goals').length;
-        }
+      //   if(get(Meteor.user(), 'profile.continuityOfCare.devices')){
+      //     data.ccd.Devices = get(Meteor.user(), 'profile.continuityOfCare.devices').length;
+      //   }
+      //   if(get(Meteor.user(), 'profile.continuityOfCare.diagnosticReports')){
+      //     data.ccd.DiagnosticReports = get(Meteor.user(), 'profile.continuityOfCare.diagnosticReports').length;
+      //   }
+      //   if(get(Meteor.user(), 'profile.continuityOfCare.goals')){
+      //     data.ccd.Goals = get(Meteor.user(), 'profile.continuityOfCare.goals').length;
+      //   }
 
-        if(get(Meteor.user(), 'profile.continuityOfCare.imagingStudies')){
-          data.ccd.ImagingStudies = get(Meteor.user(), 'profile.continuityOfCare.imagingStudies').length;
-        }
-        if(get(Meteor.user(), 'profile.continuityOfCare.immunizations')){
-          data.ccd.Immunizations = get(Meteor.user(), 'profile.continuityOfCare.immunizations').length;
-        }
-        if(get(Meteor.user(), 'profile.continuityOfCare.locations')){
-          data.ccd.Locations = get(Meteor.user(), 'profile.continuityOfCare.locations').length;
-        }
+      //   if(get(Meteor.user(), 'profile.continuityOfCare.imagingStudies')){
+      //     data.ccd.ImagingStudies = get(Meteor.user(), 'profile.continuityOfCare.imagingStudies').length;
+      //   }
+      //   if(get(Meteor.user(), 'profile.continuityOfCare.immunizations')){
+      //     data.ccd.Immunizations = get(Meteor.user(), 'profile.continuityOfCare.immunizations').length;
+      //   }
+      //   if(get(Meteor.user(), 'profile.continuityOfCare.locations')){
+      //     data.ccd.Locations = get(Meteor.user(), 'profile.continuityOfCare.locations').length;
+      //   }
 
-        if(get(Meteor.user(), 'profile.continuityOfCare.medications')){
-          data.ccd.Medications = get(Meteor.user(), 'profile.continuityOfCare.medications').length;
-        }        
-        if(get(Meteor.user(), 'profile.continuityOfCare.medicationStatements')){
-          data.ccd.MedicationStatements = get(Meteor.user(), 'profile.continuityOfCare.medicationStatements').length;
-        }        
-        if(get(Meteor.user(), 'profile.continuityOfCare.observations')){
-          data.ccd.Observations = get(Meteor.user(), 'profile.continuityOfCare.observations').length;
-        }        
+      //   if(get(Meteor.user(), 'profile.continuityOfCare.medications')){
+      //     data.ccd.Medications = get(Meteor.user(), 'profile.continuityOfCare.medications').length;
+      //   }        
+      //   if(get(Meteor.user(), 'profile.continuityOfCare.medicationStatements')){
+      //     data.ccd.MedicationStatements = get(Meteor.user(), 'profile.continuityOfCare.medicationStatements').length;
+      //   }        
+      //   if(get(Meteor.user(), 'profile.continuityOfCare.observations')){
+      //     data.ccd.Observations = get(Meteor.user(), 'profile.continuityOfCare.observations').length;
+      //   }        
 
-        if(get(Meteor.user(), 'profile.continuityOfCare.patients')){
-          data.ccd.Patients = get(Meteor.user(), 'profile.continuityOfCare.patients').length;
-        }           
-        if(get(Meteor.user(), 'profile.continuityOfCare.persons')){
-          data.ccd.Persons = get(Meteor.user(), 'profile.continuityOfCare.persons').length;
-        }           
-        if(get(Meteor.user(), 'profile.continuityOfCare.practitioners')){
-          data.ccd.Practitioners = get(Meteor.user(), 'profile.continuityOfCare.practitioners').length;
-        }           
-        if(get(Meteor.user(), 'profile.continuityOfCare.procedures')){
-          data.ccd.Procedures = get(Meteor.user(), 'profile.continuityOfCare.procedures').length;
-        }           
-        if(get(Meteor.user(), 'profile.continuityOfCare.relatedPersons')){
-          data.ccd.RelatedPersons = get(Meteor.user(), 'profile.continuityOfCare.relatedPersons').length;
-        }           
-        if(get(Meteor.user(), 'profile.continuityOfCare.sequences')){
-          data.ccd.Sequences = get(Meteor.user(), 'profile.continuityOfCare.sequences').length;
-        }           
-      }
+      //   if(get(Meteor.user(), 'profile.continuityOfCare.patients')){
+      //     data.ccd.Patients = get(Meteor.user(), 'profile.continuityOfCare.patients').length;
+      //   }           
+      //   if(get(Meteor.user(), 'profile.continuityOfCare.persons')){
+      //     data.ccd.Persons = get(Meteor.user(), 'profile.continuityOfCare.persons').length;
+      //   }           
+      //   if(get(Meteor.user(), 'profile.continuityOfCare.practitioners')){
+      //     data.ccd.Practitioners = get(Meteor.user(), 'profile.continuityOfCare.practitioners').length;
+      //   }           
+      //   if(get(Meteor.user(), 'profile.continuityOfCare.procedures')){
+      //     data.ccd.Procedures = get(Meteor.user(), 'profile.continuityOfCare.procedures').length;
+      //   }           
+      //   if(get(Meteor.user(), 'profile.continuityOfCare.relatedPersons')){
+      //     data.ccd.RelatedPersons = get(Meteor.user(), 'profile.continuityOfCare.relatedPersons').length;
+      //   }           
+      //   if(get(Meteor.user(), 'profile.continuityOfCare.sequences')){
+      //     data.ccd.Sequences = get(Meteor.user(), 'profile.continuityOfCare.sequences').length;
+      //   }           
+      // }
       
       var resourceTypes = [
         'AllergyIntolerances',
@@ -340,7 +368,11 @@ export class MyProfilePage extends React.Component {
     return data;
   }
 
+  setGeojsonUrl(event, text){
+    console.log('setGeojsonUrl', text);
 
+    Session.set('geojsonUrl', text)
+  }
   render(){
 
     var ccdResources = [];
@@ -505,181 +537,19 @@ export class MyProfilePage extends React.Component {
     //   </div>
     // //}
 
-    return(
-      <div id='myProfilePage'>
-        <VerticalCanvas style={{paddingBottom: '80px'}}> 
-          <PatientCard
-            fullName={ get(this, 'data.user.fullName', '') }
-            email={ get(this, 'data.user.email', '') }
-            givenName={ get(this, 'data.user.givenName', '') }
-            familyName={ get(this, 'data.user.familyName', '') }
-            birthdate={this.data.user.birthdate}
-            gender={ get(this, 'data.user.gender', '') }
-            avatar={ get(this, 'data.user.avatar', '') }
-            updateGivenName={ this.updateGivenName }
-            updateFamilyName={ this.updateFamilyName }
-            updateBirthdate={ this.updateBirthdate }
-            updateGender={ this.updateGender }
-            updateAvatar={ this.updateAvatar }
-            />
-
-          {/* <Card zDepth={2} style={this.data.style.photo}>
-            <img id='avatarImage' ref='avatarImage' onError={this.imgError.bind(this)} src={this.data.user.profileImage}  style={this.data.style.avatar} />
-          </Card>
-          <GlassCard>
-            <CardTitle
-                title={this.data.user.fullName}
-                subtitle={this.data.user.email}
-                style={this.data.style.title}
-              >
-              </CardTitle>
-            <CardText>
-                <div id='profileDemographicsPane' style={{position: 'relative'}}>
-                  <Row style={this.data.style.synopsis}>
-                    <Col md={6}>
-                      <TextField
-                        id='givenNameInput'
-                        ref='given'
-                        name='given'
-                        type='text'
-                        floatingLabelText='given name'
-                        value={this.data.user.given}
-                        fullWidth
-                        /><br/>
-                    </Col>
-                    <Col md={6}>
-                      <TextField
-                        id='familyNameInput'
-                        ref='family'
-                        name='family'
-                        type='text'
-                        floatingLabelText='family name'
-                        value={this.data.user.family}
-                        fullWidth
-                        /><br/>
-                    </Col>
-                  </Row>
-                  <Row style={this.data.style.synopsis}>
-                    <Col md={3}>
-                      <TextField
-                        id='birthdateInput'
-                        ref='birthdate'
-                        name='birthdate'
-                        type='date'
-                        floatingLabelText='date of birth (yyyy-mm-dd)'
-                        floatingLabelFixed={true}
-                        value={this.data.user.birthdate}                          
-                        onChange={ this.updateBirthdate.bind(this) }
-                        fullWidth
-                        /><br/>
-                    </Col>
-                    <Col md={3}>
-                      <TextField
-                        id='genderInput'
-                        ref='gender'
-                        name='gender'
-                        type='text'
-                        floatingLabelText='gender'
-                        value={this.data.user.gender}
-                        onChange={ this.updateGender.bind(this) }
-                        fullWidth
-                        /><br/>
-
-                    </Col>
-                    <Col md={6}>
-                      <TextField
-                        id='avatarInput'
-                        ref='avatar'
-                        name='avatar'
-                        type='text'
-                        floatingLabelText='avatar'
-                        value={this.data.user.avatar}
-                        onChange={ this.updateAvatar.bind(this) }
-                        fullWidth
-                        /><br/>
-
-                    </Col>
-                  </Row>
-                </div>
-            </CardText>
-          </GlassCard>
-          <DynamicSpacer /> */}
-
-
-          <GlassCard>
-            <CardTitle title="Home Address" subtitle='last updated: yyyy/mm/dd' style={{float: 'left'}} />
+    let geocodingCard;
+    if(get(Meteor.user(), 'profile.consents.geocoding.status') === "active"){
+      geocodingCard = <div>
+        <GlassCard>
+          <CardTitle title="Geocoding Preferences" subtitle='last updated: yyyy/mm/dd' style={{float: 'left'}} />
             <CardTitle subtitle={this.data.address.latlng} style={{position: 'relative', right: '0px', top: '0px', float: 'right'}}/>
             <CardText>
-              
-              <Row>
-                <Col md={12}>
-                  <TextField
-                    id='streetAddressInput'
-                    ref='streetAddress'
-                    name='streetAddress'
-                    type='text'
-                    floatingLabelText='Street Address'
-                    floatingLabelFixed={true}                    
-                    value={this.data.address.line}
-                    onChange={ this.changeHomeStreetAddress.bind(this) }
-                    fullWidth
-                    />
-                </Col>
-              </Row>
-              <Row>
-                <Col md={3}>
-                  <TextField
-                    id='cityInput'
-                    ref='city'
-                    name='city'
-                    type='text'
-                    floatingLabelText='City'
-                    floatingLabelFixed={true}
-                    value={this.data.address.city}
-                    onChange={ this.changeHomeCity.bind(this) }
-                    fullWidth
-                    />
-                </Col>
-                <Col md={3}>
-                  <TextField
-                    id='stateInput'
-                    ref='state'
-                    name='state'
-                    type='text'
-                    floatingLabelText='State'
-                    floatingLabelFixed={true}
-                    value={this.data.address.state}
-                    onChange={ this.changeHomeState.bind(this) }
-                    fullWidth
-                    />
-                </Col>
-                <Col md={3}>
-                  <TextField
-                    id='postalCodeInput'
-                    ref='postalCode'
-                    name='postalCode'
-                    type='text'
-                    floatingLabelText='Postal Code'
-                    floatingLabelFixed={true}
-                    value={this.data.address.postalCode}
-                    onChange={ this.changeHomeZip.bind(this) }
-                    fullWidth
-                    />
-                </Col>
-                <Col md={3}>
-                  <TextField
-                    id='countryInput'
-                    ref='country'
-                    name='country'
-                    type='text'
-                    floatingLabelText='Country'
-                    floatingLabelFixed={true}
-                    value={this.data.address.country}
-                    onChange={ this.changeHomeCountry.bind(this) }
-                    fullWidth
-                    />
-                </Col>
-              </Row>
+              <DynamicSpacer />              
+              <TextField
+                hintText="http://data.cityofchicago.gov/map.geojson"
+                onChange={ this.setGeojsonUrl.bind(this)}
+                fullWidth
+              />
             </CardText>
             <CardActions>
               <FlatButton 
@@ -692,139 +562,195 @@ export class MyProfilePage extends React.Component {
                 />
             </CardActions>
           </GlassCard>
-          <DynamicSpacer />
+        <DynamicSpacer />
+      </div>
+    }    
 
-          {/* { consentElement } */}
+    return(
+      <div id='myProfilePage'>
+        <FullPageCanvas style={{paddingBottom: '80px'}}> 
+          <Col md={6}>
+            <PatientCard
+              // fullName={ get(this, 'data.user.fullName', '') }
+              // email={ get(this, 'data.user.email', '') }
+              // givenName={ get(this, 'data.user.givenName', '') }
+              // familyName={ get(this, 'data.user.familyName', '') }
+              // birthdate={this.data.user.birthdate}
+              // gender={ get(this, 'data.user.gender', '') }
+              // avatar={ get(this, 'data.user.avatar', '') }
+              patient = { get(this, 'data.patient') }
+              updateGivenName={ this.updateGivenName }
+              updateFamilyName={ this.updateFamilyName }
+              updateBirthdate={ this.updateBirthdate }
+              updateGender={ this.updateGender }
+              updateAvatar={ this.updateAvatar }
+              />
 
-          { continuityOfCareCard }
+            
 
-          <GlassCard>
-            <CardTitle title="Preferences" subtitle='Application preferences.' />
-            <CardText>
-              <div id="profileSystemPane" style={{position: "relative"}}>
-                <Table>
-                <TableBody displayRowCheckbox={false} showRowHover={true}>>
-                  <TableRow>
-                    <TableRowColumn style={{width: '200px'}}>
-                      <FlatButton label='Show Navbars' />
-                    </TableRowColumn>
-                    <TableRowColumn>Display the header and footer navbars.</TableRowColumn>
-                  </TableRow>
-                  <TableRow>
-                    <TableRowColumn>
-                      <FlatButton label='Show Search' />
-                    </TableRowColumn>
-                    <TableRowColumn>Display the search ribbon.</TableRowColumn>
-                  </TableRow>
-                  <TableRow>
-                    <TableRowColumn>
-                      <FlatButton label='Autoheight' />
-                    </TableRowColumn>
-                    <TableRowColumn>Fit to use the available spaec.  Otherwise, use veritical scroll.</TableRowColumn>
-                  </TableRow>
-                  <TableRow>
-                    <TableRowColumn>
-                      <FlatButton label='Margins' />
-                    </TableRowColumn>
-                    <TableRowColumn>Layout with or without border margins.</TableRowColumn>
-                  </TableRow>
-
-                  <TableRow>
-                    <TableRowColumn>
-                      <FlatButton label='Card/Panel' />
-                    </TableRowColumn>
-                    <TableRowColumn>Card layout or Panel layout</TableRowColumn>
-                  </TableRow>
-                  <TableRow>
-                    <TableRowColumn>
-                      <FlatButton label='Secondary' />
-                    </TableRowColumn>
-                    <TableRowColumn>Display the secondary iframe panel</TableRowColumn>
-                  </TableRow>
-                  <TableRow>
-                    <TableRowColumn>
-                      <FlatButton label='Docks' />
-                    </TableRowColumn>
-                    <TableRowColumn>Display inbox dock</TableRowColumn>
-                  </TableRow>
-                  <TableRow>
-                    <TableRowColumn>
-                      <FlatButton label='Narrow Navs' />
-                    </TableRowColumn>
-                    <TableRowColumn>Use narrow navbars</TableRowColumn>
-                  </TableRow>
-                </TableBody>
-                </Table>
-
-                <br />
-                <br />
-                { this.renderConfirmDelete(this.data.state.wantsToDelete) }
-              </div>
-            </CardText>
-          </GlassCard>
-
-
-          <DynamicSpacer />
-          <GlassCard>
-            <CardTitle title="Password Management" subtitle='Reset your password.' />
-            <CardText>
-              <div id='profilePasswordPane' style={{position: 'relative'}} >
-                <TextField
-                  id='oldPasswordInput'
-                  ref='oldPassword'
-                  name='oldPassword'
-                  type='text'
-                  floatingLabelText='oldPassword'
-                  floatingLabelFixed={true}
-                  value={this.data.state.oldPassword}
-                  onChange={ this.rememberOldPassword.bind(this) }
-                  fullWidth
-                  /><br/>
+            <GlassCard>
+              <CardTitle title="Home Address" subtitle='last updated: yyyy/mm/dd' style={{float: 'left'}} />
+              <CardTitle subtitle={this.data.address.latlng} style={{position: 'relative', right: '0px', top: '0px', float: 'right'}}/>
+              <CardText>
+                
                 <Row>
-                  <Col md={6}>
+                  <Col md={12}>
                     <TextField
-                      id='newPasswordInput'
-                      ref='newPassword'
-                      name='newPassword'
+                      id='streetAddressInput'
+                      ref='streetAddress'
+                      name='streetAddress'
                       type='text'
-                      floatingLabelText='newPassword'
-                      floatingLabelFixed={true}
-                      value={this.data.state.newPassword}
-                      onChange={ this.rememberNewPassword.bind(this) }
+                      floatingLabelText='Street Address'
+                      floatingLabelFixed={true}                    
+                      value={this.data.address.line}
+                      onChange={ this.changeHomeStreetAddress.bind(this) }
                       fullWidth
-                      /><br/>
-                  </Col>
-                  <Col md={6}>
-                    <TextField
-                      id='confirmPasswordInput'
-                      ref='confirmPassword'
-                      name='confirmPassword'
-                      type='text'
-                      floatingLabelText='confirmPassword'
-                      floatingLabelFixed={true}
-                      value={this.data.state.confirmPassword}
-                      onChange={ this.rememberConfirmPassword.bind(this) }
-                      fullWidth
-                      /><br/>
+                      />
                   </Col>
                 </Row>
+                <Row>
+                  <Col md={3}>
+                    <TextField
+                      id='cityInput'
+                      ref='city'
+                      name='city'
+                      type='text'
+                      floatingLabelText='City'
+                      floatingLabelFixed={true}
+                      value={this.data.address.city}
+                      onChange={ this.changeHomeCity.bind(this) }
+                      fullWidth
+                      />
+                  </Col>
+                  <Col md={3}>
+                    <TextField
+                      id='stateInput'
+                      ref='state'
+                      name='state'
+                      type='text'
+                      floatingLabelText='State'
+                      floatingLabelFixed={true}
+                      value={this.data.address.state}
+                      onChange={ this.changeHomeState.bind(this) }
+                      fullWidth
+                      />
+                  </Col>
+                  <Col md={3}>
+                    <TextField
+                      id='postalCodeInput'
+                      ref='postalCode'
+                      name='postalCode'
+                      type='text'
+                      floatingLabelText='Postal Code'
+                      floatingLabelFixed={true}
+                      value={this.data.address.postalCode}
+                      onChange={ this.changeHomeZip.bind(this) }
+                      fullWidth
+                      />
+                  </Col>
+                  <Col md={3}>
+                    <TextField
+                      id='countryInput'
+                      ref='country'
+                      name='country'
+                      type='text'
+                      floatingLabelText='Country'
+                      floatingLabelFixed={true}
+                      value={this.data.address.country}
+                      onChange={ this.changeHomeCountry.bind(this) }
+                      fullWidth
+                      />
+                  </Col>
+                </Row>
+              </CardText>
+
+            </GlassCard>
+            <DynamicSpacer />
 
 
 
-                <FlatButton
-                  id='changePasswordButton'
-                  label='Change Password'
-                  onClick={this.changePassword.bind(this)}
-                  className="muidocs-icon-action-delete"
-                  />
-              </div>
-            </CardText>
-          </GlassCard>                    
+            { geocodingCard }
 
-          <DynamicSpacer />
-          <DynamicSpacer />
 
-        </VerticalCanvas>
+            { continuityOfCareCard }
+
+
+
+
+            <DynamicSpacer />
+            <GlassCard>
+              <CardTitle title="Password Management" subtitle='Reset your password.' />
+              <CardText>
+                <div id='profilePasswordPane' style={{position: 'relative'}} >
+                  <TextField
+                    id='oldPasswordInput'
+                    ref='oldPassword'
+                    name='oldPassword'
+                    type='text'
+                    floatingLabelText='oldPassword'
+                    floatingLabelFixed={true}
+                    value={this.data.state.oldPassword}
+                    onChange={ this.rememberOldPassword.bind(this) }
+                    fullWidth
+                    /><br/>
+                  <Row>
+                    <Col md={6}>
+                      <TextField
+                        id='newPasswordInput'
+                        ref='newPassword'
+                        name='newPassword'
+                        type='text'
+                        floatingLabelText='newPassword'
+                        floatingLabelFixed={true}
+                        value={this.data.state.newPassword}
+                        onChange={ this.rememberNewPassword.bind(this) }
+                        fullWidth
+                        /><br/>
+                    </Col>
+                    <Col md={6}>
+                      <TextField
+                        id='confirmPasswordInput'
+                        ref='confirmPassword'
+                        name='confirmPassword'
+                        type='text'
+                        floatingLabelText='confirmPassword'
+                        floatingLabelFixed={true}
+                        value={this.data.state.confirmPassword}
+                        onChange={ this.rememberConfirmPassword.bind(this) }
+                        fullWidth
+                        /><br/>
+                    </Col>
+                  </Row>
+
+
+
+                  <FlatButton
+                    id='changePasswordButton'
+                    label='Change Password'
+                    onClick={this.changePassword.bind(this)}
+                    className="muidocs-icon-action-delete"
+                    />
+                </div>
+              </CardText>
+            </GlassCard>                    
+
+            <DynamicSpacer />
+            <GlassCard>
+              <CardTitle title="Delete User" subtitle='Permanently remove account and data.' />
+              <CardText>
+                <div id="profileSystemPane" style={{position: "relative"}}>
+                  { this.renderConfirmDelete(this.data.state.wantsToDelete) }
+                </div>
+              </CardText>
+            </GlassCard>
+
+            <DynamicSpacer />
+            <DynamicSpacer />
+
+
+
+          </Col>
+        </FullPageCanvas>
       </div>
     );
   }
@@ -978,8 +904,9 @@ export class MyProfilePage extends React.Component {
       let state = Session.get('myProfileState');
 
       // janky, but it works, i guess
-      if ((state.confirm === Meteor.userId()) || (state.confirm === Meteor.user().emails[0].address)) {
-        if(process.env.NODE_ENV === "test") console.log('Confirm _id match.  Removing.');
+      // if ((state.confirm === Meteor.userId()) || (state.confirm === Meteor.user().emails[0].address)) {
+        // if ((state.confirm === Meteor.userId())) {
+        //   if(process.env.NODE_ENV === "test") console.log('Confirm _id match.  Removing.');
   
         removeUserById.call({
           _id:  Meteor.userId()
@@ -991,9 +918,9 @@ export class MyProfilePage extends React.Component {
             browserHistory.push('/signin');
           }
         });
-      } else {
-        console.log('Hmmm...  yeah, lets wait a bit and make sure we have the right user.');
-      }    
+      // } else {
+      //   console.log('Hmmm...  yeah, lets wait a bit and make sure we have the right user.');
+      // }    
     }
   }
   deleteAccount(){

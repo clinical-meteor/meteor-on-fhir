@@ -7,8 +7,16 @@ Meteor.startup(function(){
   console.log("*************************************************************************************");
   console.log("*************************************************************************************");
   console.log("Starting up " + Meteor.settings.public.title);
+
+  if(process.env.NIGHTWATCH){
+    console.log("Nightwatch: " + process.env.NIGHTWATCH);
+    process.env.NODE_ENV = "test";
+  }
+
   console.log("Environment: " + process.env.NODE_ENV);
   console.log("");
+
+
 
   if(process.env.DEBUG) console.log("Meteor.settings", Meteor.settings);
 
