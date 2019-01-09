@@ -1,6 +1,11 @@
 // https://material.io/icons/
 // https://andy-pro.github.io/icon-viewer/
 
+// https://www.npmjs.com/package/react-absolute-grid  
+// http://jrowny.github.io/react-absolute-grid/demo/  
+
+
+
 import { Container, Col, Row } from 'react-bootstrap';
 
 import { CardTitle, Card, CardText, CardActions } from 'material-ui';

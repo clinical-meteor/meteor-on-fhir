@@ -677,7 +677,7 @@ export class MyProfilePage extends React.Component {
 
 
 
-            <DynamicSpacer />
+            {/* <DynamicSpacer /> */}
             <GlassCard>
               <CardTitle title="Password Management" subtitle='Reset your password.' />
               <CardText>
