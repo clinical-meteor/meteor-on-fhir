@@ -1,7 +1,6 @@
-import { Card, CardActions, CardHeader, CardText, CardTitle } from 'material-ui/Card';
+import { Card, CardActions, CardHeader, CardText, CardTitle, Toggle, Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui';
 import { Col, Grid, Row } from 'react-bootstrap';
 import { Tab, Tabs } from 'material-ui/Tabs';
-import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
 import { has, get } from 'lodash';
 
 import { Accounts } from 'meteor/accounts-base';
@@ -39,7 +38,9 @@ let defaultState = {
   newPassword: '',
   confirmPassword: ''
 };
+
 Session.setDefault('myProfileState', defaultState);
+Session.setDefault('autoPrivacyToggled', true);
 
 
 export class MyProfilePage extends React.Component {
@@ -154,6 +155,9 @@ export class MyProfilePage extends React.Component {
         Procedures: 0,
         RelatedPersons: 0,
         Sequences: 0
+      },
+      toggles: {
+        autoPrivacyToggled: Session.get('autoPrivacyToggled')
       }
     };
 
@@ -372,6 +376,10 @@ export class MyProfilePage extends React.Component {
     console.log('setGeojsonUrl', text);
 
     Session.set('geojsonUrl', text)
+  }
+  toggleAutoprivacy(){
+    console.log('toggleAutoprivacy')
+    Session.toggle('autoPrivacyToggled');
   }
   render(){
 
@@ -675,9 +683,21 @@ export class MyProfilePage extends React.Component {
             { continuityOfCareCard }
 
 
+            <GlassCard>
+              <CardTitle title="Preferences" subtitle='Reset your password.' />
+              <CardText>
+                <Toggle 
+                  label="AutoPrivacy"
+                  labelPosition='right'
+                  onToggle={this.toggleAutoprivacy.bind(this)} 
+                  toggled={ this.data.toggles.autoPrivacyToggled }  
+                /><br />
+              </CardText>
+            </GlassCard>                    
+            <DynamicSpacer />
 
 
-            {/* <DynamicSpacer /> */}
+
             <GlassCard>
               <CardTitle title="Password Management" subtitle='Reset your password.' />
               <CardText>

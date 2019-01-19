@@ -97,14 +97,31 @@ export class PatientSidebar extends React.Component {
     //----------------------------------------------------------------------
     // DataManagement
 
-    var dataManagement;
+    var dataManagement = []
+
     if(get(Meteor, 'settings.public.defaults.sidebar.menuItems.DataManagement')){
       if(!['iPhone'].includes(window.navigator.platform)){
-        dataManagement = <LinkContainer key='dataItem' to='/data-management'>
+        dataManagement.push(<LinkContainer key='dataItem' to='/data-management'>
           <MenuItem primaryText='Data Management' href='/data-management' />
-        </LinkContainer>;
+        </LinkContainer>);
+      }
+      if(!['iPhone'].includes(window.navigator.platform)){
+        dataManagement.push(<LinkContainer key='importData' to='/import-data'>
+          <MenuItem primaryText='Import' href='/import-data' />
+        </LinkContainer>);
+      }
+      if(!['iPhone'].includes(window.navigator.platform)){
+        dataManagement.push(<LinkContainer key='exportData' to='/export-data'>
+          <MenuItem primaryText='Export' href='/export-data' />
+        </LinkContainer>);
       }
     }
+
+    // if(get(Meteor, 'settings.public.defaults.sidebar.menuItems.DataManagement')){
+    // }
+
+    // if(get(Meteor, 'settings.public.defaults.sidebar.menuItems.DataManagement')){
+    // }
 
     //----------------------------------------------------------------------
     // FHIR Resources
@@ -194,13 +211,18 @@ export class PatientSidebar extends React.Component {
             
           { continuityOfCareElements }
 
-          { spacer }
+          <hr />
      
           {/* { dynamicElements } */}
 
           { fhirResources }
 
+          <hr />
+          
           { dataManagement }
+          {/* { importDataBtn } */}
+          {/* { exportData } */}
+          
           <hr />
 
           { gettingStarted }

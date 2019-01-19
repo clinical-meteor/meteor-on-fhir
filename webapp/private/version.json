@@ -1,7 +1,7 @@
 {
     "basic": "v1.0-prerelease-3",
-    "complete": "v1.0-prerelease-3-187-g680b1a5",
-    "branch": "nov-devdays",
-    "commit": "680b1a5dec714e2f11dd4a972b2a89e01bb544e4",
-    "timestamp": "2018-12-01"
+    "complete": "v1.0-prerelease-3-215-ge3dd184",
+    "branch": "testflight",
+    "commit": "e3dd184711519286aa018c51f3183373f069d694",
+    "timestamp": "2019-01-08"
 }
