@@ -18,6 +18,22 @@ import { HTTP } from 'meteor/http';
 import { browserHistory } from 'react-router';
 import { has, get } from 'lodash';
 
+import { MdBlurOn } from 'react-icons/md';
+import { MdBlurOff } from 'react-icons/md';
+
+import { MdSignalWifi0Bar } from 'react-icons/md';
+import { MdSignalWifi1Bar } from 'react-icons/md';
+import { MdSignalWifi1BarLock } from 'react-icons/md';
+import { MdSignalWifi2Bar } from 'react-icons/md';
+import { MdSignalWifi2BarLock } from 'react-icons/md';
+import { MdSignalWifi3Bar } from 'react-icons/md';
+import { MdSignalWifi3BarLock } from 'react-icons/md';
+import { MdSignalWifi4Bar } from 'react-icons/md';
+import { MdSignalWifi4BarLock } from 'react-icons/md';
+import { MdSignalWifiOff } from 'react-icons/md';
+
+
+
 Session.setDefault('showThemingControls', false);
 Session.setDefault('gender', false);
 Session.setDefault('timelineBackground', false);
@@ -60,7 +76,8 @@ export class Footer extends React.Component {
           cursor: 'pointer'
         }
       },
-      pathname: Session.get('pathname')
+      pathname: Session.get('pathname'),
+      privacy: Session.get('glassBlurEnabled')
     };
 
     if (Meteor.status()) {
@@ -988,7 +1005,54 @@ export class Footer extends React.Component {
     Session.set('hapiProvenances', {})
   }
   renderEastNavbar(displayThemeNavbar){
-    // console.log('Footer.renderEastNavbar')
+    var privacyText;
+    if(this.data.privacy){
+      privacyText = <MdBlurOn />
+    } else {
+      privacyText = <MdBlurOff />
+    }
+
+
+    var connectionStatus;
+
+    switch (this.data.status) {
+      case 'connected | production':   
+        connectionStatus = <MdSignalWifi4BarLock />; 
+        break;
+      case 'connecting | production': 
+        connectionStatus = <MdSignalWifi2BarLock />; 
+        break;
+      case 'failed | production':  
+        connectionStatus = <MdSignalWifiOff />; 
+        break;
+      case 'waiting | production':  
+        connectionStatus = <MdSignalWifi1BarLock />; 
+        break;
+      case 'offline | production':  
+        connectionStatus = <MdSignalWifi0Bar />; 
+        break;
+
+      case 'connected | development':  
+        connectionStatus = <MdSignalWifi4Bar />; 
+        break;
+      case 'connecting | development':  
+        connectionStatus = <MdSignalWifi2Bar />; 
+        break;
+      case 'failed | development':  
+        connectionStatus = <MdSignalWifiOff />; 
+        break;
+      case 'waiting | development':  
+        connectionStatus = <MdSignalWifi1Bar />; 
+        break;
+      case 'offline | development':  
+        connectionStatus = <MdSignalWifi0Bar />; 
+        break;
+
+    }
+
+
+
+    <MdSignalWifiOff />
 
     if (displayThemeNavbar) {
       return (<div>
@@ -1002,18 +1066,19 @@ export class Footer extends React.Component {
 
           <ToolbarTitle
             id='privacyScreen'
-            text='privacy | '
+            text={ privacyText }
             style={{
               fontSize: '18px', 
               top: '-4px', 
-              cursor: 'pointer'
+              cursor: 'pointer',
+              marginRight: '10px'
             }}
             onClick={this.clickOnBlurButton }
           />
 
           <ToolbarTitle
             id='connectionStatus'
-            text={this.data.status}
+            text={ connectionStatus }
             style={ this.data.style.southEastButtons }
             onClick={this.openInfo }
           />
@@ -1044,6 +1109,7 @@ export class Footer extends React.Component {
           style={this.data.footerStyle}
           titleStyle={{color: 'black'}}
         />
+
 
       </div>
    );

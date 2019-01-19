@@ -373,12 +373,11 @@ export class MyProfilePage extends React.Component {
   }
 
   setGeojsonUrl(event, text){
-    console.log('setGeojsonUrl', text);
-
+    // console.log('setGeojsonUrl', text);
     Session.set('geojsonUrl', text)
   }
   toggleAutoprivacy(){
-    console.log('toggleAutoprivacy')
+    // console.log('toggleAutoprivacy')
     Session.toggle('autoPrivacyToggled');
   }
   render(){
@@ -495,6 +494,11 @@ export class MyProfilePage extends React.Component {
       </TableRow>);
     }    
     let continuityOfCareCard;
+
+    let exportDataBtn = <FlatButton 
+      label='Export Data' 
+      onClick={this.exportData.bind(this)}
+    />
     
     //if(ccdResources.length > 0){
       continuityOfCareCard = <div>
@@ -516,13 +520,14 @@ export class MyProfilePage extends React.Component {
               label='Clear Local Cache' 
               onClick={this.clearLocalCache.bind(this)}
               />
+            { exportDataBtn }
           </CardActions>
         </GlassCard>
         <DynamicSpacer />
       </div>
     //}
 
-    // var consentElement;
+    // var consentElement;f
     // //if(Package['clinical:hl7-resource-consent']){
     //   consentElement = <div>
     //     <GlassCard>
@@ -888,6 +893,9 @@ export class MyProfilePage extends React.Component {
     let state = Session.get('myProfileState');
     state.confirm = value;
     Session.set('myProfileState', state);
+  }
+  exportData(){
+    browserHistory.push('/export-data');
   }
   clearLocalCache(){
     if(confirm("Are you absolutely sure?")){
