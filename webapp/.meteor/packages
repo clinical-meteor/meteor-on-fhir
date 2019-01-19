@@ -153,7 +153,7 @@ percolate:synced-cron
 symptomatic:theming
 symptomatic:continuity-of-care
 symptomatic:smart-on-fhir-client
-# symptomatic:smart-on-fhir-config
+symptomatic:smart-on-fhir-config
 # symptomatic:clinical-scenarios
 symptomatic:landing-page
 
@@ -163,5 +163,5 @@ symptomatic:geomapping
 # symptomatic:card-readers
 # symptomatic:ihealth-cloud-api
 
-
+jparker:crypto-aes
 
