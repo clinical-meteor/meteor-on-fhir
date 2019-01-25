@@ -496,8 +496,12 @@ export class MyProfilePage extends React.Component {
     let continuityOfCareCard;
 
     let exportDataBtn = <FlatButton 
-      label='Export Data' 
+      label='Export' 
       onClick={this.exportData.bind(this)}
+    />
+    let importDataBtn = <FlatButton 
+      label='Import' 
+      onClick={this.importData.bind(this)}
     />
     
     //if(ccdResources.length > 0){
@@ -517,10 +521,11 @@ export class MyProfilePage extends React.Component {
           </CardText>
           <CardActions>
             <FlatButton 
-              label='Clear Local Cache' 
+              label='Clear Data' 
               onClick={this.clearLocalCache.bind(this)}
               />
             { exportDataBtn }
+            { importDataBtn }
           </CardActions>
         </GlassCard>
         <DynamicSpacer />
@@ -896,6 +901,9 @@ export class MyProfilePage extends React.Component {
   }
   exportData(){
     browserHistory.push('/export-data');
+  }
+  importData(){
+    browserHistory.push('/import-data');
   }
   clearLocalCache(){
     if(confirm("Are you absolutely sure?")){

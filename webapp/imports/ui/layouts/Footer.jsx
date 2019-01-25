@@ -72,7 +72,7 @@ export class Footer extends React.Component {
         },
         southEastButtons: {
           fontSize: '18px', 
-          top: '-4px', 
+          // top: '-4px', 
           cursor: 'pointer'
         }
       },
@@ -1050,10 +1050,6 @@ export class Footer extends React.Component {
 
     }
 
-
-
-    <MdSignalWifiOff />
-
     if (displayThemeNavbar) {
       return (<div>
           {/* <OpacitySlider style={this.data.eastStyle} /> */}
@@ -1061,19 +1057,17 @@ export class Footer extends React.Component {
       );
     } else {
       return (
-        <div>
+        <div id='eastNavbar' onClick={this.clickOnBlurButton} style={{cursor: 'pointer'}} >
           {/* <FlatButton label='privacy screen' className='blurButton' ref='blurButton' onClick={this.clickOnBlurButton} style={this.data.style.buttonText} ></FlatButton> */}
 
           <ToolbarTitle
             id='privacyScreen'
             text={ privacyText }
             style={{
-              fontSize: '18px', 
-              top: '-4px', 
-              cursor: 'pointer',
+              fontSize: '18px',               
               marginRight: '10px'
             }}
-            onClick={this.clickOnBlurButton }
+            
           />
 
           <ToolbarTitle

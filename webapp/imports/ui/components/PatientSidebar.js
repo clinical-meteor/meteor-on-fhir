@@ -126,12 +126,15 @@ export class PatientSidebar extends React.Component {
     //----------------------------------------------------------------------
     // FHIR Resources
     
-    var fhirResources;
+    var fhirResources = [];
     if(get(Meteor, 'settings.public.defaults.sidebar.menuItems.FhirResources')){
       if(!['iPhone'].includes(window.navigator.platform)){
-        fhirResources = <LinkContainer key='fhirItem' to='/fhir-resources-index'>
+        fhirResources.push(<hr />);
+        fhirResources.push(<LinkContainer key='fhirItem' to='/fhir-resources-index'>
           <MenuItem id="fhirResourcePageItem" primaryText='FHIR Resources' href='/fhir-resources-index' />
-      </LinkContainer>
+      </LinkContainer>);
+        fhirResources.push(<hr />);
+      
       }
     }
 
@@ -158,9 +161,9 @@ export class PatientSidebar extends React.Component {
         dynamicElements.push(<LinkContainer to={element.to} key={index}>
           <MenuItem primaryText={element.primaryText} href={element.href} />
         </LinkContainer>);
+        dynamicElements.push(<br />);
       }
     });
-    dynamicElements.push(<br />);
 
     var smartOnFhirImports = [];
     // we don't want SMART on FHIR links on iPhone (for now)
@@ -211,13 +214,7 @@ export class PatientSidebar extends React.Component {
             
           { continuityOfCareElements }
 
-          <hr />
-     
-          {/* { dynamicElements } */}
-
           { fhirResources }
-
-          <hr />
           
           { dataManagement }
           {/* { importDataBtn } */}

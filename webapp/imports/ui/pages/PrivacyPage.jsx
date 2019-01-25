@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { GlassCard, VerticalCanvas, DynamicSpacer } from 'meteor/clinical:glass-ui';
+import { GlassCard, VerticalCanvas, DynamicSpacer, Glass } from 'meteor/clinical:glass-ui';
 import { Card, CardMedia, CardTitle, CardText, CardActions } from 'material-ui';
 
 import { PrivacyPolicyCard } from '/imports/ui/components/PrivacyPolicyCard';
@@ -51,11 +51,12 @@ export class PrivacyPage extends React.Component {
       controlTab = <Tab label="Controls" style={tabStyle} />;
     }
 
+    let pageBackground = Glass.getContextImage();
 
     return(
-      <div id="privacyPage">
+      <div id="privacyPage" style={pageBackground} >
         <VerticalCanvas>
-          <GlassCard height='auto'>
+          <GlassCard height='auto' zDepth={3} >
             <Tabs value={value} onChange={this.handleChange}>
               <Tab label="Privacy Policy" style={tabStyle} />
               { controlTab }

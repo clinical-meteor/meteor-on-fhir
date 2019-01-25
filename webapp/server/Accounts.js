@@ -183,7 +183,8 @@ Accounts.onLogin(function(loginObject) {
   // FILTERS
 
   var defaultFilters = {
-    remove: ['gonorrhoeae', 'eGFR', 'chlamydia' ],
+    // remove: ['gonorrhoeae', 'eGFR', 'chlamydia' ],
+    remove: [],
     mustHave: [],
     resourceTypes: [
       'Allergies', 
@@ -194,7 +195,12 @@ Accounts.onLogin(function(loginObject) {
       'MedicationStatements', 
       'Observations', 
       'Procedures' 
-    ]
+    ],
+    sensitiveItems: {
+      subtanceAbuse: true,
+      mentalHealth: true,
+      sexualHealth: true
+    }
   };  
   if(!get(loginObject, 'user.profile.filters')){    
     Meteor.users.update({_id: userId}, {$set: {
