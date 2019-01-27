@@ -158,7 +158,7 @@ symptomatic:smart-on-fhir-config
 symptomatic:landing-page
 
 # symptomatic:example-plugin
-symptomatic:geomapping
+# symptomatic:geomapping
 
 # symptomatic:card-readers
 # symptomatic:ihealth-cloud-api
