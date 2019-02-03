@@ -41,13 +41,31 @@ export class PractitionerSidebar extends React.Component {
           </LinkContainer>
 
           <hr />
-          <LinkContainer to='/provider-directory'>
-             <MenuItem primaryText='Provider Directory' href='/provider-directory' />
+          <LinkContainer to='/checklists'>
+             <MenuItem primaryText='Checklists' href='/checklists' />
+          </LinkContainer>
+
+          <LinkContainer to='/procedure-requests'>
+             <MenuItem primaryText='Workqueue' href='/procedure-requests' />
+          </LinkContainer>
+
+          <LinkContainer to='/healthcard'>
+             <MenuItem primaryText='HealthCard' href='/healthcard' />
           </LinkContainer>
 
           <LinkContainer to='/careplan-designer'>
              <MenuItem primaryText='Careplan Designer' href='/careplan-designer' />
           </LinkContainer>          
+
+          <hr />
+
+          <LinkContainer to='/biometrics-dashboard'>
+             <MenuItem primaryText='Biometrics Dashboard' href='/biometrics-dashboard' />
+          </LinkContainer>
+
+          <LinkContainer to='/provider-directory'>
+             <MenuItem primaryText='Provider Directory' href='/provider-directory' />
+          </LinkContainer>
 
           <hr />
           <LinkContainer to='/fhir-resources-index'>

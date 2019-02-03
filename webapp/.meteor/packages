@@ -101,8 +101,8 @@ clinical:glass-ui
 clinical:default-landing-page
 clinical:alert
 clinical:hipaa-audit-log@3.1.4
-clinical:desktop-publish
-
+#clinical:desktop-publish
+#clinical:autopublish
 
 ### Fast Healthcare Interoperability Resources
 clinical:hl7-resource-allergy-intolerance
@@ -135,7 +135,7 @@ clinical:hl7-resource-procedure-request
 clinical:hl7-resource-provenance
 # clinical:hl7-resource-questionnaire
 # clinical:hl7-resource-questionnaire-response
-clinical:hl7-resource-risk-assessment
+# clinical:hl7-resource-risk-assessment
 # clinical:hl7-resource-sequence
 clinical:hl7-resource-subscription
 
@@ -150,7 +150,7 @@ percolate:synced-cron
 # fhirblocks:core
 
 ### Symptomatic Packages
-symptomatic:theming
+# symptomatic:theming
 symptomatic:continuity-of-care
 symptomatic:smart-on-fhir-client
 symptomatic:smart-on-fhir-config
@@ -165,3 +165,4 @@ symptomatic:landing-page
 
 jparker:crypto-aes
 
+clinical:hl7-resource-imaging-study
