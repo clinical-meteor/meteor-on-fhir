@@ -129,11 +129,11 @@ export class PatientSidebar extends React.Component {
     var fhirResources = [];
     if(get(Meteor, 'settings.public.defaults.sidebar.menuItems.FhirResources')){
       if(!['iPhone'].includes(window.navigator.platform)){
-        fhirResources.push(<hr />);
+        fhirResources.push(<hr key='hra'/>);
         fhirResources.push(<LinkContainer key='fhirItem' to='/fhir-resources-index'>
           <MenuItem id="fhirResourcePageItem" primaryText='FHIR Resources' href='/fhir-resources-index' />
       </LinkContainer>);
-        fhirResources.push(<hr />);
+        fhirResources.push(<hr key='hrb' />);
       
       }
     }
@@ -182,7 +182,7 @@ export class PatientSidebar extends React.Component {
     var supportElements;
     if(Package['symptomatic:continuity-of-care']){
       continuityOfCareElements = <div>
-          <hr />
+          <hr key='hr1' />
           <LinkContainer key='continuityOfCareItem' to='/continuity-of-care'>
              <MenuItem id="continuityOfCareItem" primaryText='Continuity of Care' href='/continuity-of-care' />
           </LinkContainer>
@@ -194,6 +194,9 @@ export class PatientSidebar extends React.Component {
           </LinkContainer>
           <LinkContainer key='observationGraphs' to='/observations-graph'>
              <MenuItem id="observationGraphs" primaryText='Biomarker Trends' href='/observations-graph' />
+          </LinkContainer>
+          <LinkContainer key='healthcard' to='/healthcard'>
+             <MenuItem id="healthcard" primaryText='Health Card' href='/healthcard' />
           </LinkContainer>
       </div>
 
@@ -220,12 +223,12 @@ export class PatientSidebar extends React.Component {
           {/* { importDataBtn } */}
           {/* { exportData } */}
           
-          <hr />
+          <hr key='hr2' />
 
           { gettingStarted }
           { smartOnFhirImports }
 
-          <hr />
+          <hr key='hr3' />
           <LinkContainer key='themingItem' to='/theming'>
              <MenuItem primaryText='Theming' href='/theming' />
           </LinkContainer>

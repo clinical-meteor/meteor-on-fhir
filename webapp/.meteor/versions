@@ -39,8 +39,9 @@ clinical:hl7-resource-audit-event@1.6.6
 clinical:hl7-resource-binary@1.1.1
 clinical:hl7-resource-bundle@1.4.2
 clinical:hl7-resource-careplan@1.3.12
+clinical:hl7-resource-claim@3.4.18
 clinical:hl7-resource-communication@0.1.2
-clinical:hl7-resource-condition@1.7.27
+clinical:hl7-resource-condition@1.8.0
 clinical:hl7-resource-consent@3.4.21
 clinical:hl7-resource-datatypes@4.0.3
 clinical:hl7-resource-device@1.3.8
@@ -62,6 +63,7 @@ clinical:hl7-resource-procedure@1.5.13
 clinical:hl7-resource-procedure-request@1.0.6
 clinical:hl7-resource-provenance@1.1.15
 clinical:hl7-resource-risk-assessment@1.5.4
+clinical:hl7-resource-service-request@1.0.6
 clinical:hl7-resource-subscription@3.5.10
 clinical:keybindings@1.4.7
 clinical:oauth@1.2.29
