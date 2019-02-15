@@ -44,7 +44,7 @@ export class Header extends React.Component {
         searchbar: Glass.darkroom({
           position: 'fixed',
           top: '0px',
-          width: '66%',
+          width: '90%',
           opacity: Session.get('globalOpacity'),
           WebkitTransition: 'ease .2s',
           transition: 'ease .2s',
@@ -169,6 +169,11 @@ export class Header extends React.Component {
 
     Session.set('geojsonUrl', text)
   }
+  setPatientSearch(event, text){
+    console.log('setPatientSearch', text);
+
+    Session.set('patientSearch', text)
+  }
   mapMyAddress(){
     if(get(Meteor.user(), 'profile.locations.home.position.latitude') && get(Meteor.user(), 'profile.locations.home.position.longitude')){
       browserHistory.push('/maps');
@@ -208,6 +213,34 @@ export class Header extends React.Component {
           onClick={this.toggleDrawerActive}
         />
     }
+
+    let demographicsBar;
+    if(Patients.findOne()){
+      let activePatient = Patients.findOne();
+      console.log('activePatient', activePatient);
+
+      demographicsBar = <div id='patientDemographicsBar'>
+        <h2>{get(activePatient, 'name[0].text') + ' ' + get(activePatient, 'birthDate', '') + ' ' + get(activePatient, 'gender', '')}</h2>
+      </div>
+    } else {
+      demographicsBar = <div id='patientSearchBar'>
+          <TextField
+          hintText="Patient Name"
+          style={this.data.style.searchbarInput}
+          fullWidth
+        />
+        <FlatButton 
+          label='Search' 
+          onChange={ this.setPatientSearch.bind(this)}
+          fullWidth
+        />
+        <FlatButton 
+          label='Search' 
+          onClick={this.mapMyAddress.bind(this)}
+          />
+      </div>
+    }
+
     return(
       <div>
         <AppBar
@@ -224,18 +257,7 @@ export class Header extends React.Component {
 
         <AppBar
           id="appSearchBar"
-          title={<div>
-              <TextField
-              hintText="Patient Name"
-              style={this.data.style.searchbarInput}
-              onChange={ this.setGeojsonUrl.bind(this)}
-              fullWidth
-            />
-            <FlatButton 
-              label='Search' 
-              onClick={this.mapMyAddress.bind(this)}
-              />
-          </div>}
+          title={demographicsBar}
           style={this.data.style.searchbar}
           showMenuIconButton={false}
         >

@@ -8,7 +8,7 @@ import Paper from 'material-ui/Paper';
 import Avatar from 'material-ui/Avatar';
 import Divider from 'material-ui/Divider';
 import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
+import RaisedButtfon from 'material-ui/RaisedButton';
 import { FontIcon } from 'material-ui/FontIcon';
 
 import { FullPageCanvas, VerticalCanvas, GlassCard, Glass, DynamicSpacer } from 'meteor/clinical:glass-ui';

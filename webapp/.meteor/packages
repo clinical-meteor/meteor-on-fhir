@@ -101,8 +101,8 @@ clinical:glass-ui
 clinical:default-landing-page
 clinical:alert
 clinical:hipaa-audit-log@3.1.4
-clinical:desktop-publish
-
+#clinical:desktop-publish
+#clinical:autopublish
 
 ### Fast Healthcare Interoperability Resources
 clinical:hl7-resource-allergy-intolerance
@@ -146,14 +146,12 @@ clinical:hl7-resource-subscription
 ### Infrastructure as a Service
 percolate:synced-cron
 
-
-
 ### Blockchains
 # symptomatic:blockchain-core
 # fhirblocks:core
 
 ### Symptomatic Packages
-symptomatic:theming
+# symptomatic:theming
 symptomatic:continuity-of-care
 symptomatic:smart-on-fhir-client
 symptomatic:smart-on-fhir-config
@@ -161,10 +159,11 @@ symptomatic:smart-on-fhir-config
 symptomatic:landing-page
 
 # symptomatic:example-plugin
-symptomatic:geomapping
+# symptomatic:geomapping
 
 # symptomatic:card-readers
 # symptomatic:ihealth-cloud-api
 
 jparker:crypto-aes
 
+clinical:hl7-resource-imaging-study
