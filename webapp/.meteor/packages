@@ -121,7 +121,7 @@ clinical:hl7-resource-diagnostic-report
 clinical:hl7-resource-endpoint
 clinical:hl7-resource-goal
 clinical:hl7-resource-immunization
-# clinical:hl7-resource-imaging-study
+clinical:hl7-resource-imaging-study
 clinical:hl7-resource-location
 clinical:hl7-resource-list
 clinical:hl7-resource-medication
@@ -151,19 +151,17 @@ percolate:synced-cron
 # fhirblocks:core
 
 ### Symptomatic Packages
-# symptomatic:theming
+symptomatic:theming
 symptomatic:continuity-of-care
 symptomatic:smart-on-fhir-client
 symptomatic:smart-on-fhir-config
-# symptomatic:clinical-scenarios
 symptomatic:landing-page
+symptomatic:geomapping
 
+# symptomatic:clinical-scenarios
 # symptomatic:example-plugin
-# symptomatic:geomapping
-
 # symptomatic:card-readers
 # symptomatic:ihealth-cloud-api
 
 jparker:crypto-aes
 
-clinical:hl7-resource-imaging-study

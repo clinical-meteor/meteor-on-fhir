@@ -46,8 +46,8 @@ export class PractitionerSidebar extends React.Component {
 
           <hr />
 
-          <LinkContainer to='/procedure-requests'>
-             <MenuItem primaryText='Workqueue' href='/procedure-requests' />
+          <LinkContainer to='/service-requests'>
+             <MenuItem primaryText='Workqueue' href='/service-requests' />
           </LinkContainer>
 
           <LinkContainer to='/checklists'>

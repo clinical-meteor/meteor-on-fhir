@@ -1,7 +1,7 @@
 {
     "basic": "v1.0-prerelease-3",
-    "complete": "v1.0-prerelease-3-218-gbf31d62",
-    "branch": "testflight",
-    "commit": "bf31d6231997ecd08edb5398f2137da14d792b4a",
-    "timestamp": "2019-01-19"
+    "complete": "v1.0-prerelease-3-224-gd6b958f",
+    "branch": "himss",
+    "commit": "d6b958f73d5879065f592b55bfc82385bd91a852",
+    "timestamp": "2019-02-15"
 }
