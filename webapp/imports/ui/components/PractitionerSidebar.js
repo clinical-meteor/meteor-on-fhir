@@ -42,6 +42,9 @@ export class PractitionerSidebar extends React.Component {
           <LinkContainer to='/healthcard'>
              <MenuItem primaryText='HealthCard' href='/healthcard' />
           </LinkContainer>
+          <LinkContainer to='/bundles'>
+             <MenuItem primaryText='Bundles' href='/bundles' />
+          </LinkContainer>
 
 
           <hr />
@@ -62,6 +65,10 @@ export class PractitionerSidebar extends React.Component {
              <MenuItem primaryText='Careplan Designer' href='/careplan-designer' />
           </LinkContainer>          
 
+          <LinkContainer to='/curebot'>
+             <MenuItem primaryText='Curebot Chat' href='/curebot' />
+          </LinkContainer>
+
           <hr />
 
           {/* <LinkContainer to='/provider-directory'>
@@ -70,6 +77,12 @@ export class PractitionerSidebar extends React.Component {
 
           <LinkContainer to='/claims'>
              <MenuItem primaryText='Claims' href='/claims' />
+          </LinkContainer>
+          <LinkContainer to='/questionnaires'>
+             <MenuItem primaryText='Questionnaires' href='/questionnaires' />
+          </LinkContainer>
+          <LinkContainer to='/questionnaire-responses'>
+             <MenuItem primaryText='Questionnaire Responses' href='/questionnaire-responses' />
           </LinkContainer>
 
 

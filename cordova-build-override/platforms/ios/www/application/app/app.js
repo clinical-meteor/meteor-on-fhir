@@ -10034,7 +10034,7 @@ function (_React$Component) {
         collection: "QuestionnaireResponses",
         id: 'questionnaireResponsesTile',
         active: true,
-        path: '/questionnaire-responsess',
+        path: '/questionnaire-responses',
         icon: 'IoMdClipboard',
         subtitle: 'Questionnaire Responses'
       }, {

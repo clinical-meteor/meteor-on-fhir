@@ -9,9 +9,11 @@ Accounts.emailTemplates.resetPassword = {
     return 'Reset your password on Symptomatic';
   },
   text(user, url) {
+    console.log('Accounts.emailTemplates.resetPassword.url', url);
+    
     return `Hello!
 
-      Thank you using Symptomatic.  Click the link below to reset your password with Symptomatic.
+      Thank you for using Symptomatic.  Click the link below to reset your password.
 
       ${url}
 
@@ -34,3 +36,4 @@ Accounts.emailTemplates.resetPassword = {
 // `
 //   }
 };
+

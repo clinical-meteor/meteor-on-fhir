@@ -72,9 +72,9 @@ export class AdminSidebar extends React.Component {
              <MenuItem primaryText='Users' href='/users' />
           </LinkContainer>
 
-          <hr />
+          {/* <hr />
 
-          { dynamicElements }
+          { dynamicElements } */}
 
           <hr />
           <LinkContainer to='/fhir-resources-index'>
