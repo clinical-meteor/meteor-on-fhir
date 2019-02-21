@@ -53,8 +53,8 @@ accounts-password@1.5.1
 accounts-ui@1.3.1
 clinical:oauth
 clinical:accounts-oauth
+clinical:accounts-housemd
 # clinical:accounts-famous-dead-people
-# clinical:accounts-housemd
 
 
 
