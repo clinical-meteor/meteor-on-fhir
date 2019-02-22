@@ -71,6 +71,10 @@ export class AdminSidebar extends React.Component {
           <LinkContainer to='/users'>
              <MenuItem primaryText='Users' href='/users' />
           </LinkContainer>
+          
+          <LinkContainer to='/practitioners'>
+             <MenuItem primaryText='Practitioners' href='/practitioners' />
+          </LinkContainer>
 
           {/* <hr />
 

@@ -532,6 +532,19 @@ export class Footer extends React.Component {
   showOrbital(){
     Session.toggle('showOrbital');
   }
+  newQuestionnaire(){
+    console.log('newQuestionnaire')
+
+  }
+  saveQuestionnaire(){
+    console.log('saveQuestionnaire')
+    
+  }
+  previewQuestionnaire(){
+    console.log('previewQuestionnaire')
+    browserHistory.push(get(Meteor, 'settings.public.modules.links.QuestionnairePreview', '/'))
+
+  }
   clearEndpoints(){
     console.log('Droping endpoints.....')
     Meteor.call('dropEndpoints');
@@ -676,6 +689,13 @@ export class Footer extends React.Component {
           <FlatButton label='Orbital' className='querySystemButton' ref='querySystemButton' onClick={this.showOrbital.bind(this)} style={this.data.style.buttonText} ></FlatButton>
         </div>
       }, {
+        pathname: '/questionnaires',
+        component: <div>
+          <FlatButton label='New' className='querySystemButton' ref='querySystemButton' onClick={this.newQuestionnaire.bind(this, 'Condition')} style={this.data.style.buttonText} ></FlatButton>
+          <FlatButton label='Save' className='querySystemButton' ref='querySystemButton' onClick={this.saveQuestionnaire.bind(this)} style={this.data.style.buttonText} ></FlatButton>
+          <FlatButton label='Preview' className='querySystemButton' ref='querySystemButton' onClick={this.previewQuestionnaire.bind(this)} style={this.data.style.buttonText} ></FlatButton>
+        </div>
+      }, {        
         pathname: '/endpoints',
         component: <div>
           <FlatButton label='Clear' className='clearEndpoints' ref='querySystemButton' onClick={this.clearEndpoints} style={this.data.style.buttonText} ></FlatButton>
