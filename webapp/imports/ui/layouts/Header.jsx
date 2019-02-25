@@ -21,6 +21,8 @@ import { browserHistory } from 'react-router';
 import PropTypes from 'prop-types';
 
 import { get } from 'lodash';
+import { FaMars, FaVenus, FaMercury, FaTransgender  } from 'react-icons/fa';
+
 
 Sidebar = {
   lastUpdate: new Date(),
@@ -36,6 +38,7 @@ Sidebar = {
   }
 }
 
+Session.setDefault('mapName', false)
 
 export class Header extends React.Component {
   getMeteorData() {
@@ -101,6 +104,10 @@ export class Header extends React.Component {
 
     if (get(Meteor, 'settings.public.title')) {
       data.app.title = get(Meteor, 'settings.public.title');
+    }
+
+    if(Session.get('mapName')){
+      data.app.title = data.app.title + ' - ' + Session.get('mapName');
     }
 
     if (Meteor.userId()) {
@@ -219,8 +226,30 @@ export class Header extends React.Component {
       let activePatient = Patients.findOne();
       console.log('activePatient', activePatient);
 
-      demographicsBar = <div id='patientDemographicsBar'>
-        <h2>{get(activePatient, 'name[0].text') + ' ' + get(activePatient, 'birthDate', '') + ' ' + get(activePatient, 'gender', '')}</h2>
+      let genderIcon;
+      let genderStyle = {
+        verticalAlign: 'bottom'
+      }
+      switch (get(activePatient, 'gender', '')) {
+        case 'male':
+        genderIcon = <FaMars style={genderStyle} />;
+          break;
+        case 'female':
+        genderIcon = <FaVenus style={genderStyle} />;
+          break;
+        case 'other':
+        genderIcon =  <FaMercury style={genderStyle} />;
+          break;    
+        default:
+          break;
+      }
+
+      demographicsBar = <div id='patientDemographicsBar' style={{color: '#000000'}}>        
+        <h2 style={{fontWeight: 200, paddingLeft: '40px'}}>{get(activePatient, 'name[0].text')}
+          <span style={{fontWeight: 200, color: 'gray', fontSize: '80%', paddingLeft: '20px'}}>
+            {moment().diff(moment(get(activePatient, 'birthDate', '')).format("YYYY-MM-DD"), 'years')}yr  {genderIcon}          
+          </span>        
+        </h2>
       </div>
     } else {
       demographicsBar = <div id='patientSearchBar'>

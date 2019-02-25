@@ -37,6 +37,7 @@ import { MetadataPage } from '/imports/ui/pages/MetadataPage';
 import { ChecklistsPage } from '/imports/ui/workflows/lists/ChecklistsPage';
 import { get } from 'lodash';
 
+
 // Pick up any dynamic routes that are specified in packages, and include them
 var dynamicRoutes = [];
 var privacyRoutes = [];

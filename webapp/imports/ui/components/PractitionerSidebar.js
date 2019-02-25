@@ -49,41 +49,22 @@ export class PractitionerSidebar extends React.Component {
 
           <hr />
 
+
           <LinkContainer to='/service-requests'>
              <MenuItem primaryText='Workqueue' href='/service-requests' />
           </LinkContainer>
-
-          <LinkContainer to='/checklists'>
-             <MenuItem primaryText='Checklists' href='/checklists' />
-          </LinkContainer>
-
-          <LinkContainer to='/biometrics-dashboard'>
-             <MenuItem primaryText='Biometrics Dashboard' href='/biometrics-dashboard' />
-          </LinkContainer>
-
           <LinkContainer to='/careplan-designer'>
              <MenuItem primaryText='Careplan Designer' href='/careplan-designer' />
           </LinkContainer>          
-
-          <LinkContainer to='/curebot'>
-             <MenuItem primaryText='Curebot Chat' href='/curebot' />
+          <LinkContainer to='/biometrics-dashboard'>
+             <MenuItem primaryText='Biometrics Dashboard' href='/biometrics-dashboard' />
+          </LinkContainer>
+          <LinkContainer to='/claims'>
+             <MenuItem primaryText='Claims' href='/claims' />
           </LinkContainer>
 
           <hr />
 
-          {/* <LinkContainer to='/provider-directory'>
-             <MenuItem primaryText='Provider Directory' href='/provider-directory' />
-          </LinkContainer> */}
-
-          <LinkContainer to='/claims'>
-             <MenuItem primaryText='Claims' href='/claims' />
-          </LinkContainer>
-          <LinkContainer to='/questionnaires'>
-             <MenuItem primaryText='Questionnaires' href='/questionnaires' />
-          </LinkContainer>
-          <LinkContainer to='/questionnaire-responses'>
-             <MenuItem primaryText='Questionnaire Responses' href='/questionnaire-responses' />
-          </LinkContainer>
 
 
           <hr />
@@ -93,6 +74,9 @@ export class PractitionerSidebar extends React.Component {
 
           <LinkContainer to='/fhir-resources-index'>
              <MenuItem id="fhirResourcePageItem" primaryText='FHIR Resources' href='/fhir-resources-index' />
+          </LinkContainer>
+          <LinkContainer to='/checklists'>
+             <MenuItem primaryText='Checklists' href='/checklists' />
           </LinkContainer>
 
           <hr />

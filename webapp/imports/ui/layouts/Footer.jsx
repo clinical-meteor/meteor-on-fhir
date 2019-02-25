@@ -537,8 +537,10 @@ export class Footer extends React.Component {
 
   }
   saveQuestionnaire(){
-    console.log('saveQuestionnaire')
-    
+    console.log('saveQuestionnaire');
+    let editedQuestionnaire = Session.get('editedQuestionnaire');
+
+    console.log('editedQuestionnaire', editedQuestionnaire)
   }
   previewQuestionnaire(){
     console.log('previewQuestionnaire')
@@ -691,7 +693,7 @@ export class Footer extends React.Component {
       }, {
         pathname: '/questionnaires',
         component: <div>
-          <FlatButton label='New' className='querySystemButton' ref='querySystemButton' onClick={this.newQuestionnaire.bind(this, 'Condition')} style={this.data.style.buttonText} ></FlatButton>
+          <FlatButton label='New' disabled className='querySystemButton' ref='querySystemButton' onClick={this.newQuestionnaire.bind(this, 'Condition')} style={this.data.style.buttonText} ></FlatButton>
           <FlatButton label='Save' className='querySystemButton' ref='querySystemButton' onClick={this.saveQuestionnaire.bind(this)} style={this.data.style.buttonText} ></FlatButton>
           <FlatButton label='Preview' className='querySystemButton' ref='querySystemButton' onClick={this.previewQuestionnaire.bind(this)} style={this.data.style.buttonText} ></FlatButton>
         </div>
