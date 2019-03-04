@@ -2,7 +2,9 @@
 import './fixtures.js';
 
 // This file configures the Accounts package to define the UI of the reset password email.
-import './reset-password-email.js';
+import './email.resetPassword.js';
+import './email.enrollAccount.js';
+import './email.verifyEmail.js';
 
 // Set up some rate limiting and other important security settings.
 import './security.js';

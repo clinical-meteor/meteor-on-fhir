@@ -22,6 +22,15 @@ if(Package['symptomatic:smart-on-fhir-client']){
 Session.setDefault('signinWithSearch', '');
 
 export class Signin extends React.Component {
+  componentWillMount(){
+    console.log('SignIn.componentWillMount()')
+    if(get(this, 'props.location.query.token')){
+      Accounts.verifyEmail(get(this, 'props.location.query.token'), function(error) {
+        console.log('Accounts.verifyEmail')
+        browserHistory.push('/continuity-of-care');
+      });  
+    }
+  }
   getMeteorData() {
     let data = {
       style: {

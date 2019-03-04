@@ -123,7 +123,7 @@ export class Signup extends React.Component {
         data.errorText.password = '';
     }
 
-    // if(process.env.NODE_ENV === "test") console.log("Signup[data]", data);
+    console.log("Signup[data]", data);
     return data;
   }
 
@@ -335,6 +335,7 @@ export class Signup extends React.Component {
   handleTouchTap(){
     let newUserData = {
       email: get(this, 'state.form.emailAddress', ''),
+      username: get(this, 'state.form.emailAddress', ''),
       password: get(this, 'state.form.password', ''),
       profile: {
         name: {
@@ -346,12 +347,12 @@ export class Signup extends React.Component {
       accessCode: get(this, 'state.form.accessCode', '')
     };
 
-    console.log('SignUp.handleTouchTap', this, newUserData);
-    console.log(newUserData);
+    console.log('SignUp.handleTouchTap', this);
+    console.log('newUserData', newUserData);
 
     Accounts.createUser(newUserData, function(error, result){
       if (error) {
-        console.log('Accounts.createUser().error' + error.reason)
+        console.log('Accounts.createUser().error',  error.reason)
         // Meteor.call('debugToServer', 'Accounts.createUser()', error)
 
         Session.set('signUpErrorMessage', error.reason);
@@ -365,13 +366,20 @@ export class Signup extends React.Component {
         console.log("Accounts.createUser[result]", result);
         console.log("Accounts.createUser[Meteor.userId()]", Meteor.userId());
         console.log("Accounts.createUser[Roles.userIsInRole(Meteor.userId()]", Roles.userIsInRole(Meteor.userId()));
+      
+        // Meteor.call('sendEnrollmentEmail', Meteor.userId());
 
         // if this is a patient's first visit, we want to send them to a welcome screen
         // where they can fill out HIPAA
         if (Roles.userIsInRole(Meteor.userId(), 'patient') && get(Meteor.user(), 'profile.firstTimeVisit')) {
 
-          console.log('Routing to /welcome/patient')
-          browserHistory.push('/welcome/patient');
+          if(get(Meteor, 'settings.public.defaults.routes.patientWelcomePage')){
+            console.log('Routing to Meteor.settings.public.defaults.routes.patientWelcomePage')
+            browserHistory.push(get(Meteor, 'settings.public.defaults.routes.patientWelcomePage'));  
+          } else {
+            console.log('Routing to /welcome/patient')
+            browserHistory.push('/welcome/patient');  
+          }
 
         // and if they're a practitioner, we probably need to collect some credentialing data
         // and inform them about their obligations regarding HIPAA
@@ -394,6 +402,7 @@ export class Signup extends React.Component {
         }
       }
     });
+
   }
   handleKeyPress(e) {
     if (e.key === 'Enter') {
