@@ -57,11 +57,10 @@ export class Signin extends React.Component {
         },
         pageBackground: {}
       },
+      boxShadows: get(Meteor, 'settings.public.theme.boxShadows', 'cloudy'),
       endpoints: [],
       services: []
     };
-
-
 
     if( Endpoints.find().count() > 0){
       data.endpoints = Endpoints.find({
@@ -239,7 +238,7 @@ export class Signin extends React.Component {
 
     if(Package['symptomatic:smart-on-fhir-client'] && get(Meteor, 'settings.publich.registration.signInWith')){
       signInWith = <Col lgOffset={4} mdOffset={2} lg={2} md={3}>
-        <GlassCard zDepth={3} height="auto" >
+        <GlassCard id='signInCard' zDepth={3} height="auto" boxShadow='cloudy' >
           <CardTitle
             title="Sign in with..."
             />
