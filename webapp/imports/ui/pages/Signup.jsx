@@ -2,21 +2,24 @@ import React  from 'react';
 import ReactMixin  from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
-import { CardText, CardActions, CardTitle, TextField, RaisedButton } from 'material-ui';
+import { CardText, CardTitle, TextField, RaisedButton } from 'material-ui';
 
 import { Row, Col } from 'react-bootstrap';
 
-import { MobilePadding } from '/imports/ui/components/MobilePadding';
-
 import { browserHistory } from 'react-router';
 import { Accounts } from 'meteor/accounts-base';
+import { Meteor } from 'meteor/meteor';
+import { Session } from 'meteor/session';
 import { Roles } from 'meteor/alanning:roles';
 
 import { lightBaseTheme, darkBaseTheme } from 'material-ui/styles';
+import { blue500, orange500, green500 } from 'material-ui/styles/colors';
 
 import { FullPageCanvas, GlassCard, Glass, DynamicSpacer } from 'meteor/clinical:glass-ui';
 
-import { has, get, set } from 'lodash';
+import { get, set } from 'lodash';
+import validator from 'validator';
+
 
 if(process.env.NODE_ENV === "test") console.log("Signup[lightBaseTheme]", lightBaseTheme);
 if(process.env.NODE_ENV === "test") console.log("Signup[darkBaseTheme]", darkBaseTheme);
@@ -50,7 +53,7 @@ export class Signup extends React.Component {
           color: lightBaseTheme.palette.accent1Color
         },
         hintStyle: {
-          color: lightBaseTheme.palette.secondaryTextColor
+          color: lightBaseTheme.palette.secondaryTextColor          
         },
         underlineStyle: {
           borderColor: lightBaseTheme.palette.textColor
@@ -108,12 +111,34 @@ export class Signup extends React.Component {
         data.errorText.emailAddress = '';
         data.errorText.password = 'Password may not be empty';
         break;
-      case 'Email already exists.':
+      case "Is an email.":
+        data.errorText.accessCode = '';
+        data.errorText.givenName = '';
+        data.errorText.familyName = '';
+        data.errorText.emailAddress = "Is an email.";
+        data.errorText.password = "";
+        break;
+      case "This doesn't appear to be an email.":
+        data.errorText.accessCode = '';
+        data.errorText.givenName = '';
+        data.errorText.familyName = '';
+        data.errorText.emailAddress = "This doesn't appear to be an email.";
+        data.errorText.password = "";
+        break;
+      case 'Email is already registered.':
         data.errorText.accessCode = '';
         data.errorText.givenName = '';
         data.errorText.familyName = '';
         data.errorText.emailAddress = 'Email already exists.';
         data.errorText.password = '';
+        break;
+      case 'This email appears to be available!':
+        data.errorText.accessCode = '';
+        data.errorText.givenName = '';
+        data.errorText.familyName = '';
+        data.errorText.emailAddress = 'This email appears to be available!';
+        data.errorText.password = '';
+        data.style.errorStyle.color = green500;
         break;
       default:
         data.errorText.accessCode = '';
@@ -306,7 +331,24 @@ export class Signup extends React.Component {
         set(formData, 'givenName', textValue)
         break;        
       case "emailAddress":
-        set(formData, 'emailAddress', textValue)
+        set(formData, 'emailAddress', textValue);
+        if(validator.isEmail(textValue)){
+          console.log(textValue + " appears to be an email.  Let's see if it's registered.")
+          Session.set('signUpErrorMessage', 'This email appears to be available!')
+
+          Meteor.call('checkIfEmailExists', textValue, function(error, result){
+            if(result){
+              console.log('checkIfEmailExists', result);
+              Session.set('signUpErrorMessage', "Email is already registered.")
+            }
+            if(error){              
+              console.log('checkIfEmailExists', error);
+            }
+          })  
+        } else {
+          console.log(textValue + " isn't an email.")
+          Session.set('signUpErrorMessage', "This doesn't appear to be an email.")
+        }
         break;        
       case "password":
         set(formData, 'password', textValue)
@@ -321,9 +363,9 @@ export class Signup extends React.Component {
   }
   changeState(field, event, textValue){
     // if(process.env.NODE_ENV === "test") console.log("   ");
-    if(process.env.NODE_ENV === "test") console.log("Signup.changeState", field, textValue);
-    // if(process.env.NODE_ENV === "test") console.log("this.state", this.state);
-
+    //if(process.env.NODE_ENV === "test") console.log("Signup.changeState", field, textValue);
+    console.log("Signup.changeState", field, textValue);
+    
     let formData = Object.assign({}, this.state.form);
 
     formData = this.updateFormData(formData, field, textValue);
@@ -332,7 +374,9 @@ export class Signup extends React.Component {
 
     this.setState({form: formData})
   }
-  handleTouchTap(){
+  async handleTouchTap(){
+    console.log('handleTouchTap');
+
     let newUserData = {
       email: get(this, 'state.form.emailAddress', ''),
       username: get(this, 'state.form.emailAddress', ''),
@@ -349,60 +393,63 @@ export class Signup extends React.Component {
 
     console.log('SignUp.handleTouchTap', this);
     console.log('newUserData', newUserData);
-
-    Accounts.createUser(newUserData, function(error, result){
-      if (error) {
-        console.log('Accounts.createUser().error',  error.reason)
-        // Meteor.call('debugToServer', 'Accounts.createUser()', error)
-
-        Session.set('signUpErrorMessage', error.reason);
-
-        // for some reason, we're getting an "Email already exists!" on signup
-        //if (!error.reason.includes("Email already exists.")) {
-        Bert.alert(error.reason, 'danger');
-        //}
-      }
-      if (result) {
-        console.log("Accounts.createUser[result]", result);
-        console.log("Accounts.createUser[Meteor.userId()]", Meteor.userId());
-        console.log("Accounts.createUser[Roles.userIsInRole(Meteor.userId()]", Roles.userIsInRole(Meteor.userId()));
-      
-        // Meteor.call('sendEnrollmentEmail', Meteor.userId());
-
-        // if this is a patient's first visit, we want to send them to a welcome screen
-        // where they can fill out HIPAA
-        if (Roles.userIsInRole(Meteor.userId(), 'patient') && get(Meteor.user(), 'profile.firstTimeVisit')) {
-
-          if(get(Meteor, 'settings.public.defaults.routes.patientWelcomePage')){
-            console.log('Routing to Meteor.settings.public.defaults.routes.patientWelcomePage')
-            browserHistory.push(get(Meteor, 'settings.public.defaults.routes.patientWelcomePage'));  
-          } else {
-            console.log('Routing to /welcome/patient')
-            browserHistory.push('/welcome/patient');  
+    // if(validator.isEmail(newUserData.username)){
+    if(Session.equals('signUpErrorMessage', 'This email appears to be available!')){
+      console.log('We think this email is available; so lets try registering it.');
+        await Accounts.createUser(newUserData, function(error, result){
+        if (error) { 
+          // for some reason, we're getting an "Email already exists!" on signup
+          if (!error.reason.includes("Email already exists.")) {
+            console.log('Accounts.createUser().error',  error.reason)
+            // Meteor.call('debugToServer', 'Accounts.createUser()', error)
+    
+            Session.set('signUpErrorMessage', error.reason);
+ 
+            // Bert.alert(error.reason, 'danger');
           }
-
-        // and if they're a practitioner, we probably need to collect some credentialing data
-        // and inform them about their obligations regarding HIPAA
-        } else if (Roles.userIsInRole(Meteor.userId(), 'practitioner') && get(Meteor.user(), 'profile.firstTimeVisit')) {
-            console.log('Routing to /welcome/practitioner')
-            browserHistory.push('/welcome/practitioner');
-        } else if (Roles.userIsInRole(Meteor.userId(), 'sysadmin') && get(Meteor.user(), 'profile.firstTimeVisit')) {
-            console.log('Routing to /welcome/sysadmin')
-            browserHistory.push('/welcome/sysadmin');
-        } else {
-          // otherwise we go to the default route specified in the settings.json file
-          if(get(Meteor, 'settings.public.defaults.route')){
-            console.log('Meteor.settings.public.defaults.route', get(Meteor, 'settings.public.defaults.route', '/'))
-            browserHistory.push(get(Meteor, 'settings.public.defaults.route', '/'));
-          } else {
-            // and if all else fails, just go to the root 
-            console.log('Routing to /');
-            browserHistory.push('/');      
-          }  
         }
-      }
-    });
+        if (result) {
+          console.log("Accounts.createUser[result]", result);
+          console.log("Accounts.createUser[Meteor.userId()]", Meteor.userId());
+          console.log("Accounts.createUser[Roles.userIsInRole(Meteor.userId()]", Roles.userIsInRole(Meteor.userId()));
+        
+          // Meteor.call('sendEnrollmentEmail', Meteor.userId());
+  
+          // if this is a patient's first visit, we want to send them to a welcome screen
+          // where they can fill out HIPAA
+          if (Roles.userIsInRole(Meteor.userId(), 'patient') && get(Meteor.user(), 'profile.firstTimeVisit')) {
+  
+            if(get(Meteor, 'settings.public.defaults.routes.patientWelcomePage')){
+              console.log('Routing to Meteor.settings.public.defaults.routes.patientWelcomePage')
+              browserHistory.push(get(Meteor, 'settings.public.defaults.routes.patientWelcomePage'));  
+            } else {
+              console.log('Routing to /welcome/patient')
+              browserHistory.push('/welcome/patient');  
+            }
+  
+          // and if they're a practitioner, we probably need to collect some credentialing data
+          // and inform them about their obligations regarding HIPAA
+          } else if (Roles.userIsInRole(Meteor.userId(), 'practitioner') && get(Meteor.user(), 'profile.firstTimeVisit')) {
+              console.log('Routing to /welcome/practitioner')
+              browserHistory.push('/welcome/practitioner');
+          } else if (Roles.userIsInRole(Meteor.userId(), 'sysadmin') && get(Meteor.user(), 'profile.firstTimeVisit')) {
+              console.log('Routing to /welcome/sysadmin')
+              browserHistory.push('/welcome/sysadmin');
+          } else {
+            // otherwise we go to the default route specified in the settings.json file
+            if(get(Meteor, 'settings.public.defaults.route')){
+              console.log('Meteor.settings.public.defaults.route', get(Meteor, 'settings.public.defaults.route', '/'))
+              browserHistory.push(get(Meteor, 'settings.public.defaults.route', '/'));
+            } else {
+              // and if all else fails, just go to the root 
+              console.log('Routing to /');
+              browserHistory.push('/');      
+            }  
+          }
+        }
+      });
 
+    }
   }
   handleKeyPress(e) {
     if (e.key === 'Enter') {

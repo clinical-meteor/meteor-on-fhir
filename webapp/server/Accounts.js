@@ -1,8 +1,10 @@
 
 
 import { get } from 'lodash';
+import { Accounts } from 'meteor/accounts-base';
+import validator from 'validator';
+
 // import { Meteor } from 'meteor/meteor';
-// import { Accounts } from 'meteor/accounts-base';
 
 
 // Accounts.emailTemplates.siteName = 'Symptomatic';
@@ -49,8 +51,17 @@ Meteor.methods({
     console.log('Sending enrollment email....', Meteor.users.findOne(userId));
     // Accounts.sendEnrollmentEmail(userId);
     Accounts.sendEnrollmentEmail(userId);
+  },
+  async checkIfEmailExists(email){
+    check(email, String);
+    console.log('email', email)
+    if(email.length > 0){
+      console.log('Lets try to find the user by email...')
+      let result = await Accounts.findUserByEmail(email);
+      console.log('result', result)
+      return result;
+    }
   }
-
 })
 Accounts.onCreateUser(function(options, user) {
   console.log('------------------------------------------------');
