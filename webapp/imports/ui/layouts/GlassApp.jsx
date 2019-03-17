@@ -134,7 +134,7 @@ export class GlassApp extends React.Component {
 
     return style;
   }
-  renderBackground(showVideoBackground){
+  renderVideoBackground(showVideoBackground){
     if (showVideoBackground) {
       let videoSrc = '/VideoBackgrounds/Circulation.mp4';
       if (Meteor.settings.public.theme.defaultVideo) {
@@ -156,10 +156,11 @@ export class GlassApp extends React.Component {
 
   render(){
     let backgroundStyle = this.data.app.style;
-    // console.log('backgroundStyle', backgroundStyle)
+    console.log('backgroundStyle', backgroundStyle)
+    
     return (
-      <div id="glassApp">
-        {this.renderBackground(this.data.app.showVideoBackground)}
+      <div id="glassApp" style={{position: 'absolute'}}>
+        {this.renderVideoBackground(this.data.app.showVideoBackground)}
         <div id='backgroundWallpaper' style={backgroundStyle}>
           <div id='wallpaperScrim'>
             {this.props.children}
