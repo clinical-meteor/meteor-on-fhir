@@ -4,6 +4,7 @@ echo "Trying to remove licensed packages and other intellectual property that sh
 
 # Caution:  Brackets need spaces around them for if/then to work.
 
+declare -a packages
 packages=( 
     "symptomatic:blockchain-core" 
     "symptomatic:continuity-of-care" 
@@ -29,7 +30,7 @@ do
     # echo $lineCount;
     if [ $lineCount -gt 0 ]; 
     then echo "Removing" $packageName; 
-         meteor remove $packageName; 
+         # meteor remove $packageName; 
     else echo "Skipping..."; 
     fi; 
 
