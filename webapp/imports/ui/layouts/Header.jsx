@@ -166,7 +166,24 @@ export class Header extends React.Component {
   goHome(){
     // not every wants the hexgrid menu, so we make sure it's configurable in the Meteor.settings file
     if(get(Meteor, 'settings.public.defaults.route')){
-      browserHistory.push(get(Meteor, 'settings.public.defaults.route', '/'));
+
+      // get the default route
+      let defaultRoute = get(Meteor, 'settings.public.defaults.route', '/')
+      
+      // if there are user role specific default routes defined in our settings file
+      // send the user to the role specific route
+    
+      if (Roles.userIsInRole(Meteor.userId(), 'patient')) {
+        browserHistory.push(get(Meteor, 'settings.public.defaults.routes.patientHomePage', defaultRoute))
+      } else if (Roles.userIsInRole(Meteor.userId(), 'practitioner')) {
+        browserHistory.push(get(Meteor, 'settings.public.defaults.routes.practitionerHomePage', defaultRoute))
+      } else if (Roles.userIsInRole(Meteor.userId(), 'sysadmin')) {
+        browserHistory.push(get(Meteor, 'settings.public.defaults.routes.adminHomePage', defaultRoute))
+      } else {
+
+        // otherwise, just send them to the default route
+        browserHistory.push(defaultRoute);
+      }
     } else {
       browserHistory.push('/');      
     }
