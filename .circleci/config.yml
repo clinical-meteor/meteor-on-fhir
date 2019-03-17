@@ -123,12 +123,7 @@ jobs:
 
 
     # If Meteor is already cached, do not need to build it again.
-    - run: cd webapp && meteor list
-    - run: cd webapp && meteor list | grep 'symptomatic:theming'
-    - run: cd webapp && meteor list | grep 'symptomatic:theming' | wc -l
-    - run: cd webapp && meteor list | grep 'symptomatic:theming' | wc -l > $foo; echo "Foo - " + $foo;
-
-    - run: cd webapp && if [ meteor list | grep 'symptomatic:theming' | wc -l $eq 1 ]; then meteor remove symptomatic:theming ; else echo "Meteor seems to be cached"; fi;
+    - run: cd webapp && meteor npm run-script remove_licensed_packages
 
     # - run: if [ meteor list | grep 'symptomatic:theming' | wc -l $eq 1 ]; then meteor remove symptomatic:theming ; else echo "Meteor seems to be cached"; fi;
 

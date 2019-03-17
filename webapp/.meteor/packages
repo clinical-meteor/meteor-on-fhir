@@ -151,11 +151,11 @@ percolate:synced-cron
 # fhirblocks:core
 
 ### Symptomatic Packages
-symptomatic:theming
-symptomatic:continuity-of-care
-symptomatic:smart-on-fhir-client
 symptomatic:smart-on-fhir-config
 symptomatic:geomapping
+symptomatic:continuity-of-care
+symptomatic:theming
+symptomatic:smart-on-fhir-client
 
 # symptomatic:clinical-scenarios
 # symptomatic:ihealth-cloud-api

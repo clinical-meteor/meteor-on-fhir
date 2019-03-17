@@ -19,6 +19,7 @@
     "dockerize": "../scripts/generate_docker_compose_file.sh",
     "push_to_circle_ci": "../scripts/push_to_circle_ci.sh",
     "prep_for_symptomatic_dev": "../scripts/prep_for_symptomatic_dev.sh",
+    "remove_licensed_packages": "../scripts/remove_licensed_packages.sh",
     "deploy-to-azure": "meteor-azure",
     "version": "../scripts/version.sh"
   },
