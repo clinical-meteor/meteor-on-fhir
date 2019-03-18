@@ -138,7 +138,6 @@ clinical:hl7-resource-provenance
 clinical:hl7-resource-questionnaire
 clinical:hl7-resource-questionnaire-response
 clinical:hl7-resource-risk-assessment
-clinical:hl7-resource-service-request
 clinical:hl7-resource-subscription
 # clinical:hl7-resource-sequence
 
@@ -151,11 +150,6 @@ percolate:synced-cron
 # fhirblocks:core
 
 ### Symptomatic Packages
-symptomatic:smart-on-fhir-config
-symptomatic:geomapping
-symptomatic:continuity-of-care
-symptomatic:theming
-symptomatic:smart-on-fhir-client
 
 # symptomatic:clinical-scenarios
 # symptomatic:ihealth-cloud-api
@@ -165,3 +159,9 @@ jparker:crypto-aes
 ### Desktop  
 # symptomatic:card-readers
 biologio:curebot
+clinical:hl7-resource-service-request
+symptomatic:continuity-of-care
+symptomatic:theming
+symptomatic:smart-on-fhir-client
+symptomatic:smart-on-fhir-config
+symptomatic:geomapping
