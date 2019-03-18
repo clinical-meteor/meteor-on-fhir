@@ -164,6 +164,15 @@ if [ $a14 -gt 0 ];
     else echo "Skipping..."; 
     fi; 
 
+
+z1=$(more .meteor/versions | grep 'biologio:curebot' | wc -l)
+if [ $a14 -gt 0 ]; 
+    then echo "Removing biologio:curebot"; 
+         recommendedCommand="$recommendedCommand biologio:curebot"
+         # meteor remove symptomatic:ihealth-cloud-api;
+    else echo "Skipping..."; 
+    fi; 
+
 echo "Try using the following command:"
 echo $recommendedCommand
 $recommendedCommand
