@@ -140,3 +140,13 @@ if [ $a14 -gt 0 ];
     fi; 
 
 
+
+# we can eventually remove this.
+a15=$(more .meteor/versions | grep 'clinical:hl7-resource-service-request' | wc -l)
+if [ $a15 -gt 0 ]; 
+    then echo "Removing clinical:hl7-resource-service-request"; 
+         meteor remove clinical:hl7-resource-service-request;
+    else echo "Skipping..."; 
+    fi; 
+
+
