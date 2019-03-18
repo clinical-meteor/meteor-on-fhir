@@ -46,7 +46,7 @@ recommendedCommand="meteor remove";
 a15=$(more .meteor/versions | grep 'clinical:hl7-resource-service-request' | wc -l)
 if [ $a15 -gt 0 ]; 
     then echo "Removing clinical:hl7-resource-service-request";
-         recommendedCommand += " clinical:hl7-resource-service-request";
+         recommendedCommand="$recommendedCommand clinical:hl7-resource-service-request";
          # meteor remove clinical:hl7-resource-service-request;
     else echo "Skipping..."; 
     fi; 
@@ -55,7 +55,7 @@ if [ $a15 -gt 0 ];
 a1=$(more .meteor/versions | grep 'symptomatic:blockchain-core' | wc -l)
 if [ $a1 -gt 0 ]; 
     then echo "Removing symptomatic:blockchain-core"; 
-         recommendedCommand += " symptomatic:blockchain-core";
+         recommendedCommand="$recommendedCommand symptomatic:blockchain-core";
          # meteor remove symptomatic:blockchain-core;
     else echo "Skipping..."; 
     fi; 
@@ -63,7 +63,7 @@ if [ $a1 -gt 0 ];
 a2=$(more .meteor/versions | grep 'symptomatic:continuity-of-care' | wc -l)
 if [ $a2 -gt 0 ]; 
     then echo "Removing symptomatic:continuity-of-care"; 
-         recommendedCommand += " symptomatic:continuity-of-care";
+         recommendedCommand="$recommendedCommand symptomatic:continuity-of-care";
          # meteor remove symptomatic:continuity-of-care;
     else echo "Skipping..."; 
     fi; 
@@ -71,7 +71,7 @@ if [ $a2 -gt 0 ];
 a3=$(more .meteor/versions | grep 'symptomatic:landing-page' | wc -l)
 if [ $a3 -gt 0 ]; 
     then echo "Removing symptomatic:landing-page"; 
-         recommendedCommand += " symptomatic:landing-page";
+         recommendedCommand="$recommendedCommand symptomatic:landing-page";
          # meteor remove symptomatic:landing-page;
     else echo "Skipping..."; 
     fi; 
@@ -79,7 +79,7 @@ if [ $a3 -gt 0 ];
 a4=$(more .meteor/versions | grep 'symptomatic:grid-layout' | wc -l)
 if [ $a4 -gt 0 ]; 
     then echo "Removing symptomatic:grid-layout"; 
-         recommendedCommand += " symptomatic:grid-layout";
+         recommendedCommand="$recommendedCommand symptomatic:grid-layout";
          # meteor remove symptomatic:grid-layout;
     else echo "Skipping..."; 
     fi; 
@@ -87,7 +87,7 @@ if [ $a4 -gt 0 ];
 a5=$(more .meteor/versions | grep 'symptomatic:routing-algorithms' | wc -l)
 if [ $a5 -gt 0 ]; 
     then echo "Removing symptomatic:routing-algorithms"; 
-         recommendedCommand += " symptomatic:routing-algorithms";
+         recommendedCommand="$recommendedCommand symptomatic:routing-algorithms";
          # meteor remove symptomatic:routing-algorithms;
     else echo "Skipping..."; 
     fi; 
@@ -95,7 +95,7 @@ if [ $a5 -gt 0 ];
 a6=$(more .meteor/versions | grep 'symptomatic:static-pages' | wc -l)
 if [ $a6 -gt 0 ]; 
     then echo "Removing symptomatic:static-pages"; 
-         recommendedCommand += " symptomatic:static-pages";
+         recommendedCommand="$recommendedCommand symptomatic:static-pages";
          # meteor remove symptomatic:static-pages;
     else echo "Skipping..."; 
     fi; 
@@ -103,7 +103,7 @@ if [ $a6 -gt 0 ];
 a7=$(more .meteor/versions | grep 'symptomatic:theming' | wc -l)
 if [ $a7 -gt 0 ]; 
     then echo "Removing symptomatic:theming"; 
-         recommendedCommand += " symptomatic:theming";
+         recommendedCommand="$recommendedCommand symptomatic:theming";
          # meteor remove symptomatic:theming;
     else echo "Skipping..."; 
     fi; 
@@ -111,7 +111,7 @@ if [ $a7 -gt 0 ];
 a8=$(more .meteor/versions | grep 'symptomatic:videoconferencing' | wc -l)
 if [ $a8 -gt 0 ]; 
     then echo "Removing symptomatic:videoconferencing"; 
-         recommendedCommand += " symptomatic:videoconferencing";
+         recommendedCommand="$recommendedCommand symptomatic:videoconferencing";
          # meteor remove symptomatic:videoconferencing;
     else echo "Skipping..."; 
     fi; 
@@ -119,7 +119,7 @@ if [ $a8 -gt 0 ];
 a9=$(more .meteor/versions | grep 'symptomatic:vault-server' | wc -l)
 if [ $a9 -gt 0 ]; 
     then echo "Removing symptomatic:vault-server"; 
-         recommendedCommand += " symptomatic:vault-server";
+         recommendedCommand="$recommendedCommand symptomatic:vault-server";
          # meteor remove symptomatic:vault-server;
     else echo "Skipping..."; 
     fi; 
@@ -127,7 +127,7 @@ if [ $a9 -gt 0 ];
 a10=$(more .meteor/versions | grep 'symptomatic:smart-on-fhir-client' | wc -l)
 if [ $a10 -gt 0 ]; 
     then echo "Removing symptomatic:smart-on-fhir-client"; 
-         recommendedCommand += " symptomatic:smart-on-fhir-client";
+         recommendedCommand="$recommendedCommand symptomatic:smart-on-fhir-client";
          # meteor remove symptomatic:smart-on-fhir-client;
     else echo "Skipping..."; 
     fi; 
@@ -135,7 +135,7 @@ if [ $a10 -gt 0 ];
 a11=$(more .meteor/versions | grep 'clinical:plugin-default-landing-page' | wc -l)
 if [ $a11 -gt 0 ]; 
     then echo "Removing clinical:plugin-default-landing-page"; 
-         recommendedCommand += " clinical:plugin-default-landing-page";
+         recommendedCommand="$recommendedCommand clinical:plugin-default-landing-page";
          # meteor remove symptomatic:plugin-default-landing-page;
     else echo "Skipping..."; 
     fi; 
@@ -143,7 +143,7 @@ if [ $a11 -gt 0 ];
 a12=$(more .meteor/versions | grep 'symptomatic:smart-on-fhir-config' | wc -l)
 if [ $a12 -gt 0 ]; 
     then echo "Removing symptomatic:smart-on-fhir-config"; 
-         recommendedCommand += " symptomatic:smart-on-fhir-config";
+         recommendedCommand="$recommendedCommand symptomatic:smart-on-fhir-config";
          # meteor remove symptomatic:smart-on-fhir-config;
     else echo "Skipping..."; 
     fi; 
@@ -151,7 +151,7 @@ if [ $a12 -gt 0 ];
 a13=$(more .meteor/versions | grep 'symptomatic:geomapping' | wc -l)
 if [ $a13 -gt 0 ]; 
     then echo "Removing symptomatic:geomapping"; 
-         recommendedCommand += " symptomatic:geomapping";
+         recommendedCommand="$recommendedCommand symptomatic:geomapping";
          # meteor remove symptomatic:geomapping;
     else echo "Skipping..."; 
     fi; 
@@ -159,7 +159,7 @@ if [ $a13 -gt 0 ];
 a14=$(more .meteor/versions | grep 'symptomatic:ihealth-cloud-api' | wc -l)
 if [ $a14 -gt 0 ]; 
     then echo "Removing symptomatic:ihealth-cloud-api"; 
-         recommendedCommand += " symptomatic:ihealth-cloud-api"
+         recommendedCommand="$recommendedCommand symptomatic:ihealth-cloud-api"
          # meteor remove symptomatic:ihealth-cloud-api;
     else echo "Skipping..."; 
     fi; 
