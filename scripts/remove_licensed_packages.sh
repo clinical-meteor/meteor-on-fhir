@@ -40,6 +40,16 @@ echo "Trying to remove licensed packages and other intellectual property that sh
 
 # echo "=========================================================="
 
+
+
+# remove service-request first?
+a15=$(more .meteor/versions | grep 'clinical:hl7-resource-service-request' | wc -l)
+if [ $a15 -gt 0 ]; 
+    then echo "Removing clinical:hl7-resource-service-request"; 
+         meteor remove clinical:hl7-resource-service-request;
+    else echo "Skipping..."; 
+    fi; 
+
 # detect packages
 a1=$(more .meteor/versions | grep 'symptomatic:blockchain-core' | wc -l)
 if [ $a1 -gt 0 ]; 
@@ -141,12 +151,6 @@ if [ $a14 -gt 0 ];
 
 
 
-# we can eventually remove this.
-a15=$(more .meteor/versions | grep 'clinical:hl7-resource-service-request' | wc -l)
-if [ $a15 -gt 0 ]; 
-    then echo "Removing clinical:hl7-resource-service-request"; 
-         meteor remove clinical:hl7-resource-service-request;
-    else echo "Skipping..."; 
-    fi; 
+
 
 
