@@ -6,23 +6,23 @@ echo "Trying to remove licensed packages and other intellectual property that sh
 
 # I think the following works, but Circle CI apparently doesn't support arrays in their bash implementation 
 
-declare -a packages
-packages=( 
-    "symptomatic:blockchain-core" 
-    "symptomatic:continuity-of-care" 
-    "symptomatic:landing-page" 
-    "symptomatic:grid-layout" 
-    "symptomatic:routing-algorithms"
-    "symptomatic:static-pagess"
-    "symptomatic:theming"
-    "symptomatic:videoconferencing"
-    "symptomatic:vault-server"
-    "symptomatic:smart-on-fhir-client"
-    "symptomatic:plugin-default-landing-page"
-    "symptomatic:smart-on-fhir-config"
-    "symptomatic:geomapping"
-    "symptomatic:ihealth-cloud-api"
-    )
+# declare -a packages
+# packages=( 
+#     "symptomatic:blockchain-core" 
+#     "symptomatic:continuity-of-care" 
+#     "symptomatic:landing-page" 
+#     "symptomatic:grid-layout" 
+#     "symptomatic:routing-algorithms"
+#     "symptomatic:static-pagess"
+#     "symptomatic:theming"
+#     "symptomatic:videoconferencing"
+#     "symptomatic:vault-server"
+#     "symptomatic:smart-on-fhir-client"
+#     "symptomatic:plugin-default-landing-page"
+#     "symptomatic:smart-on-fhir-config"
+#     "symptomatic:geomapping"
+#     "symptomatic:ihealth-cloud-api"
+#     )
 
 # echo "=========================================================="
 # for packageName in "${packages[@]}"
