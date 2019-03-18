@@ -10,7 +10,7 @@ do
     cd "${directory}" 
 
     git add --all .
-    git commit -a -m $commitMessage
+    git commit -a -m "$commitMessage"
 
     git push origin master
     meteor publish
