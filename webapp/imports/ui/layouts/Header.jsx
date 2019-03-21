@@ -249,13 +249,16 @@ export class Header extends React.Component {
       }
       switch (get(activePatient, 'gender', '')) {
         case 'male':
-        genderIcon = <FaMars style={genderStyle} />;
+          // genderIcon = <FaMars style={genderStyle} />;
+          genderIcon = "♂";
           break;
         case 'female':
-        genderIcon = <FaVenus style={genderStyle} />;
+          // genderIcon = <FaVenus style={genderStyle} />;
+          genderIcon = "♀";
           break;
         case 'other':
-        genderIcon =  <FaMercury style={genderStyle} />;
+          // genderIcon =  <FaMercury style={genderStyle} />;
+          genderIcon = "☿"
           break;    
         default:
           break;
