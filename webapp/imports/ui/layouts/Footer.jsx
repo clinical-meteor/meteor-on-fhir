@@ -623,10 +623,6 @@ export class Footer extends React.Component {
         label: 'Filter Tiles',
         onClick: this.toggleFilterMainTiles,
       }, {
-        pathname: '/patients',
-        label: 'Test',
-        settings: 'settings.public.modules.fhir.Patients'
-      }, {
         pathname: '/observations',
         label: 'Test',
         settings: 'settings.public.modules.fhir.Observations',
@@ -690,22 +686,10 @@ export class Footer extends React.Component {
           <FlatButton label='Fullscreen' className='querySystemButton' ref='querySystemButton' onClick={this.fullscreenVideo.bind(this)} style={this.data.style.buttonText} ></FlatButton>
           <FlatButton label='Orbital' className='querySystemButton' ref='querySystemButton' onClick={this.showOrbital.bind(this)} style={this.data.style.buttonText} ></FlatButton>
         </div>
-      }, {
-        pathname: '/questionnaires',
-        component: <div>
-          <FlatButton label='New' disabled className='querySystemButton' ref='querySystemButton' onClick={this.newQuestionnaire.bind(this, 'Condition')} style={this.data.style.buttonText} ></FlatButton>
-          <FlatButton label='Save' className='querySystemButton' ref='querySystemButton' onClick={this.saveQuestionnaire.bind(this)} style={this.data.style.buttonText} ></FlatButton>
-          <FlatButton label='Preview' className='querySystemButton' ref='querySystemButton' onClick={this.previewQuestionnaire.bind(this)} style={this.data.style.buttonText} ></FlatButton>
-        </div>
       }, {        
         pathname: '/endpoints',
         component: <div>
           <FlatButton label='Clear' className='clearEndpoints' ref='querySystemButton' onClick={this.clearEndpoints} style={this.data.style.buttonText} ></FlatButton>
-        </div>
-      }, {
-        pathname: '/curebot',
-        component: <div>
-          <FlatButton label='Initialize Curebot' className='clearEndpoints' ref='querySystemButton' onClick={this.initializeCurebot} style={this.data.style.buttonText} ></FlatButton>
         </div>
       }, {
         pathname: '/diagnostic-reports',
@@ -713,6 +697,18 @@ export class Footer extends React.Component {
           <FlatButton label='Imaging Studies' ref='cornerstoneViewer' onClick={this.openLink.bind(this, '/imaging-studies')} style={this.data.style.buttonText} ></FlatButton>
         </div>
       }]
+
+
+      Object.keys(Package).forEach(function(packageName){
+        if(Package[packageName].FooterButtons){
+          // we try to build up a route from what's specified in the package
+          Package[packageName].FooterButtons.forEach(function(route){
+            buttonRenderArray.push(route);      
+          });    
+        }
+
+      });
+
 
       let renderDom;
       buttonRenderArray.forEach(function(buttonConfig){

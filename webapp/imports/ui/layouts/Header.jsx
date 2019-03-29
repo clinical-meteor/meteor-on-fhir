@@ -22,7 +22,7 @@ import PropTypes from 'prop-types';
 
 import { get } from 'lodash';
 import { FaMars, FaVenus, FaMercury, FaTransgender  } from 'react-icons/fa';
-
+import { Patient } from 'meteor/clinical:hl7-resource-patient';
 
 Sidebar = {
   lastUpdate: new Date(),
@@ -243,7 +243,7 @@ export class Header extends React.Component {
       let activePatient = Patients.findOne();
       console.log('activePatient', activePatient);
 
-      let genderIcon;
+      let genderIcon = "";
       let genderStyle = {
         verticalAlign: 'bottom'
       }
@@ -264,10 +264,19 @@ export class Header extends React.Component {
           break;
       }
 
+
+      let patient = new Patient(activePatient)
+      let patientDisplay = patient.display();
+
+      let birthdateInfo = "";
+      if(get(activePatient, 'birthDate')){
+        birthdateInfo = moment().diff(moment(get(activePatient, 'birthDate', '')).format("YYYY-MM-DD"), 'years') + "yr"
+      }
+
       demographicsBar = <div id='patientDemographicsBar' style={{color: '#000000'}}>        
-        <h2 style={{fontWeight: 200, paddingLeft: '40px'}}>{get(activePatient, 'name[0].text')}
+        <h2 style={{fontWeight: 200, paddingLeft: '40px'}}>{patientDisplay}
           <span style={{fontWeight: 200, color: 'gray', fontSize: '80%', paddingLeft: '20px'}}>
-            {moment().diff(moment(get(activePatient, 'birthDate', '')).format("YYYY-MM-DD"), 'years')}yr  {genderIcon}          
+            {birthdateInfo} {genderIcon}          
           </span>        
         </h2>
       </div>
