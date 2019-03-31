@@ -156,7 +156,7 @@ export class GlassApp extends React.Component {
 
   render(){
     let backgroundStyle = this.data.app.style;
-    console.log('backgroundStyle', backgroundStyle)
+    // console.log('backgroundStyle', backgroundStyle)
     
     return (
       <div id="glassApp" style={{position: 'absolute'}}>

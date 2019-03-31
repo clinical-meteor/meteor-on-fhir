@@ -89,6 +89,9 @@ simple:json-routes
 ### Alerts and Error Reporting
 simple:dev-error-overlay
 
+### Packages with Publications
+biologio:curebot
+
 
 ### Clinical Meteor Framework
 clinical:fonts
@@ -157,9 +160,8 @@ percolate:synced-cron
 jparker:crypto-aes
 
 ### Desktop  
-# symptomatic:card-readers
-biologio:curebot
 clinical:hl7-resource-service-request
+# symptomatic:card-readers
 symptomatic:continuity-of-care
 symptomatic:theming
 symptomatic:smart-on-fhir-client

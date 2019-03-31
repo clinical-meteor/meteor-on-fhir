@@ -37,6 +37,14 @@ if(Package['clinical:hl7-resource-audit-event'] && (typeof AuditEvents === "obje
   });
 }
 
+if(Package['clinical:hl7-resource-bundle'] && (typeof Bundles === "object")){
+  Bundles.allow({
+    update() { return true; },
+    insert() { return true; },
+    remove() { return true; }
+  });
+}
+
 if(Package['clinical:hl7-resource-careplan']){
   if(typeof CarePlans === "object"){
     CarePlans.allow({

@@ -2,9 +2,10 @@ import { Meteor } from 'meteor/meteor';
 import { get } from 'lodash';
 
 let DailyStats = {
-  generate: function(){
+  generate: function(type){
     let newDailyStat = {
       date: new Date(),
+      type: type ? type : 'dailystat',
       usersCount: 0,
       patientsCount: 0,
       practitionersCount: 0,
@@ -12,8 +13,10 @@ let DailyStats = {
         allergyIntolerances: 0,
         auditEvents: 0,
         appointments: 0,
+        bundles: 0,
         devices: 0,
         carePlans: 0,
+        communications: 0,
         conditions: 0,
         consents: 0,
         contracts: 0,
@@ -69,6 +72,9 @@ let DailyStats = {
     }
     if (typeof Contracts === 'object') {
       newDailyStat.counts.contracts = Contracts.find().count();
+    }
+    if (typeof Communications === 'object') {
+      newDailyStat.counts.communications = Communications.find().count();
     }
     if (typeof Devices === 'object') {
       newDailyStat.counts.devices = Devices.find().count();
@@ -153,11 +159,11 @@ SyncedCron.add({
 
 
 Meteor.methods({
-  generateDailyStat:function (){
+  generateDailyStat:function (type){
     process.env.DEBUG && console.log('Meteor Method: Generating daily statistics');
 
     if (get(Meteor, 'settings.public.modules.statisticsLogging')) {
-      return Statistics.insert(DailyStats.generate());
+      return Statistics.insert(DailyStats.generate(type));
     }
   },
   getServerStats: function(){

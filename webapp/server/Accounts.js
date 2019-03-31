@@ -157,10 +157,10 @@ Accounts.onCreateUser(function(options, user) {
 
 
 Accounts.onLogin(function(loginObject) {
-  console.log('Accounts.onLogin().foo', loginObject)
+  console.log('Accounts.onLogin().loginObject', loginObject)
 
   let userId = get(loginObject, 'user._id');
-  console.log('userId', userId);
+  process.env.NODE_ENV === "verbose" ? console.log('userId', userId) : null;
 
   // =================================================================
   // CONSENTS
