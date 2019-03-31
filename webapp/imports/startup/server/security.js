@@ -62,6 +62,13 @@ if(Package['clinical:hl7-resource-careplan']){
   }
 }
 
+if(Package['clinical:hl7-resource-communication'] && (typeof Communications === "object")){
+  Communications.allow({
+    update() { return true; },
+    insert() { return true; },
+    remove() { return true; }
+  });
+}
 if(Package['clinical:hl7-resource-condition'] && (typeof Conditions === "object")){
   Conditions.allow({
     update() { return true; },
@@ -69,6 +76,7 @@ if(Package['clinical:hl7-resource-condition'] && (typeof Conditions === "object"
     remove() { return true; }
   });
 }
+
 
 if(Package['clinical:hl7-resource-device'] && (typeof Devices === "object")){
   Devices.allow({
@@ -184,6 +192,22 @@ if(Package['clinical:hl7-resource-practitioner'] && (typeof Practitioners === "o
 
 if(Package['clinical:hl7-resource-procedure'] && (typeof Procedures === "object")){
   Procedures.allow({
+    update() { return true; },
+    insert() { return true; },
+    remove() { return true; }
+  });
+}
+
+if(Package['clinical:hl7-resource-questionnaire'] && (typeof Questionnaires === "object")){
+  Questionnaires.allow({
+    update() { return true; },
+    insert() { return true; },
+    remove() { return true; }
+  });
+}
+
+if(Package['clinical:hl7-resource-questionnaire-response'] && (typeof QuestionnaireResponses === "object")){
+  QuestionnaireResponses.allow({
     update() { return true; },
     insert() { return true; },
     remove() { return true; }

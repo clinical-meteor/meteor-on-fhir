@@ -161,6 +161,10 @@ export class Footer extends React.Component {
         CarePlans._collection.remove({});        
       }
 
+      if(typeof Claims === "object"){
+        Claims._collection.remove({});        
+      }
+
       if(typeof Conditions === "object"){
         Conditions._collection.remove({});        
       }
@@ -260,6 +264,15 @@ export class Footer extends React.Component {
       if(typeof RiskAssessments === "object"){
         RiskAssessments._collection.remove({});          
       }
+      if(typeof ServiceRequests === "object"){
+        ServiceRequests._collection.remove({});          
+      }
+
+      Meteor.call('getServerStats', function(error, result){
+        if(result){
+          Session.set('datalakeStats', result);
+        }
+      });
 
     } else {
       console.log('Delete aborted.')
