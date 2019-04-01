@@ -240,7 +240,11 @@ export class Header extends React.Component {
 
     let demographicsBar;
     if(Patients.findOne()){
-      let activePatient = Patients.findOne();
+      let query = {};
+      if(Session.get('selectedPatientId')){
+        query._id = Session.get('selectedPatientId');
+      }
+      let activePatient = Patients.findOne(query);
       console.log('activePatient', activePatient);
 
       let genderIcon = "";
