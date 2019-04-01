@@ -89,8 +89,6 @@ simple:json-routes
 ### Alerts and Error Reporting
 simple:dev-error-overlay
 
-### Packages with Publications
-biologio:curebot
 
 
 ### Clinical Meteor Framework
@@ -143,6 +141,9 @@ clinical:hl7-resource-questionnaire-response
 clinical:hl7-resource-risk-assessment
 clinical:hl7-resource-subscription
 # clinical:hl7-resource-sequence
+
+### Packages with Publications
+# biologio:curebot
 
 
 ### Infrastructure as a Service
