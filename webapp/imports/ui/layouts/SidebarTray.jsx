@@ -19,6 +19,15 @@ import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 
 import { has, get } from 'lodash';
 
+Object.keys(Package).forEach(function(packageName){
+  // we can even override entire pages
+  if(Package[packageName].PractitionerSidebar){
+    PractitionerSidebar = Package[packageName].PractitionerSidebar;
+  }
+});
+
+
+
 Session.setDefault('backgroundImagePath', 'url(\"images\/ForestInMist.jpg\")');
 Session.setDefault('backgroundColor', '#eeeeee');
 Session.setDefault('darkroomEnabled', false);

@@ -1,29 +1,101 @@
 
-import { get } from 'lodash';
 
-// Support for playing D&D: Roll 3d6 for dexterity
+import { get } from 'lodash';
+import { Accounts } from 'meteor/accounts-base';
+import validator from 'validator';
+
+// import { Meteor } from 'meteor/meteor';
+
+
+// Accounts.emailTemplates.siteName = 'Symptomatic';
+// Accounts.emailTemplates.from = 'Symptomatic <catherder@symptomatic.io>';
+
+// Accounts.emailTemplates.enrollAccount.subject = (user) => {
+//     // return `Welcome to Symptomatic, ${user.profile.name}`;
+//     return `Welcome to Symptomatic`;
+// };
+
+// Accounts.emailTemplates.enrollAccount.text = (user, url) => {
+//     return 'Thank you for deciding to sign up. To activate your account, simply click the link below:\n\n' + url;
+// };
+
+// Accounts.emailTemplates.enrollAccount = {
+//   subject(user) {
+//     // return `Welcome to Symptomatic, ${user.profile.name}`;
+//     return `Welcome to Symptomatic`;
+//   },
+//   text(user, url) {
+//       return 'Thank you for deciding to sign up. To activate your account, simply click the link below:\n\n' + url;
+//       // return `Hey ${user}! Verify your e-mail by following this link: ${url}`;
+//   }
+// };
+
+// Accounts.urls.enrollAccount = function(token) {
+//   return Meteor.absoluteUrl("signin?token=" + token)
+// };
+
+
+Meteor.methods({
+  sendVerificationEmail(userId){
+    check(userId, String);
+
+    // send an enrollment email
+    console.log('Sending verfication email....', Meteor.users.findOne(userId));
+    // Accounts.sendEnrollmentEmail(userId);
+    Accounts.sendVerificationEmail(userId);
+  },
+  sendEnrollmentEmail(userId){
+    check(userId, String);
+    
+    // send an enrollment email
+    console.log('Sending enrollment email....', Meteor.users.findOne(userId));
+    // Accounts.sendEnrollmentEmail(userId);
+    Accounts.sendEnrollmentEmail(userId);
+  },
+  async checkIfEmailExists(email){
+    check(email, String);
+    console.log('email', email)
+    if(email.length > 0){
+      console.log('Lets try to find the user by email...')
+      let result = await Accounts.findUserByEmail(email);
+      console.log('result', result)
+      return result;
+    }
+  }
+})
 Accounts.onCreateUser(function(options, user) {
   console.log('------------------------------------------------');
-  console.log('Accounts.onCreateUser');
+  console.log('Creating a new User Account....');
   console.log(' ');
 
   process.env.DEBUG && console.log('user', user);
   process.env.DEBUG && console.log('options', options);
   console.log(' ');
 
-  // console.log('options', options);
-  // console.log('user', user);
-  // console.log('Meteor.settings', Meteor.settings);
+  console.log('Sending enrollment email....');
+  if(process.env.NODE_ENV === "production"){
+    if(typeof Accounts === "object"){
+      Accounts.sendEnrollmentEmail(user._id);      
+      console.log("Success?  We didn't error out while sending the enrollment email, so lets assume it worked.")
+    } else {
+      console.log("Accounts object doesn't exist.  Skipping.")
+    }  
+  } else {
+    console.log('Not in production.  Skipping.')
+  }
 
-
+    
   // We still want the default hook's 'profile' behavior.
   if (options.profile){
     process.env.DEBUG && console.log("options.profile exists");
 
+    console.log('Configuring profile....');
     user.profile = options.profile;
     user.profile.firstTimeVisit = true;
-    user.roles = [];
 
+
+    console.log('Configuring roles....');
+    user.roles = [];
 
     // some of our test data will be initialized with a profile.role of Physician
     // if so, we want to set their system access to 'practitioner'
@@ -67,6 +139,7 @@ Accounts.onCreateUser(function(options, user) {
 
   // this lets us add OAuth services in the profile at account creation time
   // when then get securely stored 
+  console.log('Configuring authentication services....');
   if(get(options, 'profile.services')){
     let services = get(options, 'profile.services');
     Object.keys(services).forEach(function(key){
@@ -84,10 +157,10 @@ Accounts.onCreateUser(function(options, user) {
 
 
 Accounts.onLogin(function(loginObject) {
-  console.log('Accounts.onLogin().foo', loginObject)
+  console.log('Accounts.onLogin().loginObject', loginObject)
 
   let userId = get(loginObject, 'user._id');
-  console.log('userId', userId);
+  process.env.NODE_ENV === "verbose" ? console.log('userId', userId) : null;
 
   // =================================================================
   // CONSENTS
@@ -183,7 +256,8 @@ Accounts.onLogin(function(loginObject) {
   // FILTERS
 
   var defaultFilters = {
-    remove: ['gonorrhoeae', 'eGFR', 'chlamydia' ],
+    // remove: ['gonorrhoeae', 'eGFR', 'chlamydia' ],
+    remove: [],
     mustHave: [],
     resourceTypes: [
       'Allergies', 
@@ -194,12 +268,16 @@ Accounts.onLogin(function(loginObject) {
       'MedicationStatements', 
       'Observations', 
       'Procedures' 
-    ]
+    ],
+    sensitiveItems: {
+      subtanceAbuse: true,
+      mentalHealth: true,
+      sexualHealth: true
+    }
   };  
   if(!get(loginObject, 'user.profile.filters')){    
     Meteor.users.update({_id: userId}, {$set: {
       'profile.filters': defaultFilters
     }});
   }
-
 });

@@ -18,6 +18,7 @@ import { PrivacyPage } from '/imports/ui/pages/PrivacyPage';
 import { TermsConditionsPage } from '/imports/ui/pages/TermsConditionsPage';
 import { RecoverPassword } from '/imports/ui/pages/RecoverPassword';
 import { ResetPassword } from '/imports/ui/pages/ResetPassword';
+import { SetPassword } from '/imports/ui/pages/SetPassword';
 import { Signin } from '/imports/ui/pages/Signin';
 import { Signup } from '/imports/ui/pages/Signup';
 import { ThemePage } from '/imports/ui/pages/ThemePage';
@@ -36,6 +37,7 @@ import { MetadataPage } from '/imports/ui/pages/MetadataPage';
 
 import { ChecklistsPage } from '/imports/ui/workflows/lists/ChecklistsPage';
 import { get } from 'lodash';
+
 
 // Pick up any dynamic routes that are specified in packages, and include them
 var dynamicRoutes = [];
@@ -176,6 +178,7 @@ Meteor.startup(() => {
         <Route name="signin" path="/signin" component={ Signin } />
         <Route name="recover-password" path="/recover-password" component={ RecoverPassword } />
         <Route name="reset-password" path="/reset-password/:token" component={ ResetPassword } />
+        <Route name="set-password" path="/set-password/:token" component={ SetPassword } />
         <Route name="signup" path="/signup" component={ Signup } />
 
         <Route name="about" path="/about" component={ AppInfoPage } />

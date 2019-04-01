@@ -22,6 +22,15 @@ if(Package['symptomatic:smart-on-fhir-client']){
 Session.setDefault('signinWithSearch', '');
 
 export class Signin extends React.Component {
+  componentWillMount(){
+    console.log('SignIn.componentWillMount()')
+    if(get(this, 'props.location.query.token')){
+      Accounts.verifyEmail(get(this, 'props.location.query.token'), function(error) {
+        console.log('Accounts.verifyEmail')
+        browserHistory.push('/continuity-of-care');
+      });  
+    }
+  }
   getMeteorData() {
     let data = {
       style: {
@@ -48,11 +57,10 @@ export class Signin extends React.Component {
         },
         pageBackground: {}
       },
+      boxShadows: get(Meteor, 'settings.public.theme.boxShadows', 'cloudy'),
       endpoints: [],
       services: []
     };
-
-
 
     if( Endpoints.find().count() > 0){
       data.endpoints = Endpoints.find({
@@ -175,10 +183,25 @@ export class Signin extends React.Component {
         // depending on which signin component we used
         if (self.props.state && self.props.state.nextPathname) {
           browserHistory.push(location.state.nextPathname);
-        } else if (Roles.userIsInRole(Meteor.userId(), 'practitioner') && get(Meteor.user(), 'profile.firstTimeVisit')) {
-          browserHistory.push('/welcome/practitioner');
-        } else if (Roles.userIsInRole(Meteor.userId(), 'sysadmin') && get(Meteor.user(), 'profile.firstTimeVisit')) {
-            browserHistory.push('/welcome/sysadmin');
+        } else if (Roles.userIsInRole(Meteor.userId(), 'practitioner')) {
+          if(get(Meteor.user(), 'profile.firstTimeVisit')){
+            browserHistory.push(get(Meteor, 'settings.public.defaults.routes.practitionerWelcomePage', '/'))
+          } else {
+            browserHistory.push(get(Meteor, 'settings.public.defaults.routes.practitionerHomePage', '/'))
+          }
+        } else if (Roles.userIsInRole(Meteor.userId(), 'sysadmin')) {
+          if(get(Meteor.user(), 'profile.firstTimeVisit')){
+            browserHistory.push(get(Meteor, 'settings.public.defaults.routes.adminWelcomePage', '/'))
+          } else {
+            browserHistory.push(get(Meteor, 'settings.public.defaults.routes.adminHomePage', '/'))
+          }
+        } else if (Roles.userIsInRole(Meteor.userId(), 'patient')) {
+          if(get(Meteor.user(), 'profile.firstTimeVisit')){
+            browserHistory.push(get(Meteor, 'settings.public.defaults.routes.patientWelcomePage', '/'))
+          } else {
+            browserHistory.push(get(Meteor, 'settings.public.defaults.routes.patientHomePage', '/'))
+          }          
+          // browserHistory.push('/welcome/sysadmin');
         } else if(get(Meteor, 'settings.public.defaults.route')){
           // but normally we just use the default route specified in settings.json
           browserHistory.push(get(Meteor, 'settings.public.defaults.route', '/'));
@@ -230,7 +253,7 @@ export class Signin extends React.Component {
 
     if(Package['symptomatic:smart-on-fhir-client'] && get(Meteor, 'settings.publich.registration.signInWith')){
       signInWith = <Col lgOffset={4} mdOffset={2} lg={2} md={3}>
-        <GlassCard zDepth={3} height="auto" >
+        <GlassCard id='signInCard' zDepth={3} height="auto" boxShadow='cloudy' >
           <CardTitle
             title="Sign in with..."
             />

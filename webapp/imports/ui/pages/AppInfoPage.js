@@ -76,10 +76,12 @@ export class AppInfoPage extends React.Component {
     return data;
   }
   render(){
+    let pageBackground = Glass.getContextImage();
+
     return(
-      <div id="aboutPage">
+      <div id="aboutPage" style={pageBackground} >
         <VerticalCanvas >
-          <GlassCard height='auto'>
+          <GlassCard height='auto' zDepth={3}  >
             <Row>
               <Col md={4}>
                 <CardText style={this.data.environmentData}>
