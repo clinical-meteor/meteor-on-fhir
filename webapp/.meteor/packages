@@ -143,7 +143,7 @@ clinical:hl7-resource-subscription
 # clinical:hl7-resource-sequence
 
 ### Packages with Publications
-# biologio:curebot
+biologio:curebot
 
 
 ### Infrastructure as a Service
@@ -155,7 +155,7 @@ littledata:synced-cron
 
 ### Symptomatic Packages
 
-# symptomatic:clinical-scenarios
+symptomatic:clinical-scenarios
 # symptomatic:ihealth-cloud-api
 
 jparker:crypto-aes
@@ -164,8 +164,8 @@ jparker:crypto-aes
 clinical:hl7-resource-service-request
 # symptomatic:card-readers
 
-#symptomatic:continuity-of-care
-#symptomatic:theming
-#symptomatic:smart-on-fhir-client
-#symptomatic:smart-on-fhir-config
+symptomatic:continuity-of-care
+symptomatic:theming
+symptomatic:smart-on-fhir-client
+symptomatic:smart-on-fhir-config
 #symptomatic:geomapping

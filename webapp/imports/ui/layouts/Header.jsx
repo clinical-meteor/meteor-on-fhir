@@ -83,8 +83,17 @@ export class Header extends React.Component {
       app: {
         title: ''
       },
-      isLogged: false
+      isLogged: false,
+      selectedPatient: false,
+      query: {}
     };
+
+
+    if(Session.get('selectedPatientId')){
+      data.query._id = Session.get('selectedPatientId');
+      data.selectedPatientId = Session.get('selectedPatientId');
+      data.selectedPatient = Patients.findOne(data.query);
+    } 
 
     if(Session.get('showSearchbar')){
       data.style.searchbar.height = '64px';
@@ -239,13 +248,11 @@ export class Header extends React.Component {
     }
 
     let demographicsBar;
-    if(Patients.findOne()){
-      let query = {};
-      if(Session.get('selectedPatientId')){
-        query._id = Session.get('selectedPatientId');
-      }
-      let activePatient = Patients.findOne(query);
-      console.log('activePatient', activePatient);
+    if(get(this, 'data.selectedPatient')){
+      
+
+      let activePatient = new Patient(this.data.selectedPatient);
+      let patientDisplay = activePatient.display();
 
       let genderIcon = "";
       let genderStyle = {
@@ -267,10 +274,6 @@ export class Header extends React.Component {
         default:
           break;
       }
-
-
-      let patient = new Patient(activePatient)
-      let patientDisplay = patient.display();
 
       let birthdateInfo = "";
       if(get(activePatient, 'birthDate')){
