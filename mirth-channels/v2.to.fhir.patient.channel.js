@@ -1,3 +1,7 @@
+//==================================================================================================
+//HL7-v2.x PID to FHIR Resource Patient
+//https://www.hl7.org/fhir/patient-mappings.html#v2
+
 var date = msg['PID']['PID.7']['PID.7.1'].toString();
 
 var Patient = {};
@@ -27,8 +31,16 @@ var humanName = {
 };
 Patient.name = [humanName];
 
+//Patient.address = msg['PID']['PID.11']['PID.11.1'].toString();
+
+//Patient.contact = msg['NK1']
+//Patient.contact.relationship = msg['NK1']['NK1.7']['NK1.7.1']
+//Patient.contact.name = msg['NK1']['NK1.2']['NK1.2.1']
+//Patient.contact.telecom
 
 
+//==================================================================================================
+//HL7-v2.x MSH segment to Resource messageHeader
 var messageHeader = {};
 
 messageHeader.resourceType = "MessageHeader";
