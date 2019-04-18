@@ -160,7 +160,6 @@ a14=$(more .meteor/versions | grep 'symptomatic:ihealth-cloud-api' | wc -l)
 if [ $a14 -gt 0 ]; 
     then echo "Removing symptomatic:ihealth-cloud-api"; 
          recommendedCommand="$recommendedCommand symptomatic:ihealth-cloud-api"
-         # meteor remove symptomatic:ihealth-cloud-api;
     else echo "Skipping..."; 
     fi; 
 
@@ -169,7 +168,14 @@ z1=$(more .meteor/versions | grep 'biologio:curebot' | wc -l)
 if [ $z1 -gt 0 ]; 
     then echo "Removing biologio:curebot"; 
          recommendedCommand="$recommendedCommand biologio:curebot"
-         # meteor remove symptomatic:ihealth-cloud-api;
+    else echo "Skipping..."; 
+    fi; 
+
+
+z2=$(more .meteor/versions | grep 'symptomatic:clinical-scenarios' | wc -l)
+if [ $z2 -gt 0 ]; 
+    then echo "Removing symptomatic:clinical-scenarios"; 
+         recommendedCommand="$recommendedCommand symptomatic:clinical-scenarios"
     else echo "Skipping..."; 
     fi; 
 
