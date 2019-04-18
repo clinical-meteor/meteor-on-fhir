@@ -24,6 +24,7 @@ Meteor.startup(function(){
   } catch(e) { 
     Meteor.settings.public.version = {};
   }
+  console.log('Meteor.settings.public.version', Meteor.settings.public.version)
 
   // if OAuth is configured, load oauth configs into active memory
   if(Package['symptomtic:smart-on-fhir-client']){
