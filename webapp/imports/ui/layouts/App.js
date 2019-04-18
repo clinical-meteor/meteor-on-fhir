@@ -13,15 +13,13 @@ import { GlassCard, VerticalCanvas, FullPageCanvas } from 'meteor/clinical:glass
 import { Header } from '/imports/ui/layouts/Header';
 import { DicomImage } from '/imports/ui/components/DicomImage';
 import { SciFiOrbital } from '/imports/ui/components/SciFiOrbital';
-import { Session } from 'meteor/session';
 import SidebarTray from '/imports/ui/layouts/SidebarTray';
+import FlatButton from 'material-ui/FlatButton';
 
-
-
-
+import { SecurityDialog } from './SecurityDialog';
+import { Session } from 'meteor/session';
 
 import { get, has } from 'lodash';
-// import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -33,6 +31,8 @@ const muiTheme = getMuiTheme({
     pickerHeaderColor: blue600
   }
 });
+
+
 
 Session.setDefault('iFrameLocation', '');
 Meteor.startup(function (){
@@ -49,6 +49,8 @@ Meteor.startup(function (){
     Session.set('iFrameLocation', '');
   }
 });
+
+
 
 export class App extends React.Component {
   constructor(props) {
@@ -137,9 +139,14 @@ export class App extends React.Component {
           height: Session.get('appHeight') - 280 + 'px'
         }
       },
-      browserWindowLocation: 'https://www.ncbi.nlm.nih.gov'
+      browserWindowLocation: 'https://www.ncbi.nlm.nih.gov',
+      securityDialog: {
+        open: Session.get('securityDialogOpen'),
+        resourceType: Session.get('securityDialogResourceType'),
+        resourceId: Session.get('securityDialogResourceId'),
+        resourceJson: JSON.stringify(Session.get('securityDialogResourceJson'), null, 2)
+      }
     };
-
 
 
     if (Session.get('iFrameLocation')) {
@@ -164,7 +171,12 @@ export class App extends React.Component {
     if(process.env.NODE_ENV === "test") console.log("App[data]", data);
     return data;
   }
+  handleCloseSecurityDialog(){
+    Session.set('securityDialogOpen', false);
+  }
+  handleTextareaUpdate(){
 
+  }
   render(){
     var orbital;
     // if(get(Meteor, 'settings.public.defaults.nfcOrbital')){
@@ -175,7 +187,8 @@ export class App extends React.Component {
 
     Session.set('window.location', this.props.location)
     Session.set('ehrLaunchContext', get(this, 'props.location.query.launch'))
-  
+
+
     return (
         <MuiThemeProvider muiTheme={muiTheme}>
           <GlassApp>
@@ -192,6 +205,7 @@ export class App extends React.Component {
                 </div>
               <Footer />
             </SidebarTray>
+            <SecurityDialog />
           </GlassApp>
         </MuiThemeProvider>
     );

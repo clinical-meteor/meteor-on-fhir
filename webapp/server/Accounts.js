@@ -157,7 +157,8 @@ Accounts.onCreateUser(function(options, user) {
 
 
 Accounts.onLogin(function(loginObject) {
-  console.log('Accounts.onLogin().loginObject', loginObject)
+  console.log('Logging in user: ' + get(loginObject, 'user.profile.name.text'));
+  process.env.DEBUG && console.log('Accounts.onLogin().loginObject', loginObject)
 
   let userId = get(loginObject, 'user._id');
   process.env.NODE_ENV === "verbose" ? console.log('userId', userId) : null;

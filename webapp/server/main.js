@@ -2,10 +2,19 @@ import '/imports/startup/server';
 import '/imports/api/users/methods';
 
 const { exec } = require('child_process');
+const clock = require('world-clock')()
 
+import moment from 'moment-timezone';
 
 Meteor.startup(function(){
-  console.log('Meteor.startup() is initializing....');
+  console.log('Meteor application framework is starting.');
+
+  console.log('');
+  console.log('Clock check...');
+  console.log('Current time zone: ' + moment.tz.guess());
+  console.log('Local system time: ' + clock.localDateTime('SYSTEM').toString());
+  console.log('Application time:  ' + clock.localDate('Europe/London').toString());
+  console.log('');
 
   // pick up version info
   try {
