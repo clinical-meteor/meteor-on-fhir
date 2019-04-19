@@ -62,10 +62,10 @@ export class AppInfoPage extends React.Component {
       data.environment = process.env.NODE_ENV;
     }
     if(Meteor.userId()){
-      data.environment = Meteor.userId();
+      data.userId = Meteor.userId();
     }
     if(Meteor.absoluteUrl()){
-      data.environment = Meteor.absoluteUrl()
+      data.url = Meteor.absoluteUrl()
     }
 
 

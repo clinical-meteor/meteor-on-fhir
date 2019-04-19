@@ -29,7 +29,7 @@ export class WelcomeAdminPage extends React.Component {
             />
             <CardText>
               <Alert bsStyle="danger">
-                <b>This is software is NOT running in HIPAA Compliance Mode.</b>
+                <b>This software is NOT running in HIPAA Compliance Mode.</b>
               </Alert>
               <p>
                 To enable HIPAA compliance, you'll need to remove the autopublish packages, write your own pub/sub functions, and then connect to a production Mongo database <i> that has data encryption at rest enabled</i>.

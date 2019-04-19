@@ -1,7 +1,7 @@
 {
     "basic": "v1.0-prerelease-3",
-    "complete": "v1.0-prerelease-3-226-g06b2fa6",
-    "branch": "himss",
-    "commit": "06b2fa6a1ed096886840666efcb0debbb3e807c4",
-    "timestamp": "2019-02-19"
+    "complete": "v1.0-prerelease-3-267-g32ca1a1",
+    "branch": "curebot",
+    "commit": "32ca1a1e03a2d95304003dfb62279daa26b97d3b",
+    "timestamp": "2019-04-17"
 }
