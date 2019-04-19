@@ -1,7 +1,7 @@
 {
-    "basic": "v1.0-prerelease-3",
-    "complete": "v1.0-prerelease-3-267-g32ca1a1",
-    "branch": "curebot",
-    "commit": "32ca1a1e03a2d95304003dfb62279daa26b97d3b",
-    "timestamp": "2019-04-17"
+    "basic": "v0.9.5",
+    "complete": "v0.9.5-64-gc3886d5",
+    "branch": "master",
+    "commit": "c3886d56cd089e3d7e1169d98b967aa9426be895",
+    "timestamp": "2019-04-18"
 }
