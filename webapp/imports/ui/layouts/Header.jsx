@@ -21,6 +21,8 @@ import { browserHistory } from 'react-router';
 import PropTypes from 'prop-types';
 
 import { get } from 'lodash';
+import { FaMars, FaVenus, FaMercury, FaTransgender  } from 'react-icons/fa';
+import { Patient } from 'meteor/clinical:hl7-resource-patient';
 
 Sidebar = {
   lastUpdate: new Date(),
@@ -36,6 +38,7 @@ Sidebar = {
   }
 }
 
+Session.setDefault('mapName', false)
 
 export class Header extends React.Component {
   getMeteorData() {
@@ -44,7 +47,7 @@ export class Header extends React.Component {
         searchbar: Glass.darkroom({
           position: 'fixed',
           top: '0px',
-          width: '66%',
+          width: '90%',
           opacity: Session.get('globalOpacity'),
           WebkitTransition: 'ease .2s',
           transition: 'ease .2s',
@@ -80,8 +83,17 @@ export class Header extends React.Component {
       app: {
         title: ''
       },
-      isLogged: false
+      isLogged: false,
+      selectedPatient: false,
+      query: {}
     };
+
+
+    if(Session.get('selectedPatientId')){
+      data.query._id = Session.get('selectedPatientId');
+      data.selectedPatientId = Session.get('selectedPatientId');
+      data.selectedPatient = Patients.findOne(data.query);
+    } 
 
     if(Session.get('showSearchbar')){
       data.style.searchbar.height = '64px';
@@ -101,6 +113,10 @@ export class Header extends React.Component {
 
     if (get(Meteor, 'settings.public.title')) {
       data.app.title = get(Meteor, 'settings.public.title');
+    }
+
+    if(Session.get('mapName')){
+      data.app.title = data.app.title + ' - ' + Session.get('mapName');
     }
 
     if (Meteor.userId()) {
@@ -159,7 +175,24 @@ export class Header extends React.Component {
   goHome(){
     // not every wants the hexgrid menu, so we make sure it's configurable in the Meteor.settings file
     if(get(Meteor, 'settings.public.defaults.route')){
-      browserHistory.push(get(Meteor, 'settings.public.defaults.route', '/'));
+
+      // get the default route
+      let defaultRoute = get(Meteor, 'settings.public.defaults.route', '/')
+      
+      // if there are user role specific default routes defined in our settings file
+      // send the user to the role specific route
+    
+      if (Roles.userIsInRole(Meteor.userId(), 'patient')) {
+        browserHistory.push(get(Meteor, 'settings.public.defaults.routes.patientHomePage', defaultRoute))
+      } else if (Roles.userIsInRole(Meteor.userId(), 'practitioner')) {
+        browserHistory.push(get(Meteor, 'settings.public.defaults.routes.practitionerHomePage', defaultRoute))
+      } else if (Roles.userIsInRole(Meteor.userId(), 'sysadmin')) {
+        browserHistory.push(get(Meteor, 'settings.public.defaults.routes.adminHomePage', defaultRoute))
+      } else {
+
+        // otherwise, just send them to the default route
+        browserHistory.push(defaultRoute);
+      }
     } else {
       browserHistory.push('/');      
     }
@@ -168,6 +201,11 @@ export class Header extends React.Component {
     console.log('setGeojsonUrl', text);
 
     Session.set('geojsonUrl', text)
+  }
+  setPatientSearch(event, text){
+    console.log('setPatientSearch', text);
+
+    Session.set('patientSearch', text)
   }
   mapMyAddress(){
     if(get(Meteor.user(), 'profile.locations.home.position.latitude') && get(Meteor.user(), 'profile.locations.home.position.longitude')){
@@ -208,6 +246,66 @@ export class Header extends React.Component {
           onClick={this.toggleDrawerActive}
         />
     }
+
+    let demographicsBar;
+    if(get(this, 'data.selectedPatient')){
+      
+
+      let activePatient = new Patient(this.data.selectedPatient);
+      let patientDisplay = activePatient.display();
+
+      let genderIcon = "";
+      let genderStyle = {
+        verticalAlign: 'bottom'
+      }
+      switch (get(activePatient, 'gender', '')) {
+        case 'male':
+          // genderIcon = <FaMars style={genderStyle} />;
+          genderIcon = "♂";
+          break;
+        case 'female':
+          // genderIcon = <FaVenus style={genderStyle} />;
+          genderIcon = "♀";
+          break;
+        case 'other':
+          // genderIcon =  <FaMercury style={genderStyle} />;
+          genderIcon = "☿"
+          break;    
+        default:
+          break;
+      }
+
+      let birthdateInfo = "";
+      if(get(activePatient, 'birthDate')){
+        birthdateInfo = moment().diff(moment(get(activePatient, 'birthDate', '')).format("YYYY-MM-DD"), 'years') + "yr"
+      }
+
+      demographicsBar = <div id='patientDemographicsBar' style={{color: '#000000'}}>        
+        <h2 style={{fontWeight: 200, paddingLeft: '40px'}}>{patientDisplay}
+          <span style={{fontWeight: 200, color: 'gray', fontSize: '80%', paddingLeft: '20px'}}>
+            {birthdateInfo} {genderIcon}          
+          </span>        
+        </h2>
+      </div>
+    } else {
+      demographicsBar = <div id='patientSearchBar'>
+          <TextField
+          hintText="Patient Name"
+          style={this.data.style.searchbarInput}
+          fullWidth
+        />
+        <FlatButton 
+          label='Search' 
+          onChange={ this.setPatientSearch.bind(this)}
+          fullWidth
+        />
+        <FlatButton 
+          label='Search' 
+          onClick={this.mapMyAddress.bind(this)}
+          />
+      </div>
+    }
+
     return(
       <div>
         <AppBar
@@ -224,18 +322,7 @@ export class Header extends React.Component {
 
         <AppBar
           id="appSearchBar"
-          title={<div>
-              <TextField
-              hintText="Patient Name"
-              style={this.data.style.searchbarInput}
-              onChange={ this.setGeojsonUrl.bind(this)}
-              fullWidth
-            />
-            <FlatButton 
-              label='Search' 
-              onClick={this.mapMyAddress.bind(this)}
-              />
-          </div>}
+          title={demographicsBar}
           style={this.data.style.searchbar}
           showMenuIconButton={false}
         >

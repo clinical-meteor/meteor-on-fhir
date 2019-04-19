@@ -54,17 +54,23 @@ export class PublicSidebar extends React.Component {
     // Public Modules  
 
     var publicElements = [];
-    publicModules.map(function(element, index){ 
+    var publicElementSpacer = false;
 
+    publicModules.map(function(element, index){ 
       // the excludes array will hide routes
       if(!get(Meteor, 'settings.public.defaults.sidebar.hidden', []).includes(element.to)){
         publicElements.push(<IndexLinkContainer to={element.to} key={index}>
           <MenuItem primaryText={element.primaryText} href={element.href} />
         </IndexLinkContainer>);
+        publicElementSpacer = true;
       }
     });
+    if(publicElementSpacer){
+      publicElements.push(<hr />);
+    }
 
     var registrationLinks;
+    var registrationLinksSpacer;
     if(get(Meteor, 'settings.public.home.showRegistration')){
       registrationLinks = <div>
         <IndexLinkContainer to='/signin'>
@@ -75,20 +81,17 @@ export class PublicSidebar extends React.Component {
            <MenuItem primaryText='Register' href='/signup' />
         </IndexLinkContainer>
       </div>
+      registrationLinksSpacer = <hr />
     }
     return(
-      <List style={{paddingLeft: '20px', position: 'static'}}>
+      <List id='PublicSidebar' style={{paddingLeft: '20px', position: 'static'}}>
 
         { index }
-        {/* { publicElements } */}
-        { registrationLinks }
 
-        <hr />
+        { registrationLinks }
+        { registrationLinksSpacer }
 
         { publicElements }
-
-        <hr />
-
 
         <IndexLinkContainer to='/about'>
            <MenuItem primaryText='About' href='/about' />

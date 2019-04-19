@@ -1,25 +1,36 @@
-import { Card, CardActions, CardHeader, CardText, CardTitle } from 'material-ui/Card';
+import { 
+  FontIcon, 
+  FlatButton, 
+  RaisedButtfon, 
+  Card, 
+  CardActions, 
+  CardHeader, 
+  CardText, 
+  CardTitle, 
+  Toggle, 
+  Table, 
+  TableBody, 
+  TableHeader, 
+  TableHeaderColumn, 
+  TableRow, 
+  TableRowColumn, 
+  SelectField, 
+  TextField,
+  MenuItem
+} from 'material-ui';
 import { Col, Grid, Row } from 'react-bootstrap';
 import { Tab, Tabs } from 'material-ui/Tabs';
-import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
 import { has, get } from 'lodash';
 
 import { Accounts } from 'meteor/accounts-base';
-import Paper from 'material-ui/Paper';
-import Avatar from 'material-ui/Avatar';
-import Divider from 'material-ui/Divider';
-import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
-import { FontIcon } from 'material-ui/FontIcon';
 
 import { FullPageCanvas, VerticalCanvas, GlassCard, Glass, DynamicSpacer } from 'meteor/clinical:glass-ui';
 import { Meteor } from 'meteor/meteor';
 import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
-import TextField from 'material-ui/TextField';
 
-import MenuItem from '/imports/ui/components/MenuItem';
+// import MenuItem from '/imports/ui/components/MenuItem';
 
 
 import { browserHistory } from 'react-router';
@@ -39,8 +50,10 @@ let defaultState = {
   newPassword: '',
   confirmPassword: ''
 };
-Session.setDefault('myProfileState', defaultState);
 
+Session.setDefault('myProfileState', defaultState);
+Session.setDefault('autoPrivacyToggled', true);
+Session.setDefault('geomappingDefault', 1)
 
 export class MyProfilePage extends React.Component {
   constructor(props) {
@@ -154,7 +167,12 @@ export class MyProfilePage extends React.Component {
         Procedures: 0,
         RelatedPersons: 0,
         Sequences: 0
-      }
+      },
+      toggles: {
+        autoPrivacyToggled: Session.get('autoPrivacyToggled')
+      },
+      geojsonUrl: Session.get('geojsonUrl'),
+      geomappingDefault: Session.get('geomappingDefault')      
     };
 
     data.style.tab = Glass.darkroom(data.style.tab);
@@ -370,8 +388,15 @@ export class MyProfilePage extends React.Component {
 
   setGeojsonUrl(event, text){
     console.log('setGeojsonUrl', text);
-
     Session.set('geojsonUrl', text)
+  }
+  toggleAutoprivacy(){
+    // console.log('toggleAutoprivacy')
+    Session.toggle('autoPrivacyToggled');
+  }
+  handleChangeMappingAlgorithm(event, index, value){
+    console.log('handleChangeMappingAlgorithm', event, index, value)
+    Session.set('geomappingDefault', value)
   }
   render(){
 
@@ -487,6 +512,15 @@ export class MyProfilePage extends React.Component {
       </TableRow>);
     }    
     let continuityOfCareCard;
+
+    let exportDataBtn = <FlatButton 
+      label='Export' 
+      onClick={this.exportData.bind(this)}
+    />
+    let importDataBtn = <FlatButton 
+      label='Import' 
+      onClick={this.importData.bind(this)}
+    />
     
     //if(ccdResources.length > 0){
       continuityOfCareCard = <div>
@@ -505,16 +539,18 @@ export class MyProfilePage extends React.Component {
           </CardText>
           <CardActions>
             <FlatButton 
-              label='Clear Local Cache' 
+              label='Clear Data' 
               onClick={this.clearLocalCache.bind(this)}
               />
+            { exportDataBtn }
+            { importDataBtn }
           </CardActions>
         </GlassCard>
         <DynamicSpacer />
       </div>
     //}
 
-    // var consentElement;
+    // var consentElement;f
     // //if(Package['clinical:hl7-resource-consent']){
     //   consentElement = <div>
     //     <GlassCard>
@@ -541,21 +577,33 @@ export class MyProfilePage extends React.Component {
     if(get(Meteor.user(), 'profile.consents.geocoding.status') === "active"){
       geocodingCard = <div>
         <GlassCard>
-          <CardTitle title="Geocoding Preferences" subtitle='last updated: yyyy/mm/dd' style={{float: 'left'}} />
+          <CardTitle title="Geomapping" style={{float: 'left'}} />
             <CardTitle subtitle={this.data.address.latlng} style={{position: 'relative', right: '0px', top: '0px', float: 'right'}}/>
             <CardText>
-              <DynamicSpacer />              
+
+            <DynamicSpacer />              
+              <SelectField
+                floatingLabelText="Default Map"
+                value={this.data.geomappingDefault}
+                onChange={this.handleChangeMappingAlgorithm}
+                floatingLabelFixed={true}     
+                fullWidth
+              >
+                <MenuItem value={0} primaryText="EPA Toxic Inventory" />
+                <MenuItem value={1} primaryText="Grocery Stores (2013)" />
+                <MenuItem value={2} primaryText="Food Deserts (2013)" />
+                <MenuItem value={3} primaryText="None" />
+              </SelectField>
+
               <TextField
                 hintText="http://data.cityofchicago.gov/map.geojson"
                 onChange={ this.setGeojsonUrl.bind(this)}
+                floatingLabelText='Custom Url'
+                floatingLabelFixed={true}     
                 fullWidth
               />
             </CardText>
             <CardActions>
-              <FlatButton 
-                label='Geocode' 
-                onClick={this.geocode.bind(this)}
-                />
               <FlatButton 
                 label='Map My Address' 
                 onClick={this.mapMyAddress.bind(this)}
@@ -589,7 +637,7 @@ export class MyProfilePage extends React.Component {
             
 
             <GlassCard>
-              <CardTitle title="Home Address" subtitle='last updated: yyyy/mm/dd' style={{float: 'left'}} />
+              <CardTitle title="Home Address" style={{float: 'left'}} />
               <CardTitle subtitle={this.data.address.latlng} style={{position: 'relative', right: '0px', top: '0px', float: 'right'}}/>
               <CardText>
                 
@@ -663,7 +711,12 @@ export class MyProfilePage extends React.Component {
                   </Col>
                 </Row>
               </CardText>
-
+              <CardActions>
+                <FlatButton 
+                  label='Geocode' 
+                  onClick={this.geocode.bind(this)}
+                  />
+              </CardActions>
             </GlassCard>
             <DynamicSpacer />
 
@@ -675,9 +728,21 @@ export class MyProfilePage extends React.Component {
             { continuityOfCareCard }
 
 
-
-
+            <GlassCard>
+              <CardTitle title="Preferences" subtitle='Reset your password.' />
+              <CardText>
+                <Toggle 
+                  label="AutoPrivacy"
+                  labelPosition='right'
+                  onToggle={this.toggleAutoprivacy.bind(this)} 
+                  toggled={ this.data.toggles.autoPrivacyToggled }  
+                /><br />
+              </CardText>
+            </GlassCard>                    
             <DynamicSpacer />
+
+
+
             <GlassCard>
               <CardTitle title="Password Management" subtitle='Reset your password.' />
               <CardText>
@@ -855,6 +920,22 @@ export class MyProfilePage extends React.Component {
     }
   }
   mapMyAddress(){
+
+    switch (Session.get('geomappingDefault')) {
+      case 0: // EPA Toxic Inventory
+        Session.set('geojsonUrl', Meteor.absoluteUrl() + "packages/symptomatic_geomapping/geodata/illinois-epa-toxic-inventory-sites.geojson");
+        break;
+      case 1: // Grocers
+        Session.set('geojsonUrl', Meteor.absoluteUrl() + "packages/symptomatic_geomapping/geodata/Chicago.Grocers.geojson");
+        break;
+      case 2: // Food Deserts
+        Session.set('geojsonUrl', Meteor.absoluteUrl() + "packages/symptomatic_geomapping/geodata/Chicago.Grocers.geojson");
+        break;
+      default:
+        Session.set('geojsonUrl', '');
+        break;
+    }
+
     if(get(Meteor.user(), 'profile.locations.home.position.latitude') && get(Meteor.user(), 'profile.locations.home.position.longitude')){
       browserHistory.push('/maps');
     }        
@@ -868,6 +949,12 @@ export class MyProfilePage extends React.Component {
     let state = Session.get('myProfileState');
     state.confirm = value;
     Session.set('myProfileState', state);
+  }
+  exportData(){
+    browserHistory.push('/export-data');
+  }
+  importData(){
+    browserHistory.push('/import-data');
   }
   clearLocalCache(){
     if(confirm("Are you absolutely sure?")){

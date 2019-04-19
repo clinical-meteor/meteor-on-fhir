@@ -62,10 +62,10 @@ export class AppInfoPage extends React.Component {
       data.environment = process.env.NODE_ENV;
     }
     if(Meteor.userId()){
-      data.environment = Meteor.userId();
+      data.userId = Meteor.userId();
     }
     if(Meteor.absoluteUrl()){
-      data.environment = Meteor.absoluteUrl()
+      data.url = Meteor.absoluteUrl()
     }
 
 
@@ -76,10 +76,12 @@ export class AppInfoPage extends React.Component {
     return data;
   }
   render(){
+    let pageBackground = Glass.getContextImage();
+
     return(
-      <div id="aboutPage">
+      <div id="aboutPage" style={pageBackground} >
         <VerticalCanvas >
-          <GlassCard height='auto'>
+          <GlassCard height='auto' zDepth={3}  >
             <Row>
               <Col md={4}>
                 <CardText style={this.data.environmentData}>

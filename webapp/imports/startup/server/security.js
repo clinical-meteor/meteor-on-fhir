@@ -1,6 +1,10 @@
 import { Meteor } from 'meteor/meteor';
+import { Accounts } from 'meteor/accounts-base';
 import { DDPRateLimiter } from 'meteor/ddp-rate-limiter';
 import { _ } from 'meteor/underscore';
+
+
+Accounts.config({ forbidClientAccountCreation: false });
 
 // // Don't let people write arbitrary data to their 'profile' field from the client
 // Meteor.users.deny({
@@ -33,6 +37,14 @@ if(Package['clinical:hl7-resource-audit-event'] && (typeof AuditEvents === "obje
   });
 }
 
+if(Package['clinical:hl7-resource-bundle'] && (typeof Bundles === "object")){
+  Bundles.allow({
+    update() { return true; },
+    insert() { return true; },
+    remove() { return true; }
+  });
+}
+
 if(Package['clinical:hl7-resource-careplan']){
   if(typeof CarePlans === "object"){
     CarePlans.allow({
@@ -50,6 +62,13 @@ if(Package['clinical:hl7-resource-careplan']){
   }
 }
 
+if(Package['clinical:hl7-resource-communication'] && (typeof Communications === "object")){
+  Communications.allow({
+    update() { return true; },
+    insert() { return true; },
+    remove() { return true; }
+  });
+}
 if(Package['clinical:hl7-resource-condition'] && (typeof Conditions === "object")){
   Conditions.allow({
     update() { return true; },
@@ -57,6 +76,7 @@ if(Package['clinical:hl7-resource-condition'] && (typeof Conditions === "object"
     remove() { return true; }
   });
 }
+
 
 if(Package['clinical:hl7-resource-device'] && (typeof Devices === "object")){
   Devices.allow({
@@ -172,6 +192,22 @@ if(Package['clinical:hl7-resource-practitioner'] && (typeof Practitioners === "o
 
 if(Package['clinical:hl7-resource-procedure'] && (typeof Procedures === "object")){
   Procedures.allow({
+    update() { return true; },
+    insert() { return true; },
+    remove() { return true; }
+  });
+}
+
+if(Package['clinical:hl7-resource-questionnaire'] && (typeof Questionnaires === "object")){
+  Questionnaires.allow({
+    update() { return true; },
+    insert() { return true; },
+    remove() { return true; }
+  });
+}
+
+if(Package['clinical:hl7-resource-questionnaire-response'] && (typeof QuestionnaireResponses === "object")){
+  QuestionnaireResponses.allow({
     update() { return true; },
     insert() { return true; },
     remove() { return true; }

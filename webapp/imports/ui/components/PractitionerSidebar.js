@@ -36,33 +36,56 @@ export class PractitionerSidebar extends React.Component {
       <div id="practitionerSidebar">
         <List style={{paddingLeft: '20px', position: 'static'}}>
 
-          <LinkContainer to='/'>
+          {/* <LinkContainer to='/'>
             <MenuItem id="indexPageItem" className="indexItem" href='/' primaryText='Index' />
+          </LinkContainer> */}
+          <LinkContainer to='/healthcard'>
+             <MenuItem primaryText='HealthCard' href='/healthcard' />
           </LinkContainer>
+          <LinkContainer to='/bundles'>
+             <MenuItem primaryText='Bundles' href='/bundles' />
+          </LinkContainer>
+
 
           <hr />
-          <LinkContainer to='/provider-directory'>
-             <MenuItem primaryText='Provider Directory' href='/provider-directory' />
-          </LinkContainer>
 
+
+          <LinkContainer to='/service-requests'>
+             <MenuItem primaryText='Workqueue' href='/service-requests' />
+          </LinkContainer>
           <LinkContainer to='/careplan-designer'>
              <MenuItem primaryText='Careplan Designer' href='/careplan-designer' />
           </LinkContainer>          
+          <LinkContainer to='/biometrics-dashboard'>
+             <MenuItem primaryText='Biometrics Dashboard' href='/biometrics-dashboard' />
+          </LinkContainer>
+          <LinkContainer to='/claims'>
+             <MenuItem primaryText='Claims' href='/claims' />
+          </LinkContainer>
 
           <hr />
-          <LinkContainer to='/fhir-resources-index'>
-             <MenuItem id="fhirResourcePageItem" primaryText='FHIR Resources' href='/fhir-resources-index' />
-          </LinkContainer>
           <LinkContainer to='/data-management'>
              <MenuItem primaryText='Data Management' href='/theming' />
           </LinkContainer>
+
+          <LinkContainer to='/fhir-resources-index'>
+             <MenuItem id="fhirResourcePageItem" primaryText='FHIR Resources' href='/fhir-resources-index' />
+          </LinkContainer>
+          <LinkContainer to='/checklists'>
+             <MenuItem primaryText='Checklists' href='/checklists' />
+          </LinkContainer>
+
+          <hr />
+
           <LinkContainer to='/users'>
              <MenuItem primaryText='Users' href='/users' />
           </LinkContainer>
-          <hr />
+
           <LinkContainer to='/theming'>
              <MenuItem primaryText='Theming' href='/theming' />
           </LinkContainer>
+
+          <hr />
 
           <LinkContainer to='/signin'>
              <MenuItem className='logoutMenuItem' primaryText='Logout' href='/signin' onClick={this.handleLogout} />

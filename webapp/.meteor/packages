@@ -6,12 +6,12 @@
 
 ### Meteor Web Application
 meteor-base@1.4.0
-ecmascript@0.12.3
+ecmascript@0.12.4
 es5-shim@4.8.0
 check@1.3.1
 tracker@1.2.0
-session@1.2.0
-email
+session@1.2.0-rc181.1
+email@1.2.3
 
 ### Standard Utilities
 underscore@1.0.10
@@ -24,7 +24,7 @@ react-meteor-data@0.2.15
 less@2.8.0
 
 # Data Layer
-mongo@1.6.0
+mongo@1.6.2-rc181.1
 # aldeed:simple-schema
 aldeed:collection2@3.0.0
 dburles:collection-helpers
@@ -40,7 +40,7 @@ browser-policy@1.1.0
 # browser-policy-content@1.1.0
 # browser-policy-framing@1.1.0
 audit-argument-checks@1.0.7
-dynamic-import@0.5.0
+dynamic-import@0.5.1
 
 
 ### Internationalization
@@ -53,8 +53,8 @@ accounts-password@1.5.1
 accounts-ui@1.3.1
 clinical:oauth
 clinical:accounts-oauth
+clinical:accounts-housemd
 # clinical:accounts-famous-dead-people
-# clinical:accounts-housemd
 
 
 
@@ -66,7 +66,7 @@ chriswessels:hammer
 
 ### Production
 juliancwirko:postcss@1.0.0-beta.11
-standard-minifier-js@2.4.0
+standard-minifier-js@2.4.1-rc181.1
 ddp-rate-limiter@1.0.7
 
 
@@ -90,6 +90,7 @@ simple:json-routes
 simple:dev-error-overlay
 
 
+
 ### Clinical Meteor Framework
 clinical:fonts
 clinical:extended-api
@@ -101,14 +102,16 @@ clinical:glass-ui
 clinical:default-landing-page
 clinical:alert
 clinical:hipaa-audit-log@3.1.4
-clinical:desktop-publish
-
+#clinical:desktop-publish
+#clinical:autopublish
 
 ### Fast Healthcare Interoperability Resources
 clinical:hl7-resource-allergy-intolerance
 clinical:hl7-resource-audit-event
+clinical:hl7-resource-bundle
 clinical:hl7-resource-careplan
 clinical:hl7-resource-condition
+clinical:hl7-resource-claim
 clinical:hl7-resource-communication
 clinical:hl7-resource-consent
 # clinical:hl7-resource-contract
@@ -119,7 +122,7 @@ clinical:hl7-resource-diagnostic-report
 clinical:hl7-resource-endpoint
 clinical:hl7-resource-goal
 clinical:hl7-resource-immunization
-# clinical:hl7-resource-imaging-study
+clinical:hl7-resource-imaging-study
 clinical:hl7-resource-location
 clinical:hl7-resource-list
 clinical:hl7-resource-medication
@@ -133,35 +136,36 @@ clinical:hl7-resource-practitioner
 clinical:hl7-resource-procedure
 clinical:hl7-resource-procedure-request
 clinical:hl7-resource-provenance
-# clinical:hl7-resource-questionnaire
-# clinical:hl7-resource-questionnaire-response
+clinical:hl7-resource-questionnaire
+clinical:hl7-resource-questionnaire-response
 clinical:hl7-resource-risk-assessment
-# clinical:hl7-resource-sequence
 clinical:hl7-resource-subscription
+# clinical:hl7-resource-sequence
+
+### Packages with Publications
+biologio:curebot
 
 
 ### Infrastructure as a Service
-percolate:synced-cron
-
-
+littledata:synced-cron
 
 ### Blockchains
 # symptomatic:blockchain-core
 # fhirblocks:core
 
 ### Symptomatic Packages
-# symptomatic:theming
-# symptomatic:continuity-of-care
-# symptomatic:smart-on-fhir-client
-# symptomatic:smart-on-fhir-config
-# symptomatic:clinical-scenarios
-# symptomatic:landing-page
 
-# symptomatic:example-plugin
-# symptomatic:geomapping
-
-# symptomatic:card-readers
+symptomatic:clinical-scenarios
 # symptomatic:ihealth-cloud-api
 
+jparker:crypto-aes
 
+### Desktop  
+clinical:hl7-resource-service-request
+# symptomatic:card-readers
 
+symptomatic:continuity-of-care
+symptomatic:theming
+symptomatic:smart-on-fhir-client
+symptomatic:smart-on-fhir-config
+#symptomatic:geomapping

@@ -1,6 +1,11 @@
 // https://material.io/icons/
 // https://andy-pro.github.io/icon-viewer/
 
+// https://www.npmjs.com/package/react-absolute-grid  
+// http://jrowny.github.io/react-absolute-grid/demo/  
+
+
+
 import { Container, Col, Row } from 'react-bootstrap';
 
 import { CardTitle, Card, CardText, CardActions } from 'material-ui';
@@ -209,12 +214,26 @@ export class FhirResourcesIndex extends React.Component {
       icon: 'IoMdClipboard',
       subtitle: 'Audit Events'
     }, {
+      collection: "Bundles",
+      id: 'bundleTile',
+      active: true,
+      path: '/bundles',
+      icon: 'IoMdClipboard',
+      subtitle: 'Bundles'
+    }, {
       collection: "CarePlans",
       id: 'carePlansTile',
       active: true,
       path: '/care-plans',
       icon: 'IoMdClipboard',
       subtitle: 'Care Plan'
+    }, {
+      collection: "Claims",
+      id: 'claimsTile',
+      active: true,
+      path: '/claims',
+      icon: 'IoMdClipboard',
+      subtitle: 'Claims'
     }, {
       collection: "ClinicalImpressions",
       id: 'clinicalImpressionssTile',
@@ -264,6 +283,13 @@ export class FhirResourcesIndex extends React.Component {
       path: '/diagnostic-reports',
       icon: 'IoMdClipboard',
       subtitle: 'Diagnostic Reports'
+    },  {
+      collection: "Endpoints",
+      id: 'endpointsTile',
+      active: true,
+      path: '/endpoints',
+      icon: 'FaMobile',
+      subtitle: 'Endpoints'
     }, {
       collection: "Goals",
       id: 'goalsTile',
@@ -380,7 +406,7 @@ export class FhirResourcesIndex extends React.Component {
       collection: "QuestionnaireResponses",
       id: 'questionnaireResponsesTile',
       active: true,
-      path: '/questionnaire-responsess',
+      path: '/questionnaire-responses',
       icon: 'IoMdClipboard',
       subtitle: 'Questionnaire Responses'
     }, {
