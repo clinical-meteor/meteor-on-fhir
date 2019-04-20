@@ -10,7 +10,7 @@ ecmascript@0.12.4
 es5-shim@4.8.0
 check@1.3.1
 tracker@1.2.0
-session@1.2.0-rc181.1
+session@1.2.0
 email@1.2.3
 
 ### Standard Utilities
@@ -24,7 +24,7 @@ react-meteor-data@0.2.15
 less@2.8.0
 
 # Data Layer
-mongo@1.6.2-rc181.1
+mongo@1.6.2
 # aldeed:simple-schema
 aldeed:collection2@3.0.0
 dburles:collection-helpers
@@ -66,7 +66,7 @@ chriswessels:hammer
 
 ### Production
 juliancwirko:postcss@1.0.0-beta.11
-standard-minifier-js@2.4.1-rc181.1
+standard-minifier-js@2.4.1
 ddp-rate-limiter@1.0.7
 
 
