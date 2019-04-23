@@ -158,8 +158,6 @@ littledata:synced-cron
 symptomatic:clinical-scenarios
 # symptomatic:ihealth-cloud-api
 
-jparker:crypto-aes
-
 ### Desktop  
 clinical:hl7-resource-service-request
 # symptomatic:card-readers
