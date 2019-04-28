@@ -84,6 +84,11 @@ Meteor.startup(function(){
   }
 
 
+  if(Package['clinical:hipaa-logger']){
+    console.log('HIPAA Logger Infrastructure installed and ready to use.  Logging application startup.')
+    HipaaLogger.logEvent({eventType: "Startup", userId: "System", userName: "System Account"});    
+  }
+
 
   // Detect the operating system.
   // possible values are: 'darwin', 'freebsd', 'linux', 'sunos' or 'win32'
