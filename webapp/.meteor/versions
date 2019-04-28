@@ -82,6 +82,7 @@ ddp-rate-limiter@1.0.7
 ddp-server@2.2.0
 deps@1.0.12
 diff-sequence@1.1.1
+differential:event-hooks@1.5.0
 digilord:faker@1.0.7
 dynamic-import@0.5.1
 ecmascript@0.12.6

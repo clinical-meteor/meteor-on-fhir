@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import './routes.js';
+import './hooks.js';
 
 import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session';
@@ -14,7 +15,9 @@ Session.setDefault('accessToken', '');
 
 Meteor.startup(function (){
 
-
+  // Initialize the Event Hooks system
+  // Used with the AuditLog
+  Hooks.init();
 
   // Accounts.onLogin(function(){
   //   // console.log(user.user._id)
