@@ -200,6 +200,16 @@ export class PatientSidebar extends React.Component {
           </LinkContainer>
       </div>
 
+
+      var landingPageElements;
+      if(Package['symptomatic:landing-page']){
+        landingPageElements = <div>
+            <hr key='hr4' />
+            <LinkContainer key='welcomeTourItem' to='/welcome/patient-sidescroll'>
+              <MenuItem id="welcomeTourItem" primaryText='Getting Started' href='/welcome/patient-sidescroll' />
+            </LinkContainer>
+        </div>
+
       supportElements = <LinkContainer key='Support' to='/support'>
           <MenuItem primaryText='Help & Support' href='/support' />
       </LinkContainer>
@@ -216,6 +226,7 @@ export class PatientSidebar extends React.Component {
           { healthlog }         
             
           { continuityOfCareElements }
+          { landingPageElements }
 
           { fhirResources }
           
