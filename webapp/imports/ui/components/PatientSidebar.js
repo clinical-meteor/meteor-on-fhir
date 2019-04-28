@@ -199,6 +199,7 @@ export class PatientSidebar extends React.Component {
              <MenuItem id="observationGraphs" primaryText='Biomarker Trends' href='/observations-graph' />
           </LinkContainer>
       </div>
+    }
 
 
       var landingPageElements;
