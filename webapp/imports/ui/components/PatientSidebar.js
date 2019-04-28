@@ -202,22 +202,19 @@ export class PatientSidebar extends React.Component {
     }
 
 
-      var landingPageElements;
-      if(Package['symptomatic:landing-page']){
-        landingPageElements = <div>
-            <hr key='hr4' />
-            <LinkContainer key='welcomeTourItem' to='/welcome/patient-sidescroll'>
-              <MenuItem id="welcomeTourItem" primaryText='Getting Started' href='/welcome/patient-sidescroll' />
-            </LinkContainer>
-        </div>
-
-      supportElements = <LinkContainer key='Support' to='/support'>
-          <MenuItem primaryText='Help & Support' href='/support' />
-      </LinkContainer>
-
+    var landingPageElements;
+    if(Package['symptomatic:landing-page']){
+      landingPageElements = <div>
+          <hr key='hr4' />
+          <LinkContainer key='welcomeTourItem' to='/welcome/patient-sidescroll'>
+            <MenuItem id="welcomeTourItem" primaryText='Getting Started' href='/welcome/patient-sidescroll' />
+          </LinkContainer>
+      </div>
     }
 
-
+    supportElements = <LinkContainer key='Support' to='/support'>
+        <MenuItem primaryText='Help & Support' href='/support' />
+    </LinkContainer>
 
     return(
       <div id='patientSidebar'>
