@@ -282,3 +282,37 @@ Accounts.onLogin(function(loginObject) {
     }});
   }
 });
+
+
+Accounts.onLogout(function(user){
+
+  let logoutEvent = { 
+    "resourceType" : "AuditEvent",
+    "action" : 'Logout',
+    "recorded" : new Date(), 
+    "outcome" : 'Success',
+    "outcomeDesc" : 'User logged out and deauthenticated.',
+    "agent" : [{
+        "altId" : user._id, // Alternative User id e.g. authentication
+        "name" : get(user, 'profile.text'), // Human-meaningful name for the agent
+        "requestor" : true  
+    }],
+    "source" : { 
+      "site" : Meteor.absoluteUrl(),
+      "identifier": {
+        "value": 'Accounts Subsystem'
+      }
+    },
+    "entity": []
+  }
+
+  // console.log('logoutEvent', logoutEvent);    
+
+  HipaaLogger.logAuditEvent(logoutEvent, {validate: get(Meteor, 'settings.public.defaults.schemas.validate', false)}, function(error, result){
+    if(error) console.error('HipaaLogger.logEvent.error.invalidKeys', error.invalidKeys)
+    if(result) console.error(result)
+  }); 
+
+
+
+})

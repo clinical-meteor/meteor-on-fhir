@@ -66,18 +66,18 @@ export class PublicSidebar extends React.Component {
       }
     });
     if(publicElementSpacer){
-      publicElements.push(<hr />);
+      publicElements.push(<hr key={'hr-' + index} />);
     }
 
     var registrationLinks;
     var registrationLinksSpacer;
     if(get(Meteor, 'settings.public.home.showRegistration')){
       registrationLinks = <div>
-        <IndexLinkContainer to='/signin'>
+        <IndexLinkContainer to='/signin' key='signin'>
            <MenuItem primaryText='Sign In' href='/signin' />
         </IndexLinkContainer>
 
-        <IndexLinkContainer to='/signup'>
+        <IndexLinkContainer to='/signup' key='signup'>
            <MenuItem primaryText='Register' href='/signup' />
         </IndexLinkContainer>
       </div>
@@ -93,15 +93,15 @@ export class PublicSidebar extends React.Component {
 
         { publicElements }
 
-        <IndexLinkContainer to='/about'>
+        <IndexLinkContainer to='/about' key='about'>
            <MenuItem primaryText='About' href='/about' />
         </IndexLinkContainer>
 
-        <IndexLinkContainer to='/privacy'>
+        <IndexLinkContainer to='/privacy' key='privacy'>
            <MenuItem primaryText='Privacy Page' href='/privacy' />
         </IndexLinkContainer>
 
-        <IndexLinkContainer to='/terms-and-conditions'>
+        <IndexLinkContainer to='/terms-and-conditions' key='terms'>
            <MenuItem primaryText='Terms and Conditions' href='/terms-and-conditions' />
         </IndexLinkContainer>
 

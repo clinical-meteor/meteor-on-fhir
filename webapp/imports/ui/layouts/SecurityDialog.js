@@ -13,6 +13,9 @@ import Dialog from 'material-ui/Dialog';
 import { Container, Col, Row } from 'react-bootstrap';
 
 import { get, has } from 'lodash';
+import Interweave from 'interweave';
+
+
 
 Session.setDefault('securityDialogOpen', false);
 Session.setDefault('securityDialogResourceType', '');
@@ -175,48 +178,60 @@ export class SecurityDialog extends React.Component {
 
         <div style={dialogSectionStyle}>
           <h4>Narrative</h4>
-          {get(this, 'data.fields.narrative')}
+          <pre>
+            <Interweave
+              content={get(this, 'data.fields.narrative')}
+              // matchers={[new UrlMatcher('url'), new HashtagMatcher('hashtag')]}
+            />
+            <br />
+          </pre>
+          
         </div>
 
-        <div style={dialogSectionStyle}>
-          <h4>Version: </h4> 
-          {get(this, 'data.fields.versionId')}
-        </div>
+        <Row>
+          <Col md={6}>
+            <div style={dialogSectionStyle}>
+              <h4>Version: </h4> 
+              {get(this, 'data.fields.versionId')}
+            </div>
 
-        <div style={dialogSectionStyle}>
-          <h4>Last Updated</h4> 
-          {get(this, 'data.fields.lastUpdated')}
-        </div>
+            <div style={dialogSectionStyle}>
+              <h4>Last Updated</h4> 
+              {get(this, 'data.fields.lastUpdated')}
+            </div>
 
-        <div style={dialogSectionStyle}>
-          <h4>Source</h4> 
-          {get(this, 'data.fields.sourceUrl')}
-        </div>
+            <div style={dialogSectionStyle}>
+              <h4>Source</h4> 
+              {get(this, 'data.fields.sourceUrl')}
+            </div>
 
-        <div style={dialogSectionStyle}>
-          <h4>Source ID</h4> 
-          {get(this, 'data.fields.id')}
-        </div>
+            <div style={dialogSectionStyle}>
+              <h4>Source ID</h4> 
+              {get(this, 'data.fields.id')}
+            </div>            
+          </Col>
+          <Col md={6}>
+          <div style={dialogSectionStyle}>
+              <h4>Extentions</h4>
+              {extensionChips}
+            </div>
 
-        <div style={dialogSectionStyle}>
-          <h4>Extentions</h4>
-          {extensionChips}
-        </div>
+            <div style={dialogSectionStyle}>
+              <h4>Profile</h4>
+              {profileChips}
+            </div>
 
-        <div style={dialogSectionStyle}>
-          <h4>Profile</h4>
-          {profileChips}
-        </div>
+            <div style={dialogSectionStyle}>
+              <h4>Security Tags</h4>
+              {securityTagChips}
+            </div>
 
-        <div style={dialogSectionStyle}>
-          <h4>Security Tags</h4>
-          {securityTagChips}
-        </div>
-
-        <div style={dialogSectionStyle}>
-          <h4>Tags</h4>
-          {tagChips}
-        </div>
+            <div style={dialogSectionStyle}>
+              <h4>Tags</h4>
+              {tagChips}
+            </div>
+          </Col>
+        </Row>
 
     </CardText>
     }
