@@ -5,6 +5,7 @@ const { exec } = require('child_process');
 const clock = require('world-clock')()
 
 import moment from 'moment-timezone';
+import { get } from 'lodash';
 
 Meteor.startup(function(){
   console.log('Meteor application framework is starting.');
@@ -83,6 +84,39 @@ Meteor.startup(function(){
     // BrowserPolicy.content.allowObjectOrigin('open-ic-epic.com')
   }
 
+
+  if(Package['clinical:hipaa-logger']){
+    console.log('HIPAA Logger Infrastructure installed and ready to use.')
+
+    Meteor.call('initializeEventLog')
+
+    let startupEvent = {
+      "resourceType" : "AuditEvent",
+      "action" : "Startup", // Type of action performed during the event
+      "recorded" : new Date(), // R!  Time when the event occurred on source
+      "outcome" : "Success", // Whether the event succeeded or failed
+      "outcomeDesc" : "System Started", // Description of the event outcome
+      "agent" : [{ // R!  Actor involved in the event
+        "altId" : "System", // Alternative User id e.g. authentication
+        "name" : "System", // Human-meaningful name for the agent
+        "requestor" : false
+      }],
+      "source" : { // R!  Audit Event Reporter
+        "site" : Meteor.absoluteUrl(), // Logical source location within the enterprise
+      }
+    };
+
+    HipaaLogger.logEvent(startupEvent, {validate: get(Meteor, 'settings.public.defaults.schemas.validate', false)}, function(error, result){
+      if(error) console.error('HipaaLogger.logEvent.error.invalidKeys', error.invalidKeys)
+      if(result) console.error(result)
+    });      
+
+    // // refactor this to HipaaLogger
+    // if(get(Meteor, 'settings.public.modules.fhir.AuditEvents.enabled')){
+    //   console.log('AuditLog enabled.  Logging application startup.')
+    //   HipaaLogger.logEvent({eventType: "Startup", userId: "System", userName: "System Account"});    
+    // }
+  }
 
 
   // Detect the operating system.

@@ -233,6 +233,11 @@ export class MyProfilePage extends React.Component {
         data.patient.gender = get(Meteor.user(), 'profile.gender');
       }
 
+      if(get(Meteor.user(), 'profile.birthDate')) {
+        data.user.birthDate = get(Meteor.user(), 'profile.birthDate');
+        data.patient.birthDate = get(Meteor.user(), 'profile.birthDate');
+      }
+
 
 
       
@@ -626,6 +631,7 @@ export class MyProfilePage extends React.Component {
               // birthdate={this.data.user.birthdate}
               // gender={ get(this, 'data.user.gender', '') }
               // avatar={ get(this, 'data.user.avatar', '') }
+              overflowY="none"
               patient = { get(this, 'data.patient') }
               updateGivenName={ this.updateGivenName }
               updateFamilyName={ this.updateFamilyName }

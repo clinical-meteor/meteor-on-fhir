@@ -1,3 +1,18 @@
+html {
+  position: 'fixed';
+  height: '100%';
+  overflow: 'hidden';
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+
 .notificationMenu{
     min-width: 300px;
   }
@@ -19,3 +34,4 @@ div.filepicker{
 .reactImageVideoLightboxRow div div{
   top: '40px' !important;
 }
+
