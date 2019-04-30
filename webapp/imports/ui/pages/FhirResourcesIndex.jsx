@@ -435,8 +435,9 @@ export class FhirResourcesIndex extends React.Component {
       var count = 0;
       // parse through each FHIR module specified in the Settings file
       Object.keys(fhirResources).forEach(function(key){
-        // is it enabled?
-        if(fhirResources[key] === true){
+
+        // is it enabled?  does it have a sub-object?  is it truthy?
+        if(fhirResources[key]){
           // if so, see if there's a collection loaded up
           if(Mongo.Collection.get(key)){
               var selectedConfig = {
