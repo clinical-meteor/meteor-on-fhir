@@ -63,6 +63,7 @@ clinical:hl7-resource-procedure@1.5.19
 clinical:hl7-resource-provenance@1.1.18
 clinical:hl7-resource-questionnaire@1.4.6
 clinical:hl7-resource-questionnaire-response@1.4.4
+clinical:hl7-resource-risk-assessment@1.5.4
 clinical:hl7-resource-service-request@1.0.6
 clinical:keybindings@1.4.7
 clinical:oauth@1.2.30
@@ -166,8 +167,11 @@ srp@1.0.12
 standard-minifier-js@2.4.0
 symptomatic:clinical-scenarios@0.1.0
 symptomatic:continuity-of-care@0.1.18
+symptomatic:geomapping@0.0.6
+symptomatic:landing-page@0.1.12
 symptomatic:smart-on-fhir-client@0.1.58
 symptomatic:smart-on-fhir-config@0.1.52
+symptomatic:theming@0.0.5
 templating@1.2.15
 templating-compiler@1.2.15
 templating-runtime@1.2.15

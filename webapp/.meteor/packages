@@ -138,7 +138,7 @@ clinical:hl7-resource-procedure
 clinical:hl7-resource-provenance
 clinical:hl7-resource-questionnaire
 clinical:hl7-resource-questionnaire-response
-# clinical:hl7-resource-risk-assessment
+clinical:hl7-resource-risk-assessment
 # clinical:hl7-resource-subscription
 # clinical:hl7-resource-sequence
 
@@ -163,10 +163,10 @@ clinical:hl7-resource-service-request
 # symptomatic:card-readers
 
 symptomatic:continuity-of-care
-# symptomatic:geomapping
+symptomatic:geomapping
 
-# symptomatic:theming
+symptomatic:theming
 symptomatic:smart-on-fhir-client
 symptomatic:smart-on-fhir-config
 
-# symptomatic:landing-page
+symptomatic:landing-page
