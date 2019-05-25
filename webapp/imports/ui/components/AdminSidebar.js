@@ -8,12 +8,12 @@ import MenuItem from '/imports/ui/components/MenuItem';
 import { get, orderBy } from 'lodash';
 
 // Pick up any dynamic routes that are specified in packages, and include them
-var dynamicModules = [];
+var dynamicAdminModules = [];
 Object.keys(Package).forEach(function(packageName){
   if(Package[packageName].AdminSidebarElements){
     // we try to build up a route from what's specified in the package
     Package[packageName].AdminSidebarElements.forEach(function(element){
-      dynamicModules.push(element);      
+      dynamicAdminModules.push(element);      
     });    
   }
 });
@@ -76,9 +76,9 @@ export class AdminSidebar extends React.Component {
              <MenuItem primaryText='Practitioners' href='/practitioners' />
           </LinkContainer>
 
-          {/* <hr />
+          <hr />
 
-          { dynamicElements } */}
+          { dynamicAdminModules }
 
           <hr />
           <LinkContainer to='/fhir-resources-index'>
