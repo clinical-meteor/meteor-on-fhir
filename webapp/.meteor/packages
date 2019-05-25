@@ -116,12 +116,12 @@ clinical:hl7-resource-communication
 clinical:hl7-resource-consent
 # clinical:hl7-resource-contract
 # clinical:hl7-resource-clinical-impression
-# clinical:hl7-resource-device
-# clinical:hl7-resource-diagnostic-report
+clinical:hl7-resource-device
+clinical:hl7-resource-diagnostic-report
 # clinical:hl7-resource-document-reference
 clinical:hl7-resource-endpoint
 clinical:hl7-resource-goal
-# clinical:hl7-resource-immunization
+clinical:hl7-resource-immunization
 # clinical:hl7-resource-imaging-study
 # clinical:hl7-resource-location
 clinical:hl7-resource-list
