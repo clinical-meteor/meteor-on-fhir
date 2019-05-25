@@ -110,7 +110,7 @@ clinical:hipaa-audit-log@3.1.4
 # clinical:hl7-resource-audit-event
 # clinical:hl7-resource-bundle
 # clinical:hl7-resource-careplan
-# clinical:hl7-resource-condition
+clinical:hl7-resource-condition
 # clinical:hl7-resource-claim
 # clinical:hl7-resource-communication
 # clinical:hl7-resource-consent
