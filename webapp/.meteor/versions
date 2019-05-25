@@ -57,7 +57,7 @@ clinical:hl7-resource-organization@1.6.18
 clinical:hl7-resource-patient@3.4.32
 clinical:hl7-resource-person@1.2.7
 clinical:hl7-resource-practitioner@3.3.11
-clinical:hl7-resource-procedure@1.5.20
+clinical:hl7-resource-procedure@1.5.21
 clinical:hl7-resource-provenance@1.1.18
 clinical:hl7-resource-questionnaire@1.4.6
 clinical:hl7-resource-questionnaire-response@1.4.4
