@@ -101,7 +101,7 @@ clinical:hipaa-logger
 clinical:glass-ui
 clinical:default-landing-page
 clinical:alert
-clinical:hipaa-audit-log@3.1.4
+clinical:hipaa-audit-log
 #clinical:desktop-publish
 #clinical:autopublish
 
@@ -123,7 +123,11 @@ clinical:hl7-resource-endpoint
 clinical:hl7-resource-goal
 clinical:hl7-resource-immunization
 # clinical:hl7-resource-imaging-study
+<<<<<<< HEAD
 # clinical:hl7-resource-location
+=======
+clinical:hl7-resource-location
+>>>>>>> 9d08cce321275b77f13bd7f1308fa1485d05dd4d
 clinical:hl7-resource-list
 clinical:hl7-resource-medication
 clinical:hl7-resource-medication-order
@@ -135,7 +139,11 @@ clinical:hl7-resource-patient
 clinical:hl7-resource-practitioner
 clinical:hl7-resource-procedure
 # clinical:hl7-resource-procedure-request
+<<<<<<< HEAD
 # clinical:hl7-resource-provenance
+=======
+clinical:hl7-resource-provenance
+>>>>>>> 9d08cce321275b77f13bd7f1308fa1485d05dd4d
 clinical:hl7-resource-questionnaire
 clinical:hl7-resource-questionnaire-response
 clinical:hl7-resource-risk-assessment
@@ -170,4 +178,7 @@ symptomatic:smart-on-fhir-client
 symptomatic:smart-on-fhir-config
 
 symptomatic:landing-page
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9d08cce321275b77f13bd7f1308fa1485d05dd4d
