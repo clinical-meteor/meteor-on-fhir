@@ -169,5 +169,5 @@ clinical:hl7-resource-questionnaire-response
 # symptomatic:smart-on-fhir-client
 # symptomatic:smart-on-fhir-config
 
-symptomatic:landing-page
+# symptomatic:landing-page
 
