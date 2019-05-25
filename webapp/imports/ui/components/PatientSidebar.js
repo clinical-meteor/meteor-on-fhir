@@ -92,7 +92,7 @@ export class PatientSidebar extends React.Component {
         <MenuItem primaryText='Getting Started' href='/welcome/patient' />
       </LinkContainer>;
     }
-
+ 
 
     //----------------------------------------------------------------------
     // DataManagement

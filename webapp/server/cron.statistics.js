@@ -146,17 +146,18 @@ let DailyStats = {
   }
 };
 
-SyncedCron.add({
-  name: 'Cron Job: Crunch some important numbers for the marketing department',
-  schedule: function(parser) {
-    // return parser.text('at 12:00 am');
-    return parser.text('every 1 day');
-  },
-  job: function() {
-    DailyStats.generate();
-  }
-});
-
+if(Package["littledata:synced-cron"]){
+  SyncedCron.add({
+    name: 'Cron Job: Crunch some important numbers for the marketing department',
+    schedule: function(parser) {
+      // return parser.text('at 12:00 am');
+      return parser.text('every 1 day');
+    },
+    job: function() {
+      DailyStats.generate();
+    }
+  });  
+}
 
 Meteor.methods({
   generateDailyStat:function (type){
