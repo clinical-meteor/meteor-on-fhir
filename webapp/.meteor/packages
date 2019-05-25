@@ -107,13 +107,13 @@ clinical:hipaa-audit-log@3.1.4
 
 ### Fast Healthcare Interoperability Resources
 clinical:hl7-resource-allergy-intolerance
-clinical:hl7-resource-audit-event
-clinical:hl7-resource-bundle
-clinical:hl7-resource-careplan
+# clinical:hl7-resource-audit-event
+# clinical:hl7-resource-bundle
+# clinical:hl7-resource-careplan
 clinical:hl7-resource-condition
-clinical:hl7-resource-claim
-clinical:hl7-resource-communication
-clinical:hl7-resource-consent
+# clinical:hl7-resource-claim
+# clinical:hl7-resource-communication
+# clinical:hl7-resource-consent
 # clinical:hl7-resource-contract
 # clinical:hl7-resource-clinical-impression
 clinical:hl7-resource-device
@@ -147,7 +147,7 @@ clinical:hl7-resource-risk-assessment
 
 
 ### Infrastructure as a Service
-littledata:synced-cron
+# littledata:synced-cron
 
 ### Blockchains
 # symptomatic:blockchain-core
@@ -155,19 +155,19 @@ littledata:synced-cron
 
 ### Symptomatic Packages
 
-symptomatic:clinical-scenarios
+# symptomatic:clinical-scenarios
 # symptomatic:ihealth-cloud-api
 
 ### Desktop  
-clinical:hl7-resource-service-request
+# clinical:hl7-resource-service-request
 # symptomatic:card-readers
 
-symptomatic:continuity-of-care
-symptomatic:geomapping
+# symptomatic:continuity-of-care
+# symptomatic:geomapping
 
-symptomatic:theming
-symptomatic:smart-on-fhir-client
-symptomatic:smart-on-fhir-config
+# symptomatic:theming
+# symptomatic:smart-on-fhir-client
+# symptomatic:smart-on-fhir-config
 
-symptomatic:landing-page
+# symptomatic:landing-page
 
