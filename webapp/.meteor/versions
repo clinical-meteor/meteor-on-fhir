@@ -63,7 +63,6 @@ clinical:hl7-resource-procedure-request@1.0.9
 clinical:hl7-resource-provenance@1.1.18
 clinical:hl7-resource-questionnaire@1.4.6
 clinical:hl7-resource-questionnaire-response@1.4.4
-clinical:hl7-resource-service-request@1.0.13
 clinical:keybindings@1.4.7
 clinical:oauth@1.2.29
 clinical:user-model@1.6.5
