@@ -1,0 +1,27 @@
+
+.storyboard {
+    scroll-snap-type: mandatory; width: 100vw; height: 100vh; margin: 0; padding: 0;white-space: nowrap;
+    overflow-y: hidden;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    scroll-snap-destination: 0% 100%;
+    scroll-snap-points-x: repeat(100%);
+  }
+  
+.storycard {
+    scroll-snap-align: start;
+}
+
+.storyboardChevron{
+  opacity: .5;
+  font-size: '64px';
+  cursor: 'pointer';
+}
+
+.slide-visible{
+  opacity: 1;
+  font-size: '64px';
+  cursor: 'pointer';
+}
+

@@ -3,12 +3,12 @@
 
 App.info({
   id: 'io.symptomatic.phr',
-  name: 'Symptomatic',
-  description: 'HealthRecord Timeline Viewer',
+  name: 'Timeline',
+  description: 'Longitudinal Timeline built on FHIR and HealhKit',
   author: 'Abigail Watson',
   email: 'abigail@symptomatic.io',
   website: 'https://www.symptomatic.io',
-  version: '0.9.6'
+  version: '0.9.7'
 });
 
 App.icons({
@@ -86,6 +86,7 @@ App.accessRule('https://www.symptomatic.io', { type: 'navigation' } );
 App.accessRule('http://symptomatic.io', { type: 'navigation' } );
 App.accessRule('https://symptomatic.io', { type: 'navigation' } );
 App.accessRule('http://fhir-timeline.meteorapp.com', { type: 'navigation' } );
+App.accessRule('https://fhir-timeline.meteorapp.com', { type: 'navigation' } );
 
 App.setPreference("BackupWebStorage", "local");
 // // Pass preferences for a particular PhoneGap/Cordova plugin
