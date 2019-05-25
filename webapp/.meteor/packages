@@ -106,7 +106,7 @@ clinical:hipaa-audit-log@3.1.4
 #clinical:autopublish
 
 ### Fast Healthcare Interoperability Resources
-# clinical:hl7-resource-allergy-intolerance
+clinical:hl7-resource-allergy-intolerance
 # clinical:hl7-resource-audit-event
 # clinical:hl7-resource-bundle
 # clinical:hl7-resource-careplan
