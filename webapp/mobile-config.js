@@ -77,6 +77,7 @@ App.setPreference('HideKeyboardFormAccessoryBar', true);
 App.setPreference('Orientation', 'default');
 App.setPreference('Orientation', 'all', 'ios');
 App.setPreference('DisallowOverscroll', 'true');
+App.setPreference('iosPersistentFileLocation', 'Compatibility');
 
 // Set PhoneGap/Cordova access rules
 App.accessRule('http://localhost', { type: 'navigation' } );
@@ -172,4 +173,8 @@ App.appendToConfig('<allow-navigation href="https://www.ncbi.nlm.nih.gov/" />')
 
 App.appendToConfig(`<config-file parent="NSHealthClinicalHealthRecordsShareUsageDescription" target="*-Info.plist">
 <string>App needs read access</string>
+</config-file>`)
+
+App.appendToConfig(`<config-file parent="UIFileSharingEnabled" target="*-Info.plist">
+  <true/>
 </config-file>`)

@@ -1,7 +1,7 @@
 {
-    "basic": "v1.0-prerelease-3",
-    "complete": "v1.0-prerelease-3-299-g71db1575",
-    "branch": "montreal",
-    "commit": "71db157521a305c753e184f170fb8ef9fcbb4bec",
-    "timestamp": "2019-05-05"
+    "basic": "v0.9.5",
+    "complete": "v0.9.5-111-g388b226",
+    "branch": "app-store-cleanup",
+    "commit": "388b2268ac72c6d916224f22fb0fa93551c73fbf",
+    "timestamp": "2019-05-26"
 }

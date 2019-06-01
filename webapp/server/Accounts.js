@@ -313,6 +313,4 @@ Accounts.onLogout(function(user){
     if(result) console.error(result)
   }); 
 
-
-
-})
+}) 
