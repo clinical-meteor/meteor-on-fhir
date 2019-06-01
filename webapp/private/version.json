@@ -1,7 +1,7 @@
 {
     "basic": "v0.9.5",
-    "complete": "v0.9.5-111-g388b226",
+    "complete": "v0.9.5-113-g8ed0ac7",
     "branch": "app-store-cleanup",
-    "commit": "388b2268ac72c6d916224f22fb0fa93551c73fbf",
-    "timestamp": "2019-05-26"
+    "commit": "8ed0ac7e2efb5475ba93143478968bc52d280a41",
+    "timestamp": "2019-05-31"
 }
