@@ -117,6 +117,7 @@ livedata@1.0.18
 localstorage@1.2.0
 logging@1.1.20
 matb33:collection-hooks@0.7.15
+mdg:meteor-apm-agent@3.2.3
 mdg:validated-method@1.2.0
 mdg:validation-error@0.5.1
 meteor@1.9.3
@@ -135,6 +136,7 @@ mongo@1.6.2
 mongo-decimal@0.1.1
 mongo-dev-server@1.1.0
 mongo-id@1.0.7
+mongo-livedata@1.0.12
 mousetrap:mousetrap@1.4.6_1
 mrt:moment@2.8.1
 npm-bcrypt@0.9.3
