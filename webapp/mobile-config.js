@@ -3,12 +3,12 @@
 
 App.info({
   id: 'io.symptomatic.phr',
-  name: 'Timeline',
+  name: 'Timelines',
   description: 'Longitudinal Timeline built on FHIR and HealhKit',
   author: 'Abigail Watson',
   email: 'abigail@symptomatic.io',
   website: 'https://www.symptomatic.io',
-  version: '0.9.9'
+  version: '1.0.0'
 });
 
 App.icons({
