@@ -7,7 +7,7 @@ App.info({
   description: 'Longitudinal Timeline built on FHIR and HealhKit',
   author: 'Abigail Watson',
   email: 'abigail@symptomatic.io',
-  website: 'https://www.symptomatic.io',
+  website: 'https://timelines.symptomatic.io',
   version: '1.0.0'
 });
 
@@ -86,8 +86,10 @@ App.accessRule('http://www.symptomatic.io', { type: 'navigation' } );
 App.accessRule('https://www.symptomatic.io', { type: 'navigation' } );
 App.accessRule('http://symptomatic.io', { type: 'navigation' } );
 App.accessRule('https://symptomatic.io', { type: 'navigation' } );
-App.accessRule('http://fhir-timeline.meteorapp.com', { type: 'navigation' } );
-App.accessRule('https://fhir-timeline.meteorapp.com', { type: 'navigation' } );
+App.accessRule('https://timelines.symptomatic.io', { type: 'navigation' } );
+App.accessRule('http://timelines.symptomatic.io', { type: 'navigation' } );
+App.accessRule('https://timelines-on-fhir.meteorapp.com', { type: 'navigation' } );
+App.accessRule('http://timelines-on-fhir.meteorapp.com', { type: 'navigation' } );
 
 App.setPreference("BackupWebStorage", "local");
 // // Pass preferences for a particular PhoneGap/Cordova plugin
