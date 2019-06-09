@@ -50,7 +50,14 @@ Meteor.methods({
     // send an enrollment email
     console.log('Sending enrollment email....', Meteor.users.findOne(userId));
     // Accounts.sendEnrollmentEmail(userId);
-    Accounts.sendEnrollmentEmail(userId);
+    Accounts.sendEnrollmentEmail(userId, function(error, result){
+      if(error) {
+        console.log('sendEnrollmentEmail.error', error)
+      }
+      if(result) {
+        console.log('sendEnrollmentEmail.result', result)
+      }
+    });
   },
   async checkIfEmailExists(email){
     check(email, String);
@@ -58,7 +65,12 @@ Meteor.methods({
     if(email.length > 0){
       console.log('Lets try to find the user by email...')
       let result = await Accounts.findUserByEmail(email);
-      console.log('result', result)
+      if(result){
+        console.log('Found user: ', result);
+      } else {
+        console.log('No user found with that email.')
+      }
+      //console.log('result', result)
       return result;
     }
   }
@@ -68,14 +80,22 @@ Accounts.onCreateUser(function(options, user) {
   console.log('Creating a new User Account....');
   console.log(' ');
 
-  process.env.DEBUG && console.log('user', user);
+  console.log('user._id: ' + user._id);
   process.env.DEBUG && console.log('options', options);
   console.log(' ');
 
-  console.log('Sending enrollment email....');
   if(process.env.NODE_ENV === "production"){
+    console.log('Confirmed that we are in production.');
     if(typeof Accounts === "object"){
-      Accounts.sendEnrollmentEmail(user._id);      
+      console.log("Accounts object exists.  Sending enrollment email...")
+      Accounts.sendEnrollmentEmail(user._id, function(error, result){
+        if(error) {
+          console.log('sendEnrollmentEmail.error', error)
+        }
+        if(result) {
+          console.log('sendEnrollmentEmail.result', result)
+        }
+      });      
       console.log("Success?  We didn't error out while sending the enrollment email, so lets assume it worked.")
     } else {
       console.log("Accounts object doesn't exist.  Skipping.")

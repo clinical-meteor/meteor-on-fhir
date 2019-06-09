@@ -412,8 +412,11 @@ export class Signup extends React.Component {
           console.log("Accounts.createUser[result]", result);
           console.log("Accounts.createUser[Meteor.userId()]", Meteor.userId());
           console.log("Accounts.createUser[Roles.userIsInRole(Meteor.userId()]", Roles.userIsInRole(Meteor.userId()));
-        
-          // Meteor.call('sendEnrollmentEmail', Meteor.userId());
+
+          if(process.env.NODE_ENV === "production"){
+            console.log('Sending enrollment email...')
+            Meteor.call('sendEnrollmentEmail', Meteor.userId());
+          }
   
           // if this is a patient's first visit, we want to send them to a welcome screen
           // where they can fill out HIPAA
