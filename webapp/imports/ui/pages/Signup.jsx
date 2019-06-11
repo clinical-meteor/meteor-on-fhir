@@ -4,7 +4,7 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 
 import { CardText, CardTitle, TextField, RaisedButton } from 'material-ui';
 
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Alert } from 'react-bootstrap';
 
 import { browserHistory } from 'react-router';
 import { Accounts } from 'meteor/accounts-base';
@@ -72,8 +72,13 @@ export class Signup extends React.Component {
         familyName: '', 
         emailAddress: '', 
         password: ''
-      }
+      },
+      connected: false
     };
+
+    if(Meteor.status().status === "connected"){
+      data.connected = true;
+    }
 
     if (get(Meteor, 'settings.public.theme.darkroomTextEnabled')) {
       data.style.textColor.color = darkBaseTheme.palette.textColor;
@@ -148,7 +153,7 @@ export class Signup extends React.Component {
         data.errorText.password = '';
     }
 
-    console.log("Signup[data]", data);
+    // console.log("Signup[data]", data);
     return data;
   }
 
@@ -194,6 +199,12 @@ export class Signup extends React.Component {
     cardStyle.top = (Session.get('appHeight') * 0.1) + 'px'
     // }
 
+    let connectionAlert;
+    if(!this.data.connected){
+      connectionAlert = <Alert bsStyle="warning">
+        <strong>No connection to server.</strong> Please check your internet connection.
+      </Alert>;
+    }
 
     return (
       <div id='signupPage' style={this.data.style.pageBackground} >
@@ -312,6 +323,10 @@ export class Signup extends React.Component {
                       </form>
                       </CardText>
                     </GlassCard>
+                    <DynamicSpacer />
+                    <DynamicSpacer />
+                    <DynamicSpacer />
+                    { connectionAlert }
                   </Col>
                 </Row>
               </Col>
@@ -364,7 +379,7 @@ export class Signup extends React.Component {
   changeState(field, event, textValue){
     // if(process.env.NODE_ENV === "test") console.log("   ");
     //if(process.env.NODE_ENV === "test") console.log("Signup.changeState", field, textValue);
-    console.log("Signup.changeState", field, textValue);
+    // console.log("Signup.changeState", field, textValue);
     
     let formData = Object.assign({}, this.state.form);
 
@@ -413,10 +428,10 @@ export class Signup extends React.Component {
           console.log("Accounts.createUser[Meteor.userId()]", Meteor.userId());
           console.log("Accounts.createUser[Roles.userIsInRole(Meteor.userId()]", Roles.userIsInRole(Meteor.userId()));
 
-          if(process.env.NODE_ENV === "production"){
-            console.log('Sending enrollment email...')
-            Meteor.call('sendEnrollmentEmail', Meteor.userId());
-          }
+          // if(process.env.NODE_ENV === "production"){
+            console.log('Sending verification email...')
+            Meteor.call('sendVerificationEmail', Meteor.userId());
+          // }
   
           // if this is a patient's first visit, we want to send them to a welcome screen
           // where they can fill out HIPAA

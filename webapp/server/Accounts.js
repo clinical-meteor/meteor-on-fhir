@@ -1,38 +1,47 @@
 
 
-import { get } from 'lodash';
+import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
+
+import { get } from 'lodash';
 import validator from 'validator';
 
-// import { Meteor } from 'meteor/meteor';
+const process = require('process');
 
+Meteor.startup(function(){
+  console.log('process.env.MAIL_URL', process.env.MAIL_URL)
+})
 
-// Accounts.emailTemplates.siteName = 'Symptomatic';
-// Accounts.emailTemplates.from = 'Symptomatic <catherder@symptomatic.io>';
+Accounts.emailTemplates.siteName = 'Symptomatic';
 
-// Accounts.emailTemplates.enrollAccount.subject = (user) => {
-//     // return `Welcome to Symptomatic, ${user.profile.name}`;
-//     return `Welcome to Symptomatic`;
-// };
+Accounts.emailTemplates.verifyEmail.subject = (user) => {
+    // return `Welcome to Symptomatic, ${user.profile.name}`;
+    return `Welcome to Symptomatic`;
+};
 
-// Accounts.emailTemplates.enrollAccount.text = (user, url) => {
-//     return 'Thank you for deciding to sign up. To activate your account, simply click the link below:\n\n' + url;
-// };
+Accounts.emailTemplates.verifyEmail.text = (user, url) => {
+    return 'Thank you for deciding to sign up. To activate your account, simply click the link below:\n\n' + url;
+};
 
-// Accounts.emailTemplates.enrollAccount = {
-//   subject(user) {
-//     // return `Welcome to Symptomatic, ${user.profile.name}`;
-//     return `Welcome to Symptomatic`;
-//   },
-//   text(user, url) {
-//       return 'Thank you for deciding to sign up. To activate your account, simply click the link below:\n\n' + url;
-//       // return `Hey ${user}! Verify your e-mail by following this link: ${url}`;
-//   }
-// };
+Accounts.emailTemplates.verifyEmail = {
+  from(){
+    return 'Symptomatic <robotheart@symptomatic.io>';
+  },
+  subject(user) {
+    // return `Welcome to Symptomatic, ${user.profile.name}`;
+    return `Welcome to Symptomatic!`;
+  },
+  text(user, url) {    
+      console.log('Accounts.emailTemplates.verifyEmail.user', user)
+      // return 'Thank you signing up. To activate your account, simply click the link below:\n\n' + url;
+      return "Dear " + get(user, 'profile.name.given') + ", \nThank you signing up for Symptomatic.  We're excited to have you join our community and try this software.  To activate your account, simply click the link below:\n\n" + url;
+      // return get(user, 'profile.name[0.text') + ", \nVerify your e-mail by following this link: ${url}`;
+  }
+};
 
-// Accounts.urls.enrollAccount = function(token) {
-//   return Meteor.absoluteUrl("signin?token=" + token)
-// };
+Accounts.urls.verifyEmail = function(token) {
+  return Meteor.absoluteUrl("signin?token=" + token)
+};
 
 
 Meteor.methods({
@@ -48,7 +57,7 @@ Meteor.methods({
     check(userId, String);
     
     // send an enrollment email
-    console.log('Sending enrollment email....', Meteor.users.findOne(userId));
+    console.log('Sending enrollment email for user: ', userId);
     // Accounts.sendEnrollmentEmail(userId);
     Accounts.sendEnrollmentEmail(userId, function(error, result){
       if(error) {
@@ -77,34 +86,12 @@ Meteor.methods({
 })
 Accounts.onCreateUser(function(options, user) {
   console.log('------------------------------------------------');
-  console.log('Creating a new User Account....');
-  console.log(' ');
+  console.log('Creating a new User Account for user: ' +  get(user, '_id'));
 
-  console.log('user._id: ' + user._id);
+  console.log('user', user)
   process.env.DEBUG && console.log('options', options);
   console.log(' ');
 
-  if(process.env.NODE_ENV === "production"){
-    console.log('Confirmed that we are in production.');
-    if(typeof Accounts === "object"){
-      console.log("Accounts object exists.  Sending enrollment email...")
-      Accounts.sendEnrollmentEmail(user._id, function(error, result){
-        if(error) {
-          console.log('sendEnrollmentEmail.error', error)
-        }
-        if(result) {
-          console.log('sendEnrollmentEmail.result', result)
-        }
-      });      
-      console.log("Success?  We didn't error out while sending the enrollment email, so lets assume it worked.")
-    } else {
-      console.log("Accounts object doesn't exist.  Skipping.")
-    }  
-  } else {
-    console.log('Not in production.  Skipping.')
-  }
-
-    
   // We still want the default hook's 'profile' behavior.
   if (options.profile){
     process.env.DEBUG && console.log("options.profile exists");

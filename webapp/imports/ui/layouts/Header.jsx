@@ -9,9 +9,8 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { Glass } from 'meteor/clinical:glass-ui';
 
 // header
-import { FlatButton, IconButton, TextField } from 'material-ui';
+import { FlatButton, TextField } from 'material-ui';
 import { Meteor } from 'meteor/meteor';
-import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import { PublicNavigation } from '../components/PublicNavigation';
 import React  from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
@@ -22,6 +21,7 @@ import PropTypes from 'prop-types';
 
 import { get } from 'lodash';
 import { FaMars, FaVenus, FaMercury, FaTransgender  } from 'react-icons/fa';
+
 import { Patient } from 'meteor/clinical:hl7-resource-patient';
 
 Sidebar = {
