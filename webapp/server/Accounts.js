@@ -20,7 +20,7 @@ Accounts.emailTemplates.verifyEmail = {
   },
   siteName(){
     return 'Symptomatic'
-  }
+  },
   subject(user) {
     // return `Welcome to Symptomatic, ${user.profile.name}`;
     return `Welcome to Symptomatic!`;
