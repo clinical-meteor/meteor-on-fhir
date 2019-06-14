@@ -1003,14 +1003,16 @@ export class MyProfilePage extends React.Component {
   
         removeUserById.call({
           _id:  Meteor.userId()
-        }, (error) => {
+        }, (error, result) => {
           if (error) {
             Bert.alert(error.reason, 'danger');
-          } else {
+          } 
+          if(result) {
             Bert.alert('User removed!', 'success');
             browserHistory.push('/signin');
           }
         });
+
       // } else {
       //   console.log('Hmmm...  yeah, lets wait a bit and make sure we have the right user.');
       // }    

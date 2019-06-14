@@ -117,33 +117,37 @@ clinical:hl7-resource-audit-event
 clinical:hl7-resource-bundle
 clinical:hl7-resource-careplan
 clinical:hl7-resource-condition
-# clinical:hl7-resource-claim
-# clinical:hl7-resource-communication
-# clinical:hl7-resource-consent
-# clinical:hl7-resource-contract
-# clinical:hl7-resource-clinical-impression
-# clinical:hl7-resource-device
-# clinical:hl7-resource-diagnostic-report
-# clinical:hl7-resource-document-reference
+clinical:hl7-resource-claim
+clinical:hl7-resource-communication
+clinical:hl7-resource-consent
+clinical:hl7-resource-clinical-impression
+clinical:hl7-resource-device
+clinical:hl7-resource-diagnostic-report
 clinical:hl7-resource-goal
 clinical:hl7-resource-immunization
-# clinical:hl7-resource-imaging-study
-# clinical:hl7-resource-location
-# clinical:hl7-resource-list
-# clinical:hl7-resource-medication
-# clinical:hl7-resource-medication-order
-# clinical:hl7-resource-medication-statement
+clinical:hl7-resource-imaging-study
+clinical:hl7-resource-location
+clinical:hl7-resource-list
+clinical:hl7-resource-medication
+clinical:hl7-resource-medication-order
+clinical:hl7-resource-medication-statement
 clinical:hl7-resource-organization
 clinical:hl7-resource-person
 clinical:hl7-resource-practitioner
 clinical:hl7-resource-procedure
-# clinical:hl7-resource-procedure-request
-# clinical:hl7-resource-provenance
-# clinical:hl7-resource-questionnaire
-# clinical:hl7-resource-questionnaire-response
+clinical:hl7-resource-provenance
+clinical:hl7-resource-questionnaire
+clinical:hl7-resource-questionnaire-response
 clinical:hl7-resource-risk-assessment
+clinical:hl7-resource-service-request
 clinical:hl7-resource-subscription
 # clinical:hl7-resource-sequence
+
+
+### Maybe Broken
+# clinical:hl7-resource-contract
+# clinical:hl7-resource-document-reference
+
 
 ### Packages with Publications
 # biologio:curebot
@@ -162,16 +166,15 @@ clinical:hl7-resource-subscription
 # symptomatic:ihealth-cloud-api
 
 ### Desktop  
-# clinical:hl7-resource-service-request
 # symptomatic:card-readers
 
 symptomatic:continuity-of-care
-# symptomatic:geomapping
+symptomatic:geomapping
 
 # symptomatic:theming
 symptomatic:smart-on-fhir-client
 symptomatic:smart-on-fhir-config
 
-# symptomatic:landing-page
+symptomatic:landing-page
 
-# mdg:meteor-apm-agent
+mdg:meteor-apm-agent

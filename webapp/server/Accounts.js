@@ -10,6 +10,11 @@ const process = require('process');
 
 Meteor.startup(function(){
   console.log('process.env.MAIL_URL', process.env.MAIL_URL)
+  console.log('process.env.NODE_ENV', process.env.NODE_ENV)
+
+  // if(!process.env.MAIL_URL){
+
+  // }
 })
 
 
@@ -26,7 +31,7 @@ Accounts.emailTemplates.verifyEmail = {
     return `Welcome to Symptomatic!`;
   },
   text(user, url) {    
-      console.log('Accounts.emailTemplates.verifyEmail.user', user)
+      // console.log('Accounts.emailTemplates.verifyEmail.user', user)
       // return 'Thank you signing up. To activate your account, simply click the link below:\n\n' + url;
       return "Dear " + get(user, 'profile.name.given') + ", \nThank you signing up for Symptomatic.  We're excited to have you join our community and try this software.  To activate your account, simply click the link below:\n\n" + url;
       // return get(user, 'profile.name[0.text') + ", \nVerify your e-mail by following this link: ${url}`;
@@ -41,18 +46,19 @@ Accounts.urls.verifyEmail = function(token) {
 Meteor.methods({
   sendVerificationEmail(userId){
     check(userId, String);
+    console.log('Received request to send verification email to: ' + userId);
+    console.log('process.env.NODE_ENV' + process.env.NODE_ENV);
 
-    if(!process.env.NODE_ENV === "test"){
+    if(process.env.NODE_ENV !== "test"){
       // send an enrollment email
-      console.log('Sending verfication email....', Meteor.users.findOne(userId));
-      // Accounts.sendEnrollmentEmail(userId);
       Accounts.sendVerificationEmail(userId);
     }
   },
   sendEnrollmentEmail(userId){
     check(userId, String);
+    console.log('Received request to send enrollment email.');
     
-    if(!process.env.NODE_ENV === "test"){
+    if(process.env.NODE_ENV !== "test"){
       // send an enrollment email
       console.log('Sending enrollment email for user: ', userId);
       // Accounts.sendEnrollmentEmail(userId);
