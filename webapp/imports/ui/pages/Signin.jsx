@@ -27,7 +27,7 @@ export class Signin extends React.Component {
     if(get(this, 'props.location.query.token')){
       Accounts.verifyEmail(get(this, 'props.location.query.token'), function(error) {
         console.log('Accounts.verifyEmail')
-        browserHistory.push('/continuity-of-care');
+        browserHistory.push('/welcome/patient');
       });  
     }
   }

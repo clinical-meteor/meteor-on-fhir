@@ -108,6 +108,7 @@ export class MyProfilePage extends React.Component {
         given: '',
         familiy: '',
         email: '',
+        verifiedEmail: false,
         avatar: '',
         zip: '',
         longitude: '',
@@ -186,6 +187,7 @@ export class MyProfilePage extends React.Component {
       data.user = {
         _id: Meteor.userId(),
         email: get(Meteor.user(), 'emails[0].address'),
+        verifiedEmail: get(Meteor.user(), 'emails[0].verified'),
         avatar: get(Meteor.user(), 'profile.avatar'),
         gender: '',
         birthdate: '',
@@ -619,6 +621,13 @@ export class MyProfilePage extends React.Component {
       </div>
     }    
 
+    let verifiedEmailStyle = {
+      color: "darkgray"
+    }
+    if(this.data.user.verifiedEmail){
+      verifiedEmailStyle.color = "green"
+    }
+
     return(
       <div id='myProfilePage'>
         <FullPageCanvas style={{paddingBottom: '80px'}}> 
@@ -726,7 +735,28 @@ export class MyProfilePage extends React.Component {
             </GlassCard>
             <DynamicSpacer />
 
-
+            <GlassCard>
+              <CardTitle title="Contact Info" style={{float: 'left'}} />
+              <CardText>
+                
+                <Row>
+                  <Col md={12}>
+                    <TextField
+                      id='primaryAddressInput'
+                      ref='primaryAddress'
+                      name='primaryAddress'
+                      type='text'
+                      floatingLabelText='Primary Address'
+                      floatingLabelFixed={true}                    
+                      value={this.data.user.email}
+                      inputStyle={verifiedEmailStyle}
+                      fullWidth
+                      />
+                  </Col>
+                </Row>                
+              </CardText>
+            </GlassCard>
+            <DynamicSpacer />
 
             { geocodingCard }
 
