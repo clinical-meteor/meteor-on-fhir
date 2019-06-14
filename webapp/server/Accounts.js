@@ -12,20 +12,14 @@ Meteor.startup(function(){
   console.log('process.env.MAIL_URL', process.env.MAIL_URL)
 })
 
-Accounts.emailTemplates.siteName = 'Symptomatic';
 
-Accounts.emailTemplates.verifyEmail.subject = (user) => {
-    // return `Welcome to Symptomatic, ${user.profile.name}`;
-    return `Welcome to Symptomatic`;
-};
-
-Accounts.emailTemplates.verifyEmail.text = (user, url) => {
-    return 'Thank you for deciding to sign up. To activate your account, simply click the link below:\n\n' + url;
-};
 
 Accounts.emailTemplates.verifyEmail = {
   from(){
     return 'Symptomatic <robotheart@symptomatic.io>';
+  },
+  siteName(){
+    return 'Symptomatic'
   },
   subject(user) {
     // return `Welcome to Symptomatic, ${user.profile.name}`;
@@ -48,25 +42,22 @@ Meteor.methods({
   sendVerificationEmail(userId){
     check(userId, String);
 
-    // send an enrollment email
-    console.log('Sending verfication email....', Meteor.users.findOne(userId));
-    // Accounts.sendEnrollmentEmail(userId);
-    Accounts.sendVerificationEmail(userId);
+    if(!process.env.NODE_ENV === "test"){
+      // send an enrollment email
+      console.log('Sending verfication email....', Meteor.users.findOne(userId));
+      // Accounts.sendEnrollmentEmail(userId);
+      Accounts.sendVerificationEmail(userId);
+    }
   },
   sendEnrollmentEmail(userId){
     check(userId, String);
     
-    // send an enrollment email
-    console.log('Sending enrollment email for user: ', userId);
-    // Accounts.sendEnrollmentEmail(userId);
-    Accounts.sendEnrollmentEmail(userId, function(error, result){
-      if(error) {
-        console.log('sendEnrollmentEmail.error', error)
-      }
-      if(result) {
-        console.log('sendEnrollmentEmail.result', result)
-      }
-    });
+    if(!process.env.NODE_ENV === "test"){
+      // send an enrollment email
+      console.log('Sending enrollment email for user: ', userId);
+      // Accounts.sendEnrollmentEmail(userId);
+      Accounts.sendEnrollmentEmail(userId);
+    }
   },
   async checkIfEmailExists(email){
     check(email, String);
