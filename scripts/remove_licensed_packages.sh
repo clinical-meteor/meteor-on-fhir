@@ -201,6 +201,7 @@ if [ $z2 -gt 0 ];
     fi; 
 
 
+
 if [ "$needToRemovePackages" = true ] ; then 
         echo "Try using the following command:"
         echo $recommendedCommand
