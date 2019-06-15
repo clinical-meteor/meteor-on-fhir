@@ -13,7 +13,7 @@
   ],
   "output_folder": "./tests/nightwatch/reports",
   "page_objects_path": "./tests/nightwatch/pages",
-  "globals_path": "./tests/nightwatch/globals.json",
+  "globals_path": "../tests/nightwatch/globals.json",
   "selenium": {
     "start_process": true,
     "server_path": "./node_modules/selenium-standalone-jar/bin/selenium-server-standalone-3.0.1.jar",
