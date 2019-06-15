@@ -80,7 +80,22 @@ jobs:
     #     - v1-dep-development-
     #     # Any branch if there are none on the default branch - this should be unnecessary if you have your default branch configured correctly
     #     - v1-dep-
-        
+
+
+    # CACHING
+    # - restore_cache:
+    #     keys:
+    #         # Find a cache corresponding to this specific package-lock.json checksum
+    #         # Find the most recently generated cache used from any branch
+    #         - v1-npm-deps-
+
+    # - save_cache:
+    #       key: my-cache
+    #       paths:
+    #         - my-file.txt
+    #         - my-project/my-dependencies-directory
+
+
     # Machine Setup
     # If you break your build into multiple jobs with workflows, you will probably want to do the parts of this that are relevant in each
     # The following `checkout` command checks out your code to your working directory. In 1.0 we did this implicitly. In 2.0 you can choose where in the course of a job your code should be checked out.
@@ -128,7 +143,11 @@ jobs:
     # make sure we have the latest Chrome
     - run:
         name: Update Chromedriver
-        command: sudo apt-get update && sudo apt-get install google-chrome-stable
+        command: |
+            wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+            sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+            sudo apt-get update
+            sudo apt-get -y install google-chrome-stable
 
     # - run: if [ meteor list | grep 'symptomatic:theming' | wc -l $eq 1 ]; then meteor remove symptomatic:theming ; else echo "Meteor seems to be cached"; fi;
 
