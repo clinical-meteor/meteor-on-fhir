@@ -43,7 +43,7 @@ echo "Trying to add core packages needed for circle ci build."
 
 
 
-recommendedCommand="meteor add";
+recommendedCommand="meteor add --allow-incompatible-update";
 needToAddPackages=false;
 
 # remove service-request first?
