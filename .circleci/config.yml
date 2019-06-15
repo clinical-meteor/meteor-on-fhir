@@ -132,7 +132,7 @@ jobs:
 
     # - run: if [ meteor list | grep 'symptomatic:theming' | wc -l $eq 1 ]; then meteor remove symptomatic:theming ; else echo "Meteor seems to be cached"; fi;
 
-    #- run the app
+    # run the app
     - run: 
         name: Starting Meteor
         command: cd webapp && meteor run --settings configs/settings.circle.json | tee meteor-output.log
