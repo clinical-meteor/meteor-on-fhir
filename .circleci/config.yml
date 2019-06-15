@@ -51,7 +51,7 @@ jobs:
         CIRCLE_ENV: test
         NODE_ENV: test
         NIGHTWATCH: true
-        DEBUG: true
+        DEBUG: false
         CXX: g++-4.8
         DISPLAY: :99.0
         NPM_PREFIX: /home/ubuntu/nvm/v0.10.33
@@ -120,7 +120,6 @@ jobs:
     #- make sure we have our tests
     - run: cd webapp/tests && ls -la
     - run: cd webapp && git clone https://github.com/awatson1978/meteor-on-fhir-validation tests/nightwatch
-
 
     # If Meteor is already cached, do not need to build it again.
     - run: cd webapp && meteor npm run-script remove_licensed_packages 
