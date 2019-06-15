@@ -126,7 +126,7 @@ jobs:
     - run: cd webapp && meteor npm run-script add_baseline_packages
 
     # make sure we have the latest Chrome
-    -run:
+    - run:
         name: Update Chromedriver
         command: sudo apt-get update && sudo apt-get install google-chrome-stable
 
