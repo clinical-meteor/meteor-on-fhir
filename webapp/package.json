@@ -55,6 +55,7 @@
     "jquery": "^3.4.0",
     "jquery-validation": "^1.17.0",
     "lodash": "^4.17.11",
+    "material-fhir-ui": "0.5.10",
     "material-ui": "0.20.1",
     "meteor-azure": "^2.1.0-rc.7",
     "meteor-node-stubs": "^0.4.1",
@@ -90,7 +91,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^6.1.2",
-    "chromedriver": "2.35.0",
+    "chromedriver": "^75.0.0",
     "eslint": "^3.5.0",
     "eslint-config-airbnb": "^11.1.0",
     "eslint-import-resolver-meteor": "^0.3.3",
@@ -98,10 +99,7 @@
     "eslint-plugin-jsx-a11y": "^2.2.2",
     "eslint-plugin-meteor": "^4.0.0",
     "eslint-plugin-react": "^6.2.2",
-    "nightwatch": "1.0.18",
-    "selenium-standalone-jar": "3.0.1",
-    "selenium-server-standalone-jar": "3.5.0",
-    "selenium-server-standalone": "2.53.1",
+    "nightwatch": "1.1.12",
     "shelljs": "^0.7.4"
   },
   "eslintConfig": {

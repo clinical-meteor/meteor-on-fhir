@@ -99,11 +99,11 @@ clinical:user-model
 clinical:keybindings
 clinical:hipaa-logger
 clinical:glass-ui
-# clinical:default-landing-page
 clinical:alert
 clinical:hipaa-audit-log
-#clinical:desktop-publish
-#clinical:autopublish
+# clinical:default-landing-page
+# clinical:desktop-publish
+# clinical:autopublish
 
 ### Fast Healthcare Interoperability Resources (Core)
 clinical:hl7-resource-endpoint

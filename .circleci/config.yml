@@ -110,7 +110,7 @@ jobs:
 
     # Install the actual app...
     - run: cd webapp && meteor npm install 
-    - run: cd webapp && meteor npm install nightwatch@0.9.19 chromedriver@2.35.0 selenium-standalone-jar@3.0.1
+    - run: cd webapp && meteor npm install nightwatch@1.1.12 chromedriver@75.0.0 
 
     #- before/after
     - run: cd webapp && cat .meteor/packages

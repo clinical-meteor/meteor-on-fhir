@@ -633,13 +633,6 @@ export class MyProfilePage extends React.Component {
         <FullPageCanvas style={{paddingBottom: '80px'}}> 
           <Col md={6}>
             <PatientCard
-              // fullName={ get(this, 'data.user.fullName', '') }
-              // email={ get(this, 'data.user.email', '') }
-              // givenName={ get(this, 'data.user.givenName', '') }
-              // familyName={ get(this, 'data.user.familyName', '') }
-              // birthdate={this.data.user.birthdate}
-              // gender={ get(this, 'data.user.gender', '') }
-              // avatar={ get(this, 'data.user.avatar', '') }
               overflowY="none"
               patient = { get(this, 'data.patient') }
               updateGivenName={ this.updateGivenName }
@@ -660,7 +653,6 @@ export class MyProfilePage extends React.Component {
                   <Col md={12}>
                     <TextField
                       id='streetAddressInput'
-                      ref='streetAddress'
                       name='streetAddress'
                       type='text'
                       floatingLabelText='Street Address'
@@ -675,7 +667,6 @@ export class MyProfilePage extends React.Component {
                   <Col md={3}>
                     <TextField
                       id='cityInput'
-                      ref='city'
                       name='city'
                       type='text'
                       floatingLabelText='City'
@@ -688,7 +679,6 @@ export class MyProfilePage extends React.Component {
                   <Col md={3}>
                     <TextField
                       id='stateInput'
-                      ref='state'
                       name='state'
                       type='text'
                       floatingLabelText='State'
@@ -701,7 +691,6 @@ export class MyProfilePage extends React.Component {
                   <Col md={3}>
                     <TextField
                       id='postalCodeInput'
-                      ref='postalCode'
                       name='postalCode'
                       type='text'
                       floatingLabelText='Postal Code'
@@ -714,7 +703,6 @@ export class MyProfilePage extends React.Component {
                   <Col md={3}>
                     <TextField
                       id='countryInput'
-                      ref='country'
                       name='country'
                       type='text'
                       floatingLabelText='Country'
@@ -743,7 +731,6 @@ export class MyProfilePage extends React.Component {
                   <Col md={12}>
                     <TextField
                       id='primaryAddressInput'
-                      ref='primaryAddress'
                       name='primaryAddress'
                       type='text'
                       floatingLabelText='Primary Address'
@@ -785,7 +772,6 @@ export class MyProfilePage extends React.Component {
                 <div id='profilePasswordPane' style={{position: 'relative'}} >
                   <TextField
                     id='oldPasswordInput'
-                    ref='oldPassword'
                     name='oldPassword'
                     type='text'
                     floatingLabelText='oldPassword'
@@ -798,7 +784,6 @@ export class MyProfilePage extends React.Component {
                     <Col md={6}>
                       <TextField
                         id='newPasswordInput'
-                        ref='newPassword'
                         name='newPassword'
                         type='text'
                         floatingLabelText='newPassword'
@@ -811,7 +796,6 @@ export class MyProfilePage extends React.Component {
                     <Col md={6}>
                       <TextField
                         id='confirmPasswordInput'
-                        ref='confirmPassword'
                         name='confirmPassword'
                         type='text'
                         floatingLabelText='confirmPassword'
@@ -839,7 +823,7 @@ export class MyProfilePage extends React.Component {
             <GlassCard>
               <CardTitle title="Delete User" subtitle='Permanently remove account and data.' />
               <CardText>
-                <div id="profileSystemPane" style={{position: "relative"}}>
+                <div id="profileSystemPanel" style={{position: "relative"}}>
                   { this.renderConfirmDelete(this.data.state.wantsToDelete) }
                 </div>
               </CardText>
@@ -855,13 +839,13 @@ export class MyProfilePage extends React.Component {
       </div>
     );
   }
-  imgError() {
-    this.refs.avatarImage.src = Meteor.absoluteUrl() + 'noAvatar.png';
-  }
+  // imgError() {
+  //   this.refs.avatarImage.src = Meteor.absoluteUrl() + 'noAvatar.png';
+  // }
   renderConfirmDelete(wantsToDelete){
     return(
       <div>
-        <FlatButton id='deleteUserButton' className="muidocs-icon-action-delete" label='Delete User' onClick={this.confirmDelete.bind(this) } />
+        <FlatButton id='deleteUserButton' name='deleteUserButton' label='Delete User' onClick={this.confirmDelete.bind(this) } style={{zIndex: 10000}} />
       </div>
     );
   }
