@@ -39,7 +39,7 @@ jobs:
     # of each job. For more information on choosing an image (or alternatively using a
     # VM instead of a container) see https://circleci.com/docs/2.0/executor-types/
     # To see the list of pre-built images that CircleCI provides for most common languages see
-    # https://circleci.com/docs/2.0/circleci-images/
+    # https://circleci.com/docs/2.0/circleci-images/ 
     docker:
     - image: circleci/node:9.9-browsers
       command: /sbin/init
