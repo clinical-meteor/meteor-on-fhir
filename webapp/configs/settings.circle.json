@@ -3,10 +3,16 @@
     "title": "Meteor on FHIR",      
     "baseUrl":"",
     "logging": "none",
+    "administrative": {
+      "email": "support@symptomatic.io"
+    },
+    "credentials": {},
     "theme": {
       "showVideoBackground": false,
       "darkroomTextEnabled": false,
-      "backgroundImagePath": "/backgrounds/Gradient.png"     
+      "backgroundImagePath": "/backgrounds/Gradient.png",
+      "glassColor": "rgba(128, 192, 224, 0.12)",
+      "boxShadows": "cloudy"
     },
     "home": {
       "showUnderConstruction": false,
@@ -16,7 +22,8 @@
       "showRegistration": true
     },
     "defaults": {
-      "route": "/",
+      "route": "/landing-page",
+      "landingPage": "/landing-page",
       "requireAuthorization": true,
       "avatars": true,
       "barcodes": true,
@@ -40,10 +47,26 @@
         "displayAccessCode": true,
         "signInWith": false
       },
+      "routes": {
+        "homePage": "/",
+        "landingPage": "/",
+        "patientWelcomePage": "/welcome/patient-sidescroll",
+        "patientHomePage": "/",
+        "patientDashboard": "/",
+        "practitionerWelcomePage": "/welcome/practitioner",
+        "practitionerHomePage": "/service-requests",
+        "practitionerDashboard": "/",
+        "adminWelcomePage": "/welcome/sysadmin",
+        "adminHomePage": "/",
+        "adminDashboard": "/"
+      },
       "schemas": {
         "validate": false,
         "filter": false,
         "removeEmptyStrings": false
+      },
+      "header":{
+        "menuIcon": "/packages/symptomatic_continuity-of-care/assets/SymptomaticLogo-48.png"
       },
       "sidebar": {
         "menuItems": {

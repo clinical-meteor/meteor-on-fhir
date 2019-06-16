@@ -101,7 +101,7 @@ clinical:hipaa-logger
 clinical:glass-ui
 clinical:alert
 clinical:hipaa-audit-log
-# clinical:default-landing-page
+clinical:default-landing-page
 # clinical:desktop-publish
 # clinical:autopublish
 
@@ -175,6 +175,6 @@ symptomatic:geomapping
 symptomatic:smart-on-fhir-client
 symptomatic:smart-on-fhir-config
 
-symptomatic:landing-page
+# symptomatic:landing-page
 
 mdg:meteor-apm-agent
