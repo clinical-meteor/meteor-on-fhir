@@ -48,8 +48,8 @@
         "signInWith": false
       },
       "routes": {
-        "homePage": "/",
-        "landingPage": "/",
+        "homePage": "/landing-page",
+        "landingPage": "/landing-page",
         "patientWelcomePage": "/welcome/patient-sidescroll",
         "patientHomePage": "/",
         "patientDashboard": "/",
@@ -64,9 +64,6 @@
         "validate": false,
         "filter": false,
         "removeEmptyStrings": false
-      },
-      "header":{
-        "menuIcon": "/packages/symptomatic_continuity-of-care/assets/SymptomaticLogo-48.png"
       },
       "sidebar": {
         "menuItems": {
