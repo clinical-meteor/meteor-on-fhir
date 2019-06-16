@@ -43,6 +43,7 @@ Meteor.methods({
           if ((user.emails[0].address === 'alice@test.org')
           || (user.emails[0].address === 'janedoe@test.org')
           || (user.emails[0].address === 'sysadmin@test.org')
+          || (user.emails[0].address === 'house@symptomatic.io')
           || (user.emails[0].address === 'house@test.org')){
             Meteor.users.remove({_id: user._id});
             count++;
@@ -53,7 +54,7 @@ Meteor.methods({
       console.log(Meteor.users.find().count() + " users.");
 
     } else {
-      console.log('Not in test mode.  Try using NODE_ENV=test');
+      console.log('Not in test mode.  Try using NIGHTWATCH=true');
     }
   },
   updateUserProfile: function(userId, profileData){
