@@ -17,6 +17,9 @@
   "webdriver" : {
     "start_process": true,
     "server_path": "node_modules/.bin/chromedriver",
+    "cli_args": [
+      "--verbose"
+    ],
     "port": 9515
   },
   "test_settings": {
@@ -40,13 +43,15 @@
         "javascriptEnabled": true,
         "acceptSslCerts": true,
         "loggingPrefs": {
-          "browser": "ALL"
-        },
+          "driver": "INFO", 
+          "server": "OFF", 
+          "browser": "INFO"},
         "chromeOptions" : {
           "prefs" : {
             "credentials_enable_service" : false,
             "profile.password_manager_enabled" : false
-          }
+          },
+          "args" : ["--no-sandbox"]
         }
       },
       "exclude": "./tests/nightwatch/unittests/*",
