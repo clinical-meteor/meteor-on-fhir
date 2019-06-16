@@ -50,7 +50,7 @@
       "routes": {
         "homePage": "/landing-page",
         "landingPage": "/landing-page",
-        "patientWelcomePage": "/welcome/patient-sidescroll",
+        "patientWelcomePage": "/welcome/patient",
         "patientHomePage": "/",
         "patientDashboard": "/",
         "practitionerWelcomePage": "/welcome/practitioner",
@@ -71,7 +71,7 @@
           "Healthlog": false,
           "GettingStarted": false,
           "DataManagement": false,
-          "FhirResources": false
+          "FhirResources": true
         },
         "hidden": [
           "/allergies",
