@@ -21,8 +21,8 @@ import { get, set } from 'lodash';
 import validator from 'validator';
 
 
-if(process.env.NODE_ENV === "test") console.log("Signup[lightBaseTheme]", lightBaseTheme);
-if(process.env.NODE_ENV === "test") console.log("Signup[darkBaseTheme]", darkBaseTheme);
+// if(process.env.NODE_ENV === "test") console.log("Signup[lightBaseTheme]", lightBaseTheme);
+// if(process.env.NODE_ENV === "test") console.log("Signup[darkBaseTheme]", darkBaseTheme);
 
 export class Signup extends React.Component {
     constructor(props) {
@@ -348,20 +348,20 @@ export class Signup extends React.Component {
       case "emailAddress":
         set(formData, 'emailAddress', textValue);
         if(validator.isEmail(textValue)){
-          console.log(textValue + " appears to be an email.  Let's see if it's registered.")
+          //console.log(textValue + " appears to be an email.  Let's see if it's registered.")
           Session.set('signUpErrorMessage', 'This email appears to be available!')
 
           Meteor.call('checkIfEmailExists', textValue, function(error, result){
             if(result){
-              console.log('checkIfEmailExists', result);
+              //console.log('checkIfEmailExists', result);
               Session.set('signUpErrorMessage', "Email is already registered.")
             }
             if(error){              
-              console.log('checkIfEmailExists', error);
+              //onsole.log('checkIfEmailExists', error);
             }
           })  
         } else {
-          console.log(textValue + " isn't an email.")
+          //console.log(textValue + " isn't an email.")
           Session.set('signUpErrorMessage', "This doesn't appear to be an email.")
         }
         break;        
@@ -390,7 +390,7 @@ export class Signup extends React.Component {
     this.setState({form: formData})
   }
   async handleTouchTap(){
-    console.log('handleTouchTap');
+    // console.log('handleTouchTap');
 
     let newUserData = {
       email: get(this, 'state.form.emailAddress', ''),
@@ -406,8 +406,8 @@ export class Signup extends React.Component {
       accessCode: get(this, 'state.form.accessCode', '')
     };
 
-    console.log('SignUp.handleTouchTap', this);
-    console.log('newUserData', newUserData);
+    // console.log('SignUp.handleTouchTap', this);
+    // console.log('newUserData', newUserData);
     // if(validator.isEmail(newUserData.username)){
     if(Session.equals('signUpErrorMessage', 'This email appears to be available!')){
       console.log('We think this email is available; so lets try registering it.');
@@ -415,7 +415,7 @@ export class Signup extends React.Component {
         if (error) { 
           // for some reason, we're getting an "Email already exists!" on signup
           if (!error.reason.includes("Email already exists.")) {
-            console.log('Accounts.createUser().error',  error.reason)
+            // console.log('Accounts.createUser().error',  error.reason)
             // Meteor.call('debugToServer', 'Accounts.createUser()', error)
     
             Session.set('signUpErrorMessage', error.reason);
@@ -424,12 +424,12 @@ export class Signup extends React.Component {
           }
         }
         if (result) {
-          console.log("Accounts.createUser[result]", result);
-          console.log("Accounts.createUser[Meteor.userId()]", Meteor.userId());
-          console.log("Accounts.createUser[Roles.userIsInRole(Meteor.userId()]", Roles.userIsInRole(Meteor.userId()));
+          // console.log("Accounts.createUser[result]", result);
+          // console.log("Accounts.createUser[Meteor.userId()]", Meteor.userId());
+          // console.log("Accounts.createUser[Roles.userIsInRole(Meteor.userId()]", Roles.userIsInRole(Meteor.userId()));
 
           // if(process.env.NODE_ENV === "production"){
-            console.log('Sending verification email...')
+            // console.log('Sending verification email...')
             Meteor.call('sendVerificationEmail', Meteor.userId());
           // }
   
