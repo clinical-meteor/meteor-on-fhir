@@ -640,6 +640,7 @@ export class MyProfilePage extends React.Component {
               updateBirthdate={ this.updateBirthdate }
               updateGender={ this.updateGender }
               updateAvatar={ this.updateAvatar }
+              defaultAvatar={ Meteor.absoluteUrl() + 'packages/clinical_hl7-resource-patient/assets/noAvatar.png' }
               />
 
             
