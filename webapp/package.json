@@ -55,7 +55,7 @@
     "jquery": "^3.4.0",
     "jquery-validation": "^1.17.0",
     "lodash": "^4.17.11",
-    "material-fhir-ui": "file:imports/linked/material-fhir-ui",
+    "material-fhir-ui": "0.6.9",
     "material-ui": "0.20.1",
     "meteor-azure": "^2.1.0-rc.7",
     "meteor-node-stubs": "^0.4.1",
