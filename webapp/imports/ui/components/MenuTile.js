@@ -20,9 +20,9 @@ import {MdLocalPharmacy} from 'react-icons/md';
 import {IoMdRibbon} from 'react-icons/io';
 import {MdImportantDevices} from 'react-icons/md';
 
-import MdFingerprint from 'react-icons/md';
-import MdList from 'react-icons/md';
-import MdHearing from 'react-icons/md';
+import {MdFingerprint} from 'react-icons/md';
+import {MdList} from 'react-icons/md';
+import {MdHearing} from 'react-icons/md';
 
 import FaEye from 'react-icons/fa';
 import IoMdErlenmeyerFlask from 'react-icons/io';

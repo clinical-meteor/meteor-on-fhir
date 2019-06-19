@@ -86,11 +86,12 @@ export class PatientSidebar extends React.Component {
     //----------------------------------------------------------------------
     // GettingStarted
 
-    var gettingStarted;
+    var gettingStarted = [];
     if(get(Meteor, 'settings.public.defaults.sidebar.menuItems.GettingStarted')){
-      gettingStarted = <LinkContainer key='gettingStartedItem' to='/welcome/patient'>
+      gettingStarted.push(<hr key='hrb' />);
+      gettingStarted.push(<LinkContainer key='gettingStartedItem' to='/welcome/patient'>
         <MenuItem primaryText='Getting Started' href='/welcome/patient' />
-      </LinkContainer>;
+      </LinkContainer>);
     }
  
 
@@ -100,6 +101,7 @@ export class PatientSidebar extends React.Component {
     var dataManagement = []
 
     if(get(Meteor, 'settings.public.defaults.sidebar.menuItems.DataManagement')){
+      dataManagement.push(<hr key='hrc' />)
       if(!['iPhone'].includes(window.navigator.platform)){
         dataManagement.push(<LinkContainer key='dataItem' to='/data-management'>
           <MenuItem primaryText='Data Management' href='/data-management' />
@@ -110,11 +112,11 @@ export class PatientSidebar extends React.Component {
           <MenuItem primaryText='Import' href='/import-data' />
         </LinkContainer>);
       }
-      if(!['iPhone'].includes(window.navigator.platform)){
+      // if(!['iPhone'].includes(window.navigator.platform)){
         dataManagement.push(<LinkContainer key='exportData' to='/export-data'>
           <MenuItem primaryText='Export' href='/export-data' />
         </LinkContainer>);
-      }
+      // }
     }
 
     // if(get(Meteor, 'settings.public.defaults.sidebar.menuItems.DataManagement')){
@@ -132,9 +134,7 @@ export class PatientSidebar extends React.Component {
         fhirResources.push(<hr key='hra'/>);
         fhirResources.push(<LinkContainer key='fhirItem' to='/fhir-resources-index'>
           <MenuItem id="fhirResourcePageItem" primaryText='FHIR Resources' href='/fhir-resources-index' />
-      </LinkContainer>);
-        fhirResources.push(<hr key='hrb' />);
-      
+      </LinkContainer>);      
       }
     }
 
@@ -169,6 +169,8 @@ export class PatientSidebar extends React.Component {
     // we don't want SMART on FHIR links on iPhone (for now)
     // because they will be accessing records through HealthRecords
     if(Package['symptomatic:smart-on-fhir-client'] && !['iPhone'].includes(window.navigator.platform)){
+
+      smartOnFhirImports.push(<hr key='hr2' />);
       smartOnFhirImports.push(<LinkContainer key='importItem' to='/import-chart'>
             <MenuItem primaryText='Import Patient Record' href='/import-chart' />
         </LinkContainer>);
@@ -224,17 +226,17 @@ export class PatientSidebar extends React.Component {
           { healthlog }         
             
           { continuityOfCareElements }
-          { landingPageElements }
+          {/* { landingPageElements } */}
 
           { fhirResources }
           
+          { gettingStarted }
+
           { dataManagement }
           {/* { importDataBtn } */}
           {/* { exportData } */}
           
-          <hr key='hr2' />
 
-          { gettingStarted }
           { smartOnFhirImports }
 
           <hr key='hr3' />

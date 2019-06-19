@@ -8,3 +8,5 @@ version.desktop
 .desktop-installer/*
 
 resources/*
+
+chromedriver.log

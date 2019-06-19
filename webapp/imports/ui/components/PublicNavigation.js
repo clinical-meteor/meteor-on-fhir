@@ -13,6 +13,9 @@ export class PublicNavigation extends React.Component {
         title: {
           color: 'black',
           cursor: 'pointer'
+        },
+        buttons: {
+          marginTop: '6px'
         }
       }
     };
@@ -23,10 +26,10 @@ export class PublicNavigation extends React.Component {
   render () {
     return(
       <div id="publicNavigation">
-        <IndexLinkContainer to="signin">
+        <IndexLinkContainer to="signin" style={this.data.style.buttons} >
           <MenuButton id='signinLink' label="Signin" style={this.data.style.title} href='/signin' />
         </IndexLinkContainer>
-        <IndexLinkContainer to="signup">
+        <IndexLinkContainer to="signup" style={this.data.style.buttons} >
           <MenuButton id='signupLink' label="Register" style={this.data.style.title} href='/signup' />
       </IndexLinkContainer>
       </div>

@@ -202,7 +202,7 @@ export class SetPassword extends React.Component {
                           </FormGroup>
 
 
-                        <RaisedButton primary={true} id='setPasswordButton' type="submit" onClick={this.setPassword } label="Recover Password" fullWidth />
+                        <RaisedButton primary={true} id='setPasswordButton' type="submit" onClick={this.setPassword } label="Set Password" fullWidth />
 
                       </CardText>
                     </GlassCard>

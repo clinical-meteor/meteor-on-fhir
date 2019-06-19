@@ -10,7 +10,7 @@ import { FullPageCanvas, GlassCard, Glass, DynamicSpacer } from 'meteor/clinical
 import { CardText, CardActions, CardTitle, TextField, RaisedButton } from 'material-ui'
 
 import { browserHistory } from 'react-router';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Alert } from 'react-bootstrap';
 
 import { lightBaseTheme, darkBaseTheme } from 'material-ui/styles';
 import { get } from 'lodash';
@@ -27,7 +27,7 @@ export class Signin extends React.Component {
     if(get(this, 'props.location.query.token')){
       Accounts.verifyEmail(get(this, 'props.location.query.token'), function(error) {
         console.log('Accounts.verifyEmail')
-        browserHistory.push('/continuity-of-care');
+        browserHistory.push('/welcome/patient');
       });  
     }
   }
@@ -59,8 +59,13 @@ export class Signin extends React.Component {
       },
       boxShadows: get(Meteor, 'settings.public.theme.boxShadows', 'cloudy'),
       endpoints: [],
-      services: []
+      services: [],
+      connected: false
     };
+
+    if(Meteor.status().status === "connected"){
+      data.connected = true;
+    }
 
     if( Endpoints.find().count() > 0){
       data.endpoints = Endpoints.find({
@@ -291,6 +296,12 @@ export class Signin extends React.Component {
     };
     cardStyle.top = (Session.get('appHeight') * 0.1) + 'px'
 
+    let connectionAlert;
+    if(!this.data.connected){
+      connectionAlert = <Alert bsStyle="warning">
+        <strong>No connection to server.</strong> Please check your internet connection.
+      </Alert>;
+    }
     return (
       <div id="signinPage" style={this.data.style.pageBackground}>
         {/* <MobilePadding> */}
@@ -353,6 +364,10 @@ export class Signin extends React.Component {
                           </form>
                         </CardText>
                       </GlassCard>
+                      <DynamicSpacer />
+                      <DynamicSpacer />
+                      <DynamicSpacer />
+                      { connectionAlert }
                     {/* </Col>
                   </Row> */}
                   <br/>

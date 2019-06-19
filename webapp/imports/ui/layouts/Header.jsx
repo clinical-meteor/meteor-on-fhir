@@ -9,9 +9,8 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { Glass } from 'meteor/clinical:glass-ui';
 
 // header
-import { FlatButton, IconButton, TextField } from 'material-ui';
+import { FlatButton, TextField } from 'material-ui';
 import { Meteor } from 'meteor/meteor';
-import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import { PublicNavigation } from '../components/PublicNavigation';
 import React  from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
@@ -22,6 +21,7 @@ import PropTypes from 'prop-types';
 
 import { get } from 'lodash';
 import { FaMars, FaVenus, FaMercury, FaTransgender  } from 'react-icons/fa';
+
 import { Patient } from 'meteor/clinical:hl7-resource-patient';
 
 Sidebar = {
@@ -69,7 +69,8 @@ export class Header extends React.Component {
           opacity: Session.get('globalOpacity'),
           WebkitTransition: 'ease .2s',
           transition: 'ease .2s',
-          background: 'white'
+          background: 'white',
+          paddingLeft: '0px',
         },
         title: Glass.darkroom({
           userSelect: 'none',
@@ -77,7 +78,9 @@ export class Header extends React.Component {
           MozUserSelect: 'none',
           msUserSelect: 'none',
           top: '-5px',
-          cursor: 'pointer'
+          cursor: 'pointer',
+          left: '70px',
+          position: 'sticky'
         })
       },
       app: {
@@ -157,7 +160,7 @@ export class Header extends React.Component {
       if (Session.equals('drawerActive', false)) {
         Session.set('drawerActive', true);
       }
-    }, 200);
+    }, 300);
   }
 
   renderNavigation(hasUser) {
@@ -231,17 +234,20 @@ export class Header extends React.Component {
     if(get(Meteor, 'settings.public.defaults.header.menuIcon')){
       menuIcon = <img 
         id='sidebarToggleButton'
+        name='sidebarToggleButton'
         src={ get(Meteor, 'settings.public.defaults.header.menuIcon') } 
         onClick={ this.toggleDrawerActive }
         style={{
           position: 'absolute',
           top: '8px',
           left: '10px',
-          cursor: 'pointer'
+          cursor: 'pointer',
+          zIndex: 1000
       }}/>
     } else {
       menuIcon = <ActionReorder 
           id='sidebarToggleButton'
+          name='sidebarToggleButton'
           style={{marginTop: '20px', marginLeft: '25px', marginRight: '10px', left: '0px', position: 'absolute', cursor: 'pointer'}}
           onClick={this.toggleDrawerActive}
         />
@@ -317,7 +323,7 @@ export class Header extends React.Component {
           style={this.data.style.appbar}
           titleStyle={this.data.style.title}
         >
-          { menuIcon }        
+          { menuIcon }
         </AppBar>
 
         <AppBar

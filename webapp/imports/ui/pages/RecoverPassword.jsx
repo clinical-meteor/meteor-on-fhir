@@ -21,6 +21,7 @@ import validator from 'validator';
 
 
 Session.setDefault('recoverPasswordInput', '')
+Session.setDefault('recoverPasswordSent', false)
 export class RecoverPassword extends React.Component {
   componentDidMount() {
     //handleRecoverPassword({ component: this });
@@ -60,7 +61,8 @@ export class RecoverPassword extends React.Component {
       error: {
         text: ''
       },
-      recoverPassword: Session.get('recoverPasswordInput') 
+      recoverPassword: Session.get('recoverPasswordInput'),
+      recoverPasswordSent: Session.get('recoverPasswordSent') 
     };
 
     console.log('validator.isEmail', validator.isEmail(Session.get('recoverPasswordInput')))
@@ -97,7 +99,8 @@ export class RecoverPassword extends React.Component {
       if (error) {
         Bert.alert(error.reason, 'warning');
       } else {
-        Bert.alert('Check your inbox for a reset link!', 'info');
+        // Bert.alert('Check your inbox for a reset link!', 'info');
+        Session.set('recoverPasswordSent', true)
       }
     });
   }
@@ -120,6 +123,45 @@ export class RecoverPassword extends React.Component {
     // if(['iPad'].includes(window.navigator.platform)){
     cardStyle.top = (Session.get('appHeight') * 0.1) + 'px'
     // }
+
+    let cardContent;
+    if(this.data.recoverPasswordSent){
+      cardContent = <div>
+      <CardTitle title='Check your email.' />
+      <CardText>
+        We just sent you a password recovery link!  Please continue from your mailbox.  
+      </CardText>
+    </div>
+    } else {
+      cardContent = <div>
+        <CardTitle title='Recover Password' />
+        <CardText>
+          <FormGroup>
+            <TextField
+              id='recoverPasswordEmailInput'
+              ref='emailAddress'
+              name='emailAddress'
+              type='email'
+              floatingLabelText='Email Address'
+              inputStyle={this.data.style.inputStyle}
+              hintStyle={this.data.style.hintStyle}
+              errorText={this.data.error.text}
+              errorStyle={this.data.style.errorStyle}
+              underlineStyle={this.data.style.underlineStyle}
+              floatingLabelStyle={this.data.style.floatingLabelStyle}
+              floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
+              floatingLabelFixed={true} 
+              onChange={this.handleChange }
+              hintText='janedoe@symptomatic.io'
+              fullWidth
+              /><br/>
+          </FormGroup>
+          <RaisedButton primary={true} id='recoverPasswordButton' type="submit" onClick={this.recoverPassword } label="Recover Password" fullWidth />
+        </CardText>
+      </div>
+
+
+    }
     
     return(
       <div id='recoverPasswordPage' style={this.data.style.pageBackground}>
@@ -128,34 +170,8 @@ export class RecoverPassword extends React.Component {
               <Col  mdOffset={3} md={ 6 } sm={ 12 }>
                 <Row>                    
                   <Col md={12}>
-                    <GlassCard backgroundColor={glassColor} style={cardStyle} >
-                    <CardTitle title='Recover Password' />
-                      <CardText>
-                          <FormGroup>
-                            <TextField
-                              id='recoverPasswordEmailInput'
-                              ref='emailAddress'
-                              name='emailAddress'
-                              type='email'
-                              floatingLabelText='Email Address'
-                              inputStyle={this.data.style.inputStyle}
-                              hintStyle={this.data.style.hintStyle}
-                              errorText={this.data.error.text}
-                              errorStyle={this.data.style.errorStyle}
-                              underlineStyle={this.data.style.underlineStyle}
-                              floatingLabelStyle={this.data.style.floatingLabelStyle}
-                              floatingLabelFocusStyle={this.data.style.floatingLabelFocusStyle}
-                              floatingLabelFixed={true} 
-                              onChange={this.handleChange }
-                              hintText='janedoe@symptomatic.io'
-                              fullWidth
-                              /><br/>
-                          </FormGroup>
-
-
-                        <RaisedButton primary={true} id='recoverPasswordButton' type="submit" onClick={this.recoverPassword } label="Recover Password" fullWidth />
-
-                      </CardText>
+                    <GlassCard backgroundColor={glassColor} style={cardStyle} >                      
+                      { cardContent }
                     </GlassCard>
                   </Col>
                 </Row>

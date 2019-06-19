@@ -3,12 +3,12 @@
 
 App.info({
   id: 'io.symptomatic.phr',
-  name: 'Timeline',
+  name: 'Timelines',
   description: 'Longitudinal Timeline built on FHIR and HealhKit',
   author: 'Abigail Watson',
   email: 'abigail@symptomatic.io',
-  website: 'https://www.symptomatic.io',
-  version: '0.9.8'
+  website: 'https://timelines.symptomatic.io',
+  version: '1.0.0'
 });
 
 App.icons({
@@ -77,6 +77,7 @@ App.setPreference('HideKeyboardFormAccessoryBar', true);
 App.setPreference('Orientation', 'default');
 App.setPreference('Orientation', 'all', 'ios');
 App.setPreference('DisallowOverscroll', 'true');
+App.setPreference('iosPersistentFileLocation', 'Compatibility');
 
 // Set PhoneGap/Cordova access rules
 App.accessRule('http://localhost', { type: 'navigation' } );
@@ -85,8 +86,10 @@ App.accessRule('http://www.symptomatic.io', { type: 'navigation' } );
 App.accessRule('https://www.symptomatic.io', { type: 'navigation' } );
 App.accessRule('http://symptomatic.io', { type: 'navigation' } );
 App.accessRule('https://symptomatic.io', { type: 'navigation' } );
-App.accessRule('http://fhir-timeline.meteorapp.com', { type: 'navigation' } );
-App.accessRule('https://fhir-timeline.meteorapp.com', { type: 'navigation' } );
+App.accessRule('https://timelines.symptomatic.io', { type: 'navigation' } );
+App.accessRule('http://timelines.symptomatic.io', { type: 'navigation' } );
+App.accessRule('https://timelines-on-fhir.meteorapp.com', { type: 'navigation' } );
+App.accessRule('http://timelines-on-fhir.meteorapp.com', { type: 'navigation' } );
 
 App.setPreference("BackupWebStorage", "local");
 // // Pass preferences for a particular PhoneGap/Cordova plugin
@@ -172,4 +175,8 @@ App.appendToConfig('<allow-navigation href="https://www.ncbi.nlm.nih.gov/" />')
 
 App.appendToConfig(`<config-file parent="NSHealthClinicalHealthRecordsShareUsageDescription" target="*-Info.plist">
 <string>App needs read access</string>
+</config-file>`)
+
+App.appendToConfig(`<config-file parent="UIFileSharingEnabled" target="*-Info.plist">
+  <true/>
 </config-file>`)

@@ -1,6 +1,6 @@
 {
   "nightwatch": {
-    "version": "0.9.20"
+    "version": "1.1.12"
   },
   "src_folders": [
     "./tests/nightwatch/walkthroughs"
@@ -13,16 +13,14 @@
   ],
   "output_folder": "./tests/nightwatch/reports",
   "page_objects_path": "./tests/nightwatch/pages",
-  "globals_path": "./tests/nightwatch/globals.json",
-  "selenium": {
+  "globals_path": "../tests/nightwatch/globals.json",
+  "webdriver" : {
     "start_process": true,
-    "server_path": "./node_modules/selenium-standalone-jar/bin/selenium-server-standalone-3.0.1.jar",
-    "log_path": "./tests/nightwatch/logs",
-    "host": "127.0.0.1",
-    "port": 4444,
-    "cli_args": {
-      "webdriver.chrome.driver": "./node_modules/chromedriver/bin/chromedriver"
-    }
+    "server_path": "node_modules/.bin/chromedriver",
+    "cli_args": [
+      "--verbose"
+    ],
+    "port": 9515
   },
   "test_settings": {
     "default": {
@@ -45,13 +43,15 @@
         "javascriptEnabled": true,
         "acceptSslCerts": true,
         "loggingPrefs": {
-          "browser": "ALL"
-        },
+          "driver": "INFO", 
+          "server": "OFF", 
+          "browser": "INFO"},
         "chromeOptions" : {
           "prefs" : {
             "credentials_enable_service" : false,
             "profile.password_manager_enabled" : false
-          }
+          },
+          "args" : ["--no-sandbox"]
         }
       },
       "exclude": "./tests/nightwatch/unittests/*",

@@ -20,7 +20,7 @@ import { browserHistory } from 'react-router';
 import { has, get } from 'lodash';
 import PropTypes from 'prop-types';
 
-import { MenuTile } from '/imports/ui/components/MenuTile';
+import MenuTile from '/imports/ui/components/MenuTile';
 
 import FaStreetView from 'react-icons/fa';
 import FaHeartbeat from 'react-icons/fa';

@@ -81,7 +81,7 @@ export class AppInfoPage extends React.Component {
     return(
       <div id="aboutPage" style={pageBackground} >
         <VerticalCanvas >
-          <GlassCard height='auto' zDepth={3}  >
+          <GlassCard id='stickyInfo' height='auto' zDepth={3} >
             <Row>
               <Col md={4}>
                 <CardText style={this.data.environmentData}>
