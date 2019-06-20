@@ -1,7 +1,7 @@
 
-Cache = {
+export const Cache = {
     deleteLocalData(){
-        console.log('Confirming that we should delete local data.  Y/N?');
+        //console.log('Confirming that we should delete local data.  Y/N?');
         
         // if(confirm('Are you sure?')){
           console.log('Deleting local data...');

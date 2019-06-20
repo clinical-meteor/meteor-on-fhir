@@ -20,7 +20,7 @@ import { has, get } from 'lodash';
 
 import { MdBlurOn } from 'react-icons/md';
 import { MdBlurOff } from 'react-icons/md';
-
+ 
 import { MdSignalWifi0Bar } from 'react-icons/md';
 import { MdSignalWifi1Bar } from 'react-icons/md';
 import { MdSignalWifi1BarLock } from 'react-icons/md';
@@ -32,7 +32,7 @@ import { MdSignalWifi4Bar } from 'react-icons/md';
 import { MdSignalWifi4BarLock } from 'react-icons/md';
 import { MdSignalWifiOff } from 'react-icons/md';
 
-import { Cache } from '../../startup/client/cache.js'
+import { Cache } from '../helpers/cache';
 
 Session.setDefault('showThemingControls', false);
 Session.setDefault('gender', false);

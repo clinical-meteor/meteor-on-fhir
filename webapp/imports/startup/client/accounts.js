@@ -1,4 +1,4 @@
-import Cache from './cache.js';
+import Cache from '../../ui/helpers/cache.js';
 
 Accounts.onLogout(function(user){
     console.log('Accounts.onLogout');
