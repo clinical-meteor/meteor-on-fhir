@@ -77,7 +77,7 @@ export class Header extends React.Component {
           WebkitUserSelect: 'none',
           MozUserSelect: 'none',
           msUserSelect: 'none',
-          top: '-5px',
+          top: '0px',
           cursor: 'pointer',
           marginLeft: '70px',
           position: 'absolute'
