@@ -77,10 +77,10 @@ export class Header extends React.Component {
           WebkitUserSelect: 'none',
           MozUserSelect: 'none',
           msUserSelect: 'none',
-          top: '-5px',
+          top: '0px',
           cursor: 'pointer',
-          left: '70px',
-          position: 'sticky'
+          marginLeft: '70px',
+          position: 'absolute'
         })
       },
       app: {
@@ -138,8 +138,6 @@ export class Header extends React.Component {
     } else {
       data.hasUser = false;
     }
-
-
 
     return data;
   }

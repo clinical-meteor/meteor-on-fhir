@@ -326,6 +326,7 @@ export class Signup extends React.Component {
                     <DynamicSpacer />
                     <DynamicSpacer />
                     <DynamicSpacer />
+                    <DynamicSpacer />
                     { connectionAlert }
                   </Col>
                 </Row>

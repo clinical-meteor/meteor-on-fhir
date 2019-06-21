@@ -184,10 +184,10 @@ export class PatientSidebar extends React.Component {
     var supportElements;
     if(Package['symptomatic:continuity-of-care']){
       continuityOfCareElements = <div>
-          <LinkContainer key='healthcard' to='/healthcard'>
+          {/* <LinkContainer key='healthcard' to='/healthcard'>
              <MenuItem id="healthcard" primaryText='Health Card' href='/healthcard' />
           </LinkContainer>
-          <hr key='hr1' />
+          <hr key='hr1' /> */}
           <LinkContainer key='continuityOfCareItem' to='/continuity-of-care'>
              <MenuItem id="continuityOfCareItem" primaryText='Continuity of Care' href='/continuity-of-care' />
           </LinkContainer>
