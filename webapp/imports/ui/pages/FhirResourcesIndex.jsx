@@ -60,6 +60,20 @@ import MdFingerprint from 'react-icons/md';
 import MdHearing from 'react-icons/md';
 import MdImportantDevices from 'react-icons/md';
 
+// import { makeStyles } from '@material-ui/styles';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+
+// const useStyles = makeStyles(theme => ({
+//   root: {
+//     flexGrow: 1,
+//   },
+//   paper: {
+//     padding: theme.spacing(1),
+//     textAlign: 'center',
+//     color: theme.palette.text.secondary
+//   }
+// }));
 
 Session.setDefault('filterMainTiles', false);
 export class FhirResourcesIndex extends React.Component {
@@ -500,9 +514,44 @@ export class FhirResourcesIndex extends React.Component {
     // </Row>
 
 
+  const classes = {
+    paper: {
+      textAlign: 'center'
+    }
+  }
+
+  function FormRow() {
+    return (
+      <React.Fragment>
+        <Grid item xs={4}>
+          <Paper style={classes.paper}>item</Paper>
+        </Grid>
+        <Grid item xs={4}>
+          <Paper style={classes.paper}>item</Paper>
+        </Grid>
+        <Grid item xs={4}>
+          <Paper style={classes.paper}>item</Paper>
+        </Grid>
+      </React.Fragment>
+    );
+  }
+
+
     return (
       <div id='fhirResourcesIndexPage'>
         <FullPageCanvas>
+          <Grid container spacing={1}>
+            <Grid container item xs={12} spacing={3}>
+              <FormRow />
+            </Grid>
+            <Grid container item xs={12} spacing={3}>
+              <FormRow />
+            </Grid>
+            <Grid container item xs={12} spacing={3}>
+              <FormRow />
+            </Grid>
+          </Grid>
+
           <div>
             {this.renderFhirSection(this.data.user)}
             <Row>

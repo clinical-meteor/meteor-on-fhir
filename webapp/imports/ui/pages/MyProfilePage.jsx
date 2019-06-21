@@ -642,7 +642,7 @@ export class MyProfilePage extends React.Component {
               updateAvatar={ this.updateAvatar }
               defaultAvatar={ Meteor.absoluteUrl() + 'packages/clinical_hl7-resource-patient/assets/noAvatar.png' }
               />
-
+            <DynamicSpacer />
             
 
             <GlassCard>

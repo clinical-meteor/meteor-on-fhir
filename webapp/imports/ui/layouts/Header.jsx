@@ -139,8 +139,6 @@ export class Header extends React.Component {
       data.hasUser = false;
     }
 
-
-
     return data;
   }
   getChildContext() {

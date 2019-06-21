@@ -96,7 +96,7 @@ Accounts.onCreateUser(function(options, user) {
     console.log('Configuring profile....');
     user.profile = options.profile;
     user.profile.firstTimeVisit = true;
-
+    user.profile.needHealthRecordsAuth = true;
 
     console.log('Configuring roles....');
     user.roles = [];
