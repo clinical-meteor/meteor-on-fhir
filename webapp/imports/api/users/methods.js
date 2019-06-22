@@ -42,7 +42,7 @@ export const removeUserById = new ValidatedMethod({
   }).validator(),
   run({ _id }) {
     console.log("Removing user " + _id);
-    Meteor.users.remove({_id: _id});
+    return Meteor.users.remove({_id: _id});
   },
 });
 

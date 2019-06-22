@@ -20,7 +20,7 @@ import { has, get } from 'lodash';
 
 import { MdBlurOn } from 'react-icons/md';
 import { MdBlurOff } from 'react-icons/md';
-
+ 
 import { MdSignalWifi0Bar } from 'react-icons/md';
 import { MdSignalWifi1Bar } from 'react-icons/md';
 import { MdSignalWifi1BarLock } from 'react-icons/md';
@@ -32,7 +32,7 @@ import { MdSignalWifi4Bar } from 'react-icons/md';
 import { MdSignalWifi4BarLock } from 'react-icons/md';
 import { MdSignalWifiOff } from 'react-icons/md';
 
-import { Cache } from '../../startup/client/cache.js'
+import { Cache } from '../helpers/cache';
 
 Session.setDefault('showThemingControls', false);
 Session.setDefault('gender', false);
@@ -119,6 +119,32 @@ export class Footer extends React.Component {
 
   clickOnBlurButton(){
     Session.toggle('glassBlurEnabled');
+
+    let downloadCcda = { 
+      "resourceType" : "AuditEvent",
+      "action" : 'Privacy Screen',
+      "recorded" : new Date(), 
+      "outcomeDesc" : Session.get('glassBlurEnabled') ? 'Privacy Screen Enabled' : 'Privacy Screen Disabled',
+      "agent" : [{
+        "altId" : Meteor.userId() ? Meteor.userId() : '', // Alternative User id e.g. authentication
+        "name" : Meteor.user() ? Meteor.user().fullName() : '', // Human-meaningful name for the agent
+        "requestor" : true  
+      }],
+      "source" : { 
+        "site" : Meteor.absoluteUrl(),
+        "identifier": {
+          "value": 'Accounts Subsystem'
+        }
+      },
+      "entity": []
+    }      
+
+    // HipaaLogger.logEvent({eventType: "update", userId: Meteor.userId(), userName: Meteor.user().fullName(), collectionName: "Procedures", recordId: self.state.procedureId });
+    HipaaLogger.logAuditEvent(downloadCcda, {validate: get(Meteor, 'settings.public.defaults.schemas.validate', false)}, function(error, result){
+      if(error) console.error('HipaaLogger.logEvent.error.invalidKeys', error.invalidKeys)
+      if(result) console.error(result)
+    });
+
   }
   clickOnThemingButton(){
     browserHistory.push('/theming');
@@ -294,11 +320,38 @@ export class Footer extends React.Component {
       downloadAnchorElement.setAttribute("href", dataString );
 
       var patientName = Meteor.user().displayName();
-      console.log('Generating CCD for ', patientName)
+      console.log('Generating C-CDA for ', patientName)
   
       downloadAnchorElement.setAttribute("download", "continuity-of-care.fhir.ccd");
       downloadAnchorElement.click();
       // window.open('data:text/csv;charset=utf-8,' + escape(continuityOfCareDoc), '_self');    
+
+      let downloadCcda = { 
+        "resourceType" : "AuditEvent",
+        "action" : 'C-CDA Downloaded',
+        "recorded" : new Date(), 
+        "outcome" : 'Success',
+        "outcomeDesc" : 'User downloaded the C-CDA bundle.',
+        "agent" : [{
+          "altId" : Meteor.userId() ? Meteor.userId() : '', // Alternative User id e.g. authentication
+          "name" : Meteor.user() ? Meteor.user().fullName() : '', // Human-meaningful name for the agent
+          "requestor" : true  
+        }],
+        "source" : { 
+          "site" : Meteor.absoluteUrl(),
+          "identifier": {
+            "value": 'Accounts Subsystem'
+          }
+        },
+        "entity": []
+      }      
+  
+      // HipaaLogger.logEvent({eventType: "update", userId: Meteor.userId(), userName: Meteor.user().fullName(), collectionName: "Procedures", recordId: self.state.procedureId });
+      HipaaLogger.logAuditEvent(downloadCcda, {validate: get(Meteor, 'settings.public.defaults.schemas.validate', false)}, function(error, result){
+        if(error) console.error('HipaaLogger.logEvent.error.invalidKeys', error.invalidKeys)
+        if(result) console.error(result)
+      });
+
     } else {
       console.log('Couldnt find anchor element.')
     }

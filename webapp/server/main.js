@@ -6,6 +6,8 @@ const clock = require('world-clock')()
 
 import moment from 'moment-timezone';
 import { get } from 'lodash';
+import { DDPGracefulShutdown } from '@meteorjs/ddp-graceful-shutdown';
+import { Meteor } from 'meteor/meteor';
 
 Meteor.startup(function(){
   console.log('Meteor application framework is starting.');
@@ -16,6 +18,14 @@ Meteor.startup(function(){
   console.log('Local system time: ' + clock.localDateTime('SYSTEM').toString());
   console.log('Application time:  ' + clock.localDate('Europe/London').toString());
   console.log('');
+
+
+  // DDP Graceful Shutdown
+  new DDPGracefulShutdown({
+    gracePeriodMillis: 1000 * process.env.METEOR_SIGTERM_GRACE_PERIOD_SECONDS,
+    server: Meteor.server,
+  }).installSIGTERMHandler();
+
 
   // pick up version info
   try {

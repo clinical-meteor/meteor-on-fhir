@@ -6,7 +6,7 @@
 # than the prescribed lifecycle of 1.0. In general, we recommend using this generated
 # configuration as a reference rather than using it in production, though in most
 # cases it should duplicate the execution of your original 1.0 config.
-
+ 
 version: 2
 jobs:
   build:
@@ -39,9 +39,9 @@ jobs:
     # of each job. For more information on choosing an image (or alternatively using a
     # VM instead of a container) see https://circleci.com/docs/2.0/executor-types/
     # To see the list of pre-built images that CircleCI provides for most common languages see
-    # https://circleci.com/docs/2.0/circleci-images/
+    # https://circleci.com/docs/2.0/circleci-images/ 
     docker:
-    - image: circleci/node:8.9-browsers
+    - image: circleci/node:9.9-browsers
       command: /sbin/init
       name: meteor-on-fhir
       environment:
@@ -80,7 +80,22 @@ jobs:
     #     - v1-dep-development-
     #     # Any branch if there are none on the default branch - this should be unnecessary if you have your default branch configured correctly
     #     - v1-dep-
-        
+
+
+    # CACHING
+    # - restore_cache:
+    #     keys:
+    #         # Find a cache corresponding to this specific package-lock.json checksum
+    #         # Find the most recently generated cache used from any branch
+    #         - v1-npm-deps-
+
+    # - save_cache:
+    #       key: my-cache
+    #       paths:
+    #         - my-file.txt
+    #         - my-project/my-dependencies-directory
+
+
     # Machine Setup
     # If you break your build into multiple jobs with workflows, you will probably want to do the parts of this that are relevant in each
     # The following `checkout` command checks out your code to your working directory. In 1.0 we did this implicitly. In 2.0 you can choose where in the course of a job your code should be checked out.
@@ -110,7 +125,7 @@ jobs:
 
     # Install the actual app...
     - run: cd webapp && meteor npm install 
-    - run: cd webapp && meteor npm install nightwatch@0.9.19 chromedriver@2.35.0 selenium-standalone-jar@3.0.1
+    # - run: cd webapp && meteor npm install nightwatch@1.1.12 chromedriver@75.0.0 
 
     #- before/after
     - run: cd webapp && cat .meteor/packages
@@ -121,13 +136,22 @@ jobs:
     - run: cd webapp/tests && ls -la
     - run: cd webapp && git clone https://github.com/awatson1978/meteor-on-fhir-validation tests/nightwatch
 
-
     # If Meteor is already cached, do not need to build it again.
-    - run: cd webapp && meteor npm run-script remove_licensed_packages
+    - run: cd webapp && meteor npm run-script remove_licensed_packages 
+    - run: cd webapp && meteor npm run-script add_baseline_packages
+
+    # make sure we have the latest Chrome (specifically wanting Chrome 75; may change with time)
+    - run:
+        name: Update Chromedriver
+        command: |
+            wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+            sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+            sudo apt-get update
+            sudo apt-get -y install google-chrome-stable
 
     # - run: if [ meteor list | grep 'symptomatic:theming' | wc -l $eq 1 ]; then meteor remove symptomatic:theming ; else echo "Meteor seems to be cached"; fi;
 
-    #- run the app
+    # run the app
     - run: 
         name: Starting Meteor
         command: cd webapp && meteor run --settings configs/settings.circle.json | tee meteor-output.log
@@ -137,9 +161,12 @@ jobs:
 
     - run: 
         name: Running tests
-        command: sleep 300 && cd webapp && meteor npm run-script circle-nightwatch -- --tag circle
         no_output_timeout: 10m
         when: on_success    # always, on_success, on_fail 
+        command: | 
+            sleep 240 
+            cd webapp 
+            meteor npm run-script circle-nightwatch -- --tag circle 
 
 
     # # Save dependency cache

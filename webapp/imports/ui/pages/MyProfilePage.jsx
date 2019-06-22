@@ -108,6 +108,7 @@ export class MyProfilePage extends React.Component {
         given: '',
         familiy: '',
         email: '',
+        verifiedEmail: false,
         avatar: '',
         zip: '',
         longitude: '',
@@ -186,6 +187,7 @@ export class MyProfilePage extends React.Component {
       data.user = {
         _id: Meteor.userId(),
         email: get(Meteor.user(), 'emails[0].address'),
+        verifiedEmail: get(Meteor.user(), 'emails[0].verified'),
         avatar: get(Meteor.user(), 'profile.avatar'),
         gender: '',
         birthdate: '',
@@ -619,18 +621,18 @@ export class MyProfilePage extends React.Component {
       </div>
     }    
 
+    let verifiedEmailStyle = {
+      color: "darkgray"
+    }
+    if(this.data.user.verifiedEmail){
+      verifiedEmailStyle.color = "green"
+    }
+
     return(
       <div id='myProfilePage'>
         <FullPageCanvas style={{paddingBottom: '80px'}}> 
           <Col md={6}>
             <PatientCard
-              // fullName={ get(this, 'data.user.fullName', '') }
-              // email={ get(this, 'data.user.email', '') }
-              // givenName={ get(this, 'data.user.givenName', '') }
-              // familyName={ get(this, 'data.user.familyName', '') }
-              // birthdate={this.data.user.birthdate}
-              // gender={ get(this, 'data.user.gender', '') }
-              // avatar={ get(this, 'data.user.avatar', '') }
               overflowY="none"
               patient = { get(this, 'data.patient') }
               updateGivenName={ this.updateGivenName }
@@ -638,8 +640,9 @@ export class MyProfilePage extends React.Component {
               updateBirthdate={ this.updateBirthdate }
               updateGender={ this.updateGender }
               updateAvatar={ this.updateAvatar }
+              defaultAvatar={ Meteor.absoluteUrl() + 'packages/clinical_hl7-resource-patient/assets/noAvatar.png' }
               />
-
+            <DynamicSpacer />
             
 
             <GlassCard>
@@ -651,7 +654,6 @@ export class MyProfilePage extends React.Component {
                   <Col md={12}>
                     <TextField
                       id='streetAddressInput'
-                      ref='streetAddress'
                       name='streetAddress'
                       type='text'
                       floatingLabelText='Street Address'
@@ -666,7 +668,6 @@ export class MyProfilePage extends React.Component {
                   <Col md={3}>
                     <TextField
                       id='cityInput'
-                      ref='city'
                       name='city'
                       type='text'
                       floatingLabelText='City'
@@ -679,7 +680,6 @@ export class MyProfilePage extends React.Component {
                   <Col md={3}>
                     <TextField
                       id='stateInput'
-                      ref='state'
                       name='state'
                       type='text'
                       floatingLabelText='State'
@@ -692,7 +692,6 @@ export class MyProfilePage extends React.Component {
                   <Col md={3}>
                     <TextField
                       id='postalCodeInput'
-                      ref='postalCode'
                       name='postalCode'
                       type='text'
                       floatingLabelText='Postal Code'
@@ -705,7 +704,6 @@ export class MyProfilePage extends React.Component {
                   <Col md={3}>
                     <TextField
                       id='countryInput'
-                      ref='country'
                       name='country'
                       type='text'
                       floatingLabelText='Country'
@@ -726,7 +724,27 @@ export class MyProfilePage extends React.Component {
             </GlassCard>
             <DynamicSpacer />
 
-
+            <GlassCard>
+              <CardTitle title="Contact Info" style={{float: 'left'}} />
+              <CardText>
+                
+                <Row>
+                  <Col md={12}>
+                    <TextField
+                      id='primaryAddressInput'
+                      name='primaryAddress'
+                      type='text'
+                      floatingLabelText='Primary Address'
+                      floatingLabelFixed={true}                    
+                      value={this.data.user.email}
+                      inputStyle={verifiedEmailStyle}
+                      fullWidth
+                      />
+                  </Col>
+                </Row>                
+              </CardText>
+            </GlassCard>
+            <DynamicSpacer />
 
             { geocodingCard }
 
@@ -755,7 +773,6 @@ export class MyProfilePage extends React.Component {
                 <div id='profilePasswordPane' style={{position: 'relative'}} >
                   <TextField
                     id='oldPasswordInput'
-                    ref='oldPassword'
                     name='oldPassword'
                     type='text'
                     floatingLabelText='oldPassword'
@@ -768,7 +785,6 @@ export class MyProfilePage extends React.Component {
                     <Col md={6}>
                       <TextField
                         id='newPasswordInput'
-                        ref='newPassword'
                         name='newPassword'
                         type='text'
                         floatingLabelText='newPassword'
@@ -781,7 +797,6 @@ export class MyProfilePage extends React.Component {
                     <Col md={6}>
                       <TextField
                         id='confirmPasswordInput'
-                        ref='confirmPassword'
                         name='confirmPassword'
                         type='text'
                         floatingLabelText='confirmPassword'
@@ -809,7 +824,7 @@ export class MyProfilePage extends React.Component {
             <GlassCard>
               <CardTitle title="Delete User" subtitle='Permanently remove account and data.' />
               <CardText>
-                <div id="profileSystemPane" style={{position: "relative"}}>
+                <div id="profileSystemPanel" style={{position: "relative"}}>
                   { this.renderConfirmDelete(this.data.state.wantsToDelete) }
                 </div>
               </CardText>
@@ -825,13 +840,13 @@ export class MyProfilePage extends React.Component {
       </div>
     );
   }
-  imgError() {
-    this.refs.avatarImage.src = Meteor.absoluteUrl() + 'noAvatar.png';
-  }
+  // imgError() {
+  //   this.refs.avatarImage.src = Meteor.absoluteUrl() + 'noAvatar.png';
+  // }
   renderConfirmDelete(wantsToDelete){
     return(
       <div>
-        <FlatButton id='deleteUserButton' className="muidocs-icon-action-delete" label='Delete User' onClick={this.confirmDelete.bind(this) } />
+        <FlatButton id='deleteUserButton' name='deleteUserButton' label='Delete User' onClick={this.confirmDelete.bind(this) } style={{zIndex: 10000}} />
       </div>
     );
   }
@@ -1003,14 +1018,16 @@ export class MyProfilePage extends React.Component {
   
         removeUserById.call({
           _id:  Meteor.userId()
-        }, (error) => {
+        }, (error, result) => {
           if (error) {
             Bert.alert(error.reason, 'danger');
-          } else {
+          } 
+          if(result) {
             Bert.alert('User removed!', 'success');
             browserHistory.push('/signin');
           }
         });
+
       // } else {
       //   console.log('Hmmm...  yeah, lets wait a bit and make sure we have the right user.');
       // }    

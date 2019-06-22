@@ -8,7 +8,7 @@
 
 import { Container, Col, Row } from 'react-bootstrap';
 
-import { CardTitle, Card, CardText, CardActions } from 'material-ui';
+import { CardTitle, CardText, CardActions } from 'material-ui';
 import { Glass, GlassCard, FullPageCanvas, VerticalCanvas } from 'meteor/clinical:glass-ui';
 import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session';
@@ -20,7 +20,7 @@ import { browserHistory } from 'react-router';
 import { has, get } from 'lodash';
 import PropTypes from 'prop-types';
 
-import { MenuTile } from '/imports/ui/components/MenuTile';
+import MenuTile from '/imports/ui/components/MenuTile';
 
 import FaStreetView from 'react-icons/fa';
 import FaHeartbeat from 'react-icons/fa';
@@ -60,6 +60,61 @@ import MdFingerprint from 'react-icons/md';
 import MdHearing from 'react-icons/md';
 import MdImportantDevices from 'react-icons/md';
 
+// import { makeStyles } from '@material-ui/styles';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+
+// const useStyles = makeStyles(theme => ({
+//   root: {
+//     flexGrow: 1,
+//   },
+//   paper: {
+//     padding: theme.spacing(1),
+//     textAlign: 'center',
+//     color: theme.palette.text.secondary
+//   }
+// }));
+
+let classes = {
+  card: {
+    display: 'flex',
+    margin: '10px', 
+    padding: '0px',
+    cursor: 'pointer'
+  },
+  details: {
+    display: 'contents',
+    flexDirection: 'row-reference',
+  },
+  content: {
+    flex: '1 0 auto',
+  },
+  cover: {
+    width: 80,
+    backgroundColor: '#bbbbbb'
+  },
+  controls: {
+    display: 'flex',
+    alignItems: 'center',
+    // paddingLeft: theme.spacing(1),
+    // paddingBottom: theme.spacing(1),
+  },
+  paper: {
+    textAlign: 'center',
+    padding: '10px',
+    margin: '10px'
+  },
+  playIcon: {
+    height: 38,
+    width: 38,
+  }
+}
 
 Session.setDefault('filterMainTiles', false);
 export class FhirResourcesIndex extends React.Component {
@@ -387,7 +442,7 @@ export class FhirResourcesIndex extends React.Component {
       active: true,
       path: '/medication-statements',
       icon: 'MdLocalPhramacy',
-      subtitle: 'Medication Statements'
+      subtitle: 'Med Statements'
     }, {
       collection: "MedicationOrders",
       id: 'medicationOrderTile',
@@ -433,13 +488,23 @@ export class FhirResourcesIndex extends React.Component {
       var fhirResources = get(Meteor, 'settings.public.modules.fhir');
 
       var count = 0;
+      var rowsToRender = [];
+      var innerRow = [];
+      var row;
       // parse through each FHIR module specified in the Settings file
       Object.keys(fhirResources).forEach(function(key){
+
+        console.log('modulo', count % 6);
+        if(count % 6 === 0){
+          innerRow = [];
+        }
 
         // is it enabled?  does it have a sub-object?  is it truthy?
         if(fhirResources[key]){
           // if so, see if there's a collection loaded up
           if(Mongo.Collection.get(key)){
+              console.log('key', key)
+
               var selectedConfig = {
                 id: '',
                 active: true,
@@ -460,55 +525,53 @@ export class FhirResourcesIndex extends React.Component {
               selectedConfig.title = Mongo.Collection.get(key).find().count();
 
               // render out a tile
-              var newTile = <Col md={4} lg={2} style={self.data.style.column} key={key}>
-                {self.renderTile(self.data.user, selectedConfig)}
-              </Col>
+              // var newTile = <Col md={4} lg={2} style={self.data.style.column} key={key}>
+              //   {self.renderTile(self.data.user, selectedConfig)}
+              // </Col>
+              var newTile = <Grid item xs={6} md={4} lg={2} key={count}>
+                {self.fhirTile(selectedConfig, classes)}
+              </Grid>
 
               // and add it to the array of tiles to render
               // check whether we want to limit tiles to just those that have records on the client
               if(self.data.filterMainTiles){
                 if(Mongo.Collection.get(key).find().count() > 0){
-                  tilesToRender.push(newTile);
+                  innerRow.push(newTile);
+                  count++;
                 } 
               } else {
                 // or display them all (including tiles with 0 records)
-                tilesToRender.push(newTile);
+                innerRow.push(newTile);
+                count++;
               }
-
           };
         }
-        count++;
-      })
+
+        if(count % 6 === 5){
+          row = <Grid container item xs={12} spacing={4}>
+            <React.Fragment>
+              { innerRow }
+            </React.Fragment>
+          </Grid>
+          
+          rowsToRender.push(row);
+        }
+      });
     }
 
     //console.log('tilesToRender', tilesToRender)
     
 
-    // var appRow = <Row>
-    //   <Col sm={3} style={this.data.style.column} >
-    //     {this.renderImportChart(this.data.user)}
-    //   </Col>
-    //   <Col sm={3} style={this.data.style.column} >
-    //     {this.renderChecklists(this.data.user)}
-    //   </Col>
-    //   <Col sm={3} style={this.data.style.column}>
-    //     {this.renderContinuityOfCare(this.data.user)}
-    //   </Col>
-    //   <Col sm={3} style={this.data.style.column}>
-    //     {this.renderTimeline(this.data.user)}
-    //   </Col>
-    // </Row>
+
 
 
     return (
       <div id='fhirResourcesIndexPage'>
         <FullPageCanvas>
-          <div>
-            {this.renderFhirSection(this.data.user)}
-            <Row>
-              { tilesToRender }
-            </Row>
-          </div>
+          {this.renderFhirSection(this.data.user)}
+          <Grid container spacing={16}>
+            {rowsToRender}          
+          </Grid>
         </FullPageCanvas>
       </div>
     );
@@ -523,7 +586,28 @@ export class FhirResourcesIndex extends React.Component {
   //   title: this.data.local.immunizations,
   //   subtitle: 'Immunizations'
   // }
-
+  
+  fhirTile(selectedConfig, classes){
+    return (
+      <Card style={classes.card} id={selectedConfig.id} onClick={ this.openLink.bind(this, selectedConfig.path) } >
+        <div style={classes.details}>
+          <CardContent style={classes.content}>
+            <Typography component="h2" variant="h2" style={{fontWeight: 300}}>
+              {selectedConfig.title}
+            </Typography>
+            <Typography variant="h5" color="textSecondary" style={{fontWeight: 300}}>
+              {selectedConfig.subtitle}
+            </Typography>
+          </CardContent>
+        </div>
+        <CardMedia
+          style={classes.cover}
+          //image="/static/images/cards/live-from-space.jpg"
+          title="Live from space album cover"
+        />
+      </Card>
+    );
+  }
   renderTile(user, tileConfig){
     if (user.isPatient || user.isPractitioner || user.isAdmin) {
       return (
@@ -558,240 +642,240 @@ export class FhirResourcesIndex extends React.Component {
 
 
 
-  renderExperimentalTiles(user){
-    if (user.isPatient || user.isPractitioner || user.isAdmin) {
-      return (
-        <div>
+  // renderExperimentalTiles(user){
+  //   if (user.isPatient || user.isPractitioner || user.isAdmin) {
+  //     return (
+  //       <div>
 
 
-            <div id='familyMemberHistoriesTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/family-member-histories') } >
-              <GlassCard style={this.data.style.indexCard} >
-                <CardTitle
-                  title='Family Member History'
-                  subtitle='Relevant medical histories of family members.'
-                  titleStyle={this.data.style.title}
-                  subtitleStyle={this.data.style.subtitle}
-                />
-              </GlassCard>
-            </div>
+  //           <div id='familyMemberHistoriesTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/family-member-histories') } >
+  //             <GlassCard style={this.data.style.indexCard} >
+  //               <CardTitle
+  //                 title='Family Member History'
+  //                 subtitle='Relevant medical histories of family members.'
+  //                 titleStyle={this.data.style.title}
+  //                 subtitleStyle={this.data.style.subtitle}
+  //               />
+  //             </GlassCard>
+  //           </div>
 
-            <div id="questionnairesTile" style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/questionnaires') } >
-              <GlassCard style={this.data.style.indexCard} >
-                <CardTitle
-                  subtitle='Questionnaires'
-                  titleStyle={this.data.style.title}
-                  subtitleStyle={this.data.style.subtitle}
-                />
-              </GlassCard>
-            </div>
-            <div id='questionnaireResponsesTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/questionnaire-responses') } >
-              <GlassCard style={this.data.style.indexCard} >
-                <CardTitle
-                  subtitle='Questionnaire Responses'
-                  titleStyle={this.data.style.title}
-                  subtitleStyle={this.data.style.subtitle}
-                />
-              </GlassCard>
-            </div>
-
-
-            <div id="appointmentsTile" style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/appointments') } >
-              <GlassCard style={this.data.style.indexCard} >
-                <CardTitle
-                  subtitle='Appointments'
-                  titleStyle={this.data.style.title}
-                  subtitleStyle={this.data.style.subtitle}
-                />
-              </GlassCard>
-            </div>
-
-            <div id='slotsTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/slots') } >
-              <GlassCard style={this.data.style.indexCard} >
-                <CardTitle
-                  subtitle='Slots'
-                  titleStyle={this.data.style.title}
-                  subtitleStyle={this.data.style.subtitle}
-                />
-              </GlassCard>
-            </div>
+  //           <div id="questionnairesTile" style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/questionnaires') } >
+  //             <GlassCard style={this.data.style.indexCard} >
+  //               <CardTitle
+  //                 subtitle='Questionnaires'
+  //                 titleStyle={this.data.style.title}
+  //                 subtitleStyle={this.data.style.subtitle}
+  //               />
+  //             </GlassCard>
+  //           </div>
+  //           <div id='questionnaireResponsesTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/questionnaire-responses') } >
+  //             <GlassCard style={this.data.style.indexCard} >
+  //               <CardTitle
+  //                 subtitle='Questionnaire Responses'
+  //                 titleStyle={this.data.style.title}
+  //                 subtitleStyle={this.data.style.subtitle}
+  //               />
+  //             </GlassCard>
+  //           </div>
 
 
+  //           <div id="appointmentsTile" style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/appointments') } >
+  //             <GlassCard style={this.data.style.indexCard} >
+  //               <CardTitle
+  //                 subtitle='Appointments'
+  //                 titleStyle={this.data.style.title}
+  //                 subtitleStyle={this.data.style.subtitle}
+  //               />
+  //             </GlassCard>
+  //           </div>
+
+  //           <div id='slotsTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/slots') } >
+  //             <GlassCard style={this.data.style.indexCard} >
+  //               <CardTitle
+  //                 subtitle='Slots'
+  //                 titleStyle={this.data.style.title}
+  //                 subtitleStyle={this.data.style.subtitle}
+  //               />
+  //             </GlassCard>
+  //           </div>
 
 
-            <div id='schedulesTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/schedules') } >
-              <GlassCard style={this.data.style.indexCard} >
-                <CardTitle
-                  subtitle='Schedules'
-                  titleStyle={this.data.style.title}
-                  subtitleStyle={this.data.style.subtitle}
-                />
-              </GlassCard>
-            </div>
 
 
-          <div id='forumTile' style={this.data.style.indexCardPadding} onClick={ this.openDiscussionForum.bind(this) }>
-            <GlassCard style={this.data.style.indexCard} >
-              <CardTitle
-                subtitle='Discussion Forum'
-                titleStyle={this.data.style.title}
-                  subtitleStyle={this.data.style.subtitle}
-              />
-            </GlassCard>
-          </div>
-
-          <div id='weblogTile' style={this.data.style.indexCardPadding} onClick={ this.openHealthlog.bind(this) } >
-            <GlassCard style={this.data.style.indexCard} >
-              <CardTitle
-                subtitle='Healthlog'
-                titleStyle={this.data.style.title}
-                  subtitleStyle={this.data.style.subtitle}
-              />
-            </GlassCard>
-          </div>
-
-          <div id="dermatogramsTile" style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/dermatograms') } >
-            <GlassCard style={this.data.style.indexCard} >
-              <CardTitle
-                subtitle='Dermatograms'
-                titleStyle={this.data.style.title}
-                  subtitleStyle={this.data.style.subtitle}
-              />
-            </GlassCard>
-          </div>
-
-          <div id='telemedicineTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/telemed') } >
-            <GlassCard style={this.data.style.indexCard} >
-              <CardTitle
-                subtitle='Telemedicine'
-                titleStyle={this.data.style.title}
-                subtitleStyle={this.data.style.subtitle}
-              />
-            </GlassCard>
-          </div>
-          <div id='myGenomeTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/my-genome') } >
-            <GlassCard style={this.data.style.indexCard} >
-              <CardTitle
-                subtitle='My Genome'
-                titleStyle={this.data.style.title}
-                  subtitleStyle={this.data.style.subtitle}
-              />
-            </GlassCard>
-          </div>
-          <div id="oAuthTile" style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/oauth-ui') } >
-            <GlassCard style={this.data.style.indexCard} >
-              <CardTitle
-                subtitle='Authorization & Trust'
-                titleStyle={this.data.style.title}
-                subtitleStyle={this.data.style.subtitle}
-              />
-            </GlassCard>
-          </div>
-        </div>
-      );
-    }
-  }
+  //           <div id='schedulesTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/schedules') } >
+  //             <GlassCard style={this.data.style.indexCard} >
+  //               <CardTitle
+  //                 subtitle='Schedules'
+  //                 titleStyle={this.data.style.title}
+  //                 subtitleStyle={this.data.style.subtitle}
+  //               />
+  //             </GlassCard>
+  //           </div>
 
 
-  renderImportChart(user){
-    if (get(Meteor, 'settings.public.modules.apps.ImportChart')) {
-      if (user.isPatient || user.isPractitioner || user.isAdmin) {
-        return (
-          <MenuTile          
-            id='importChartTile'
-            active={true}
-            path='/import-chart'
-            icon='MdList'
-            iconSize={85}
-            subtitle='Import Chart'
-          />
+  //         <div id='forumTile' style={this.data.style.indexCardPadding} onClick={ this.openDiscussionForum.bind(this) }>
+  //           <GlassCard style={this.data.style.indexCard} >
+  //             <CardTitle
+  //               subtitle='Discussion Forum'
+  //               titleStyle={this.data.style.title}
+  //                 subtitleStyle={this.data.style.subtitle}
+  //             />
+  //           </GlassCard>
+  //         </div>
 
-        );
-      }
-    }    
-  }
-  renderChecklists(user){
-    if (get(Meteor, 'settings.public.modules.apps.ChecklistManifesto') && get(Meteor, 'settings.public.modules.fhir.Lists')) {
-      if (user.isPatient || user.isPractitioner || user.isAdmin) {
-        return (
-          <MenuTile          
-            id='checklistsTile'
-            active={true}
-            path='/checklists'
-            icon='MdList'
-            iconSize={85}
-            subtitle='Checklist Manifesto'
-          />
+  //         <div id='weblogTile' style={this.data.style.indexCardPadding} onClick={ this.openHealthlog.bind(this) } >
+  //           <GlassCard style={this.data.style.indexCard} >
+  //             <CardTitle
+  //               subtitle='Healthlog'
+  //               titleStyle={this.data.style.title}
+  //                 subtitleStyle={this.data.style.subtitle}
+  //             />
+  //           </GlassCard>
+  //         </div>
 
-        );
-      }
-    }
-  }
-  renderZygote(user){
-    if (get(Meteor, 'settings.public.modules.apps.ZygoteAvatar')) {
-      if (user.isPatient || user.isPractitioner || user.isAdmin) {
-        return (
+  //         <div id="dermatogramsTile" style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/dermatograms') } >
+  //           <GlassCard style={this.data.style.indexCard} >
+  //             <CardTitle
+  //               subtitle='Dermatograms'
+  //               titleStyle={this.data.style.title}
+  //                 subtitleStyle={this.data.style.subtitle}
+  //             />
+  //           </GlassCard>
+  //         </div>
 
-          <MenuTile          
-            id='zygoteAvatarTile'
-            active={true}
-            path='/zygote'
-            icon='MdFingerprint'
-            iconSize={85}
-            subtitle='Zygote'
-          />
+  //         <div id='telemedicineTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/telemed') } >
+  //           <GlassCard style={this.data.style.indexCard} >
+  //             <CardTitle
+  //               subtitle='Telemedicine'
+  //               titleStyle={this.data.style.title}
+  //               subtitleStyle={this.data.style.subtitle}
+  //             />
+  //           </GlassCard>
+  //         </div>
+  //         <div id='myGenomeTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/my-genome') } >
+  //           <GlassCard style={this.data.style.indexCard} >
+  //             <CardTitle
+  //               subtitle='My Genome'
+  //               titleStyle={this.data.style.title}
+  //                 subtitleStyle={this.data.style.subtitle}
+  //             />
+  //           </GlassCard>
+  //         </div>
+  //         <div id="oAuthTile" style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/oauth-ui') } >
+  //           <GlassCard style={this.data.style.indexCard} >
+  //             <CardTitle
+  //               subtitle='Authorization & Trust'
+  //               titleStyle={this.data.style.title}
+  //               subtitleStyle={this.data.style.subtitle}
+  //             />
+  //           </GlassCard>
+  //         </div>
+  //       </div>
+  //     );
+  //   }
+  // }
 
-        );
-      }
-    }
-  }
-  renderVideoconferencing(user){
-    if (get(Meteor, 'settings.public.modules.apps.Videoconferencing')) {
-      if (user.isPatient || user.isPractitioner || user.isAdmin) {
-        return (
-          <MenuTile          
-            id='videoconferencingTile'
-            active={true}
-            path='/videoconferencing'
-            icon='MdImportantDevices'
-            iconSize={85}
-            subtitle='Telemedicine'
-          />
-        );
-      }
-    }
-  }
-  renderContinuityOfCare(user){
-    if (get(Meteor, 'settings.public.modules.apps.ContinuityOfCare')) {
-      if (user.isPatient || user.isPractitioner || user.isAdmin) {
-        return (
-          <MenuTile          
-            id='continuityOfCareTile'
-            active={true}
-            path='/continuity-of-care'
-            icon='FaHeartbeat'
-            iconSize={85}
-            subtitle='Continuity of Care'
-          />
-        );
-      }
-    }
-  }
-  renderTimeline(user){
-    if (get(Meteor, 'settings.public.modules.apps.Timeline')) {
-      if (user.isPatient || user.isPractitioner || user.isAdmin) {
-        return (
-          <MenuTile          
-            id='timelineTile'
-            active={true}
-            path='/timeline-sidescroll'
-            icon='Pulse'
-            iconSize={85}
-            subtitle='Timeline'
-          />
-        );
-      }
-    }
-  }
+
+  // renderImportChart(user){
+  //   if (get(Meteor, 'settings.public.modules.apps.ImportChart')) {
+  //     if (user.isPatient || user.isPractitioner || user.isAdmin) {
+  //       return (
+  //         <MenuTile          
+  //           id='importChartTile'
+  //           active={true}
+  //           path='/import-chart'
+  //           icon='MdList'
+  //           iconSize={85}
+  //           subtitle='Import Chart'
+  //         />
+
+  //       );
+  //     }
+  //   }    
+  // }
+  // renderChecklists(user){
+  //   if (get(Meteor, 'settings.public.modules.apps.ChecklistManifesto') && get(Meteor, 'settings.public.modules.fhir.Lists')) {
+  //     if (user.isPatient || user.isPractitioner || user.isAdmin) {
+  //       return (
+  //         <MenuTile          
+  //           id='checklistsTile'
+  //           active={true}
+  //           path='/checklists'
+  //           icon='MdList'
+  //           iconSize={85}
+  //           subtitle='Checklist Manifesto'
+  //         />
+
+  //       );
+  //     }
+  //   }
+  // }
+  // renderZygote(user){
+  //   if (get(Meteor, 'settings.public.modules.apps.ZygoteAvatar')) {
+  //     if (user.isPatient || user.isPractitioner || user.isAdmin) {
+  //       return (
+
+  //         <MenuTile          
+  //           id='zygoteAvatarTile'
+  //           active={true}
+  //           path='/zygote'
+  //           icon='MdFingerprint'
+  //           iconSize={85}
+  //           subtitle='Zygote'
+  //         />
+
+  //       );
+  //     }
+  //   }
+  // }
+  // renderVideoconferencing(user){
+  //   if (get(Meteor, 'settings.public.modules.apps.Videoconferencing')) {
+  //     if (user.isPatient || user.isPractitioner || user.isAdmin) {
+  //       return (
+  //         <MenuTile          
+  //           id='videoconferencingTile'
+  //           active={true}
+  //           path='/videoconferencing'
+  //           icon='MdImportantDevices'
+  //           iconSize={85}
+  //           subtitle='Telemedicine'
+  //         />
+  //       );
+  //     }
+  //   }
+  // }
+  // renderContinuityOfCare(user){
+  //   if (get(Meteor, 'settings.public.modules.apps.ContinuityOfCare')) {
+  //     if (user.isPatient || user.isPractitioner || user.isAdmin) {
+  //       return (
+  //         <MenuTile          
+  //           id='continuityOfCareTile'
+  //           active={true}
+  //           path='/continuity-of-care'
+  //           icon='FaHeartbeat'
+  //           iconSize={85}
+  //           subtitle='Continuity of Care'
+  //         />
+  //       );
+  //     }
+  //   }
+  // }
+  // renderTimeline(user){
+  //   if (get(Meteor, 'settings.public.modules.apps.Timeline')) {
+  //     if (user.isPatient || user.isPractitioner || user.isAdmin) {
+  //       return (
+  //         <MenuTile          
+  //           id='timelineTile'
+  //           active={true}
+  //           path='/timeline-sidescroll'
+  //           icon='Pulse'
+  //           iconSize={85}
+  //           subtitle='Timeline'
+  //         />
+  //       );
+  //     }
+  //   }
+  // }
 
 
 

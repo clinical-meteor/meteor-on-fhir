@@ -43,7 +43,7 @@ echo "Trying to remove licensed packages and other intellectual property that sh
 
 
 
-recommendedCommand="meteor remove";
+recommendedCommand="meteor remove --allow-incompatible-update";
 needToRemovePackages=false;
 
 # remove service-request first?
@@ -199,6 +199,7 @@ if [ $z2 -gt 0 ];
          needToRemovePackages=true;
     else echo "Skipping..."; 
     fi; 
+
 
 
 if [ "$needToRemovePackages" = true ] ; then 

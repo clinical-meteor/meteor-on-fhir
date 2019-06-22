@@ -1,5 +1,6 @@
 import { Accounts } from 'meteor/accounts-base';
 import { Meteor } from 'meteor/meteor';
+import { get } from 'lodash';
 
 Meteor.startup(function (){
   if (process.env.INITIALIZE && (Meteor.users.find().count() === 0)) {
@@ -38,22 +39,26 @@ Meteor.methods({
 
     if (process.env.NIGHTWATCH) {
       let count = 0;
+      let testUsers = [
+        'alice@test.org',
+        'janedoe@test.org',
+        'sysadmin@test.org',
+        'house@symptomatic.io',
+        'house@test.org'
+      ]
       Meteor.users.find().forEach(function(user){
-        if (user.emails && user.emails[0]) {
-          if ((user.emails[0].address === 'alice@test.org')
-          || (user.emails[0].address === 'janedoe@test.org')
-          || (user.emails[0].address === 'sysadmin@test.org')
-          || (user.emails[0].address === 'house@test.org')){
-            Meteor.users.remove({_id: user._id});
-            count++;
-          }
+        if(testUsers.includes(get(user, 'emails[0].address'))){
+          Meteor.users.remove({_id: get(user, '_id')});
+          count++;
         }
       });
+      console.log('Removed ' + count + " named users.");
+      
+      console.log('Now dropping any accounts with test:true');
       Meteor.users.remove({test: true});
-      console.log(Meteor.users.find().count() + " users.");
 
     } else {
-      console.log('Not in test mode.  Try using NODE_ENV=test');
+      console.log('Not in test mode.  Try using NIGHTWATCH=true');
     }
   },
   updateUserProfile: function(userId, profileData){

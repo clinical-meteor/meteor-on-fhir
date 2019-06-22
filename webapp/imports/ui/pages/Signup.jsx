@@ -4,7 +4,7 @@ import { ReactMeteorData } from 'meteor/react-meteor-data';
 
 import { CardText, CardTitle, TextField, RaisedButton } from 'material-ui';
 
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Alert } from 'react-bootstrap';
 
 import { browserHistory } from 'react-router';
 import { Accounts } from 'meteor/accounts-base';
@@ -21,8 +21,8 @@ import { get, set } from 'lodash';
 import validator from 'validator';
 
 
-if(process.env.NODE_ENV === "test") console.log("Signup[lightBaseTheme]", lightBaseTheme);
-if(process.env.NODE_ENV === "test") console.log("Signup[darkBaseTheme]", darkBaseTheme);
+// if(process.env.NODE_ENV === "test") console.log("Signup[lightBaseTheme]", lightBaseTheme);
+// if(process.env.NODE_ENV === "test") console.log("Signup[darkBaseTheme]", darkBaseTheme);
 
 export class Signup extends React.Component {
     constructor(props) {
@@ -72,8 +72,13 @@ export class Signup extends React.Component {
         familyName: '', 
         emailAddress: '', 
         password: ''
-      }
+      },
+      connected: false
     };
+
+    if(Meteor.status().status === "connected"){
+      data.connected = true;
+    }
 
     if (get(Meteor, 'settings.public.theme.darkroomTextEnabled')) {
       data.style.textColor.color = darkBaseTheme.palette.textColor;
@@ -148,7 +153,7 @@ export class Signup extends React.Component {
         data.errorText.password = '';
     }
 
-    console.log("Signup[data]", data);
+    // console.log("Signup[data]", data);
     return data;
   }
 
@@ -194,6 +199,12 @@ export class Signup extends React.Component {
     cardStyle.top = (Session.get('appHeight') * 0.1) + 'px'
     // }
 
+    let connectionAlert;
+    if(!this.data.connected){
+      connectionAlert = <Alert bsStyle="warning">
+        <strong>No connection to server.</strong> Please check your internet connection.
+      </Alert>;
+    }
 
     return (
       <div id='signupPage' style={this.data.style.pageBackground} >
@@ -312,6 +323,11 @@ export class Signup extends React.Component {
                       </form>
                       </CardText>
                     </GlassCard>
+                    <DynamicSpacer />
+                    <DynamicSpacer />
+                    <DynamicSpacer />
+                    <DynamicSpacer />
+                    { connectionAlert }
                   </Col>
                 </Row>
               </Col>
@@ -333,20 +349,20 @@ export class Signup extends React.Component {
       case "emailAddress":
         set(formData, 'emailAddress', textValue);
         if(validator.isEmail(textValue)){
-          console.log(textValue + " appears to be an email.  Let's see if it's registered.")
+          //console.log(textValue + " appears to be an email.  Let's see if it's registered.")
           Session.set('signUpErrorMessage', 'This email appears to be available!')
 
           Meteor.call('checkIfEmailExists', textValue, function(error, result){
             if(result){
-              console.log('checkIfEmailExists', result);
+              //console.log('checkIfEmailExists', result);
               Session.set('signUpErrorMessage', "Email is already registered.")
             }
             if(error){              
-              console.log('checkIfEmailExists', error);
+              //onsole.log('checkIfEmailExists', error);
             }
           })  
         } else {
-          console.log(textValue + " isn't an email.")
+          //console.log(textValue + " isn't an email.")
           Session.set('signUpErrorMessage', "This doesn't appear to be an email.")
         }
         break;        
@@ -364,7 +380,7 @@ export class Signup extends React.Component {
   changeState(field, event, textValue){
     // if(process.env.NODE_ENV === "test") console.log("   ");
     //if(process.env.NODE_ENV === "test") console.log("Signup.changeState", field, textValue);
-    console.log("Signup.changeState", field, textValue);
+    // console.log("Signup.changeState", field, textValue);
     
     let formData = Object.assign({}, this.state.form);
 
@@ -375,7 +391,7 @@ export class Signup extends React.Component {
     this.setState({form: formData})
   }
   async handleTouchTap(){
-    console.log('handleTouchTap');
+    // console.log('handleTouchTap');
 
     let newUserData = {
       email: get(this, 'state.form.emailAddress', ''),
@@ -391,8 +407,8 @@ export class Signup extends React.Component {
       accessCode: get(this, 'state.form.accessCode', '')
     };
 
-    console.log('SignUp.handleTouchTap', this);
-    console.log('newUserData', newUserData);
+    // console.log('SignUp.handleTouchTap', this);
+    // console.log('newUserData', newUserData);
     // if(validator.isEmail(newUserData.username)){
     if(Session.equals('signUpErrorMessage', 'This email appears to be available!')){
       console.log('We think this email is available; so lets try registering it.');
@@ -400,7 +416,7 @@ export class Signup extends React.Component {
         if (error) { 
           // for some reason, we're getting an "Email already exists!" on signup
           if (!error.reason.includes("Email already exists.")) {
-            console.log('Accounts.createUser().error',  error.reason)
+            // console.log('Accounts.createUser().error',  error.reason)
             // Meteor.call('debugToServer', 'Accounts.createUser()', error)
     
             Session.set('signUpErrorMessage', error.reason);
@@ -409,11 +425,14 @@ export class Signup extends React.Component {
           }
         }
         if (result) {
-          console.log("Accounts.createUser[result]", result);
-          console.log("Accounts.createUser[Meteor.userId()]", Meteor.userId());
-          console.log("Accounts.createUser[Roles.userIsInRole(Meteor.userId()]", Roles.userIsInRole(Meteor.userId()));
-        
-          // Meteor.call('sendEnrollmentEmail', Meteor.userId());
+          // console.log("Accounts.createUser[result]", result);
+          // console.log("Accounts.createUser[Meteor.userId()]", Meteor.userId());
+          // console.log("Accounts.createUser[Roles.userIsInRole(Meteor.userId()]", Roles.userIsInRole(Meteor.userId()));
+
+          // if(process.env.NODE_ENV === "production"){
+            // console.log('Sending verification email...')
+            Meteor.call('sendVerificationEmail', Meteor.userId());
+          // }
   
           // if this is a patient's first visit, we want to send them to a welcome screen
           // where they can fill out HIPAA
