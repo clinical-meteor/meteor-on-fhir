@@ -630,219 +630,214 @@ export class MyProfilePage extends React.Component {
 
     return(
       <div id='myProfilePage'>
-        <FullPageCanvas style={{paddingBottom: '80px'}}> 
-          <Col md={6}>
-            <PatientCard
-              overflowY="none"
-              patient = { get(this, 'data.patient') }
-              updateGivenName={ this.updateGivenName }
-              updateFamilyName={ this.updateFamilyName }
-              updateBirthdate={ this.updateBirthdate }
-              updateGender={ this.updateGender }
-              updateAvatar={ this.updateAvatar }
-              defaultAvatar={ Meteor.absoluteUrl() + 'packages/clinical_hl7-resource-patient/assets/noAvatar.png' }
-              />
-            <DynamicSpacer />
-            
+        <VerticalCanvas> 
+          <Row style={{maxWidth: '100%'}}>
+              <PatientCard
+                overflowY="none"
+                patient = { get(this, 'data.patient') }
+                updateGivenName={ this.updateGivenName }
+                updateFamilyName={ this.updateFamilyName }
+                updateBirthdate={ this.updateBirthdate }
+                updateGender={ this.updateGender }
+                updateAvatar={ this.updateAvatar }
+                defaultAvatar={ Meteor.absoluteUrl() + 'packages/clinical_hl7-resource-patient/assets/noAvatar.png' }
+                />
+              <DynamicSpacer />
+              
 
-            <GlassCard>
-              <CardTitle title="Home Address" style={{float: 'left'}} />
-              <CardTitle subtitle={this.data.address.latlng} style={{position: 'relative', right: '0px', top: '0px', float: 'right'}}/>
-              <CardText>
-                
-                <Row>
-                  <Col md={12}>
-                    <TextField
-                      id='streetAddressInput'
-                      name='streetAddress'
-                      type='text'
-                      floatingLabelText='Street Address'
-                      floatingLabelFixed={true}                    
-                      value={this.data.address.line}
-                      onChange={ this.changeHomeStreetAddress.bind(this) }
-                      fullWidth
-                      />
-                  </Col>
-                </Row>
-                <Row>
-                  <Col md={3}>
-                    <TextField
-                      id='cityInput'
-                      name='city'
-                      type='text'
-                      floatingLabelText='City'
-                      floatingLabelFixed={true}
-                      value={this.data.address.city}
-                      onChange={ this.changeHomeCity.bind(this) }
-                      fullWidth
-                      />
-                  </Col>
-                  <Col md={3}>
-                    <TextField
-                      id='stateInput'
-                      name='state'
-                      type='text'
-                      floatingLabelText='State'
-                      floatingLabelFixed={true}
-                      value={this.data.address.state}
-                      onChange={ this.changeHomeState.bind(this) }
-                      fullWidth
-                      />
-                  </Col>
-                  <Col md={3}>
-                    <TextField
-                      id='postalCodeInput'
-                      name='postalCode'
-                      type='text'
-                      floatingLabelText='Postal Code'
-                      floatingLabelFixed={true}
-                      value={this.data.address.postalCode}
-                      onChange={ this.changeHomeZip.bind(this) }
-                      fullWidth
-                      />
-                  </Col>
-                  <Col md={3}>
-                    <TextField
-                      id='countryInput'
-                      name='country'
-                      type='text'
-                      floatingLabelText='Country'
-                      floatingLabelFixed={true}
-                      value={this.data.address.country}
-                      onChange={ this.changeHomeCountry.bind(this) }
-                      fullWidth
-                      />
-                  </Col>
-                </Row>
-              </CardText>
-              <CardActions>
-                <FlatButton 
-                  label='Geocode' 
-                  onClick={this.geocode.bind(this)}
-                  />
-              </CardActions>
-            </GlassCard>
-            <DynamicSpacer />
-
-            <GlassCard>
-              <CardTitle title="Contact Info" style={{float: 'left'}} />
-              <CardText>
-                
-                <Row>
-                  <Col md={12}>
-                    <TextField
-                      id='primaryAddressInput'
-                      name='primaryAddress'
-                      type='text'
-                      floatingLabelText='Primary Address'
-                      floatingLabelFixed={true}                    
-                      value={this.data.user.email}
-                      inputStyle={verifiedEmailStyle}
-                      fullWidth
-                      />
-                  </Col>
-                </Row>                
-              </CardText>
-            </GlassCard>
-            <DynamicSpacer />
-
-            { geocodingCard }
-
-
-            { continuityOfCareCard }
-
-
-            <GlassCard>
-              <CardTitle title="Preferences" subtitle='Reset your password.' />
-              <CardText>
-                <Toggle 
-                  label="AutoPrivacy"
-                  labelPosition='right'
-                  onToggle={this.toggleAutoprivacy.bind(this)} 
-                  toggled={ this.data.toggles.autoPrivacyToggled }  
-                /><br />
-              </CardText>
-            </GlassCard>                    
-            <DynamicSpacer />
-
-
-
-            <GlassCard>
-              <CardTitle title="Password Management" subtitle='Reset your password.' />
-              <CardText>
-                <div id='profilePasswordPane' style={{position: 'relative'}} >
-                  <TextField
-                    id='oldPasswordInput'
-                    name='oldPassword'
-                    type='text'
-                    floatingLabelText='oldPassword'
-                    floatingLabelFixed={true}
-                    value={this.data.state.oldPassword}
-                    onChange={ this.rememberOldPassword.bind(this) }
-                    fullWidth
-                    /><br/>
+              <GlassCard>
+                <CardTitle title="Home Address" style={{float: 'left'}} />
+                <CardTitle subtitle={this.data.address.latlng} style={{position: 'relative', right: '0px', top: '0px', float: 'right'}}/>
+                <CardText>
+                  
                   <Row>
-                    <Col md={6}>
+                    <Col md={12}>
                       <TextField
-                        id='newPasswordInput'
-                        name='newPassword'
+                        id='streetAddressInput'
+                        name='streetAddress'
                         type='text'
-                        floatingLabelText='newPassword'
-                        floatingLabelFixed={true}
-                        value={this.data.state.newPassword}
-                        onChange={ this.rememberNewPassword.bind(this) }
+                        floatingLabelText='Street Address'
+                        floatingLabelFixed={true}                    
+                        value={this.data.address.line}
+                        onChange={ this.changeHomeStreetAddress.bind(this) }
                         fullWidth
-                        /><br/>
-                    </Col>
-                    <Col md={6}>
-                      <TextField
-                        id='confirmPasswordInput'
-                        name='confirmPassword'
-                        type='text'
-                        floatingLabelText='confirmPassword'
-                        floatingLabelFixed={true}
-                        value={this.data.state.confirmPassword}
-                        onChange={ this.rememberConfirmPassword.bind(this) }
-                        fullWidth
-                        /><br/>
+                        />
                     </Col>
                   </Row>
-
-
-
-                  <FlatButton
-                    id='changePasswordButton'
-                    label='Change Password'
-                    onClick={this.changePassword.bind(this)}
-                    className="muidocs-icon-action-delete"
+                  <Row>
+                    <Col md={3}>
+                      <TextField
+                        id='cityInput'
+                        name='city'
+                        type='text'
+                        floatingLabelText='City'
+                        floatingLabelFixed={true}
+                        value={this.data.address.city}
+                        onChange={ this.changeHomeCity.bind(this) }
+                        fullWidth
+                        />
+                    </Col>
+                    <Col md={3}>
+                      <TextField
+                        id='stateInput'
+                        name='state'
+                        type='text'
+                        floatingLabelText='State'
+                        floatingLabelFixed={true}
+                        value={this.data.address.state}
+                        onChange={ this.changeHomeState.bind(this) }
+                        fullWidth
+                        />
+                    </Col>
+                    <Col md={3}>
+                      <TextField
+                        id='postalCodeInput'
+                        name='postalCode'
+                        type='text'
+                        floatingLabelText='Postal Code'
+                        floatingLabelFixed={true}
+                        value={this.data.address.postalCode}
+                        onChange={ this.changeHomeZip.bind(this) }
+                        fullWidth
+                        />
+                    </Col>
+                    <Col md={3}>
+                      <TextField
+                        id='countryInput'
+                        name='country'
+                        type='text'
+                        floatingLabelText='Country'
+                        floatingLabelFixed={true}
+                        value={this.data.address.country}
+                        onChange={ this.changeHomeCountry.bind(this) }
+                        fullWidth
+                        />
+                    </Col>
+                  </Row>
+                </CardText>
+                <CardActions>
+                  <FlatButton 
+                    label='Geocode' 
+                    onClick={this.geocode.bind(this)}
                     />
-                </div>
-              </CardText>
-            </GlassCard>                    
+                </CardActions>
+              </GlassCard>
+              <DynamicSpacer />
 
-            <DynamicSpacer />
-            <GlassCard>
-              <CardTitle title="Delete User" subtitle='Permanently remove account and data.' />
-              <CardText>
-                <div id="profileSystemPanel" style={{position: "relative"}}>
-                  { this.renderConfirmDelete(this.data.state.wantsToDelete) }
-                </div>
-              </CardText>
-            </GlassCard>
+              <GlassCard>
+                <CardTitle title="Contact Info" style={{float: 'left'}} />
+                <CardText>
+                  
+                  <Row>
+                    <Col md={12}>
+                      <TextField
+                        id='primaryAddressInput'
+                        name='primaryAddress'
+                        type='text'
+                        floatingLabelText='Primary Address'
+                        floatingLabelFixed={true}                    
+                        value={this.data.user.email}
+                        inputStyle={verifiedEmailStyle}
+                        fullWidth
+                        />
+                    </Col>
+                  </Row>                
+                </CardText>
+              </GlassCard>
+              <DynamicSpacer />
 
-            <DynamicSpacer />
-            <DynamicSpacer />
+              { geocodingCard }
+
+
+              { continuityOfCareCard }
+
+
+              <GlassCard>
+                <CardTitle title="Preferences" subtitle='Reset your password.' />
+                <CardText>
+                  <Toggle 
+                    label="AutoPrivacy"
+                    labelPosition='right'
+                    onToggle={this.toggleAutoprivacy.bind(this)} 
+                    toggled={ this.data.toggles.autoPrivacyToggled }  
+                  /><br />
+                </CardText>
+              </GlassCard>                    
+              <DynamicSpacer />
 
 
 
-          </Col>
-        </FullPageCanvas>
+              <GlassCard>
+                <CardTitle title="Password Management" subtitle='Reset your password.' />
+                <CardText>
+                  <div id='profilePasswordPane' style={{position: 'relative'}} >
+                    <TextField
+                      id='oldPasswordInput'
+                      name='oldPassword'
+                      type='text'
+                      floatingLabelText='oldPassword'
+                      floatingLabelFixed={true}
+                      value={this.data.state.oldPassword}
+                      onChange={ this.rememberOldPassword.bind(this) }
+                      fullWidth
+                      /><br/>
+                    <Row>
+                      <Col md={6}>
+                        <TextField
+                          id='newPasswordInput'
+                          name='newPassword'
+                          type='text'
+                          floatingLabelText='newPassword'
+                          floatingLabelFixed={true}
+                          value={this.data.state.newPassword}
+                          onChange={ this.rememberNewPassword.bind(this) }
+                          fullWidth
+                          /><br/>
+                      </Col>
+                      <Col md={6}>
+                        <TextField
+                          id='confirmPasswordInput'
+                          name='confirmPassword'
+                          type='text'
+                          floatingLabelText='confirmPassword'
+                          floatingLabelFixed={true}
+                          value={this.data.state.confirmPassword}
+                          onChange={ this.rememberConfirmPassword.bind(this) }
+                          fullWidth
+                          /><br/>
+                      </Col>
+                    </Row>
+
+
+
+                    <FlatButton
+                      id='changePasswordButton'
+                      label='Change Password'
+                      onClick={this.changePassword.bind(this)}
+                      className="muidocs-icon-action-delete"
+                      />
+                  </div>
+                </CardText>
+              </GlassCard>                    
+
+              <DynamicSpacer />
+              <GlassCard>
+                <CardTitle title="Delete User" subtitle='Permanently remove account and data.' />
+                <CardText>
+                  <div id="profileSystemPanel" style={{position: "relative"}}>
+                    { this.renderConfirmDelete(this.data.state.wantsToDelete) }
+                  </div>
+                </CardText>
+              </GlassCard>
+
+              <DynamicSpacer />
+              <DynamicSpacer />
+              <DynamicSpacer />
+          </Row>
+        </VerticalCanvas>
       </div>
     );
   }
-  // imgError() {
-  //   this.refs.avatarImage.src = Meteor.absoluteUrl() + 'noAvatar.png';
-  // }
   renderConfirmDelete(wantsToDelete){
     return(
       <div>

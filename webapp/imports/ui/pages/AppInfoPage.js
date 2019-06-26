@@ -82,7 +82,7 @@ export class AppInfoPage extends React.Component {
       <div id="aboutPage" style={pageBackground} >
         <VerticalCanvas >
           <GlassCard id='stickyInfo' height='auto' zDepth={3} >
-            <Row>
+            <Row style={{maxWidth: '100%'}}>
               <Col md={4}>
                 <CardText style={this.data.environmentData}>
                   <TextField

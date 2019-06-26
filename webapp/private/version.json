@@ -1,7 +1,7 @@
 {
-    "basic": "v0.9.5",
-    "complete": "v0.9.5-166-g17a18695",
+    "basic": "v1.0",
+    "complete": "v1.0-1-g55d5eced",
     "branch": "release",
-    "commit": "17a18695c1fb14e86574582bb51acad43364c321",
-    "timestamp": "2019-06-22"
+    "commit": "55d5ecedee7d5fbf9570006db551f8538d6a390e",
+    "timestamp": "2019-06-25"
 }
