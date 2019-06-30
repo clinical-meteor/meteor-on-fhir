@@ -71,6 +71,7 @@ export class Header extends React.Component {
           transition: 'ease .2s',
           background: 'white',
           paddingLeft: '0px',
+          height: '65px'
         },
         title: Glass.darkroom({
           userSelect: 'none',
@@ -99,7 +100,7 @@ export class Header extends React.Component {
     } 
 
     if(Session.get('showSearchbar')){
-      data.style.searchbar.height = '64px';
+      data.style.searchbar.height = '65px';
       data.style.searchbar.display = 'flex';
       data.style.searchbarInput.visibility = 'visible';
 
@@ -109,7 +110,7 @@ export class Header extends React.Component {
       data.style.searchbarInput.visibility = 'hidden';
     }
     if(Session.get('showNavbars')){
-      data.style.searchbar.top = '65px';      
+      data.style.searchbar.top = '66px';      
     } else {
       data.style.searchbar.top = '0px';
     }
