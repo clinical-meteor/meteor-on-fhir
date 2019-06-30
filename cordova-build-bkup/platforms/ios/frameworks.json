@@ -1,6 +1,0 @@
-{
-    "WebKit.framework": 1,
-    "CFNetwork.framework": 1,
-    "libz.dylib": 1,
-    "HealthKit.framework": 1
-}
