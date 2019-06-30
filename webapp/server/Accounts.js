@@ -275,7 +275,7 @@ Accounts.onLogin(function(loginObject) {
       'Procedures' 
     ],
     sensitiveItems: {
-      subtanceAbuse: true,
+      substanceAbuse: true,
       mentalHealth: true,
       sexualHealth: true
     }
