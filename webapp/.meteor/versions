@@ -172,9 +172,10 @@ srp@1.0.12
 standard-minifier-js@2.4.0
 symptomatic:continuity-of-care@0.2.5
 symptomatic:geomapping@0.0.7
-symptomatic:landing-page@0.2.8
+symptomatic:landing-page@0.2.9
 symptomatic:smart-on-fhir-client@0.1.61
 symptomatic:smart-on-fhir-config@0.1.52
+symptomatic:theming@0.0.5
 templating@1.2.15
 templating-compiler@1.2.15
 templating-runtime@1.2.15
