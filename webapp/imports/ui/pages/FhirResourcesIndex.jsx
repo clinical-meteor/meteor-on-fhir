@@ -548,7 +548,7 @@ export class FhirResourcesIndex extends React.Component {
         }
 
         if(count % 6 === 5){
-          row = <Grid container item xs={12} spacing={4}>
+          row = <Grid container item xs={12} spacing={16}>
             <React.Fragment>
               { innerRow }
             </React.Fragment>

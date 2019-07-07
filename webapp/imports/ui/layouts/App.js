@@ -24,6 +24,8 @@ import { get, has } from 'lodash';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
+import {Helmet} from "react-helmet";
+
 const muiTheme = getMuiTheme({
   palette: {
     primary1Color: blue400,
@@ -188,10 +190,36 @@ export class App extends React.Component {
     Session.set('window.location', this.props.location)
     Session.set('ehrLaunchContext', get(this, 'props.location.query.launch'))
 
+    let socialmedia = {
+      title: get(Meteor, 'settings.public.socialmedia.title', ''),
+      type: get(Meteor, 'settings.public.socialmedia.type', ''),
+      url: get(Meteor, 'settings.public.socialmedia.url', ''),
+      image: get(Meteor, 'settings.public.socialmedia.image', ''),
+      description: get(Meteor, 'settings.public.socialmedia.description', ''),
+      site_name: get(Meteor, 'settings.public.socialmedia.site_name', ''),
+  }
+
+  let helmet;
+  if(get(Meteor, 'settings.public.socialmedia')){
+    helmet = <Helmet>
+      <meta charSet="utf-8" />
+      <title>{socialmedia.title}</title>
+      <link rel="canonical" href={socialmedia.url} />
+
+      <meta property="og:title" content={socialmedia.title} />
+      <meta property="og:type" content={socialmedia.type} />
+      <meta property="og:url" content={socialmedia.url} />
+      <meta property="og:image" content={socialmedia.image} />
+      <meta property="og:description" content={socialmedia.description} />
+      <meta property="og:site_name" content={socialmedia.site_name} />
+      
+    </Helmet>
+  }
 
     return (
         <MuiThemeProvider muiTheme={muiTheme}>
           <GlassApp>
+            { helmet }
             <SidebarTray>
               {orbital}
               <Header />
