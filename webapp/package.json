@@ -91,6 +91,7 @@
     "xml2js": "0.4.19"
   },
   "devDependencies": {
+    "@wdio/cli": "^5.11.6",
     "babel-eslint": "^6.1.2",
     "chromedriver": "^75.0.0",
     "eslint": "^3.5.0",
