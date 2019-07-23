@@ -169,12 +169,8 @@ littledata:synced-cron
 # symptomatic:card-readers
 
 symptomatic:continuity-of-care
-symptomatic:geomapping
 
-symptomatic:theming
-symptomatic:smart-on-fhir-client
-symptomatic:smart-on-fhir-config
 
-symptomatic:landing-page
 
 mdg:meteor-apm-agent
+biologio:curebot
