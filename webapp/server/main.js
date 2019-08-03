@@ -15,8 +15,9 @@ Meteor.startup(function(){
   console.log('');
   console.log('Clock check...');
   console.log('Current time zone: ' + moment.tz.guess());
+  console.log('Timezone is valid: ' + clock.localDate( moment.tz.guess()).toString());
   console.log('Local system time: ' + clock.localDateTime('SYSTEM').toString());
-  console.log('Application time:  ' + clock.localDate('Europe/London').toString());
+  // console.log('Application time:  ' + clock.localDate('Europe/London').toString());
   console.log('');
 
 
