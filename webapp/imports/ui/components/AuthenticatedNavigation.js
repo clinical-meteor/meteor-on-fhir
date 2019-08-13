@@ -76,8 +76,8 @@ export class AuthenticatedNavigation extends React.Component {
       data.user = Meteor.user().fullName();
 
       if(get(Meteor.user(), 'profile.notifications')){
-        data.notifications = get(Meteor.user(), 'profile.notifications');   
-        data.notificationCount = Meteor.user().profile.notifications.length;   
+        data.notifications = get(Meteor.user(), 'profile.notifications', []);  
+        data.notificationCount = data.notifications.length;   
       }
     } else {
       data.user = '';
@@ -138,8 +138,9 @@ export class AuthenticatedNavigation extends React.Component {
                   id='notificationCount'
                   text={ this.data.notificationCount.toString() }
                   style={this.data.glassText}
+                  
                 />
-                <IconButton touch={true} style={this.data.glassTextIcon}>
+                <IconButton touch={true} style={this.data.glassTextIcon} onClick={this.toggleSearch}>
                   { currentIcon }
                 </IconButton>
                 <ToolbarTitle
@@ -163,6 +164,9 @@ export class AuthenticatedNavigation extends React.Component {
     });
   }
 
+  toggleSearch(){
+    console.log('toggleSearch')    
+  }
   showProfile() {
     browserHistory.push('/myprofile');
   }

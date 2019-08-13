@@ -4,6 +4,22 @@
 
 }
 
+/* div.filepicker {
+    text-align: center;
+    padding: 0px;
+    background-color: rgb(66, 165, 245);
+    color:  rgb(255, 255, 255);
+    border: 2px none white;
+    margin-bottom: 20px;
+    font-family:Roboto, sans-serif;
+    height: 36px;
+    line-height: 36px;
+    border-radius: 2px;
+    font-weight: 500;
+    text-transform: uppercase;
+    min-height: 36px;
+} */
+
 div.filepicker {
     text-align: center;
     padding: 5px;

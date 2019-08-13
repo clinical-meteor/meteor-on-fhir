@@ -46,16 +46,19 @@ export class AdminSidebar extends React.Component {
 
     //----------------------------------------------------------------------
     // Dynamic Modules  
+    console.log('dynamicAdminModules', dynamicAdminModules)
 
-    let sortedModules = orderBy(dynamicModules, ['primaryText'], ['asc'])
+    let sortedModules = orderBy(dynamicAdminModules, ['primaryText'], ['asc'])
+    console.log('sortedModules', sortedModules)
 
     var dynamicElements = [];
     sortedModules.map(function(element, index){ 
+      console.log('element', element)
 
       // the excludes array will hide routes
       // if(!get(Meteor, 'settings.public.defaults.sidebar.hidden', []).includes(element.to)){
-        dynamicElements.push(<LinkContainer to={element.to} key={index}>
-          <MenuItem primaryText={element.primaryText} href={element.href} />
+        dynamicElements.push(<LinkContainer to={get(element, 'to')} key={index}>
+          <MenuItem primaryText={get(element, 'primaryText')} href={get(element, 'href')} />
         </LinkContainer>);
       // }
     });
@@ -78,7 +81,7 @@ export class AdminSidebar extends React.Component {
 
           <hr />
 
-          { dynamicAdminModules }
+          { dynamicElements }
 
           <hr />
           <LinkContainer to='/fhir-resources-index'>

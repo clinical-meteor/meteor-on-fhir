@@ -13,17 +13,6 @@ import { get } from 'lodash';
 
 
 
-// // Pick up any dynamic routes that are specified in packages, and include them
-// var dynamicModules = [];
-// Object.keys(Package).forEach(function(packageName){
-//   if(Package[packageName].SidebarElements){
-//     // we try to build up a route from what's specified in the package
-//     Package[packageName].SidebarElements.forEach(function(element){
-//       dynamicModules.push(element);      
-//     });    
-//   }
-// });
-
 export class ProfileSidebar extends React.Component {
   getMeteorData() {
     let data = {
@@ -85,20 +74,6 @@ export class ProfileSidebar extends React.Component {
     //     <MenuItem primaryText='Healthlog' href='/weblog' />
     //   </LinkContainer>;
     // }
-
-    // //----------------------------------------------------------------------
-    // // Dynamic Modules  
-
-    // var dynamicElements = [];
-    // dynamicModules.map(function(element, index){ 
-
-    //   // the excludes array will hide routes
-    //   if(!get(Meteor, 'settings.public.defaults.sidebar.hidden', []).includes(element.to)){
-    //     dynamicElements.push(<LinkContainer to={element.to} key={index}>
-    //       <MenuItem primaryText={element.primaryText} href={element.href} />
-    //     </LinkContainer>);
-    //   }
-    // });
 
     //console.log('dynamicElements', dynamicElements);
 
