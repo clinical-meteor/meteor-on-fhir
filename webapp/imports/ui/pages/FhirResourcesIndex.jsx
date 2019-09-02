@@ -343,6 +343,13 @@ export class FhirResourcesIndex extends React.Component {
       icon: 'IoMdClipboard',
       subtitle: 'Diagnostic Reports'
     },  {
+      collection: "DocumentReferences",
+      id: 'subscriptionsTile',
+      active: true,
+      path: '/document-references',
+      icon: '',
+      subtitle: 'Document References'
+    }, {
       collection: "Encounters",
       id: 'endpointsTile',
       active: true,
@@ -489,7 +496,7 @@ export class FhirResourcesIndex extends React.Component {
       path: '/subscriptions',
       icon: '',
       subtitle: 'Subscriptions'
-    } ];
+    }];
    
 
 

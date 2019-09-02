@@ -117,6 +117,7 @@ clinical:hl7-resource-bundle
 clinical:hl7-resource-careplan
 clinical:hl7-resource-condition
 clinical:hl7-resource-diagnostic-report
+clinical:hl7-resource-document-reference
 clinical:hl7-resource-encounter
 clinical:hl7-resource-immunization
 clinical:hl7-resource-medication
