@@ -127,24 +127,7 @@ clinical:hl7-resource-person
 clinical:hl7-resource-practitioner
 clinical:hl7-resource-procedure
 
-
 ### Infrastructure as a Service
 littledata:synced-cron
 
-### Blockchains
-# symptomatic:blockchain-core
-# fhirblocks:core
-
-### Symptomatic Packages
-
-# symptomatic:clinical-scenarios
-# symptomatic:ihealth-cloud-api
-
-### Desktop  
-symptomatic:theming
-symptomatic:continuity-of-care
-
 mdg:meteor-apm-agent
-patientinsight:accreditation-utility
-
-symptomatic:healthgraph
