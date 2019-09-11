@@ -73,7 +73,7 @@ Object.keys(Package).forEach(function(packageName){
   }
 
 });
-
+// console.log('dynamicRoutes', dynamicRoutes);
 
 // we're storing the current route URL in a reactive variable
 // which will be used to update active controls

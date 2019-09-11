@@ -30,9 +30,23 @@ export class PractitionerSidebar extends React.Component {
   handleLogout() {
     Meteor.logout();
   }
-
   render () {
-    return(
+   
+   let smartOnFhir;
+   if(Package["symptomatic:smart-on-fhir-client"]){
+      smartOnFhir = <LinkContainer to='/import-chart'>
+         <MenuItem primaryText='Import Chart' href='/import-chart' />
+      </LinkContainer>
+   }
+
+   let bluebutton;
+   if(Package["symptomatic:bluebutton"]){
+      bluebutton = <LinkContainer to='/import-claims'>
+         <MenuItem primaryText='Import Claims' href='/import-claims' />
+      </LinkContainer>
+   }
+   
+   return(
       <div id="practitionerSidebar">
         <List style={{paddingLeft: '20px', position: 'static'}}>
 
@@ -74,6 +88,10 @@ export class PractitionerSidebar extends React.Component {
           <LinkContainer to='/checklists'>
              <MenuItem primaryText='Checklists' href='/checklists' />
           </LinkContainer>
+
+          { smartOnFhir }
+
+          { bluebutton }
 
           <hr />
 
