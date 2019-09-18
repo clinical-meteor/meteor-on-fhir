@@ -120,7 +120,7 @@ clinical:hl7-resource-diagnostic-report
 clinical:hl7-resource-document-reference
 clinical:hl7-resource-encounter
 clinical:hl7-resource-immunization
-clinical:hl7-resource-medication
+# clinical:hl7-resource-medication
 clinical:hl7-resource-medication-order
 clinical:hl7-resource-organization
 clinical:hl7-resource-person
@@ -142,7 +142,7 @@ littledata:synced-cron
 
 ### Desktop  
 symptomatic:theming
-symptomatic:continuity-of-care
+# symptomatic:continuity-of-care
 
 mdg:meteor-apm-agent
 patientinsight:accreditation-utility
@@ -153,7 +153,9 @@ symptomatic:smart-on-fhir-config
 symptomatic:bluebutton
 symptomatic:hl7-clinical-document-architecture
 
-clinical:hl7-resource-provenance
+# clinical:hl7-resource-provenance
 clinical:hl7-resource-claim
 clinical:hl7-resource-medication-statement
-clinical:hl7-resource-explanation-of-benefits
+clinical:hl7-resource-explanation-of-benefit
+
+
