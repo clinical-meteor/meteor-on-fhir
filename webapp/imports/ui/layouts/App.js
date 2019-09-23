@@ -17,6 +17,8 @@ import SidebarTray from '/imports/ui/layouts/SidebarTray';
 import FlatButton from 'material-ui/FlatButton';
 
 import { SecurityDialog } from './SecurityDialog';
+import { PatientSearchDialog } from './PatientSearchDialog';
+
 import { Session } from 'meteor/session';
 
 import { get, has } from 'lodash';
@@ -234,6 +236,7 @@ export class App extends React.Component {
               <Footer />
             </SidebarTray>
             <SecurityDialog />
+            <PatientSearchDialog />
           </GlassApp>
         </MuiThemeProvider>
     );

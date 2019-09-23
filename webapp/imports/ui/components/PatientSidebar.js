@@ -154,16 +154,20 @@ export class PatientSidebar extends React.Component {
     // Dynamic Modules  
 
     var dynamicElements = [];
-    dynamicModules.map(function(element, index){ 
 
-      // the excludes array will hide routes
-      if(!get(Meteor, 'settings.public.defaults.sidebar.hidden', []).includes(element.to)){
-        dynamicElements.push(<LinkContainer to={element.to} key={index}>
-          <MenuItem primaryText={element.primaryText} href={element.href} />
-        </LinkContainer>);
-        dynamicElements.push(<br />);
-      }
-    });
+    if(get(Meteor, 'settings.public.defaults.sidebar.menuItems.DynamicModules')){
+      dynamicModules.map(function(element, index){ 
+
+        // the excludes array will hide routes
+        if(!get(Meteor, 'settings.public.defaults.sidebar.hidden', []).includes(element.to)){
+          dynamicElements.push(<LinkContainer to={element.to} key={index}>
+            <MenuItem primaryText={element.primaryText} href={element.href} />
+          </LinkContainer>);
+          dynamicElements.push(<br key={index + "-br"} />);
+        }
+      });
+      dynamicElements.push(<hr key="dynamic-modules-hr" />);
+    }
 
     var smartOnFhirImports = [];
     // we don't want SMART on FHIR links on iPhone (for now)
@@ -224,6 +228,8 @@ export class PatientSidebar extends React.Component {
 
           { index }
           { healthlog }         
+
+          { dynamicElements }
             
           { continuityOfCareElements }
           {/* { landingPageElements } */}
