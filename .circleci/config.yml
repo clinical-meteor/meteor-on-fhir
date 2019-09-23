@@ -41,7 +41,7 @@ jobs:
     # To see the list of pre-built images that CircleCI provides for most common languages see
     # https://circleci.com/docs/2.0/circleci-images/ 
     docker:
-    - image: circleci/node:8.15.1-browsers-legacy
+    - image: circleci/node:8.15.1-stretch-browsers
       #command: /sbin/init
       name: meteor-on-fhir
       environment:
