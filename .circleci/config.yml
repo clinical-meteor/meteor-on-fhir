@@ -41,7 +41,7 @@ jobs:
     # To see the list of pre-built images that CircleCI provides for most common languages see
     # https://circleci.com/docs/2.0/circleci-images/ 
     docker:
-    - image: circleci/node:9.9-browsers
+    - image: circleci/node:8.15.1-browsers
       #command: /sbin/init
       name: meteor-on-fhir
       environment:
@@ -62,7 +62,7 @@ jobs:
         LANGUAGE: C.UTF-8
         LC_ALL: C.UTF-8
         LC_NUMERIC: en_US.UTF-8
-    - image: mongo:3.4.4
+    - image: mongo:3.6.8
       name: mongo
 
     # - image: selenium/standalone-chrome:3.0.1
