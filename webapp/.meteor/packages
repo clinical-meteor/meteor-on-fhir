@@ -163,3 +163,7 @@ littledata:synced-cron
 
 mdg:meteor-apm-agent
 # biologio:curebot
+biologio:curebot
+symptomatic:continuity-of-care
+clinical:hl7-resource-goal
+clinical:hl7-resource-location
