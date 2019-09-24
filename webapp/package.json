@@ -100,7 +100,7 @@
     "eslint-plugin-jsx-a11y": "^2.2.2",
     "eslint-plugin-meteor": "^4.0.0",
     "eslint-plugin-react": "^6.2.2",
-    "nightwatch": "1.1.12",
+    "nightwatch": "1.2.4",
     "shelljs": "^0.7.4"
   },
   "eslintConfig": {
