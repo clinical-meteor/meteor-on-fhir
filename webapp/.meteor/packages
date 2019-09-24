@@ -141,10 +141,11 @@ littledata:synced-cron
 # symptomatic:ihealth-cloud-api
 
 ### Desktop  
-symptomatic:theming
 symptomatic:continuity-of-care
 
 mdg:meteor-apm-agent
-patientinsight:accreditation-utility
 
-symptomatic:healthgraph
+biologio:curebot
+clinical:hl7-resource-goal
+clinical:hl7-resource-location
+clinical:hl7-resource-questionnaire
