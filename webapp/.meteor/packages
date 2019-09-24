@@ -173,7 +173,6 @@ mdg:meteor-apm-agent
 
 # clinical:hl7-resource-provenance
 clinical:hl7-resource-claim
-clinical:hl7-resource-medication-statement
 clinical:hl7-resource-explanation-of-benefit
 
 
