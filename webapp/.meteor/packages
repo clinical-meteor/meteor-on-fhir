@@ -126,6 +126,22 @@ clinical:hl7-resource-organization
 clinical:hl7-resource-person
 clinical:hl7-resource-practitioner
 clinical:hl7-resource-procedure
+clinical:hl7-resource-provenance
+clinical:hl7-resource-questionnaire
+clinical:hl7-resource-questionnaire-response
+clinical:hl7-resource-risk-assessment
+# clinical:hl7-resource-service-request
+clinical:hl7-resource-subscription
+# clinical:hl7-resource-sequence
+
+
+### Maybe Broken
+# clinical:hl7-resource-contract
+# clinical:hl7-resource-document-reference
+
+
+### Packages with Publications
+# biologio:curebot
 
 
 ### Infrastructure as a Service
@@ -141,11 +157,9 @@ littledata:synced-cron
 # symptomatic:ihealth-cloud-api
 
 ### Desktop  
-symptomatic:continuity-of-care
+# symptomatic:card-readers
+
+# symptomatic:continuity-of-care
 
 mdg:meteor-apm-agent
-
-biologio:curebot
-clinical:hl7-resource-goal
-clinical:hl7-resource-location
-clinical:hl7-resource-questionnaire
+# biologio:curebot
