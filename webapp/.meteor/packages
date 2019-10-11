@@ -173,4 +173,5 @@ littledata:synced-cron
 
 
 mdg:meteor-apm-agent
-# biologio:curebot
+
+mysticmidway:card-generator
