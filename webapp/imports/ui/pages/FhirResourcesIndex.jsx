@@ -252,6 +252,10 @@ export class FhirResourcesIndex extends React.Component {
   render() {
     var self = this;
 
+    console.log('================================================================')
+    console.log('Render')
+    console.log('')
+
     var tilesToRender = [];
             
     var tileConfigs = [{
@@ -339,6 +343,20 @@ export class FhirResourcesIndex extends React.Component {
       icon: 'IoMdClipboard',
       subtitle: 'Diagnostic Reports'
     },  {
+      collection: "DocumentReferences",
+      id: 'subscriptionsTile',
+      active: true,
+      path: '/document-references',
+      icon: '',
+      subtitle: 'Document References'
+    }, {
+      collection: "Encounters",
+      id: 'endpointsTile',
+      active: true,
+      path: '/encounters',
+      icon: 'FaMobile',
+      subtitle: 'Encounters'
+    }, {
       collection: "Endpoints",
       id: 'endpointsTile',
       active: true,
@@ -478,7 +496,7 @@ export class FhirResourcesIndex extends React.Component {
       path: '/subscriptions',
       icon: '',
       subtitle: 'Subscriptions'
-    } ];
+    }];
    
 
 
@@ -486,8 +504,10 @@ export class FhirResourcesIndex extends React.Component {
     // first we need to figure out which tiles to render
     if(get(Meteor, 'settings.public.modules.fhir')){
       var fhirResources = get(Meteor, 'settings.public.modules.fhir');
+      console.log('fhirResources', fhirResources)
 
       var count = 0;
+      var rowCount = 0;
       var rowsToRender = [];
       var innerRow = [];
       var row;
@@ -501,6 +521,7 @@ export class FhirResourcesIndex extends React.Component {
 
         // is it enabled?  does it have a sub-object?  is it truthy?
         if(fhirResources[key]){
+          console.log("fhirResources[key]", fhirResources[key])
           // if so, see if there's a collection loaded up
           if(Mongo.Collection.get(key)){
               // console.log('key', key)
@@ -517,6 +538,7 @@ export class FhirResourcesIndex extends React.Component {
               tileConfigs.forEach(function(config){
                 // if we find a config object that matches the current key, assign it
                 if(config.collection === key){
+                  console.log('MATCH!  Assigning config')
                   selectedConfig = config;
                 }
               })
@@ -534,35 +556,68 @@ export class FhirResourcesIndex extends React.Component {
 
               // and add it to the array of tiles to render
               // check whether we want to limit tiles to just those that have records on the client
+              console.log('self.data.filterMainTiles', self.data.filterMainTiles)
               if(self.data.filterMainTiles){
+                console.log('Mongo.Collection.get(key).find().count()', Mongo.Collection.get(key).find().count())
                 if(Mongo.Collection.get(key).find().count() > 0){
+                  console.log('greater than zero; adding row')
                   innerRow.push(newTile);
                   count++;
                 } 
               } else {
                 // or display them all (including tiles with 0 records)
+
+                console.log('adding row')
                 innerRow.push(newTile);
                 count++;
               }
           };
         }
 
-        if(count % 6 === 5){
-          row = <Grid container item xs={12} spacing={16}>
-            <React.Fragment>
+
+        if(count % 6 === 0){
+          console.log('MODULO!')
+
+          row = <Grid 
+            container 
+            item xs={12} 
+            spacing={16} 
+            key={"row-" + (count / 6).toFixed(1).substring(0,1) }
+            name={"row-" + (count / 6).toFixed(1).substring(0,1) }
+            >
+              <React.Fragment> 
+                { innerRow }
+              </React.Fragment>
+            </Grid>
+
+          console.log('Adding row to render...')
+          rowsToRender.push(row);
+
+          rowCount++;
+          innerRow = [];
+        }
+
+      });
+
+
+      if(innerRow.length > 0){
+        console.log('adding the leftovers')
+        row = <Grid 
+          container 
+          item xs={12} 
+          spacing={16} 
+          key={"row-" + ((count / 6) + 1).toFixed(1).substring(0,1) }
+          name={"row-" + ((count / 6) + 1).toFixed(1).substring(0,1) }
+          >
+            <React.Fragment> 
               { innerRow }
             </React.Fragment>
           </Grid>
-          
-          rowsToRender.push(row);
-        }
-      });
+
+        console.log('Adding row to render...')
+        rowsToRender.push(row);
+      }
     }
-
-    //console.log('tilesToRender', tilesToRender)
-    
-
-
 
 
     return (
@@ -576,18 +631,9 @@ export class FhirResourcesIndex extends React.Component {
       </div>
     );
   }
-  // renderTile()
-  // // id, active, path, icon, subtitle
-  // {
-  //   id: 'immunizationsTile',
-  //   active: true,
-  //   path: '/immunizations',
-  //   icon: 'EyeDropper',
-  //   title: this.data.local.immunizations,
-  //   subtitle: 'Immunizations'
-  // }
-  
+
   fhirTile(selectedConfig, classes){
+    console.log('rendering fhirTile')
     return (
       <Card style={classes.card} id={selectedConfig.id} onClick={ this.openLink.bind(this, selectedConfig.path) } >
         <div style={classes.details}>
@@ -638,246 +684,6 @@ export class FhirResourcesIndex extends React.Component {
       }
     }
   }    
-
-
-
-
-  // renderExperimentalTiles(user){
-  //   if (user.isPatient || user.isPractitioner || user.isAdmin) {
-  //     return (
-  //       <div>
-
-
-  //           <div id='familyMemberHistoriesTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/family-member-histories') } >
-  //             <GlassCard style={this.data.style.indexCard} >
-  //               <CardTitle
-  //                 title='Family Member History'
-  //                 subtitle='Relevant medical histories of family members.'
-  //                 titleStyle={this.data.style.title}
-  //                 subtitleStyle={this.data.style.subtitle}
-  //               />
-  //             </GlassCard>
-  //           </div>
-
-  //           <div id="questionnairesTile" style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/questionnaires') } >
-  //             <GlassCard style={this.data.style.indexCard} >
-  //               <CardTitle
-  //                 subtitle='Questionnaires'
-  //                 titleStyle={this.data.style.title}
-  //                 subtitleStyle={this.data.style.subtitle}
-  //               />
-  //             </GlassCard>
-  //           </div>
-  //           <div id='questionnaireResponsesTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/questionnaire-responses') } >
-  //             <GlassCard style={this.data.style.indexCard} >
-  //               <CardTitle
-  //                 subtitle='Questionnaire Responses'
-  //                 titleStyle={this.data.style.title}
-  //                 subtitleStyle={this.data.style.subtitle}
-  //               />
-  //             </GlassCard>
-  //           </div>
-
-
-  //           <div id="appointmentsTile" style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/appointments') } >
-  //             <GlassCard style={this.data.style.indexCard} >
-  //               <CardTitle
-  //                 subtitle='Appointments'
-  //                 titleStyle={this.data.style.title}
-  //                 subtitleStyle={this.data.style.subtitle}
-  //               />
-  //             </GlassCard>
-  //           </div>
-
-  //           <div id='slotsTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/slots') } >
-  //             <GlassCard style={this.data.style.indexCard} >
-  //               <CardTitle
-  //                 subtitle='Slots'
-  //                 titleStyle={this.data.style.title}
-  //                 subtitleStyle={this.data.style.subtitle}
-  //               />
-  //             </GlassCard>
-  //           </div>
-
-
-
-
-  //           <div id='schedulesTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/schedules') } >
-  //             <GlassCard style={this.data.style.indexCard} >
-  //               <CardTitle
-  //                 subtitle='Schedules'
-  //                 titleStyle={this.data.style.title}
-  //                 subtitleStyle={this.data.style.subtitle}
-  //               />
-  //             </GlassCard>
-  //           </div>
-
-
-  //         <div id='forumTile' style={this.data.style.indexCardPadding} onClick={ this.openDiscussionForum.bind(this) }>
-  //           <GlassCard style={this.data.style.indexCard} >
-  //             <CardTitle
-  //               subtitle='Discussion Forum'
-  //               titleStyle={this.data.style.title}
-  //                 subtitleStyle={this.data.style.subtitle}
-  //             />
-  //           </GlassCard>
-  //         </div>
-
-  //         <div id='weblogTile' style={this.data.style.indexCardPadding} onClick={ this.openHealthlog.bind(this) } >
-  //           <GlassCard style={this.data.style.indexCard} >
-  //             <CardTitle
-  //               subtitle='Healthlog'
-  //               titleStyle={this.data.style.title}
-  //                 subtitleStyle={this.data.style.subtitle}
-  //             />
-  //           </GlassCard>
-  //         </div>
-
-  //         <div id="dermatogramsTile" style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/dermatograms') } >
-  //           <GlassCard style={this.data.style.indexCard} >
-  //             <CardTitle
-  //               subtitle='Dermatograms'
-  //               titleStyle={this.data.style.title}
-  //                 subtitleStyle={this.data.style.subtitle}
-  //             />
-  //           </GlassCard>
-  //         </div>
-
-  //         <div id='telemedicineTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/telemed') } >
-  //           <GlassCard style={this.data.style.indexCard} >
-  //             <CardTitle
-  //               subtitle='Telemedicine'
-  //               titleStyle={this.data.style.title}
-  //               subtitleStyle={this.data.style.subtitle}
-  //             />
-  //           </GlassCard>
-  //         </div>
-  //         <div id='myGenomeTile' style={this.data.style.inactiveIndexCard} onClick={ this.openLink.bind(this, '/my-genome') } >
-  //           <GlassCard style={this.data.style.indexCard} >
-  //             <CardTitle
-  //               subtitle='My Genome'
-  //               titleStyle={this.data.style.title}
-  //                 subtitleStyle={this.data.style.subtitle}
-  //             />
-  //           </GlassCard>
-  //         </div>
-  //         <div id="oAuthTile" style={this.data.style.indexCardPadding} onClick={ this.openLink.bind(this, '/oauth-ui') } >
-  //           <GlassCard style={this.data.style.indexCard} >
-  //             <CardTitle
-  //               subtitle='Authorization & Trust'
-  //               titleStyle={this.data.style.title}
-  //               subtitleStyle={this.data.style.subtitle}
-  //             />
-  //           </GlassCard>
-  //         </div>
-  //       </div>
-  //     );
-  //   }
-  // }
-
-
-  // renderImportChart(user){
-  //   if (get(Meteor, 'settings.public.modules.apps.ImportChart')) {
-  //     if (user.isPatient || user.isPractitioner || user.isAdmin) {
-  //       return (
-  //         <MenuTile          
-  //           id='importChartTile'
-  //           active={true}
-  //           path='/import-chart'
-  //           icon='MdList'
-  //           iconSize={85}
-  //           subtitle='Import Chart'
-  //         />
-
-  //       );
-  //     }
-  //   }    
-  // }
-  // renderChecklists(user){
-  //   if (get(Meteor, 'settings.public.modules.apps.ChecklistManifesto') && get(Meteor, 'settings.public.modules.fhir.Lists')) {
-  //     if (user.isPatient || user.isPractitioner || user.isAdmin) {
-  //       return (
-  //         <MenuTile          
-  //           id='checklistsTile'
-  //           active={true}
-  //           path='/checklists'
-  //           icon='MdList'
-  //           iconSize={85}
-  //           subtitle='Checklist Manifesto'
-  //         />
-
-  //       );
-  //     }
-  //   }
-  // }
-  // renderZygote(user){
-  //   if (get(Meteor, 'settings.public.modules.apps.ZygoteAvatar')) {
-  //     if (user.isPatient || user.isPractitioner || user.isAdmin) {
-  //       return (
-
-  //         <MenuTile          
-  //           id='zygoteAvatarTile'
-  //           active={true}
-  //           path='/zygote'
-  //           icon='MdFingerprint'
-  //           iconSize={85}
-  //           subtitle='Zygote'
-  //         />
-
-  //       );
-  //     }
-  //   }
-  // }
-  // renderVideoconferencing(user){
-  //   if (get(Meteor, 'settings.public.modules.apps.Videoconferencing')) {
-  //     if (user.isPatient || user.isPractitioner || user.isAdmin) {
-  //       return (
-  //         <MenuTile          
-  //           id='videoconferencingTile'
-  //           active={true}
-  //           path='/videoconferencing'
-  //           icon='MdImportantDevices'
-  //           iconSize={85}
-  //           subtitle='Telemedicine'
-  //         />
-  //       );
-  //     }
-  //   }
-  // }
-  // renderContinuityOfCare(user){
-  //   if (get(Meteor, 'settings.public.modules.apps.ContinuityOfCare')) {
-  //     if (user.isPatient || user.isPractitioner || user.isAdmin) {
-  //       return (
-  //         <MenuTile          
-  //           id='continuityOfCareTile'
-  //           active={true}
-  //           path='/continuity-of-care'
-  //           icon='FaHeartbeat'
-  //           iconSize={85}
-  //           subtitle='Continuity of Care'
-  //         />
-  //       );
-  //     }
-  //   }
-  // }
-  // renderTimeline(user){
-  //   if (get(Meteor, 'settings.public.modules.apps.Timeline')) {
-  //     if (user.isPatient || user.isPractitioner || user.isAdmin) {
-  //       return (
-  //         <MenuTile          
-  //           id='timelineTile'
-  //           active={true}
-  //           path='/timeline-sidescroll'
-  //           icon='Pulse'
-  //           iconSize={85}
-  //           subtitle='Timeline'
-  //         />
-  //       );
-  //     }
-  //   }
-  // }
-
-
 
   openDiscussionForum(){
     browserHistory.push('/forum');

@@ -7,6 +7,9 @@ export class MenuItem extends React.Component {
   }
   render(){
     const { active, ...otherProps } = this.props;
+
+    // console.log('MenuItem', this.props)
+
     return (
       <ListItem {...otherProps} >
         { this.props.children }

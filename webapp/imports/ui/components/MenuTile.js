@@ -158,6 +158,7 @@ export class MenuTile extends React.Component {
 
     const { active, id, iconSize, title, subtitle, ...otherProps } = this.props;
 
+    // console.log('MenuTile', this.props)
 
     return (
         <div id={id} style={ style.indexCardPadding } onClick={ this.openLink.bind(this, this.props.path) } >
