@@ -132,9 +132,13 @@ clinical:hl7-resource-provenance
 clinical:hl7-resource-questionnaire
 clinical:hl7-resource-questionnaire-response
 clinical:hl7-resource-risk-assessment
-# clinical:hl7-resource-service-request
 clinical:hl7-resource-subscription
+
+### Not in Base Build
+clinical:hl7-resource-claim
+clinical:hl7-resource-service-request
 # clinical:hl7-resource-sequence
+
 
 
 ### Maybe Broken
@@ -161,9 +165,13 @@ littledata:synced-cron
 ### Desktop  
 # symptomatic:card-readers
 
-# symptomatic:continuity-of-care
-
+symptomatic:continuity-of-care
+symptomatic:theming
+symptomatic:dashboard
+symptomatic:healthgraph
 
 
 mdg:meteor-apm-agent
 # biologio:curebot
+
+

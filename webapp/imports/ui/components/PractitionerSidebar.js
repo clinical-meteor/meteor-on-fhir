@@ -32,6 +32,14 @@ export class PractitionerSidebar extends React.Component {
   }
 
   render () {
+
+   let symptomaticPicker;
+   if(Package['symptomatic:dashboard']){
+      symptomaticPicker = <LinkContainer to='/symptom-picker'>
+         <MenuItem primaryText='Symptom Picker' href='/symptom-picker' />
+      </LinkContainer>
+   }
+
     return(
       <div id="practitionerSidebar">
         <List style={{paddingLeft: '20px', position: 'static'}}>
@@ -39,6 +47,7 @@ export class PractitionerSidebar extends React.Component {
           {/* <LinkContainer to='/'>
             <MenuItem id="indexPageItem" className="indexItem" href='/' primaryText='Index' />
           </LinkContainer> */}
+
           <LinkContainer to='/healthcard'>
              <MenuItem primaryText='HealthCard' href='/healthcard' />
           </LinkContainer>
@@ -53,6 +62,9 @@ export class PractitionerSidebar extends React.Component {
           <LinkContainer to='/service-requests'>
              <MenuItem primaryText='Workqueue' href='/service-requests' />
           </LinkContainer>
+          <LinkContainer to='/patients'>
+             <MenuItem primaryText='Patient Directory' href='/patients' />
+          </LinkContainer>
           <LinkContainer to='/careplan-designer'>
              <MenuItem primaryText='Careplan Designer' href='/careplan-designer' />
           </LinkContainer>          
@@ -62,6 +74,8 @@ export class PractitionerSidebar extends React.Component {
           <LinkContainer to='/claims'>
              <MenuItem primaryText='Claims' href='/claims' />
           </LinkContainer>
+
+          {symptomaticPicker}
 
           <hr />
           <LinkContainer to='/data-management'>
