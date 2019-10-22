@@ -139,7 +139,7 @@ clinical:hl7-resource-subscription
 
 ### Maybe Broken
 # clinical:hl7-resource-contract
-# clinical:hl7-resource-document-reference
+clinical:hl7-resource-document-reference
 
 
 ### Packages with Publications
@@ -159,17 +159,17 @@ littledata:synced-cron
 # symptomatic:ihealth-cloud-api
 
 ### Desktop  
-# symptomatic:theming
-# symptomatic:continuity-of-care
+symptomatic:theming
+symptomatic:continuity-of-care
 
 mdg:meteor-apm-agent
 # patientinsight:accreditation-utility
 
-# symptomatic:healthgraph
-# symptomatic:smart-on-fhir-client
-# symptomatic:smart-on-fhir-config
-# symptomatic:bluebutton
-# symptomatic:hl7-clinical-document-architecture
+symptomatic:healthgraph
+symptomatic:smart-on-fhir-client
+symptomatic:smart-on-fhir-config
+symptomatic:bluebutton
+symptomatic:hl7-clinical-document-architecture
 
 # clinical:hl7-resource-provenance
 clinical:hl7-resource-claim
