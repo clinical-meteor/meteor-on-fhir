@@ -1,7 +1,7 @@
 import React from 'react';
 import { CardTitle, Card, CardText, CardActions } from 'material-ui';
 import { Glass, GlassCard } from 'meteor/clinical:glass-ui';
-import { browserHistory } from 'react-router';
+
 
 import {FaStreetView} from 'react-icons/fa';
 import {IoMdClipboard} from 'react-icons/io';
@@ -178,7 +178,9 @@ export class MenuTile extends React.Component {
   openLink(url){
     console.log("openLink", url);
 
-    browserHistory.push(url);
+    if(this.props.history){
+      this.props.history.push(url);
+    }
   }
 }
 export default MenuTile;

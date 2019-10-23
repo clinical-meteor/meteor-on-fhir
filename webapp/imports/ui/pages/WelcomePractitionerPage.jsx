@@ -6,7 +6,6 @@ import RaisedButton from 'material-ui/RaisedButton';
 import React from 'react';
 
 import { VerticalCanvas, GlassCard } from 'meteor/clinical:glass-ui';
-import { browserHistory } from 'react-router';
 
 import { get } from 'lodash';
 
@@ -19,7 +18,9 @@ export class WelcomePractitionerPage extends React.Component {
     Meteor.users.update({_id: Meteor.userId()}, {$set: {
       'profile.firstTimeVisit':false
     }});
-    browserHistory.push('/');
+    if(this.props.history){
+      this.props.history.push('/');
+    }
   }
 
   render(){

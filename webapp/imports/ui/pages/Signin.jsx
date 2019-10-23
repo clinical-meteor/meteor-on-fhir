@@ -9,7 +9,6 @@ import ReactMixin  from 'react-mixin';
 import { FullPageCanvas, GlassCard, Glass, DynamicSpacer } from 'meteor/clinical:glass-ui';
 import { CardText, CardActions, CardTitle, TextField, RaisedButton } from 'material-ui'
 
-import { browserHistory } from 'react-router';
 import { Row, Col, Alert } from 'react-bootstrap';
 
 import { lightBaseTheme, darkBaseTheme } from 'material-ui/styles';
@@ -24,10 +23,13 @@ Session.setDefault('signinWithSearch', '');
 export class Signin extends React.Component {
   componentWillMount(){
     console.log('SignIn.componentWillMount()')
+    let self = this;
     if(get(this, 'props.location.query.token')){
       Accounts.verifyEmail(get(this, 'props.location.query.token'), function(error) {
         console.log('Accounts.verifyEmail')
-        browserHistory.push('/welcome/patient');
+        if(self.props.history){
+          self.props.history.push('/welcome/patient');
+        }
       });  
     }
   }
@@ -117,10 +119,14 @@ export class Signin extends React.Component {
     event.preventDefault();
   }
   forgotPasswordRoute(){
-    browserHistory.push('/recover-password');
+    if(this.props.history){
+      this.props.history.push('/recover-password');
+    }
   }
   registerRoute(){
-    browserHistory.push('/signup');
+    if(this.props.history){
+      this.props.history.push('/signup');
+    }
   }
   signInWith(serviceName, event){
     console.log('Signin.signInWith', serviceName)
@@ -152,7 +158,10 @@ export class Signin extends React.Component {
         console.log('error', error)
       }
 
-      browserHistory.push(get(Meteor, 'settings.public.defaults.route', '/'));
+      if(self.props.history){
+        self.props.history.push(get(Meteor, 'settings.public.defaults.route', '/'));
+      }
+
       console.log('Callback complete!');
     });
 
@@ -183,36 +192,37 @@ export class Signin extends React.Component {
         Bert.alert(error.reason, 'warning');
       } else {
         Bert.alert('Logged in!', 'info');
-
-        // we might have received a custom path to route to
-        // depending on which signin component we used
-        if (self.props.state && self.props.state.nextPathname) {
-          browserHistory.push(location.state.nextPathname);
-        } else if (Roles.userIsInRole(Meteor.userId(), 'practitioner')) {
-          if(get(Meteor.user(), 'profile.firstTimeVisit')){
-            browserHistory.push(get(Meteor, 'settings.public.defaults.routes.practitionerWelcomePage', '/'))
+        if(self.props.history){
+          // we might have received a custom path to route to
+          // depending on which signin component we used
+          if (self.props.state && self.props.state.nextPathname) {
+            self.props.history.push(location.state.nextPathname);
+          } else if (Roles.userIsInRole(Meteor.userId(), 'practitioner')) {
+            if(get(Meteor.user(), 'profile.firstTimeVisit')){
+              self.props.history.push(get(Meteor, 'settings.public.defaults.routes.practitionerWelcomePage', '/'))
+            } else {
+              self.props.history.push(get(Meteor, 'settings.public.defaults.routes.practitionerHomePage', '/'))
+            }
+          } else if (Roles.userIsInRole(Meteor.userId(), 'sysadmin')) {
+            if(get(Meteor.user(), 'profile.firstTimeVisit')){
+              self.props.history.push(get(Meteor, 'settings.public.defaults.routes.adminWelcomePage', '/'))
+            } else {
+              self.props.history.push(get(Meteor, 'settings.public.defaults.routes.adminHomePage', '/'))
+            }
+          } else if (Roles.userIsInRole(Meteor.userId(), 'patient')) {
+            if(get(Meteor.user(), 'profile.firstTimeVisit')){
+              self.props.history.push(get(Meteor, 'settings.public.defaults.routes.patientWelcomePage', '/'))
+            } else {
+              self.props.history.push(get(Meteor, 'settings.public.defaults.routes.patientHomePage', '/'))
+            }          
+            // self.props.history.push('/welcome/sysadmin');
+          } else if(get(Meteor, 'settings.public.defaults.route')){
+            // but normally we just use the default route specified in settings.json
+            self.props.history.push(get(Meteor, 'settings.public.defaults.route', '/'));
           } else {
-            browserHistory.push(get(Meteor, 'settings.public.defaults.routes.practitionerHomePage', '/'))
+            // and fall back to the root if not specified
+            self.props.history.push('/');      
           }
-        } else if (Roles.userIsInRole(Meteor.userId(), 'sysadmin')) {
-          if(get(Meteor.user(), 'profile.firstTimeVisit')){
-            browserHistory.push(get(Meteor, 'settings.public.defaults.routes.adminWelcomePage', '/'))
-          } else {
-            browserHistory.push(get(Meteor, 'settings.public.defaults.routes.adminHomePage', '/'))
-          }
-        } else if (Roles.userIsInRole(Meteor.userId(), 'patient')) {
-          if(get(Meteor.user(), 'profile.firstTimeVisit')){
-            browserHistory.push(get(Meteor, 'settings.public.defaults.routes.patientWelcomePage', '/'))
-          } else {
-            browserHistory.push(get(Meteor, 'settings.public.defaults.routes.patientHomePage', '/'))
-          }          
-          // browserHistory.push('/welcome/sysadmin');
-        } else if(get(Meteor, 'settings.public.defaults.route')){
-          // but normally we just use the default route specified in settings.json
-          browserHistory.push(get(Meteor, 'settings.public.defaults.route', '/'));
-        } else {
-          // and fall back to the root if not specified
-          browserHistory.push('/');      
         }
       }
     });

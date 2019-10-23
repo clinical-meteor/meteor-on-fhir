@@ -16,7 +16,6 @@ import React  from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
 import { Session } from 'meteor/session';
-import { browserHistory } from 'react-router';
 import PropTypes from 'prop-types';
 
 import { get } from 'lodash';
@@ -164,7 +163,7 @@ export class Header extends React.Component {
 
   renderNavigation(hasUser) {
     if(get(Meteor, 'settings.public.home.showRegistration')){
-      if(!['signup', 'signin', '/signup', '/signin'].includes(Session.get('pathname'))){
+      if(!['signup', 'signin', '/signup', '/signin'].includes(location.pathname)){
         if (hasUser) {
           return <AuthenticatedNavigation />;
         } else {
@@ -175,28 +174,32 @@ export class Header extends React.Component {
   }
 
   goHome(){
-    // not every wants the hexgrid menu, so we make sure it's configurable in the Meteor.settings file
-    if(get(Meteor, 'settings.public.defaults.route')){
+    console.log('this.props.history', this.props.history);
 
-      // get the default route
-      let defaultRoute = get(Meteor, 'settings.public.defaults.route', '/')
+    if(this.props.history){
+      // not every wants the hexgrid menu, so we make sure it's configurable in the Meteor.settings file
+      if(get(Meteor, 'settings.public.defaults.route')){
+
+        // get the default route
+        let defaultRoute = get(Meteor, 'settings.public.defaults.route', '/')
+        
+        // if there are user role specific default routes defined in our settings file
+        // send the user to the role specific route
       
-      // if there are user role specific default routes defined in our settings file
-      // send the user to the role specific route
-    
-      if (Roles.userIsInRole(Meteor.userId(), 'patient')) {
-        browserHistory.push(get(Meteor, 'settings.public.defaults.routes.patientHomePage', defaultRoute))
-      } else if (Roles.userIsInRole(Meteor.userId(), 'practitioner')) {
-        browserHistory.push(get(Meteor, 'settings.public.defaults.routes.practitionerHomePage', defaultRoute))
-      } else if (Roles.userIsInRole(Meteor.userId(), 'sysadmin')) {
-        browserHistory.push(get(Meteor, 'settings.public.defaults.routes.adminHomePage', defaultRoute))
-      } else {
+        if (Roles.userIsInRole(Meteor.userId(), 'patient')) {
+          this.props.history.push(get(Meteor, 'settings.public.defaults.routes.patientHomePage', defaultRoute))
+        } else if (Roles.userIsInRole(Meteor.userId(), 'practitioner')) {
+          this.props.history.push(get(Meteor, 'settings.public.defaults.routes.practitionerHomePage', defaultRoute))
+        } else if (Roles.userIsInRole(Meteor.userId(), 'sysadmin')) {
+          this.props.history.push(get(Meteor, 'settings.public.defaults.routes.adminHomePage', defaultRoute))
+        } else {
 
-        // otherwise, just send them to the default route
-        browserHistory.push(defaultRoute);
+          // otherwise, just send them to the default route
+          this.props.history.push(defaultRoute);
+        }
+      } else {
+        this.props.history.push('/');      
       }
-    } else {
-      browserHistory.push('/');      
     }
   }
   setGeojsonUrl(event, text){
@@ -211,7 +214,9 @@ export class Header extends React.Component {
   }
   mapMyAddress(){
     if(get(Meteor.user(), 'profile.locations.home.position.latitude') && get(Meteor.user(), 'profile.locations.home.position.longitude')){
-      browserHistory.push('/maps');
+      if(this.props.history){
+        this.props.history.push('/maps');
+      }
     }        
   }
   menuIconClicked(event, text){
@@ -228,6 +233,8 @@ export class Header extends React.Component {
     // }
   }
   render () {
+
+    console.log('Header.this.props', this.props)
 
     var menuIcon;
     if(get(Meteor, 'settings.public.defaults.header.menuIcon')){
@@ -316,7 +323,7 @@ export class Header extends React.Component {
         <AppBar
           id="appHeader"
           title={this.data.app.title}
-          onTitleTouchTap={this.goHome}
+          onTitleTouchTap={this.goHome.bind(this)}
           iconStyleLeft={this.data.style.title}
           iconElementRight={ this.renderNavigation(this.data.hasUser) }
           style={this.data.style.appbar}

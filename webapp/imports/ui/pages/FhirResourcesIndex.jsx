@@ -16,7 +16,7 @@ import { Session } from 'meteor/session';
 import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
-import { browserHistory } from 'react-router';
+
 import { has, get } from 'lodash';
 import PropTypes from 'prop-types';
 
@@ -60,7 +60,6 @@ import MdFingerprint from 'react-icons/md';
 import MdHearing from 'react-icons/md';
 import MdImportantDevices from 'react-icons/md';
 
-// import { makeStyles } from '@material-ui/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 
@@ -70,16 +69,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 
-// const useStyles = makeStyles(theme => ({
-//   root: {
-//     flexGrow: 1,
-//   },
-//   paper: {
-//     padding: theme.spacing(1),
-//     textAlign: 'center',
-//     color: theme.palette.text.secondary
-//   }
-// }));
+
 
 let classes = {
   card: {
@@ -115,6 +105,8 @@ let classes = {
     width: 38,
   }
 }
+
+
 
 Session.setDefault('filterMainTiles', false);
 export class FhirResourcesIndex extends React.Component {
@@ -703,42 +695,66 @@ export class FhirResourcesIndex extends React.Component {
   }    
 
   openDiscussionForum(){
-    browserHistory.push('/forum');
+    if(this.props.history){
+      this.props.history.replace('/forum');
+    }
   }
   openHealthlog(){
-    browserHistory.push('/weblog');
+    if(this.props.history){
+      this.props.history.replace('/weblog');
+    }
   }
   openUserManagement(){
-    browserHistory.push('/users');
+    if(this.props.history){
+      this.props.history.replace('/users');
+    }
   }
   openMyProfile(){
-    browserHistory.push('/myprofile');
+    if(this.props.history){
+      this.props.history.replace('/myprofile');
+    }
   }
   openPatients(){
-    browserHistory.push('/patients');
+    if(this.props.history){
+      this.props.history.replace('/patients');
+    }
   }
   openPractitioners(){
-    browserHistory.push('/practitioners');
+    if(this.props.history){
+      this.props.history.replace('/practitioners');
+    }
   }
   openDataManagement(){
-    browserHistory.push('/data-management');
+    if(this.props.history){
+      this.props.history.replace('/data-management');
+    }
   }
   openObservations(){
-    browserHistory.push('/observations');
+    if(this.props.history){
+      this.props.history.replace('/observations');
+    }
   }
   openInboundMessages(){
-    browserHistory.push('/inbound');
+    if(this.props.history){
+      this.props.history.replace('/inbound');
+    }
   }
   openOutboundMessages(){
-    browserHistory.push('/outbound');
+    if(this.props.history){
+      this.props.history.replace('/outbound');
+    }
   }
   openMedications(){
-    browserHistory.push('/medications');
+    if(this.props.history){
+      this.props.history.replace('/medications');
+    }
   }
   openLink(url){
     console.log("openLink", url);
 
-    browserHistory.push(url);
+    if(this.props.history){
+      this.props.history.replace(url);
+    }
   }
 }
 

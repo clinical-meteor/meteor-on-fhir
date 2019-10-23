@@ -163,7 +163,7 @@ symptomatic:theming
 symptomatic:continuity-of-care
 
 mdg:meteor-apm-agent
-# patientinsight:accreditation-utility
+patientinsight:accreditation-utility
 
 symptomatic:healthgraph
 symptomatic:smart-on-fhir-client

@@ -15,7 +15,6 @@ import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session';
 import { HTTP } from 'meteor/http';
 
-import { browserHistory } from 'react-router';
 import { has, get } from 'lodash';
 
 import { MdBlurOn } from 'react-icons/md';
@@ -147,7 +146,9 @@ export class Footer extends React.Component {
 
   }
   clickOnThemingButton(){
-    browserHistory.push('/theming');
+    if(this.props.history){
+      this.props.history.push('/theming');
+    }
   }
   querySystemButton(resourceType){
     console.log("querying open.epic.com", resourceType);
@@ -167,7 +168,9 @@ export class Footer extends React.Component {
       callback();
     }
 
-    browserHistory.push(url);
+    if(this.props.history){
+      this.props.history.push(url);      
+    }
   }
   deleteLocalData(){
     console.log('Confirming that we should delete local data.  Y/N?');
@@ -484,8 +487,9 @@ export class Footer extends React.Component {
   }
   previewQuestionnaire(){
     console.log('previewQuestionnaire')
-    browserHistory.push(get(Meteor, 'settings.public.modules.links.QuestionnairePreview', '/'))
-
+    if(this.props.history){
+      this.props.history.push(get(Meteor, 'settings.public.modules.links.QuestionnairePreview', '/'))
+    }
   }
   clearEndpoints(){
     console.log('Droping endpoints.....')
@@ -493,12 +497,16 @@ export class Footer extends React.Component {
     Session.set('edgeBundle', []);
   }
   cornerstoneViewer(){
-    browserHistory.push('/dicom-viewer');
+    if(this.props.history){
+      this.props.history.push('/dicom-viewer');
+    }
   }
   initializeCurebot(){
     console.log('Initializing the CureBot Service.');
     Meteor.call('Curebot/initialize');
-    browserHistory.push('/questionnaires')    
+    if(this.props.history){
+      this.props.history.push('/questionnaires')    
+    }
   }
   initBlockchainGraph(){
     Session.set('edgeBundle', Endpoints.find().map(function(endpoint){
@@ -516,10 +524,14 @@ export class Footer extends React.Component {
       }
       return result;
     }));
-    browserHistory.push('/blockchain-graphs')
+    if(this.props.history){
+      this.props.history.push('/blockchain-graphs')
+    }
   }
   configBlockchain(){
-    browserHistory.push('/blockchain-graph-config')    
+    if(this.props.history){
+      this.props.history.push('/blockchain-graph-config')    
+    }
   }
   showLines(){
     Session.toggle('showEdgeBundleLines');

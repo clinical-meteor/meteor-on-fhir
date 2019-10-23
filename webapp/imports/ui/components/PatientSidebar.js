@@ -7,7 +7,6 @@ import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
 import { Session } from 'meteor/session';
-import { browserHistory } from 'react-router';
 
 import { get } from 'lodash';
 
@@ -55,11 +54,15 @@ export class PatientSidebar extends React.Component {
   handleLogout() {
     console.log("handleLogout");
     Meteor.logout();
-    browserHistory.push('/signin')
+    if(this.props.history){
+      this.props.history.push('/signin')
+    }
   }
 
   handleProfile() {
-    browserHistory.push('/myprofile');
+    if(this.props.history){
+      this.props.history.push('/myprofile');
+    }
   }
   render () {
 

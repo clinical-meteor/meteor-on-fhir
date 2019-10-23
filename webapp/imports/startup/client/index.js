@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
-import './routes.js';
+import './theming.js';
 import './hooks.js';
 import './accounts.js';
 

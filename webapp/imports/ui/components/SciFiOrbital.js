@@ -23,7 +23,6 @@ import {
   import { ReactMeteorData } from 'meteor/react-meteor-data';
   import ReactMixin from 'react-mixin';
   import { Session } from 'meteor/session';
-  import { browserHistory } from 'react-router';
   import color from 'onecolor';
   
   var sharedStyles = {
@@ -97,7 +96,9 @@ import {
     
     openLink(url){
       console.log("openLink", url);
-      browserHistory.push(url);
+      if(this.props.history){
+        this.props.history.push(url);
+      }
     }
     render(){
       const {
