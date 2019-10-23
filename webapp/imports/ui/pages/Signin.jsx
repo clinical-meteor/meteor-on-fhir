@@ -363,11 +363,11 @@ export class Signin extends React.Component {
                             <DynamicSpacer />
                             <Row>
                               <Col xs={8}>
-                                <RaisedButton id="forgotPasswordButton" onClick={this.forgotPasswordRoute } label="Forgot password?" fullWidth />
+                                <RaisedButton id="forgotPasswordButton" onClick={this.forgotPasswordRoute.bind(this) } label="Forgot password?" fullWidth />
                                 <br />
                               </Col>
                               <Col xs={4}>
-                                <RaisedButton id="registerButton" onClick={this.registerRoute } label="Register" fullWidth />
+                                <RaisedButton id="registerButton" onClick={this.registerRoute.bind(this) } label="Register" fullWidth />
                                 <br />
                               </Col>
                             </Row>

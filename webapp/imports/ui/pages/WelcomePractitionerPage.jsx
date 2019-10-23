@@ -72,7 +72,7 @@ export class WelcomePractitionerPage extends React.Component {
             </CardText>
             
             <CardActions>
-              <FlatButton id='acceptWelcomePageButton' label="Accept" onClick={this.handleGo} />
+              <FlatButton id='acceptWelcomePageButton' label="Accept" onClick={this.handleGo.bind(this) } />
             </CardActions>
           </GlassCard>
         </VerticalCanvas>
