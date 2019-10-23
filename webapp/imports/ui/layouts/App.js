@@ -384,51 +384,50 @@ export class App extends React.Component {
             <SidebarTray>
               {orbital}
               <Header history={this.props.history} location={this.props.location} />
-                <div id='primaryFlexPanel' className='primaryFlexPanel' >
-                  <Switch>
-                    <Route name="fhirResources" path="/fhir-resources-index" component={ FhirResourcesIndex } />
+              <div id='primaryFlexPanel' className='primaryFlexPanel' >
+                <Switch>
+                  <Route name="fhirResources" path="/fhir-resources-index" component={ FhirResourcesIndex } />
 
-                    <Route name="signin" path="/signin" component={ Signin } />
-                    <Route name="recover-password" path="/recover-password" component={ RecoverPassword } />
-                    <Route name="reset-password" path="/reset-password/:token" component={ ResetPassword } />
-                    <Route name="set-password" path="/set-password/:token" component={ SetPassword } />
-                    <Route name="signup" path="/signup" component={ Signup } />
+                  <Route name="signin" path="/signin" component={ Signin } />
+                  <Route name="recover-password" path="/recover-password" component={ RecoverPassword } />
+                  <Route name="reset-password" path="/reset-password/:token" component={ ResetPassword } />
+                  <Route name="set-password" path="/set-password/:token" component={ SetPassword } />
+                  <Route name="signup" path="/signup" component={ Signup } />
 
-                    <Route name="about" path="/about" component={ AppInfoPage } />
-                    <Route name="privacy" path="/privacy" component={ PrivacyPage } />
-                    <Route name="termsConditions" path="/terms-and-conditions" component={ TermsConditionsPage } />
+                  <Route name="about" path="/about" component={ AppInfoPage } />
+                  <Route name="privacy" path="/privacy" component={ PrivacyPage } />
+                  <Route name="termsConditions" path="/terms-and-conditions" component={ TermsConditionsPage } />
 
-                    <Route name="theming" path="/theming" component={ ThemePage } onEnter={ requireAuth } />
-                    <Route name="myprofile" path="/myprofile" component={ MyProfilePage } onEnter={ requireAuth } />
+                  <Route name="theming" path="/theming" component={ ThemePage } onEnter={ requireAuth } />
+                  <Route name="myprofile" path="/myprofile" component={ MyProfilePage } onEnter={ requireAuth } />
 
-                    <Route name="users" path="/users" component={ UsersPage } onEnter={ requireAuth } />
+                  <Route name="users" path="/users" component={ UsersPage } onEnter={ requireAuth } />
 
-                    <Route name="welcomePatient" path="/welcome/patient" component={ WelcomePatientPage } onEnter={ requireAuth }/>
-                    <Route name="welcomePractitioner" path="/welcome/practitioner" component={ WelcomePractitionerPage } onEnter={ requireAuth }/>
-                    <Route name="welcomeAdmin" path="/welcome/sysadmin" component={ WelcomeAdminPage } onEnter={ requireAuth }/>
+                  <Route name="welcomePatient" path="/welcome/patient" component={ WelcomePatientPage } onEnter={ requireAuth }/>
+                  <Route name="welcomePractitioner" path="/welcome/practitioner" component={ WelcomePractitionerPage } onEnter={ requireAuth }/>
+                  <Route name="welcomeAdmin" path="/welcome/sysadmin" component={ WelcomeAdminPage } onEnter={ requireAuth }/>
 
-                    <Route name="dicomViewer" path="/dicom-viewer" component={ DicomViewerPage }  onEnter={ requireAuth }/>
-                    <Route name="checklists" path="/checklists" component={ ChecklistsPage }  onEnter={ requireAuth }/>
-                    <Route name="notifications" path="/notifications" component={ NotificationsPage }  onEnter={ requireAuth }/>
+                  <Route name="dicomViewer" path="/dicom-viewer" component={ DicomViewerPage }  onEnter={ requireAuth }/>
+                  <Route name="checklists" path="/checklists" component={ ChecklistsPage }  onEnter={ requireAuth }/>
+                  <Route name="notifications" path="/notifications" component={ NotificationsPage }  onEnter={ requireAuth }/>
 
-                    <Route name="password" path="/password" component={ PasswordManagementPage }  onEnter={ requireAuth }/>
-                    <Route name="preferences" path="/preferences" component={ PreferencesPage }  onEnter={ requireAuth }/>
-                    <Route name="oauthGrants" path="/oauth-grants" component={ AuthorizationGrantsPage }  onEnter={ requireAuth }/>
-                    <Route name="metadataPage" path="/metadata" component={ MetadataPage } />
+                  <Route name="password" path="/password" component={ PasswordManagementPage }  onEnter={ requireAuth }/>
+                  <Route name="preferences" path="/preferences" component={ PreferencesPage }  onEnter={ requireAuth }/>
+                  <Route name="oauthGrants" path="/oauth-grants" component={ AuthorizationGrantsPage }  onEnter={ requireAuth }/>
+                  <Route name="metadataPage" path="/metadata" component={ MetadataPage } />
 
 
-                    { dynamicRoutes.map(route => <Route 
-                      name={route.name} 
-                      key={route.name} 
-                      path={route.path} 
-                      component={ route.component } 
-                      onEnter={ route.requireAuth ? requireAuth : null } 
-                    />) }
+                  { dynamicRoutes.map(route => <Route 
+                    name={route.name} 
+                    key={route.name} 
+                    path={route.path} 
+                    component={ route.component } 
+                    onEnter={ route.requireAuth ? requireAuth : null } 
+                  />) }
 
-                    <Route path="/" component={ MainIndex } onEnter={ requireAuth } />
+                  <Route path="/" component={ MainIndex } onEnter={ requireAuth } />
 
-                    <Route path="*" component={ NotFound } />              
-
+                  <Route path="*" component={ NotFound } />              
                   </Switch>
                 </div>
                 <div id='secondaryFlexPanel' className='secondaryFlexPanel' style={this.data.style.secondary}>
