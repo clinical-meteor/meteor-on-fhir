@@ -32,6 +32,7 @@ export class PractitionerSidebar extends React.Component {
     Meteor.logout();
   }
   render () {
+<<<<<<< HEAD
    
    let smartOnFhir;
    if(Package["symptomatic:smart-on-fhir-client"]){
@@ -48,13 +49,30 @@ export class PractitionerSidebar extends React.Component {
    }
    
    return(
+=======
+
+   let symptomaticPicker;
+   if(Package['symptomatic:dashboard']){
+      symptomaticPicker = <LinkContainer to='/symptom-picker'>
+         <MenuItem primaryText='Symptom Picker' href='/symptom-picker' />
+      </LinkContainer>
+   }
+
+    return(
+>>>>>>> 8c5013a9f4411bf6bc92005118202246c5bd0058
       <div id="practitionerSidebar">
         <List style={{paddingLeft: '20px', position: 'static'}}>
 
           {/* <Link to='/'>
             <MenuItem id="indexPageItem" className="indexItem" href='/' primaryText='Index' />
+<<<<<<< HEAD
           </Link> */}
           <Link to='/healthcard'>
+=======
+          </LinkContainer> */}
+
+          <LinkContainer to='/healthcard'>
+>>>>>>> 8c5013a9f4411bf6bc92005118202246c5bd0058
              <MenuItem primaryText='HealthCard' href='/healthcard' />
           </Link>
           <Link to='/bundles'>
@@ -67,8 +85,16 @@ export class PractitionerSidebar extends React.Component {
 
           <Link to='/service-requests'>
              <MenuItem primaryText='Workqueue' href='/service-requests' />
+<<<<<<< HEAD
           </Link>
           <Link to='/careplan-designer'>
+=======
+          </LinkContainer>
+          <LinkContainer to='/patients'>
+             <MenuItem primaryText='Patient Directory' href='/patients' />
+          </LinkContainer>
+          <LinkContainer to='/careplan-designer'>
+>>>>>>> 8c5013a9f4411bf6bc92005118202246c5bd0058
              <MenuItem primaryText='Careplan Designer' href='/careplan-designer' />
           </Link>          
           <Link to='/biometrics-dashboard'>
@@ -77,6 +103,8 @@ export class PractitionerSidebar extends React.Component {
           <Link to='/claims'>
              <MenuItem primaryText='Claims' href='/claims' />
           </Link>
+
+          {symptomaticPicker}
 
           <hr />
           <Link to='/data-management'>
