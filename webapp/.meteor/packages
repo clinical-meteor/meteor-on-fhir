@@ -159,8 +159,8 @@ littledata:synced-cron
 # symptomatic:ihealth-cloud-api
 
 ### Desktop  
-symptomatic:theming
-symptomatic:continuity-of-care
+# symptomatic:theming
+# symptomatic:continuity-of-care
 
 mdg:meteor-apm-agent
 # patientinsight:accreditation-utility
