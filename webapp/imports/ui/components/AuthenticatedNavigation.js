@@ -141,7 +141,7 @@ export class AuthenticatedNavigation extends React.Component {
                   style={this.data.glassText}
                   
                 />
-                <IconButton touch={true} style={this.data.glassTextIcon} onClick={this.toggleSearch}>
+                <IconButton id="toggleSearch" touch={true} style={this.data.glassTextIcon} onClick={this.toggleSearch}>
                   { currentIcon }
                 </IconButton>
                 <ToolbarTitle
@@ -169,6 +169,7 @@ export class AuthenticatedNavigation extends React.Component {
 
   toggleSearch(){
     console.log('toggleSearch')    
+    Session.toggle('showSearchbar');    
   }
   showProfile() {
     if(this.props.history){
