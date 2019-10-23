@@ -1,7 +1,6 @@
 import { List, ListItem } from 'material-ui/List';
 import MenuItem from '/imports/ui/components/MenuItem';
 
-import { LinkContainer } from 'react-router-bootstrap';
 import { Meteor } from 'meteor/meteor';
 import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
@@ -11,6 +10,7 @@ import { Session } from 'meteor/session';
 import { get } from 'lodash';
 
 
+import { Link } from "react-router-dom";
 
 // Pick up any dynamic routes that are specified in packages, and include them
 var dynamicModules = [];
@@ -21,7 +21,7 @@ Object.keys(Package).forEach(function(packageName){
       dynamicModules.push(element);      
     });    
   }
-});
+}); 
 
 export class PatientSidebar extends React.Component {
   getMeteorData() {
@@ -71,9 +71,9 @@ export class PatientSidebar extends React.Component {
 
     var index;
     if(get(Meteor, 'settings.public.defaults.sidebar.menuItems.Index')){
-      index = <LinkContainer key='indexItem'  to={ this.data.indexRoute } >
+      index = <Link key='indexItem'  to={ this.data.indexRoute } >
         <MenuItem id="indexPageItem" className="indexItem" href={ this.data.indexRoute } primaryText='Index' />
-      </LinkContainer>;
+      </Link>;
     }
     
     //----------------------------------------------------------------------
@@ -81,9 +81,9 @@ export class PatientSidebar extends React.Component {
 
     var healthlog;
     if(get(Meteor, 'settings.public.defaults.sidebar.menuItems.Healthlog')){
-      healthlog = <LinkContainer key='vitalsItem' to='/vitals-tracking'>
+      healthlog = <Link key='vitalsItem' to='/vitals-tracking'>
         <MenuItem primaryText='Healthlog' href='/vitals-tracking' />
-      </LinkContainer>;
+      </Link>;
     }
 
     //----------------------------------------------------------------------
@@ -92,9 +92,9 @@ export class PatientSidebar extends React.Component {
     var gettingStarted = [];
     if(get(Meteor, 'settings.public.defaults.sidebar.menuItems.GettingStarted')){
       gettingStarted.push(<hr key='hrb' />);
-      gettingStarted.push(<LinkContainer key='gettingStartedItem' to='/welcome/patient'>
+      gettingStarted.push(<Link key='gettingStartedItem' to='/welcome/patient'>
         <MenuItem primaryText='Getting Started' href='/welcome/patient' />
-      </LinkContainer>);
+      </Link>);
     }
  
 
@@ -106,19 +106,19 @@ export class PatientSidebar extends React.Component {
     if(get(Meteor, 'settings.public.defaults.sidebar.menuItems.DataManagement')){
       dataManagement.push(<hr key='hrc' />)
       if(!['iPhone'].includes(window.navigator.platform)){
-        dataManagement.push(<LinkContainer key='dataItem' to='/data-management'>
+        dataManagement.push(<Link key='dataItem' to='/data-management'>
           <MenuItem primaryText='Data Management' href='/data-management' />
-        </LinkContainer>);
+        </Link>);
       }
       if(!['iPhone'].includes(window.navigator.platform)){
-        dataManagement.push(<LinkContainer key='importData' to='/import-data'>
+        dataManagement.push(<Link key='importData' to='/import-data'>
           <MenuItem primaryText='Import' href='/import-data' />
-        </LinkContainer>);
+        </Link>);
       }
       // if(!['iPhone'].includes(window.navigator.platform)){
-        dataManagement.push(<LinkContainer key='exportData' to='/export-data'>
+        dataManagement.push(<Link key='exportData' to='/export-data'>
           <MenuItem primaryText='Export' href='/export-data' />
-        </LinkContainer>);
+        </Link>);
       // }
     }
 
@@ -135,9 +135,9 @@ export class PatientSidebar extends React.Component {
     if(get(Meteor, 'settings.public.defaults.sidebar.menuItems.FhirResources')){
       if(!['iPhone'].includes(window.navigator.platform)){
         fhirResources.push(<hr key='hra'/>);
-        fhirResources.push(<LinkContainer key='fhirItem' to='/fhir-resources-index'>
+        fhirResources.push(<Link key='fhirItem' to='/fhir-resources-index'>
           <MenuItem id="fhirResourcePageItem" primaryText='FHIR Resources' href='/fhir-resources-index' />
-      </LinkContainer>);      
+      </Link>);      
       }
     }
 
@@ -163,9 +163,9 @@ export class PatientSidebar extends React.Component {
 
         // the excludes array will hide routes
         if(!get(Meteor, 'settings.public.defaults.sidebar.hidden', []).includes(element.to)){
-          dynamicElements.push(<LinkContainer to={element.to} key={index}>
+          dynamicElements.push(<Link to={element.to} key={index}>
             <MenuItem primaryText={element.primaryText} href={element.href} />
-          </LinkContainer>);
+          </Link>);
           dynamicElements.push(<br key={index + "-br"} />);
         }
       });
@@ -178,35 +178,35 @@ export class PatientSidebar extends React.Component {
     if(Package['symptomatic:smart-on-fhir-client'] && !['iPhone'].includes(window.navigator.platform)){
 
       smartOnFhirImports.push(<hr key='hr2' />);
-      smartOnFhirImports.push(<LinkContainer key='importItem' to='/import-chart'>
+      smartOnFhirImports.push(<Link key='importItem' to='/import-chart'>
             <MenuItem primaryText='Import Patient Record' href='/import-chart' />
-        </LinkContainer>);
+        </Link>);
       smartOnFhirImports.push(
-        <LinkContainer key='fastImportItem' to='/fast-import-chart'>
+        <Link key='fastImportItem' to='/fast-import-chart'>
             <MenuItem primaryText='Quick Import' href='/fast-import-chart' />
-        </LinkContainer>)
+        </Link>)
     }
 
     var continuityOfCareElements;
     var supportElements;
     if(Package['symptomatic:continuity-of-care']){
       continuityOfCareElements = <div>
-          {/* <LinkContainer key='healthcard' to='/healthcard'>
+          {/* <Link key='healthcard' to='/healthcard'>
              <MenuItem id="healthcard" primaryText='Health Card' href='/healthcard' />
-          </LinkContainer>
+          </Link>
           <hr key='hr1' /> */}
-          <LinkContainer key='continuityOfCareItem' to='/continuity-of-care'>
+          <Link key='continuityOfCareItem' to='/continuity-of-care'>
              <MenuItem id="continuityOfCareItem" primaryText='Continuity of Care' href='/continuity-of-care' />
-          </LinkContainer>
-          <LinkContainer key='timelineItem' to='/timeline-sidescroll'>
+          </Link>
+          <Link key='timelineItem' to='/timeline-sidescroll'>
              <MenuItem id="timelineItem" primaryText='Timeline' href='/timeline-sidescroll' />
-          </LinkContainer>
-          <LinkContainer key='filtersItem' to='/filters'>
+          </Link>
+          <Link key='filtersItem' to='/filters'>
              <MenuItem id="filtersItem" primaryText='Filters' href='/filters' />
-          </LinkContainer>
-          <LinkContainer key='observationGraphs' to='/observations-graph'>
+          </Link>
+          <Link key='observationGraphs' to='/observations-graph'>
              <MenuItem id="observationGraphs" primaryText='Biomarker Trends' href='/observations-graph' />
-          </LinkContainer>
+          </Link>
       </div>
     }
 
@@ -215,15 +215,15 @@ export class PatientSidebar extends React.Component {
     if(Package['symptomatic:landing-page']){
       landingPageElements = <div>
           <hr key='hr4' />
-          <LinkContainer key='welcomeTourItem' to='/welcome/patient-sidescroll'>
+          <Link key='welcomeTourItem' to='/welcome/patient-sidescroll'>
             <MenuItem id="welcomeTourItem" primaryText='Getting Started' href='/welcome/patient-sidescroll' />
-          </LinkContainer>
+          </Link>
       </div>
     }
 
-    supportElements = <LinkContainer key='Support' to='/support'>
+    supportElements = <Link key='Support' to='/support'>
         <MenuItem primaryText='Help & Support' href='/support' />
-    </LinkContainer>
+    </Link>
 
     return(
       <div id='patientSidebar'>
@@ -249,27 +249,27 @@ export class PatientSidebar extends React.Component {
           { smartOnFhirImports }
 
           <hr key='hr3' />
-          <LinkContainer key='themingItem' to='/theming'>
+          <Link key='themingItem' to='/theming'>
              <MenuItem primaryText='Theming' href='/theming' />
-          </LinkContainer>
+          </Link>
 
-          <LinkContainer key='aboutItem' to='/about'>
+          <Link key='aboutItem' to='/about'>
              <MenuItem primaryText='About' href='/about' />
-          </LinkContainer>
+          </Link>
 
           { supportElements }
 
-          <LinkContainer key='privacyItem' to='/privacy'>
+          <Link key='privacyItem' to='/privacy'>
              <MenuItem primaryText='Privacy' href='/privacy' />
-          </LinkContainer>
+          </Link>
 
-          <LinkContainer key='termsItem'  to='/terms-and-conditions'>
+          <Link key='termsItem'  to='/terms-and-conditions'>
             <MenuItem primaryText='Terms and Conditions' href='/terms-and-conditions' />
-          </LinkContainer>
+          </Link>
 
-          <LinkContainer key='logoutMenuItem' to='/signin'>
+          <Link key='logoutMenuItem' to='/signin'>
              <MenuItem id='logoutMenuItem' className='logoutMenuItem' primaryText='Logout' onClick={this.handleLogout.bind(this) } />
-          </LinkContainer>
+          </Link>
         </List>
       </div>
     );

@@ -381,7 +381,7 @@ export class App extends React.Component {
     return (
           <GlassApp>
             { helmet }
-            <SidebarTray>
+            <SidebarTray history={this.props.history} location={this.props.location} >
               {orbital}
               <Header history={this.props.history} location={this.props.location} />
               <div id='primaryFlexPanel' className='primaryFlexPanel' >
