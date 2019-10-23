@@ -79,7 +79,6 @@ ddp-server@2.3.0
 deps@1.0.12
 diff-sequence@1.1.1
 differential:event-hooks@1.5.0
-digilord:faker@1.0.7
 dynamic-import@0.5.1
 ecmascript@0.12.6
 ecmascript-runtime@0.7.0
@@ -143,6 +142,7 @@ mongo-id@1.0.7
 mongo-livedata@1.0.12
 mousetrap:mousetrap@1.4.6_1
 mrt:moment@2.8.1
+mysticmidway:card-generator@0.1.18
 npm-bcrypt@0.9.3
 npm-mongo@3.1.2
 observe-sequence@1.0.16
