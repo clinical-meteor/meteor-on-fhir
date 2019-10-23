@@ -17,7 +17,8 @@ export class PublicNavigation extends React.Component {
           cursor: 'pointer'
         },
         buttons: {
-          marginTop: '6px'
+          marginTop: '6px',
+          float: 'left'
         }
       }
     };
@@ -28,12 +29,12 @@ export class PublicNavigation extends React.Component {
   render () {
     return(
       <div id="publicNavigation">
-        {/* <Link to="/signin" style={this.data.style.buttons} > */}
-          <MenuButton id='signinLink' label="Signin" style={this.data.style.title} href='/signin' />
-        {/* </Link>
-        <Link to="/signup" style={this.data.style.buttons} > */}
-          <MenuButton id='signupLink' label="Register" style={this.data.style.title} href='/signup' />
-      {/* </Link> */}
+        <Link to="/signin" style={this.data.style.buttons} >
+          <MenuButton id='signinLink' label="Signin" style={this.data.style.title} />
+        </Link>
+        <Link to="/signup" style={this.data.style.buttons} >
+          <MenuButton id='signupLink' label="Register" style={this.data.style.title} />
+      </Link>
       </div>
     );
   }
