@@ -7,7 +7,11 @@ Hooks.onLoggedIn = function (userId) {
 }
 Hooks.onLoggedOut = function (userId) { 
     check(userId, String);
-    console.log('Hooks.onLoggedOut', userId);    
+    if(userId){
+        console.log('Logging out.  User ID:  ', userId);    
+    } else {
+        console.log('Logging out.  Nobody appears logged in.')
+    }
 }
 
 
