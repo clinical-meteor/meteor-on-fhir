@@ -294,6 +294,13 @@ export class FhirResourcesIndex extends React.Component {
       icon: 'IoMdClipboard',
       subtitle: 'Claims'
     }, {
+      collection: "ClinicalDocuments",
+      id: 'clinicaldocumentsTile',
+      active: true,
+      path: '/clinical-documents',
+      icon: 'IoMdClipboard',
+      subtitle: 'Clinical Documents'
+    }, {
       collection: "ClinicalImpressions",
       id: 'clinicalImpressionssTile',
       active: true,
@@ -364,6 +371,13 @@ export class FhirResourcesIndex extends React.Component {
       icon: 'FaMobile',
       subtitle: 'Endpoints'
     }, {
+      collection: "ExplanationOfBenefits",
+      id: 'benefitsTile',
+      active: true,
+      path: '/explanation-of-benefits',
+      icon: 'FaMobile',
+      subtitle: 'Explanation Of Benefits'
+    }, {
       collection: "Goals",
       id: 'goalsTile',
       active: true,
@@ -419,6 +433,13 @@ export class FhirResourcesIndex extends React.Component {
       path: '/organizations',
       icon: 'FaBuilding',
       subtitle: 'Organizations'
+    }, {
+      collection: "Provenances",
+      id: 'provenancesTile',
+      active: true,
+      path: '/provenances',
+      icon: 'IoMdNuclear',
+      subtitle: 'Provenances'
     }, {
       collection: "Procedures",
       id: 'proceduresTile',

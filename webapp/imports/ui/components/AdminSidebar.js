@@ -46,14 +46,14 @@ export class AdminSidebar extends React.Component {
 
     //----------------------------------------------------------------------
     // Dynamic Modules  
-    console.log('dynamicAdminModules', dynamicAdminModules)
+    // console.log('dynamicAdminModules', dynamicAdminModules)
 
     let sortedModules = orderBy(dynamicAdminModules, ['primaryText'], ['asc'])
-    console.log('sortedModules', sortedModules)
+    // console.log('sortedModules', sortedModules)
 
     var dynamicElements = [];
     sortedModules.map(function(element, index){ 
-      console.log('element', element)
+      // console.log('element', element)
 
       // the excludes array will hide routes
       if(!get(Meteor, 'settings.public.defaults.sidebar.adminHidden', []).includes(element.to)){
