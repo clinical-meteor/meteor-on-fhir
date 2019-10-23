@@ -3,10 +3,8 @@ import ReactMixin  from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
 import { Row, Col, Alert, FormGroup, FormControl } from 'react-bootstrap';
-import { handleRecoverPassword } from '/imports/client/entry/handleRecoverPassword';
 
 import { MobilePadding } from '/imports/ui/components/MobilePadding';
-import { browserHistory } from 'react-router';
 import { Accounts } from 'meteor/accounts-base';
 import { Bert } from 'meteor/clinical:alert';
 
@@ -24,7 +22,7 @@ Session.setDefault('recoverPasswordInput', '')
 Session.setDefault('recoverPasswordSent', false)
 export class RecoverPassword extends React.Component {
   componentDidMount() {
-    //handleRecoverPassword({ component: this });
+    
   }
   handleSubmit(event, foo) {
     event.preventDefault();    

@@ -5,7 +5,6 @@ import FlatButton from 'material-ui/FlatButton';
 import React from 'react';
 
 import { VerticalCanvas, GlassCard } from 'meteor/clinical:glass-ui';
-import { browserHistory } from 'react-router';
 
 export class WelcomePatientPage extends React.Component {
   constructor(props) {
@@ -16,7 +15,9 @@ export class WelcomePatientPage extends React.Component {
     Meteor.users.update({_id: Meteor.userId()}, {$set: {
       'profile.firstTimeVisit':false
     }});
-    browserHistory.push('/');
+    if(this.props.history){
+      this.props.history.push('/');
+    }
   }
 
   render(){

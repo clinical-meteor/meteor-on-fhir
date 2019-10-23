@@ -13,7 +13,6 @@ import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
 import { Session } from 'meteor/session';
-import { browserHistory } from 'react-router';
 import { get } from 'lodash';
 import MenuButton from '/imports/ui/components/MenuButton';
 import NorthEastMenu from '/imports/ui/components/NorthEastMenu';
@@ -112,7 +111,9 @@ export class AuthenticatedNavigation extends React.Component {
   openNotifications(){
     // not every wants the notification menu, so we make sure it's configurable in the Meteor.settings file
     if(get(Meteor, 'settings.public.defaults.notificationMenu')){
-      browserHistory.push('/notifications');
+      if(this.props.history){
+        this.props.history.push('/notifications');
+      }
     }    
   }
   render () {
@@ -160,7 +161,9 @@ export class AuthenticatedNavigation extends React.Component {
 
   handleLogout() {
     Meteor.logout(function(){      
-      browserHistory.push('/signin');
+      if(this.props.history){
+        this.props.history.push('/signin');
+      }
     });
   }
 
@@ -168,7 +171,9 @@ export class AuthenticatedNavigation extends React.Component {
     console.log('toggleSearch')    
   }
   showProfile() {
-    browserHistory.push('/myprofile');
+    if(this.props.history){
+      this.props.history.push('/myprofile');
+    }
   }
 
   toggleNotificationMenu(){

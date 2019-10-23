@@ -8,7 +8,9 @@ export class MenuButton extends React.Component {
   render(){
     const { active, ...otherProps } = this.props;
     return (
-      <FlatButton {...otherProps} />
+      <div>
+        <FlatButton {...otherProps} />
+      </div>
     );
   }
 }

@@ -3,10 +3,8 @@ import ReactMixin  from 'react-mixin';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 
 import { Row, Col, Alert, FormGroup, FormControl } from 'react-bootstrap';
-import { handleRecoverPassword } from '/imports/client/entry/handleRecoverPassword';
+// import { handleRecoverPassword } from '/imports/client/entry/handleRecoverPassword';
 
-import { MobilePadding } from '/imports/ui/components/MobilePadding';
-import { browserHistory } from 'react-router';
 import { Accounts } from 'meteor/accounts-base';
 import { Bert } from 'meteor/clinical:alert';
 
@@ -109,6 +107,8 @@ export class SetPassword extends React.Component {
   setPassword(proxy, newPassword, token){
     console.log("setPassword()", proxy, newPassword, token, this);
 
+    let self = this;
+
     if(typeof newPassword === "undefined"){
       newPassword = Session.get('setPasswordInput')
     }
@@ -128,7 +128,9 @@ export class SetPassword extends React.Component {
           } else {
             Bert.alert('Password reset.', 'info');
             console.log('Password reset.');
-            browserHistory.push('/continuity-of-care')
+            if(self.props.history){
+              self.props.history.push('/continuity-of-care')
+            }
             // loginButtonsSession.set('resetPasswordToken', null);
             // loginButtonsSession.set('justResetPassword', true);
             if (doneCallback)

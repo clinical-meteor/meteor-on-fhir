@@ -11,7 +11,6 @@ import { Session } from 'meteor/session';
 import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
-import { browserHistory } from 'react-router';
 import { has, get } from 'lodash';
 import PropTypes from 'prop-types';
 

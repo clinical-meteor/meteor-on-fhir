@@ -1,6 +1,9 @@
 import { AdminSidebar }  from '/imports/ui/components/AdminSidebar';
 import { CardHeader, Drawer } from 'material-ui';
-import { IndexLinkContainer, LinkContainer } from 'react-router-bootstrap';
+// import { Link, LinkContainer } from 'react-router-bootstrap';
+import { Link } from "react-router-dom";
+
+
 import { Meteor } from 'meteor/meteor';
 import { ProfileSidebar }  from '/imports/ui/components/ProfileSidebar';
 import { PatientSidebar }  from '/imports/ui/components/PatientSidebar';
@@ -135,12 +138,6 @@ export class SidebarTray extends React.Component {
           return <PractitionerSidebar /> ;
         } else {
           return <PatientSidebar /> ;
-
-          // if (Meteor.userId() && ['/myprofile', '/preferences', 'oauth-grants', '/password'].includes(Session.get('pathname'))) {
-          //   return <ProfileSidebar /> ;
-          // } else {
-          //   return <PatientSidebar /> ;
-          // }
         }
       }
     } else {
@@ -174,7 +171,7 @@ export class SidebarTray extends React.Component {
 
             <div onClick={ this.closeOpenedSidebar }>
 
-                <IndexLinkContainer id="userIdentification" to='/myprofile' >
+                <Link id="userIdentification" to='/myprofile' >
                   <MenuPatientSummary>
                     <CardHeader
                       id='patientSummaryCard'
@@ -183,7 +180,7 @@ export class SidebarTray extends React.Component {
                       style={{cursor: 'pointer'}}
                     />
                   </MenuPatientSummary>
-                </IndexLinkContainer>
+                </Link>
 
                 { this.renderSidebar(this.data.state.isAdmin) }
 
