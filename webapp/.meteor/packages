@@ -133,7 +133,7 @@ clinical:hl7-resource-questionnaire
 clinical:hl7-resource-questionnaire-response
 clinical:hl7-resource-risk-assessment
 # clinical:hl7-resource-service-request
-clinical:hl7-resource-subscription
+# clinical:hl7-resource-subscription
 # clinical:hl7-resource-sequence
 
 

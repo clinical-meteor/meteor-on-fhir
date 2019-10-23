@@ -526,14 +526,18 @@ export class FhirResourcesIndex extends React.Component {
       var row;
       // parse through each FHIR module specified in the Settings file
       Object.keys(fhirResources).forEach(function(key){
-        console.log('key', key);
+
+        // console.log('modulo', count % 6);
+        if(count % 6 === 0){
+          innerRow = [];
+        }
 
         // is it enabled?  does it have a sub-object?  is it truthy?
         if(fhirResources[key]){
           console.log("fhirResources[key]", fhirResources[key])
           // if so, see if there's a collection loaded up
           if(Mongo.Collection.get(key)){
-            // console.log('Mongo.Collection.get(key)', Mongo.Collection.get(key))
+              // console.log('key', key)
 
               var selectedConfig = {
                 id: '',
