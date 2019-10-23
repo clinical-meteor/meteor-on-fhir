@@ -1,4 +1,7 @@
-import { LinkContainer } from 'react-router-bootstrap';
+// import { Link } from 'react-router-bootstrap';
+
+import { Link } from "react-router-dom";
+
 import { List, ListItem } from 'material-ui/List';
 import React from 'react';
 import ReactMixin from 'react-mixin';
@@ -46,69 +49,70 @@ export class AdminSidebar extends React.Component {
 
     //----------------------------------------------------------------------
     // Dynamic Modules  
-    console.log('dynamicAdminModules', dynamicAdminModules)
+    // console.log('dynamicAdminModules', dynamicAdminModules)
 
     let sortedModules = orderBy(dynamicAdminModules, ['primaryText'], ['asc'])
-    console.log('sortedModules', sortedModules)
+    // console.log('sortedModules', sortedModules)
 
     var dynamicElements = [];
     sortedModules.map(function(element, index){ 
-      console.log('element', element)
+      // console.log('element', element)
 
       // the excludes array will hide routes
-      // if(!get(Meteor, 'settings.public.defaults.sidebar.hidden', []).includes(element.to)){
-        dynamicElements.push(<LinkContainer to={get(element, 'to')} key={index}>
+      if(!get(Meteor, 'settings.public.defaults.sidebar.adminHidden', []).includes(element.to)){
+
+        dynamicElements.push(<Link to={get(element, 'to')} key={index}>
           <MenuItem primaryText={get(element, 'primaryText')} href={get(element, 'href')} />
-        </LinkContainer>);
-      // }
+        </Link>);
+      }           
     });
 
     return(
       <div id="adminSidebar">
         <List style={{paddingLeft: '20px', position: 'static', width: '100%'}}>
 
-          <LinkContainer to='/'>
+          <Link to='/'>
              <MenuItem primaryText='Admin Index' href='/' />
-          </LinkContainer>
+          </Link>
 
-          <LinkContainer to='/users'>
+          <Link to='/users'>
              <MenuItem primaryText='Users' href='/users' />
-          </LinkContainer>
+          </Link>
           
-          <LinkContainer to='/practitioners'>
+          <Link to='/practitioners'>
              <MenuItem primaryText='Practitioners' href='/practitioners' />
-          </LinkContainer>
+          </Link>
 
           <hr />
 
           { dynamicElements }
 
           <hr />
-          <LinkContainer to='/fhir-resources-index'>
+          <Link to='/fhir-resources-index'>
              <MenuItem id="fhirResourcePageItem" primaryText='FHIR Resources' href='/fhir-resources-index' />
-          </LinkContainer>
-          <LinkContainer to='/data-management'>
+          </Link>
+          <Link to='/data-management'>
              <MenuItem primaryText='Data Management' href='/theming' />
-          </LinkContainer>
+          </Link>
           <hr />
 
-          <LinkContainer to='/theming'>
+          <Link to='/theming'>
              <MenuItem primaryText='Theming' href='/theming' />
-          </LinkContainer>
+          </Link>
 
           <hr />
 
-          <LinkContainer to='/about'>
+          <Link to='/about'>
              <MenuItem primaryText='About' href='/about' />
-          </LinkContainer>
+          </Link>
 
-          <LinkContainer to='/metadata'>
+          <Link to='/metadata'>
              <MenuItem primaryText='Metadata' href='/metadata' />
-          </LinkContainer>
+          </Link>
 
-          <LinkContainer to='/signin'>
+          <Link to='/signin'>
              <MenuItem className='logoutMenuItem' primaryText='Logout' href='/signin' onClick={this.handleLogout} />
-          </LinkContainer>
+          </Link>
         </List>
       </div>
     );

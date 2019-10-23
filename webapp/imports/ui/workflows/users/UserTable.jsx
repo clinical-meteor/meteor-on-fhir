@@ -9,7 +9,6 @@ import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
 import { Table } from 'react-bootstrap';
-import { browserHistory } from 'react-router';
 import { removeUserById } from '/imports/api/users/methods';
 import { get } from 'lodash';
 import { CardHeader, CardText, CardTitle } from 'material-ui/Card';
@@ -414,7 +413,9 @@ export class UserTable extends React.Component {
     this.setState({selected});
   }
   routeToHealthlog(userId){
-    browserHistory.push('/weblog/' + userId);
+    if(this.props.history){
+      this.props.history.push('/weblog/' + userId);
+    }
   }
 
   removeUser(userId, event){

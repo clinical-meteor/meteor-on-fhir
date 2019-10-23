@@ -6,7 +6,6 @@ import { CardText, CardTitle, TextField, RaisedButton } from 'material-ui';
 
 import { Row, Col, Alert } from 'react-bootstrap';
 
-import { browserHistory } from 'react-router';
 import { Accounts } from 'meteor/accounts-base';
 import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session';
@@ -161,7 +160,9 @@ export class Signup extends React.Component {
     event.preventDefault();
   }
   signinRoute(){
-    browserHistory.push('/signin');
+    if(this.props.history){
+      this.props.history.push('/signin');
+    }
   }
 
   render() {
@@ -324,9 +325,6 @@ export class Signup extends React.Component {
                       </CardText>
                     </GlassCard>
                     <DynamicSpacer />
-                    <DynamicSpacer />
-                    <DynamicSpacer />
-                    <DynamicSpacer />
                     { connectionAlert }
                   </Col>
                 </Row>
@@ -393,6 +391,8 @@ export class Signup extends React.Component {
   async handleTouchTap(){
     // console.log('handleTouchTap');
 
+    let self = this;
+
     let newUserData = {
       email: get(this, 'state.form.emailAddress', ''),
       username: get(this, 'state.form.emailAddress', ''),
@@ -434,36 +434,38 @@ export class Signup extends React.Component {
             Meteor.call('sendVerificationEmail', Meteor.userId());
           // }
   
-          // if this is a patient's first visit, we want to send them to a welcome screen
-          // where they can fill out HIPAA
-          if (Roles.userIsInRole(Meteor.userId(), 'patient') && get(Meteor.user(), 'profile.firstTimeVisit')) {
-  
-            if(get(Meteor, 'settings.public.defaults.routes.patientWelcomePage')){
-              console.log('Routing to Meteor.settings.public.defaults.routes.patientWelcomePage')
-              browserHistory.push(get(Meteor, 'settings.public.defaults.routes.patientWelcomePage'));  
+          if(self.props.history){
+            // if this is a patient's first visit, we want to send them to a welcome screen
+            // where they can fill out HIPAA
+            if (Roles.userIsInRole(Meteor.userId(), 'patient') && get(Meteor.user(), 'profile.firstTimeVisit')) {
+    
+              if(get(Meteor, 'settings.public.defaults.routes.patientWelcomePage')){
+                console.log('Routing to Meteor.settings.public.defaults.routes.patientWelcomePage')
+                self.props.history.push(get(Meteor, 'settings.public.defaults.routes.patientWelcomePage'));  
+              } else {
+                console.log('Routing to /welcome/patient')
+                self.props.history.push('/welcome/patient');  
+              }
+    
+            // and if they're a practitioner, we probably need to collect some credentialing data
+            // and inform them about their obligations regarding HIPAA
+            } else if (Roles.userIsInRole(Meteor.userId(), 'practitioner') && get(Meteor.user(), 'profile.firstTimeVisit')) {
+                console.log('Routing to /welcome/practitioner')
+                self.props.history.push('/welcome/practitioner');
+            } else if (Roles.userIsInRole(Meteor.userId(), 'sysadmin') && get(Meteor.user(), 'profile.firstTimeVisit')) {
+                console.log('Routing to /welcome/sysadmin')
+                self.props.history.push('/welcome/sysadmin');
             } else {
-              console.log('Routing to /welcome/patient')
-              browserHistory.push('/welcome/patient');  
+              // otherwise we go to the default route specified in the settings.json file
+              if(get(Meteor, 'settings.public.defaults.route')){
+                console.log('Meteor.settings.public.defaults.route', get(Meteor, 'settings.public.defaults.route', '/'))
+                self.props.history.push(get(Meteor, 'settings.public.defaults.route', '/'));
+              } else {
+                // and if all else fails, just go to the root 
+                console.log('Routing to /');
+                self.props.history.push('/');      
+              }  
             }
-  
-          // and if they're a practitioner, we probably need to collect some credentialing data
-          // and inform them about their obligations regarding HIPAA
-          } else if (Roles.userIsInRole(Meteor.userId(), 'practitioner') && get(Meteor.user(), 'profile.firstTimeVisit')) {
-              console.log('Routing to /welcome/practitioner')
-              browserHistory.push('/welcome/practitioner');
-          } else if (Roles.userIsInRole(Meteor.userId(), 'sysadmin') && get(Meteor.user(), 'profile.firstTimeVisit')) {
-              console.log('Routing to /welcome/sysadmin')
-              browserHistory.push('/welcome/sysadmin');
-          } else {
-            // otherwise we go to the default route specified in the settings.json file
-            if(get(Meteor, 'settings.public.defaults.route')){
-              console.log('Meteor.settings.public.defaults.route', get(Meteor, 'settings.public.defaults.route', '/'))
-              browserHistory.push(get(Meteor, 'settings.public.defaults.route', '/'));
-            } else {
-              // and if all else fails, just go to the root 
-              console.log('Routing to /');
-              browserHistory.push('/');      
-            }  
           }
         }
       });

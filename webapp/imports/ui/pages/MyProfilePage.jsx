@@ -30,10 +30,6 @@ import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
 
-// import MenuItem from '/imports/ui/components/MenuItem';
-
-
-import { browserHistory } from 'react-router';
 import { removeUserById } from '/imports/api/users/methods';
 
 import { PatientCard } from 'meteor/clinical:hl7-resource-patient';
@@ -927,7 +923,9 @@ export class MyProfilePage extends React.Component {
     }});
   }
   editAuthorizations(){
-    browserHistory.push('/oauth-grants');
+    if(this.props.history){
+      this.props.history.push('/oauth-grants');
+    }
   }
   geocode(){
     console.log('lets try geocoding something...');
@@ -953,7 +951,9 @@ export class MyProfilePage extends React.Component {
     }
 
     if(get(Meteor.user(), 'profile.locations.home.position.latitude') && get(Meteor.user(), 'profile.locations.home.position.longitude')){
-      browserHistory.push('/maps');
+      if(this.props.history){
+        this.props.history.push('/maps');
+      }
     }        
   }
   handleDelete() {
@@ -967,10 +967,14 @@ export class MyProfilePage extends React.Component {
     Session.set('myProfileState', state);
   }
   exportData(){
-    browserHistory.push('/export-data');
+    if(this.props.history){
+      this.props.history.push('/export-data');
+    }
   }
   importData(){
-    browserHistory.push('/import-data');
+    if(this.props.history){
+      this.props.history.push('/import-data');
+    }
   }
   clearLocalCache(){
     if(confirm("Are you absolutely sure?")){
@@ -1019,7 +1023,9 @@ export class MyProfilePage extends React.Component {
           } 
           if(result) {
             Bert.alert('User removed!', 'success');
-            browserHistory.push('/signin');
+            if(this.props.history){
+              this.props.history.push('/signin');
+            }
           }
         });
 

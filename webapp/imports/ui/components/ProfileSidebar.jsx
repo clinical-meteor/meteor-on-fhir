@@ -7,7 +7,6 @@ import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
 import { Session } from 'meteor/session';
-import { browserHistory } from 'react-router';
 
 import { get } from 'lodash';
 
@@ -46,10 +45,14 @@ export class ProfileSidebar extends React.Component {
   }
 
   handleProfile() {
-    browserHistory.push('/myprofile');
+    if(this.props.history){
+      this.props.history.push('/myprofile');
+    }
   }
   handlePreferences() {
-    browserHistory.push('/preferences');
+    if(this.props.history){
+      this.props.history.push('/preferences');
+    }
   }
   handleLogout() {
     console.log("handleLogout");

@@ -1,10 +1,11 @@
 import { List, ListItem } from 'material-ui/List';
 import MenuItem from '/imports/ui/components/MenuItem';
 
-import { LinkContainer } from 'react-router-bootstrap';
 import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
+
+import { Link } from "react-router-dom";
 
 export class PractitionerSidebar extends React.Component {
   getMeteorData() {
@@ -30,66 +31,98 @@ export class PractitionerSidebar extends React.Component {
   handleLogout() {
     Meteor.logout();
   }
-
   render () {
+   
+   let smartOnFhir;
+   if(Package["symptomatic:smart-on-fhir-client"]){
+      smartOnFhir = <Link to='/import-chart'>
+         <MenuItem primaryText='Import Chart' href='/import-chart' />
+      </Link>
+   }
+
+   let bluebutton;
+   if(Package["symptomatic:bluebutton"]){
+      bluebutton = <Link to='/import-claims'>
+         <MenuItem primaryText='Import Claims' href='/import-claims' />
+      </Link>
+   }
+
+   let symptomaticPicker;
+   if(Package['symptomatic:dashboard']){
+      symptomaticPicker = <LinkContainer to='/symptom-picker'>
+         <MenuItem primaryText='Symptom Picker' href='/symptom-picker' />
+      </LinkContainer>
+   }
+
     return(
       <div id="practitionerSidebar">
         <List style={{paddingLeft: '20px', position: 'static'}}>
 
-          {/* <LinkContainer to='/'>
+          {/* <Link to='/'>
             <MenuItem id="indexPageItem" className="indexItem" href='/' primaryText='Index' />
-          </LinkContainer> */}
-          <LinkContainer to='/healthcard'>
+          </Link> */}
+          <Link to='/healthcard'>
              <MenuItem primaryText='HealthCard' href='/healthcard' />
-          </LinkContainer>
-          <LinkContainer to='/bundles'>
+          </Link>
+          <Link to='/bundles'>
              <MenuItem primaryText='Bundles' href='/bundles' />
-          </LinkContainer>
+          </Link>
 
 
           <hr />
 
 
-          <LinkContainer to='/service-requests'>
+          <Link to='/service-requests'>
              <MenuItem primaryText='Workqueue' href='/service-requests' />
-          </LinkContainer>
-          <LinkContainer to='/careplan-designer'>
+          </Link>
+          <Link to='/careplan-designer'>
+          </Link>
+          <Link to='/patients'>
+             <MenuItem primaryText='Patient Directory' href='/patients' />
+          </Link>
+          <Link to='/careplan-designer'>
              <MenuItem primaryText='Careplan Designer' href='/careplan-designer' />
-          </LinkContainer>          
-          <LinkContainer to='/biometrics-dashboard'>
+          </Link>          
+          <Link to='/biometrics-dashboard'>
              <MenuItem primaryText='Biometrics Dashboard' href='/biometrics-dashboard' />
-          </LinkContainer>
-          <LinkContainer to='/claims'>
+          </Link>
+          <Link to='/claims'>
              <MenuItem primaryText='Claims' href='/claims' />
-          </LinkContainer>
+          </Link>
+
+          {symptomaticPicker}
 
           <hr />
-          <LinkContainer to='/data-management'>
+          <Link to='/data-management'>
              <MenuItem primaryText='Data Management' href='/theming' />
-          </LinkContainer>
+          </Link>
 
-          <LinkContainer to='/fhir-resources-index'>
+          <Link to='/fhir-resources-index'>
              <MenuItem id="fhirResourcePageItem" primaryText='FHIR Resources' href='/fhir-resources-index' />
-          </LinkContainer>
-          <LinkContainer to='/checklists'>
+          </Link>
+          <Link to='/checklists'>
              <MenuItem primaryText='Checklists' href='/checklists' />
-          </LinkContainer>
+          </Link>
+
+          { smartOnFhir }
+
+          { bluebutton }
 
           <hr />
 
-          <LinkContainer to='/users'>
+          <Link to='/users'>
              <MenuItem primaryText='Users' href='/users' />
-          </LinkContainer>
+          </Link>
 
-          <LinkContainer to='/theming'>
+          <Link to='/theming'>
              <MenuItem primaryText='Theming' href='/theming' />
-          </LinkContainer>
+          </Link>
 
           <hr />
 
-          <LinkContainer to='/signin'>
+          <Link to='/signin'>
              <MenuItem className='logoutMenuItem' primaryText='Logout' href='/signin' onClick={this.handleLogout} />
-          </LinkContainer>
+          </Link>
 
         </List>
 

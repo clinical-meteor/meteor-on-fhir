@@ -1,6 +1,6 @@
 import React from 'react';
 import { Row, Col, Alert, FormGroup, ControlLabel, FormControl, Button } from 'react-bootstrap';
-import { handleResetPassword } from '/imports/client/entry/handleResetPassword';
+// import { handleResetPassword } from '/imports/client/entry/handleResetPassword';
 import PropTypes from 'prop-types';
 import { VerticalCanvas } from 'meteor/clinical:glass-ui';
 
@@ -8,10 +8,10 @@ import { VerticalCanvas } from 'meteor/clinical:glass-ui';
 
 export class ResetPassword extends React.Component {
   componentDidMount() {
-    handleResetPassword({
-      component: this,
-      token: this.props.params.token,
-    });
+    // handleResetPassword({
+    //   component: this,
+    //   token: this.props.params.token,
+    // });
   }
 
   handleSubmit(event) {

@@ -16,8 +16,8 @@ import React  from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
 import { Session } from 'meteor/session';
-import { browserHistory } from 'react-router';
 import PropTypes from 'prop-types';
+import { Col, Grid, Row } from 'react-bootstrap';
 
 import { get } from 'lodash';
 import { FaMars, FaVenus, FaMercury, FaTransgender  } from 'react-icons/fa';
@@ -39,27 +39,17 @@ Sidebar = {
 }
 
 Session.setDefault('mapName', false)
+Session.setDefault('searchbarWidth', '100%')
 
 export class Header extends React.Component {
   getMeteorData() {
     let data = {
       style: {
-        searchbar: Glass.darkroom({
-          position: 'fixed',
-          top: '0px',
-          width: '90%',
-          opacity: Session.get('globalOpacity'),
-          WebkitTransition: 'ease .2s',
-          transition: 'ease .2s',
-          borderWidth: '3px 0px 0px 2px',
-          borderBottomRightRadius: '65px',
-          transformOrigin: 'right bottom',
-          paddingRight: '200px',
-          height: '0px'
-        }) ,
+        searchbar: {},
         searchbarInput: Glass.darkroom({
           left: '0px', 
-          width: '80%',
+          width: '100%',
+          fontWeight: '150%',
           visibility: 'hidden'
         }),
         appbar: {
@@ -92,6 +82,36 @@ export class Header extends React.Component {
       query: {}
     };
 
+    if(Session.equals('searchbarWidth', '100%')){
+      data.style.searchbar = Glass.darkroom({
+        position: 'fixed',
+        top: '0px',
+        width: '100%',
+        opacity: Session.get('globalOpacity'),
+        WebkitTransition: 'ease .2s',
+        transition: 'ease .2s',
+        borderWidth: '3px 0px 0px 2px',
+        height: '220px',
+        zIndex: 1000,
+        borderBottom: '1px solid lightgray'
+      }) 
+    } else {
+      data.style.searchbar = Glass.darkroom({
+        position: 'fixed',
+        top: '0px',
+        width: Session.get('searchbarWidth'),
+        opacity: Session.get('globalOpacity'),
+        WebkitTransition: 'ease .2s',
+        transition: 'ease .2s',
+        borderWidth: '3px 0px 0px 2px',
+        borderBottomRightRadius: '65px',
+        transformOrigin: 'right bottom',
+        paddingRight: '200px',
+        height: '220px',
+        zIndex: 1000,
+        borderBottom: '1px solid lightgray'
+      }) 
+    }
 
     if(Session.get('selectedPatientId')){
       data.query._id = Session.get('selectedPatientId');
@@ -100,10 +120,13 @@ export class Header extends React.Component {
     } 
 
     if(Session.get('showSearchbar')){
-      data.style.searchbar.height = '65px';
+      data.style.searchbar.height = '220px';
       data.style.searchbar.display = 'flex';
       data.style.searchbarInput.visibility = 'visible';
 
+      if(Session.get('selectedPatientId')){
+        data.style.searchbar.height = '220px';
+      }
     } else {
       data.style.searchbar.height = 0;      
       data.style.searchbar.display = 'none';
@@ -140,6 +163,8 @@ export class Header extends React.Component {
       data.hasUser = false;
     }
 
+    console.log('Header.data', data)
+
     return data;
   }
   getChildContext() {
@@ -164,7 +189,7 @@ export class Header extends React.Component {
 
   renderNavigation(hasUser) {
     if(get(Meteor, 'settings.public.home.showRegistration')){
-      if(!['signup', 'signin', '/signup', '/signin'].includes(Session.get('pathname'))){
+      if(!['signup', 'signin', '/signup', '/signin'].includes(location.pathname)){
         if (hasUser) {
           return <AuthenticatedNavigation />;
         } else {
@@ -175,28 +200,32 @@ export class Header extends React.Component {
   }
 
   goHome(){
-    // not every wants the hexgrid menu, so we make sure it's configurable in the Meteor.settings file
-    if(get(Meteor, 'settings.public.defaults.route')){
+    console.log('this.props.history', this.props.history);
 
-      // get the default route
-      let defaultRoute = get(Meteor, 'settings.public.defaults.route', '/')
+    if(this.props.history){
+      // not every wants the hexgrid menu, so we make sure it's configurable in the Meteor.settings file
+      if(get(Meteor, 'settings.public.defaults.route')){
+
+        // get the default route
+        let defaultRoute = get(Meteor, 'settings.public.defaults.route', '/')
+        
+        // if there are user role specific default routes defined in our settings file
+        // send the user to the role specific route
       
-      // if there are user role specific default routes defined in our settings file
-      // send the user to the role specific route
-    
-      if (Roles.userIsInRole(Meteor.userId(), 'patient')) {
-        browserHistory.push(get(Meteor, 'settings.public.defaults.routes.patientHomePage', defaultRoute))
-      } else if (Roles.userIsInRole(Meteor.userId(), 'practitioner')) {
-        browserHistory.push(get(Meteor, 'settings.public.defaults.routes.practitionerHomePage', defaultRoute))
-      } else if (Roles.userIsInRole(Meteor.userId(), 'sysadmin')) {
-        browserHistory.push(get(Meteor, 'settings.public.defaults.routes.adminHomePage', defaultRoute))
-      } else {
+        if (Roles.userIsInRole(Meteor.userId(), 'patient')) {
+          this.props.history.push(get(Meteor, 'settings.public.defaults.routes.patientHomePage', defaultRoute))
+        } else if (Roles.userIsInRole(Meteor.userId(), 'practitioner')) {
+          this.props.history.push(get(Meteor, 'settings.public.defaults.routes.practitionerHomePage', defaultRoute))
+        } else if (Roles.userIsInRole(Meteor.userId(), 'sysadmin')) {
+          this.props.history.push(get(Meteor, 'settings.public.defaults.routes.adminHomePage', defaultRoute))
+        } else {
 
-        // otherwise, just send them to the default route
-        browserHistory.push(defaultRoute);
+          // otherwise, just send them to the default route
+          this.props.history.push(defaultRoute);
+        }
+      } else {
+        this.props.history.push('/');      
       }
-    } else {
-      browserHistory.push('/');      
     }
   }
   setGeojsonUrl(event, text){
@@ -207,11 +236,15 @@ export class Header extends React.Component {
   setPatientSearch(event, text){
     console.log('setPatientSearch', text);
 
-    Session.set('patientSearch', text)
+    Session.set('patientSearch', text);
+
+    browserHistory.push('/patients')
   }
   mapMyAddress(){
     if(get(Meteor.user(), 'profile.locations.home.position.latitude') && get(Meteor.user(), 'profile.locations.home.position.longitude')){
-      browserHistory.push('/maps');
+      if(this.props.history){
+        this.props.history.push('/maps');
+      }
     }        
   }
   menuIconClicked(event, text){
@@ -228,6 +261,8 @@ export class Header extends React.Component {
     // }
   }
   render () {
+
+    console.log('Header.this.props', this.props)
 
     var menuIcon;
     if(get(Meteor, 'settings.public.defaults.header.menuIcon')){
@@ -285,15 +320,45 @@ export class Header extends React.Component {
         birthdateInfo = moment().diff(moment(get(activePatient, 'birthDate', '')).format("YYYY-MM-DD"), 'years') + "yr"
       }
 
-      demographicsBar = <div id='patientDemographicsBar' style={{color: '#000000'}}>        
+      demographicsBar = <div id='patientDemographicsBar' style={{color: '#000000', width: '100%'}}>        
         <h2 style={{fontWeight: 200, paddingLeft: '40px'}}>{patientDisplay}
           <span style={{fontWeight: 200, color: 'gray', fontSize: '80%', paddingLeft: '20px'}}>
             {birthdateInfo} {genderIcon}          
           </span>        
         </h2>
+        <Row style={{paddingLeft: '40px'}}>
+          <Col md={6}>
+            <TextField
+              hintText="Referring Physician"
+              fullWidth
+            />
+            <TextField
+              hintText="Referring Clinic"
+              fullWidth
+            />
+            <TextField
+              hintText="Parent/Guardian"
+              fullWidth
+            />
+          </Col>
+          <Col md={6}>
+            <TextField
+              hintText="Speciality"
+              fullWidth
+            />
+            <TextField
+              hintText="Date of Last Exam"
+              fullWidth
+            />
+            <TextField
+              hintText="Relationship"
+              fullWidth
+            />
+          </Col>
+        </Row>
       </div>
     } else {
-      demographicsBar = <div id='patientSearchBar'>
+      demographicsBar = <div id='patientSearchBar' style={{width: '100%', paddingLeft: '40px', paddingRight: '40px', paddingTop: '60px', height: '220px'}}>
           <TextField
           hintText="Patient Name"
           style={this.data.style.searchbarInput}
@@ -301,13 +366,13 @@ export class Header extends React.Component {
         />
         <FlatButton 
           label='Search' 
-          onChange={ this.setPatientSearch.bind(this)}
+          onClick={ this.setPatientSearch.bind(this)}
           fullWidth
         />
-        <FlatButton 
+        {/* <FlatButton 
           label='Search' 
           onClick={this.mapMyAddress.bind(this)}
-          />
+          /> */}
       </div>
     }
 
@@ -316,7 +381,7 @@ export class Header extends React.Component {
         <AppBar
           id="appHeader"
           title={this.data.app.title}
-          onTitleTouchTap={this.goHome}
+          onTitleTouchTap={this.goHome.bind(this)}
           iconStyleLeft={this.data.style.title}
           iconElementRight={ this.renderNavigation(this.data.hasUser) }
           style={this.data.style.appbar}
@@ -325,14 +390,10 @@ export class Header extends React.Component {
           { menuIcon }
         </AppBar>
 
-        <AppBar
-          id="appSearchBar"
-          title={demographicsBar}
-          style={this.data.style.searchbar}
-          showMenuIconButton={false}
-        >
+        <div id="appSearchBar" style={this.data.style.searchbar} >
+          {demographicsBar}
+        </div>
           
-        </AppBar>      
       </div>
     );
   }

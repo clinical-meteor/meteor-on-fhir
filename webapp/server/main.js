@@ -9,6 +9,10 @@ import { get } from 'lodash';
 import { DDPGracefulShutdown } from '@meteorjs/ddp-graceful-shutdown';
 import { Meteor } from 'meteor/meteor';
 
+console.log('✣❀✣❀✣❀✣❀✣❀✣❀✣❀✣❀✣❀✣❀✣❀✣❀✣❀✣❀✣❀✣❀✣❀✣❀✣❀✣❀✣❀✣❀✣❀✣❀✣❀✣❀✣❀✣❀✣❀✣❀✣❀✣❀✣❀')
+console.log('Node/Javascript V8 Environemnt is starting.')
+console.log('')
+
 Meteor.startup(function(){
   console.log('Meteor application framework is starting.');
 
